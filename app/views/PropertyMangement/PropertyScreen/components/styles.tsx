@@ -23,7 +23,7 @@ const styles = StyleSheet.create({
   },
   propertyListView: {
     flex: 1,
-    margin: normalizeSpacing(10),
+    margin: normalizeSpacing(5),
   },
   IteamView: {
     backgroundColor: WHITE_COLOR,

@@ -39,6 +39,7 @@ const AgentBankInfo = ({navigation}: any) => {
         headerStyle={styles.headerStyle}
         headerTextStyle={styles.headerTextStyle}
         leftImageSrc={images.backArrow}
+        leftImageIconStyle={styles.RightFirstIconStyle}
         handleOnLeftIconPress={onPressBack}
       /> 
      

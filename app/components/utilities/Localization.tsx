@@ -12,6 +12,7 @@ const strings = new LocalizedStrings({
     propertyHeader: 'Property',
     propertyManagementHeader: 'Property Management',
     agencyHeader: 'Agent',
+    agencyHeaderpending: 'Pending Agent',
     leadManagementHeader: 'Lead Management',
     appointmentWithCPHeader: 'Appointment With CP',
     appointmentForVisitHeader: 'Appointment For Site Visit',
@@ -98,8 +99,16 @@ const strings = new LocalizedStrings({
     appointmnetdetail: 'Appointmnet Detail',
     updatestatus: 'Update Status',
     searchappointment: 'Search Appointment',
+    addNewappointment: 'Add New Appointment',
+    selectLead: 'Select Lead',
+    selectproperty: 'Select Property',
+    appointmentDate: 'Appointment Date',
+    appointmentTime: 'Appointment Time',
+    location: 'Location',
+    noofguest: 'No. of Guest',
+    pickupAppointment: 'PickUp(if add property time set yes)',
 
-    rerainfo: 'RARA Information'
+    rerainfo: 'RERA Information'
   },
 });
 

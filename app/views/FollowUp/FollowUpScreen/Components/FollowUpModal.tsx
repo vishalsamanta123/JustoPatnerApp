@@ -6,7 +6,18 @@ import images from "../../../../assets/images";
 import strings from "../../../../components/utilities/Localization";
 import Button from "../../../../components/Button";
 import InputField from "../../../../components/InputField";
+import { Dropdown } from "react-native-element-dropdown";
+import { dropdownData } from "../../../../components/utilities/DemoData";
 const FilterModal = (props: any) => {
+  const [value, setValue] = useState(null);
+
+  const renderItem = (item: any) => {
+    return (
+      <View style={styles.item}>
+        <Text style={styles.textItem}>{item.label}</Text>
+      </View>
+    );
+  };
   return (
     <View>
       <Modal isVisible={props.Visible}>
@@ -20,45 +31,42 @@ const FilterModal = (props: any) => {
             </View>
           </View>
           <View style={styles.borderView} />
-          <View style={{marginHorizontal: 10}}>
+          <View style={{ marginHorizontal: 10 }}>
             <View style={styles.inputWrap}>
               <InputField
                 placeholderText={"Start Date"}
-                handleInputBtnPress={() => {}}
-                onChangeText={() => {}}
+                handleInputBtnPress={() => { }}
+                onChangeText={() => { }}
               />
             </View>
             <View style={styles.inputWrap}>
               <InputField
                 placeholderText={"End Date"}
-                handleInputBtnPress={() => {}}
-                onChangeText={() => {}}
+                handleInputBtnPress={() => { }}
+                onChangeText={() => { }}
               />
             </View>
             <View style={styles.inputWrap}>
-              <InputField
-                placeholderText={"Search by Name"}
-                handleInputBtnPress={() => {}}
-                onChangeText={() => {}}
-              />
-            </View>
-            <View style={styles.inputWrap}>
-              <InputField
-                placeholderText={"Search by Location"}
-                handleInputBtnPress={() => {}}
-                onChangeText={() => {}}
-              />
-            </View>
-            <View style={styles.inputWrap}>
-              <InputField
-                placeholderText={"Status"}
-                handleInputBtnPress={() => {}}
-                onChangeText={() => {}}
+              <Dropdown
+                style={styles.dropdown}
+                placeholderStyle={styles.placeholderStyle}
+                selectedTextStyle={styles.selectedTextStyle}
+                iconStyle={styles.iconStyle}
+                data={dropdownData}
+                maxHeight={300}
+                labelField="label"
+                valueField="value"
+                placeholder="Search by Type"
+                value={value}
+                onChange={(item) => {
+                  setValue(item.value);
+                }}
+                renderItem={renderItem}
               />
             </View>
           </View>
-          <View style={{marginVertical: 20}}>
-          <Button  handleBtnPress={() => props.setIsVisible(false)} buttonText={strings.apply}  />
+          <View style={{ marginVertical: 20 }}>
+            <Button handleBtnPress={() => props.setIsVisible(false)} buttonText={strings.apply} />
           </View>
         </View>
       </Modal>

@@ -14,6 +14,7 @@ const styles = StyleSheet.create({
   },
   propertyListView: {
     flex: 1,
+    backgroundColor:WHITE_COLOR
   },
   topDetailsView: {
     flexDirection: 'row',
@@ -28,7 +29,8 @@ const styles = StyleSheet.create({
   },
   topTxt: {
     color: BLACK_COLOR,
-    fontFamily: FONT_FAMILY_EXTRABOLD
+    fontFamily: FONT_FAMILY_EXTRABOLD,
+    fontSize:normalize(18),
   },
   qrView: {
     alignItems: 'center',
@@ -48,8 +50,9 @@ const styles = StyleSheet.create({
   },
   projectContainer: {
     flex: 2.5,
-    alignItems: 'flex-end',
-    height: '100%'
+    alignItems: 'flex-start',
+    height: '100%',
+    marginLeft:normalizeSpacing(15)
   },
   projectTxt: {
     fontSize: normalize(15),

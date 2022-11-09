@@ -12,41 +12,30 @@ import FilterModal from './FollowUpModal'
 
 const DATA: any = [
   {
-    Projectname: 'ABC',
-    Location: 'Indore',
-    visitor: 123,
-    siteVisit: 234,
-    closeVisit: 600,
-    status: 'confirmatin Pending',
-    createddate: '11/10/2022'
+    score: 600,
+    date: '11/10/2022',
+    name: 'ABC',
+    config: '3 BHK',
+    budget: '60L',
+    type: 'On Lead',
   },
   {
-    Projectname: 'ABC',
-    Location: 'Indore',
-    visitor: 123,
-    siteVisit: 234,
-    closeVisit: 600,
-    status: 'Subscribe',
-    createddate: '11/10/2022'
+    score: 600,
+    date: '11/10/2022',
+    name: 'ABC',
+    config: '3 BHK',
+    budget: '60L',
+    type: 'On Lead',
   },
   {
-    Projectname: 'ABC',
-    Location: 'Indore',
-    visitor: 123,
-    siteVisit: 234,
-    closeVisit: 600,
-    status: 'Unsubscribe',
-    createddate: '11/10/2022'
+    score: 600,
+    date: '11/10/2022',
+    name: 'ABC',
+    config: '3 BHK',
+    budget: '60L',
+    type: 'On Lead',
   },
-  {
-    Projectname: 'ABC',
-    Location: 'Indore',
-    visitor: 123,
-    siteVisit: 234,
-    closeVisit: 600,
-    status: 'confirmatin Pending',
-    createddate: '11/10/2022'
-  },
+  
 ];
 
 const FollowUpView = (props: any) => {

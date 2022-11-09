@@ -30,8 +30,10 @@ const styles = StyleSheet.create({
     marginTop: normalizeSpacing(2),
   },
   projectContainer: {
-    flex: 2.5,
-    alignItems: 'flex-end',
+    flex: 2.6,
+    alignItems: 'flex-start',
+    height: '100%',
+    marginLeft:normalizeSpacing(15)
   },
   projectTxt: {
     fontSize: normalize(15),
@@ -39,7 +41,7 @@ const styles = StyleSheet.create({
     color: GRAY_LIGHT_COLOR
   },
   nameContainer: {
-    flex: 3.5,
+    flex: 3.4,
     alignItems: 'flex-start',
   },
   nameTxt: {

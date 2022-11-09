@@ -26,7 +26,7 @@ const AgentBasicInfoView = (props: any) => {
   const [checked, setChecked] = React.useState("first");
 
   return (
-    <ScrollView style={styles.mainContainer}>
+    <View style={styles.mainContainer}>
       <View
         style={{
           backgroundColor: WHITE_COLOR,
@@ -39,8 +39,10 @@ const AgentBasicInfoView = (props: any) => {
         headerStyle={styles.headerStyle}
         headerTextStyle={styles.headerTextStyle}
         leftImageSrc={images.backArrow}
+        leftImageIconStyle={styles.RightFirstIconStyle}
         handleOnLeftIconPress={props.onPressBack}
       />
+      <ScrollView>
       <View style={styles.wrap}>
        {/*  <Text style={styles.headingText}>{strings.basicInfoText}</Text> */}
         {/* <View style={styles.underlineStyle} /> */}
@@ -165,7 +167,9 @@ const AgentBasicInfoView = (props: any) => {
           <Button handleBtnPress={props.onPressNext} rightImage={images.forwardArrow} buttonText={strings.next} textTransform={"uppercase"} />
         </View>
       </View>
+    
     </ScrollView>
+    </View>
   );
 };
 

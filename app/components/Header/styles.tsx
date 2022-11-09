@@ -13,12 +13,19 @@ const styles = StyleSheet.create({
     justifyContent: 'space-between',
     padding: normalizeSpacing(10),
   },
+  leftView : {
+    flex:1,
+  },
   imageStyle: {
     height: normalizeHeight(30),
     width: normalizeWidth(30),
   },
   headerTextView: {
-    justifyContent: 'center',
+    //justifyContent: 'center',
+    //textAlign:'center',
+    flex:4,
+    alignItems:'center'
+
   },
   headerText: {
     fontSize: normalize(20),
@@ -27,6 +34,7 @@ const styles = StyleSheet.create({
   },
   rightIconsWrap: {
     flexDirection: 'row',
+    flex:1,
   }
 });
 

@@ -9,40 +9,45 @@ const SmAppointment = (props: any) => {
     <View style={styles.IteamView}>
     <View style={styles.Txtview}>
       <View style={styles.projectContainer}>
-        <Text style={styles.projectTxt}>Date :</Text>
+        <Text style={styles.projectTxt}>Date</Text>
       </View>
+       <View><Text>:</Text></View>
       <View style={styles.nameContainer}>
         <Text style={styles.nameTxt}>{props.items.date}</Text>
       </View>
     </View>
     <View style={styles.Txtview}>
       <View style={styles.projectContainer}>
-        <Text style={styles.projectTxt}>Appointment Type :</Text>
+        <Text style={styles.projectTxt}>Appointment Type</Text>
       </View>
+       <View><Text>:</Text></View>
       <View style={styles.nameContainer}>
         <Text style={styles.nameTxt}>{props.items.appointmentType}</Text>
       </View>
     </View>
     <View style={styles.Txtview}>
       <View style={styles.projectContainer}>
-        <Text style={styles.projectTxt}>Time :</Text>
+        <Text style={styles.projectTxt}>Time</Text>
       </View>
+       <View><Text>:</Text></View>
       <View style={styles.nameContainer}>
         <Text style={styles.nameTxt}>{props.items.time}</Text>
       </View>
     </View>
     <View style={styles.Txtview}>
       <View style={styles.projectContainer}>
-        <Text style={styles.projectTxt}>Appointment With :</Text>
+        <Text style={styles.projectTxt}>Appointment With</Text>
       </View>
+       <View><Text>:</Text></View>
       <View style={styles.nameContainer}>
         <Text style={styles.nameTxt}>{props.items.appointmentWith}</Text>
       </View>
     </View>
     <View style={styles.Txtview}>
       <View style={styles.projectContainer}>
-        <Text style={styles.projectTxt}>Status :</Text>
+        <Text style={styles.projectTxt}>Status</Text>
       </View>
+       <View><Text>:</Text></View>
       <View style={styles.nameContainer}>
         <Text style={styles.nameTxt}>{props.items.Status}</Text>
       </View>

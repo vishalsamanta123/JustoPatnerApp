@@ -36,6 +36,7 @@ import EditFollowUp from '../views/FollowUp/FollowUpScreen/Components/EditFollow
 import AllFollowUpScreen from '../views/FollowUp/AllFollowUp';
 import AppointmentScreen from '../views/Appointment/AppointmentScreen';
 import AppointmentDetails from '../views/Appointment/AppointmentDetails';
+import AddAppointmentScreen from '../views/Appointment/AddAppointment';
 
 const Stack = createNativeStackNavigator();
 const Drawer = createDrawerNavigator();
@@ -107,6 +108,7 @@ const Route = () => {
         <Stack.Screen name="AllFollowUpScreen" component={AllFollowUpScreen}  />
         {/* Appointment */}
         <Stack.Screen name="AppointmentDetails" component={AppointmentDetails}  />
+        <Stack.Screen name="AddAppointmentScreen" component={AddAppointmentScreen}  />
       </Stack.Navigator>
     </NavigationContainer>
   );

@@ -10,10 +10,18 @@ const FollowUpItem = (props: any) => {
     <View style={styles.IteamView}>
     <View style={styles.Txtview}>
       <View style={styles.projectContainer}>
-        <Text style={styles.projectTxt}>Site Visit Date Time :</Text>
+        <Text style={styles.projectTxt}>Visitor Score :</Text>
       </View>
       <View style={styles.nameContainer}>
-        <Text style={styles.nameTxt}>{props.items.Projectname}</Text>
+        <Text style={styles.nameTxt}>{props.items.score}</Text>
+      </View>
+    </View>
+    <View style={styles.Txtview}>
+      <View style={styles.projectContainer}>
+        <Text style={styles.projectTxt}>Follow-Up Date :</Text>
+      </View>
+      <View style={styles.nameContainer}>
+        <Text style={styles.nameTxt}>{props.items.date}</Text>
       </View>
     </View>
     <View style={styles.Txtview}>
@@ -21,39 +29,31 @@ const FollowUpItem = (props: any) => {
         <Text style={styles.projectTxt}>Customer Name :</Text>
       </View>
       <View style={styles.nameContainer}>
-        <Text style={styles.nameTxt}>{props.items.Location}</Text>
+        <Text style={styles.nameTxt}>{props.items.name}</Text>
       </View>
     </View>
     <View style={styles.Txtview}>
       <View style={styles.projectContainer}>
-        <Text style={styles.projectTxt}>Lead No. :</Text>
+        <Text style={styles.projectTxt}>Configration :</Text>
       </View>
       <View style={styles.nameContainer}>
-        <Text style={styles.nameTxt}>{props.items.visitor}</Text>
+        <Text style={styles.nameTxt}>{props.items.config}</Text>
       </View>
     </View>
     <View style={styles.Txtview}>
       <View style={styles.projectContainer}>
-        <Text style={styles.projectTxt}>Pickup :</Text>
+        <Text style={styles.projectTxt}>Budget :</Text>
       </View>
       <View style={styles.nameContainer}>
-        <Text style={styles.nameTxt}>{props.items.siteVisit}</Text>
+        <Text style={styles.nameTxt}>{props.items.budget}</Text>
       </View>
     </View>
     <View style={styles.Txtview}>
       <View style={styles.projectContainer}>
-        <Text style={styles.projectTxt}>Status :</Text>
+        <Text style={styles.projectTxt}>Followup Type :</Text>
       </View>
       <View style={styles.nameContainer}>
-        <Text style={styles.nameTxt}>{props.items.closeVisit}</Text>
-      </View>
-    </View>
-    <View style={styles.Txtview}>
-      <View style={styles.projectContainer}>
-        <Text style={styles.projectTxt}>Visiting Score :</Text>
-      </View>
-      <View style={styles.nameContainer}>
-        <Text style={styles.nameTxt}>{props.items.closeVisit}</Text>
+        <Text style={styles.nameTxt}>{props.items.type}</Text>
       </View>
     </View>
     <View style={styles.buttonContainer}>
