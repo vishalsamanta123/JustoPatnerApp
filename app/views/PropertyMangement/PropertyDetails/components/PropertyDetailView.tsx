@@ -1,5 +1,5 @@
 import { View, Text, StatusBar, FlatList } from "react-native";
-import React from "react";
+import React, { useState } from "react";
 import Header from "../../../../components/Header";
 import {
   BLACK_COLOR,
@@ -15,8 +15,11 @@ import styles from "./styles";
 import PropertyDetailItem from "./PropertyDetailItem";
 import { useNavigation } from "@react-navigation/native";
 import Button from "../../../../components/Button";
+import ConfirmModal from "../../../../components/Modals/ConfirmModal";
 
 const PropertyDetailView = (props: any) => {
+  const [isVisible, setIsVisible] = useState(false)
+  
   const insets = useSafeAreaInsets();
   const navigation: any = useNavigation();
   const DATA: any = {
@@ -65,6 +68,7 @@ const PropertyDetailView = (props: any) => {
           
       }]}>
         <Button
+           handleBtnPress={() => DATA.status == 'Subscribe' ? setIsVisible(true) : console.log('11111')}
           buttonText={
             DATA.status == "confirmatin Pending"
               ? strings.active
@@ -96,6 +100,7 @@ const PropertyDetailView = (props: any) => {
         {DATA.status !== "confirmatin Pending" &&
           DATA.status !== "Unsubscribe" ? (
           <Button
+            handleBtnPress={()=> props.onPressCreatevisit()}
             buttonText={strings.createVisit}
             width={150}
             height={45}
@@ -107,7 +112,12 @@ const PropertyDetailView = (props: any) => {
           />
         ) : null}
       </View>
+
+      <ConfirmModal Visible={isVisible} setIsVisible={setIsVisible} />
+      
     </View>
+
+    
   );
 };
 

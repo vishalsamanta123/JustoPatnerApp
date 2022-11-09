@@ -70,7 +70,7 @@ const styles = StyleSheet.create({
     height: normalizeHeight(25),
     marginLeft: normalizeSpacing(10),
     justifyContent: 'center',
-    borderWidth: 0.5,
+    borderWidth: 1,
     borderRadius: 10
   },
   Viewbutton : {

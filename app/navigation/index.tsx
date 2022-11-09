@@ -24,7 +24,7 @@ import ForgotPassword from '../views/Authentication/ForgotPassword';
 import LeadManagementScreen from '../views/LeadManagement/LeadManagementScreen';
 import BulkUpload from '../views/LeadManagement/LeadManagementScreen/Components/BulkUpload';
 import AddNewVisitorScreen from '../views/LeadManagement/AddNewVisitor';
-import ChangePasswordScreen from '../views/Authentication/ChangePassword';
+import UpdatePasswordScreen from '../views/Authentication/ChangePassword';
 import LeadDetails from '../views/LeadManagement/LeadDetails';
 import FollowUpScreen from '../views/FollowUp/FollowUpScreen';
 
@@ -37,6 +37,12 @@ import AllFollowUpScreen from '../views/FollowUp/AllFollowUp';
 import AppointmentScreen from '../views/Appointment/AppointmentScreen';
 import AppointmentDetails from '../views/Appointment/AppointmentDetails';
 import AddAppointmentScreen from '../views/Appointment/AddAppointment';
+
+import SettingScreen from '../views/Setting/SettingScreen';
+import ProfileScreen from '../views/Setting/ProfileScreen';
+import EditProfileScreen from '../views/Setting/EditProfileScreen';
+import ChangePasswordScreen from '../views/Setting/ChangePassword';
+import SeparateLinkScreen from '../views/Setting/SeparateLink';
 
 const Stack = createNativeStackNavigator();
 const Drawer = createDrawerNavigator();
@@ -54,6 +60,7 @@ const DrawerComponent = () => {
       <Drawer.Screen name="LeadManagement" component={LeadManagementScreen}  />
       <Drawer.Screen name="FollowUpScreen" component={FollowUpScreen}  />
       <Drawer.Screen name="AppointmentScreen" component={AppointmentScreen}  />
+      <Drawer.Screen name="SettingScreen" component={SettingScreen}  />
       
       {/* <Stack.Screen component={PropertyScreen} name="PropertyScreenView" /> */}
     </Drawer.Navigator>
@@ -85,7 +92,7 @@ const Route = () => {
           component={OtpVerificationScreen}
           name="OtpVerificationScreenView"
         />
-         <Stack.Screen component={ChangePasswordScreen} name="ChangePasswordScreenView" />
+         <Stack.Screen component={UpdatePasswordScreen} name="ChangePasswordScreenView" />
         <Stack.Screen component={DrawerComponent} name="DashboardScreenView" />
         <Stack.Screen component={UserBankInfo} name="UserBankInfo" />
         {/* Property Management Screens */}
@@ -109,6 +116,12 @@ const Route = () => {
         {/* Appointment */}
         <Stack.Screen name="AppointmentDetails" component={AppointmentDetails}  />
         <Stack.Screen name="AddAppointmentScreen" component={AddAppointmentScreen}  />
+
+        {/*Setting screen*/}
+        <Stack.Screen name="profile" component={ProfileScreen}  />
+        <Stack.Screen name="EditProfileScreen" component={EditProfileScreen}  />
+        <Stack.Screen name="changePassword" component={ChangePasswordScreen}  />
+        <Stack.Screen name="separateLink" component={SeparateLinkScreen}  />
       </Stack.Navigator>
     </NavigationContainer>
   );

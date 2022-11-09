@@ -53,7 +53,7 @@ const PropertyListItem = (props: any) => {
           <Text style={styles.projectTxt}>Status :</Text>
         </View>
         <View style={styles.nameContainer}>
-        <Text style={[styles.nameTxt,{
+         <Text style={[styles.nameTxt,{
           color: props.items.status == 'confirmatin Pending' ? BLACK_COLOR : 
           props.items.status == 'Subscribe' ? YELLOW_COLOR : 'red'
         }]}>{props.items.status}</Text>
@@ -71,12 +71,12 @@ const PropertyListItem = (props: any) => {
         <TouchableOpacity
         onPress={() => props.items.status === 'Subscribe' ? props.setIsVisible(true) : null}
          style={[styles.button, {
-          borderColor: props.items.status == 'confirmatin Pending' ? BLACK_COLOR : 
-          props.items.status == 'Subscribe' ? 'red' : YELLOW_COLOR
+          borderColor: props.items.status == 'confirmatin Pending' ? '#008000' : 
+          props.items.status == 'Subscribe' ? 'red' : '#E4D00A'
         }]} >
           <Text style={[styles.buttonTxt,{
-          color: props.items.status == 'confirmatin Pending' ? BLACK_COLOR : 
-          props.items.status == 'Subscribe' ? 'red' : YELLOW_COLOR
+          color: props.items.status == 'confirmatin Pending' ? '#008000' : 
+          props.items.status == 'Subscribe' ? 'red' : '#E4D00A'
           }]}>{
             props.items.status == 'confirmatin Pending' ? strings.active : 
             props.items.status == 'Subscribe' ? strings.unsubscribe : strings.subscribe 
