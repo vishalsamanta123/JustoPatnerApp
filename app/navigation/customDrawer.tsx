@@ -123,7 +123,7 @@ const customDrawer = ({navigation}: any) => {
             navigation.navigate('AppointmentScreen');
           }}
         />
-        <DrawerTabSection
+        {/* <DrawerTabSection
           iconSource={images.report}
           tabTitle={strings.reportHeader}
         />
@@ -134,10 +134,13 @@ const customDrawer = ({navigation}: any) => {
         <DrawerTabSection
           iconSource={images.support}
           tabTitle={strings.supportHeader}
-        />
-        <DrawerTabSection
+        /> */}
+        <DrawerTabSection   
           iconSource={images.setting}
           tabTitle={strings.settingHeader}
+          handleDrawerNavigation={() => {
+            navigation.navigate('SettingScreen');
+          }}
         />
         <DrawerTabSection
           iconSource={images.logout}
