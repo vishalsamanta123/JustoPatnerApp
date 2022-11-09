@@ -8,6 +8,7 @@ import {
   GRAY_LIGHT_COLOR,
   PRIMARY_THEME_COLOR,
   WHITE_COLOR,
+  PURPLE_COLOR,
 } from '../../../../components/utilities/constant';
 
 const styles = StyleSheet.create({
@@ -73,11 +74,22 @@ const styles = StyleSheet.create({
     top: 10,
     backgroundColor: WHITE_COLOR,
     width: normalizeWidth(100),
+    height: normalizeHeight(30),
+    marginLeft: normalizeSpacing(10),
+    justifyContent: 'center',
+    borderWidth: 1,
+    borderRadius: 10
+  },
+  buttonedit : {
+    top: 10,
+    backgroundColor: WHITE_COLOR,
+    width: normalizeWidth(100),
     height: normalizeHeight(25),
     marginLeft: normalizeSpacing(10),
     justifyContent: 'center',
     borderWidth: 0.5,
-    borderRadius: 10
+    borderRadius: 10,
+    borderColor:PURPLE_COLOR,
   },
   Viewbutton : {
     top: 10,
@@ -92,7 +104,7 @@ const styles = StyleSheet.create({
     height: normalizeHeight(30)
   },
   buttonTxt : {
-    color: BLACK_COLOR,
+    
     textAlign: 'center'
   },
   BulkMainView: {
