@@ -10,56 +10,63 @@ const AgentListItem = (props: any) => {
     <View style={styles.IteamView}>
       <View style={styles.Txtview} >
         <View style={styles.projectContainer}>
-          <Text style={styles.projectTxt}>Agent Name :</Text>
+          <Text style={styles.projectTxt}>Agent Name</Text>
         </View>
+        <View><Text>:</Text></View>
         <View style={styles.nameContainer}>
           <Text style={styles.nameTxt}>{props.items.Projectname}</Text>
         </View>
       </View>
       <View style={styles.Txtview} >
         <View style={styles.projectContainer}>
-          <Text style={styles.projectTxt}>Location :</Text>
+          <Text style={styles.projectTxt}>Location</Text>
         </View>
+        <View><Text>:</Text></View>
         <View style={styles.nameContainer}>
         <Text style={styles.nameTxt}>{props.items.Location}</Text>
         </View>
       </View>
       <View style={styles.Txtview} >
         <View style={styles.projectContainer}>
-          <Text style={styles.projectTxt}>RERA No. :</Text>
+          <Text style={styles.projectTxt}>RERA No.</Text>
         </View>
+        <View><Text>:</Text></View>
         <View style={styles.nameContainer}>
         <Text style={styles.nameTxt}>{props.items.rerano}</Text>
         </View>
       </View>
       <View style={styles.Txtview} >
         <View style={styles.projectContainer}>
-          <Text style={styles.projectTxt}>No. of Visit :</Text>
+          <Text style={styles.projectTxt}>No. of Visit</Text>
         </View>
+        <View><Text>:</Text></View>
         <View style={styles.nameContainer}>
         <Text style={styles.nameTxt}>{props.items.visitor}</Text>
         </View>
       </View>
       <View style={styles.Txtview}>
         <View style={styles.projectContainer}>
-          <Text style={styles.projectTxt}>No. of Site Visit :</Text>
+          <Text style={styles.projectTxt}>No. of Site Visit</Text>
         </View>
+        <View><Text>:</Text></View>
         <View style={styles.nameContainer}>
         <Text style={styles.nameTxt}>{props.items.siteVisit}</Text>
         </View>
       </View>
       <View style={styles.Txtview} >
         <View style={styles.projectContainer}>
-          <Text style={styles.projectTxt}>No. of Colse Visit :</Text>
+          <Text style={styles.projectTxt}>No. of Colse Visit</Text>
         </View>
+        <View><Text>:</Text></View>
         <View style={styles.nameContainer}>
         <Text style={styles.nameTxt}>{props.items.closeVisit}</Text>
         </View>
       </View>
       <View style={styles.Txtview} >
         <View style={styles.projectContainer}>
-          <Text style={styles.projectTxt}>Status :</Text>
+          <Text style={styles.projectTxt}>Status</Text>
         </View>
+        <View><Text>:</Text></View>
         <View style={styles.nameContainer}>
         <Text style={[styles.nameTxt,{
           color:  BLACK_COLOR

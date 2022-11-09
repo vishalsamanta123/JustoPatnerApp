@@ -18,96 +18,108 @@ const AppointmentDtailsItem = () => {
       </View>
       <View style={styles.Txtview}>
         <View style={styles.projectContainer}>
-          <Text style={styles.projectTxt}>Visitor Name :</Text>
+          <Text style={styles.projectTxt}>Visitor Name</Text>
         </View>
+         <View><Text>:</Text></View>
         <View style={styles.nameContainer}>
           <Text style={styles.nameTxt}>ABC</Text>
         </View>
       </View>
       <View style={styles.Txtview}>
         <View style={styles.projectContainer}>
-          <Text style={styles.projectTxt}>Budget :</Text>
+          <Text style={styles.projectTxt}>Budget</Text>
         </View>
+         <View><Text>:</Text></View>
         <View style={styles.nameContainer}>
           <Text style={styles.nameTxt}>50L to 75L</Text>
         </View>
       </View>
       <View style={styles.Txtview}>
         <View style={styles.projectContainer}>
-          <Text style={styles.projectTxt}>When to buy :</Text>
+          <Text style={styles.projectTxt}>When to buy</Text>
         </View>
+         <View><Text>:</Text></View>
         <View style={styles.nameContainer}>
           <Text style={styles.nameTxt}>ASAP</Text>
         </View>
       </View>
       <View style={styles.Txtview}>
         <View style={styles.projectContainer}>
-          <Text style={styles.projectTxt}>Configratiohn :</Text>
+          <Text style={styles.projectTxt}>Configratiohn</Text>
         </View>
+         <View><Text>:</Text></View>
         <View style={styles.nameContainer}>
           <Text style={styles.nameTxt}>2 BHK</Text>
         </View>
       </View>
       <View style={styles.Txtview}>
         <View style={styles.projectContainer}>
-          <Text style={styles.projectTxt}>Site Visit Date Time :</Text>
+          <Text style={styles.projectTxt}>Site Visit Date Time</Text>
         </View>
+         <View><Text>:</Text></View>
         <View style={styles.nameContainer}>
           <Text style={styles.nameTxt}>27/11/2022 11:00 AM</Text>
         </View>
       </View>
       <View style={styles.Txtview}>
         <View style={styles.projectContainer}>
-          <Text style={styles.projectTxt}>Property :</Text>
+          <Text style={styles.projectTxt}>Property</Text>
         </View>
+         <View><Text>:</Text></View>
         <View style={styles.nameContainer}>
           <Text style={styles.nameTxt}>Abc Property Name</Text>
         </View>
       </View>
       <View style={styles.Txtview}>
         <View style={styles.projectContainer}>
-          <Text style={styles.projectTxt}>Status :</Text>
+          <Text style={styles.projectTxt}>Status</Text>
         </View>
+         <View><Text>:</Text></View>
         <View style={styles.nameContainer}>
           <Text style={styles.nameTxt}>Pending</Text>
         </View>
       </View>
       <View style={styles.Txtview}>
         <View style={styles.projectContainer}>
-          <Text style={styles.projectTxt}>Appointment Craete by :</Text>
+          <Text style={styles.projectTxt}>Appointment Craete by</Text>
         </View>
+         <View><Text>:</Text></View>
         <View style={styles.nameContainer}>
           <Text style={styles.nameTxt}>Abc User Name</Text>
         </View>
       </View>
       <View style={styles.Txtview}>
         <View style={styles.projectContainer}>
-          <Text style={styles.projectTxt}>Pickup :</Text>
+          <Text style={styles.projectTxt}>Pickup</Text>
         </View>
+         <View><Text>:</Text></View>
         <View style={styles.nameContainer}>
           <Text style={styles.nameTxt}>Yes</Text>
         </View>
       </View>
       <View style={styles.Txtview}>
         <View style={styles.projectContainer}>
-          <Text style={styles.projectTxt}>Pickup Location :</Text>
+          <Text style={styles.projectTxt}>Pickup Location</Text>
         </View>
+         <View><Text>:</Text></View>
         <View style={styles.nameContainer}>
           <Text style={styles.nameTxt}>197 Settelighttownship Bijalpur indore MP 452012</Text>
         </View>
       </View>
       <View style={styles.Txtview}>
         <View style={styles.projectContainer}>
-          <Text style={styles.projectTxt}>Drop up Location :</Text>
+          <Text style={styles.projectTxt}>Drop up Location</Text>
         </View>
+         <View><Text>:</Text></View>
         <View style={styles.nameContainer}>
           <Text style={styles.nameTxt}>197 Settelighttownship Bijalpur indore MP 452012</Text>
         </View>
       </View>
       <View style={styles.Txtview}>
         <View style={styles.projectContainer}>
-          <Text style={styles.projectTxt}>No. of Guest :</Text>
+          <Text style={styles.projectTxt}>No. of Guest</Text>
         </View>
+         <View><Text>:</Text></View>
         <View style={styles.nameContainer}>
           <Text style={styles.nameTxt}>3</Text>
         </View>

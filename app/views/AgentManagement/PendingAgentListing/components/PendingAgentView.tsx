@@ -66,7 +66,7 @@ const PendingAgentView = (props: any) => {
   ];
 
   const onPressView = () => {
-    navigation.navigate('PropertyDetails')
+    navigation.navigate('AgentDetails')
   }
   const showpendinglist = () => {
     navigation.navigate('PendingAgentList')
@@ -85,7 +85,7 @@ const PendingAgentView = (props: any) => {
         leftImageSrc={images.backArrow}
         rightFirstImageScr={images.filter}
         rightSecondImageScr={images.notification}
-        headerText={strings.agencyHeader}
+        headerText={strings.agencyHeaderpending}
         handleOnLeftIconPress={props.handleBackPress}
         headerStyle={styles.headerStyle}
         RightFirstIconStyle={styles.RightFirstIconStyle}

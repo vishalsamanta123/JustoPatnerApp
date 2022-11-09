@@ -16,10 +16,10 @@ const AddNewVisitorForm = (props: any) => {
     const [checked, setChecked] = React.useState("first");
 
     return (
-        <ScrollView style={styles.mainContainer}>
+        <View style={styles.mainContainer}>
             <View
                 style={{
-                    backgroundColor: WHITE_COLOR,
+                    backgroundColor: PRIMARY_THEME_COLOR,
                     height: insets.top,
                 }}
             />
@@ -31,10 +31,12 @@ const AddNewVisitorForm = (props: any) => {
                         strings.addnewvisitor
                 }
                 headerStyle={styles.headerStyle}
-                headerTextStyle={styles.headerTextStyle}
+               // headerTextStyle={styles.headerTextStyle}
                 leftImageSrc={images.backArrow}
+                leftImageIconStyle={styles.RightFirstIconStyle}
                 handleOnLeftIconPress={props.handleBackPress}
             />
+            <ScrollView>
             <View style={styles.wrap}>
                 <Text style={styles.headingText}>{strings.visitordetails}</Text>
                 <View style={styles.inputWrap}>
@@ -443,7 +445,9 @@ const AddNewVisitorForm = (props: any) => {
                     }
                 </View>
             </View>
-        </ScrollView>
+            </ScrollView>
+       
+        </View>
     )
 }
 

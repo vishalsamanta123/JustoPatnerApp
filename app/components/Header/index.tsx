@@ -1,4 +1,4 @@
-import {View, Text, TouchableOpacity, Image} from 'react-native';
+import { View, Text, TouchableOpacity, Image } from 'react-native';
 import React from 'react';
 import styles from './styles';
 
@@ -6,12 +6,14 @@ const Header = (props: any) => {
   return (
     <>
       <View style={[styles.maincontainer, props.headerStyle]}>
-        <TouchableOpacity onPress={props.handleOnLeftIconPress}>
-          <Image 
-            source={props.leftImageSrc} 
-            style={[styles.imageStyle, props.leftImageIconStyle]}
-          />
-        </TouchableOpacity>
+        <View style={styles.leftView}>
+          <TouchableOpacity onPress={props. handleOnLeftIconPress}>
+            <Image
+              source={props.leftImageSrc}
+              style={[styles.imageStyle, props.leftImageIconStyle]}
+            />
+          </TouchableOpacity>
+        </View>
         <View style={styles.headerTextView}>
           <Text style={[styles.headerText, props.headerTextStyle]}>
             {props.headerText}

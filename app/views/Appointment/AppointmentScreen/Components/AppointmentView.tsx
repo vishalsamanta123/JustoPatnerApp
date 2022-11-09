@@ -12,6 +12,7 @@ import SmAppointment from './SmAppointment';
 import { AppointMentSmData, AppointMentVisitorData } from '../../../../components/utilities/DemoData';
 import { useNavigation } from '@react-navigation/native';
 import FilterModal from './AppointmentModal';
+import Button from '../../../../components/Button';
 
 const AppointmentView = (props: any) => {
     const insets = useSafeAreaInsets();
@@ -35,6 +36,9 @@ const AppointmentView = (props: any) => {
     );
     const onPressView = () => {
         navigation.navigate('AppointmentDetails')
+    }
+    const onPressAddNew = () => {
+        navigation.navigate('AddAppointmentScreen')
     }
     const FirstRoute = () => (
         <FlatList
@@ -74,6 +78,15 @@ const AppointmentView = (props: any) => {
                 RightFirstIconStyle={styles.RightFirstIconStyle}
                 handleOnRightFirstIconPress={() => setFilterisVisible(true)}
             />
+            <View style={{marginVertical: 10, alignItems: 'flex-end'}}>
+                <Button
+                width={200}
+                height={30}
+                buttonText={strings.addNewappointment}
+                btnTxtsize={14}
+                handleBtnPress={() => onPressAddNew()}
+                 />
+            </View>
             <View style={styles.propertyListView}>
                 <TabView
                     renderTabBar={renderTabBar}
@@ -81,6 +94,7 @@ const AppointmentView = (props: any) => {
                     renderScene={renderScene}
                     onIndexChange={setIndex}
                     initialLayout={{ width: layout.width }}
+                    
                 />
             </View>
             <FilterModal Visible={FilterisVisible} setIsVisible={setFilterisVisible} />

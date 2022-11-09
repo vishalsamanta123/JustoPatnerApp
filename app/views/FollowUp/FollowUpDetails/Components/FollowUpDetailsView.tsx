@@ -8,9 +8,14 @@ import styles from './Styles'
 import { useSafeAreaInsets } from 'react-native-safe-area-context'
 import Button from '../../../../components/Button'
 import FollowUpDetailsItem from './FollowUpDetailsItem'
+import { useNavigation } from '@react-navigation/native'
 
 const FollowUpDetailsView = (props: any) => {
   const insets = useSafeAreaInsets();
+  const navigation: any = useNavigation()
+  const onpressSchedule = () => {
+    navigation.navigate('AddAppointmentScreen')
+  }
   return (
     <View style={styles.mainContainer}>
       <View
@@ -40,6 +45,7 @@ const FollowUpDetailsView = (props: any) => {
           btnTxtcolor={WHITE_COLOR}
           btnTxtsize={12}
           textTransform={"uppercase"}
+          handleBtnPress={() => onpressSchedule()}
         />
         <Button
           buttonText={strings.Statusupdate}

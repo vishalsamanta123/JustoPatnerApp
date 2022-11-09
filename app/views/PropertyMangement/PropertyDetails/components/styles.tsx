@@ -22,7 +22,8 @@ const styles = StyleSheet.create({
   },
   propertyListView: {
     flex: 1,
-    marginTop: normalizeSpacing(10),
+    marginTop: normalizeSpacing(0),
+    backgroundColor:WHITE_COLOR
   },
   IteamView: {
     backgroundColor: WHITE_COLOR,
@@ -40,8 +41,9 @@ const styles = StyleSheet.create({
   },
   projectContainer : {
     flex: 2,
-    alignItems: 'flex-end',
-    height: '100%'
+    alignItems: 'flex-start',
+    height: '100%',
+    marginLeft:normalizeSpacing(15)
   },
   projectTxt : {
     fontSize: normalize(15),

@@ -22,13 +22,14 @@ const styles = StyleSheet.create({
   },
   propertyListView: {
     flex: 1,
-    margin: normalizeSpacing(10),
+    margin: normalizeSpacing(5),
   },
   TopBtnView: {
     flexDirection: 'row',
     marginVertical: normalizeSpacing(10),
-    justifyContent: 'center',
-    alignItems: 'center'
+    justifyContent: 'flex-end',
+    alignItems: 'flex-end',
+    
   },
   IteamView: {
     backgroundColor: WHITE_COLOR,

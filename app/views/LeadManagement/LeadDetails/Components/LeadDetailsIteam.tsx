@@ -30,32 +30,36 @@ const LeadDetailsIteam = () => {
             </View>
             <View style={styles.Txtview}>
                 <View style={styles.projectContainer}>
-                    <Text style={styles.projectTxt}>Property Name :</Text>
+                    <Text style={styles.projectTxt}>Property Name</Text>
                 </View>
+                <View><Text>:</Text></View>
                 <View style={styles.nameContainer}>
                     <Text style={styles.nameTxt}>ABC</Text>
                 </View>
             </View>
             <View style={styles.Txtview}>
                 <View style={styles.projectContainer}>
-                    <Text style={styles.projectTxt}>Last Interacted :</Text>
+                    <Text style={styles.projectTxt}>Last Interacted</Text>
                 </View>
+                <View><Text>:</Text></View>
                 <View style={styles.nameContainer}>
                     <Text style={styles.nameTxt}>21/09/2022</Text>
                 </View>
             </View>
             <View style={styles.Txtview}>
                 <View style={styles.projectContainer}>
-                    <Text style={styles.projectTxt}>Source :</Text>
+                    <Text style={styles.projectTxt}>Source</Text>
                 </View>
+                <View><Text>:</Text></View>
                 <View style={styles.nameContainer}>
                     <Text style={styles.nameTxt}>ABC</Text>
                 </View>
             </View>
             <View style={styles.Txtview}>
                 <View style={styles.projectContainer}>
-                    <Text style={styles.projectTxt}>Status :</Text>
+                    <Text style={styles.projectTxt}>Status</Text>
                 </View>
+                <View><Text>:</Text></View>
                 <View style={styles.nameContainer}>
                     <Text style={styles.nameTxt}>Last call status</Text>
                 </View>
@@ -67,40 +71,45 @@ const LeadDetailsIteam = () => {
             </View>
             <View style={styles.Txtview}>
                 <View style={styles.projectContainer}>
-                    <Text style={styles.projectTxt}>Configuration :</Text>
+                    <Text style={styles.projectTxt}>Configuration</Text>
                 </View>
+                <View><Text>:</Text></View>
                 <View style={styles.nameContainer}>
                     <Text style={styles.nameTxt}>2 BHK</Text>
                 </View>
             </View>
             <View style={styles.Txtview}>
                 <View style={styles.projectContainer}>
-                    <Text style={styles.projectTxt}>Area (in sq.ft) :</Text>
+                    <Text style={styles.projectTxt}>Area (in sq.ft)</Text>
                 </View>
+                <View><Text>:</Text></View>
                 <View style={styles.nameContainer}>
                     <Text style={styles.nameTxt}>600</Text>
                 </View>
             </View>
             <View style={styles.Txtview}>
                 <View style={styles.projectContainer}>
-                    <Text style={styles.projectTxt}>Budget :</Text>
+                    <Text style={styles.projectTxt}>Budget</Text>
                 </View>
+                <View><Text>:</Text></View>
                 <View style={styles.nameContainer}>
                     <Text style={styles.nameTxt}>50L</Text>
                 </View>
             </View>
             <View style={styles.Txtview}>
                 <View style={styles.projectContainer}>
-                    <Text style={styles.projectTxt}>Nature Of Funding :</Text>
+                    <Text style={styles.projectTxt}>Nature Of Funding</Text>
                 </View>
+                <View><Text>:</Text></View>
                 <View style={styles.nameContainer}>
                     <Text style={styles.nameTxt}>Loan</Text>
                 </View>
             </View>
             <View style={styles.Txtview}>
                 <View style={styles.projectContainer}>
-                    <Text style={styles.projectTxt}>Purpose :</Text>
+                    <Text style={styles.projectTxt}>Purpose</Text>
                 </View>
+                <View><Text>:</Text></View>
                 <View style={styles.nameContainer}>
                     <Text style={styles.nameTxt}>End Use</Text>
                 </View>
@@ -113,40 +122,45 @@ const LeadDetailsIteam = () => {
             </View>
             <View style={styles.Txtview}>
                 <View style={styles.projectContainer}>
-                    <Text style={styles.projectTxt}>Visitor Name :</Text>
+                    <Text style={styles.projectTxt}>Visitor Name</Text>
                 </View>
+                <View><Text>:</Text></View>
                 <View style={styles.nameContainer}>
                     <Text style={styles.nameTxt}>ABC</Text>
                 </View>
             </View>
             <View style={styles.Txtview}>
                 <View style={styles.projectContainer}>
-                    <Text style={styles.projectTxt}>Location :</Text>
+                    <Text style={styles.projectTxt}>Location</Text>
                 </View>
+                <View><Text>:</Text></View>
                 <View style={styles.nameContainer}>
                     <Text style={styles.nameTxt}>Indore</Text>
                 </View>
             </View>
             <View style={styles.Txtview}>
                 <View style={styles.projectContainer}>
-                    <Text style={styles.projectTxt}>Age :</Text>
+                    <Text style={styles.projectTxt}>Age</Text>
                 </View>
+                <View><Text>:</Text></View>
                 <View style={styles.nameContainer}>
                     <Text style={styles.nameTxt}>21</Text>
                 </View>
             </View>
             <View style={styles.Txtview}>
                 <View style={styles.projectContainer}>
-                    <Text style={styles.projectTxt}>Gender :</Text>
+                    <Text style={styles.projectTxt}>Gender</Text>
                 </View>
+                <View><Text>:</Text></View>
                 <View style={styles.nameContainer}>
                     <Text style={styles.nameTxt}>Male</Text>
                 </View>
             </View>
             <View style={styles.Txtview}>
                 <View style={styles.projectContainer}>
-                    <Text style={styles.projectTxt}>Locality :</Text>
+                    <Text style={styles.projectTxt}>Locality</Text>
                 </View>
+                <View><Text>:</Text></View>
                 <View style={styles.nameContainer}>
                     <Text style={styles.nameTxt}>Pune</Text>
                 </View>
@@ -159,32 +173,36 @@ const LeadDetailsIteam = () => {
             </View>
             <View style={styles.Txtview}>
                 <View style={styles.projectContainer}>
-                    <Text style={styles.projectTxt}>Nature of Occupation :</Text>
+                    <Text style={styles.projectTxt}>Nature of Occupation</Text>
                 </View>
+                <View><Text>:</Text></View>
                 <View style={styles.nameContainer}>
                     <Text style={styles.nameTxt}>Salaried</Text>
                 </View>
             </View>
             <View style={styles.Txtview}>
                 <View style={styles.projectContainer}>
-                    <Text style={styles.projectTxt}>Company Name :</Text>
+                    <Text style={styles.projectTxt}>Company Name</Text>
                 </View>
+                <View><Text>:</Text></View>
                 <View style={styles.nameContainer}>
                     <Text style={styles.nameTxt}>ABC</Text>
                 </View>
             </View>
             <View style={styles.Txtview}>
                 <View style={styles.projectContainer}>
-                    <Text style={styles.projectTxt}>Designation :</Text>
+                    <Text style={styles.projectTxt}>Designation</Text>
                 </View>
+                <View><Text>:</Text></View>
                 <View style={styles.nameContainer}>
                     <Text style={styles.nameTxt}>Project Manager</Text>
                 </View>
             </View>
             <View style={styles.Txtview}>
                 <View style={styles.projectContainer}>
-                    <Text style={styles.projectTxt}>Office Address :</Text>
+                    <Text style={styles.projectTxt}>Office Address</Text>
                 </View>
+                <View><Text>:</Text></View>
                 <View style={styles.nameContainer}>
                     <Text style={styles.nameTxt}>XYZ</Text>
                 </View>

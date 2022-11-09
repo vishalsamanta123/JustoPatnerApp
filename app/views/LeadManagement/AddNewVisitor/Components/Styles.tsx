@@ -11,7 +11,11 @@ import {
 
 const styles = StyleSheet.create({
   headerStyle: {
-    backgroundColor: WHITE_COLOR,
+    backgroundColor: PRIMARY_THEME_COLOR,
+   
+  },
+  RightFirstIconStyle: {
+    tintColor: WHITE_COLOR,
   },
   headerTextStyle: {
     color: BLACK_COLOR,

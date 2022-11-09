@@ -12,13 +12,16 @@ import {
 
 const styles = StyleSheet.create({
   headerStyle: {
-    backgroundColor: WHITE_COLOR,
+    backgroundColor: PRIMARY_THEME_COLOR,
   },
   headerTextStyle: {
-    color: BLACK_COLOR,
+    color: WHITE_COLOR,
   },
   mainContainer: {
     flex: 1,
+  },
+  RightFirstIconStyle: {
+    tintColor: WHITE_COLOR,
   },
   wrap: {
     flex: 1,
