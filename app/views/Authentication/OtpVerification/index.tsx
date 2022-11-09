@@ -4,7 +4,6 @@ import OtpVerificationView from './components/OtpVerificationView'
 const OtpVerificationScreen = ({navigation}: any) => {
     const [otp, setOtp] = useState();
     const handleOtpChange = (value: any) => {
-        console.log('value', value);
         setOtp(value);
     }
     const OnpressConfirm = () => {
