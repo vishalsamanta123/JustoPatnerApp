@@ -27,10 +27,8 @@ const styles = StyleSheet.create({
   btnView: {
     flex: 0.6,
     top:5,
-    //margin: normalizeSpacing(3),
     flexDirection:'row-reverse',
     marginLeft:normalizeSpacing(22),
-    //backgroundColor:'red'
   },
   propertyListViewsec: {
     flex: 5.4,
@@ -77,14 +75,14 @@ const styles = StyleSheet.create({
     marginVertical: normalizeSpacing(10),
   },
   buttonbox : {
-    top: 12,
+    top: 10,
     backgroundColor: WHITE_COLOR,
     width: normalizeWidth(100),
     height: normalizeHeight(30),
     marginLeft: normalizeSpacing(8),
     justifyContent: 'center',
-    borderWidth: 0.5,
-    borderRadius: 7,
+    borderWidth: 1,
+    borderRadius: 10,
     
   },
   button : {

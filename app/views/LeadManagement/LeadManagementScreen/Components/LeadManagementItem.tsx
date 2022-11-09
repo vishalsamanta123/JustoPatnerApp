@@ -4,8 +4,11 @@ import styles from "./Styles";
 import {
   BLACK_COLOR,
   YELLOW_COLOR,
+  PURPLE_COLOR,
+  CALL_COLOR,
 } from "../../../../components/utilities/constant";
 import images from "../../../../assets/images";
+import strings from "../../../../components/utilities/Localization";
 
 const LeadManagementItem = (props: any) => {
   return (
@@ -82,14 +85,14 @@ const LeadManagementItem = (props: any) => {
       </View>
       <View style={styles.buttonContainer}>
         <TouchableOpacity
-          style={styles.button}
+          style={[styles.button,{borderColor:PURPLE_COLOR}]}
           onPress={() => props.onPressEdit()}
         >
-          <Text style={styles.buttonTxt}>Edit</Text>
+          <Text style={[styles.buttonTxt,{color: PURPLE_COLOR}]}>{strings.edit}</Text>
         </TouchableOpacity>
         <TouchableOpacity
-          style={styles.button} >
-          <Text style={styles.buttonTxt}>Call</Text>
+          style={[styles.button,{borderColor:CALL_COLOR}]}>
+          <Text style={[styles.buttonTxt,{color: CALL_COLOR}]}>{strings.call}</Text>
         </TouchableOpacity>
         <TouchableOpacity style={styles.Viewbutton} onPress={() => props.onPressView(props.items)}>
           <Image

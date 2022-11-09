@@ -34,7 +34,6 @@ const styles = StyleSheet.create({
   },
   dashboardScroll: {
     flex: 1,
-    // backgroundColor: 'red',
   },
   dashboardWrap: {
     flex: 1,

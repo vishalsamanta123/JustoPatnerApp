@@ -11,11 +11,9 @@ const styles = StyleSheet.create({
       logoView: {
         alignItems: 'center',
         justifyContent: 'center',
-        //backgroundColor:'red'
       },
       loginBanner: {
         width: width,
-        //height: 220,
       },
       logoImage: {
         height: normalizeHeight(100),
@@ -51,7 +49,6 @@ const styles = StyleSheet.create({
         color: GRAY_LIGHT_COLOR
       },
       spanTouch: {
-        // backgroundColor: 'red',
         flexDirection: 'row'
       },
       spanText: {

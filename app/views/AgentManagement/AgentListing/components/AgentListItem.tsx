@@ -2,7 +2,7 @@ import {View, Text, TouchableOpacity, Image} from 'react-native';
 import React from 'react';
 import styles from './styles';
 import strings from '../../../../components/utilities/Localization';
-import { BLACK_COLOR, YELLOW_COLOR } from '../../../../components/utilities/constant';
+import { BLACK_COLOR, YELLOW_COLOR, PURPLE_COLOR, GREEN_COLOR, RED_COLOR } from '../../../../components/utilities/constant';
 import images from '../../../../assets/images';
 
 const AgentListItem = (props: any) => {
@@ -78,20 +78,20 @@ const AgentListItem = (props: any) => {
         <TouchableOpacity
         onPress={() => props.onPressAddnewAgent()}
          style={[styles.buttonbox, {
-          borderColor: BLACK_COLOR
+          borderColor: PURPLE_COLOR
         }]} >
           <Text style={[styles.buttonTxt,{
-          color: BLACK_COLOR
-          }]}>{ strings.edit}</Text>
+          color: PURPLE_COLOR
+          }]}>{strings.edit}</Text>
         </TouchableOpacity>
 
         <TouchableOpacity
         onPress={() => props.setIsVisible(true)}
          style={[styles.buttonbox, {
-          borderColor: BLACK_COLOR
+          borderColor: props.items.status === 'Deactive' ? GREEN_COLOR :  RED_COLOR
         }]} >
           <Text style={[styles.buttonTxt,{
-          color: BLACK_COLOR
+          color: props.items.status === 'Deactive' ? GREEN_COLOR :  RED_COLOR
           }]}>{props.items.status === 'Deactive' ? strings.active :  strings.deactive}</Text>
         </TouchableOpacity>
 
