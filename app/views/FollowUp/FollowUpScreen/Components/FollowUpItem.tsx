@@ -2,7 +2,7 @@ import { View, Text, Image, TouchableOpacity } from 'react-native'
 import React from 'react'
 import styles from './Styles'
 import images from '../../../../assets/images'
-import { BLACK_COLOR, YELLOW_COLOR } from '../../../../components/utilities/constant'
+import { BLACK_COLOR, YELLOW_COLOR, PURPLE_COLOR, PRIMARY_THEME_COLOR_DARK, PRIMARY_THEME_COLOR } from '../../../../components/utilities/constant'
 import strings from '../../../../components/utilities/Localization'
 
 const FollowUpItem = (props: any) => {
@@ -58,16 +58,16 @@ const FollowUpItem = (props: any) => {
     </View>
     <View style={styles.buttonContainer}>
       <TouchableOpacity
-        style={styles.button}
+       style={[styles.button,{borderColor:PURPLE_COLOR}]}
         onPress={() => props.onPressEdit()}
       >
-        <Text style={styles.buttonTxt}>Edit</Text>
+        <Text style={[styles.buttonTxt,{color:PURPLE_COLOR}]}>{strings.edit}</Text>
       </TouchableOpacity>
       <TouchableOpacity
-        style={styles.button}
+        style={[styles.button,{borderColor:PRIMARY_THEME_COLOR}]}
         onPress={() => props.onPressAllFollowUp()}
          >
-        <Text style={styles.buttonTxt}>{strings.allfollowup}</Text>
+        <Text style={[styles.buttonTxt,{color:PRIMARY_THEME_COLOR}]}>{strings.allfollowup}</Text>
       </TouchableOpacity>
       <TouchableOpacity style={styles.Viewbutton} onPress={() => props.onPressView(props.items)}>
         <Image

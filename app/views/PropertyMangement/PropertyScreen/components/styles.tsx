@@ -67,7 +67,7 @@ const styles = StyleSheet.create({
     top: 10,
     backgroundColor: WHITE_COLOR,
     width: normalizeWidth(100),
-    height: normalizeHeight(25),
+    height: normalizeHeight(30),
     marginLeft: normalizeSpacing(10),
     justifyContent: 'center',
     borderWidth: 1,

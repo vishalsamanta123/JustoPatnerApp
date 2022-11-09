@@ -105,7 +105,6 @@ const styles = StyleSheet.create({
     color: GRAY_LIGHT_COLOR
   },
   spanTouch: {
-    // backgroundColor: 'red',
   },
   spanText: {
     textAlign: 'center',

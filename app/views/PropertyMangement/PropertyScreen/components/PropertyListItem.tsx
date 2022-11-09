@@ -2,7 +2,7 @@ import {View, Text, TouchableOpacity, Image} from 'react-native';
 import React from 'react';
 import styles from './styles';
 import strings from '../../../../components/utilities/Localization';
-import { BLACK_COLOR, YELLOW_COLOR } from '../../../../components/utilities/constant';
+import { BLACK_COLOR, YELLOW_COLOR,GOLDEN_COLOR,GREEN_COLOR,RED_COLOR } from '../../../../components/utilities/constant';
 import images from '../../../../assets/images';
 
 const PropertyListItem = (props: any) => {
@@ -55,7 +55,7 @@ const PropertyListItem = (props: any) => {
         <View style={styles.nameContainer}>
          <Text style={[styles.nameTxt,{
           color: props.items.status == 'confirmatin Pending' ? BLACK_COLOR : 
-          props.items.status == 'Subscribe' ? YELLOW_COLOR : 'red'
+          props.items.status == 'Subscribe' ? YELLOW_COLOR : RED_COLOR
         }]}>{props.items.status}</Text>
         </View>
       </View>
@@ -71,12 +71,12 @@ const PropertyListItem = (props: any) => {
         <TouchableOpacity
         onPress={() => props.items.status === 'Subscribe' ? props.setIsVisible(true) : null}
          style={[styles.button, {
-          borderColor: props.items.status == 'confirmatin Pending' ? '#008000' : 
-          props.items.status == 'Subscribe' ? 'red' : '#E4D00A'
+          borderColor: props.items.status == 'confirmatin Pending' ? GREEN_COLOR : 
+          props.items.status == 'Subscribe' ? RED_COLOR : GOLDEN_COLOR
         }]} >
           <Text style={[styles.buttonTxt,{
-          color: props.items.status == 'confirmatin Pending' ? '#008000' : 
-          props.items.status == 'Subscribe' ? 'red' : '#E4D00A'
+          color: props.items.status == 'confirmatin Pending' ? GREEN_COLOR : 
+          props.items.status == 'Subscribe' ? RED_COLOR : GOLDEN_COLOR
           }]}>{
             props.items.status == 'confirmatin Pending' ? strings.active : 
             props.items.status == 'Subscribe' ? strings.unsubscribe : strings.subscribe 

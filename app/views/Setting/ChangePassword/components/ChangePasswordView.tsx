@@ -9,8 +9,7 @@ import InputField from '../../../../components/InputField'
 import Button from '../../../../components/Button'
 
 const ChangePasswordView = (props: any) => {
-    console.log('props', props)
-    const {data} = props;
+   const {data} = props;
   return (
     <View style={styles.mainContainer}>
       <Header

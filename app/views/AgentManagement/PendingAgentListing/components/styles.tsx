@@ -30,10 +30,8 @@ const styles = StyleSheet.create({
   btnView: {
     flex: 0.6,
     top:5,
-    //margin: normalizeSpacing(3),
     flexDirection:'row-reverse',
     marginLeft:normalizeSpacing(22),
-    //backgroundColor:'red'
   },
   propertyListViewsec: {
     flex: 5.4,
