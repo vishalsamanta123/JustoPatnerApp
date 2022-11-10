@@ -17,8 +17,11 @@ import {
   useDrawerStatus,
 } from '@react-navigation/drawer';
 import {PRIMARY_THEME_COLOR} from '../components/utilities/constant';
+import { useDispatch } from 'react-redux';
+import { userLogout } from 'app/Redux/Actions/AuthActions';
 
 const customDrawer = ({navigation}: any) => {
+  const dispatch: any = useDispatch()
   const isDrawerOpen = useDrawerStatus() === 'open';
   const insets = useSafeAreaInsets();
   const toggleDrawer = () => {
@@ -146,6 +149,7 @@ const customDrawer = ({navigation}: any) => {
           iconSource={images.logout}
           tabTitle={strings.logout}
           handleDrawerNavigation={() => {
+            dispatch(userLogout())
             navigation.navigate('LoginScreenView');
           }}
         />

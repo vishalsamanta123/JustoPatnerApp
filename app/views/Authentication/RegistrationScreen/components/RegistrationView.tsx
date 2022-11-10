@@ -51,24 +51,38 @@ const RegistrationView = (props: any) => {
           <InputField
             placeholderText={"Name"}
             handleInputBtnPress={() => {}}
-            onChangeText={() => {}}
             headingText={"Owner Name"}
+            onChangeText={(val: any) => {
+              props.setResgistrationData({
+                ...props.resgistrationData, ownerName: val
+              })
+            }}
           />
         </View>
         <View style={styles.inputWrap}>
           <InputField
             placeholderText={"Adhar No."}
             handleInputBtnPress={() => {}}
-            onChangeText={() => {}}
             headingText={"Adhar No."}
+            keyboardtype={'number-pad'}
+            onChangeText={(val: any) => {
+              props.setResgistrationData({
+                ...props.resgistrationData, adharno: val
+              })
+            }}
           />
         </View>
         <View style={styles.inputWrap}>
           <InputField
             placeholderText={"Pancard No."}
             handleInputBtnPress={() => {}}
-            onChangeText={() => {}}
             headingText={"Pancard No."}
+            keyboardtype={'number-pad'}
+            onChangeText={(val: any) => {
+              props.setResgistrationData({
+                ...props.resgistrationData, pancardno: val
+              })
+            }}
           />
         </View>
         <View style={styles.genderView}>
@@ -76,8 +90,12 @@ const RegistrationView = (props: any) => {
           <View style={styles.radioView}>
             <RadioButton
               value="first"
-              status={checked === "first" ? "checked" : "unchecked"}
-              onPress={() => setChecked("first")}
+              status={props.resgistrationData.gender === "male" ? "checked" : "unchecked"}
+              onPress={() => {
+                props.setResgistrationData({
+                  ...props.resgistrationData, gender: 'male'
+                })
+              }}
               color={PRIMARY_THEME_COLOR}
             />
             <Text
@@ -85,7 +103,7 @@ const RegistrationView = (props: any) => {
                 styles.radioTxt,
                 {
                   color:
-                    checked === "first" ? PRIMARY_THEME_COLOR : BLACK_COLOR,
+                  props.resgistrationData.gender === "male" ? PRIMARY_THEME_COLOR : BLACK_COLOR,
                 },
               ]}
             >
@@ -95,8 +113,12 @@ const RegistrationView = (props: any) => {
           <View style={styles.radioView}>
             <RadioButton
               value="second"
-              status={checked === "second" ? "checked" : "unchecked"}
-              onPress={() => setChecked("second")}
+              status={props.resgistrationData.gender === "female" ? "checked" : "unchecked"}
+              onPress={() => {
+                props.setResgistrationData({
+                  ...props.resgistrationData, gender: 'female'
+                })
+              }}
               color={PRIMARY_THEME_COLOR}
             />
             <Text
@@ -104,7 +126,7 @@ const RegistrationView = (props: any) => {
                 styles.radioTxt,
                 {
                   color:
-                    checked === "second" ? PRIMARY_THEME_COLOR : BLACK_COLOR,
+                  props.resgistrationData.gender === "female" ? PRIMARY_THEME_COLOR : BLACK_COLOR,
                 },
               ]}
             >
@@ -116,33 +138,51 @@ const RegistrationView = (props: any) => {
           <InputField
             placeholderText={"Date of Birth"}
             handleInputBtnPress={() => {}}
-            onChangeText={() => {}}
             headingText={"Date of Birth"}
             rightImgSrc={images.event}
+            onChangeText={(val: any) => {
+              props.setResgistrationData({
+                ...props.resgistrationData, dob: val
+              })
+            }}
           />
         </View>
         <View style={styles.inputWrap}>
           <InputField
             placeholderText={"Mobile No."}
             handleInputBtnPress={() => {}}
-            onChangeText={() => {}}
             headingText={"Mobile No."}
+            keyboardtype={'number-pad'}
+            onChangeText={(val: any) => {
+              props.setResgistrationData({
+                ...props.resgistrationData, mobileno: val
+              })
+            }}
           />
         </View>
         <View style={styles.inputWrap}>
           <InputField
             placeholderText={"WhatsApp No."}
             handleInputBtnPress={() => {}}
-            onChangeText={() => {}}
             headingText={"WhatsApp No."}
+            keyboardtype={'number-pad'}
+            onChangeText={(val: any) => {
+              props.setResgistrationData({
+                ...props.resgistrationData, whatsappno: val
+              })
+            }}
           />
         </View>
         <View style={styles.inputWrap}>
           <InputField
             placeholderText={"Email Address"}
             handleInputBtnPress={() => {}}
-            onChangeText={() => {}}
             headingText={"Email Address"}
+            onChangeText={(val: any) => {
+              props.setResgistrationData({
+                ...props.resgistrationData, email: val
+              })
+            }}
           />
         </View>
         <View style={styles.workingView}>

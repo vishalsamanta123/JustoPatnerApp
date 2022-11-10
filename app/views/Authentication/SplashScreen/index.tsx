@@ -3,7 +3,7 @@ import SplashScreenVeiw from './components/SplashScreenVeiw';
 
 const SplashScreen = ({navigation}: any) => {
   setTimeout(() => {
-    navigation.navigate('LoginScreenView');
+    navigation.replace('LoginScreenView');
   }, 3000);
   return <SplashScreenVeiw />;
 };
