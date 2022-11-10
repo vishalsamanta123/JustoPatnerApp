@@ -9,7 +9,7 @@ import images from '../../../../assets/images';
 import strings from '../../../../components/utilities/Localization';
 import ConfirmModal from '../../../../components/Modals/ConfirmModal';
 import { PRIMARY_THEME_COLOR_DARK, PRIMARY_THEME_COLOR } from '../../../../components/utilities/constant';
-import FilterModal from '../../../../components/Modals/FilterModal';
+import FilterModal from './FilterModel';
 
 const PropertyView = (props: any) => {
   const [isVisible, setIsVisible] = useState(false)
