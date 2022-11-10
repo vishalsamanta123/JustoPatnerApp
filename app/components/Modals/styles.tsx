@@ -12,6 +12,7 @@ import {
   GRAY_COLOR,
   GRAY_LIGHT_COLOR,
   WHITE_COLOR,
+  PRIMARY_THEME_COLOR,
 } from "../utilities/constant";
 
 const styles = StyleSheet.create({
@@ -28,6 +29,7 @@ const styles = StyleSheet.create({
     marginVertical: normalizeSpacing(10),
     justifyContent: "space-between",
     marginHorizontal: normalizeSpacing(10),
+    color:PRIMARY_THEME_COLOR
   },
   conteconfirm: {
     flexDirection: "column",
@@ -59,11 +61,11 @@ const styles = StyleSheet.create({
     height: normalizeHeight(50),
   },
   dropdown: {
-    margin: 16,
-    height: 50,
+    margin: 5,
+    height: 60,
     backgroundColor: "white",
     borderRadius: 5,
-    padding: 12,
+    padding: 10,
     shadowColor: "#000",
     shadowOffset: {
       width: 0,

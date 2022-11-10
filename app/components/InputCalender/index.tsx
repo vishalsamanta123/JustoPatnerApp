@@ -1,21 +1,30 @@
 import { View, TextInput, Image, TouchableOpacity, Text } from 'react-native';
-import React from 'react';
-import styles from './styles';
+import React, { useState } from 'react';
+import styles from '../InputField/styles';
 import { BLACK_COLOR } from '../utilities/constant';
 import images from '../../assets/images';
 import { normalizeHeight } from '../scaleFontSize';
+import DatePicker from 'react-native-date-picker'
 
-const InputField = (props: any) => {
+const InputCalender = (props: any) => {
+
+  const [open, setOpen] = useState(false)
   const {
     inputWidth = '90%',
     editable = true,
     multiline = false,
     inputheight = 50,
-    keyboardtype= 'default'
+    
   } = props
   const onSubmit = (e: any) => {
     const { text } = e;
   };
+  
+
+  const OpenCalender  = () => {
+    setOpen(true)
+  }
+
   
   return (
     <View>
@@ -37,17 +46,37 @@ const InputField = (props: any) => {
           autoCapitalize={'none'}
           editable={editable}
           multiline={multiline}
-          keyboardType={keyboardtype}
-          value={props.valueshow}
+          value={props.dateshow}
         />
         <TouchableOpacity
-          onPress={props.handleInputBtnPress}
-          disabled={!props.handleInputBtnPress}>
-          <Image style={styles.rightImage} source={props.rightImgSrc} />
+          onPress={() => OpenCalender()}
+          //disabled={!props.handleInputBtnPress}
+          >
+          <Image style={styles.rightImage} source={images.calender} />
         </TouchableOpacity>
       </View>
+
+      <DatePicker
+        modal
+        mode={"date"}
+        open={open}
+        date={props.dateshow}
+        onConfirm={(date) => {
+
+          console.log("InputCalender -> date", date)
+
+          /* setOpen(false)
+          props.setDateshow(date) */
+        }}
+        onCancel={() => {
+          setOpen(false)
+        }}
+      />
+
+
+
     </View>
   );
 };
 
-export default InputField;
+export default InputCalender;
