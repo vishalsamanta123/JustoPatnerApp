@@ -29,7 +29,7 @@ const styles = StyleSheet.create({
     borderColor: GRAY_COLOR,
   },
   input: {
-    fontSize: normalize(18),
+    fontSize: normalize(16),
     paddingRight: normalizeSpacing(30),
     paddingLeft: normalizeSpacing(Isios ? 5 : 15),
     fontFamily: FONT_FAMILY_SEMIBOLD,
@@ -38,7 +38,8 @@ const styles = StyleSheet.create({
   rightImage: {
     height: normalizeHeight(25),
     width: normalizeWidth(25),
-    opacity: 0.5,
+    opacity: 1,
+    
   },
   inputHeadinView: {
     position: 'absolute',

@@ -31,6 +31,7 @@ const images = {
   timer: require('./timer.png'),
   dummyUser: require('./dummyUser.jpeg'),
   editIcon: require('./editIcon.png'),
+  calender: require('./calender.png'),
 };
 
 export default images;
