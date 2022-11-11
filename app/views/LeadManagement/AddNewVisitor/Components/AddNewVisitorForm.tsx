@@ -438,8 +438,8 @@ const AddNewVisitorForm = (props: any) => {
                         < Button width={150} height={45} buttonText={strings.editVisitor} btnTxtsize={16} />
                         :
                         <>
-                            < Button width={150} height={45} buttonText={strings.createVisitor} btnTxtsize={16} />
-                            <Button width={150} height={45} buttonText={strings.createandschedule} btnTxtsize={14} />
+                            < Button width={150} handleBtnPress={() => props.OnpressCreateVisit()}  height={45} buttonText={strings.createVisitor} btnTxtsize={16} />
+                            <Button width={150} handleBtnPress={() => props.OnpressseheduleVisit()} height={45} buttonText={strings.createandschedule} btnTxtsize={14} />
                         </>
 
                     }

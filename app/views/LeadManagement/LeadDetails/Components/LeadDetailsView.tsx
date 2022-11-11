@@ -8,9 +8,18 @@ import styles from './Styles'
 import { useSafeAreaInsets } from 'react-native-safe-area-context'
 import LeadDetailsIteam from './LeadDetailsIteam'
 import Button from '../../../../components/Button'
+import { useNavigation } from '@react-navigation/native';
 
 const LeadDetailsView = (props: any) => {
   const insets = useSafeAreaInsets();
+  const navigation: any = useNavigation()
+
+  const OnpressseheduleVisit = () => {
+
+    navigation.navigate('AddAppointmentScreen')
+  
+  }
+  
   return (
     <View style={styles.mainContainer}>
       <View
@@ -33,6 +42,7 @@ const LeadDetailsView = (props: any) => {
       </View>
       <View style={styles.btnContainer}>
         <Button
+          handleBtnPress={() => OnpressseheduleVisit()}
           buttonText={strings.ScheduleSitevisite}
           width={150}
           height={45}
