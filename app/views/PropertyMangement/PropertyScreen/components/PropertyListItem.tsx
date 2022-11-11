@@ -4,7 +4,6 @@ import styles from './styles';
 import strings from '../../../../components/utilities/Localization';
 import { BLACK_COLOR, YELLOW_COLOR,GOLDEN_COLOR,GREEN_COLOR,RED_COLOR } from '../../../../components/utilities/constant';
 import images from '../../../../assets/images';
-import moment from 'moment';
 
 const PropertyListItem = (props: any) => {
   return (
@@ -14,7 +13,7 @@ const PropertyListItem = (props: any) => {
           <Text style={styles.projectTxt}>Project Name :</Text>
         </View>
         <View style={styles.nameContainer}>
-          <Text style={styles.nameTxt}>{props.items.property_title}</Text>
+          <Text style={styles.nameTxt}>{props.items.Projectname}</Text>
         </View>
       </View>
       <View style={styles.Txtview} >
@@ -22,7 +21,7 @@ const PropertyListItem = (props: any) => {
           <Text style={styles.projectTxt}>Location :</Text>
         </View>
         <View style={styles.nameContainer}>
-        <Text style={styles.nameTxt}>{props.items.location}</Text>
+        <Text style={styles.nameTxt}>{props.items.Location}</Text>
         </View>
       </View>
       <View style={styles.Txtview} >
@@ -30,7 +29,7 @@ const PropertyListItem = (props: any) => {
           <Text style={styles.projectTxt}>Visitor :</Text>
         </View>
         <View style={styles.nameContainer}>
-        <Text style={styles.nameTxt}>{props.items.total_visitor}</Text>
+        <Text style={styles.nameTxt}>{props.items.visitor}</Text>
         </View>
       </View>
       <View style={styles.Txtview}>
@@ -38,7 +37,7 @@ const PropertyListItem = (props: any) => {
           <Text style={styles.projectTxt}>Site Visit :</Text>
         </View>
         <View style={styles.nameContainer}>
-        <Text style={styles.nameTxt}>{props.items.site_visit}</Text>
+        <Text style={styles.nameTxt}>{props.items.siteVisit}</Text>
         </View>
       </View>
       <View style={styles.Txtview} >
@@ -46,7 +45,7 @@ const PropertyListItem = (props: any) => {
           <Text style={styles.projectTxt}>Colse Visit :</Text>
         </View>
         <View style={styles.nameContainer}>
-        <Text style={styles.nameTxt}>{props.items.close_visit}</Text>
+        <Text style={styles.nameTxt}>{props.items.closeVisit}</Text>
         </View>
       </View>
       <View style={styles.Txtview} >
@@ -65,8 +64,7 @@ const PropertyListItem = (props: any) => {
           <Text style={styles.projectTxt}>Create Date :</Text>
         </View>
         <View style={styles.nameContainer}>
-        {/* <Text style={styles.nameTxt}>{props.items.createdDate}</Text> */}
-        <Text style={styles.nameTxt}>{moment(props.items.createdDate).format('DD / MMM / YY')}</Text>
+        <Text style={styles.nameTxt}>{props.items.createddate}</Text>
         </View>
       </View>
       <View style={styles.buttonContainer}>

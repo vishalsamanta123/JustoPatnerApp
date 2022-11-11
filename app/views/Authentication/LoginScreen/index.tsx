@@ -60,9 +60,10 @@ const LoginScreen = ({ navigation }: any) => {
     return isError;
   }
   const handleLoginPress = () => {
-    if (validation()) {
-      dispatch(userLogin(loginData))
-    }
+    // if (validation()) {
+    //   dispatch(userLogin(loginData))
+    // }
+    navigation.navigate('DashboardScreenView');
   };
   const handleSingupPress = () => {
     navigation.navigate('RegistrationScreenView');
