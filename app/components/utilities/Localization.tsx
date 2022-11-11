@@ -116,6 +116,7 @@ const strings = new LocalizedStrings({
     editProfile: 'Edit Profile',
     changePassword: 'Change Password',
     copyLink: 'Copy Link',
+    browse: 'Browse'
   },
 });
 

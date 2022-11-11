@@ -25,6 +25,7 @@ const InputCalender = (props: any) => {
     setOpen(true)
   }
 
+  //console.log("InputCalender -> props.dateshow===", props.dateshow)
   
   return (
     <View>
@@ -48,6 +49,7 @@ const InputCalender = (props: any) => {
           multiline={multiline}
           value={props.dateshow}
         />
+          
         <TouchableOpacity
           onPress={() => OpenCalender()}
           //disabled={!props.handleInputBtnPress}
@@ -61,18 +63,19 @@ const InputCalender = (props: any) => {
         mode={"date"}
         open={open}
         date={props.dateshow}
+        onDateChange={(date) => {
+        console.log('dateeeeeeee: ', date);
+          props.setDateshow(date)
+        }}
         onConfirm={(date) => {
-
           console.log("InputCalender -> date", date)
-
-          /* setOpen(false)
-          props.setDateshow(date) */
+           setOpen(false)
+          props.setDateshow(date)
         }}
         onCancel={() => {
           setOpen(false)
         }}
       />
-
 
 
     </View>
