@@ -5,9 +5,6 @@ import { useSelector } from 'react-redux';
 
 const PropertyDetails = ({navigation,route}: any) => {
   const data = route?.params || {}
-  useLayoutEffect(() => {
-    
-  }, [])
   const handleBackPress = () => {
     navigation.goBack();
   };

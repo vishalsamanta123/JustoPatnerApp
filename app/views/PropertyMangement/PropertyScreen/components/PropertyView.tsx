@@ -83,7 +83,7 @@ const navigation: any = useNavigation()
       />
       <View style={styles.propertyListView}>
         <FlatList 
-          data={propertyData?.response.data}
+          data={DATA}
           showsVerticalScrollIndicator={false}
           renderItem={({item}) => <PropertyListItem items={item} setIsVisible={setIsVisible} onPressView={onPressView} />}
         />
