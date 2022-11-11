@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { NavigationContainer } from '@react-navigation/native';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import { createDrawerNavigator } from '@react-navigation/drawer';
@@ -43,6 +43,9 @@ import ProfileScreen from '../views/Setting/ProfileScreen';
 import EditProfileScreen from '../views/Setting/EditProfileScreen';
 import ChangePasswordScreen from '../views/Setting/ChangePassword';
 import SeparateLinkScreen from '../views/Setting/SeparateLink';
+import { setDefaultHeader } from 'app/components/utilities/httpClient';
+import { useDispatch, useSelector } from 'react-redux';
+import { jwtTokenGenrate } from 'app/Redux/Actions/AuthActions';
 
 const Stack = createNativeStackNavigator();
 const Drawer = createDrawerNavigator();
@@ -67,6 +70,36 @@ const DrawerComponent = () => {
   );
 };
 const Route = () => {
+   const dispatch: any = useDispatch();
+  const loginSelector = useSelector((state: any) => state.login);
+  console.log('loginSelector: ', loginSelector);
+  useEffect(() => {
+
+    // const authval = AsyncStorage.getItem("AuthToken");
+    // const authval = AsyncStorage.removeItem("AuthToken");
+    // console.log('authval: vv', authval);
+    if (loginSelector?.response == null ) {
+       tokenGenrate()
+    } else {
+      setDefaultHeader("token", loginSelector?.response?.token);
+    }
+
+  }, [loginSelector])
+
+  async function tokenGenrate() {
+
+    dispatch(jwtTokenGenrate())
+    // try {
+    //   const { data } = await apiCall("get", apiEndPoints.JWTTOKEN, {});
+    //   console.log('data: ', data);
+    //   if (data) {
+    //     await AsyncStorage.setItem("token", data.token);
+    //     await setDefaultHeader("token", data.token);
+    //   }
+    // } catch (error) {
+    //   console.log(error);
+    // }
+  }
   return (
     <NavigationContainer>
       <Stack.Navigator screenOptions={screenOptions}>
