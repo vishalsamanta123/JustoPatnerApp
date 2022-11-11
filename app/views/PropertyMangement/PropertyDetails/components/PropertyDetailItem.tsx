@@ -6,6 +6,7 @@ import { normalizeSpacing } from "../../../../components/scaleFontSize";
 import images from "../../../../assets/images";
 
 const PropertyDetailItem = (props: any) => {
+console.log('props: ', props);
   return (
     <ScrollView showsVerticalScrollIndicator={false}>
       <View style={styles.Txtview}>
@@ -23,7 +24,7 @@ const PropertyDetailItem = (props: any) => {
         </View>
         <View><Text>:</Text></View>
         <View style={styles.nameContainer}>
-          <Text style={styles.nameTxt}>{props.items.Projectname}</Text>
+          <Text style={styles.nameTxt}>{props.items.property_title}</Text>
         </View>
       </View>
       <View style={styles.Txtview}>

@@ -19,6 +19,7 @@ import { useSafeAreaInsets } from "react-native-safe-area-context";
 import InputField from "../../../../components/InputField";
 import images from "../../../../assets/images";
 import Button from "../../../../components/Button";
+import { normalizeSpacing } from "app/components/scaleFontSize";
 
 const RegistrationView = (props: any) => {
   const insets = useSafeAreaInsets();
@@ -26,22 +27,23 @@ const RegistrationView = (props: any) => {
   const [checked, setChecked] = React.useState("first");
 
   return (
-    <ScrollView style={styles.mainContainer}>
+    <View style={styles.mainContainer}>
       <View
         style={{
-          backgroundColor: WHITE_COLOR,
+          backgroundColor: PRIMARY_THEME_COLOR,
           height: insets.top,
         }}
       />
-      <StatusBar barStyle={"dark-content"} backgroundColor={WHITE_COLOR} />
+      <StatusBar barStyle={"light-content"} backgroundColor={PRIMARY_THEME_COLOR} />
       <Header
         headerText={strings.basicInfoText}
         headerStyle={styles.headerStyle}
         headerTextStyle={styles.headerTextStyle}
         leftImageSrc={images.backArrow}
         handleOnLeftIconPress={props.onPressBack}
+        leftImageIconStyle={{tintColor: WHITE_COLOR}}
       />
-      <View style={styles.wrap}>
+      <ScrollView contentContainerStyle={styles.wrap}>
        {/*  <Text style={styles.headingText}>{strings.basicInfoText}</Text> */}
         {/* <View style={styles.underlineStyle} /> */}
         <View style={styles.imageCircle}>
@@ -193,11 +195,11 @@ const RegistrationView = (props: any) => {
             <Text style={styles.addTxt}>+ Add location</Text>
           </TouchableOpacity>
         </View>
-        <View>
+        <View style={{marginVertical: normalizeSpacing(20)}}>
           <Button handleBtnPress={props.onPressNext} rightImage={images.forwardArrow} buttonText={strings.next} textTransform={"uppercase"} />
         </View>
-      </View>
-    </ScrollView>
+      </ScrollView>
+    </View>
   );
 };
 
