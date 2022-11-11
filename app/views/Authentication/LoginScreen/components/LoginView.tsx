@@ -49,7 +49,11 @@ const LoginView = (props: any) => {
             placeholderText={"Email Address"}
             rightImgSrc={props.validEmail ? images.check : images.emailIcon}
             isSecureText={false}
-            onChangeText={props.handleEmailChange}
+            onChangeText={(val: any) => {
+              props.setLoginData({
+                ...props.loginData, email:val
+              })
+            }}
           />
         </View>
         <View style={styles.inputWrap}>
@@ -60,7 +64,11 @@ const LoginView = (props: any) => {
             }
             handleInputBtnPress={handlePasswordBtnPress}
             isSecureText={isVisiblePassword}
-            onChangeText={props.handlePasswordChange}
+            onChangeText={(val: any) => {
+              props.setLoginData({
+                ...props.loginData, password:val
+              })
+            }}
           />
         </View>
         <TouchableOpacity style={styles.forgotTouch} onPress={props.handleForgotPress}>

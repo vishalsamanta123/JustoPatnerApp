@@ -11,16 +11,16 @@ import {
 
 const styles = StyleSheet.create({
   headerStyle: {
-    backgroundColor: WHITE_COLOR,
+    backgroundColor: PRIMARY_THEME_COLOR,
   },
   headerTextStyle: {
-    color: BLACK_COLOR,
+    color: WHITE_COLOR,
   },
   mainContainer: {
     flex: 1,
   },
   wrap: {
-    flex: 1,
+    flexGrow: 1,
     marginHorizontal: normalizeSpacing(10),
     marginVertical: normalizeSpacing(10),
     alignItems: 'center'
@@ -97,7 +97,7 @@ const styles = StyleSheet.create({
     fontFamily: FONT_FAMILY_EXTRABOLD
   },
   btnView: {
-    marginBottom: normalizeSpacing(20),
+    marginVertical: normalizeSpacing(20),
   }
 });
 

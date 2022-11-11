@@ -5,6 +5,7 @@ import { BLACK_COLOR } from '../utilities/constant';
 import images from '../../assets/images';
 import { normalizeHeight } from '../scaleFontSize';
 import DatePicker from 'react-native-date-picker'
+import moment from 'moment';
 
 const InputCalender = (props: any) => {
 

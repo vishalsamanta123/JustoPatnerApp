@@ -10,11 +10,14 @@ import strings from '../../../../components/utilities/Localization';
 import ConfirmModal from '../../../../components/Modals/ConfirmModal';
 import { PRIMARY_THEME_COLOR_DARK, PRIMARY_THEME_COLOR } from '../../../../components/utilities/constant';
 import FilterModal from './FilterModel';
+import { useSelector } from 'react-redux';
 
 const PropertyView = (props: any) => {
   const [isVisible, setIsVisible] = useState(false)
   const [FilterisVisible, setFilterisVisible] = useState(false)
   const insets = useSafeAreaInsets();
+  const propertyData = useSelector((state: any) => state.propertyData)
+  console.log('propertyData: ', propertyData);
 const navigation: any = useNavigation()
   const DATA: any = [
     {
@@ -80,7 +83,7 @@ const navigation: any = useNavigation()
       />
       <View style={styles.propertyListView}>
         <FlatList 
-          data={DATA}
+          data={propertyData?.response.data}
           showsVerticalScrollIndicator={false}
           renderItem={({item}) => <PropertyListItem items={item} setIsVisible={setIsVisible} onPressView={onPressView} />}
         />

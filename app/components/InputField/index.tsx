@@ -11,7 +11,7 @@ const InputField = (props: any) => {
     editable = true,
     multiline = false,
     inputheight = 50,
-    
+    keyboardtype= 'default'
   } = props
   const onSubmit = (e: any) => {
     const { text } = e;
@@ -37,6 +37,7 @@ const InputField = (props: any) => {
           autoCapitalize={'none'}
           editable={editable}
           multiline={multiline}
+          keyboardType={keyboardtype}
           value={props.valueshow}
         />
         <TouchableOpacity

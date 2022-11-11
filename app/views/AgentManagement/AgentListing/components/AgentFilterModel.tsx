@@ -8,9 +8,12 @@ import Button from "../../../../components/Button";
 import InputField from "../../../../components/InputField";
 import InputCalender from "../../../../components/InputCalender";
 import { Dropdown } from "react-native-element-dropdown";
+import moment from "moment";
 const FilterModal = (props: any) => {
   const [startdate, setStartDate] = useState(new Date())
+  console.log('startdate ===>: ', moment(startdate).format("MMM Do YY"));
   const [enddate, setEndDate] = useState(new Date())
+  console.log('enddate ===>: ', enddate);
   const data = [
     { label: "Active", value: "1" },
     { label: "Inactive", value: "2" },
@@ -43,8 +46,7 @@ const FilterModal = (props: any) => {
               //headingText={'Start Date'}
               placeholderText={"Start Date"}
               dateshow={startdate}
-              setDateshow={setStartDate}
-
+              setDateshow={(val: any) => setStartDate(val)}
           />
             </View>
             <View style={styles.inputWrap}>
@@ -52,7 +54,7 @@ const FilterModal = (props: any) => {
               //headingText={'Start Date'}
               placeholderText={"End Date"}
               dateshow={enddate}
-              setDateshow={setEndDate}
+              setDateshow={(val: any) =>  setEndDate(val)}
 
           />
             </View>
