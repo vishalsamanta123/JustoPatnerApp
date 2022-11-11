@@ -5,6 +5,7 @@ import { BLACK_COLOR } from '../utilities/constant';
 import images from '../../assets/images';
 import { normalizeHeight } from '../scaleFontSize';
 import DatePicker from 'react-native-date-picker'
+import moment from 'moment';
 
 const InputCalender = (props: any) => {
 
@@ -61,12 +62,14 @@ const InputCalender = (props: any) => {
         mode={"date"}
         open={open}
         date={props.dateshow}
+        onDateChange={(date) => {
+        console.log('dateeeeeeee: ', date);
+          props.setDateshow(date)
+        }}
         onConfirm={(date) => {
-
           console.log("InputCalender -> date", date)
-
-          /* setOpen(false)
-          props.setDateshow(date) */
+           setOpen(false)
+          props.setDateshow(date)
         }}
         onCancel={() => {
           setOpen(false)
