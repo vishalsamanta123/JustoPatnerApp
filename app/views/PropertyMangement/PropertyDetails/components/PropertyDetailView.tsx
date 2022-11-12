@@ -16,23 +16,26 @@ import PropertyDetailItem from "./PropertyDetailItem";
 import { useNavigation } from "@react-navigation/native";
 import Button from "../../../../components/Button";
 import ConfirmModal from "../../../../components/Modals/ConfirmModal";
+import moment from "moment";
+import { useSelector } from "react-redux";
 
 const PropertyDetailView = (props: any) => {
   const [isVisible, setIsVisible] = useState(false)
-  
+  const propertyData = useSelector((state: any) => state.propertyData)
+  console.log('propertyData: ===>>>>> ', propertyData.response)
   const insets = useSafeAreaInsets();
   const navigation: any = useNavigation();
   const DATA: any = {
-    Projectname: props.data.Projectname,
-    Location: props.data.Location,
-    visitor: props.data.visitor,
-    siteVisit: props.data.siteVisit,
-    closeVisit: props.data.closeVisit,
+    Projectname: propertyData.response.data.property_title,
+    Location: propertyData.response.data.location,
+    visitor: props.data.total_visitor,
+    siteVisit: props.data.site_visit,
+    closeVisit: props.data.close_visit,
     status: props.data.status,
-    createddate: props.data.createddate,
-    propertyType: "Flat",
-    startDate: "11/10/2022",
-    EndDate: "11/10/2022",
+    createddate: props.data.createdDate,
+    propertyType: props.data.property_type,
+    startDate: propertyData.response.data.start_date,
+    EndDate: propertyData.response.data.end_date,
     lead: "12/11/2022",
     configuration: "1BHK / Min-25 L / Max-75 L",
     amenity: "Sawimming Pool",

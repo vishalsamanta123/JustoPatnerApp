@@ -1,10 +1,18 @@
 import { StyleSheet, Text, View, Alert } from 'react-native'
 import React, { useLayoutEffect } from 'react'
 import PropertyDetailView from './components/PropertyDetailView';
-import { useSelector } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
+import { getPropertyDetail } from 'app/Redux/Actions/propertyActions';
 
 const PropertyDetails = ({navigation,route}: any) => {
+  const dispatch: any = useDispatch()
   const data = route?.params || {}
+  console.log('data: in property ', data);
+  useLayoutEffect(() => {
+    dispatch(getPropertyDetail({
+      property_id: data._id
+    }))
+  }, [])
   const handleBackPress = () => {
     navigation.goBack();
   };

@@ -6,6 +6,7 @@ import { normalizeSpacing } from "../../../../components/scaleFontSize";
 import images from "../../../../assets/images";
 
 const PropertyDetailItem = (props: any) => {
+  console.log('props.items.amenity=>>', props.items.amenity)
   return (
     <ScrollView showsVerticalScrollIndicator={false}>
       <View style={styles.Txtview}>
@@ -148,7 +149,7 @@ const PropertyDetailItem = (props: any) => {
           >
             {props.items.amenity}
           </Text>
-          <Text
+          {/* <Text
             style={[
               styles.nameTxt,
               {
@@ -159,7 +160,7 @@ const PropertyDetailItem = (props: any) => {
               },
             ]}
           >{props.items.amenity}</Text>
-          <Text style={styles.nameTxt}>{props.items.amenity}</Text>
+          <Text style={styles.nameTxt}>{props.items.amenity}</Text> */}
         </View>
       </View>
       <View style={styles.Txtview}>
