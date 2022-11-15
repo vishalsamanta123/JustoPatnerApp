@@ -28,7 +28,6 @@ export const getPropertyDetail = (params: any) => async (dispatch: any) => {
     try {
         const res = await apiCall("post", apiEndPoints.GETPROPERTYDETAIL, params);
         if (res.data.status == 200) {
-
             dispatch({
                 type: GETPROPERTY_DETAIL,
                 payload: res.data,

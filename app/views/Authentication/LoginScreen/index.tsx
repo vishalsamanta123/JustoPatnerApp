@@ -13,7 +13,6 @@ const LoginScreen = ({ navigation }: any) => {
     email: '',
     password: ''
   })
-  // console.log('loginData: ', loginData);
   const loginSelector = useSelector((state: any) => state.login);
 
   useEffect(() => {
@@ -60,10 +59,11 @@ const LoginScreen = ({ navigation }: any) => {
     return isError;
   }
   const handleLoginPress = () => {
-    if (validation()) {
+    const valid = validation()
+    console.log('valid: ', valid);
+    if (valid) {
       dispatch(userLogin(loginData))
     }
-    navigation.navigate('DashboardScreenView');
   };
   const handleSingupPress = () => {
     navigation.navigate('RegistrationScreenView');

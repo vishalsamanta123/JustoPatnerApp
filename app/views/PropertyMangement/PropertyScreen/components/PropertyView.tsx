@@ -17,7 +17,6 @@ const PropertyView = (props: any) => {
   const [FilterisVisible, setFilterisVisible] = useState(false)
   const insets = useSafeAreaInsets();
   const propertyData = useSelector((state: any) => state.propertyData)
-  console.log('propertyData: ', propertyData);
   const navigation: any = useNavigation()
   const DATA: any = [
     {

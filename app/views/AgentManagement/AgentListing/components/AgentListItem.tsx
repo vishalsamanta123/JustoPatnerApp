@@ -1,4 +1,4 @@
-import {View, Text, TouchableOpacity, Image} from 'react-native';
+import { View, Text, TouchableOpacity, Image } from 'react-native';
 import React from 'react';
 import styles from './styles';
 import strings from '../../../../components/utilities/Localization';
@@ -14,7 +14,7 @@ const AgentListItem = (props: any) => {
         </View>
         <View><Text>:</Text></View>
         <View style={styles.nameContainer}>
-          <Text style={styles.nameTxt}>{props.items.Projectname}</Text>
+          <Text style={styles.nameTxt}>{props.items.agent_name}</Text>
         </View>
       </View>
       <View style={styles.Txtview} >
@@ -23,7 +23,7 @@ const AgentListItem = (props: any) => {
         </View>
         <View><Text>:</Text></View>
         <View style={styles.nameContainer}>
-        <Text style={styles.nameTxt}>{props.items.Location}</Text>
+          <Text style={styles.nameTxt}>{props.items.location}</Text>
         </View>
       </View>
       <View style={styles.Txtview} >
@@ -32,7 +32,7 @@ const AgentListItem = (props: any) => {
         </View>
         <View><Text>:</Text></View>
         <View style={styles.nameContainer}>
-        <Text style={styles.nameTxt}>{props.items.rerano}</Text>
+          <Text style={styles.nameTxt}>{props.items.rera_certificate_no}</Text>
         </View>
       </View>
       <View style={styles.Txtview} >
@@ -41,7 +41,7 @@ const AgentListItem = (props: any) => {
         </View>
         <View><Text>:</Text></View>
         <View style={styles.nameContainer}>
-        <Text style={styles.nameTxt}>{props.items.visitor}</Text>
+          <Text style={styles.nameTxt}>{props.items.total_visit}</Text>
         </View>
       </View>
       <View style={styles.Txtview}>
@@ -50,16 +50,16 @@ const AgentListItem = (props: any) => {
         </View>
         <View><Text>:</Text></View>
         <View style={styles.nameContainer}>
-        <Text style={styles.nameTxt}>{props.items.siteVisit}</Text>
+          <Text style={styles.nameTxt}>{props.items.total_site_visit}</Text>
         </View>
       </View>
       <View style={styles.Txtview} >
         <View style={styles.projectContainer}>
-          <Text style={styles.projectTxt}>No. of Colse Visit</Text>
+          <Text style={styles.projectTxt}>No. of Close Visit</Text>
         </View>
         <View><Text>:</Text></View>
         <View style={styles.nameContainer}>
-        <Text style={styles.nameTxt}>{props.items.closeVisit}</Text>
+          <Text style={styles.nameTxt}>{props.items.total_closing_lead}</Text>
         </View>
       </View>
       <View style={styles.Txtview} >
@@ -68,36 +68,34 @@ const AgentListItem = (props: any) => {
         </View>
         <View><Text>:</Text></View>
         <View style={styles.nameContainer}>
-        <Text style={[styles.nameTxt,{
-          color:  BLACK_COLOR
-        }]}>{props.items.status}</Text>
+          <Text style={[styles.nameTxt, {
+            color: props.items.status ? strings.active : strings.deactive
+          }]}>{props.items.status ? strings.active : strings.deactive}</Text>
         </View>
       </View>
-    
+
       <View style={styles.buttonContainer}>
         <TouchableOpacity
-        onPress={() => props.onPressAddnewAgent()}
-         style={[styles.buttonbox, {
-          borderColor: PURPLE_COLOR
-        }]} >
-          <Text style={[styles.buttonTxt,{
-          color: PURPLE_COLOR
+          onPress={() => props.onPressAddnewAgent()}
+          style={[styles.buttonbox, {
+            borderColor: PURPLE_COLOR
+          }]} >
+          <Text style={[styles.buttonTxt, {
+            color: PURPLE_COLOR
           }]}>{strings.edit}</Text>
         </TouchableOpacity>
 
         <TouchableOpacity
-        onPress={() => props.setIsVisible(true)}
-         style={[styles.buttonbox, {
-          borderColor: props.items.status === 'Deactive' ? GREEN_COLOR :  RED_COLOR
-        }]} >
-          <Text style={[styles.buttonTxt,{
-          color: props.items.status === 'Deactive' ? GREEN_COLOR :  RED_COLOR
-          }]}>{props.items.status === 'Deactive' ? strings.active :  strings.deactive}</Text>
+          onPress={() => { props.setIsVisible(true), props.setChangeStatus(props.items) }}
+          style={[styles.buttonbox, {
+            borderColor: props.items.status ? RED_COLOR : GREEN_COLOR
+          }]} >
+          <Text style={[styles.buttonTxt, {
+            color: props.items.status ? RED_COLOR : GREEN_COLOR
+          }]}>{props.items.status ? strings.deactive : strings.active}</Text>
         </TouchableOpacity>
-
-
         <TouchableOpacity style={styles.Viewbutton} onPress={() => props.onPressView()} >
-        <Image 
+          <Image
             source={images.forwardArrow}
             style={styles.arrow}
           />
