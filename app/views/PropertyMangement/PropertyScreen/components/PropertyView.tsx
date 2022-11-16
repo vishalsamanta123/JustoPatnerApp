@@ -1,8 +1,9 @@
-import {View, Text, StatusBar, FlatList} from 'react-native';
+import {View, Text, StatusBar, FlatList,ActivityIndicator} from 'react-native';
 import React, { useState } from 'react';
 import styles from './styles';
 import {useSafeAreaInsets} from 'react-native-safe-area-context';
 import PropertyListItem from './PropertyListItem';
+import EmptyListScreen from '../../../../components/CommonScreen/Empty';
 import { useNavigation } from '@react-navigation/native';
 import Header from '../../../../components/Header';
 import images from '../../../../assets/images';
@@ -18,6 +19,17 @@ const PropertyView = (props: any) => {
   const insets = useSafeAreaInsets();
   const propertyData = useSelector((state: any) => state.propertyData)
   const navigation: any = useNavigation()
+  const [loading, setLoading] = useState(false);
+
+  const [filterform, setFilterform] = useState({
+    start_date: "",
+    end_date: "",
+    location: "",
+    property_name: "",
+    property_type: "",
+  });
+
+
   const DATA: any = [
     {
       Projectname: 'ABC',
@@ -60,6 +72,22 @@ const PropertyView = (props: any) => {
   const onPressView = (items: any) => {
     navigation.navigate('PropertyDetails', items)
   }
+  const onRefresh = () => {
+    props.getallproperty()
+  }
+
+  const renderFooter = () => {
+    return (
+      // Footer View with Loader
+      <View style={styles.footer}>
+        {loading ? (
+          <ActivityIndicator
+            color="black"
+            style={{margin: 15}} />
+        ) : null}
+      </View>
+    );
+  };
 
   return (
     <View style={styles.mainContainer}>
@@ -84,11 +112,24 @@ const PropertyView = (props: any) => {
         <FlatList 
           data={propertyData?.response?.data}
           showsVerticalScrollIndicator={false}
+          ListEmptyComponent={<EmptyListScreen message={strings.propertyHeader} />}
           renderItem={({item}) => <PropertyListItem items={item} setIsVisible={setIsVisible} onPressView={onPressView} />}
+         /*  onEndReached={({ distanceFromEnd }) => {
+            props.Onreachedend()
+          }} 
+          onEndReachedThreshold={0.5}*/
+          //ListFooterComponent={renderFooter}
+          onRefresh={() => onRefresh()}
+          refreshing={loading}
         />
       </View>
       <ConfirmModal Visible={isVisible} setIsVisible={setIsVisible} />
-      <FilterModal Visible={FilterisVisible} setIsVisible={setFilterisVisible} />
+      <FilterModal 
+      Visible={FilterisVisible} 
+      setIsVisible={setFilterisVisible}
+      filterform = {filterform}
+      setFilterform = {setFilterform}
+      />
     </View> 
   );
 };

@@ -41,6 +41,7 @@ const strings = new LocalizedStrings({
     Confirm: 'Confirm',
     searchProperty: 'Search Property',
     apply: 'APPLY',
+    reset: 'RESET',
     resend: 'Resend',
     notRecived: `Didn't receive the code?`,
     codeSent: 'A verification code has been sent to',
@@ -150,6 +151,8 @@ const strings = new LocalizedStrings({
       'Justo does not have access to your contact. To enable access, tap on Settings and turn on Contacts.',
     txt_setting_Location:
       'Justo does not have access to your Location. To enable access, tap on Settings and turn on Location.',
+
+    notfount:'Not Found',
   },
 });
 

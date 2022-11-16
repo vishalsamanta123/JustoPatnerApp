@@ -89,6 +89,12 @@ const styles = StyleSheet.create({
     color: WHITE_COLOR,
     textAlign: 'center'
   },
+  footer: {
+    padding: 10,
+    justifyContent: 'center',
+    alignItems: 'center',
+    flexDirection: 'row',
+  },
 });
 
 export default styles;
