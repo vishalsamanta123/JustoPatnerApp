@@ -12,9 +12,9 @@ const LoginScreen = ({ navigation }: any) => {
   const [validEmail, setIsValidEmail] = useState(false);
   const [loginData, setLoginData] = useState({
     email: '',
-    password: ''
+    password: '',
+    login_type: 2
   })
-  // console.log('loginData: ', loginData);
   const loginSelector = useSelector((state: any) => state.login);
 
   useEffect(() => {

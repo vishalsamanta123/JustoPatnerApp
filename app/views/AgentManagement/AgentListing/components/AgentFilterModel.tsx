@@ -9,23 +9,22 @@ import InputField from "../../../../components/InputField";
 import InputCalender from "../../../../components/InputCalender";
 import { Dropdown } from "react-native-element-dropdown";
 import moment from "moment";
+
 const FilterModal = (props: any) => {
   const [startdate, setStartDate] = useState(new Date())
-  console.log('startdate ===>: ', moment(startdate).format("MMM Do YY"));
   const [enddate, setEndDate] = useState(new Date())
-  console.log('enddate ===>: ', enddate);
   const data = [
-    { label: "Active", value: "1" },
-    { label: "Inactive", value: "2" },
+    { label: "Active", value: true },
+    { label: "InActive", value: false },
 
   ];
   const [value, setValue] = useState(null);
   const renderItem = (item: any) => {
-      return (
-          <View style={styles.item}>
-              <Text style={styles.textItem}>{item.label}</Text>
-          </View>
-      );
+    return (
+      <View style={styles.item}>
+        <Text style={styles.textItem}>{item.label}</Text>
+      </View>
+    );
   };
   return (
     <View>
@@ -40,59 +39,59 @@ const FilterModal = (props: any) => {
             </View>
           </View>
           <View style={styles.borderView} />
-          <View style={{marginHorizontal: 10}}>
+          <View style={{ marginHorizontal: 10 }}>
             <View style={styles.inputWrap}>
-            <InputCalender
-              //headingText={'Start Date'}
-              placeholderText={"Start Date"}
-              dateshow={startdate}
-              setDateshow={(val: any) => setStartDate(val)}
-          />
+              <InputCalender
+                placeholderText={"Start Date"}
+                dateshow={startdate}
+                setDateshow={(val: any) =>                 //headingText={'Start Date'}
+                (val)}
+              />
             </View>
             <View style={styles.inputWrap}>
-            <InputCalender
-              //headingText={'Start Date'}
-              placeholderText={"End Date"}
-              dateshow={enddate}
-              setDateshow={(val: any) =>  setEndDate(val)}
+              <InputCalender
+                //headingText={'Start Date'}
+                placeholderText={"End Date"}
+                dateshow={enddate}
+                setDateshow={(val: any) => setEndDate(val)}
 
-          />
+              />
             </View>
             <View style={styles.inputWrap}>
               <InputField
                 placeholderText={"Search by Name"}
-                handleInputBtnPress={() => {}}
-                onChangeText={() => {}}
+                handleInputBtnPress={() => { }}
+                onChangeText={() => { }}
               />
             </View>
             <View style={styles.inputWrap}>
               <InputField
                 placeholderText={"Search by Location"}
-                handleInputBtnPress={() => {}}
-                onChangeText={() => {}}
+                handleInputBtnPress={() => { }}
+                onChangeText={() => { }}
               />
             </View>
             <View style={styles.inputWrap}>
-            <Dropdown
-                  style={styles.dropdown}
-                  placeholderStyle={styles.placeholderStyle}
-                  selectedTextStyle={styles.selectedTextStyle}
-                  iconStyle={styles.iconStyle}
-                  data={data}
-                  maxHeight={300}
-                  labelField="label"
-                  valueField="value"
-                  placeholder="Select Status"
-                  value={value}
-                  onChange={(item) => {
-                      setValue(item.value);
-                  }}
-                  renderItem={renderItem}
+              <Dropdown
+                style={styles.dropdown}
+                placeholderStyle={styles.placeholderStyle}
+                selectedTextStyle={styles.selectedTextStyle}
+                iconStyle={styles.iconStyle}
+                data={data}
+                maxHeight={300}
+                labelField="label"
+                valueField="value"
+                placeholder="Select Status"
+                value={value}
+                onChange={(item) => {
+                  setValue(item.value);
+                }}
+                renderItem={renderItem}
               />
             </View>
           </View>
-          <View style={{marginVertical: 20}}>
-          <Button  handleBtnPress={() => props.setIsVisible(false)} buttonText={strings.apply}  />
+          <View style={{ marginVertical: 20 }}>
+            <Button handleBtnPress={() => props.setIsVisible(false)} buttonText={strings.apply} />
           </View>
         </View>
       </Modal>

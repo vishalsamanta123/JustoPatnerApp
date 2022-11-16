@@ -1,5 +1,5 @@
-import {StyleSheet} from 'react-native';
-import {normalize, normalizeHeight, normalizeSpacing, normalizeWidth} from '../../../../components/scaleFontSize';
+import { StyleSheet } from 'react-native';
+import { normalize, normalizeHeight, normalizeSpacing, normalizeWidth } from '../../../../components/scaleFontSize';
 import {
   BLACK_COLOR,
   FONT_FAMILY_EXTRABOLD,
@@ -62,6 +62,11 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     justifyContent: 'center'
   },
+  imageVw: {
+    width: normalizeWidth(95),
+    height: normalizeHeight(95),
+    borderRadius: 50
+  },
   inputWrap: {
     marginTop: normalizeSpacing(30),
   },
@@ -82,15 +87,23 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     marginHorizontal: normalizeSpacing(10)
   },
-  radioTxt : {
+  radioTxt: {
     fontSize: normalize(18),
   },
-  workingView : {
+  workingView: {
     width: '100%',
     flexDirection: 'row',
     justifyContent: 'space-between',
     alignItems: 'center',
     marginVertical: normalizeSpacing(10)
+  },
+  browseVw: {
+    width: "25%",
+    backgroundColor: WHITE_COLOR,
+    alignItems: "center",
+    justifyContent: "center",
+    marginLeft: 10,
+    borderRadius: 10
   },
   addBtn: {
     backgroundColor: PRIMARY_THEME_COLOR,

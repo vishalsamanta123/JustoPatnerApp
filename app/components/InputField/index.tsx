@@ -11,12 +11,13 @@ const InputField = (props: any) => {
     editable = true,
     multiline = false,
     inputheight = 50,
-    keyboardtype= 'default'
+    keyboardtype = 'default',
+    topping = 0
   } = props
   const onSubmit = (e: any) => {
     const { text } = e;
   };
-  
+
   return (
     <View>
       <View style={styles.inputHeadinView}>
@@ -27,7 +28,8 @@ const InputField = (props: any) => {
           style={[styles.input, {
             width: inputWidth,
             height: normalizeHeight(inputheight),
-            textAlignVertical: 'top'
+            textAlignVertical: 'top',
+            top: topping
           }]}
           onChangeText={val => props.onChangeText(val)}
           onSubmitEditing={onSubmit}
@@ -39,6 +41,7 @@ const InputField = (props: any) => {
           multiline={multiline}
           keyboardType={keyboardtype}
           value={props.valueshow}
+          maxLength={props.maxLength}
         />
         <TouchableOpacity
           onPress={props.handleInputBtnPress}

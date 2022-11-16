@@ -38,4 +38,11 @@ export default {
 
   // getFollowUp API
   GETFOLLOWUP: "/followup/getFollowUp",
+
+
+  //Agent Management
+  AGENTLIST: "/channelPartner/getchannelPartnerList",
+  GET_AGENT_DETAIL: "/channelPartner/getFollowUp",
+  AGENT_STATUS_UPDATE: "/channelPartner/ApproveChannelpartnerbysourcinghead",
+  ADD_AGENT_: "/channelPartner/createAgent",
 };

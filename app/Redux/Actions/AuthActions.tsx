@@ -63,7 +63,7 @@ export const jwtTokenGenrate = () => async (dispatch: any) => {
         } else {
             return null;
         }
-        
+
     }
     catch (e) {
         dispatch({
