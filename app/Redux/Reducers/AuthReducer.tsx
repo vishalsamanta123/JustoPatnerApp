@@ -8,7 +8,6 @@ const initialState = {
 
 export default function authStore(state = initialState, action: any){
     switch (action.type) {
-
         case USER_LOGIN:
         return {
             ...state,

@@ -89,6 +89,7 @@ const strings = new LocalizedStrings({
     yes: 'Yes',
     agent: 'Agent',
     createAgent: 'Create Agent',
+    editAgent: 'Edit Agent',
     searchAgent: 'Search Agent',
     updatepassword: 'Update Password',
     deactivconfirmation: 'Are You sure you want to Deactive this',

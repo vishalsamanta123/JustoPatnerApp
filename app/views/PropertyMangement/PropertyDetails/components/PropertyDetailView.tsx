@@ -22,7 +22,6 @@ import { useSelector } from "react-redux";
 const PropertyDetailView = (props: any) => {
   const [isVisible, setIsVisible] = useState(false)
   const propertyData = useSelector((state: any) => state.propertyData)
-  console.log('propertyData: ===>>>>> ', propertyData.response)
   const insets = useSafeAreaInsets();
   const navigation: any = useNavigation();
   const DATA: any = {

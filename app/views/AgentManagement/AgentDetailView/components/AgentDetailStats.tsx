@@ -5,6 +5,7 @@ import { GRAY_COLOR } from "../../../../components/utilities/constant";
 import { normalizeSpacing } from "../../../../components/scaleFontSize";
 
 const PropertyDetailItem = (props: any) => {
+console.log('props: ', props);
   return (
     <View>
       <View style={styles.Txtview}>
@@ -13,7 +14,7 @@ const PropertyDetailItem = (props: any) => {
         </View>
         <View><Text>:</Text></View>
         <View style={styles.nameContainer}>
-          <Text style={styles.nameTxt}>{props.items.closingper}%</Text>
+          <Text style={styles.nameTxt}>{props.items.closingper}</Text>
         </View>
       </View>
      

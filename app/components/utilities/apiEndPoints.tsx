@@ -41,7 +41,8 @@ export default {
 
   //Agent Management
   AGENTLIST: "/channelPartner/getchannelPartnerList",
-  GET_AGENT_DETAIL: "/channelPartner/getFollowUp",
+  GET_AGENT_DETAIL_: "/channelPartner/getChannelPartnersDetails",
   AGENT_STATUS_UPDATE: "/channelPartner/ApproveChannelpartnerbysourcinghead",
   ADD_AGENT_: "/channelPartner/createAgent",
+  EDIT_AGENT_: "/channelPartner/editAgent",
 };

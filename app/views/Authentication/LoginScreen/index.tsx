@@ -11,9 +11,13 @@ const LoginScreen = ({ navigation }: any) => {
   const [validEmail, setIsValidEmail] = useState(false);
   const [loginData, setLoginData] = useState({
     email: '',
-    password: ''
+    password: '',
+    login_type: 2,
+    device_id: '',
+    device_type: ''
   })
   const loginSelector = useSelector((state: any) => state.login);
+  console.log('loginSelector: ', loginSelector);
 
   useEffect(() => {
     checklogin()
