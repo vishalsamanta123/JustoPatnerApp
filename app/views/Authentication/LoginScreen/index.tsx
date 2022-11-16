@@ -5,6 +5,7 @@ import React, { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { validateEmail, RED_COLOR } from '../../../components/utilities/constant';
 import LoginView from './components/LoginView';
+import AsyncStorage from '@react-native-async-storage/async-storage';
 
 const LoginScreen = ({ navigation }: any) => {
   const dispatch: any = useDispatch()
@@ -21,18 +22,42 @@ const LoginScreen = ({ navigation }: any) => {
   }, [loginSelector])
 
   const checklogin = async () => {
-    if (loginSelector.response && loginSelector.authToken) {
-      if (loginSelector.response.status === 200) {
-        await setDefaultHeader("token", loginSelector.response.token);
-        navigation.navigate('DashboardScreenView');
-      } else {
-        console.log('loginSelector.response.message: ', loginSelector.response.message);
+    const authval = await AsyncStorage.getItem("AuthToken");
+   
+      
+
+    console.log("checklogin -> loginSelector", loginSelector)
+    console.log("checklogin -> authval", authval)
+    
+      if (loginSelector.response && loginSelector.authToken) {
+        console.log("checklogin -> loginSelector.response.status", loginSelector.response.status)
+        if (loginSelector.response.status === 200) {
+          
+          await setDefaultHeader("token", loginSelector.response.token);
+          navigation.navigate('DashboardScreenView');
+        } else {
+          ErrorMessage({
+            msg: loginSelector.response.message,
+            backgroundColor: RED_COLOR
+          })
+        }
+      }else {
+
+        if(authval != null){
+          await setDefaultHeader("token", authval);
+         navigation.navigate('DashboardScreenView');
+        }else{
         ErrorMessage({
           msg: loginSelector.response.message,
           backgroundColor: RED_COLOR
         })
+
+        }
+
+      /*   await setDefaultHeader("token", authval);
+        navigation.navigate('DashboardScreenView'); */
+        
       }
-    }
   }
   const validation = () => {
     let isError = true;
@@ -61,9 +86,11 @@ const LoginScreen = ({ navigation }: any) => {
   }
   const handleLoginPress = () => {
     if (validation()) {
-      dispatch(userLogin(loginData))
+      const respon = dispatch(userLogin(loginData))
+      console.log("handleLoginPress -> respon", respon)
+      //navigation.navigate('DashboardScreenView');
     }
-    navigation.navigate('DashboardScreenView');
+    
   };
   const handleSingupPress = () => {
     navigation.navigate('RegistrationScreenView');

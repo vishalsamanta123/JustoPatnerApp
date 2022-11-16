@@ -29,6 +29,7 @@ export default {
   // property Start
   ADDPROPERTY: "/property/addProperty",
   PROPERTYLIST: "/property/getAllProperty",
+  PROPERTYFILTER: "/property/filterProperty",
   EDITPROPERTY: "/property/editProperty",
   GETPROPERTYDETAIL: "/property/getPropertyDetails",
   GETPROPERTYFILTERDETAIL: "/property/filterProperty",

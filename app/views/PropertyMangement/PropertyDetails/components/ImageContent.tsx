@@ -9,8 +9,11 @@ import { useSafeAreaInsets } from "react-native-safe-area-context";
 import { normalizeHeight, normalizeSpacing, normalizeWidth } from "../../../../components/scaleFontSize";
 import { DATA } from "../../../../components/utilities/DemoData";
 
-const ImageContent = ({ navigation }: any) => {
+const ImageContent = ({ navigation,route }: any) => {
   const insets = useSafeAreaInsets();
+
+  const dataimage = route?.params || []
+  console.log("ImageContent -> items", dataimage)
   const handleBackPress = () => {
     navigation.goBack();
   };
@@ -33,20 +36,22 @@ const ImageContent = ({ navigation }: any) => {
         handleOnLeftIconPress={handleBackPress}
       />
       <View>
-        <FlatList data={DATA}
-        numColumns={3}
+        <FlatList data={dataimage}
+        numColumns={1}
         contentContainerStyle={{
-          justifyContent: 'center',
-          alignItems: 'center'
+         /*  justifyContent: 'center',
+          alignItems: 'center' */
         }}
          renderItem={({item}) => (
           <View>
+            
             <Image
-              source={item.image}
+              //source={item.image}
+              source={{uri:item.base_url+item.document}}
 
               style={{
-                width: normalizeWidth(110),
-                height: normalizeHeight(110),
+                width: '100%',
+                height: normalizeHeight(300),
                 margin: normalizeSpacing(5),
                 alignItems: 'center',
                 justifyContent: 'center'

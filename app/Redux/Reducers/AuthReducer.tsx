@@ -1,4 +1,4 @@
-import { TOKEN_GENRATE, USER_LOGIN, USER_LOGOUT } from '../types'
+import { TOKEN_GENRATE, USER_LOGIN, USER_LOGOUT, LOGIN_ERROR } from '../types'
 
 const initialState = {
     response: null,
@@ -20,6 +20,13 @@ export default function authStore(state = initialState, action: any){
         return {
             ...state,
             response: null,
+            authToken: false
+        }
+        
+        case LOGIN_ERROR:
+        return {
+            ...state,
+            response: action.payload,
             authToken: false
         }
 

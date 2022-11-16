@@ -43,10 +43,12 @@ import ProfileScreen from '../views/Setting/ProfileScreen';
 import EditProfileScreen from '../views/Setting/EditProfileScreen';
 import ChangePasswordScreen from '../views/Setting/ChangePassword';
 import SeparateLinkScreen from '../views/Setting/SeparateLink';
-import { setDefaultHeader } from 'app/components/utilities/httpClient';
+import { setDefaultHeader, apiCall } from 'app/components/utilities/httpClient';
 import { useDispatch, useSelector } from 'react-redux';
 import { jwtTokenGenrate } from 'app/Redux/Actions/AuthActions';
-
+import apiEndPoints from 'app/components/utilities/apiEndPoints';
+//import { AsyncStorage } from 'react-native';
+import AsyncStorage from '@react-native-async-storage/async-storage';
 const Stack = createNativeStackNavigator();
 const Drawer = createDrawerNavigator();
 const screenOptions = { headerShown: false, gestureEnabled: true };
@@ -69,36 +71,38 @@ const DrawerComponent = () => {
     </Drawer.Navigator>
   );
 };
-const Route = () => {
-   const dispatch: any = useDispatch();
+const Route =  () => {
+  const dispatch: any = useDispatch();
   const loginSelector = useSelector((state: any) => state.login);
   console.log('loginSelector: ', loginSelector);
-  useEffect(() => {
+  useEffect( () => {
 
-    // const authval = AsyncStorage.getItem("AuthToken");
+   
     // const authval = AsyncStorage.removeItem("AuthToken");
     // console.log('authval: vv', authval);
-    if (loginSelector?.response == null ) {
-       tokenGenrate()
-    } else {
-      setDefaultHeader("token", loginSelector?.response?.token);
-    }
+  
+      if (loginSelector?.response == null ||  loginSelector?.response?.status == 201 ||  loginSelector?.response?.status == 401) {
+        tokenGenrate()
+      } else {
+        setDefaultHeader("token", loginSelector?.response?.token);
+      
+      }
+   }, [loginSelector])
 
-  }, [loginSelector])
+  
 
   async function tokenGenrate() {
-
-    dispatch(jwtTokenGenrate())
-    // try {
-    //   const { data } = await apiCall("get", apiEndPoints.JWTTOKEN, {});
-    //   console.log('data: ', data);
-    //   if (data) {
-    //     await AsyncStorage.setItem("token", data.token);
-    //     await setDefaultHeader("token", data.token);
-    //   }
-    // } catch (error) {
-    //   console.log(error);
-    // }
+    //dispatch(jwtTokenGenrate())
+     try {
+      const { data } = await apiCall("get", apiEndPoints.JWTTOKEN, {});
+      console.log('data: ', data);
+      if (data) {
+        await AsyncStorage.setItem("token", data.token);
+        await setDefaultHeader("token", data.token);
+      }
+    } catch (error) {
+      console.log(error);
+    } 
   }
   return (
     <NavigationContainer>

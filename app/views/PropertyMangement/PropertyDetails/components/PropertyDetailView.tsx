@@ -1,5 +1,5 @@
 import { View, Text, StatusBar, FlatList } from "react-native";
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import Header from "../../../../components/Header";
 import {
   BLACK_COLOR,
@@ -21,29 +21,48 @@ import { useSelector } from "react-redux";
 
 const PropertyDetailView = (props: any) => {
   const [isVisible, setIsVisible] = useState(false)
-  const propertyData = useSelector((state: any) => state.propertyData)
-  console.log('propertyData: ===>>>>> ', propertyData.response)
+  const [configurations, setConfigurations] = useState([])
+  const [propertydocument, setPropertydocument] = useState([])
+  const [amenity, setAmenity] = useState([])
+  const [approveStatus, setApproveStatus] = useState(1)
+  const propertyData = useSelector((state: any) => state.propertyData) || {}
+  const propertydetail = propertyData.response.data[0];
   const insets = useSafeAreaInsets();
   const navigation: any = useNavigation();
+
   const DATA: any = {
-    Projectname: propertyData.response.data.property_title,
-    Location: propertyData.response.data.location,
-    visitor: props.data.total_visitor,
-    siteVisit: props.data.site_visit,
-    closeVisit: props.data.close_visit,
-    status: props.data.status,
-    createddate: props.data.createdDate,
-    propertyType: props.data.property_type,
-    startDate: propertyData.response.data.start_date,
-    EndDate: propertyData.response.data.end_date,
-    lead: "12/11/2022",
-    configuration: "1BHK / Min-25 L / Max-75 L",
-    amenity: "Sawimming Pool",
+    Projectname: propertydetail.property_title,
+    Location: propertydetail.location,
+    visitor: propertydetail.total_visitor,
+    siteVisit: propertydetail.site_visit,
+    closeVisit: propertydetail.close_visit,
+    status: (propertydetail.status) ? 'Active' : 'Inactive',
+    createddate: propertydetail.start_date,
+    propertyType: propertydetail?.property_type_title,
+    startDate: propertydetail.start_date,
+    EndDate: propertydetail.end_date,
+    //lead: "12/11/2022",
+    //configuration: propertydetail.property_configurations,
+    //amenity: "Sawimming Pool",
     pickup: "yes",
   };
+  
+  useEffect(() => {
+    setConfigurations(propertydetail.property_configurations || [])
+    setAmenity(propertydetail.property_amenities || [])
+    setPropertydocument(propertydetail.property_document || [])
+    setApproveStatus(props.data.approve_status)
 
-  const onpresContent = (name: any) => {
-    navigation.navigate(name);
+
+   
+
+  }, [propertyData]) 
+
+  
+
+  const onpresContent = (name: any,items : any) => {
+    console.log("onpresContent -> items", items)
+    navigation.navigate(name , items);
   };
   return (
     <View style={styles.mainContainer}>
@@ -64,18 +83,23 @@ const PropertyDetailView = (props: any) => {
         handleOnLeftIconPress={props.handleBackPress}
       />
       <View style={styles.propertyListView}>
-        <PropertyDetailItem items={DATA} onpresContent={onpresContent} />
+        <PropertyDetailItem items={DATA} onpresContent={onpresContent}
+        configurations = {configurations}
+        amenity = {amenity}
+        propertydocument = {propertydocument}
+         />
       </View>
       <View style={[styles.btnContainer, {
-        justifyContent: DATA.status !== "confirmatin Pending" && DATA.status !== "Unsubscribe" ? 'space-between' : 'center'
+        justifyContent: approveStatus !== 1 && approveStatus !== 3 ? 'space-between' : 'center'
           
       }]}>
+        
         <Button
-           handleBtnPress={() => DATA.status == 'Subscribe' ? setIsVisible(true) : console.log('11111')}
+           handleBtnPress={() => approveStatus === 2 ? setIsVisible(true) : console.log('11111')}
           buttonText={
-            DATA.status == "confirmatin Pending"
+            approveStatus === 1
               ? strings.active
-              : DATA.status == "Subscribe"
+              : approveStatus === 2
                 ? strings.unsubscribe
                 : strings.subscribe
           }
@@ -83,25 +107,26 @@ const PropertyDetailView = (props: any) => {
           height={45}
           bgcolor={""}
           bordercolor={
-            DATA.status == "confirmatin Pending"
+            approveStatus === 1
               ? BLACK_COLOR
-              : DATA.status == "Subscribe"
+              : approveStatus === 2
                 ? "red"
                 : YELLOW_COLOR
           }
           borderWidth={1.5}
           btnTxtcolor={
-            DATA.status == "confirmatin Pending"
+            approveStatus === 1
               ? BLACK_COLOR
-              : DATA.status == "Subscribe"
+              : approveStatus === 2
                 ? "red"
                 : YELLOW_COLOR
           }
           btnTxtsize={15}
           textTransform={"uppercase"}
         />
-        {DATA.status !== "confirmatin Pending" &&
-          DATA.status !== "Unsubscribe" ? (
+        
+        {approveStatus !== 1 &&
+         approveStatus !== 3 ? (
           <Button
             handleBtnPress={()=> props.onPressCreatevisit()}
             buttonText={strings.createVisit}

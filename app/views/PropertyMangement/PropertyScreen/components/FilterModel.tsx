@@ -9,26 +9,68 @@ import InputField from "../../../../components/InputField";
 import InputCalender from "../../../../components/InputCalender";
 import { Dropdown } from "react-native-element-dropdown";
 import moment from 'moment';
-
+import { useDispatch } from 'react-redux';
+import { getFilterProperty,getAllProperty } from 'app/Redux/Actions/propertyActions';
 
 const FilterModal = (props: any) => {
-
+    const dispatch: any = useDispatch()
     const [startdate, setStartDate] = useState(new Date(moment(new Date()).format("YYYY-MM-DD")))
     console.log("FilterModal -> startdate", moment(new Date()).format("YYYY-MM-DD"))
-    const [enddate, setEndDate] = useState(new Date())
+    const [enddate, setEndDate] = useState(new Date(moment(new Date()).format("YYYY-MM-DD")))
 
     const data = [
         { label: "Active", value: "1" },
         { label: "Inactive", value: "2" },
 
     ];
-   const [value, setValue] = useState(null);
-   const renderItem = (item: any) => {
+    const [statusValue, setStatusValue] = useState(null);
+    const renderItem = (item: any) => {
         return (
             <View style={styles.item}>
                 <Text style={styles.textItem}>{item.label}</Text>
             </View>
         );
+    };
+
+    const handleInputField = (e : any) => {
+        console.log("handleInputField -> e", e)
+        props.setFilterform({...props.filterform, property_name: e})
+       /*  const nextFormState = {
+          ...props.filterform,
+          [e.target.name]: e.target.value,
+        };
+        props.setFilterform(nextFormState); */
+      };
+
+
+
+    const ApplyFilter = () => {
+        dispatch(getFilterProperty({
+            offset: 0,
+            limit: 5,
+            start_date: startdate,
+            end_date: enddate,
+            location: props.filterform.location,
+            property_name: props.filterform.property_name,
+            property_type: props.filterform.property_type,
+        }))
+        props.setIsVisible(false)
+    };
+    const ResetFilter = () => {
+          
+        props.setFilterform({... props.filterform , 
+            start_date: "",
+            end_date: "",
+            location: "",
+            property_name: "",
+            property_type: "",
+          })
+
+        dispatch(getAllProperty({
+            offset: 0,
+            limit: 5,
+        }))
+        props.setIsVisible(false)
     };
 
 
@@ -63,7 +105,7 @@ const FilterModal = (props: any) => {
                                 //headingText={'Start Date'}
                                 placeholderText={"End Date"}
                                 dateshow={enddate}
-                                setDateshow={(val: any) => setStartDate(val)}
+                                setDateshow={(val: any) => setEndDate(val)}
 
                             />
                         </View>
@@ -71,7 +113,13 @@ const FilterModal = (props: any) => {
                             <InputField
                                 placeholderText={"Search by Name"}
                                 handleInputBtnPress={() => { }}
-                                onChangeText={() => { }}
+                                onChangeText={(val: any) => {
+                                    props.setFilterform({
+                                      ...props.filterform, property_name:val
+                                    })
+                                  }}
+                                valueshow={props.filterform.property_name}
+                                //name={'property_name'}
                             />
                         </View>
                         <View style={styles.inputWrap}>
@@ -83,27 +131,30 @@ const FilterModal = (props: any) => {
                         </View>
                         <View style={styles.inputWrap}>
 
-                        <Dropdown
-                            style={styles.dropdown}
-                            placeholderStyle={styles.placeholderStyle}
-                            selectedTextStyle={styles.selectedTextStyle}
-                            iconStyle={styles.iconStyle}
-                            data={data}
-                            maxHeight={300}
-                            labelField="label"
-                            valueField="value"
-                            placeholder="Select Status"
-                            value={value}
-                            onChange={(item) => {
-                                setValue(item.value);
-                            }}
-                            renderItem={renderItem}
-                        />
+                            <Dropdown
+                                style={styles.dropdown}
+                                placeholderStyle={styles.placeholderStyle}
+                                selectedTextStyle={styles.selectedTextStyle}
+                                iconStyle={styles.iconStyle}
+                                data={data}
+                                maxHeight={300}
+                                labelField="label"
+                                valueField="value"
+                                placeholder="Select Status"
+                                value={props.filterform.property_type}
+                                onChange={(item) => {
+                                    props.setFilterform({property_type: item.value});
+                                }}
+                                renderItem={renderItem}
+                            />
                         </View>
                     </View>
                     <View style={{ marginVertical: 20 }}>
-                        <Button buttonText={strings.apply} handleBtnPress={() => props.setIsVisible(false)} />
-                    </View>
+                        <View style={{flexDirection:'row'}}>
+                        <Button width={135} buttonText={strings.reset} handleBtnPress={() => ResetFilter()} />
+                        <Button width={135} buttonText={strings.apply} handleBtnPress={() => ApplyFilter()} />
+                        </View>
+                     </View>
                 </View>
             </Modal>
 

@@ -7,7 +7,7 @@ import images from '../../../../assets/images';
 import moment from 'moment';
 
 const PropertyListItem = (props: any) => {
-console.log('props: ', props);
+  
   return (
     <View style={styles.IteamView}>
       <View style={styles.Txtview} >
@@ -56,9 +56,10 @@ console.log('props: ', props);
         </View>
         <View style={styles.nameContainer}>
          <Text style={[styles.nameTxt,{
-          color: props.items.status == 'confirmatin Pending' ? BLACK_COLOR : 
-          props.items.status == 'Subscribe' ? YELLOW_COLOR : RED_COLOR
-        }]}>{props.items.status}</Text>
+          color: props.items.approve_status === 1 ? BLACK_COLOR : 
+          props.items.approve_status === 2 ? YELLOW_COLOR : RED_COLOR
+        }]}>{props.items.approve_status === 1 ? strings.pendingconfirm : 
+          props.items.approve_status === 2 ? strings.subscribe : strings.unsubscribe}</Text>
         </View>
       </View>
       <View style={[styles.Txtview,{borderBottomWidth: 0}]} >
@@ -71,17 +72,17 @@ console.log('props: ', props);
       </View>
       <View style={styles.buttonContainer}>
         <TouchableOpacity
-        onPress={() => props.items.status === 'Subscribe' ? props.setIsVisible(true) : null}
+        onPress={() => props.items.approve_status === 2 ? props.setIsVisible(true) : null}
          style={[styles.button, {
-          borderColor: props.items.status == 'confirmatin Pending' ? GREEN_COLOR : 
-          props.items.status == 'Subscribe' ? RED_COLOR : GOLDEN_COLOR
+          borderColor: props.items.approve_status === 1 ? GREEN_COLOR : 
+          props.items.approve_status === 2 ? RED_COLOR : GOLDEN_COLOR
         }]} >
           <Text style={[styles.buttonTxt,{
-          color: props.items.status == 'confirmatin Pending' ? GREEN_COLOR : 
-          props.items.status == 'Subscribe' ? RED_COLOR : GOLDEN_COLOR
+          color: props.items.approve_status === 1 ? GREEN_COLOR : 
+          props.items.approve_status === 2 ? RED_COLOR : GOLDEN_COLOR
           }]}>{
-            props.items.status == 'confirmatin Pending' ? strings.active : 
-            props.items.status == 'Subscribe' ? strings.unsubscribe : strings.subscribe 
+            props.items.approve_status === 1 ? strings.active : 
+            props.items.approve_status === 2 ? strings.unsubscribe : strings.subscribe 
           
           }</Text>
         </TouchableOpacity>

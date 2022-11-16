@@ -7,12 +7,12 @@ import { getPropertyDetail } from 'app/Redux/Actions/propertyActions';
 const PropertyDetails = ({navigation,route}: any) => {
   const dispatch: any = useDispatch()
   const data = route?.params || {}
-  console.log('data: in property ', data);
-  useLayoutEffect(() => {
+  //console.log('data: in property ', data);
+   useLayoutEffect(() => {
     dispatch(getPropertyDetail({
-      property_id: data._id
+      property_id: data.property_id
     }))
-  }, [])
+  }, []) 
   const handleBackPress = () => {
     navigation.goBack();
   };
