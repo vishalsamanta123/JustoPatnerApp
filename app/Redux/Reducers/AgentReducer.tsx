@@ -1,4 +1,5 @@
-import { AGENT_LIST, AGENT_STATUSUPDATE, ADD_AGENT, ADD_AGENT_FORM } from "../types";
+import { AGENT_LIST, AGENT_STATUSUPDATE, ADD_AGENT, ADD_AGENT_FORM, GET_AGENT_DETAIL, EDIT_AGENT } from "../types";
+
 const initialState = {
   response: null,
   detail: false,
@@ -12,34 +13,26 @@ const initialStateForm = {
 export function agentReducer(state = initialState, action: any) {
   switch (action.type) {
     case ADD_AGENT:
-    console.log('ADD_AGENT: ', ADD_AGENT);
       return {
         ...state,
         detail: false,
         create: true,
+        response: null,
+      };
+    case EDIT_AGENT:
+      return {
+        ...state,
+        detail: false,
+        create: true,
+        response: null,
+      };
+    case GET_AGENT_DETAIL:
+      return {
+        ...state,
+        create: false,
+        detail: true,
         response: action.payload,
       };
-    //   case PROPERTY_EDIT:
-    //     return {
-    //       ...state,
-    //       detail: false,
-    //       create: true,
-    //       response: action.payload,
-    //     };
-    //   case GETPROPERTY_DETAIL:
-    //     return {
-    //       ...state,
-    //       create: false,
-    //       detail: true,
-    //       response: action.payload,
-    //     };
-    //   case PROPERTY_FILTER_LIST:
-    //     return {
-    //       ...state,
-    //       create: false,
-    //       detail: false,
-    //       response: action.payload,
-    //     };
     case AGENT_LIST:
       return {
         ...state,

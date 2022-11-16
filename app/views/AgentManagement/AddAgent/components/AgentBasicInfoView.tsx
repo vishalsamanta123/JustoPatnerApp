@@ -24,13 +24,11 @@ import PicturePickerModal from "../../../../components/Modals/PicturePicker";
 import { normalizeHeight, normalizeWidth } from "app/components/scaleFontSize";
 import InputCalender from "app/components/InputCalender";
 import moment from "moment";
+import { Item } from "react-native-paper/lib/typescript/components/Drawer/Drawer";
 
 
 const AgentBasicInfoView = (props: any) => {
   const insets = useSafeAreaInsets();
-  const [gender, setGender] = useState("Male");
-  const [checked, setChecked] = React.useState("first");
-
   return (
     <View style={styles.mainContainer}>
       <View
@@ -54,11 +52,14 @@ const AgentBasicInfoView = (props: any) => {
           {/* <View style={styles.underlineStyle} /> */}
           <TouchableOpacity onPress={() => props.setVisible(true)}
             style={styles.imageCircle}>
-            {props?.agentInfoData?.profile_img === '' ?
+            {props?.agentInfoData?.profile_picture === '' ?
               <Text>Image</Text>
               :
               <Image
-                source={{ uri: props?.agentInfoData?.profile_img?.path }}
+                source={{
+                  uri: props?.agentInfoData?.profile_picture?.path ?
+                    props?.agentInfoData?.profile_picture?.path : props?.agentInfoData?.profile_picture
+                }}
                 resizeMode={'contain'}
                 style={styles.imageVw}
               />
@@ -74,6 +75,7 @@ const AgentBasicInfoView = (props: any) => {
                   agent_name: data
                 })
               }}
+              valueshow={props?.agentInfoData?.agent_name}
               headingText={"Agent Name"}
             />
           </View>
@@ -84,9 +86,10 @@ const AgentBasicInfoView = (props: any) => {
               onChangeText={(data: any) => {
                 props.setAgentInfoData({
                   ...props.agentInfoData,
-                  aadhar_no: data
+                  adhar_no: data
                 })
               }}
+              valueshow={props?.agentInfoData?.adhar_no?.toString()}
               headingText={"Adhar No."}
               keyboardtype={'number-pad'}
             />
@@ -101,6 +104,7 @@ const AgentBasicInfoView = (props: any) => {
                   pancard_no: data
                 })
               }}
+              valueshow={props?.agentInfoData?.pancard_no?.toString()}
               headingText={"Pancard No."}
             />
           </View>
@@ -109,7 +113,7 @@ const AgentBasicInfoView = (props: any) => {
             <View style={styles.radioView}>
               <RadioButton
                 value={"1"}
-                status={props.agentInfoData.gender === 1 ? "checked" : 'unchecked'}
+                status={props?.agentInfoData?.gender === 1 ? "checked" : 'unchecked'}
                 onPress={() => props.setAgentInfoData({
                   ...props.agentInfoData,
                   gender: 1
@@ -121,7 +125,7 @@ const AgentBasicInfoView = (props: any) => {
                   styles.radioTxt,
                   {
                     color:
-                      checked === "first" ? PRIMARY_THEME_COLOR : BLACK_COLOR,
+                      props?.agentInfoData?.gender === 1 ? PRIMARY_THEME_COLOR : BLACK_COLOR,
                   },
                 ]}
               >
@@ -131,7 +135,7 @@ const AgentBasicInfoView = (props: any) => {
             <View style={styles.radioView}>
               <RadioButton
                 value={"2"}
-                status={props.agentInfoData.gender === 2 ? "checked" : 'unchecked'}
+                status={props?.agentInfoData?.gender === 2 ? "checked" : 'unchecked'}
                 onPress={() => props.setAgentInfoData({
                   ...props.agentInfoData,
                   gender: 2
@@ -143,7 +147,7 @@ const AgentBasicInfoView = (props: any) => {
                   styles.radioTxt,
                   {
                     color:
-                      checked === "second" ? PRIMARY_THEME_COLOR : BLACK_COLOR,
+                      props?.agentInfoData?.gender === 2 ? PRIMARY_THEME_COLOR : BLACK_COLOR,
                   },
                 ]}
               >
@@ -164,17 +168,17 @@ const AgentBasicInfoView = (props: any) => {
                 })
               }}
             /> */}
-            <InputCalender
+            {/* <InputCalender
               placeholderText={"Date of Birth"}
               headingText={"Date of Birth"}
-              dateshow={props.agentInfoData.dob}
               setDateshow={(data: any) => {
                 props.setAgentInfoData({
                   ...props.agentInfoData,
                   dob: new Date(data)
                 })
               }}
-            />
+              dateshow={props?.agentInfoData?.date_of_birth}
+            /> */}
           </View>
           <View style={styles.inputWrap}>
             <InputField
@@ -183,11 +187,12 @@ const AgentBasicInfoView = (props: any) => {
               onChangeText={(data: any) => {
                 props.setAgentInfoData({
                   ...props.agentInfoData,
-                  mobile_no: data
+                  primary_mobile: data
                 })
               }}
+              valueshow={props?.agentInfoData?.primary_mobile?.toString()}
               headingText={"Mobile No."}
-              maxLength={10}
+              // maxLength={10}
               keyboardtype={'number-pad'}
             />
           </View>
@@ -198,11 +203,12 @@ const AgentBasicInfoView = (props: any) => {
               onChangeText={(data: any) => {
                 props.setAgentInfoData({
                   ...props.agentInfoData,
-                  wttsapp_no: data
+                  whatsapp_number: data
                 })
               }}
+              valueshow={props?.agentInfoData?.whatsapp_number?.toString()}
               headingText={"WhatsApp No."}
-              maxLength={10}
+              // maxLength={10}
               keyboardtype={'number-pad'}
             />
           </View>
@@ -216,6 +222,7 @@ const AgentBasicInfoView = (props: any) => {
                   email: data
                 })
               }}
+              valueshow={props?.agentInfoData?.email}
               headingText={"Email Address"}
             />
           </View>
@@ -230,6 +237,15 @@ const AgentBasicInfoView = (props: any) => {
           <View style={styles.workingView}>
             <View>
               <Text style={styles.workTxt}>Working Location</Text>
+              {props?.agentInfoData?.working_location?.length > 0 &&
+                props?.agentInfoData?.working_location?.map((item: any) => {
+                  return (
+                    <View style={{ paddingVertical: 5, paddingHorizontal: 5 }}>
+                      <Text style={{ color: BLACK_COLOR, borderBottomWidth: 0.7 }}>{item.location}</Text>
+                    </View>
+                  )
+                })
+              }
             </View>
             <TouchableOpacity style={styles.addBtn}>
               <Text style={styles.addTxt}>+ Add location</Text>
@@ -253,8 +269,8 @@ const AgentBasicInfoView = (props: any) => {
           }}
           setVisible={props.setVisible}
         />
-      </ScrollView >
-    </View >
+      </ScrollView>
+    </View>
   );
 };
 

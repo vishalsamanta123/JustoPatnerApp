@@ -5,10 +5,10 @@ import {
   StatusBar,
   TouchableOpacity,
 } from "react-native";
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import images from "../../../../assets/images";
 import InputField from "../../../../components/InputField";
-import { WHITE_COLOR } from "../../../../components/utilities/constant";
+import { RED_COLOR, WHITE_COLOR } from "../../../../components/utilities/constant";
 import strings from "../../../../components/utilities/Localization";
 import styles from "./styles";
 import { useSafeAreaInsets } from "react-native-safe-area-context";
@@ -16,43 +16,49 @@ import Button from "../../../../components/Button";
 import Header from "../../../../components/Header";
 import { useDispatch, useSelector } from "react-redux";
 import PicturePickerModal from "app/components/Modals/PicturePicker";
-import { addAgent } from "app/Redux/Actions/AgentActions";
+import { addAgent, editAgent } from "app/Redux/Actions/AgentActions";
+import ErrorMessage from "app/components/ErrorMessage";
+import { ADD_AGENT } from "app/Redux/types";
 
-const AgentBankInfo = ({ navigation }: any) => {
+const AgentBankInfo = ({ navigation, route }: any) => {
   const dispatch: any = useDispatch()
+  const { response = {} } = useSelector((state: any) => state.addAgentForm)
+  const editedData = useSelector((state: any) => state.agentData)
+  const [agentInfoData, setAgentInfoData] = useState({ ...response })
   const [refraCrtf, setRefraCrtf] = useState(false)
   const [propiderLettr, setPropiderLettr] = useState(false)
-  const addAgentForm = useSelector((state: any) => state.addAgentForm)
-  const [agentInfoData, setAgentInfoData] = useState(addAgentForm?.response)
-  console.log('agentInfoData: ', agentInfoData);
   const insets = useSafeAreaInsets();
   const onPressBack = () => {
     navigation.goBack()
   }
-  const onPressCreateAgent = () => {
+  const onPressCreateAgent = (type: any) => {
     const formData = new FormData();
-    formData.append("role_id", agentInfoData?.role_id);
+    if (type === 'edit') {
+      formData.append("agent_id", agentInfoData?.cp_id);
+    } else {
+      // formData.append("role_id", agentInfoData?.role_id);
+    }
     formData.append("email", agentInfoData?.email);
     formData.append("agent_name", agentInfoData?.agent_name);
-    formData.append("primary_mobile", agentInfoData?.mobile_no);
-    formData.append("whatsapp_number", agentInfoData?.wttsapp_no);
-    formData.append("adhar_no", agentInfoData?.aadhar_no);
+    formData.append("primary_mobile", agentInfoData?.primary_mobile);
+    formData.append("whatsapp_number", agentInfoData?.whatsapp_number);
+    formData.append("adhar_no", agentInfoData?.adhar_no);
     formData.append("pancard_no", agentInfoData?.pancard_no);
     formData.append("gender", agentInfoData?.gender);
-    formData.append("date_of_birth", '');
-    formData.append("location", '');
+    formData.append("date_of_birth", agentInfoData?.date_of_birth);
+    formData.append("location", agentInfoData?.location);
     formData.append("latitude", agentInfoData?.latitude);
     formData.append("longitude", agentInfoData?.longitude);
-    formData.append("rera_certificate_no", agentInfoData?.rera_no);
-    agentInfoData?.profile_img?.path &&
+    formData.append("rera_certificate_no", agentInfoData?.rera_certificate_no);
+    agentInfoData?.profile_picture?.path &&
       formData.append("profile_picture", {
-        uri: agentInfoData?.profile_img?.path,
-        type: agentInfoData?.profile_img?.mime,
-        name: agentInfoData?.profile_img?.path?.substring(
-          agentInfoData?.profile_img?.path?.lastIndexOf("/") + 1
+        uri: agentInfoData?.profile_picture?.path,
+        type: agentInfoData?.profile_picture?.mime,
+        name: agentInfoData?.profile_picture?.path?.substring(
+          agentInfoData?.profile_picture?.path?.lastIndexOf("/") + 1
         ),
       });
-    agentInfoData?.rera_certificate?.path &&
+    agentInfoData?.rera_certificate?.path &&//no 
       formData.append("rera_certificate", {
         uri: agentInfoData?.rera_certificate?.path,
         type: agentInfoData?.rera_certificate?.mime,
@@ -60,7 +66,7 @@ const AgentBankInfo = ({ navigation }: any) => {
           agentInfoData?.rera_certificate?.path?.lastIndexOf("/") + 1
         ),
       });
-    agentInfoData?.propidership_declaration_letter?.path &&
+    agentInfoData?.propidership_declaration_letter?.path &&//no 
       formData.append("propidership_declaration_letter", {
         uri: agentInfoData?.propidership_declaration_letter?.path,
         type: agentInfoData?.propidership_declaration_letter?.mime,
@@ -68,8 +74,12 @@ const AgentBankInfo = ({ navigation }: any) => {
           agentInfoData?.propidership_declaration_letter?.path?.lastIndexOf("/") + 1
         ),
       });
-    dispatch(addAgent(formData))
-    navigation.navigate('AgentListing')
+    if (type === 'edit') {
+      dispatch(editAgent(formData))
+      navigation.navigate('AgentListing')
+    } else {
+      dispatch(addAgent(formData))
+    }
   }
   return (
     <View style={styles.mainContainer}>
@@ -98,9 +108,12 @@ const AgentBankInfo = ({ navigation }: any) => {
             onChangeText={(data: any) => {
               setAgentInfoData({
                 ...agentInfoData,
-                rera_no: data
+                rera_certificate_no: data
               })
             }}
+            valueshow={
+              agentInfoData?.rera_certificate_no?.toString()
+            }
             headingText={"RERA Certificat No."}
           />
         </View>
@@ -110,7 +123,9 @@ const AgentBankInfo = ({ navigation }: any) => {
             btnWidth={"30%"}
             browse={"browse"}
             editable={false}
-            valueshow={agentInfoData?.rera_certificate?.mime}
+            valueshow={
+              agentInfoData?.rera_certificate?.substring(agentInfoData?.rera_certificate?.lastIndexOf("/"))
+            }
             handleInputBtnPress={() => { }}
             headingText={"RERA Certificat"}
           />
@@ -127,7 +142,9 @@ const AgentBankInfo = ({ navigation }: any) => {
             btnWidth={"30%"}
             browse={"browse"}
             editable={false}
-            valueshow={agentInfoData?.propidership_declaration_letter?.mime}
+            valueshow={
+              agentInfoData?.propidership_declaration_letter?.substring(agentInfoData?.propidership_declaration_letter?.lastIndexOf("/"))
+            }
             handleInputBtnPress={() => { }}
             onChangeText={() => { }}
             topping={16}
@@ -209,8 +226,9 @@ const AgentBankInfo = ({ navigation }: any) => {
        */}
         <View style={{ marginTop: 20 }}>
           <Button
-            handleBtnPress={() => onPressCreateAgent()}
-            buttonText={strings.createAgent}
+            handleBtnPress={() => onPressCreateAgent(route?.params?.type)}
+            buttonText={route?.params?.type === 'edit' ? strings.editAgent :
+              strings.createAgent}
             textTransform={"uppercase"}
           />
         </View>

@@ -4,6 +4,7 @@ import styles from "./styles";
 import { GRAY_COLOR } from "../../../../components/utilities/constant";
 import { normalizeSpacing } from "../../../../components/scaleFontSize";
 import { ScrollView } from "react-native-gesture-handler";
+import strings from "app/components/utilities/Localization";
 
 const PropertyDetailItem = (props: any) => {
   return (
@@ -14,7 +15,7 @@ const PropertyDetailItem = (props: any) => {
         </View>
         <View><Text>:</Text></View>
         <View style={styles.nameContainer}>
-          <Text style={styles.nameTxt}>{props.items.status}</Text>
+          <Text style={styles.nameTxt}>{props.items.status ? strings.active : strings.deactive}</Text>
         </View>
       </View>
       <View style={styles.Txtview}>
@@ -104,34 +105,27 @@ const PropertyDetailItem = (props: any) => {
         </View>
         <View><Text>:</Text></View>
         <View style={styles.nameContainer}>
-          <Text
-            style={[
-              styles.nameTxt,
-              {
-                borderBottomColor: GRAY_COLOR,
-                borderBottomWidth: 1,
-                width: '100%',
-                marginVertical: normalizeSpacing(5)
-              },
-            ]}
-          >
-            {props.items.workinglocation}
-          </Text>
-          <Text
-            style={[
-              styles.nameTxt,
-              {
-                borderBottomColor: GRAY_COLOR,
-                borderBottomWidth: 1,
-                width: '100%',
-                marginVertical: normalizeSpacing(5)
-              },
-            ]}
-          >{props.items.workinglocation}</Text>
-          <Text style={styles.nameTxt}>{props.items.workinglocation}</Text>
+          {props.items.workinglocation?.map((item: any) => {
+            return (
+              <Text
+                style={[
+                  styles.nameTxt,
+                  {
+                    borderBottomColor: GRAY_COLOR,
+                    borderBottomWidth: 1,
+                    width: '100%',
+                    marginVertical: normalizeSpacing(5)
+                  },
+                ]}
+              >
+                {item.location}
+              </Text>
+            )
+          })
+          }
         </View>
       </View>
-      
+
     </ScrollView>
   );
 };

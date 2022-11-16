@@ -58,9 +58,7 @@ const AgentView = (props: any) => {
     },
   ];
 
-  const onPressView = () => {
-    navigation.navigate('AgentDetails')
-  }
+
   const ShowPendinglist = () => {
     navigation.navigate('PendingAgentList')
   }
@@ -112,8 +110,8 @@ const AgentView = (props: any) => {
           <FlatList
             showsVerticalScrollIndicator={false}
             data={agentData?.response?.data}
-            renderItem={({ item }) => <AgentListItem items={item} setIsVisible={setIsVisible} onPressView={onPressView}
-              onPressAddnewAgent={onPressAddnewAgent}
+            renderItem={({ item }) => <AgentListItem items={item} setIsVisible={setIsVisible}
+              onPressView={props.onPressView}
               setChangeStatus={props.setChangeStatus}
               setFilterData={props.setFilterData}
               filterData={props.filterData}

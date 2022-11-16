@@ -76,7 +76,7 @@ const AgentListItem = (props: any) => {
 
       <View style={styles.buttonContainer}>
         <TouchableOpacity
-          onPress={() => props.onPressAddnewAgent()}
+          onPress={() => props.onPressView(props.items, 'edit')}
           style={[styles.buttonbox, {
             borderColor: PURPLE_COLOR
           }]} >
@@ -94,7 +94,7 @@ const AgentListItem = (props: any) => {
             color: props.items.status ? RED_COLOR : GREEN_COLOR
           }]}>{props.items.status ? strings.deactive : strings.active}</Text>
         </TouchableOpacity>
-        <TouchableOpacity style={styles.Viewbutton} onPress={() => props.onPressView()} >
+        <TouchableOpacity style={styles.Viewbutton} onPress={() => props.onPressView(props.items, 'view')} >
           <Image
             source={images.forwardArrow}
             style={styles.arrow}

@@ -52,6 +52,7 @@ export const userLogout = () => async (dispatch: any) => {
 export const jwtTokenGenrate = () => async (dispatch: any) => {
     try {
         const res = await apiCall("get", apiEndPoints.JWTTOKEN, {});
+        console.log('res TKEN API: ', res);
         if (res.data.status == 200) {
 
           

@@ -16,6 +16,7 @@ const LoginScreen = ({ navigation }: any) => {
     login_type: 2
   })
   const loginSelector = useSelector((state: any) => state.login);
+  console.log('loginSelector: ', loginSelector);
 
   useEffect(() => {
     checklogin()
