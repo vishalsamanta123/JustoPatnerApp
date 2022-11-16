@@ -30,5 +30,5 @@ export const checkSpecialChar = /[ `!@#$%^&*()_+\-=\[\]{};':"\\|,.<>\/?~]/;
 
 export const Isios = Platform.OS === 'ios'
 
-export const  GLOBAL_URL = 'http://itinformatix.org:3044'
+export const  GLOBAL_URL = 'https://itinformatix.org:3044'
 

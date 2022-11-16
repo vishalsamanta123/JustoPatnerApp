@@ -1,5 +1,5 @@
-import { getAllProperty } from 'app/Redux/Actions/propertyActions';
 import React, { useLayoutEffect } from 'react';
+import { getAllProperty } from 'app/Redux/Actions/propertyActions';
 import { useDispatch } from 'react-redux';
 import PropertyView from './components/PropertyView';
 

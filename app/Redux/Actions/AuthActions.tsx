@@ -22,7 +22,7 @@ export const userLogin = (loginDetail: any) => async (dispatch: any) => {
 
 export const userLogout = () => async (dispatch: any) => {
     try {
-      await AsyncStorage.removeItem("persistantState");
+        await AsyncStorage.removeItem("persistantState");
         dispatch({
             type: USER_LOGOUT,
             payload: null
@@ -47,7 +47,7 @@ export const jwtTokenGenrate = () => async (dispatch: any) => {
         } else {
             return null;
         }
-        
+
     }
     catch (e) {
         dispatch({
