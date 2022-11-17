@@ -2,11 +2,12 @@ import React, { useEffect } from 'react';
 import Route from './app/navigation';
 import 'react-native-gesture-handler';
 import { Provider } from 'react-redux';
-import store from './app/Redux/Store';
+import configureStore from './app/Redux/Store';
 import { apiCall, setDefaultHeader } from 'app/components/utilities/httpClient';
 // import { jwtTokenGenrate } from 'app/Redux/Actions/AuthActions';
 import apiEndPoints from 'app/components/utilities/apiEndPoints';
 import AsyncStorage from '@react-native-async-storage/async-storage';
+import { PersistGate } from 'redux-persist/es/integration/react';
 
 const App = () => {
 
@@ -40,9 +41,12 @@ const App = () => {
   //     console.log(error);
   //   }
   // }
+  const { persistor, store} = configureStore();
   return (
     <Provider store={store}>
+      <PersistGate persistor={persistor}>
       <Route />
+      </PersistGate>
     </Provider>
   );
 };

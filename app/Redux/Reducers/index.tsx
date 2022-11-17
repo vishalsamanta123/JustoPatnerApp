@@ -3,7 +3,7 @@ import { propertyReducer,propertyDetailReducer } from "./propertyReducers";
 import { registrationFormReducer } from "./ReggistrationReducer";
 import { agentReducer, addAgentReducer, } from './AgentReducer';
 
-export const reducers = {
+export default  {
     login: authStore,
     registrationForm: registrationFormReducer,
     propertyData: propertyReducer,

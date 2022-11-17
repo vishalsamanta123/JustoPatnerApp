@@ -38,6 +38,7 @@ export function agentReducer(state = initialState, action: any) {
         ...state,
         detail: false,
         create: false,
+        loading: false,
         response: action.payload,
       };
     case AGENT_STATUSUPDATE:

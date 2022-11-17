@@ -18,79 +18,114 @@ import { useDispatch, useSelector } from "react-redux";
 import PicturePickerModal from "app/components/Modals/PicturePicker";
 import { addAgent, editAgent } from "app/Redux/Actions/AgentActions";
 import ErrorMessage from "app/components/ErrorMessage";
-import { ADD_AGENT } from "app/Redux/types";
+import Loader from "app/components/CommonScreen/Loader";
 
 const AgentBankInfo = ({ navigation, route }: any) => {
   const dispatch: any = useDispatch()
+  const [isloading, setIsloading] = useState(false)
   const { response = {} } = useSelector((state: any) => state.addAgentForm)
-  const editedData = useSelector((state: any) => state.agentData)
+  const formFiledData = useSelector((state: any) => state.agentData) || null
   const [agentInfoData, setAgentInfoData] = useState({ ...response })
+  console.log('agentInfoData: ', agentInfoData);
+  const [formFilledDone, setFormFilledDone] = useState(null)
+  useEffect(() => {
+    if (formFilledDone != null) {
+      if (formFiledData?.response?.status === 200) {
+        navigation.navigate('AgentListing')
+        setIsloading(false)
+      }
+    }
+  }, [formFilledDone])
   const [refraCrtf, setRefraCrtf] = useState(false)
   const [propiderLettr, setPropiderLettr] = useState(false)
   const insets = useSafeAreaInsets();
   const onPressBack = () => {
     navigation.goBack()
   }
-  const onPressCreateAgent = (type: any) => {
-    const formData = new FormData();
-    if (type === 'edit') {
-      formData.append("agent_id", agentInfoData?.cp_id);
+  const validation = () => {
+    let isError = true;
+    let errorMessage: any = ''
+    if (route?.params?.type === 'add') {
+      if (Object.keys(agentInfoData).length < 12) {
+        isError = false;
+        errorMessage = "All Fields are required ,please fill all filled"
+      }
     } else {
-      // formData.append("role_id", agentInfoData?.role_id);
+      const { agent_id, agent_name, whatsapp_number, adhar_no,
+        pancard_no, gender, date_of_birth, rera_certificate_no
+      } = agentInfoData
+      if (agent_id === '' || agent_name === '' || whatsapp_number === '' || adhar_no === '' ||
+        pancard_no === '' || gender === '' || date_of_birth === '' || rera_certificate_no === ''
+      ) {
+        isError = false;
+        errorMessage = "All Fields are required ,please fill all filled"
+      }
     }
-    formData.append("email", agentInfoData?.email);
-    formData.append("agent_name", agentInfoData?.agent_name);
-    formData.append("primary_mobile", agentInfoData?.primary_mobile);
-    formData.append("whatsapp_number", agentInfoData?.whatsapp_number);
-    formData.append("adhar_no", agentInfoData?.adhar_no);
-    formData.append("pancard_no", agentInfoData?.pancard_no);
-    formData.append("gender", agentInfoData?.gender);
-    formData.append("date_of_birth", agentInfoData?.date_of_birth);
-    formData.append("location", agentInfoData?.location);
-    formData.append("latitude", agentInfoData?.latitude);
-    formData.append("longitude", agentInfoData?.longitude);
-    formData.append("rera_certificate_no", agentInfoData?.rera_certificate_no);
-    agentInfoData?.profile_picture?.path &&
-      formData.append("profile_picture", {
-        uri: agentInfoData?.profile_picture?.path,
-        type: agentInfoData?.profile_picture?.mime,
-        name: agentInfoData?.profile_picture?.path?.substring(
-          agentInfoData?.profile_picture?.path?.lastIndexOf("/") + 1
-        ),
-      });
-    agentInfoData?.rera_certificate?.path &&//no 
-      formData.append("rera_certificate", {
-        uri: agentInfoData?.rera_certificate?.path,
-        type: agentInfoData?.rera_certificate?.mime,
-        name: agentInfoData?.rera_certificate?.path?.substring(
-          agentInfoData?.rera_certificate?.path?.lastIndexOf("/") + 1
-        ),
-      });
-    agentInfoData?.propidership_declaration_letter?.path &&//no 
-      formData.append("propidership_declaration_letter", {
-        uri: agentInfoData?.propidership_declaration_letter?.path,
-        type: agentInfoData?.propidership_declaration_letter?.mime,
-        name: agentInfoData?.propidership_declaration_letter?.path?.substring(
-          agentInfoData?.propidership_declaration_letter?.path?.lastIndexOf("/") + 1
-        ),
-      });
-    if (type === 'edit') {
-      dispatch(editAgent(formData))
-      navigation.navigate('AgentListing')
-    } else {
-      dispatch(addAgent(formData))
+    if (errorMessage !== '') {
+      ErrorMessage({
+        msg: errorMessage,
+        backgroundColor: RED_COLOR
+      })
+    }
+    return isError;
+  }
+  const onPressCreateAgent = (type: any) => {
+    if (validation()) {
+      setIsloading(true)
+      const formData = new FormData();
+      if (type === 'edit') {
+        formData.append("agent_id", agentInfoData?.agent_id);
+      } else {
+        // formData.append("role_id", agentInfoData?.role_id);
+      }
+      formData.append("email", agentInfoData?.email);
+      formData.append("agent_name", agentInfoData?.agent_name);
+      formData.append("primary_mobile", agentInfoData?.primary_mobile);
+      formData.append("whatsapp_number", agentInfoData?.whatsapp_number);
+      formData.append("adhar_no", agentInfoData?.adhar_no);
+      formData.append("pancard_no", agentInfoData?.pancard_no);
+      formData.append("gender", agentInfoData?.gender);
+      formData.append("date_of_birth", agentInfoData?.date_of_birth ? agentInfoData?.date_of_birth : '10/11/2000');
+      formData.append("location", '');
+      formData.append("latitude", '');
+      formData.append("longitude", '');
+      formData.append("rera_certificate_no", agentInfoData?.rera_certificate_no);
+      agentInfoData?.profile_picture?.path &&
+        formData.append("profile_picture", {
+          uri: agentInfoData?.profile_picture?.path,
+          type: agentInfoData?.profile_picture?.mime,
+          name: agentInfoData?.profile_picture?.path?.substring(
+            agentInfoData?.profile_picture?.path?.lastIndexOf("/") + 1
+          ),
+        });
+      agentInfoData?.rera_certificate?.path &&//no 
+        formData.append("rera_certificate", {
+          uri: agentInfoData?.rera_certificate?.path,
+          type: agentInfoData?.rera_certificate?.mime,
+          name: agentInfoData?.rera_certificate?.path?.substring(
+            agentInfoData?.rera_certificate?.path?.lastIndexOf("/") + 1
+          ),
+        });
+      agentInfoData?.propidership_declaration_letter?.path &&//no 
+        formData.append("propidership_declaration_letter", {
+          uri: agentInfoData?.propidership_declaration_letter?.path,
+          type: agentInfoData?.propidership_declaration_letter?.mime,
+          name: agentInfoData?.propidership_declaration_letter?.path?.substring(
+            agentInfoData?.propidership_declaration_letter?.path?.lastIndexOf("/") + 1
+          ),
+        });
+      if (type === 'edit') {
+        dispatch(editAgent(formData))
+        setFormFilledDone(type)
+      } else {
+        dispatch(addAgent(formData))
+        setFormFilledDone(type)
+      }
     }
   }
   return (
     <View style={styles.mainContainer}>
-      {/* <View
-        style={{
-          backgroundColor: WHITE_COLOR,
-          height: insets.top,
-          flex:1
-        }}
-      /> */}
-
+      {isloading ? <Loader /> : null}
       <StatusBar barStyle={"light-content"} />
       <Header
         headerText={strings.rerainfo}
@@ -124,7 +159,10 @@ const AgentBankInfo = ({ navigation, route }: any) => {
             browse={"browse"}
             editable={false}
             valueshow={
-              agentInfoData?.rera_certificate?.substring(agentInfoData?.rera_certificate?.lastIndexOf("/"))
+              agentInfoData?.rera_certificate?.path ?
+                agentInfoData?.rera_certificate?.path.substring(
+                  agentInfoData?.rera_certificate?.path?.lastIndexOf("/")) :
+                agentInfoData?.rera_certificate?.substring(agentInfoData?.rera_certificate?.lastIndexOf("/"))
             }
             handleInputBtnPress={() => { }}
             headingText={"RERA Certificat"}
@@ -143,7 +181,10 @@ const AgentBankInfo = ({ navigation, route }: any) => {
             browse={"browse"}
             editable={false}
             valueshow={
-              agentInfoData?.propidership_declaration_letter?.substring(agentInfoData?.propidership_declaration_letter?.lastIndexOf("/"))
+              agentInfoData?.propidership_declaration_letter?.path ?
+                agentInfoData?.propidership_declaration_letter?.path.substring(
+                  agentInfoData?.propidership_declaration_letter?.path?.lastIndexOf("/")) :
+                agentInfoData?.propidership_declaration_letter?.substring(agentInfoData?.propidership_declaration_letter?.lastIndexOf("/"))
             }
             handleInputBtnPress={() => { }}
             onChangeText={() => { }}

@@ -4,16 +4,15 @@ import { useDispatch, useSelector } from 'react-redux';
 import AgentBasicInfoView from './components/AgentBasicInfoView';
 
 const AgentBasicInfo = ({ navigation, route }: any) => {
-  console.log('route: ', route);
   const { response = {} } = useSelector((state: any) => state.agentData)
   const [agentInfoData, setAgentInfoData] = useState(
-    route.params === undefined ? {} :
-      { ...response?.data[0] })
+    route?.params?.type === 'edit' ? { ...response?.data[0] } : {}
+  )
   const dispatch: any = useDispatch()
   const [visible, setVisible] = useState(false)
   const onPressNext = () => {
     dispatch(addAgentForm(agentInfoData))
-    navigation.navigate('AgentBankInfo', { type: 'edit' })
+    navigation.navigate('AgentBankInfo', { type: route?.params?.type })
   }
   const onPressBack = () => {
     navigation.goBack()

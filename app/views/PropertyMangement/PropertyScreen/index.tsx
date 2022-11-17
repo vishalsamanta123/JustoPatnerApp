@@ -30,7 +30,6 @@ const PropertyScreen = ({ navigation }: any) => {
     dispatch(getAllProperty({
       offset: offset + 1,
       limit: limit,
-
     }))
   };
   return (

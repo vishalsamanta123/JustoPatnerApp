@@ -23,10 +23,7 @@ const UserBankInfo = ({ navigation }: any) => {
   const insets = useSafeAreaInsets();
   const [formData, setFormData] = useState<any>({})
   const [visible, setVisible] = useState(false)
-  console.log('formData: ', formData);
   const registrationData = useSelector((state: any) => state.registrationForm)
-  console.log('registrationData: ', registrationData);
-
 
   useEffect(() => {
     setFormData({ ...registrationData.response })

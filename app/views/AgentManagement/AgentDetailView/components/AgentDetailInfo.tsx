@@ -105,23 +105,24 @@ const PropertyDetailItem = (props: any) => {
         </View>
         <View><Text>:</Text></View>
         <View style={styles.nameContainer}>
-          {props.items.workinglocation?.map((item: any) => {
-            return (
-              <Text
-                style={[
-                  styles.nameTxt,
-                  {
-                    borderBottomColor: GRAY_COLOR,
-                    borderBottomWidth: 1,
-                    width: '100%',
-                    marginVertical: normalizeSpacing(5)
-                  },
-                ]}
-              >
-                {item.location}
-              </Text>
-            )
-          })
+          {props?.items?.workinglocation?.length > 0 &&
+            props?.items?.workinglocation?.map((item: any) => {
+              return (
+                <Text
+                  style={[
+                    styles.nameTxt,
+                    {
+                      borderBottomColor: GRAY_COLOR,
+                      borderBottomWidth: 1,
+                      width: '100%',
+                      marginVertical: normalizeSpacing(5)
+                    },
+                  ]}
+                >
+                  {item.location}
+                </Text>
+              )
+            })
           }
         </View>
       </View>

@@ -13,10 +13,9 @@ import { TabView, SceneMap, TabBar } from 'react-native-tab-view';
 import { useSelector } from 'react-redux'
 import moment from 'moment'
 
-
 const PropertyDetailView = (props: any) => {
   const { response = {} } = useSelector((state: any) => state.agentData)
-  const [allDetails, setAllDetails] = useState(response?.data[0])
+  const [allDetails, setAllDetails] = useState({ ...response?.data[0] })
   const insets = useSafeAreaInsets();
   const layout = useWindowDimensions();
   const [index, setIndex] = useState(0);

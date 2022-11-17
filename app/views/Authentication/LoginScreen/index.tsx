@@ -16,7 +16,6 @@ const LoginScreen = ({ navigation }: any) => {
     login_type: 2
   })
   const loginSelector = useSelector((state: any) => state.login);
-  console.log('loginSelector: ', loginSelector);
 
   useEffect(() => {
     checklogin()
@@ -24,14 +23,8 @@ const LoginScreen = ({ navigation }: any) => {
 
   const checklogin = async () => {
     const authval = await AsyncStorage.getItem("AuthToken");
-   
-      
-
-    console.log("checklogin -> loginSelector", loginSelector)
-    console.log("checklogin -> authval", authval)
-    
       if (loginSelector.response && loginSelector.authToken) {
-        console.log("checklogin -> loginSelector.response.status", loginSelector.response.status)
+        // console.log("checklogin -> loginSelector.response.status", loginSelector.response.status)
         if (loginSelector.response.status === 200) {
           
           await setDefaultHeader("token", loginSelector.response.token);
@@ -88,7 +81,7 @@ const LoginScreen = ({ navigation }: any) => {
   const handleLoginPress = () => {
     if (validation()) {
       const respon = dispatch(userLogin(loginData))
-      console.log("handleLoginPress -> respon", respon)
+      // console.log("handleLoginPress -> respon", respon)
       //navigation.navigate('DashboardScreenView');
     }
     
