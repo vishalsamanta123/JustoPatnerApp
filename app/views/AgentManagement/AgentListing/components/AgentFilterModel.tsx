@@ -11,8 +11,17 @@ import { Dropdown } from "react-native-element-dropdown";
 import moment from "moment";
 
 const FilterModal = (props: any) => {
-  const [startdate, setStartDate] = useState(new Date())
-  const [enddate, setEndDate] = useState(new Date())
+  const resetFilter = () => {
+    props.setFilterData({
+      startdate: '',
+      enddate: '',
+      search_by_name: '',
+      search_by_location: '',
+      status: ''
+    })
+    props.setIsVisible(false)
+    props.setFilter(null)
+  }
   const data = [
     { label: "Active", value: true },
     { label: "InActive", value: false },
@@ -43,32 +52,63 @@ const FilterModal = (props: any) => {
             <View style={styles.inputWrap}>
               <InputCalender
                 placeholderText={"Start Date"}
-                dateshow={startdate}
-                setDateshow={(val: any) =>                 //headingText={'Start Date'}
-                (val)}
+                dateData={(data: any) => {
+                  props.setFilterData({
+                    ...props.filterData,
+                    enddate: moment(data).format()
+                  })
+                }}
+                setDateshow={(data: any) => {
+                  props.setFilterData({
+                    ...props.filterData,
+                    enddate: moment(data).format()
+                  })
+                }}
+                value={props.filterData.startdate}
               />
             </View>
             <View style={styles.inputWrap}>
               <InputCalender
-                //headingText={'Start Date'}
                 placeholderText={"End Date"}
-                dateshow={enddate}
-                setDateshow={(val: any) => setEndDate(val)}
-
+                value={props.filterData.enddate}
+                dateData={(data: any) => {
+                  props.setFilterData({
+                    ...props.filterData,
+                    enddate: moment(data).format()
+                  })
+                }}
+                setDateshow={(data: any) => {
+                  props.setFilterData({
+                    ...props.filterData,
+                    enddate: moment(data).format()
+                  })
+                }}
               />
             </View>
             <View style={styles.inputWrap}>
               <InputField
                 placeholderText={"Search by Name"}
+                onChangeText={(data: any) => {
+                  props.setFilterData({
+                    ...props.filterData,
+                    search_by_name: data
+                  })
+                }}
+                valueshow={props.filterData.search_by_name}
                 handleInputBtnPress={() => { }}
-                onChangeText={() => { }}
               />
             </View>
             <View style={styles.inputWrap}>
               <InputField
                 placeholderText={"Search by Location"}
                 handleInputBtnPress={() => { }}
-                onChangeText={() => { }}
+                onChangeText={(data: any) => {
+                  props.setFilterData({
+                    ...props.filterData,
+                    search_by_location: data
+                  })
+                }}
+                valueshow={props.filterData.search_by_location}
               />
             </View>
             <View style={styles.inputWrap}>
@@ -82,16 +122,28 @@ const FilterModal = (props: any) => {
                 labelField="label"
                 valueField="value"
                 placeholder="Select Status"
-                value={value}
+                value={props.filterData.status}
                 onChange={(item) => {
-                  setValue(item.value);
+                  props.setFilterData({
+                    ...props.filterData,
+                    status: item.value
+                  })
                 }}
                 renderItem={renderItem}
               />
             </View>
           </View>
           <View style={{ marginVertical: 20 }}>
-            <Button handleBtnPress={() => props.setIsVisible(false)} buttonText={strings.apply} />
+            <View style={{ flexDirection: 'row' }}>
+              <Button width={135} buttonText={strings.reset} handleBtnPress={() => resetFilter()} />
+              <Button
+                width={135}
+                handleBtnPress={() => {
+                  props.setIsVisible(false)
+                  props.setFilter(props.filterData)
+                }}
+                buttonText={strings.apply} />
+            </View>
           </View>
         </View>
       </Modal>

@@ -4,6 +4,7 @@ import { GET_AGENT_DETAIL, AGENT_ERROR, AGENT_LIST, AGENT_STATUSUPDATE, ADD_AGEN
 
 export const getAllAgentList = (params: any) => async (dispatch: any) => {
     try {
+        console.log('params: ', params);
         const res = await apiCall("post", apiEndPoints.AGENTLIST, params);
         if (res.data.status == 200) {
             dispatch({
@@ -81,7 +82,6 @@ export const editAgent = (params: any) => async (dispatch: any) => {
     }
 };
 export const addAgentForm = (params: any) => async (dispatch: any) => {
-    console.log('params: ', params);
     try {
         dispatch({
             type: ADD_AGENT_FORM,

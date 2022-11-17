@@ -8,6 +8,11 @@ import DatePicker from 'react-native-date-picker'
 import moment from 'moment';
 
 const InputCalender = (props: any) => {
+  const onConfirmDate = (date: any) => {
+    setOpen(false)
+    props.setDateshow(date)
+    props.dateData(date)
+  }
 
   const [open, setOpen] = useState(false)
   const {
@@ -15,19 +20,19 @@ const InputCalender = (props: any) => {
     editable = true,
     multiline = false,
     inputheight = 50,
-    
+
   } = props
   const onSubmit = (e: any) => {
     const { text } = e;
   };
-  
 
-  const OpenCalender  = () => {
+
+  const OpenCalender = () => {
     setOpen(true)
   }
 
   //console.log("InputCalender -> props.dateshow===", props.dateshow)
-  
+
   return (
     <View>
       <View style={styles.inputHeadinView}>
@@ -48,31 +53,25 @@ const InputCalender = (props: any) => {
           autoCapitalize={'none'}
           editable={editable}
           multiline={multiline}
-          value={props.dateshow}
+          value={props?.value}
         />
-          
+
         <TouchableOpacity
           onPress={() => OpenCalender()}
-          //disabled={!props.handleInputBtnPress}
-          >
+        //disabled={!props.handleInputBtnPress}
+        >
           <Image style={styles.rightImage} source={images.calender} />
         </TouchableOpacity>
       </View>
-
       <DatePicker
-        modal
+        modal={true}
         mode={"date"}
         open={open}
-        date={props.dateshow}
+        date={new Date()}
         onDateChange={(date) => {
-        console.log('dateeeeeeee: ', date);
           props.setDateshow(date)
         }}
-        onConfirm={(date) => {
-          console.log("InputCalender -> date", date)
-           setOpen(false)
-          props.setDateshow(date)
-        }}
+        onConfirm={(date) => onConfirmDate(date)}
         onCancel={() => {
           setOpen(false)
         }}

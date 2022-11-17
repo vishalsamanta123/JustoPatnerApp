@@ -36,7 +36,7 @@ export async function apiCall(
       return response;
     }
   } catch (error: any) {
-  console.log('errordsfdfdfs: ', error);
+  // console.log('errordsfdfdfs: ', error);
     if (error.response) {
       if (error.response.status === 401) {
         console.log(`${url}: `, error.response);
@@ -46,11 +46,11 @@ export async function apiCall(
       // console.log("Error status : ", error.response.status);
       // console.log("Error headers : ", error.response.headers);
     } else if (error.request) {
-      console.log("Error request 1: ", error.request);
+      // console.log("Error request 1: ", error.request);
     } else {
-      console.log("Error message 2: ", error.message);
+      // console.log("Error message 2: ", error.message);
     }
-    console.log("Error config", error.config);
+    // console.log("Error config", error.config);
     // console.log("errorresponse", error.response);
     return false;
   }

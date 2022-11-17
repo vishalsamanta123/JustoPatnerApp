@@ -65,7 +65,7 @@ const RegistrationScreen = ({ navigation }: any) => {
         backgroundColor: RED_COLOR
       })
     }
-    console.log('isError: ', isError);
+    // console.log('isError: ', isError);
     return isError;
   }
 

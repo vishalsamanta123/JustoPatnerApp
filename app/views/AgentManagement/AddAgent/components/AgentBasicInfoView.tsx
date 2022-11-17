@@ -52,7 +52,8 @@ const AgentBasicInfoView = (props: any) => {
           {/* <View style={styles.underlineStyle} /> */}
           <TouchableOpacity onPress={() => props.setVisible(true)}
             style={styles.imageCircle}>
-            {props?.agentInfoData?.profile_picture === '' ?
+            {props?.agentInfoData?.profile_picture === undefined ||
+              props?.agentInfoData?.profile_picture === '' ?
               <Text>Image</Text>
               :
               <Image
@@ -156,29 +157,22 @@ const AgentBasicInfoView = (props: any) => {
             </View>
           </View>
           <View style={styles.inputWrap}>
-            {/* <InputField
+            <InputCalender
               placeholderText={"Date of Birth"}
-              handleInputBtnPress={() => { }}
-              headingText={"Date of Birth"}
-              rightImgSrc={images.event}
-              onChangeText={(data: any) => {
+              dateData={(data: any) => {
                 props.setAgentInfoData({
                   ...props.agentInfoData,
-                  dob: data
+                  date_of_birth: moment(data).format()
                 })
               }}
-            /> */}
-            {/* <InputCalender
-              placeholderText={"Date of Birth"}
-              headingText={"Date of Birth"}
               setDateshow={(data: any) => {
                 props.setAgentInfoData({
                   ...props.agentInfoData,
-                  dob: new Date(data)
+                  date_of_birth: moment(data).format()
                 })
               }}
-              dateshow={props?.agentInfoData?.date_of_birth}
-            /> */}
+              value={props?.filterData?.date_of_birth?.toString()}
+            />
           </View>
           <View style={styles.inputWrap}>
             <InputField
@@ -192,7 +186,7 @@ const AgentBasicInfoView = (props: any) => {
               }}
               valueshow={props?.agentInfoData?.primary_mobile?.toString()}
               headingText={"Mobile No."}
-              // maxLength={10}
+              maxLength={10}
               keyboardtype={'number-pad'}
             />
           </View>
@@ -208,7 +202,7 @@ const AgentBasicInfoView = (props: any) => {
               }}
               valueshow={props?.agentInfoData?.whatsapp_number?.toString()}
               headingText={"WhatsApp No."}
-              // maxLength={10}
+              maxLength={10}
               keyboardtype={'number-pad'}
             />
           </View>
@@ -264,7 +258,7 @@ const AgentBasicInfoView = (props: any) => {
           imageData={(data: any) => {
             props.setAgentInfoData({
               ...props.agentInfoData,
-              profile_img: data
+              profile_picture: data
             })
           }}
           setVisible={props.setVisible}

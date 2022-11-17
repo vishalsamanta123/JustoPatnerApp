@@ -58,12 +58,11 @@ const AgentView = (props: any) => {
     },
   ];
 
-
   const ShowPendinglist = () => {
     navigation.navigate('PendingAgentList')
   }
-  const onPressAddnewAgent = () => {
-    navigation.navigate('AddnewAgent')
+  const onPressAddnewAgent = (type: any) => {
+    navigation.navigate('AddnewAgent', { type })
   }
 
   return (
@@ -89,7 +88,7 @@ const AgentView = (props: any) => {
 
         <View style={styles.btnView}>
           <TouchableOpacity
-            onPress={() => onPressAddnewAgent()}
+            onPress={() => onPressAddnewAgent('add')}
             style={[styles.button, { borderColor: BLACK_COLOR, backgroundColor: PRIMARY_THEME_COLOR }]} >
             <Text style={[styles.buttonTxt, {
               color: WHITE_COLOR
@@ -113,8 +112,6 @@ const AgentView = (props: any) => {
             renderItem={({ item }) => <AgentListItem items={item} setIsVisible={setIsVisible}
               onPressView={props.onPressView}
               setChangeStatus={props.setChangeStatus}
-              setFilterData={props.setFilterData}
-              filterData={props.filterData}
             />}
           />
         </View>
@@ -134,7 +131,13 @@ const AgentView = (props: any) => {
         textshow={strings.deactivconfirmation + ' ' + strings.agencyHeader + '?'}
         confirmtype={'CONFIRMATION'}
       />
-      <FilterModal Visible={FilterisVisible} setIsVisible={setFilterisVisible} />
+      <FilterModal
+        Visible={FilterisVisible}
+        setIsVisible={setFilterisVisible}
+        setFilterData={props.setFilterData}
+        filterData={props.filterData}
+        setFilter={props.setFilter}
+      />
     </View>
   );
 };

@@ -95,13 +95,13 @@ const Route =  () => {
     //dispatch(jwtTokenGenrate())
      try {
       const { data } = await apiCall("get", apiEndPoints.JWTTOKEN, {});
-      console.log('data: ', data);
+      // console.log('data: ', data);
       if (data) {
         await AsyncStorage.setItem("token", data.token);
         await setDefaultHeader("token", data.token);
       }
     } catch (error) {
-      console.log(error);
+      // console.log(error);
     } 
   }
   return (

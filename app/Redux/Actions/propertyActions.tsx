@@ -28,7 +28,6 @@ export const getAllProperty = (params: any) => async (dispatch: any) => {
 export const getFilterProperty = (params: any) => async (dispatch: any) => {
     try {
         const res = await apiCall("post", apiEndPoints.PROPERTYFILTER, params);
-        console.log("fiter -> res", res)
         if (res.data.status == 200) {
             dispatch({
                 type: PROPERTY_LIST,

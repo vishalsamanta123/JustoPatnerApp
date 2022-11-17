@@ -11,6 +11,7 @@ const AgentListing = ({ navigation }: any) => {
     search_by_location: '',
     status: ''
   })
+  const [filter, setFilter] = useState(null)
   const [changeStatus, setChangeStatus] = useState({ _id: '', status: false })
   const [type, setType] = useState(null)
   const dispatch: any = useDispatch()
@@ -19,15 +20,14 @@ const AgentListing = ({ navigation }: any) => {
       offset: 0,
       limit: 5,
       module_id: '',
-      start_date: '',
-      end_date: '',
+      start_date: filterData.startdate,
+      end_date: filterData.enddate,
       user_type: 2,
-      search_by_name: '',
-      search_by_location: '',
-      status: ''
+      search_by_name: filterData.search_by_name,
+      search_by_location: filterData.search_by_location,
+      status: filterData.status
     }))
-
-  }, [])
+  }, [filter])
   useEffect(() => {
     if (type === 'edit') {
       navigation.navigate('AddnewAgent', { type })
@@ -43,10 +43,10 @@ const AgentListing = ({ navigation }: any) => {
     navigation.toggleDrawer();
   };
   const handleStatusChange = () => {
-    dispatch(statusUpdate({
-      cp_id: changeStatus?._id,
-      status: changeStatus?.status ? false : true,
-    }))
+    // dispatch(statusUpdate({
+    //   cp_id: changeStatus?._id,
+    //   status: changeStatus?.status ? false : true,
+    // }))
     // dispatch(getAllAgentList({
     //   offset: 0,
     //   limit: 5,
@@ -75,6 +75,7 @@ const AgentListing = ({ navigation }: any) => {
     setFilterData={setFilterData}
     filterData={filterData}
     onPressView={onPressView}
+    setFilter={setFilter}
   />;
 };
 

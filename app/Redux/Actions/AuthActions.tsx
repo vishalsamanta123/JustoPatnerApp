@@ -7,12 +7,8 @@ import AsyncStorage from '@react-native-async-storage/async-storage';
 export const userLogin = (loginDetail: any) => async (dispatch: any) => {
     try {
         const res = await apiCall("post", apiEndPoints.LOGIN, loginDetail);
-        console.log("userLogin -> res", res)
         if(res.data.status === 200){
-        
-        console.log("jwtTokenGenrate -> res?.data?.token", res?.data?.token)
         await AsyncStorage.setItem("AuthToken", res?.data?.token);    
-
         dispatch({
             type: USER_LOGIN,
             payload: res.data
@@ -52,11 +48,8 @@ export const userLogout = () => async (dispatch: any) => {
 export const jwtTokenGenrate = () => async (dispatch: any) => {
     try {
         const res = await apiCall("get", apiEndPoints.JWTTOKEN, {});
-        console.log('res TKEN API: ', res);
+        // console.log('res TKEN API: ', res);
         if (res.data.status == 200) {
-
-          
-
             dispatch({
                 type: TOKEN_GENRATE,
                 payload: res.data

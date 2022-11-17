@@ -1,7 +1,6 @@
 import ErrorMessage from ".";
 
 export const handleApiError = async (error: any) => {
-console.log('error ===>: ', error);
     switch (error?.response?.status) {
       case 401:
         ErrorMessage({
