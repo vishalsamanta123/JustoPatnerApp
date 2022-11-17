@@ -9,8 +9,10 @@ import strings from '../../../../components/utilities/Localization';
 import { normalizeHeight, normalizeSpacing, normalizeWidth } from '../../../../components/scaleFontSize';
 import { DATA } from '../../../../components/utilities/DemoData';
 
-const VideoContent = ({navigation}: any) => {
+const VideoContent = ({navigation,route}: any) => {
   const insets = useSafeAreaInsets();
+  const datavideos = route?.params || []
+  console.log("ImageContent -> items", datavideos)
   const handleBackPress = () => {
     navigation.goBack();
   };
@@ -33,21 +35,24 @@ const VideoContent = ({navigation}: any) => {
         handleOnLeftIconPress={handleBackPress}
       />
       <View>
-        <FlatList data={DATA}
-        numColumns={3}
+        <FlatList data={datavideos}
+        numColumns={1}
+        showsVerticalScrollIndicator={false}
         contentContainerStyle={{
-          justifyContent: 'center',
-          alignItems: 'center'
+         /*  justifyContent: 'center',
+          alignItems: 'center' */
         }}
          renderItem={({item}) => (
-          <View>
+          <View style={{padding:10}} >
+            
             <Image
-              source={item.image}
+              //source={item.image}
+              source={images.buildings}
 
               style={{
-                width: normalizeWidth(110),
-                height: normalizeHeight(110),
-                margin: normalizeSpacing(5),
+                width: '100%',
+                height: normalizeHeight(300),
+                //margin: normalizeSpacing(5),
                 alignItems: 'center',
                 justifyContent: 'center'
               }}

@@ -15,7 +15,6 @@ import { getFilterProperty,getAllProperty } from 'app/Redux/Actions/propertyActi
 const FilterModal = (props: any) => {
     const dispatch: any = useDispatch()
     const [startdate, setStartDate] = useState(new Date(moment(new Date()).format("YYYY-MM-DD")))
-    console.log("FilterModal -> startdate", moment(new Date()).format("YYYY-MM-DD"))
     const [enddate, setEndDate] = useState(new Date(moment(new Date()).format("YYYY-MM-DD")))
 
     const data = [

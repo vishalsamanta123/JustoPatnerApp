@@ -37,12 +37,13 @@ const ImageContent = ({ navigation,route }: any) => {
       <View>
         <FlatList data={dataimage}
         numColumns={1}
+        showsVerticalScrollIndicator={false}
         contentContainerStyle={{
          /*  justifyContent: 'center',
           alignItems: 'center' */
         }}
          renderItem={({item}) => (
-          <View>
+          <View style={{padding:normalizeSpacing(10)}}>
             
             <Image
               //source={item.image}
@@ -51,7 +52,7 @@ const ImageContent = ({ navigation,route }: any) => {
               style={{
                 width: '100%',
                 height: normalizeHeight(300),
-                margin: normalizeSpacing(5),
+               // margin: normalizeSpacing(5),
                 alignItems: 'center',
                 justifyContent: 'center'
               }}

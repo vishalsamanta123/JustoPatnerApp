@@ -2,15 +2,19 @@ import { View, Text, StatusBar, FlatList, Image } from 'react-native'
 import React from 'react'
 import { useSafeAreaInsets } from 'react-native-safe-area-context';
 import styles from './styles';
-import { PRIMARY_THEME_COLOR_DARK } from '../../../../components/utilities/constant';
+import { PRIMARY_THEME_COLOR_DARK, GRAY_LIGHT_COLOR } from '../../../../components/utilities/constant';
 import Header from '../../../../components/Header';
 import images from '../../../../assets/images';
 import strings from '../../../../components/utilities/Localization';
 import { DATA } from '../../../../components/utilities/DemoData';
 import { normalizeHeight, normalizeSpacing, normalizeWidth } from '../../../../components/scaleFontSize';
 
-const CatalogueContent = ({navigation}: any) => {
+const CatalogueContent = ({navigation,route}: any) => {
   const insets = useSafeAreaInsets();
+
+  const datadocuments = route?.params || []
+  console.log("ImageContent -> items", datadocuments)
+
   const handleBackPress = () => {
     navigation.goBack();
   };
@@ -33,21 +37,24 @@ const CatalogueContent = ({navigation}: any) => {
         handleOnLeftIconPress={handleBackPress}
       />
       <View>
-        <FlatList data={DATA}
-        numColumns={3}
+        <FlatList data={datadocuments}
+        numColumns={1}
+        showsVerticalScrollIndicator={false}
         contentContainerStyle={{
-          justifyContent: 'center',
-          alignItems: 'center'
+         /*  justifyContent: 'center',
+          alignItems: 'center' */
         }}
          renderItem={({item}) => (
-          <View>
+          <View style={{padding:10,borderColor:GRAY_LIGHT_COLOR,borderWidth:1}} >
+            
             <Image
-              source={item.image}
+              //source={item.image}
+              source={images.pdfIcone}
 
               style={{
-                width: normalizeWidth(110),
-                height: normalizeHeight(110),
-                margin: normalizeSpacing(5),
+                width: '100%',
+                height: normalizeHeight(300),
+                //margin: normalizeSpacing(5),
                 alignItems: 'center',
                 justifyContent: 'center'
               }}

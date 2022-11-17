@@ -18,54 +18,73 @@ import Button from "../../../../components/Button";
 import ConfirmModal from "../../../../components/Modals/ConfirmModal";
 import moment from "moment";
 import { useSelector } from "react-redux";
+import Loader from "app/components/CommonScreen/Loader";
 
 const PropertyDetailView = (props: any) => {
   const [isVisible, setIsVisible] = useState(false)
+  const [propertydetail, setPropertydetail] = useState([])
   const [configurations, setConfigurations] = useState([])
   const [propertydocument, setPropertydocument] = useState([])
   const [amenity, setAmenity] = useState([])
   const [approveStatus, setApproveStatus] = useState(1)
-  const propertyData = useSelector((state: any) => state.propertyData) || {}
-  const propertydetail = propertyData.response.data[0];
+  const propertyData = useSelector((state: any) => state.propertydetailData) || []
+  //const propertydetail = propertyData?.response?.data[0];
   const insets = useSafeAreaInsets();
   const navigation: any = useNavigation();
+  const { response, loading } = propertyData;
+
+  useEffect(() => {
+    if (response && response?.status === 200) {
+      setPropertydetail(response?.data[0]);
+      setConfigurations(response?.data[0]?.property_configurations || [])
+      setAmenity(response?.data[0]?.property_amenities || [])
+      setPropertydocument(response?.data[0]?.property_document || [])
+      setApproveStatus(props.data.approve_status)
+
+      props.setIsloading(loading);
+    } else {
+      setPropertydetail([]);
+      //errorToast(response.message);
+    }
+
+
+
+    props.setIsloading(propertyData?.loading)
+
+
+  }, [propertyData])
+
+
 
   const DATA: any = {
-    Projectname: propertydetail.property_title,
-    Location: propertydetail.location,
-    visitor: propertydetail.total_visitor,
-    siteVisit: propertydetail.site_visit,
-    closeVisit: propertydetail.close_visit,
-    status: (propertydetail.status) ? 'Active' : 'Inactive',
-    createddate: propertydetail.start_date,
-    propertyType: propertydetail?.property_type_title,
-    startDate: propertydetail.start_date,
-    EndDate: propertydetail.end_date,
+    /*   Projectname: propertydetail?.property_title,
+      Location: propertydetail?.location,
+      visitor: propertydetail?.total_visitor,
+      siteVisit: propertydetail?.site_visit,
+      closeVisit: propertydetail?.close_visit,
+      status: (propertydetail?.status) ? 'Active' : 'Inactive',
+      createddate: propertydetail?.start_date,
+      propertyType: propertydetail?.property_type_title,
+      startDate: propertydetail?.start_date,
+      EndDate: propertydetail?.end_date, */
     //lead: "12/11/2022",
-    //configuration: propertydetail.property_configurations,
+    //configuration: propertydetail?.property_configurations,
     //amenity: "Sawimming Pool",
     pickup: "yes",
   };
-  
-  useEffect(() => {
-    setConfigurations(propertydetail.property_configurations || [])
-    setAmenity(propertydetail.property_amenities || [])
-    setPropertydocument(propertydetail.property_document || [])
-    setApproveStatus(props.data.approve_status)
 
 
-   
 
-  }, [propertyData]) 
 
-  
 
-  const onpresContent = (name: any,items : any) => {
-    console.log("onpresContent -> items", items)
-    navigation.navigate(name , items);
+  const onpresContent = (name: any, items: any) => {
+    navigation.navigate(name, items);
   };
   return (
     <View style={styles.mainContainer}>
+
+      {loading ? <Loader /> : null}
+
       <View
         style={{
           backgroundColor: PRIMARY_THEME_COLOR_DARK,
@@ -83,19 +102,19 @@ const PropertyDetailView = (props: any) => {
         handleOnLeftIconPress={props.handleBackPress}
       />
       <View style={styles.propertyListView}>
-        <PropertyDetailItem items={DATA} onpresContent={onpresContent}
-        configurations = {configurations}
-        amenity = {amenity}
-        propertydocument = {propertydocument}
-         />
+        <PropertyDetailItem items={propertydetail} onpresContent={onpresContent}
+          configurations={configurations}
+          amenity={amenity}
+          propertydocument={propertydocument}
+        />
       </View>
       <View style={[styles.btnContainer, {
         justifyContent: approveStatus !== 1 && approveStatus !== 3 ? 'space-between' : 'center'
-          
+
       }]}>
-        
+
         <Button
-           handleBtnPress={() => approveStatus === 2 ? setIsVisible(true) : console.log('11111')}
+          handleBtnPress={() => approveStatus === 2 ? setIsVisible(true) : console.log('11111')}
           buttonText={
             approveStatus === 1
               ? strings.active
@@ -124,28 +143,28 @@ const PropertyDetailView = (props: any) => {
           btnTxtsize={15}
           textTransform={"uppercase"}
         />
-        
+
         {approveStatus !== 1 &&
-         approveStatus !== 3 ? (
-          <Button
-            handleBtnPress={()=> props.onPressCreatevisit()}
-            buttonText={strings.createVisit}
-            width={150}
-            height={45}
-            bordercolor={GRAY_COLOR}
-            borderWidth={1}
-            // btnTxtcolor={PRIMARY_THEME_COLOR}
-            btnTxtsize={15}
-            textTransform={"uppercase"}
-          />
-        ) : null}
+          approveStatus !== 3 ? (
+            <Button
+              handleBtnPress={() => props.onPressCreatevisit()}
+              buttonText={strings.createVisit}
+              width={150}
+              height={45}
+              bordercolor={GRAY_COLOR}
+              borderWidth={1}
+              // btnTxtcolor={PRIMARY_THEME_COLOR}
+              btnTxtsize={15}
+              textTransform={"uppercase"}
+            />
+          ) : null}
       </View>
 
       <ConfirmModal Visible={isVisible} setIsVisible={setIsVisible} />
-      
+
     </View>
 
-    
+
   );
 };
 
