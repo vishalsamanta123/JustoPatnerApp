@@ -30,9 +30,6 @@ const InputCalender = (props: any) => {
   const OpenCalender = () => {
     setOpen(true)
   }
-
-  //console.log("InputCalender -> props.dateshow===", props.dateshow)
-
   return (
     <View>
       <View style={styles.inputHeadinView}>

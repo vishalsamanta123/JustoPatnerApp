@@ -1,7 +1,7 @@
-import {View, Text, StatusBar, FlatList,ActivityIndicator} from 'react-native';
+import { View, Text, StatusBar, FlatList, ActivityIndicator } from 'react-native';
 import React, { useState, useEffect } from 'react';
 import styles from './styles';
-import {useSafeAreaInsets} from 'react-native-safe-area-context';
+import { useSafeAreaInsets } from 'react-native-safe-area-context';
 import PropertyListItem from './PropertyListItem';
 import EmptyListScreen from '../../../../components/CommonScreen/Empty';
 import { useNavigation } from '@react-navigation/native';
@@ -34,7 +34,7 @@ const PropertyView = (props: any) => {
 
   useEffect(() => {
     if (propertyData?.response) {
-      const { response,loading } = propertyData;
+      const { response, loading } = propertyData;
       if (response?.status === 200) {
         setPropertyList(response?.data);
         props.setIsloading(loading);
@@ -46,7 +46,7 @@ const PropertyView = (props: any) => {
   }, [propertyData]);
 
 
-  
+
 
 
   const DATA: any = [
@@ -102,7 +102,7 @@ const PropertyView = (props: any) => {
         {loadingref ? (
           <ActivityIndicator
             color="black"
-            style={{margin: 15}} />
+            style={{ margin: 15 }} />
         ) : null}
       </View>
     );
@@ -117,7 +117,7 @@ const PropertyView = (props: any) => {
         }}
       />
       <StatusBar barStyle={'light-content'} />
-      
+
       <Header
         leftImageSrc={images.menu}
         rightFirstImageScr={images.filter}
@@ -129,28 +129,28 @@ const PropertyView = (props: any) => {
         handleOnRightFirstIconPress={() => setFilterisVisible(true)}
       />
       <View style={styles.propertyListView}>
-        <FlatList 
+        <FlatList
           data={propertyList}
           showsVerticalScrollIndicator={false}
           ListEmptyComponent={<EmptyListScreen message={strings.propertyHeader} />}
-          renderItem={({item}) => <PropertyListItem items={item} setIsVisible={setIsVisible} onPressView={onPressView} />}
-        /*   onEndReached={({ distanceFromEnd }) => {
-            props.Onreachedend()
-          }} 
-          onEndReachedThreshold={0.5} */
+          renderItem={({ item }) => <PropertyListItem items={item} setIsVisible={setIsVisible} onPressView={onPressView} />}
+          /*   onEndReached={({ distanceFromEnd }) => {
+              props.Onreachedend()
+            }} 
+            onEndReachedThreshold={0.5} */
           //ListFooterComponent={renderFooter}
           onRefresh={() => onRefresh()}
           refreshing={loadingref}
         />
       </View>
       <ConfirmModal Visible={isVisible} setIsVisible={setIsVisible} />
-      <FilterModal 
-      Visible={FilterisVisible} 
-      setIsVisible={setFilterisVisible}
-      filterform = {filterform}
-      setFilterform = {setFilterform}
+      <FilterModal
+        Visible={FilterisVisible}
+        setIsVisible={setFilterisVisible}
+        filterform={filterform}
+        setFilterform={setFilterform}
       />
-    </View> 
+    </View>
   );
 };
 

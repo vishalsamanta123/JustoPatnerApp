@@ -6,6 +6,7 @@ export const getAllAgentList = (params: any) => async (dispatch: any) => {
     try {
         console.log('params: ', params);
         const res = await apiCall("post", apiEndPoints.AGENTLIST, params);
+        console.log('res: ', res);
         if (res.data.status == 200) {
             dispatch({
                 type: AGENT_LIST,

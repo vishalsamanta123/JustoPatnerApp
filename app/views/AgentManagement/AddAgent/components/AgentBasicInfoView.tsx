@@ -159,6 +159,8 @@ const AgentBasicInfoView = (props: any) => {
           <View style={styles.inputWrap}>
             <InputCalender
               placeholderText={"Date of Birth"}
+              editable={false}
+              onChangeText={() => { }}
               dateData={(data: any) => {
                 props.setAgentInfoData({
                   ...props.agentInfoData,

@@ -55,13 +55,13 @@ const FilterModal = (props: any) => {
                 dateData={(data: any) => {
                   props.setFilterData({
                     ...props.filterData,
-                    enddate: moment(data).format()
+                    startdate: moment(data).format()
                   })
                 }}
                 setDateshow={(data: any) => {
                   props.setFilterData({
                     ...props.filterData,
-                    enddate: moment(data).format()
+                    startdate: moment(data).format()
                   })
                 }}
                 value={props.filterData.startdate}

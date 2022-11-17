@@ -18,17 +18,21 @@ import { useDispatch, useSelector } from "react-redux";
 import PicturePickerModal from "app/components/Modals/PicturePicker";
 import { addAgent, editAgent } from "app/Redux/Actions/AgentActions";
 import ErrorMessage from "app/components/ErrorMessage";
+import Loader from "app/components/CommonScreen/Loader";
 
 const AgentBankInfo = ({ navigation, route }: any) => {
   const dispatch: any = useDispatch()
+  const [isloading, setIsloading] = useState(false)
   const { response = {} } = useSelector((state: any) => state.addAgentForm)
-  const formFiledData = useSelector((state: any) => state.agentData)
+  const formFiledData = useSelector((state: any) => state.agentData) || null
   const [agentInfoData, setAgentInfoData] = useState({ ...response })
+  console.log('agentInfoData: ', agentInfoData);
   const [formFilledDone, setFormFilledDone] = useState(null)
   useEffect(() => {
     if (formFilledDone != null) {
       if (formFiledData?.response?.status === 200) {
         navigation.navigate('AgentListing')
+        setIsloading(false)
       }
     }
   }, [formFilledDone])
@@ -47,15 +51,15 @@ const AgentBankInfo = ({ navigation, route }: any) => {
         errorMessage = "All Fields are required ,please fill all filled"
       }
     } else {
-      const { cp_id, email, agent_name, primary_mobile, whatsapp_number, adhar_no,
-        pancard_no, gender, date_of_birth, rera_certificate_no, profile_picture,
-        rera_certificate, propidership_declaration_letter } = agentInfoData
-      Object.keys(agentInfoData).forEach((key, index) => {
-        if (agentInfoData[key] === '' || agentInfoData[key] === undefined) {
-          isError = false;
-          errorMessage = "All Fields are required ,please fill all filled"
-        }
-      })
+      const { agent_id, agent_name, whatsapp_number, adhar_no,
+        pancard_no, gender, date_of_birth, rera_certificate_no
+      } = agentInfoData
+      if (agent_id === '' || agent_name === '' || whatsapp_number === '' || adhar_no === '' ||
+        pancard_no === '' || gender === '' || date_of_birth === '' || rera_certificate_no === ''
+      ) {
+        isError = false;
+        errorMessage = "All Fields are required ,please fill all filled"
+      }
     }
     if (errorMessage !== '') {
       ErrorMessage({
@@ -67,68 +71,61 @@ const AgentBankInfo = ({ navigation, route }: any) => {
   }
   const onPressCreateAgent = (type: any) => {
     if (validation()) {
-      console.log('sss')
-      // const formData = new FormData();
-      // if (type === 'edit') {
-      //   formData.append("agent_id", agentInfoData?.cp_id);
-      // } else {
-      //   // formData.append("role_id", agentInfoData?.role_id);
-      // }
-      // formData.append("email", agentInfoData?.email);
-      // formData.append("agent_name", agentInfoData?.agent_name);
-      // formData.append("primary_mobile", agentInfoData?.primary_mobile);
-      // formData.append("whatsapp_number", agentInfoData?.whatsapp_number);
-      // formData.append("adhar_no", agentInfoData?.adhar_no);
-      // formData.append("pancard_no", agentInfoData?.pancard_no);
-      // formData.append("gender", agentInfoData?.gender);
-      // formData.append("date_of_birth", agentInfoData?.date_of_birth ? agentInfoData?.date_of_birth : '10/11/2000');
-      // // formData.append("location", agentInfoData?.location);
-      // // formData.append("latitude", agentInfoData?.latitude);
-      // // formData.append("longitude", agentInfoData?.longitude);
-      // formData.append("rera_certificate_no", agentInfoData?.rera_certificate_no);
-      // agentInfoData?.profile_picture?.path &&
-      //   formData.append("profile_picture", {
-      //     uri: agentInfoData?.profile_picture?.path,
-      //     type: agentInfoData?.profile_picture?.mime,
-      //     name: agentInfoData?.profile_picture?.path?.substring(
-      //       agentInfoData?.profile_picture?.path?.lastIndexOf("/") + 1
-      //     ),
-      //   });
-      // agentInfoData?.rera_certificate?.path &&//no 
-      //   formData.append("rera_certificate", {
-      //     uri: agentInfoData?.rera_certificate?.path,
-      //     type: agentInfoData?.rera_certificate?.mime,
-      //     name: agentInfoData?.rera_certificate?.path?.substring(
-      //       agentInfoData?.rera_certificate?.path?.lastIndexOf("/") + 1
-      //     ),
-      //   });
-      // agentInfoData?.propidership_declaration_letter?.path &&//no 
-      //   formData.append("propidership_declaration_letter", {
-      //     uri: agentInfoData?.propidership_declaration_letter?.path,
-      //     type: agentInfoData?.propidership_declaration_letter?.mime,
-      //     name: agentInfoData?.propidership_declaration_letter?.path?.substring(
-      //       agentInfoData?.propidership_declaration_letter?.path?.lastIndexOf("/") + 1
-      //     ),
-      //   });
-      // if (type === 'edit') {
-      //   dispatch(editAgent(formData))
-      //   setFormFilledDone(type)
-      // } else {
-      //   dispatch(addAgent(formData))
-      //   setFormFilledDone(type)
-      // }
+      setIsloading(true)
+      const formData = new FormData();
+      if (type === 'edit') {
+        formData.append("agent_id", agentInfoData?.agent_id);
+      } else {
+        // formData.append("role_id", agentInfoData?.role_id);
+      }
+      formData.append("email", agentInfoData?.email);
+      formData.append("agent_name", agentInfoData?.agent_name);
+      formData.append("primary_mobile", agentInfoData?.primary_mobile);
+      formData.append("whatsapp_number", agentInfoData?.whatsapp_number);
+      formData.append("adhar_no", agentInfoData?.adhar_no);
+      formData.append("pancard_no", agentInfoData?.pancard_no);
+      formData.append("gender", agentInfoData?.gender);
+      formData.append("date_of_birth", agentInfoData?.date_of_birth ? agentInfoData?.date_of_birth : '10/11/2000');
+      formData.append("location", '');
+      formData.append("latitude", '');
+      formData.append("longitude", '');
+      formData.append("rera_certificate_no", agentInfoData?.rera_certificate_no);
+      agentInfoData?.profile_picture?.path &&
+        formData.append("profile_picture", {
+          uri: agentInfoData?.profile_picture?.path,
+          type: agentInfoData?.profile_picture?.mime,
+          name: agentInfoData?.profile_picture?.path?.substring(
+            agentInfoData?.profile_picture?.path?.lastIndexOf("/") + 1
+          ),
+        });
+      agentInfoData?.rera_certificate?.path &&//no 
+        formData.append("rera_certificate", {
+          uri: agentInfoData?.rera_certificate?.path,
+          type: agentInfoData?.rera_certificate?.mime,
+          name: agentInfoData?.rera_certificate?.path?.substring(
+            agentInfoData?.rera_certificate?.path?.lastIndexOf("/") + 1
+          ),
+        });
+      agentInfoData?.propidership_declaration_letter?.path &&//no 
+        formData.append("propidership_declaration_letter", {
+          uri: agentInfoData?.propidership_declaration_letter?.path,
+          type: agentInfoData?.propidership_declaration_letter?.mime,
+          name: agentInfoData?.propidership_declaration_letter?.path?.substring(
+            agentInfoData?.propidership_declaration_letter?.path?.lastIndexOf("/") + 1
+          ),
+        });
+      if (type === 'edit') {
+        dispatch(editAgent(formData))
+        setFormFilledDone(type)
+      } else {
+        dispatch(addAgent(formData))
+        setFormFilledDone(type)
+      }
     }
   }
   return (
     <View style={styles.mainContainer}>
-      {/* <View
-        style={{
-          backgroundColor: WHITE_COLOR,
-          height: insets.top,
-          flex:1
-        }}
-      /> */}
-
+      {isloading ? <Loader /> : null}
       <StatusBar barStyle={"light-content"} />
       <Header
         headerText={strings.rerainfo}
