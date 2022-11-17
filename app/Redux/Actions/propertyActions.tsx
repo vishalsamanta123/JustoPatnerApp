@@ -4,9 +4,7 @@ import { GETPROPERTY_DETAIL, PROPERTY_ERROR, PROPERTY_LIST } from "../types";
 
 export const getAllProperty = (params: any) => async (dispatch: any) => {
     try {
-        //console.log("getAllProperty -> params", params)
         const res = await apiCall("post", apiEndPoints.PROPERTYLIST, params);
-        //console.log("getAllProperty -> res", res)
         if (res.data.status == 200) {
             dispatch({
                 type: PROPERTY_LIST,
@@ -19,6 +17,7 @@ export const getAllProperty = (params: any) => async (dispatch: any) => {
             });
         }
     } catch (e) {
+
         dispatch({
             type: PROPERTY_ERROR,
             payload: console.log(e),
@@ -28,7 +27,6 @@ export const getAllProperty = (params: any) => async (dispatch: any) => {
 export const getFilterProperty = (params: any) => async (dispatch: any) => {
     try {
         const res = await apiCall("post", apiEndPoints.PROPERTYFILTER, params);
-        console.log("fiter -> res", res)
         if (res.data.status == 200) {
             dispatch({
                 type: PROPERTY_LIST,
@@ -51,7 +49,6 @@ export const getFilterProperty = (params: any) => async (dispatch: any) => {
 export const getPropertyDetail = (params: any) => async (dispatch: any) => {
     try {
         const res = await apiCall("post", apiEndPoints.GETPROPERTYDETAIL, params);
-        console.log("getPropertyDetail -> res.data", res.data)
         
         if (res.data.status == 200) {
             dispatch({

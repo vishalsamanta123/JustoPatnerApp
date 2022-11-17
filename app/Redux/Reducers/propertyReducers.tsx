@@ -8,6 +8,12 @@ const initialState = {
   detail: false,
   create: false,
 };
+const initialStatedetail = {
+  response: null,
+  detail: false,
+  create: false,
+  loading: true,
+};
 const initialStateForm = {
   response: null,
   update: false,
@@ -29,13 +35,6 @@ export function propertyReducer(state = initialState, action: any) {
         create: true,
         response: action.payload,
       };
-    case GETPROPERTY_DETAIL:
-      return {
-        ...state,
-        create: false,
-        detail: true,
-        response: action.payload,
-      };
     case PROPERTY_FILTER_LIST:
       return {
         ...state,
@@ -48,8 +47,33 @@ export function propertyReducer(state = initialState, action: any) {
         ...state,
         detail: false,
         create: false,
+        loading: false,
         response: action.payload,
       };
+    case PROPERTY_STATUS_UPDATE:
+      return {
+        ...state,
+        detail: false,
+        create: true,
+        response: action.payload,
+      };
+    default:
+      return state;
+  }
+}
+export function propertyDetailReducer(state = initialStatedetail, action: any) {
+  
+  switch (action.type) {
+    
+    case GETPROPERTY_DETAIL:
+      return {
+        ...state,
+        create: false,
+        detail: true,
+        loading: false,
+        response: action.payload,
+      };
+   
     case PROPERTY_STATUS_UPDATE:
       return {
         ...state,

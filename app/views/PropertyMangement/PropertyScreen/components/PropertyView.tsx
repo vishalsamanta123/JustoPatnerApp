@@ -1,5 +1,5 @@
 import {View, Text, StatusBar, FlatList,ActivityIndicator} from 'react-native';
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import styles from './styles';
 import {useSafeAreaInsets} from 'react-native-safe-area-context';
 import PropertyListItem from './PropertyListItem';
@@ -13,13 +13,15 @@ import { PRIMARY_THEME_COLOR_DARK, PRIMARY_THEME_COLOR } from '../../../../compo
 import FilterModal from './FilterModel';
 import { useSelector } from 'react-redux';
 
+
 const PropertyView = (props: any) => {
   const [isVisible, setIsVisible] = useState(false)
   const [FilterisVisible, setFilterisVisible] = useState(false)
+  const [propertyList, setPropertyList] = useState([])
   const insets = useSafeAreaInsets();
-  const propertyData = useSelector((state: any) => state.propertyData)
+  const propertyData = useSelector((state: any) => state.propertyData) || {}
   const navigation: any = useNavigation()
-  const [loading, setLoading] = useState(false);
+  const [loadingref, setLoadingref] = useState(false);
 
   const [filterform, setFilterform] = useState({
     start_date: "",
@@ -28,6 +30,23 @@ const PropertyView = (props: any) => {
     property_name: "",
     property_type: "",
   });
+
+
+  useEffect(() => {
+    if (propertyData?.response) {
+      const { response,loading } = propertyData;
+      if (response?.status === 200) {
+        setPropertyList(response?.data);
+        props.setIsloading(loading);
+      } else {
+        setPropertyList([]);
+        //errorToast(response.message);
+      }
+    }
+  }, [propertyData]);
+
+
+  
 
 
   const DATA: any = [
@@ -80,7 +99,7 @@ const PropertyView = (props: any) => {
     return (
       // Footer View with Loader
       <View style={styles.footer}>
-        {loading ? (
+        {loadingref ? (
           <ActivityIndicator
             color="black"
             style={{margin: 15}} />
@@ -98,6 +117,7 @@ const PropertyView = (props: any) => {
         }}
       />
       <StatusBar barStyle={'light-content'} />
+      
       <Header
         leftImageSrc={images.menu}
         rightFirstImageScr={images.filter}
@@ -110,17 +130,17 @@ const PropertyView = (props: any) => {
       />
       <View style={styles.propertyListView}>
         <FlatList 
-          data={propertyData?.response?.data}
+          data={propertyList}
           showsVerticalScrollIndicator={false}
           ListEmptyComponent={<EmptyListScreen message={strings.propertyHeader} />}
           renderItem={({item}) => <PropertyListItem items={item} setIsVisible={setIsVisible} onPressView={onPressView} />}
-         /*  onEndReached={({ distanceFromEnd }) => {
+        /*   onEndReached={({ distanceFromEnd }) => {
             props.Onreachedend()
           }} 
-          onEndReachedThreshold={0.5}*/
+          onEndReachedThreshold={0.5} */
           //ListFooterComponent={renderFooter}
           onRefresh={() => onRefresh()}
-          refreshing={loading}
+          refreshing={loadingref}
         />
       </View>
       <ConfirmModal Visible={isVisible} setIsVisible={setIsVisible} />

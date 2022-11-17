@@ -29,7 +29,28 @@ const styles = StyleSheet.create({
     fontSize: 14,
     color: "#888",
   },
- 
+ //for loader
+
+ containerStyle: {
+  backgroundColor: 'rgba(0,0,0,0.5)',
+  position: 'absolute',
+  top: 0,
+  right: 0,
+  left: 0,
+  bottom: 0,
+  zIndex: 999,
+  // elevation: 10,
+  alignItems: 'center',
+  justifyContent: 'center',
+},
+indicatorViewStyle: {
+  alignItems: 'center',
+  justifyContent: 'center',
+  backgroundColor: 'white',
+  borderRadius: normalize(5),
+  height: normalizeHeight(75),
+  width: normalizeWidth(75)
+},
 });
 
 export default styles;

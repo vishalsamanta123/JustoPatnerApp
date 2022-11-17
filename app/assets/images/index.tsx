@@ -32,6 +32,7 @@ const images = {
   dummyUser: require('./dummyUser.jpeg'),
   editIcon: require('./editIcon.png'),
   calender: require('./calender.png'),
+  pdfIcone: require('./pdfIcone.png'),
 };
 
 export default images;
