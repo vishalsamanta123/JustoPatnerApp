@@ -1,26 +1,26 @@
 import apiEndPoints from "app/components/utilities/apiEndPoints";
 import { apiCall } from "app/components/utilities/httpClient";
-import { GET_AGENT_DETAIL, AGENT_ERROR, AGENT_LIST, AGENT_STATUSUPDATE, ADD_AGENT, ADD_AGENT_FORM, EDIT_AGENT } from "../types";
+import { GET_VISITOR_DETAIL, VISITOR_ERROR, VISITOR_LIST, VISITOR_STATUSUPDATE, ADD_VISITOR, ADD_VISITOR_FORM, EDIT_VISITOR } from "../types";
 
-export const getAllAgentList = (params: any) => async (dispatch: any) => {
+export const getAllLeadsList = (params: any) => async (dispatch: any) => {
     try {
         console.log('params: ', params);
-        const res = await apiCall("post", apiEndPoints.AGENTLIST, params);
-        console.log('res: AGENTLIST', res);
+        const res = await apiCall("post", apiEndPoints.VISITORLIST, params);
+        console.log('res:VISITORLIST ', res);
         if (res.data.status == 200) {
             dispatch({
-                type: AGENT_LIST,
+                type: VISITOR_LIST,
                 payload: res.data,
             });
         } else {
             dispatch({
-                type: AGENT_LIST,
+                type: VISITOR_LIST,
                 payload: [],
             });
         }
     } catch (e) {
         dispatch({
-            type: AGENT_ERROR,
+            type: VISITOR_ERROR,
             payload: console.log(e),
         });
     }
@@ -28,10 +28,10 @@ export const getAllAgentList = (params: any) => async (dispatch: any) => {
 
 export const statusUpdate = (params: any) => async (dispatch: any) => {
     try {
-        const res = await apiCall("post", apiEndPoints.AGENT_STATUS_UPDATE, params);
+        const res = await apiCall("post", apiEndPoints.VISITOR_STATUS_UPDATE, params);
         if (res.data.status == 200) {
             dispatch({
-                type: AGENT_STATUSUPDATE,
+                type: VISITOR_STATUSUPDATE,
                 payload: res.data,
             });
         } else {
@@ -39,18 +39,18 @@ export const statusUpdate = (params: any) => async (dispatch: any) => {
         }
     } catch (e) {
         dispatch({
-            type: AGENT_ERROR,
+            type: VISITOR_ERROR,
             payload: console.log(e),
         });
     }
 };
-export const addAgent = (params: any) => async (dispatch: any) => {
+export const addVisitor = (params: any) => async (dispatch: any) => {
     try {
         const header = { "Content-Type": "multipart/form-data", "access-control-allow-origin": "*" }
-        const res = await apiCall("post", apiEndPoints.ADD_AGENT_, params, header);
+        const res = await apiCall("post", apiEndPoints.ADD_VISITOR_, params, header);
         if (res.data.status == 200) {
             dispatch({
-                type: ADD_AGENT,
+                type: ADD_VISITOR,
                 payload: res.data,
             });
         } else {
@@ -58,20 +58,18 @@ export const addAgent = (params: any) => async (dispatch: any) => {
         }
     } catch (e) {
         dispatch({
-            type: AGENT_ERROR,
+            type: VISITOR_ERROR,
             payload: console.log(e),
         });
     }
 };
-export const editAgent = (params: any) => async (dispatch: any) => {
+export const editVisitor = (params: any) => async (dispatch: any) => {
     try {
         const header = { "Content-Type": "multipart/form-data", "access-control-allow-origin": "*" }
-        console.log('params: ', params);
-        const res = await apiCall("post", apiEndPoints.EDIT_AGENT_, params, header);
-        console.log('res: ', res);
+        const res = await apiCall("post", apiEndPoints.EDIT_VISITOR_, params, header);
         if (res.data.status == 200) {
             dispatch({
-                type: EDIT_AGENT,
+                type: EDIT_VISITOR,
                 payload: res.data,
             });
         } else {
@@ -79,32 +77,32 @@ export const editAgent = (params: any) => async (dispatch: any) => {
         }
     } catch (e) {
         dispatch({
-            type: AGENT_ERROR,
+            type: VISITOR_ERROR,
             payload: console.log(e),
         });
     }
 };
-export const addAgentForm = (params: any) => async (dispatch: any) => {
+export const addVisitorForm = (params: any) => async (dispatch: any) => {
     try {
         dispatch({
-            type: ADD_AGENT_FORM,
+            type: ADD_VISITOR_FORM,
             payload: params,
         });
     } catch (e) {
         dispatch({
-            type: AGENT_ERROR,
+            type: VISITOR_ERROR,
             payload: console.log(e),
         });
     }
 };
 
-export const getAgentDetail = (params: any) => async (dispatch: any) => {
+export const getVisitorDetail = (params: any) => async (dispatch: any) => {
     try {
-        const res = await apiCall("post", apiEndPoints.GET_AGENT_DETAIL_, params);
-        console.log('res: GET_AGENT_DETAIL_', res);
+        const res = await apiCall("post", apiEndPoints.GET_VISITOR_DETAIL_, params);
+        console.log('res: GET_VISITOR_DETAIL__', res);
         if (res.data.status === 200) {
             dispatch({
-                type: GET_AGENT_DETAIL,
+                type: GET_VISITOR_DETAIL,
                 payload: res.data,
             });
         } else {
@@ -112,7 +110,7 @@ export const getAgentDetail = (params: any) => async (dispatch: any) => {
         }
     } catch (e) {
         dispatch({
-            type: AGENT_ERROR,
+            type: VISITOR_ERROR,
             payload: console.log(e),
         });
     }

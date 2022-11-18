@@ -9,8 +9,11 @@ import InputField from "../../../../components/InputField";
 import InputCalender from "../../../../components/InputCalender";
 import { Dropdown } from "react-native-element-dropdown";
 import moment from "moment";
+import { useDispatch } from 'react-redux';
+import { getAllAgentList } from "app/Redux/Actions/AgentActions";
 
 const FilterModal = (props: any) => {
+  const dispatch: any = useDispatch()
   const resetFilter = () => {
     props.setFilterData({
       startdate: '',
@@ -20,7 +23,11 @@ const FilterModal = (props: any) => {
       status: ''
     })
     props.setIsVisible(false)
-    props.setFilter(null)
+    props.setFilter(props.filterData)
+  }
+  const handleFilter = () => {
+    props.setFilter(props.filterData)
+    props.setIsVisible(false)
   }
   const data = [
     { label: "Active", value: true },
@@ -52,6 +59,7 @@ const FilterModal = (props: any) => {
             <View style={styles.inputWrap}>
               <InputCalender
                 placeholderText={"Start Date"}
+                editable={false}
                 dateData={(data: any) => {
                   props.setFilterData({
                     ...props.filterData,
@@ -70,6 +78,7 @@ const FilterModal = (props: any) => {
             <View style={styles.inputWrap}>
               <InputCalender
                 placeholderText={"End Date"}
+                editable={false}
                 value={props.filterData.enddate}
                 dateData={(data: any) => {
                   props.setFilterData({
@@ -138,10 +147,7 @@ const FilterModal = (props: any) => {
               <Button width={135} buttonText={strings.reset} handleBtnPress={() => resetFilter()} />
               <Button
                 width={135}
-                handleBtnPress={() => {
-                  props.setIsVisible(false)
-                  props.setFilter(props.filterData)
-                }}
+                handleBtnPress={() => handleFilter()}
                 buttonText={strings.apply} />
             </View>
           </View>

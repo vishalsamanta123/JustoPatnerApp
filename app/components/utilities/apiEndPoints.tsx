@@ -47,4 +47,12 @@ export default {
   AGENT_STATUS_UPDATE: "/channelPartner/ApproveChannelpartnerbysourcinghead",
   ADD_AGENT_: "/channelPartner/createAgent",
   EDIT_AGENT_: "/channelPartner/editAgent",
+
+
+  //Agent Management
+  VISITORLIST: "/visit/getVisiterList",
+  GET_VISITOR_DETAIL_: "/visit/getVisitDetails",
+  VISITOR_STATUS_UPDATE: "/visit/updateVisitStatus",
+  ADD_VISITOR_: "/visit/addVisit",
+  EDIT_VISITOR_: "/visit/editVisit",
 };

@@ -74,10 +74,7 @@ const DrawerComponent = () => {
 const Route =  () => {
   const dispatch: any = useDispatch();
   const loginSelector = useSelector((state: any) => state.login);
-  console.log('loginSelector: ', loginSelector);
   useEffect( () => {
-
-   
     // const authval = AsyncStorage.removeItem("AuthToken");
     // console.log('authval: vv', authval);
   

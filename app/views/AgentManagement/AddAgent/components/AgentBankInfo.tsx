@@ -98,7 +98,7 @@ const AgentBankInfo = ({ navigation, route }: any) => {
             agentInfoData?.profile_picture?.path?.lastIndexOf("/") + 1
           ),
         });
-      agentInfoData?.rera_certificate?.path &&//no 
+      agentInfoData?.rera_certificate?.path &&
         formData.append("rera_certificate", {
           uri: agentInfoData?.rera_certificate?.path,
           type: agentInfoData?.rera_certificate?.mime,
@@ -106,7 +106,7 @@ const AgentBankInfo = ({ navigation, route }: any) => {
             agentInfoData?.rera_certificate?.path?.lastIndexOf("/") + 1
           ),
         });
-      agentInfoData?.propidership_declaration_letter?.path &&//no 
+      agentInfoData?.propidership_declaration_letter?.path &&
         formData.append("propidership_declaration_letter", {
           uri: agentInfoData?.propidership_declaration_letter?.path,
           type: agentInfoData?.propidership_declaration_letter?.mime,
@@ -138,7 +138,7 @@ const AgentBankInfo = ({ navigation, route }: any) => {
       <View style={styles.wraptop}>
         <View style={styles.inputWrap}>
           <InputField
-            placeholderText={"RERA Certificat No."}
+            placeholderText={"RERA Certificat No."}//can edit
             handleInputBtnPress={() => { }}
             onChangeText={(data: any) => {
               setAgentInfoData({
@@ -168,7 +168,7 @@ const AgentBankInfo = ({ navigation, route }: any) => {
             headingText={"RERA Certificat"}
           />
           <TouchableOpacity
-            onPress={() => setRefraCrtf(true)}
+            onPress={() => { route?.params?.type === 'add' ? setRefraCrtf(true) : null }}
             style={styles.browseVw}
           >
             <Text>browse</Text>
@@ -192,7 +192,7 @@ const AgentBankInfo = ({ navigation, route }: any) => {
             headingText={"Propidership Declaration Letter"}
           />
           <TouchableOpacity
-            onPress={() => setPropiderLettr(true)}
+            onPress={() => { route?.params?.type === 'add' ? setPropiderLettr(true) : null }}
             style={styles.browseVw}
           >
             <Text>browse</Text>

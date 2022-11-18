@@ -50,7 +50,7 @@ const AgentBasicInfoView = (props: any) => {
         <View style={styles.wrap}>
           {/*  <Text style={styles.headingText}>{strings.basicInfoText}</Text> */}
           {/* <View style={styles.underlineStyle} /> */}
-          <TouchableOpacity onPress={() => props.setVisible(true)}
+          <TouchableOpacity onPress={() => { props.type === 'add' ? props.setVisible(true) : null }}
             style={styles.imageCircle}>
             {props?.agentInfoData?.profile_picture === undefined ||
               props?.agentInfoData?.profile_picture === '' ?
@@ -68,7 +68,7 @@ const AgentBasicInfoView = (props: any) => {
           </TouchableOpacity>
           <View style={styles.inputWrap}>
             <InputField
-              placeholderText={"Name"}
+              placeholderText={"Name"}//can edit
               handleInputBtnPress={() => { }}
               onChangeText={(data: any) => {
                 props.setAgentInfoData({
@@ -82,7 +82,7 @@ const AgentBasicInfoView = (props: any) => {
           </View>
           <View style={styles.inputWrap}>
             <InputField
-              placeholderText={"Adhar No."}
+              placeholderText={"Adhar No."}//can edit
               handleInputBtnPress={() => { }}
               onChangeText={(data: any) => {
                 props.setAgentInfoData({
@@ -97,7 +97,7 @@ const AgentBasicInfoView = (props: any) => {
           </View>
           <View style={styles.inputWrap}>
             <InputField
-              placeholderText={"Pancard No."}
+              placeholderText={"Pancard No."}//can edit
               handleInputBtnPress={() => { }}
               onChangeText={(data: any) => {
                 props.setAgentInfoData({
@@ -113,7 +113,7 @@ const AgentBasicInfoView = (props: any) => {
             <Text style={styles.genderTxt}>{strings.gender}</Text>
             <View style={styles.radioView}>
               <RadioButton
-                value={"1"}
+                value={"1"}//can edit
                 status={props?.agentInfoData?.gender === 1 ? "checked" : 'unchecked'}
                 onPress={() => props.setAgentInfoData({
                   ...props.agentInfoData,
@@ -135,7 +135,7 @@ const AgentBasicInfoView = (props: any) => {
             </View>
             <View style={styles.radioView}>
               <RadioButton
-                value={"2"}
+                value={"2"}//can edit
                 status={props?.agentInfoData?.gender === 2 ? "checked" : 'unchecked'}
                 onPress={() => props.setAgentInfoData({
                   ...props.agentInfoData,
@@ -158,9 +158,9 @@ const AgentBasicInfoView = (props: any) => {
           </View>
           <View style={styles.inputWrap}>
             <InputCalender
-              placeholderText={"Date of Birth"}
+              placeholderText={"Date of Birth"}//can edit
               editable={false}
-              onChangeText={() => { }}
+              // onChangeText={() => { }}
               dateData={(data: any) => {
                 props.setAgentInfoData({
                   ...props.agentInfoData,
@@ -173,12 +173,13 @@ const AgentBasicInfoView = (props: any) => {
                   date_of_birth: moment(data).format()
                 })
               }}
-              value={props?.filterData?.date_of_birth?.toString()}
+              value={props?.filterData?.date_of_birth}
             />
           </View>
           <View style={styles.inputWrap}>
             <InputField
               placeholderText={"Mobile No."}
+              editable={props.type === 'add' ? true : false}
               handleInputBtnPress={() => { }}
               onChangeText={(data: any) => {
                 props.setAgentInfoData({
@@ -194,7 +195,7 @@ const AgentBasicInfoView = (props: any) => {
           </View>
           <View style={styles.inputWrap}>
             <InputField
-              placeholderText={"WhatsApp No."}
+              placeholderText={"WhatsApp No."}//can edit
               handleInputBtnPress={() => { }}
               onChangeText={(data: any) => {
                 props.setAgentInfoData({
@@ -211,6 +212,7 @@ const AgentBasicInfoView = (props: any) => {
           <View style={styles.inputWrap}>
             <InputField
               placeholderText={"Email Address"}
+              editable={props.type === 'add' ? true : false}
               handleInputBtnPress={() => { }}
               onChangeText={(data: any) => {
                 props.setAgentInfoData({
@@ -235,7 +237,7 @@ const AgentBasicInfoView = (props: any) => {
               <Text style={styles.workTxt}>Working Location</Text>
               {props?.agentInfoData?.working_location?.length > 0 &&
                 props?.agentInfoData?.working_location?.map((item: any) => {
-                  return (
+                  return (//can edit
                     <View style={{ paddingVertical: 5, paddingHorizontal: 5 }}>
                       <Text style={{ color: BLACK_COLOR, borderBottomWidth: 0.7 }}>{item.location}</Text>
                     </View>
