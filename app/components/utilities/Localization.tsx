@@ -40,6 +40,7 @@ const strings = new LocalizedStrings({
     ConfirmationModalTxt: 'Select the reason for\r\nunsubscribe this property.',
     Confirm: 'Confirm',
     searchProperty: 'Search Property',
+    playVideo: 'Play',
     apply: 'APPLY',
     reset: 'RESET',
     resend: 'Resend',
