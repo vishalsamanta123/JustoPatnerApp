@@ -40,7 +40,7 @@ const AgentListing = ({ navigation }: any) => {
   }
   useEffect(() => {
     if (type === 'edit') {
-      navigation.navigate('AddnewAgent', { type })
+       navigation.navigate('AddnewAgent', { type })
       setType(null)
     } else {
       if (type === 'view') {

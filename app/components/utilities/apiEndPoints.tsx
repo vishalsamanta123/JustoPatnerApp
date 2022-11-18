@@ -34,6 +34,7 @@ export default {
   GETPROPERTYDETAIL: "/property/getPropertyDetails",
   GETPROPERTYFILTERDETAIL: "/property/filterProperty",
   PROPERTYSTATUSUPDATE: "/property/propertyStatusUpdate",
+  PROPERTYSUBSCRIBE: "/property/userSubscribeUnsubscribeProperty",
   // property End
 
   // getFollowUp API
