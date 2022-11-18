@@ -74,10 +74,7 @@ const DrawerComponent = () => {
 const Route =  () => {
   const dispatch: any = useDispatch();
   const loginSelector = useSelector((state: any) => state.login);
-  console.log('loginSelector: ', loginSelector);
   useEffect( () => {
-
-   
     // const authval = AsyncStorage.removeItem("AuthToken");
     // console.log('authval: vv', authval);
   
@@ -95,7 +92,6 @@ const Route =  () => {
     //dispatch(jwtTokenGenrate())
      try {
       const { data } = await apiCall("get", apiEndPoints.JWTTOKEN, {});
-      // console.log('data: ', data);
       if (data) {
         await AsyncStorage.setItem("token", data.token);
         await setDefaultHeader("token", data.token);

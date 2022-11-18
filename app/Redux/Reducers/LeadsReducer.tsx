@@ -1,4 +1,4 @@
-import { AGENT_LIST, AGENT_STATUSUPDATE, ADD_AGENT, ADD_AGENT_FORM, GET_AGENT_DETAIL, EDIT_AGENT } from "../types";
+import { ADD_VISITOR, ADD_VISITOR_FORM, EDIT_VISITOR, GET_VISITOR_DETAIL, VISITOR_LIST, VISITOR_STATUSUPDATE } from "../types";
 
 const initialState = {
   response: null,
@@ -10,38 +10,38 @@ const initialStateForm = {
   update: false,
 };
 
-export function agentReducer(state = initialState, action: any) {
+export function visitorReducer(state = initialState, action: any) {
   switch (action.type) {
-    case ADD_AGENT:
+    case ADD_VISITOR:
       return {
         ...state,
         detail: false,
         create: true,
         response: null,
       };
-    case EDIT_AGENT:
+    case EDIT_VISITOR:
       return {
         ...state,
         detail: false,
         create: true,
         response: null,
       };
-    case GET_AGENT_DETAIL:
+    case GET_VISITOR_DETAIL:
       return {
         ...state,
         create: false,
         detail: true,
         response: action.payload,
       };
-    case AGENT_LIST:
+    case VISITOR_LIST:
       return {
         ...state,
         detail: false,
         create: false,
-        list: true,
+        loading: false,
         response: action.payload,
       };
-    case AGENT_STATUSUPDATE:
+    case VISITOR_STATUSUPDATE:
       return {
         ...state,
         detail: false,
@@ -53,21 +53,14 @@ export function agentReducer(state = initialState, action: any) {
   }
 }
 
-export function addAgentReducer(state = initialStateForm, action: any) {
+export function addVisitorReducer(state = initialStateForm, action: any) {
   switch (action.type) {
-    case ADD_AGENT_FORM:
+    case ADD_VISITOR_FORM:
       return {
         ...state,
         update: false,
         response: action.payload,
       };
-    // case PROPERTY_FORM_UPDATE:
-    //   return {
-    //     ...state,
-    //     update: true,
-    //     response: action.payload,
-    //   };
-
     default:
       return state;
   }

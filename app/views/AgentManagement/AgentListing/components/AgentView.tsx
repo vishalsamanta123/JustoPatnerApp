@@ -16,8 +16,6 @@ import { BLACK_COLOR, PRIMARY_THEME_COLOR, WHITE_COLOR, } from '../../../../comp
 
 const AgentView = (props: any) => {
   const loadingref = false
-  const agentData = useSelector((state: any) => state.agentData)
-  const moreData = Number(agentData?.response?.total_data)
   const [isVisible, setIsVisible] = useState(false)
   const [FilterisVisible, setFilterisVisible] = useState(false)
   const insets = useSafeAreaInsets();
@@ -69,7 +67,14 @@ const AgentView = (props: any) => {
   }
 
   const onRefresh = () => {
-    props.getAgentList()
+    props.setFilterData({
+      startdate: '',
+      enddate: '',
+      search_by_name: '',
+      search_by_location: '',
+      status: ''
+    })
+    props.setFilter({})
   }
   return (
     <View style={styles.mainContainer}>
@@ -126,12 +131,12 @@ const AgentView = (props: any) => {
               onPressView={props.onPressView}
               setChangeStatus={props.setChangeStatus}
             />}
-            onEndReached={() => {
-              if (agentData?.response?.data?.length < moreData) {
-                props.Onreachedend(agentData?.response?.data?.length > 3 ?
-                  props.offset + 1 : 0)
-              }
-            }}
+            /*  onEndReached={() => {
+               if (agentData?.response?.data?.length < moreData) {
+                 props.Onreachedend(agentData?.response?.data?.length > 3 ?
+                   props.offset + 1 : 0)
+               }
+             }} */
             onRefresh={() => onRefresh()}
             refreshing={loadingref}
           />
@@ -158,6 +163,7 @@ const AgentView = (props: any) => {
         setFilterData={props.setFilterData}
         filterData={props.filterData}
         setFilter={props.setFilter}
+        getAgentListChange={() => props.getAgentList()}
       />
     </View>
   );

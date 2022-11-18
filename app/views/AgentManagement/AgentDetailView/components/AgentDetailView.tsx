@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react'
+import React, { useEffect, useState, } from 'react'
 import { View, Text, StatusBar, Image, useWindowDimensions } from 'react-native'
 import Header from '../../../../components/Header'
 import { PRIMARY_THEME_COLOR_DARK, TABBAR_COLOR, WHITE_COLOR } from '../../../../components/utilities/constant'
@@ -14,8 +14,6 @@ import { useSelector } from 'react-redux'
 import moment from 'moment'
 
 const PropertyDetailView = (props: any) => {
-  const { response = {} } = useSelector((state: any) => state.agentData)
-  const [allDetails, setAllDetails] = useState({ ...response?.data[0] })
   const insets = useSafeAreaInsets();
   const layout = useWindowDimensions();
   const [index, setIndex] = useState(0);
@@ -26,28 +24,32 @@ const PropertyDetailView = (props: any) => {
 
   const DATAINFO: any =
   {
-    status: allDetails?.status ? allDetails?.status : '',
-    AgentName: allDetails?.agent_name ? allDetails?.agent_name : '',
-    Mobileno: allDetails?.primary_mobile ? allDetails?.primary_mobile : '',
-    Email: allDetails?.email ? allDetails?.email : '',
-    whatsappno: allDetails?.whatsapp_number ? allDetails?.whatsapp_number : '',
-    rerano: allDetails?.rera_certificate_no ? allDetails?.rera_certificate_no : '',
-    aadharno: allDetails?.adhar_no ? allDetails?.adhar_no : '',
-    pancardno: allDetails?.pancard_no ? allDetails?.pancard_no : '',
-    location: allDetails?.location ? allDetails?.location : '',
-    workingfrom: allDetails?.createdDate ? moment(allDetails?.createdDate).format('MMM Do YY') : '',
-    workinglocation: allDetails?.working_location ? allDetails?.working_location : '',
+    status: props?.allDetails?.status ? props?.allDetails?.status : '',
+    AgentName: props?.allDetails?.agent_name ? props?.allDetails?.agent_name : '',
+    Mobileno: props?.allDetails?.primary_mobile ? props?.allDetails?.primary_mobile : '',
+    Email: props?.allDetails?.email ? props?.allDetails?.email : '',
+    whatsappno: props?.allDetails?.whatsapp_number ? props?.allDetails?.whatsapp_number : '',
+    rerano: props?.allDetails?.rera_certificate_no ? props?.allDetails?.rera_certificate_no : '',
+    aadharno: props?.allDetails?.adhar_no ? props?.allDetails?.adhar_no : '',
+    pancardno: props?.allDetails?.pancard_no ? props?.allDetails?.pancard_no : '',
+    location: props?.allDetails?.location ? props?.allDetails?.location : '',
+    workingfrom: props?.allDetails?.createdDate ? moment(props?.allDetails?.createdDate).format('MMM Do YY') : '',
+    workinglocation: props?.allDetails?.working_location ? props?.allDetails?.working_location : '',
   };
   const DATASTATS: any =
   {
-    closingper: allDetails?.agent_stats?.total_closing_percentage,
-    visitor: allDetails?.agent_stats?.total_visit,
-    siteVisit: allDetails?.agent_stats?.total_site_visit,
-    closeVisit: allDetails?.agent_stats?.total_closing_percentage,
-    lastlogin: allDetails?.agent_stats?.last_login ? moment(allDetails?.agent_stats?.last_login).format('llll') : '',
-    lastvisit: allDetails?.agent_stats?.last_lead_crate ? moment(allDetails?.agent_stats?.last_lead_crate).format('llll') : '',
-    lastsitevisit: allDetails?.agent_stats?.last_site_visit ? moment(allDetails?.agent_stats?.last_site_visit).format('llll') : '',
-    lastclosevisit: allDetails?.agent_stats?.last_closing_lead ? moment(allDetails?.agent_stats?.last_closing_lead).format('llll') : '',
+    closingper: props?.allDetails?.agent_stats?.total_closing_percentage,
+    visitor: props?.allDetails?.agent_stats?.total_visit,
+    siteVisit: props?.allDetails?.agent_stats?.total_site_visit,
+    closeVisit: props?.allDetails?.agent_stats?.total_closing_percentage,
+    lastlogin: props?.allDetails?.agent_stats?.last_login ?
+      moment(props?.allDetails?.agent_stats?.last_login).format('llll') : '',
+    lastvisit: props?.allDetails?.agent_stats?.last_lead_crate ?
+      moment(props?.allDetails?.agent_stats?.last_lead_crate).format('llll') : '',
+    lastsitevisit: props?.allDetails?.agent_stats?.last_site_visit ?
+      moment(props?.allDetails?.agent_stats?.last_site_visit).format('llll') : '',
+    lastclosevisit: props?.allDetails?.agent_stats?.last_closing_lead ?
+      moment(props?.allDetails?.agent_stats?.last_closing_lead).format('llll') : '',
   };
 
   const FirstRoute = () => (
