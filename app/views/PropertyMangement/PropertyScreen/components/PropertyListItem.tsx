@@ -72,7 +72,8 @@ const PropertyListItem = (props: any) => {
       </View>
       <View style={styles.buttonContainer}>
         <TouchableOpacity
-        onPress={() => props.items.approve_status === 2 ? props.setIsVisible(true) : null}
+         /* onPress={() => props.items.approve_status === 2 ? props.setIsVisible(true) : props.setIsVisible(true)} */
+         onPress={() => props.confirmStatus(props.items)}
          style={[styles.button, {
           borderColor: props.items.approve_status === 1 ? GREEN_COLOR : 
           props.items.approve_status === 2 ? RED_COLOR : GOLDEN_COLOR

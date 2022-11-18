@@ -7,26 +7,45 @@ import strings from "../utilities/Localization";
 import { Dropdown } from "react-native-element-dropdown";
 import Button from "../Button";
 import { PRIMARY_THEME_COLOR, BG_MAIN_COLOUR } from "../utilities/constant";
-const data = [
-  { label: "Item 1", value: "1" },
-  { label: "Item 2", value: "2" },
-  { label: "Item 3", value: "3" },
-  { label: "Item 4", value: "4" },
-  { label: "Item 5", value: "5" },
-  { label: "Item 6", value: "6" },
-  { label: "Item 7", value: "7" },
-  { label: "Item 8", value: "8" },
-];
-const ConfirmModal = (props: any) => {
-  const [value, setValue] = useState(null);
+ /* const data = [
+  { name: "Item 1", value: "1" },
+  { name: "Item 2", value: "2" },
+  { name: "Item 3", value: "3" },
+  { name: "Item 4", value: "4" },
+  { name: "Item 5", value: "5" },
+  { name: "Item 6", value: "6" },
+  { name: "Item 7", value: "7" },
+  { name: "Item 8", value: "8" },
+];  */
+/* const data = [
+  {
+      "_id": "637765e45db23e661ea6c825",
+      "type": "7",
+      "title": "Not interested",
+      "status": true,
+      "createdDate": "2022-11-18T11:00:52.325Z",
+      "__v": 0
+  },
+  {
+      "_id": "637767105db23e661ea6c828",
+      "type": "7",
+      "title": "Out side propert",
+      "status": true,
+      "createdDate": "2022-11-18T11:05:52.621Z",
+      "__v": 0
+  }
+]; */
 
+const ConfirmModal = (props: any) => {
+  const [value, setValue] = useState('');
   const renderItem = (item: any) => {
     return (
       <View style={styles.item}>
-        <Text style={styles.textItem}>{item.label}</Text>
+        <Text style={styles.textItem}>{item.title}</Text>
       </View>
     );
   };
+
   return (
     <View>
       <Modal isVisible={props.Visible}>
@@ -42,6 +61,7 @@ const ConfirmModal = (props: any) => {
           </View>
 
           {(props.confirmtype === 'CONFIRMATION') ?
+          
             <>
               <View style={styles.borderView} />
               <View style={styles.conteconfirm}>
@@ -76,20 +96,26 @@ const ConfirmModal = (props: any) => {
                   placeholderStyle={styles.placeholderStyle}
                   selectedTextStyle={styles.selectedTextStyle}
                   iconStyle={styles.iconStyle}
-                  data={data}
+                  data={props.masterDataShow}
+                  //data={data}
                   maxHeight={300}
-                  labelField="label"
-                  valueField="value"
+                  labelField="title"
+                  valueField="_id"
                   placeholder="Select Reasone"
-                  value={value}
+                  value={props.resion}
                   onChange={(item) => {
-                    setValue(item.value);
+                    props.setResion(item._id);
                   }}
                   renderItem={renderItem}
                 />
               </View>
               <View style={{ marginVertical: 10 }}>
-                <Button buttonText={strings.Confirm} handleBtnPress={() => props.setIsVisible(false)} />
+                <Button buttonText={strings.Confirm} 
+                //handleBtnPress={() => props.setIsVisible(false)} />
+                handleBtnPress={() => props.handleConfirmPress ? props.handleConfirmPress() : props.setIsVisible(false)} 
+                
+                />
+                
               </View>
             </>
 

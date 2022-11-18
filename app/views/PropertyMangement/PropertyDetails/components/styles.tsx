@@ -111,7 +111,21 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
     marginHorizontal: normalizeSpacing(10),
     marginVertical: normalizeSpacing(5)
-  }
+  },
+  playbtntch: {
+    position: 'absolute',
+    justifyContent: 'center',
+    alignItems: 'center',
+    bottom: 0,
+    left: 0,
+    right: 0,
+    top: 0,
+    
+  },
+  playpuceimg: {
+    width: 30,
+    height: 32,
+  },
 });
 
 export default styles;

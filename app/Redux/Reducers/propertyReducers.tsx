@@ -13,6 +13,7 @@ const initialStatedetail = {
   detail: false,
   create: false,
   loading: true,
+  updateStatus: false,
 };
 const initialStateForm = {
   response: null,
@@ -79,6 +80,7 @@ export function propertyDetailReducer(state = initialStatedetail, action: any) {
         ...state,
         detail: false,
         create: true,
+        updateStatus:true,
         response: action.payload,
       };
     default:

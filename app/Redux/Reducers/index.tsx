@@ -3,6 +3,7 @@ import { propertyReducer, propertyDetailReducer } from "./propertyReducers";
 import { registrationFormReducer } from "./ReggistrationReducer";
 import { agentReducer, addAgentReducer, } from './AgentReducer';
 import { addVisitorReducer, visitorReducer } from "./LeadsReducer";
+import { masterDataReducer } from "./MasterReducer";
 
 export default {
     login: authStore,
@@ -13,4 +14,5 @@ export default {
     addAgentForm: addAgentReducer,
     visitorData: visitorReducer,
     addVisitorForm: addVisitorReducer,
+    masterData: masterDataReducer,
 }
