@@ -7,6 +7,7 @@ import {
   GRAY_COLOR,
   PRIMARY_THEME_COLOR,
   WHITE_COLOR,
+  RED_COLOR,
 } from '../../../../components/utilities/constant';
 
 const styles = StyleSheet.create({
@@ -22,7 +23,7 @@ const styles = StyleSheet.create({
   wrap: {
     flexGrow: 1,
     marginHorizontal: normalizeSpacing(10),
-    marginVertical: normalizeSpacing(10),
+    marginVertical: normalizeSpacing(5),
     alignItems: 'center'
   },
   headingText: {
@@ -38,16 +39,17 @@ const styles = StyleSheet.create({
     marginTop: normalizeSpacing(5),
   },
   imageCircle: {
-    backgroundColor: GRAY_COLOR,
-    marginTop: normalizeSpacing(10),
+    //backgroundColor: RED_COLOR,
+    marginTop: normalizeSpacing(5),
     borderRadius: normalizeSpacing(100),
     height: normalizeHeight(100),
     width: normalizeWidth(100),
     alignItems: 'center',
-    justifyContent: 'center'
+    justifyContent: 'center',
+    
   },
   inputWrap: {
-    marginTop: normalizeSpacing(30),
+    marginTop: normalizeSpacing(20),
   },
   genderView: {
     flexDirection: 'row',
@@ -98,7 +100,25 @@ const styles = StyleSheet.create({
   },
   btnView: {
     marginVertical: normalizeSpacing(20),
-  }
+  },
+  loginBanner: {
+    width: normalizeSpacing(100),
+    height: normalizeSpacing(100),
+    borderRadius:normalizeSpacing(50),
+  },
+  loginBannerView: {
+    height: '100%',
+    width: '100%',
+    // borderBottomLeftRadius: width,
+    // borderBottomRightRadius: width,
+    // // borderRadius: width,
+    // width: width * 2,
+    // height: width * 2,
+    // marginLeft: -(width / 2),
+    // position: 'absolute',
+    // bottom: 0,
+    // overflow: 'hidden',
+  },
 });
 
 export default styles;

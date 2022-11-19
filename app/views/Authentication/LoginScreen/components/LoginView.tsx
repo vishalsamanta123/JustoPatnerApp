@@ -98,11 +98,11 @@ const LoginView = (props: any) => {
       </View>
       <View style={styles.bottomView}>
         <Text style={styles.bottomText}>{strings.byCreating}</Text>
-        <TouchableOpacity style={styles.spanTouch}>
+        <TouchableOpacity style={styles.spanTouch}  onPress={() => props.handlePrivacy(strings.termsAndCondition)}>
           <Text style={styles.spanText}> {strings.termsAndCondition} </Text>
         </TouchableOpacity>
         <Text style={styles.bottomText}> {strings.and} </Text>
-        <TouchableOpacity style={styles.spanTouch}>
+        <TouchableOpacity style={styles.spanTouch} onPress={() => props.handlePrivacy(strings.privacyPolicy)}>
           <Text style={styles.spanText}> {strings.privacyPolicy} </Text>
         </TouchableOpacity>
       </View>

@@ -5,9 +5,14 @@ import { BLACK_COLOR, FONT_FAMILY_EXTRABOLD, FONT_FAMILY_SEMIBOLD, GRAY_COLOR, G
 const {width} = Dimensions.get('window');
 const styles = StyleSheet.create({
 
-    mainContainer: {
+      mainContainer: {
         flex: 1,
       },
+
+      resendtxt :{
+        flex:1,
+        height:30,
+       },
       logoView: {
         alignItems: 'center',
         justifyContent: 'center',
@@ -20,43 +25,48 @@ const styles = StyleSheet.create({
         width: normalizeWidth(150),
       },
       inputView: {
-        flex: 1,
+        flex: 4,
+        //justifyContent: 'flex-end',
+        marginTop:normalizeSpacing(0),
+        height:normalizeHeight(375),
+       
       },
       DescbottomView:{
         flexDirection: 'row',
         flexWrap: 'wrap',
         justifyContent: 'center',
-        marginHorizontal: normalizeSpacing(30),
-        marginTop: normalizeSpacing(30),
+        marginHorizontal: normalizeSpacing(20),
+        marginTop: normalizeSpacing(15),
         
       },
       bottomView: {
-        flex: 1,
+        flex: 2,
+        alignContent: 'flex-end',
         flexDirection: 'row',
         flexWrap: 'wrap',
         justifyContent: 'center',
-        alignContent: 'center',
-        marginTop: 30
+        marginHorizontal: normalizeSpacing(10),
       },
       bottomWrap: {
         flexDirection: 'row'
       },
       bottomText: {
         textAlign: 'center',
-        fontSize: normalize(16),
+        fontSize: normalize(14),
         lineHeight: normalizeHeight(25),
         fontFamily: FONT_FAMILY_SEMIBOLD,
         color: GRAY_LIGHT_COLOR
       },
-      spanTouch: {
+     spanTouch: {
         flexDirection: 'row'
-      },
+      }, 
       spanText: {
         textAlign: 'center',
-        fontSize: normalize(16),
-        lineHeight: normalizeHeight(25),
+        fontSize: normalize(14),
+        lineHeight: normalizeHeight(20),
         color: PRIMARY_THEME_COLOR,
         fontFamily: FONT_FAMILY_SEMIBOLD,
+        
       },
       headingText: {
         fontSize: normalize(20),

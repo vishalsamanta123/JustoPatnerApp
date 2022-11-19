@@ -43,6 +43,9 @@ import ProfileScreen from '../views/Setting/ProfileScreen';
 import EditProfileScreen from '../views/Setting/EditProfileScreen';
 import ChangePasswordScreen from '../views/Setting/ChangePassword';
 import SeparateLinkScreen from '../views/Setting/SeparateLink';
+import PrivacyPolicyScreen from '../views/Authentication/PrivacyPolicy';
+
+
 import { setDefaultHeader, apiCall } from 'app/components/utilities/httpClient';
 import { useDispatch, useSelector } from 'react-redux';
 import { jwtTokenGenrate } from 'app/Redux/Actions/AuthActions';
@@ -156,6 +159,7 @@ const Route =  () => {
         <Stack.Screen name="EditProfileScreen" component={EditProfileScreen}  />
         <Stack.Screen name="changePassword" component={ChangePasswordScreen}  />
         <Stack.Screen name="separateLink" component={SeparateLinkScreen}  />
+        <Stack.Screen name="privacyPolicy" component={PrivacyPolicyScreen}  />
       </Stack.Navigator>
     </NavigationContainer>
   );
