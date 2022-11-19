@@ -12,6 +12,10 @@ const ChangePasswordView = (props: any) => {
   const handlePasswordBtnPress = () => {
     setIsVisiblePassword(!isVisiblePassword);
   };
+  const [isVisiblecPassword, setIsVisiblecPassword] = useState(true);
+  const handlecPasswordBtnPress = () => {
+    setIsVisiblecPassword(!isVisiblecPassword);
+  };
   return (
     <ScrollView style={styles.mainContainer}>
       {/* <View style={styles.logoView}>
@@ -33,19 +37,28 @@ const ChangePasswordView = (props: any) => {
             rightImgSrc={
               isVisiblePassword ? images.showPassword : images.hiddenPassword
             }
-            isSecureText={false}
-            onChangeText={props.handleEmailChange}
+            handleInputBtnPress={handlePasswordBtnPress}
+            isSecureText={isVisiblePassword}
+            onChangeText={(val: any) => {
+              props.setPasswordDate({
+                ...props.passwordDate, password:val
+              })
+            }}
           />
         </View>
         <View style={styles.inputWrap}>
           <InputField
             placeholderText={"Confirm Password"}
             rightImgSrc={
-              isVisiblePassword ? images.showPassword : images.hiddenPassword
+              isVisiblecPassword ? images.showPassword : images.hiddenPassword
             }
-            handleInputBtnPress={handlePasswordBtnPress}
-            isSecureText={isVisiblePassword}
-            onChangeText={props.handlePasswordChange}
+            handleInputBtnPress={handlecPasswordBtnPress}
+            isSecureText={isVisiblecPassword}
+            onChangeText={(val: any) => {
+              props.setPasswordDate({
+                ...props.passwordDate, cpassword:val
+              })
+            }}
           />
         </View>
         

@@ -8,10 +8,10 @@ const styles = StyleSheet.create({
     flex: 1,
    },
   headerStyle: {
-    backgroundColor: WHITE_COLOR,
+    backgroundColor: PRIMARY_THEME_COLOR,
   },
   headerTextStyle: {
-    color: BLACK_COLOR,
+    color: WHITE_COLOR,
   },
   logoView: {
     alignItems: "center",
@@ -58,6 +58,12 @@ const styles = StyleSheet.create({
     lineHeight: normalizeHeight(25),
     color: PRIMARY_THEME_COLOR,
     fontFamily: FONT_FAMILY_SEMIBOLD,
+  },
+  wrap: {
+    flexGrow: 1,
+    marginHorizontal: normalizeSpacing(10),
+    marginVertical: normalizeSpacing(5),
+    alignItems: 'center'
   },
 });
 

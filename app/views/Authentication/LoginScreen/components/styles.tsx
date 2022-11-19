@@ -50,8 +50,10 @@ const styles = StyleSheet.create({
   },
   inputView: {
     flex: 4,
-    justifyContent: 'flex-end',
-    marginTop:normalizeSpacing(15)
+    //justifyContent: 'flex-end',
+    marginTop:normalizeSpacing(15),
+    height:normalizeHeight(375),
+    
   },
   inputWrap: {
     marginVertical: normalizeSpacing(10),
@@ -73,8 +75,8 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
     flexWrap: 'wrap',
     justifyContent: 'center',
-    marginBottom: normalizeSpacing(40),
-    marginHorizontal: normalizeSpacing(30),
+    //marginBottom: normalizeSpacing(40),
+    marginHorizontal: normalizeSpacing(10),
   },
   dontHaveView: {
     flexDirection: 'row',

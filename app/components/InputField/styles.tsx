@@ -36,9 +36,11 @@ const styles = StyleSheet.create({
     opacity: 0.6,
   },
   rightImage: {
-    height: normalizeHeight(25),
-    width: normalizeWidth(25),
+    height: normalizeHeight(20),
+    width: normalizeWidth(20),
     opacity: 1,
+    marginRight:20,
+    //backgroundColor:'red'
     
   },
   inputHeadinView: {

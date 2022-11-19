@@ -4,6 +4,7 @@ import {
   Text,
   TouchableOpacity,
   View,
+  Image
 } from "react-native";
 import React, { useState } from "react";
 import { RadioButton } from "react-native-paper";
@@ -47,7 +48,12 @@ const RegistrationView = (props: any) => {
        {/*  <Text style={styles.headingText}>{strings.basicInfoText}</Text> */}
         {/* <View style={styles.underlineStyle} /> */}
         <View style={styles.imageCircle}>
-          <Text>Image</Text>
+          {/* <Text>Image</Text> */}
+          <Image
+          style={styles.loginBanner}
+          source={images.dummyUser}
+          resizeMode="contain"
+        />
         </View>
         <View style={styles.inputWrap}>
           <InputField

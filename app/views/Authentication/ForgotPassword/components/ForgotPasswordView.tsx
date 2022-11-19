@@ -7,28 +7,34 @@ import Button from '../../../../components/Button'
 import strings from '../../../../components/utilities/Localization'
 import Header from '../../../../components/Header'
 import LogoView from '../../Logoview'
+import { ScrollView } from 'react-native-gesture-handler'
 
 const ForgotPasswordView = (props: any) => {
   return (
-    <View style={styles.mainContainer}>
+    <ScrollView style={styles.mainContainer}>
       
-       <View style={styles.logoView}>
+      <View style={styles.logoView}>
          <LogoView/>
       </View>
+      
       <View style={styles.inputView}>
-      <View style={styles.inputWrap}>
+        <View style={styles.inputWrap}>
           <InputField
             placeholderText={"Email Address"}
             rightImgSrc={images.emailIcon}
             isSecureText={false}
+            onChangeText={(val: any) => {
+              props.setEmail(val)
+            }}
           />
         </View>
-      </View>
+     
       <View style={styles.btnView}>
         <Button
             buttonText={strings.sendotp}
             handleBtnPress={props.handleOtp}
          />
+      </View>
       </View>
       <View style={styles.bottomView}>
       <Text style={styles.bottomText}>{strings.byCreating}</Text>
@@ -40,7 +46,7 @@ const ForgotPasswordView = (props: any) => {
           <Text style={styles.spanText}> {strings.privacyPolicy} </Text>
         </TouchableOpacity>
       </View>
-    </View>
+    </ScrollView>
   )
 }
 

@@ -46,8 +46,8 @@ const strings = new LocalizedStrings({
     resend: 'Resend',
     notRecived: `Didn't receive the code?`,
     codeSent: 'A verification code has been sent to',
-    your: ' your',
-    email: 'email address',
+    your: 'your email address',
+    email: '',
     otpVerification: 'OTP VERIFICATION',
     imagecontentHeader: 'Images',
     videocontentHeader: 'Videos',
@@ -97,6 +97,19 @@ const strings = new LocalizedStrings({
     deactivconfirmation: 'Are You sure you want to Deactive this',
     update: 'Update',
     call: 'Call',
+
+    //Auth 
+
+    usernamepasswordempty : 'Username and Password is require. Please enter Username and password',
+    correctemail : 'Enter correct Email Address',
+    usernamerequired : 'Username is require. Please enter username',
+    passwordrequired : 'Password is require. Please enter password',
+    emailrequired : 'Email is require. Please enter email',
+    otprequired : 'Enter your OTP',
+    passwordnotmatch : 'Password and Confirm Password not match !',
+    requiredpassword : 'Enter your Password and Confirm Password',
+
+
     // Appointment
     appointmnet: 'Appointmnet',
     appointmnetdetail: 'Appointmnet Detail',

@@ -12,7 +12,7 @@ const InputField = (props: any) => {
     multiline = false,
     inputheight = 50,
     keyboardtype = 'default',
-    topping = 0
+    topping = 2
   } = props
   const onSubmit = (e: any) => {
     const { text } = e;

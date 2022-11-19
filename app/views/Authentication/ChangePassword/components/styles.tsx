@@ -50,8 +50,9 @@ const styles = StyleSheet.create({
   },
   inputView: {
     flex: 4,
-    justifyContent: 'flex-end',
-    marginTop:normalizeSpacing(15)
+    //justifyContent: 'flex-end',
+    marginTop:normalizeSpacing(15),
+    height:normalizeHeight(375),
   },
   inputWrap: {
     marginVertical: normalizeSpacing(10),
