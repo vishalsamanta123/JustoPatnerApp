@@ -23,7 +23,7 @@ const FilterModal = (props: any) => {
       status: ''
     })
     props.setIsVisible(false)
-    props.setFilter(props.filterData)
+    props.setFilter({})
   }
   const handleFilter = () => {
     props.setFilter(props.filterData)
@@ -34,7 +34,6 @@ const FilterModal = (props: any) => {
     { label: "InActive", value: false },
 
   ];
-  const [value, setValue] = useState(null);
   const renderItem = (item: any) => {
     return (
       <View style={styles.item}>
@@ -144,7 +143,10 @@ const FilterModal = (props: any) => {
           </View>
           <View style={{ marginVertical: 20 }}>
             <View style={{ flexDirection: 'row' }}>
-              <Button width={135} buttonText={strings.reset} handleBtnPress={() => resetFilter()} />
+              <Button
+                width={135}
+                buttonText={strings.reset}
+                handleBtnPress={() => resetFilter()} />
               <Button
                 width={135}
                 handleBtnPress={() => handleFilter()}

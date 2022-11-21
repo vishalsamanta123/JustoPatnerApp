@@ -12,7 +12,7 @@ import {
 const styles = StyleSheet.create({
   headerStyle: {
     backgroundColor: PRIMARY_THEME_COLOR,
-   
+
   },
   RightFirstIconStyle: {
     tintColor: WHITE_COLOR,
@@ -110,6 +110,14 @@ const styles = StyleSheet.create({
   },
   budgetView: {
     flexDirection: 'row'
+  },
+  smallBox: {
+    width: "15%",
+    backgroundColor: WHITE_COLOR,
+    alignItems: "center",
+    justifyContent: "center",
+    marginLeft: 5,
+    borderRadius: 10
   },
   budgetInput: {
     backgroundColor: WHITE_COLOR,

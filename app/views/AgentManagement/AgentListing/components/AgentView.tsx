@@ -131,12 +131,12 @@ const AgentView = (props: any) => {
               onPressView={props.onPressView}
               setChangeStatus={props.setChangeStatus}
             />}
-            /*  onEndReached={() => {
-               if (agentData?.response?.data?.length < moreData) {
-                 props.Onreachedend(agentData?.response?.data?.length > 3 ?
-                   props.offset + 1 : 0)
-               }
-             }} */
+            onEndReached={() => {
+              if (props?.agentList?.length < props?.moreData) {
+                props.Onreachedend(props?.agentList?.length > 3 ?
+                  props.offset + 1 : 0)
+              }
+            }}
             onRefresh={() => onRefresh()}
             refreshing={loadingref}
           />

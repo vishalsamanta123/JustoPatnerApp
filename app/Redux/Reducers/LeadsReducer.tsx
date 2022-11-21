@@ -39,6 +39,7 @@ export function visitorReducer(state = initialState, action: any) {
         detail: false,
         create: false,
         loading: false,
+        list: true,
         response: action.payload,
       };
     case VISITOR_STATUSUPDATE:

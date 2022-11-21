@@ -15,11 +15,9 @@ const LeadDetailsView = (props: any) => {
   const navigation: any = useNavigation()
 
   const OnpressseheduleVisit = () => {
-
     navigation.navigate('AddAppointmentScreen')
-  
   }
-  
+
   return (
     <View style={styles.mainContainer}>
       <View
@@ -38,7 +36,9 @@ const LeadDetailsView = (props: any) => {
         headerStyle={styles.headerStyle}
       />
       <View style={styles.leadDetailsItemView}>
-        <LeadDetailsIteam />
+        <LeadDetailsIteam
+          items={props.allDetails}
+        />
       </View>
       <View style={styles.btnContainer}>
         <Button

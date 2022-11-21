@@ -9,6 +9,7 @@ import { useFocusEffect, useIsFocused } from '@react-navigation/native';
 const AgentListing = ({ navigation }: any) => {
   const isFocused = useIsFocused()
   const { response = {}, list = false } = useSelector((state: any) => state.agentData)
+  const moreData = response?.total_data || 0
   const [agentList, setAgentList] = useState([])
   const [isloading, setIsloading] = useState(false)
   const [offset, setOffset] = useState(0)
@@ -23,19 +24,19 @@ const AgentListing = ({ navigation }: any) => {
   const [changeStatus, setChangeStatus] = useState({ _id: '', status: false })
   const [type, setType] = useState(null)
   const dispatch: any = useDispatch()
-
   useFocusEffect(
     React.useCallback(() => {
       getAgentList()
       return () => { };
-    }, [navigation])
+    }, [])
   );
+
 
   const getAgentList = () => {
     setIsloading(true)
     dispatch(getAllAgentList({
       offset: 0,
-      limit: 4,
+      limit: 3,
       module_id: '',
       start_date: filterData.startdate,
       end_date: filterData.enddate,
@@ -62,7 +63,7 @@ const AgentListing = ({ navigation }: any) => {
     // }))
     // dispatch(getAllAgentList({
     //   offset: 0,
-    //   limit: 5,
+    //   limit: 3,
     //   module_id: '',
     //   start_date: '',
     //   end_date: '',
@@ -82,20 +83,20 @@ const AgentListing = ({ navigation }: any) => {
       }
     }
   }
-  // const Onreachedend = (offSet: any) => {
-  //   setOffset(offSet)
-  //   dispatch(getAllAgentList({
-  //     offset: offSet,
-  //     limit: 2,
-  //     module_id: '',
-  //     start_date: filterData.startdate,
-  //     end_date: filterData.enddate,
-  //     user_type: 2,
-  //     search_by_name: filterData.search_by_name,
-  //     search_by_location: filterData.search_by_location,
-  //     status: filterData.status,
-  //   }))
-  // };
+  const Onreachedend = (offSet: any) => {
+    setOffset(offSet)
+    dispatch(getAllAgentList({
+      offset: offSet,
+      limit: 3,
+      module_id: '',
+      start_date: filterData.startdate,
+      end_date: filterData.enddate,
+      user_type: 2,
+      search_by_name: filterData.search_by_name,
+      search_by_location: filterData.search_by_location,
+      status: filterData.status,
+    }))
+  };
   return (
     <>
       {isloading ? <Loader /> : null}
@@ -108,8 +109,9 @@ const AgentListing = ({ navigation }: any) => {
         onPressView={onPressView}
         setFilter={setFilter}
         agentList={agentList}
-        // Onreachedend={Onreachedend}
+        Onreachedend={Onreachedend}
         offset={offset}
+        moreData={moreData}
         filter={filter}
         getAgentList={getAgentList}
       />

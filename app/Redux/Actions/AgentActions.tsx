@@ -4,9 +4,7 @@ import { GET_AGENT_DETAIL, AGENT_ERROR, AGENT_LIST, AGENT_STATUSUPDATE, ADD_AGEN
 
 export const getAllAgentList = (params: any) => async (dispatch: any) => {
     try {
-        console.log('params: ', params);
         const res = await apiCall("post", apiEndPoints.AGENTLIST, params);
-        console.log('res: AGENTLIST', res);
         if (res.data.status == 200) {
             dispatch({
                 type: AGENT_LIST,
@@ -66,9 +64,7 @@ export const addAgent = (params: any) => async (dispatch: any) => {
 export const editAgent = (params: any) => async (dispatch: any) => {
     try {
         const header = { "Content-Type": "multipart/form-data", "access-control-allow-origin": "*" }
-        console.log('params: ', params);
         const res = await apiCall("post", apiEndPoints.EDIT_AGENT_, params, header);
-        console.log('res: ', res);
         if (res.data.status == 200) {
             dispatch({
                 type: EDIT_AGENT,
@@ -101,7 +97,6 @@ export const addAgentForm = (params: any) => async (dispatch: any) => {
 export const getAgentDetail = (params: any) => async (dispatch: any) => {
     try {
         const res = await apiCall("post", apiEndPoints.GET_AGENT_DETAIL_, params);
-        console.log('res: GET_AGENT_DETAIL_', res);
         if (res.data.status === 200) {
             dispatch({
                 type: GET_AGENT_DETAIL,

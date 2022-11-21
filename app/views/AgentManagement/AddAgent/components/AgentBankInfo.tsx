@@ -26,10 +26,10 @@ const AgentBankInfo = ({ navigation, route }: any) => {
   const { response = {} } = useSelector((state: any) => state.addAgentForm)
   const formFiledData = useSelector((state: any) => state.agentData) || null
   const [agentInfoData, setAgentInfoData] = useState({ ...response })
-  console.log('agentInfoData: ', agentInfoData);
   const [formFilledDone, setFormFilledDone] = useState(null)
+
   useEffect(() => {
-    if (formFilledDone != null) {
+    if (formFiledData?.create || formFiledData?.edit) {
       if (formFiledData?.response?.status === 200) {
         navigation.navigate('AgentListing')
         setIsloading(false)
