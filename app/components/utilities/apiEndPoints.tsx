@@ -13,6 +13,11 @@ export default {
   EDITUSER: "/auth/editUserProfile",
   USERSTATUSUPDATE: "/userManage/userStatusUpdate",
 
+  // CREATE CHANNEL PARTNER
+  CREATECHANNELPARTNER: '/channelPartner/createChannelPartner',
+  CHECKEMAILMOBILE: '/auth/checkEmailMobile',
+  
+
   // MASTER START
   ADDMASTERLIST: "/master/getMasterList",
   CREATEMASTER: "/master/createMaster",

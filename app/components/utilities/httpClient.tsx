@@ -52,7 +52,7 @@ export async function apiCall(
     }
     // console.log("Error config", error.config);
     // console.log("errorresponse", error.response);
-    return false;
+    return error;
   }
 }
 

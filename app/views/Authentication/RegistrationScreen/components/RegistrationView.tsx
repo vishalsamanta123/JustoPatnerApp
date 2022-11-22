@@ -13,6 +13,7 @@ import strings from "../../../../components/utilities/Localization";
 import styles from "./styles";
 import {
   BLACK_COLOR,
+  GRAY_COLOR,
   PRIMARY_THEME_COLOR,
   WHITE_COLOR,
 } from "../../../../components/utilities/constant";
@@ -21,10 +22,15 @@ import InputField from "../../../../components/InputField";
 import images from "../../../../assets/images";
 import Button from "../../../../components/Button";
 import { normalizeSpacing } from "app/components/scaleFontSize";
+import PicturePickerModal from "app/components/Modals/PicturePicker";
+import InputCalender from "app/components/InputCalender";
+import moment from "moment";
 
 const RegistrationView = (props: any) => {
   const insets = useSafeAreaInsets();
   const [gender, setGender] = useState("Male");
+  const [profile, setProfile] = useState(false);
+  const [profileData, setProfileData] = useState('');
   const [checked, setChecked] = React.useState("first");
 
   return (
@@ -42,27 +48,46 @@ const RegistrationView = (props: any) => {
         headerTextStyle={styles.headerTextStyle}
         leftImageSrc={images.backArrow}
         handleOnLeftIconPress={props.onPressBack}
-        leftImageIconStyle={{tintColor: WHITE_COLOR}}
+        leftImageIconStyle={{ tintColor: WHITE_COLOR }}
       />
       <ScrollView contentContainerStyle={styles.wrap}>
-       {/*  <Text style={styles.headingText}>{strings.basicInfoText}</Text> */}
+        {/*  <Text style={styles.headingText}>{strings.basicInfoText}</Text> */}
         {/* <View style={styles.underlineStyle} /> */}
-        <View style={styles.imageCircle}>
-          {/* <Text>Image</Text> */}
-          <Image
-          style={styles.loginBanner}
-          source={images.dummyUser}
-          resizeMode="contain"
-        />
-        </View>
+        {!profileData ?
+          <TouchableOpacity
+            onPress={() => setProfile(true)}
+            style={[styles.imageCircle, { backgroundColor: GRAY_COLOR }]}
+          >
+            <Image
+              style={styles.DummyloginBanner}
+              source={images.user}
+              resizeMode="contain"
+            />
+            <View style={styles.editView}>
+              <Image
+                style={styles.editImage}
+                source={images.edit}
+                resizeMode="contain"
+              />
+            </View>
+          </TouchableOpacity>
+          :
+          <View style={styles.imageCircle}>
+            <Image
+              style={styles.loginBanner}
+              source={images.dummyUser}
+              resizeMode="contain"
+            />
+          </View>
+        }
         <View style={styles.inputWrap}>
           <InputField
             placeholderText={"Name"}
-            handleInputBtnPress={() => {}}
+            handleInputBtnPress={() => { }}
             headingText={"Owner Name"}
             onChangeText={(val: any) => {
               props.setResgistrationData({
-                ...props.resgistrationData, ownerName: val
+                ...props.resgistrationData, owner_name: val
               })
             }}
           />
@@ -70,12 +95,12 @@ const RegistrationView = (props: any) => {
         <View style={styles.inputWrap}>
           <InputField
             placeholderText={"Adhar No."}
-            handleInputBtnPress={() => {}}
+            handleInputBtnPress={() => { }}
             headingText={"Adhar No."}
             keyboardtype={'number-pad'}
             onChangeText={(val: any) => {
               props.setResgistrationData({
-                ...props.resgistrationData, adharno: val
+                ...props.resgistrationData, adhar_no: val
               })
             }}
           />
@@ -83,12 +108,12 @@ const RegistrationView = (props: any) => {
         <View style={styles.inputWrap}>
           <InputField
             placeholderText={"Pancard No."}
-            handleInputBtnPress={() => {}}
+            handleInputBtnPress={() => { }}
             headingText={"Pancard No."}
             keyboardtype={'number-pad'}
             onChangeText={(val: any) => {
               props.setResgistrationData({
-                ...props.resgistrationData, pancardno: val
+                ...props.resgistrationData, pancard_no: val
               })
             }}
           />
@@ -111,7 +136,7 @@ const RegistrationView = (props: any) => {
                 styles.radioTxt,
                 {
                   color:
-                  props.resgistrationData.gender === "male" ? PRIMARY_THEME_COLOR : BLACK_COLOR,
+                    props.resgistrationData.gender === "male" ? PRIMARY_THEME_COLOR : BLACK_COLOR,
                 },
               ]}
             >
@@ -134,7 +159,7 @@ const RegistrationView = (props: any) => {
                 styles.radioTxt,
                 {
                   color:
-                  props.resgistrationData.gender === "female" ? PRIMARY_THEME_COLOR : BLACK_COLOR,
+                    props.resgistrationData.gender === "female" ? PRIMARY_THEME_COLOR : BLACK_COLOR,
                 },
               ]}
             >
@@ -143,40 +168,61 @@ const RegistrationView = (props: any) => {
           </View>
         </View>
         <View style={styles.inputWrap}>
-          <InputField
+          {/* <InputField
             placeholderText={"Date of Birth"}
-            handleInputBtnPress={() => {}}
+            handleInputBtnPress={() => { }}
             headingText={"Date of Birth"}
             rightImgSrc={images.event}
             onChangeText={(val: any) => {
               props.setResgistrationData({
-                ...props.resgistrationData, dob: val
+                ...props.resgistrationData, date_of_birth: val
               })
             }}
+          /> */}
+          <InputCalender
+            placeholderText={"Date of Birth"}//can edit
+            editable={false}
+            // onChangeText={() => { }}
+            dateData={(data: any) => {
+              props.setResgistrationData({
+                ...props.resgistrationData,
+                date_of_birth: moment(data).format()
+              })
+            }}
+            setDateshow={(data: any) => {
+              props.setResgistrationData({
+                ...props.resgistrationData,
+                date_of_birth: moment(data).format()
+              })
+            }}
+            value={moment(props?.resgistrationData?.date_of_birth).format('DD / MM / YY')}
           />
         </View>
         <View style={styles.inputWrap}>
           <InputField
             placeholderText={"Mobile No."}
-            handleInputBtnPress={() => {}}
+            handleInputBtnPress={() => { }}
             headingText={"Mobile No."}
             keyboardtype={'number-pad'}
             onChangeText={(val: any) => {
               props.setResgistrationData({
-                ...props.resgistrationData, mobileno: val
+                ...props.resgistrationData, primary_mobile: val
               })
+            }}
+            onBlur={(val: any) => {
+              props.handleCheckEmailMobile(1)
             }}
           />
         </View>
         <View style={styles.inputWrap}>
           <InputField
             placeholderText={"WhatsApp No."}
-            handleInputBtnPress={() => {}}
+            handleInputBtnPress={() => { }}
             headingText={"WhatsApp No."}
             keyboardtype={'number-pad'}
             onChangeText={(val: any) => {
               props.setResgistrationData({
-                ...props.resgistrationData, whatsappno: val
+                ...props.resgistrationData, whatsapp_number: val
               })
             }}
           />
@@ -184,12 +230,15 @@ const RegistrationView = (props: any) => {
         <View style={styles.inputWrap}>
           <InputField
             placeholderText={"Email Address"}
-            handleInputBtnPress={() => {}}
+            handleInputBtnPress={() => { }}
             headingText={"Email Address"}
             onChangeText={(val: any) => {
               props.setResgistrationData({
                 ...props.resgistrationData, email: val
               })
+            }}
+            onBlur={(val: any) => {
+              props.handleCheckEmailMobile()
             }}
           />
         </View>
@@ -201,9 +250,18 @@ const RegistrationView = (props: any) => {
             <Text style={styles.addTxt}>+ Add location</Text>
           </TouchableOpacity>
         </View>
-        <View style={{marginVertical: normalizeSpacing(20)}}>
+        <View style={{ marginVertical: normalizeSpacing(20) }}>
           <Button handleBtnPress={props.onPressNext} rightImage={images.forwardArrow} buttonText={strings.next} textTransform={"uppercase"} />
         </View>
+        <PicturePickerModal
+          Visible={profile}
+          setVisible={setProfile}
+          imageData={(data: any) => {
+            props.setResgistrationData({
+              ...props.resgistrationData, profile_picture: data
+            })
+          }}
+        />
       </ScrollView>
     </View>
   );
