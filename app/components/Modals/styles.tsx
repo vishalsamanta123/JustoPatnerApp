@@ -97,7 +97,7 @@ const styles = StyleSheet.create({
   },
   selectedTextStyle: {
     fontSize: 16,
-    color: GRAY_LIGHT_COLOR
+    color: GRAY_LIGHT_COLOR,
   },
   iconStyle: {
     width: 20,

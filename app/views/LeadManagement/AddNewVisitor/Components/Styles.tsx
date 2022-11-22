@@ -17,9 +17,6 @@ const styles = StyleSheet.create({
   RightFirstIconStyle: {
     tintColor: WHITE_COLOR,
   },
-  headerTextStyle: {
-    color: BLACK_COLOR,
-  },
   mainContainer: {
     flex: 1,
   },

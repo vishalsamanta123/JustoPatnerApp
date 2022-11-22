@@ -23,7 +23,8 @@ export function visitorReducer(state = initialState, action: any) {
       return {
         ...state,
         detail: false,
-        create: true,
+        create: false,
+        edit: true,
         response: null,
       };
     case GET_VISITOR_DETAIL:

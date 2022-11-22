@@ -20,7 +20,7 @@ const LeadManagementItem = (props: any) => {
         </View>
         <View style={styles.nameContainer}>
           <Text style={styles.nameTxt}>{
-            props?.items.last_name === null ? props.items.first_name : props.items.first_name + " " + props.items.last_name}</Text>
+            props?.items.first_name === null ? '' : props.items.first_name}</Text>
         </View>
       </View>
       <View style={styles.Txtview}>

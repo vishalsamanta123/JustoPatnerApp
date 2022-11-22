@@ -17,17 +17,18 @@ const LeadManagementScreen = ({ navigation }: any) => {
     search_configuration: '',
     visit_score: ''
   })
-  const [visitorList, setVisiitorList] = useState([])
+  const [visitorList, setVisiitorList] = useState<any>([])
+  console.log('visitorList: ', visitorList.length);
   const [isloading, setIsloading] = useState(false)
   const [offSET, setOffset] = useState(0)
 
   useFocusEffect(
     React.useCallback(() => {
-      getVisitorsList(offSET)
+      getVisitorsList(offSET, [])
       return () => { };
     }, [navigation])
   );
-  const getVisitorsList = (offset: any) => {
+  const getVisitorsList = (offset: any, array: any) => {
     setIsloading(true)
     setOffset(offset)
     dispatch(getAllLeadsList({
@@ -39,12 +40,16 @@ const LeadManagementScreen = ({ navigation }: any) => {
       search_configuration: filterData.search_configuration,
       visit_score: filterData.visit_score
     }))
-    toGetDatas()
+    toGetDatas(array)
   }
-  const toGetDatas = () => {
+  const toGetDatas = (array: any) => {
     if (list) {
       setIsloading(false)
-      setVisiitorList(response?.data)
+      if (offSET === 0) {
+        setVisiitorList(response?.data)
+      } else {
+        setVisiitorList([...array, ...response?.data])
+      }
     }
   }
   const handleDrawerPress = () => {
@@ -78,6 +83,7 @@ const LeadManagementScreen = ({ navigation }: any) => {
         handleBulkUploadPress={handleBulkUploadPress}
         handleAddNewPress={handleAddNewPress}
         visitorList={visitorList}
+        setVisiitorList={setVisiitorList}
         moreData={moreData}
         setFilterData={setFilterData}
         filterData={filterData}

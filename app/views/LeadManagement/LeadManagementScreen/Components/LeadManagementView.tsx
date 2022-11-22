@@ -70,7 +70,7 @@ const LeadManagementView = (props: any) => {
       search_by_location: '',
       status: ''
     })
-    props.getVisitorsList(0)
+    props.getVisitorsList(0, [])
     // props.setFilter({})
   }
   return (
@@ -118,8 +118,9 @@ const LeadManagementView = (props: any) => {
             onPressEdit={onPressEdit} />}
           onEndReached={() => {
             if (props?.visitorList?.length < props?.moreData) {
+              console.log("ONREACH")
               props.getVisitorsList(props?.visitorList?.length > 3 ?
-                props.offSET + 1 : 0)
+                props.offSET + 1 : 0, props.visitorList)
             }
           }}
           onRefresh={() => onRefresh()}
