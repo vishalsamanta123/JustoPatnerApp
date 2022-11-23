@@ -36,7 +36,7 @@ const LoginScreen = ({ navigation }: any) => {
         } else {
           
           ErrorMessage({
-            msg: loginSelector.response.message,
+            msg: loginSelector?.response?.message,
             backgroundColor: RED_COLOR
           })
         }
@@ -47,7 +47,7 @@ const LoginScreen = ({ navigation }: any) => {
          navigation.navigate('DashboardScreenView');
         }else{
           ErrorMessage({
-            msg: loginSelector.response.message,
+            msg: loginSelector?.response?.message,
             backgroundColor: RED_COLOR
           })
 
@@ -109,7 +109,7 @@ const LoginScreen = ({ navigation }: any) => {
   };
   return (
     <>
-      {isloading ? <Loader /> : null}
+      {/* {isloading ? <Loader /> : null} */}
       <LoginView
         validEmail={validEmail}
         handleLoginPress={handleLoginPress}

@@ -42,6 +42,7 @@ const InputField = (props: any) => {
           keyboardType={keyboardtype}
           value={props.valueshow}
           maxLength={props.maxLength}
+          onBlur={props.onBlur}
         />
         <TouchableOpacity
           onPress={props.handleInputBtnPress}

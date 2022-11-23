@@ -41,7 +41,7 @@ const InputCalender = (props: any) => {
             width: inputWidth,
             height: normalizeHeight(inputheight),
             textAlignVertical: 'top',
-            color:BLACK_COLOR
+            color: BLACK_COLOR
           }]}
           onChangeText={val => props.onChangeText(val)}
           onSubmitEditing={onSubmit}
