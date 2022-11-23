@@ -5,6 +5,11 @@ const initialState = {
   detail: false,
   create: false,
 };
+const initiallistState = {
+  response: null,
+  detail: false,
+  create: false,
+};
 const initialStateForm = {
   response: null,
   update: false,
@@ -17,7 +22,8 @@ export function visitorReducer(state = initialState, action: any) {
         ...state,
         detail: false,
         create: true,
-        response: null,
+        loading: false,
+        response: action.payload,
       };
     case EDIT_VISITOR:
       return {
@@ -25,15 +31,42 @@ export function visitorReducer(state = initialState, action: any) {
         detail: false,
         create: false,
         edit: true,
-        response: null,
+        loading: false,
+        response: action.payload,
       };
     case GET_VISITOR_DETAIL:
       return {
         ...state,
         create: false,
         detail: true,
+        loading: false,
         response: action.payload,
       };
+  /*   case VISITOR_LIST:
+      return {
+        ...state,
+        detail: false,
+        create: false,
+        loading: false,
+        list: true,
+        response: action.payload,
+      }; */
+    case VISITOR_STATUSUPDATE:
+      return {
+        ...state,
+        detail: false,
+        create: true,
+        loading: false,
+        response: action.payload,
+      };
+    default:
+      return state;
+  }
+}
+
+export function visitorListReducer(state = initiallistState, action: any) {
+  switch (action.type) {
+   
     case VISITOR_LIST:
       return {
         ...state,
@@ -43,17 +76,12 @@ export function visitorReducer(state = initialState, action: any) {
         list: true,
         response: action.payload,
       };
-    case VISITOR_STATUSUPDATE:
-      return {
-        ...state,
-        detail: false,
-        create: true,
-        response: action.payload,
-      };
+    
     default:
       return state;
   }
 }
+
 
 export function addVisitorReducer(state = initialStateForm, action: any) {
   switch (action.type) {
@@ -62,6 +90,19 @@ export function addVisitorReducer(state = initialStateForm, action: any) {
         ...state,
         update: false,
         response: action.payload,
+      };
+    case EDIT_VISITOR:
+      return {
+        ...state,
+        update: false,
+        response: null,
+      };
+    case ADD_VISITOR:
+      return {
+        ...state,
+        detail: false,
+        create: true,
+        response: null,
       };
     default:
       return state;

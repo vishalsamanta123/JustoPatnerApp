@@ -28,7 +28,6 @@ export async function apiCall(
       headers: header,
       // withCredentials: false,
     });
-    // console.log('response: ', response);
     if (response.status === 200) {
       return response;
     }

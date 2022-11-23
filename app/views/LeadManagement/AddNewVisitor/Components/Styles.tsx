@@ -72,6 +72,13 @@ const styles = StyleSheet.create({
   },
   radioTxt: {
     fontSize: normalize(15),
+    color: BLACK_COLOR
+  },
+  smallCont: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    marginBottom: normalizeSpacing(8),
+    marginLeft: normalizeSpacing(6)
   },
   workingView: {
     width: '100%',
@@ -106,7 +113,7 @@ const styles = StyleSheet.create({
     marginTop: normalizeSpacing(20)
   },
   budgetView: {
-    flexDirection: 'row'
+    flexDirection: 'row',
   },
   smallBox: {
     width: "15%",

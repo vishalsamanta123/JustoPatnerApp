@@ -45,9 +45,11 @@ export const statusUpdate = (params: any) => async (dispatch: any) => {
     }
 };
 export const addVisitor = (params: any) => async (dispatch: any) => {
+    console.log('params: ', params);
     try {
-        const header = { "Content-Type": "multipart/form-data", "access-control-allow-origin": "*" }
-        const res = await apiCall("post", apiEndPoints.ADD_VISITOR_, params, header);
+        // const header = { "Content-Type": "multipart/form-data", "access-control-allow-origin": "*" }
+        const res = await apiCall("post", apiEndPoints.ADD_VISITOR_, params);
+        //console.log('res======: ', res);
         if (res.data.status == 200) {
             dispatch({
                 type: ADD_VISITOR,
@@ -57,6 +59,8 @@ export const addVisitor = (params: any) => async (dispatch: any) => {
             return [];
         }
     } catch (e) {
+
+        console.log('hhhhhhhhhh',e)
         dispatch({
             type: VISITOR_ERROR,
             payload: console.log(e),
@@ -65,7 +69,9 @@ export const addVisitor = (params: any) => async (dispatch: any) => {
 };
 export const editVisitor = (params: any) => async (dispatch: any) => {
     try {
+        console.log('params: ', params);
         const res = await apiCall("post", apiEndPoints.EDIT_VISITOR_, params);
+        //console.log('res: ', res);
         if (res.data.status == 200) {
             dispatch({
                 type: EDIT_VISITOR,
@@ -75,6 +81,7 @@ export const editVisitor = (params: any) => async (dispatch: any) => {
             return [];
         }
     } catch (e) {
+        console.log('hhh',e)
         dispatch({
             type: VISITOR_ERROR,
             payload: console.log(e),

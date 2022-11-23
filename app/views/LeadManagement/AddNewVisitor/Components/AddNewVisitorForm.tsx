@@ -13,6 +13,8 @@ import Button from '../../../../components/Button';
 import moment from 'moment';
 import InputCalender from 'app/components/InputCalender';
 import { Dropdown } from 'react-native-element-dropdown';
+import { normalize, normalizeSpacing } from 'app/components/scaleFontSize';
+import DropdownInput from 'app/components/DropDown';
 
 const AddNewVisitorForm = (props: any) => {
     const insets = useSafeAreaInsets();
@@ -42,6 +44,74 @@ const AddNewVisitorForm = (props: any) => {
             <ScrollView>
                 <View style={styles.wrap}>
                     <Text style={styles.headingText}>{strings.visitordetails}</Text>
+                    <View style={[styles.inputWrap]}>
+                        <DropdownInput
+                            headingText={'Property'}
+                            placeholder={props.formData?.property_title ?
+                                props.formData?.property_title : 'Property'}
+                            data={props?.allProperty}
+                            disable={props.type == 'edit' ? true : false}
+                            inputWidth={'100%'}
+                            paddingLeft={16}
+                            maxHeight={300}
+                            onFocus={() => props.handleProperty()}
+                            labelField="property_title"
+                            valueField={'_id'}
+                            value={props?.formData?.property_id}
+                            onChange={(item: any) => {
+                            console.log('item: ', item);
+                                props.setFormData({
+                                    ...props.formData,
+                                    property_id: item.property_id,
+                                    property_type_title: item.property_type,
+                                    property_title: item.property_title,
+                                })
+                            }}
+                            newRenderItem={(item: any) => {
+                                return (
+                                    <>
+                                        {props?.isloading === false &&
+                                            <View style={Styles.item}>
+                                                <Text style={Styles.textItem}>{item.property_title}</Text>
+                                            </View>
+                                        }
+                                    </>
+                                );
+                            }}
+                        />
+                    </View>
+                    {/* <View style={[styles.inputWrap, { width: '100%' }]}>
+                        <DropdownInput
+                            headingText={'Propert Type'}
+                            placeholder={props.formData?.property_type_title ?
+                                props.formData?.property_type_title : 'Propert Type'}
+                            inputWidth={'100%'}
+                            disable={true}
+                            paddingLeft={16}
+                            maxHeight={300}
+                            labelField="title"
+                            valueField={'_id'}
+                            value={props?.formData?.property_id}
+                            onChange={(item: any) => {
+                                props.setFormData({
+                                    ...props.formData,
+                                    property_id: item._id,
+                                    property_type_title: item.title
+                                })
+                            }}
+                            newRenderItem={(item: any) => {
+                                return (
+                                    <>
+                                        {props?.isloading === false &&
+                                            <View style={Styles.item}>
+                                                <Text style={Styles.textItem}>{item.title}</Text>
+                                            </View>
+                                        }
+                                    </>
+                                );
+                            }}
+                        />
+                    </View> */}
                     <View style={styles.inputWrap}>
                         <InputField
                             placeholderText={"Visitor Name"}
@@ -68,6 +138,7 @@ const AddNewVisitorForm = (props: any) => {
                             }}
                             valueshow={props?.formData?.adhar_no?.toString()}
                             headingText={"Adhar No."}
+                            keyboardtype={'number-pad'}
                         />
                     </View>
                     <View style={styles.inputWrap}>
@@ -88,7 +159,7 @@ const AddNewVisitorForm = (props: any) => {
                         <Text style={styles.genderTxt}>{strings.gender}</Text>
                         <View style={styles.radioView}>
                             <RadioButton
-                                value="first"
+                                value="1"
                                 status={props?.formData?.gender === 1 ? "checked" : "unchecked"}
                                 onPress={() => props.setFormData({
                                     ...props.formData,
@@ -110,7 +181,7 @@ const AddNewVisitorForm = (props: any) => {
                         </View>
                         <View style={styles.radioView}>
                             <RadioButton
-                                value="second"
+                                value="2"
                                 status={props?.formData?.gender === 2 ? "checked" : "unchecked"}
                                 onPress={() => props.setFormData({
                                     ...props.formData,
@@ -163,6 +234,7 @@ const AddNewVisitorForm = (props: any) => {
                             }}
                             valueshow={props?.formData?.mobile}
                             headingText={"Mobile No."}
+                            keyboardtype={'number-pad'}
                         />
                     </View>
                     <View style={styles.inputWrap}>
@@ -177,6 +249,7 @@ const AddNewVisitorForm = (props: any) => {
                             }}
                             valueshow={props?.formData?.whatsapp_no}
                             headingText={"WhatsApp No."}
+                            keyboardtype={'number-pad'}
                         />
                     </View>
                     <View style={styles.inputWrap}>
@@ -222,61 +295,35 @@ const AddNewVisitorForm = (props: any) => {
                         />
                     </View>
                     <Text style={[styles.headingText, { marginTop: 20 }]}>{strings.propertyrequire}</Text>
-                    <View style={[styles.inputWrap, { width: '100%' }]}>
-                        <Dropdown
-                            style={Styles.dropdown}
-                            placeholderStyle={Styles.placeholderStyle}
-                            selectedTextStyle={Styles.selectedTextStyle}
-                            iconStyle={Styles.iconStyle}
+                    <View style={[styles.inputWrap]}>
+                        <DropdownInput
+                            headingText={'Configuration'}
+                            placeholder={props.formData?.configuration ?
+                                props.formData?.configuration : 'Configuration'}
                             data={props?.masterDatas}
+                            inputWidth={'100%'}
+                            paddingLeft={16}
                             maxHeight={300}
                             onFocus={() => props.handleMasterDatas(2)}
-                            labelField="title"
+                            labelField={"title"}
                             valueField={'_id'}
-                            placeholder="Configuration"
                             value={props?.formData?.configuration_id}
-                            onChange={(item) => {
+                            onChange={(item: any) => {
                                 props.setFormData({
                                     ...props.formData,
                                     configuration_id: item._id,
                                     configuration: item.title
                                 })
                             }}
-                            renderItem={(item: any) => {
+                            newRenderItem={(item: any) => {
                                 return (
-                                    <View style={Styles.item}>
-                                        <Text style={Styles.textItem}>{item.title}</Text>
-                                    </View>
-                                );
-                            }}
-                        />
-                    </View>
-                    <View style={[styles.inputWrap, { width: '100%' }]}>
-                        <Dropdown
-                            style={Styles.dropdown}
-                            placeholderStyle={Styles.placeholderStyle}
-                            selectedTextStyle={Styles.selectedTextStyle}
-                            iconStyle={Styles.iconStyle}
-                            data={props?.masterDatas}
-                            onFocus={() => props.handleMasterDatas(1)}
-                            maxHeight={300}
-                            labelField="title"
-                            valueField={'_id'}
-                            placeholder="Propert Type"
-                            value={props?.formData?.property_id}
-                            onChange={(item) => {
-                                props.setFormData({
-                                    ...props.formData,
-                                    property_id: item._id,
-                                    configuration: item.title
-                                })
-                            }}
-                            renderItem={(item: any) => {
-                                console.log('item: ', item);
-                                return (
-                                    <View style={Styles.item}>
-                                        <Text style={Styles.textItem}>{item.title}</Text>
-                                    </View>
+                                    <>
+                                        {props?.isloading === false &&
+                                            <View style={Styles.item}>
+                                                <Text style={Styles.textItem}>{item.title}</Text>
+                                            </View>
+                                        }
+                                    </>
                                 );
                             }}
                         />
@@ -308,26 +355,55 @@ const AddNewVisitorForm = (props: any) => {
                             onChangeText={(data: any) => {
                                 props.setFormData({
                                     ...props.formData,
-                                    area: data,
+                                    areain_sqlft: data,
                                 })
                             }}
-                            valueshow={props?.formData?.area}
+                            valueshow={props?.formData?.areain_sqlft}
                             headingText={"Area"}
+                            keyboardtype={'number-pad'}
+                        // keyboardtype={'phone-pad'}
                         />
                     </View>
-                    <View style={[styles.inputWrap, { flexDirection: "row" }]}>
+                    <View style={[styles.inputWrap, {}]}>
+                        <View style={styles.smallCont}>
+                            <Text style={[styles.headingsTxt, { width: '50%' }]}>Min Budget</Text>
+                            <Text style={[styles.headingsTxt, { width: '50%' }]}>Max Budget</Text>
+                        </View>
                         <View style={styles.budgetView}>
                             <TextInput
                                 value={props?.formData?.min_budget}
+                                onChangeText={(data: any) => {
+                                    props.setFormData({
+                                        ...props.formData,
+                                        min_budget: data
+                                    })
+                                }}
                                 placeholder='Min Budget' style={styles.budgetInput} />
-                            <TouchableOpacity style={styles.smallBox}>
-                                <Text>L</Text>
+                            <TouchableOpacity
+                                onPress={() => props.setFormData({
+                                    ...props.formData,
+                                    min_budget_type: props?.formData?.min_budget_type === 'C' ? "L" : "C",
+                                })}
+                                style={styles.smallBox}>
+                                <Text>{props?.formData?.min_budget_type}</Text>
                             </TouchableOpacity>
                             <TextInput
                                 value={props?.formData?.max_budget}
-                                placeholder='Max Budget' style={[styles.budgetInput, { marginLeft: 20 }]} />
-                            <TouchableOpacity style={styles.smallBox}>
-                                <Text>C</Text>
+                                onChangeText={(data: any) => {
+                                    props.setFormData({
+                                        ...props.formData,
+                                        max_budget: data
+                                    })
+                                }}
+                                placeholder='Max Budget'
+                                style={[styles.budgetInput, { marginLeft: 20 }]} />
+                            <TouchableOpacity
+                                onPress={() => props.setFormData({
+                                    ...props.formData,
+                                    max_budget_type: props?.formData?.max_budget_type === 'C' ? "L" : "C",
+                                })}
+                                style={styles.smallBox}>
+                                <Text>{props?.formData?.max_budget_type}</Text>
                             </TouchableOpacity>
                         </View>
                     </View>
@@ -336,7 +412,7 @@ const AddNewVisitorForm = (props: any) => {
                         <View style={{ flexDirection: "row" }}>
                             <View style={styles.radioView}>
                                 <RadioButton
-                                    value="first"
+                                    value="loan"
                                     status={props?.formData?.funding_type === "loan" ? "checked" : "unchecked"}
                                     onPress={() => props.setFormData({
                                         ...props.formData,
@@ -358,7 +434,7 @@ const AddNewVisitorForm = (props: any) => {
                             </View>
                             <View style={styles.radioView}>
                                 <RadioButton
-                                    value="second"
+                                    value="self"
                                     status={props?.formData?.funding_type === "self" ? "checked" : "unchecked"}
                                     onPress={() => props.setFormData({
                                         ...props.formData,
@@ -380,7 +456,7 @@ const AddNewVisitorForm = (props: any) => {
                             </View>
                             <View style={styles.radioView}>
                                 <RadioButton
-                                    value="third"
+                                    value="both"
                                     status={props?.formData?.funding_type === "both" ? "checked" : "unchecked"}
                                     onPress={() => props.setFormData({
                                         ...props.formData,
@@ -402,50 +478,48 @@ const AddNewVisitorForm = (props: any) => {
                             </View>
                         </View>
                     </View>
-                    <View style={{ flexDirection: 'row', width: '100%' }}>
-                        <View style={styles.radioView}>
-                            <RadioButton
-                                value="first"
-                                status={props?.formData?.funding_emi_type === 1 ? "checked" : "unchecked"}
-                                onPress={() => props.setFormData({
-                                    ...props.formData,
-                                    funding_emi_type: 1,
-                                })}
-                                color={PRIMARY_THEME_COLOR}
-                            />
-                            <Text
-                                style={[
-                                    styles.radioTxt,
-                                    {
-                                        color:
-                                            props?.formData?.funding_emi_type === 1 ? PRIMARY_THEME_COLOR : BLACK_COLOR,
-                                    },
-                                ]}
-                            >
-                                Min EMI Pay
-                            </Text>
+                    <View style={[styles.inputWrap, { marginTop: 0 }]}>
+                        <View style={styles.smallCont}>
+                            <Text style={[styles.headingsTxt, { width: '50%' }]}>Min EMI Pay</Text>
+                            <Text style={[styles.headingsTxt, { width: '50%' }]}> Max EMI Pay </Text>
                         </View>
-                        <View style={styles.radioView}>
-                            <RadioButton
-                                value="second"
-                                status={props?.formData?.funding_emi_type === 2 ? "checked" : "unchecked"}
+                        <View style={styles.budgetView}>
+                            <TextInput
+                                value={props?.formData?.min_emi_budget}
+                                onChangeText={(data: any) => {
+                                    props.setFormData({
+                                        ...props.formData,
+                                        min_emi_budget: data
+                                    })
+                                }}
+                                placeholder='Min EMI Pay' style={styles.budgetInput} />
+                            <TouchableOpacity
                                 onPress={() => props.setFormData({
                                     ...props.formData,
-                                    funding_emi_type: 2,
+                                    min_emi_budget_type: props?.formData?.min_emi_budget_type === 'C' ? "L" : "C",
                                 })}
-                                color={PRIMARY_THEME_COLOR}
+                                style={styles.smallBox}>
+                                <Text>{props?.formData?.min_emi_budget_type}</Text>
+                            </TouchableOpacity>
+                            <TextInput
+                                value={props?.formData?.max_emi_budget}
+                                onChangeText={(data: any) => {
+                                    props.setFormData({
+                                        ...props.formData,
+                                        max_emi_budget: data
+                                    })
+                                }}
+                                placeholder='Max EMI Pay'
+                                style={[styles.budgetInput, { marginLeft: 20 }]}
                             />
-                            <Text
-                                style={[
-                                    styles.radioTxt,
-                                    {
-                                        color:
-                                            props?.formData?.funding_emi_type === 2 ? PRIMARY_THEME_COLOR : BLACK_COLOR,
-                                    },
-                                ]}
-                            >
-                                Max EMI Pay
-                            </Text>
+                            <TouchableOpacity
+                                onPress={() => props.setFormData({
+                                    ...props.formData,
+                                    max_emi_budget_type: props?.formData?.max_emi_budget_type === 'C' ? "L" : "C",
+                                })}
+                                style={styles.smallBox}>
+                                <Text>{props?.formData?.max_emi_budget_type}</Text>
+                            </TouchableOpacity>
                         </View>
                     </View>
                     <View style={styles.radioBtnView}>
@@ -453,7 +527,7 @@ const AddNewVisitorForm = (props: any) => {
                         <View style={{ flexDirection: "row" }}>
                             <View style={styles.radioView}>
                                 <RadioButton
-                                    value="first"
+                                    value="end user"
                                     status={props?.formData?.purpose === "end user" ? "checked" : "unchecked"}
                                     onPress={() => props.setFormData({
                                         ...props.formData,
@@ -475,7 +549,7 @@ const AddNewVisitorForm = (props: any) => {
                             </View>
                             <View style={styles.radioView}>
                                 <RadioButton
-                                    value="second"
+                                    value="invest"
                                     status={props?.formData?.purpose === "invest" ? "checked" : "unchecked"}
                                     onPress={() => props.setFormData({
                                         ...props.formData,
@@ -503,7 +577,7 @@ const AddNewVisitorForm = (props: any) => {
                         <View style={{ flexDirection: "row", width: '100%' }}>
                             <View style={styles.radioView}>
                                 <RadioButton
-                                    value="first"
+                                    value="salaried"
                                     status={props?.formData?.occupation === "salaried" ? "checked" : "unchecked"}
                                     onPress={() => props.setFormData({
                                         ...props.formData,
@@ -525,7 +599,7 @@ const AddNewVisitorForm = (props: any) => {
                             </View>
                             <View style={styles.radioView}>
                                 <RadioButton
-                                    value="second"
+                                    value="self employee"
                                     status={props?.formData?.occupation === "self employee" ? "checked" : "unchecked"}
                                     onPress={() => props.setFormData({
                                         ...props.formData,
@@ -547,7 +621,7 @@ const AddNewVisitorForm = (props: any) => {
                             </View>
                             <View style={styles.radioView}>
                                 <RadioButton
-                                    value="third"
+                                    value="professional"
                                     status={props?.formData?.occupation === "professional" ? "checked" : "unchecked"}
                                     onPress={() => props.setFormData({
                                         ...props.formData,

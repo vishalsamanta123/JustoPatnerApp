@@ -44,8 +44,8 @@ const LeadManagementItem = (props: any) => {
           <Text style={styles.projectTxt}>Last Interested :</Text>
         </View>
         <View style={styles.nameContainer}>
-          <Text style={styles.nameTxt}>" "
-            {/* {moment(props.items.expected_possession_date).format('llll')} */}
+          <Text style={styles.nameTxt}>
+            {moment(props.items.last_interacted_date).format('llll')}
           </Text>
         </View>
       </View>

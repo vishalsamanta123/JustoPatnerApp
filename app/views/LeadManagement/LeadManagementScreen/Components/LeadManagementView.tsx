@@ -57,7 +57,8 @@ const LeadManagementView = (props: any) => {
   const navigation: any = useNavigation()
   const [FilterisVisible, setFilterisVisible] = useState(false)
   const onPressView = (data: any) => {
-    navigation.navigate('LeadDetails', { data })
+  console.log('data: ', data);
+    navigation.navigate('LeadDetails', data)
   }
   const onPressEdit = (data: any) => {
     navigation.navigate('AddNewVisitorScreen', { type: 'edit', data })

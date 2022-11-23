@@ -9,10 +9,11 @@ const LeadDetails = ({ navigation, route }: any) => {
   const dispatch: any = useDispatch()
   const [isloading, setIsloading] = useState(false)
   const { response = {}, detail = "" } = useSelector((state: any) => state.visitorData)
+  console.log('response:yyyyyyy ', response);
   const [allDetails, setAllDetails] = useState({})
 
   useLayoutEffect(() => {
-    const { data = {} } = route?.params
+    const data = route?.params
     if (data._id) {
       setIsloading(true)
       dispatch(getVisitorDetail({
@@ -32,7 +33,7 @@ const LeadDetails = ({ navigation, route }: any) => {
   }
   return (
     <>
-      {isloading ? <Loader /> : null}
+     
       <LeadDetailsView
         handleBackPress={handleBackPress}
         allDetails={allDetails}

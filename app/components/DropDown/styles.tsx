@@ -39,7 +39,8 @@ const styles = StyleSheet.create({
   },
   selectedTextStyle: {
     fontSize: 16,
-    color: GRAY_LIGHT_COLOR
+    color: GRAY_LIGHT_COLOR,
+    // marginLeft: normalize(10)
   },
   iconStyle: {
     width: 20,
@@ -50,7 +51,7 @@ const styles = StyleSheet.create({
   },
   mainContainer: {
     shadowColor: '#171717',
-    shadowOffset: {width: 0, height: 1},
+    shadowOffset: { width: 0, height: 1 },
     shadowOpacity: 0.2,
     shadowRadius: 1,
     elevation: 3,
