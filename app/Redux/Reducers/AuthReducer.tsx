@@ -1,4 +1,4 @@
-import { TOKEN_GENRATE, USER_LOGIN, USER_LOGOUT, LOGIN_ERROR,FORGOT_PASSWORD,FORGOT_ERROR, FORGOT_NULL, OTPVERIFY, OTPVERIFY_ERROR, OTPVERIFY_NULL, UPDATEPASSWORD, UPDATEPASSWORD_NULL, UPDATEPASSWORD_ERROR, RESENDOTP, RESENDOTP_ERROR, RESENDOTP_NULL } from '../types'
+import { TOKEN_GENRATE, USER_LOGIN, USER_LOGOUT, LOGIN_ERROR,FORGOT_PASSWORD,FORGOT_ERROR, FORGOT_NULL, OTPVERIFY, OTPVERIFY_ERROR, OTPVERIFY_NULL, UPDATEPASSWORD, UPDATEPASSWORD_NULL, UPDATEPASSWORD_ERROR, RESENDOTP, RESENDOTP_ERROR, RESENDOTP_NULL, CHANGEPASSWORD_ERROR, CHANGEPASSWORD, CHANGEPASSWORD_NULL } from '../types'
 
 const initialState = {
     response: null,
@@ -25,7 +25,12 @@ const updatepasswordinitialState = {
     updatepassword: false,
     error: false
 }
-
+const changePasswordinitialState = {
+    response: null,
+    loading: true,
+    changepassword: false,
+    error: false
+}
 export function authStore(state = initialState, action: any){
     switch (action.type) {
         case USER_LOGIN:
@@ -186,6 +191,41 @@ export function updatepasswordReducer(state = updatepasswordinitialState, action
             ...state,
             response: action.payload,
             updatepassword: false,
+            error: false,
+            loading: false,
+        }
+
+       
+        default: return state
+    }
+
+}
+
+export function changePasswordReducer(state = changePasswordinitialState, action: any){
+    switch (action.type) {
+       
+        case CHANGEPASSWORD:
+        return {
+            ...state,
+            response: action.payload,
+            changepassword: true,
+            error: false,
+            loading: false,
+            
+        }
+        case CHANGEPASSWORD_ERROR:
+        return {
+            ...state,
+            response: action.payload,
+            changepassword: true,
+            error: true,
+            loading: false,
+        }
+        case CHANGEPASSWORD_NULL:
+        return {
+            ...state,
+            response: action.payload,
+            changepassword: false,
             error: false,
             loading: false,
         }

@@ -31,6 +31,7 @@ const LoginScreen = ({ navigation }: any) => {
         // console.log("checklogin -> loginSelector.response.status", loginSelector.response.status)
         if (loginSelector.response.status === 200) {
          await setDefaultHeader("token", loginSelector.response.token);
+         await AsyncStorage.setItem('loginData',JSON.stringify(loginSelector.response))
           navigation.navigate('DashboardScreenView');
         } else {
           

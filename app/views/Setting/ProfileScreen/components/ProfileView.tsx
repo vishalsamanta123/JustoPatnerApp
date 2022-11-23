@@ -1,13 +1,61 @@
-import { View, Text, Image, TouchableOpacity } from 'react-native'
-import React from 'react'
+import { View, Text, Image, TouchableOpacity, useWindowDimensions } from 'react-native'
+import React, { useEffect, useState } from 'react'
 import images from '../../../../assets/images'
-import { PRIMARY_THEME_COLOR } from '../../../../components/utilities/constant'
+import { PRIMARY_THEME_COLOR, PRIMARY_THEME_COLOR_DARK, TABBAR_COLOR } from '../../../../components/utilities/constant'
 import strings from '../../../../components/utilities/Localization'
 import styles from './styles'
 import Header from '../../../../components/Header'
+import moment from 'moment'
+import { useSelector } from 'react-redux'
+import { SceneMap, TabBar, TabView } from 'react-native-tab-view'
+import UserInfo from './UserInfo'
+import UserBankInfo from './UserBankInfo'
 
 const ProfileView = (props: any) => {
-  const {data, HandleBackPress, handleEditProfilePress} = props;
+  const {data, HandleBackPress, handleEditProfilePress, onpresContent} = props;
+  const layout = useWindowDimensions();
+
+
+  const [allDetails , setAllDetails] = useState<any>({})
+  const [index, setIndex] = useState(0);
+  const [routes] = useState([
+    { key: 'first', title: 'User Info' },
+    { key: 'second', title: 'Bank Info' },
+  ]);
+
+  const allDetailsall = useSelector((state: any) => state.agentData);
+
+  useEffect(() =>{
+    checkprofile()
+  },[allDetailsall])
+
+  const checkprofile = () => {
+    if(allDetailsall?.response?.status === 200){
+      setAllDetails(allDetailsall?.response?.data[0])
+    }
+  } 
+
+  const renderTabBar = (props: any) => (
+    <TabBar
+      activeColor={TABBAR_COLOR}
+      //inactiveColor={'#F4F4F4'} 
+      {...props}
+      indicatorStyle={{ borderWidth: 2, borderColor: TABBAR_COLOR }}
+      style={{ backgroundColor: PRIMARY_THEME_COLOR_DARK }} />
+  );
+
+  const FirstRoute = () => (
+    <UserInfo allDetails={allDetails} />
+  );
+  const SecondRoute = () => (
+    <UserBankInfo allDetails={allDetails} onpresContent={onpresContent}/>
+  );
+  const renderScene = SceneMap({
+    first: FirstRoute,
+    second: SecondRoute,
+  });
+  
+  // console.log('allDetails========== ', allDetails);
   
   return (
     <View style={styles.mainContainer}>
@@ -27,21 +75,30 @@ const ProfileView = (props: any) => {
         </View>
         <View style={styles.userCardView}>
           <View style={styles.usernameWrap}>
-            <Image style={styles.userImage} source={images.dummyUser}  />
-            <Text style={styles.userNameText}>ROBERT DOWNEY</Text>
+            <Image style={styles.userImage} source={{uri: allDetails?.profile_picture}}  />
+            <Text style={styles.userNameText}>{allDetails?.agent_name}</Text>
           </View>
           <TouchableOpacity style={styles.editImageWrap} onPress={handleEditProfilePress}>
             <Image style={styles.editIconImage} source={images.editIcon}/>
           </TouchableOpacity>
         </View>
-        <View style={styles.InformationView}>
+        <View style={styles.userInfoTabView}>
+          <TabView
+            renderTabBar={renderTabBar}
+            navigationState={{ index, routes }}
+            renderScene={renderScene}
+            onIndexChange={setIndex}
+            initialLayout={{ width: layout.width }}
+          />
+        </View>
+        {/* <View style={styles.InformationView}>
           <View style={styles.fieldView}>
             <View style={styles.keyView}>
               <Text style={styles.keyText}>Name</Text>
             </View>
             <Text style={styles.colon}>:</Text>
             <View style={styles.valueView}>
-              <Text style={styles.valueText}>ANIL SINGH</Text>
+              <Text style={styles.valueText}>{allDetails?.agent_name?.toUpperCase()}</Text>
             </View>
           </View>
           <View style={styles.fieldView}>
@@ -50,7 +107,7 @@ const ProfileView = (props: any) => {
             </View>
             <Text style={styles.colon}>:</Text>
             <View style={styles.valueView}>
-              <Text style={styles.valueText}>12345*****</Text>
+              <Text style={styles.valueText}>{allDetails?.adhar_no}</Text>
             </View>
           </View>
           <View style={styles.fieldView}>
@@ -59,7 +116,7 @@ const ProfileView = (props: any) => {
             </View>
             <Text style={styles.colon}>:</Text>
             <View style={styles.valueView}>
-              <Text style={styles.valueText}>ASD***</Text>
+              <Text style={styles.valueText}>{allDetails?.pancard_no}</Text>
             </View>
           </View>
           <View style={styles.fieldView}>
@@ -68,7 +125,7 @@ const ProfileView = (props: any) => {
             </View>
             <Text style={styles.colon}>:</Text>
             <View style={styles.valueView}>
-              <Text style={styles.valueText}>MALE</Text>
+              <Text style={styles.valueText}>{allDetails?.gender === 1 ? strings.male : strings.female}</Text>
             </View>
           </View>
           <View style={styles.fieldView}>
@@ -77,7 +134,7 @@ const ProfileView = (props: any) => {
             </View>
             <Text style={styles.colon}>:</Text>
             <View style={styles.valueView}>
-              <Text style={styles.valueText}>21/09/2022</Text>
+              <Text style={styles.valueText}>{moment(allDetails?.date_of_birth).format('DD/MM/YYYY')}</Text>
             </View>
           </View>
           <View style={styles.fieldView}>
@@ -86,7 +143,7 @@ const ProfileView = (props: any) => {
             </View>
             <Text style={styles.colon}>:</Text>
             <View style={styles.valueView}>
-              <Text style={styles.valueText}>123456789</Text>
+              <Text style={styles.valueText}>{allDetails?.primary_mobile}</Text>
             </View>
           </View>
           <View style={styles.fieldView}>
@@ -95,7 +152,7 @@ const ProfileView = (props: any) => {
             </View>
             <Text style={styles.colon}>:</Text>
             <View style={styles.valueView}>
-              <Text style={styles.valueText}>123456789</Text>
+              <Text style={styles.valueText}>{allDetails?.whatsapp_number}</Text>
             </View>
           </View>
           <View style={styles.fieldView}>
@@ -104,10 +161,10 @@ const ProfileView = (props: any) => {
             </View>
             <Text style={styles.colon}>:</Text>
             <View style={styles.valueView}>
-              <Text style={styles.valueText}>abc@gmail.com</Text>
+              <Text style={styles.valueText}>{allDetails?.email}</Text>
             </View>
           </View>
-        </View>
+        </View> */}
       </View>
     </View>
   )
