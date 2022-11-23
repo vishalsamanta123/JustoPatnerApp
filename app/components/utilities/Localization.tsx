@@ -108,6 +108,7 @@ const strings = new LocalizedStrings({
     otprequired : 'Enter your OTP',
     passwordnotmatch : 'Password and Confirm Password not match !',
     requiredpassword : 'Enter your Password and Confirm Password',
+    requiredField : 'All Password field are required',
 
 
     // Appointment

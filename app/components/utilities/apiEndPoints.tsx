@@ -6,6 +6,7 @@ export default {
   OTPVERIFY: "/auth/otpVerify",
   RESENDOTP: "/auth/resentOtp",
   UPDATEPASSWORD: "/auth/updatePassword",
+  CHANGEPASSWORD: "/auth/changePassword",
   REGISTERANDADDUSER: "/auth/userRegister",
   GETUSERLIST: "userManage/getUserList",
   GETUSERDETAIL: "/userManage/getUserDetail",
@@ -64,4 +65,7 @@ export default {
   VISITOR_STATUS_UPDATE: "/visit/updateVisitStatus",
   ADD_VISITOR_: "/visit/addVisit",
   EDIT_VISITOR_: "/visit/editVisit",
+
+  //Settings
+  UPDATECHANNELPARTNER: "/channelPartner/updateChannelPartner"
 };
