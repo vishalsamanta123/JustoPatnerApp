@@ -98,6 +98,7 @@ const strings = new LocalizedStrings({
     update: 'Update',
     call: 'Call',
     status: 'Status',
+    registration: 'registration',
 
     //Auth 
 

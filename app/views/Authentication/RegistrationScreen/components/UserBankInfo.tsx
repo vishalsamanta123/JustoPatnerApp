@@ -11,6 +11,7 @@ import InputField from "../../../../components/InputField";
 import { BLACK_COLOR, GRAY_LIGHT_COLOR, PRIMARY_THEME_COLOR, RED_COLOR, WHITE_COLOR } from "../../../../components/utilities/constant";
 import strings from "../../../../components/utilities/Localization";
 import styles from "./styles";
+import Styles from "../../../../components/DropDown/styles";
 import { useSafeAreaInsets } from "react-native-safe-area-context";
 import Button from "../../../../components/Button";
 import Header from "../../../../components/Header";
@@ -20,6 +21,8 @@ import PicturePickerModal from "app/components/Modals/PicturePicker";
 import { normalize, normalizeHeight, normalizeWidth } from "app/components/scaleFontSize";
 import ErrorMessage from "app/components/ErrorMessage";
 import { RegistrationForm } from "app/Redux/Actions/ReggistrationAction";
+import { getAllMaster, getAllSourcingManager } from "app/Redux/Actions/MasterActions";
+import Loader from "app/components/CommonScreen/Loader";
 
 const UserBankInfo = ({ navigation }: any) => {
   const insets = useSafeAreaInsets();
@@ -30,11 +33,33 @@ const UserBankInfo = ({ navigation }: any) => {
   const [cheaquevisible, setcheaqueVisible] = useState(false)
   const [visible, setVisible] = useState(false)
   const registrationData = useSelector((state: any) => state.registrationForm)
+  const [isloading, setIsloading] = useState(false)
+  const [masterDatas, setMasterDatas] = useState<any>([])
   const dispatch: any = useDispatch()
 
   useEffect(() => {
     setFormData({ ...registrationData.response })
   }, [registrationData])
+
+  const masterData = useSelector((state: any) => state.masterData) || {}
+
+  useEffect(() => {
+    if (masterData?.response?.status === 200) {
+      setIsloading(false)
+      setMasterDatas(masterData?.response?.data?.length > 0 ? masterData?.response?.data : [])
+    }else {
+      setIsloading(false)
+    }
+  }, [masterData])
+
+
+  const handleMasterDatas = () => {
+    setIsloading(true)
+    dispatch(getAllSourcingManager({
+      limit: 10,
+      offset: 0
+    }))
+  }
 
   const validation = () => {
     let isError = true;
@@ -95,6 +120,7 @@ const UserBankInfo = ({ navigation }: any) => {
   return (
     <>
       <View style={styles.mainContainer}>
+        {isloading ? <Loader /> : null}
         <View
           style={{
             backgroundColor: PRIMARY_THEME_COLOR,
@@ -112,25 +138,44 @@ const UserBankInfo = ({ navigation }: any) => {
         />
         <ScrollView contentContainerStyle={styles.wrap}>
           <View style={styles.inputWrap}>
-            {/* <InputField
-            placeholderText={"Sourcing Manager"}
-            handleInputBtnPress={() => { }}
-            onChangeText={(val: any) => {
-              setFormData({
-                ...formData, ownerName: val
-              })
-            }}
-            headingText={"Sourcing Manager"}
-          /> */}
-            <DropdownInput
+            {/* <DropdownInput
               headingText={"Sourcing Manager"}
               placeholder={"Sourcing Manager"}
-              inputWidth={'100%'}
+              // inputWidth={'100%'}
               value={formData.sourcing_manager}
               setValue={(val: any) => {
                 setFormData({
                   ...formData, sourcing_manager: val
                 })
+              }}
+            /> */}
+            <DropdownInput
+              headingText={'Sourcing Manager'}
+              placeholder={'Sourcing Manager'}
+              data={masterDatas}
+              inputWidth={'100%'}
+              paddingLeft={16}
+              maxHeight={300}
+              onFocus={() => handleMasterDatas()}
+              labelField="title"
+              valueField={'_id'}
+              value={formData?.sourcing_manager}
+              onChange={(item: any) => {
+                setFormData({
+                  ...formData,
+                  sourcing_manager: item._id,
+                })
+              }}
+              newRenderItem={(item: any) => {
+                return (
+                  <>
+                    {isloading === false &&
+                      <View style={Styles.item}>
+                        <Text style={Styles.textItem}>{item.user_name}</Text>
+                      </View>
+                    }
+                  </>
+                );
               }}
             />
           </View>
@@ -139,6 +184,7 @@ const UserBankInfo = ({ navigation }: any) => {
               placeholderText={"RERA Certificate No."}
               handleInputBtnPress={() => { }}
               headingText={"RERA Certificate No."}
+              valueshow={formData?.rera_certificate_no}
               onChangeText={(val: any) => {
                 setFormData({
                   ...formData, rera_certificate_no: val
@@ -202,6 +248,7 @@ const UserBankInfo = ({ navigation }: any) => {
               placeholderText={"Bank Name"}
               handleInputBtnPress={() => { }}
               headingText={"Bank Name"}
+              valueshow={formData?.bank_name}
               onChangeText={(val: any) => {
                 setFormData({
                   ...formData, bank_name: val
@@ -214,6 +261,7 @@ const UserBankInfo = ({ navigation }: any) => {
               placeholderText={"Branch Name"}
               handleInputBtnPress={() => { }}
               headingText={"Branch Name"}
+              valueshow={formData?.branch_name}
               onChangeText={(val: any) => {
                 setFormData({
                   ...formData, branch_name: val
@@ -227,6 +275,7 @@ const UserBankInfo = ({ navigation }: any) => {
               handleInputBtnPress={() => { }}
               headingText={"Account No."}
               keyboardtype={'number-pad'}
+              valueshow={formData?.account_no}
               onChangeText={(val: any) => {
                 setFormData({
                   ...formData, account_no: val
@@ -239,6 +288,7 @@ const UserBankInfo = ({ navigation }: any) => {
               placeholderText={"IFSC Code"}
               handleInputBtnPress={() => { }}
               headingText={"IFSC Code"}
+              valueshow={formData?.ifsc_code}
               onChangeText={(val: any) => {
                 setFormData({
                   ...formData, ifsc_code: val

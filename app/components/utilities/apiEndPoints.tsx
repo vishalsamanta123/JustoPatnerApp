@@ -17,6 +17,7 @@ export default {
   // CREATE CHANNEL PARTNER
   CREATECHANNELPARTNER: '/channelPartner/createChannelPartner',
   CHECKEMAILMOBILE: '/auth/checkEmailMobile',
+  GET_SOURCINGMANAGER: '/channelPartner/getListSourcingManager',
 
 
   // MASTER START
@@ -70,7 +71,7 @@ export default {
   GET_FOLLOWUP_LIST: '/followupStatus/getFollowupList',
   GET_FOLLOWUP_DETAILS: '/followupStatus/getFollowupDetails',
   UPDATE_FOLLOWUP: '/followupStatus/updatefollowup',
-  
+
   //Settings
   UPDATECHANNELPARTNER: "/channelPartner/updateChannelPartner"
 };
