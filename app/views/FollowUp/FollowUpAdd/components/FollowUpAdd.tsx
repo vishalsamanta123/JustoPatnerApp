@@ -68,13 +68,13 @@ const FollowUpAddView = (props: any) => {
                         dateData={(data: any) => {
                             props.setFormData({
                                 ...props.formData,
-                                next_followup_date: moment(data).format('DD-MM-YYYY')
+                                next_followup_date: moment(data).format('YYYY-MM-DD')
                             })
                         }}
                         setDateshow={(data: any) => {
                             props.setFormData({
                                 ...props.formData,
-                                next_followup_date: moment(data).format('DD-MM-YYYY')
+                                next_followup_date: moment(data).format('YYYY-MM-DD')
                             })
                         }}
                         value={props?.formData?.next_followup_date}

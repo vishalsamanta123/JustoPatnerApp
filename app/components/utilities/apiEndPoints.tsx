@@ -71,6 +71,7 @@ export default {
   GET_FOLLOWUP_LIST: '/followupStatus/getFollowupList',
   GET_FOLLOWUP_DETAILS: '/followupStatus/getFollowupDetails',
   UPDATE_FOLLOWUP: '/followupStatus/updatefollowup',
+  ADD_FOLLOWUP: '/followupStatus/addfollowup',
 
   //Settings
   UPDATECHANNELPARTNER: "/channelPartner/updateChannelPartner"

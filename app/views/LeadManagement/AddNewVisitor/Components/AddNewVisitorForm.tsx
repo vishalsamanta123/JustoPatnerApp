@@ -219,6 +219,8 @@ const AddNewVisitorForm = (props: any) => {
                     </View>
                     <View style={styles.inputWrap}>
                         <InputCalender
+                            mode={'date'}
+                            leftIcon={images.event}
                             placeholderText={"Date of Birth"}
                             headingText={"Date of Birth"}
                             editable={false}
@@ -344,6 +346,8 @@ const AddNewVisitorForm = (props: any) => {
                     </View>
                     <View style={styles.inputWrap}>
                         <InputCalender
+                            mode={'date'}
+                            leftIcon={images.event}
                             placeholderText={"Expected Possession Date"}
                             headingText={"Expected Possession Date"}
                             editable={false}

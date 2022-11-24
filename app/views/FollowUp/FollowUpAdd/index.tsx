@@ -1,6 +1,6 @@
 import ErrorMessage from "app/components/ErrorMessage";
 import { RED_COLOR } from "app/components/utilities/constant";
-import { updateFollowUp } from "app/Redux/Actions/FollowUpActions";
+import { addFollowUp } from "app/Redux/Actions/FollowUpActions";
 import { getAllMaster } from "app/Redux/Actions/MasterActions";
 import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
@@ -12,9 +12,10 @@ const FollowUpAddScreen = ({ navigation, route }: any) => {
     const [isloading, setIsloading] = useState(false)
     const [masterDatas, setMasterDatas] = useState<any>([])
     const [formData, setFormData] = useState({
-        followup_id: followUpId._id,
+        lead_id: followUpId?.lead_id ? followUpId?.lead_id : '',
+        appointment_id: followUpId?.appointment_id ? followUpId?.appointment_id : '',
         followup_status: '',
-        followup_date: '',
+        next_followup_date: '',
         remark: '',
         followup_time: ''
     })
@@ -59,7 +60,7 @@ const FollowUpAddScreen = ({ navigation, route }: any) => {
 
     const handleUpdateStatus = () => {
         if (validation()) {
-            dispatch(updateFollowUp(formData))
+            dispatch(addFollowUp(formData))
             navigation.goBack(null)
         }
     }
