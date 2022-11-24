@@ -1,16 +1,18 @@
-import {authStore,forgotReducer, otpVerifyReducer, updatepasswordReducer} from "./AuthReducer";
+import {authStore,changePasswordReducer,forgotReducer, otpVerifyReducer, updatepasswordReducer} from "./AuthReducer";
 import { propertyReducer, propertyDetailReducer } from "./propertyReducers";
 import { createChannlePartnerReducer, registrationFormReducer } from "./ReggistrationReducer";
 import { agentReducer, addAgentReducer, } from './AgentReducer';
 import { addVisitorReducer, visitorReducer } from "./LeadsReducer";
 import { masterDataReducer } from "./MasterReducer";
 import { followUpReducer } from "./FollowUpReducer";
+import { settingReducer } from "./SettingReducer";
 
 export default {
     login: authStore,
     forgotResponce: forgotReducer,
     otpVerifyResponce: otpVerifyReducer,
     updatepasswordResponce: updatepasswordReducer,
+    changePasswordResponse: changePasswordReducer,
     registrationForm: registrationFormReducer,
     createChannlePartner: createChannlePartnerReducer,
     propertyData: propertyReducer,
@@ -20,5 +22,6 @@ export default {
     visitorData: visitorReducer,
     addVisitorForm: addVisitorReducer,
     masterData: masterDataReducer,
-    followUp: followUpReducer
+    followUp: followUpReducer,
+    settingData: settingReducer,
 }

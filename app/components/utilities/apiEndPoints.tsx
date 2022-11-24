@@ -6,6 +6,7 @@ export default {
   OTPVERIFY: "/auth/otpVerify",
   RESENDOTP: "/auth/resentOtp",
   UPDATEPASSWORD: "/auth/updatePassword",
+  CHANGEPASSWORD: "/auth/changePassword",
   REGISTERANDADDUSER: "/auth/userRegister",
   GETUSERLIST: "userManage/getUserList",
   GETUSERDETAIL: "/userManage/getUserDetail",
@@ -69,4 +70,7 @@ export default {
   GET_FOLLOWUP_LIST: '/followupStatus/getFollowupList',
   GET_FOLLOWUP_DETAILS: '/followupStatus/getFollowupDetails',
   UPDATE_FOLLOWUP: '/followupStatus/updatefollowup',
+  
+  //Settings
+  UPDATECHANNELPARTNER: "/channelPartner/updateChannelPartner"
 };

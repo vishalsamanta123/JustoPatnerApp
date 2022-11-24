@@ -53,6 +53,7 @@ import apiEndPoints from 'app/components/utilities/apiEndPoints';
 //import { AsyncStorage } from 'react-native';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import FollowUpAddScreen from 'app/views/FollowUp/FollowUpAdd';
+import EditBankDetails from 'app/views/Setting/EditProfileScreen/components/EditBankDetails';
 const Stack = createNativeStackNavigator();
 const Drawer = createDrawerNavigator();
 const screenOptions = { headerShown: false, gestureEnabled: true };
@@ -133,6 +134,7 @@ const Route =  () => {
          <Stack.Screen component={UpdatePasswordScreen} name="ChangePasswordScreenView" />
         <Stack.Screen component={DrawerComponent} name="DashboardScreenView" />
         <Stack.Screen component={UserBankInfo} name="UserBankInfo" />
+        <Stack.Screen component={EditBankDetails} name="EditBankDetails" />
         {/* Property Management Screens */}
         <Stack.Screen component={PropertyDetails} name="PropertyDetails" />
         <Stack.Screen component={ImageContent} name="ImageContent" />
