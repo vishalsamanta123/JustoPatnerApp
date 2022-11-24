@@ -8,6 +8,7 @@ import RegistrationView from './components/RegistrationView';
 const RegistrationScreen = ({ navigation }: any) => {
   const dispatch: any = useDispatch()
   const [isError, setisError] = useState(false)
+  const [locationModel, setLocationModel] = useState(false)
   const createChannelPartnerData = useSelector((state: any) => state.createChannlePartner)
   const registrationData = useSelector((state: any) => state.registrationForm)
   const [resgistrationData, setResgistrationData] = useState({
@@ -113,6 +114,8 @@ const RegistrationScreen = ({ navigation }: any) => {
     resgistrationData={resgistrationData}
     onPressBack={onPressBack}
     onPressNext={onPressNext}
+    locationModel={locationModel}
+    setLocationModel={setLocationModel}
     handleCheckEmailMobile={handleCheckEmailMobile}
   />;
 };

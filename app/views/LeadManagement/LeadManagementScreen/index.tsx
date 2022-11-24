@@ -25,7 +25,7 @@ const LeadManagementScreen = ({ navigation }: any) => {
     React.useCallback(() => {
       getVisitorsList(offSET, [])
       return () => { };
-    }, [navigation])
+    }, [])
   );
   const getVisitorsList = (offset: any, array: any) => {
     setIsloading(true)
