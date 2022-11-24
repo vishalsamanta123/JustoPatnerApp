@@ -1,5 +1,5 @@
 import {
-    MASTER_LIST,MASTER_ERROR
+    MASTER_LIST,MASTER_ERROR, GET_SOURCING_MANAGER_ERROR, GET_SOURCING_MANAGER
   } from "../types";
   
   const initialState = {
@@ -23,6 +23,21 @@ import {
           ...state,
           detail: false,
           create: true,
+          response: action.payload,
+        };
+      case GET_SOURCING_MANAGER:
+        return {
+          ...state,
+          detail: false,
+          create: false,
+          response: action.payload,
+        };
+     
+      case GET_SOURCING_MANAGER_ERROR:
+        return {
+          ...state,
+          detail: false,
+          create: false,
           response: action.payload,
         };
       default:

@@ -51,7 +51,6 @@ const FilterModal = (props: any) => {
       </View>
     );
   };
-
   return (
     <View>
       <Modal isVisible={props.Visible}>

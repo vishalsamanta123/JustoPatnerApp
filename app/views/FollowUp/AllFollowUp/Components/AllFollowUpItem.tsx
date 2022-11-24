@@ -13,7 +13,7 @@ const AllFollowUpItem = (props: any) => {
                     </View>
                     <View><Text>:</Text></View>
                     <View style={styles.nameContainer}>
-                        <Text style={styles.nameTxt}>{props.items.Followupby}</Text>
+                        <Text style={styles.nameTxt}>{props.items.creator_name}</Text>
                     </View>
                 </View>
                 <View style={styles.Txtview}>
@@ -22,7 +22,7 @@ const AllFollowUpItem = (props: any) => {
                     </View>
                     <View><Text>:</Text></View>
                     <View style={styles.nameContainer}>
-                        <Text style={styles.nameTxt}>{props.items.Status}</Text>
+                        <Text style={styles.nameTxt}>{props.items.followup_status}</Text>
                     </View>
                 </View>
                 <View style={styles.Txtview}>
@@ -31,7 +31,7 @@ const AllFollowUpItem = (props: any) => {
                     </View>
                     <View><Text>:</Text></View>
                     <View style={styles.nameContainer}>
-                        <Text style={styles.nameTxt}>{props.items.Date}</Text>
+                        <Text style={styles.nameTxt}>{props.items.followup_date}</Text>
                     </View>
                 </View>
                 <View style={styles.Txtviewlast}>
@@ -40,7 +40,7 @@ const AllFollowUpItem = (props: any) => {
                     </View>
                     <View><Text>:</Text></View>
                     <View style={styles.nameContainer}>
-                        <Text style={styles.nameTxt}>{props.items.Description}</Text>
+                        <Text style={styles.nameTxt}>{props.items.remark}</Text>
                     </View>
                 </View>
             </View>

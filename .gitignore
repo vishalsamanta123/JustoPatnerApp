@@ -62,3 +62,6 @@ buck-out/
 #zip
 *.zip
 /vendor/bundle/
+
+yarn.lock
+package-lock.json

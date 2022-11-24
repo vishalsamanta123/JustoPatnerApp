@@ -97,6 +97,8 @@ const strings = new LocalizedStrings({
     deactivconfirmation: 'Are You sure you want to Deactive this',
     update: 'Update',
     call: 'Call',
+    status: 'Status',
+    registration: 'registration',
 
     //Auth 
 

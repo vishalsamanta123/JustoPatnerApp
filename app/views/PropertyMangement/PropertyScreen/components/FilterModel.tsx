@@ -90,6 +90,7 @@ const FilterModal = (props: any) => {
                         <View style={styles.inputWrap}>
 
                             <InputCalender
+                            mode={'date'}
                                 //headingText={'Start Date'}
                                 placeholderText={"Start Date"}
                                 dateshow={startdate}
@@ -101,6 +102,7 @@ const FilterModal = (props: any) => {
                         </View>
                         <View style={styles.inputWrap}>
                             <InputCalender
+                            mode={'date'}
                                 //headingText={'Start Date'}
                                 placeholderText={"End Date"}
                                 dateshow={enddate}

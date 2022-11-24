@@ -9,10 +9,12 @@ import { useSafeAreaInsets } from 'react-native-safe-area-context'
 import Button from '../../../../components/Button'
 import FollowUpDetailsItem from './FollowUpDetailsItem'
 import { useNavigation } from '@react-navigation/native'
+import { useSelector } from 'react-redux'
 
 const FollowUpDetailsView = (props: any) => {
   const insets = useSafeAreaInsets();
   const navigation: any = useNavigation()
+  const { response = {} } = useSelector((state: any) => state.followUp)
   const onpressSchedule = () => {
     navigation.navigate('AddAppointmentScreen')
   }
@@ -34,7 +36,7 @@ const FollowUpDetailsView = (props: any) => {
         headerStyle={styles.headerStyle}
       />
       <View style={styles.leadDetailsItemView}>
-        <FollowUpDetailsItem />
+        <FollowUpDetailsItem data={response?.data} />
       </View>
       <View style={styles.btnContainer}>
         <Button
@@ -55,6 +57,7 @@ const FollowUpDetailsView = (props: any) => {
           btnTxtcolor={WHITE_COLOR}
           btnTxtsize={14}
           textTransform={"uppercase"}
+          handleBtnPress={() => props.handleStatusUpdate()}
         />
       </View>
     </View>

@@ -7,7 +7,7 @@ import { normalize, normalizeHeight } from '../scaleFontSize';
 
 const DropdownInput = (props: any) => {
     const {
-        inputWidth = '90%',
+        inputWidth = '100%',
         inputheight = 50,
         paddingLeft = 0
     } = props

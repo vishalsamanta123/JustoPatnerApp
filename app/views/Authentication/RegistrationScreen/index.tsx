@@ -9,8 +9,9 @@ const RegistrationScreen = ({ navigation }: any) => {
   const dispatch: any = useDispatch()
   const [isError, setisError] = useState(false)
   const createChannelPartnerData = useSelector((state: any) => state.createChannlePartner)
+  const registrationData = useSelector((state: any) => state.registrationForm)
   const [resgistrationData, setResgistrationData] = useState({
-    profile_picture: '',
+    profile_picture: {},
     owner_name: '',
     adhar_no: '',
     pancard_no: '',
@@ -21,7 +22,10 @@ const RegistrationScreen = ({ navigation }: any) => {
     email: '',
     working_location: [],
   })
-
+  console.log('resgistrationData: ', resgistrationData);
+  useEffect(() => {
+    setResgistrationData({ ...registrationData.response })
+  }, [registrationData])
   useEffect(() => {
     handleError()
   }, [createChannelPartnerData])

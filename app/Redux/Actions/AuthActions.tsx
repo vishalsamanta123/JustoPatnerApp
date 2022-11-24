@@ -53,6 +53,7 @@ export const forgotemailverify = (params: any) => async (dispatch: any) => {
 }
 
 export const otpVerify = (params: any) => async (dispatch: any) => {
+console.log('params: ', params);
     try {
         const res = await apiCall("post", apiEndPoints.OTPVERIFY, params);
        if(res.data.status === 200){

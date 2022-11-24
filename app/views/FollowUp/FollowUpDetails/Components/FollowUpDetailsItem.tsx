@@ -3,13 +3,19 @@ import React from 'react'
 import styles from './Styles'
 import strings from '../../../../components/utilities/Localization'
 
-const FollowUpDetailsItem = () => {
+const FollowUpDetailsItem = (props: any) => {
     return (
         <ScrollView showsVerticalScrollIndicator={false}>
             <View style={styles.topDetailsView}>
                 <View style={styles.topTxtView}>
+                    <Text style={styles.topTxt}>Lead No. </Text>
+                    <Text style={styles.topTxt}>{props?.data?.lead_no}</Text>
+                </View>
+            </View>
+            <View style={styles.topDetailsView}>
+                <View style={styles.topTxtView}>
                     <Text style={styles.topTxt}>Visitor Score </Text>
-                    <Text style={styles.topTxt}>250</Text>
+                    <Text style={styles.topTxt}>{props?.data?.visit_score}</Text>
                 </View>
             </View>
             <View style={styles.Txtview}>
@@ -18,7 +24,7 @@ const FollowUpDetailsItem = () => {
                 </View>
                 <View><Text>:</Text></View>
                 <View style={styles.nameContainer}>
-                    <Text style={styles.nameTxt}>ABC</Text>
+                    <Text style={styles.nameTxt}>{props?.data?.property?.property_title}</Text>
                 </View>
             </View>
             <View style={styles.Txtview}>
@@ -27,7 +33,7 @@ const FollowUpDetailsItem = () => {
                 </View>
                 <View><Text>:</Text></View>
                 <View style={styles.nameContainer}>
-                    <Text style={styles.nameTxt}>21/09/2022</Text>
+                    <Text style={styles.nameTxt}>{props?.data?.followup_date}</Text>
                 </View>
             </View>
             <View style={styles.Txtview}>
@@ -36,7 +42,7 @@ const FollowUpDetailsItem = () => {
                 </View>
                 <View><Text>:</Text></View>
                 <View style={styles.nameContainer}>
-                    <Text style={styles.nameTxt}>ABC</Text>
+                    <Text style={styles.nameTxt}>{props?.data?.lead_source}</Text>
                 </View>
             </View>
             <View style={styles.Txtview}>
@@ -45,7 +51,7 @@ const FollowUpDetailsItem = () => {
                 </View>
                 <View><Text>:</Text></View>
                 <View style={styles.nameContainer}>
-                    <Text style={styles.nameTxt}>Last Call Status</Text>
+                    <Text style={styles.nameTxt}>{props?.data?.followup_status_title}</Text>
                 </View>
             </View>
             {/* Property Required */}
@@ -55,11 +61,11 @@ const FollowUpDetailsItem = () => {
                 </View>
                 <View style={styles.Txtview}>
                     <View style={styles.projectContainer}>
-                        <Text style={styles.projectTxt}>Configuration </Text>
+                        <Text style={styles.projectTxt}>Configuration</Text>
                     </View>
                     <View><Text>:</Text></View>
                     <View style={styles.nameContainer}>
-                        <Text style={styles.nameTxt}>2 BHK</Text>
+                        <Text style={styles.nameTxt}>{props?.data?.customer?.configuration}</Text>
                     </View>
                 </View>
                 <View style={styles.Txtview}>
@@ -68,7 +74,7 @@ const FollowUpDetailsItem = () => {
                     </View>
                     <View><Text>:</Text></View>
                     <View style={styles.nameContainer}>
-                        <Text style={styles.nameTxt}>600</Text>
+                        <Text style={styles.nameTxt}>{props?.data?.customer?.areain_sqlft}</Text>
                     </View>
                 </View>
                 <View style={styles.Txtview}>
@@ -77,7 +83,9 @@ const FollowUpDetailsItem = () => {
                     </View>
                     <View><Text>:</Text></View>
                     <View style={styles.nameContainer}>
-                        <Text style={styles.nameTxt}>50L</Text>
+                    <Text style={styles.nameTxt}>
+                        {`${props?.data?.customer?.min_budget} ${props?.data?.customer?.min_budget_type}`} - {`${props?.data?.customer?.max_budget} ${props?.data?.customer?.max_budget_type}`}
+                        </Text>
                     </View>
                 </View>
                 <View style={styles.Txtview}>
@@ -86,7 +94,7 @@ const FollowUpDetailsItem = () => {
                     </View>
                     <View><Text>:</Text></View>
                     <View style={styles.nameContainer}>
-                        <Text style={styles.nameTxt}>Loan</Text>
+                    <Text style={styles.nameTxt}>{props?.data?.customer?.funding_type}</Text>
                     </View>
                 </View>
                 <View style={styles.Txtview}>
@@ -95,7 +103,7 @@ const FollowUpDetailsItem = () => {
                     </View>
                     <View><Text>:</Text></View>
                     <View style={styles.nameContainer}>
-                        <Text style={styles.nameTxt}>End Use</Text>
+                    <Text style={styles.nameTxt}>{props?.data?.customer?.purpose}</Text>
                     </View>
                 </View>
             </>
@@ -110,7 +118,7 @@ const FollowUpDetailsItem = () => {
                     </View>
                     <View><Text>:</Text></View>
                     <View style={styles.nameContainer}>
-                        <Text style={styles.nameTxt}>ABC</Text>
+                        <Text style={styles.nameTxt}>{`${props?.data?.customer?.first_name} ${props?.data?.customer?.last_name}`}</Text>
                     </View>
                 </View>
                 <View style={styles.Txtview}>
@@ -119,7 +127,7 @@ const FollowUpDetailsItem = () => {
                     </View>
                     <View><Text>:</Text></View>
                     <View style={styles.nameContainer}>
-                        <Text style={styles.nameTxt}>Indore</Text>
+                        <Text style={styles.nameTxt}>{props?.data?.customer?.location}</Text>
                     </View>
                 </View>
                 <View style={styles.Txtview}>
@@ -128,7 +136,7 @@ const FollowUpDetailsItem = () => {
                     </View>
                     <View><Text>:</Text></View>
                     <View style={styles.nameContainer}>
-                        <Text style={styles.nameTxt}>21</Text>
+                        <Text style={styles.nameTxt}>{props?.data?.customer?.age}</Text>
                     </View>
                 </View>
                 <View style={styles.Txtview}>
@@ -137,7 +145,7 @@ const FollowUpDetailsItem = () => {
                     </View>
                     <View><Text>:</Text></View>
                     <View style={styles.nameContainer}>
-                        <Text style={styles.nameTxt}>Male</Text>
+                        <Text style={styles.nameTxt}>{props?.data?.customer?.gender == 1 ? 'Male' : 'Female'}</Text>
                     </View>
                 </View>
                 <View style={styles.Txtview}>
@@ -146,7 +154,7 @@ const FollowUpDetailsItem = () => {
                     </View>
                     <View><Text>:</Text></View>
                     <View style={styles.nameContainer}>
-                        <Text style={styles.nameTxt}>Locality</Text>
+                        <Text style={styles.nameTxt}>{props?.data?.customer?.locality}</Text>
                     </View>
                 </View>
             </>
@@ -161,7 +169,7 @@ const FollowUpDetailsItem = () => {
                     </View>
                     <View><Text>:</Text></View>
                     <View style={styles.nameContainer}>
-                        <Text style={styles.nameTxt}>Salaried</Text>
+                        <Text style={styles.nameTxt}>{props?.data?.customer?.occupation}</Text>
                     </View>
                 </View>
                 <View style={styles.Txtview}>
@@ -170,7 +178,7 @@ const FollowUpDetailsItem = () => {
                     </View>
                     <View><Text>:</Text></View>
                     <View style={styles.nameContainer}>
-                        <Text style={styles.nameTxt}>ABC</Text>
+                        <Text style={styles.nameTxt}>{props?.data?.customer?.coumpany_name}</Text>
                     </View>
                 </View>
                 <View style={styles.Txtview}>
@@ -179,7 +187,7 @@ const FollowUpDetailsItem = () => {
                     </View>
                     <View><Text>:</Text></View>
                     <View style={styles.nameContainer}>
-                        <Text style={styles.nameTxt}>Project Manager</Text>
+                        <Text style={styles.nameTxt}>{props?.data?.customer?.desigantion}</Text>
                     </View>
                 </View>
                 <View style={styles.Txtview}>
@@ -188,7 +196,7 @@ const FollowUpDetailsItem = () => {
                     </View>
                     <View><Text>:</Text></View>
                     <View style={styles.nameContainer}>
-                        <Text style={styles.nameTxt}>XYZ</Text>
+                        <Text style={styles.nameTxt}>{props?.data?.customer?.office_address}</Text>
                     </View>
                 </View>
             </>

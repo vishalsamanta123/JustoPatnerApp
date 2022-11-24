@@ -9,9 +9,10 @@ import Loader from 'app/components/CommonScreen/Loader';
 import strings from 'app/components/utilities/Localization';
 
 const OtpVerificationScreen = ({ navigation, route }: any) => {
+  const { type, email } = route?.params || {}
   const dispatch: any = useDispatch()
   const [otp, setOtp] = useState('');
-  const [email, setEmail] = useState(route?.params);
+  // const [email, setEmail,] = useState();
   const [isloading, setIsloading] = useState(false)
   const handleOtpChange = (value: any) => {
     setOtp(value);
@@ -34,7 +35,11 @@ const OtpVerificationScreen = ({ navigation, route }: any) => {
         })
         setIsloading(otpVerifySelector.loading)
         if (!otpVerifySelector?.resend) {
-          navigation.navigate('ChangePasswordScreenView', email);
+          if (type == strings.registration) {
+            navigation.navigate('LoginScreenView');
+          } else {
+            navigation.navigate('ChangePasswordScreenView', email);
+          }
         } else {
 
           ErrorMessage({
@@ -79,7 +84,7 @@ const OtpVerificationScreen = ({ navigation, route }: any) => {
   }
   const handleResendOtp = () => {
     setIsloading(true)
-   const params = {
+    const params = {
       email: email,
     }
     //console.log("handleResendOtp -> params", params)
