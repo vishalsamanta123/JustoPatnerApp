@@ -10,7 +10,7 @@ import InputCalender from "../../../../components/InputCalender";
 import { Dropdown } from "react-native-element-dropdown";
 import moment from 'moment';
 import { useDispatch } from 'react-redux';
-import { getFilterProperty,getAllProperty } from 'app/Redux/Actions/propertyActions';
+import { getFilterProperty, getAllProperty } from 'app/Redux/Actions/propertyActions';
 
 const FilterModal = (props: any) => {
     const dispatch: any = useDispatch()
@@ -31,15 +31,15 @@ const FilterModal = (props: any) => {
         );
     };
 
-    const handleInputField = (e : any) => {
+    const handleInputField = (e: any) => {
         console.log("handleInputField -> e", e)
-        props.setFilterform({...props.filterform, property_name: e})
-       /*  const nextFormState = {
-          ...props.filterform,
-          [e.target.name]: e.target.value,
-        };
-        props.setFilterform(nextFormState); */
-      };
+        props.setFilterform({ ...props.filterform, property_name: e })
+        /*  const nextFormState = {
+           ...props.filterform,
+           [e.target.name]: e.target.value,
+         };
+         props.setFilterform(nextFormState); */
+    };
 
 
 
@@ -56,14 +56,15 @@ const FilterModal = (props: any) => {
         props.setIsVisible(false)
     };
     const ResetFilter = () => {
-          
-        props.setFilterform({... props.filterform , 
+
+        props.setFilterform({
+            ...props.filterform,
             start_date: "",
             end_date: "",
             location: "",
             property_name: "",
             property_type: "",
-          })
+        })
 
         dispatch(getAllProperty({
             offset: 0,
@@ -90,7 +91,8 @@ const FilterModal = (props: any) => {
                         <View style={styles.inputWrap}>
 
                             <InputCalender
-                            mode={'date'}
+                                mode={'date'}
+                                leftIcon={images.event}
                                 //headingText={'Start Date'}
                                 placeholderText={"Start Date"}
                                 dateshow={startdate}
@@ -102,7 +104,8 @@ const FilterModal = (props: any) => {
                         </View>
                         <View style={styles.inputWrap}>
                             <InputCalender
-                            mode={'date'}
+                                mode={'date'}
+                                leftIcon={images.event}
                                 //headingText={'Start Date'}
                                 placeholderText={"End Date"}
                                 dateshow={enddate}
@@ -116,11 +119,11 @@ const FilterModal = (props: any) => {
                                 handleInputBtnPress={() => { }}
                                 onChangeText={(val: any) => {
                                     props.setFilterform({
-                                      ...props.filterform, property_name:val
+                                        ...props.filterform, property_name: val
                                     })
-                                  }}
+                                }}
                                 valueshow={props.filterform.property_name}
-                                //name={'property_name'}
+                            //name={'property_name'}
                             />
                         </View>
                         <View style={styles.inputWrap}>
@@ -144,18 +147,18 @@ const FilterModal = (props: any) => {
                                 placeholder="Select Status"
                                 value={props.filterform.property_type}
                                 onChange={(item) => {
-                                    props.setFilterform({property_type: item.value});
+                                    props.setFilterform({ property_type: item.value });
                                 }}
                                 renderItem={renderItem}
                             />
                         </View>
                     </View>
                     <View style={{ marginVertical: 20 }}>
-                        <View style={{flexDirection:'row'}}>
-                        <Button width={135} buttonText={strings.reset} handleBtnPress={() => ResetFilter()} />
-                        <Button width={135} buttonText={strings.apply} handleBtnPress={() => ApplyFilter()} />
+                        <View style={{ flexDirection: 'row' }}>
+                            <Button width={135} buttonText={strings.reset} handleBtnPress={() => ResetFilter()} />
+                            <Button width={135} buttonText={strings.apply} handleBtnPress={() => ApplyFilter()} />
                         </View>
-                     </View>
+                    </View>
                 </View>
             </Modal>
 

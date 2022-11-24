@@ -53,9 +53,11 @@ const FollowUpItem = (props: any) => {
           <Text style={styles.projectTxt}>Budget :</Text>
         </View>
         <View style={styles.nameContainer}>
+          {props.items?.min_budget && props.items?.max_budget ? 
           <Text style={styles.nameTxt}>
           {`${props.items?.min_budget} ${props.items?.min_budget_type}`} - {`${props.items?.max_budget} ${props.items?.max_budget_type}`}
           </Text>
+          : null }
         </View>
       </View>
       <View style={styles.Txtview}>

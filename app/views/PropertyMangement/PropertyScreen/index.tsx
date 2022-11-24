@@ -16,6 +16,7 @@ const PropertyScreen = ({ navigation }: any) => {
 
   const propertyData = useSelector((state: any) => state.propertydetailData) || []
   const { response, loading ,updateStatus } = propertyData;
+  console.log('response: ', response);
  
 
 
@@ -67,7 +68,7 @@ const PropertyScreen = ({ navigation }: any) => {
     navigation.toggleDrawer();
   };
   const Onreachedend = () => {
-   setOffset(offset + 1)
+  //  setOffset(offset + 1)
     dispatch(getAllProperty({
       offset: offset + 1,
       limit: limit,

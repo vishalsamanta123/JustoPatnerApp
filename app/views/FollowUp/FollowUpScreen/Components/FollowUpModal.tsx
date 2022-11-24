@@ -8,6 +8,8 @@ import Button from "../../../../components/Button";
 import InputField from "../../../../components/InputField";
 import { Dropdown } from "react-native-element-dropdown";
 import { dropdownData } from "../../../../components/utilities/DemoData";
+import InputCalender from "app/components/InputCalender";
+import moment from "moment";
 const FilterModal = (props: any) => {
   const [value, setValue] = useState(null);
 
@@ -33,17 +35,47 @@ const FilterModal = (props: any) => {
           <View style={styles.borderView} />
           <View style={{ marginHorizontal: 10 }}>
             <View style={styles.inputWrap}>
-              <InputField
-                placeholderText={"Start Date"}
-                handleInputBtnPress={() => { }}
-                onChangeText={() => { }}
+              <InputCalender
+                mode={'Date'}
+                leftIcon={images.event}
+                placeholderText={"Start Date"}//can edit
+                editable={false}
+                // onChangeText={() => { }}
+                dateData={(data: any) => {
+                  props.setFormData({
+                    ...props.formData,
+                    next_followup_date: moment(data).format('DD-MM-YYYY')
+                  })
+                }}
+                setDateshow={(data: any) => {
+                  props.setFormData({
+                    ...props.formData,
+                    next_followup_date: moment(data).format('DD-MM-YYYY')
+                  })
+                }}
+                value={props?.formData?.next_followup_date}
               />
             </View>
             <View style={styles.inputWrap}>
-              <InputField
-                placeholderText={"End Date"}
-                handleInputBtnPress={() => { }}
-                onChangeText={() => { }}
+              <InputCalender
+                mode={'date'}
+                leftIcon={images.event}
+                placeholderText={" End Date"}//can edit
+                editable={false}
+                // onChangeText={() => { }}
+                dateData={(data: any) => {
+                  props.setFormData({
+                    ...props.formData,
+                    next_followup_date: moment(data).format('DD-MM-YYYY')
+                  })
+                }}
+                setDateshow={(data: any) => {
+                  props.setFormData({
+                    ...props.formData,
+                    next_followup_date: moment(data).format('DD-MM-YYYY')
+                  })
+                }}
+                value={props?.formData?.next_followup_date}
               />
             </View>
             <View style={styles.inputWrap}>

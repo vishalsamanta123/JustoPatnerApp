@@ -57,6 +57,8 @@ const FilterModal = (props: any) => {
           <View style={{ marginHorizontal: 10 }}>
             <View style={styles.inputWrap}>
               <InputCalender
+                mode={'time'}
+                leftIcon={images.timer}
                 placeholderText={"Start Date"}
                 editable={false}
                 dateData={(data: any) => {
@@ -76,6 +78,8 @@ const FilterModal = (props: any) => {
             </View>
             <View style={styles.inputWrap}>
               <InputCalender
+                mode={'time'}
+                leftIcon={images.timer}
                 placeholderText={"End Date"}
                 editable={false}
                 value={props.filterData.enddate}

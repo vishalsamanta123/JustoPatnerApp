@@ -10,6 +10,7 @@ import FollowUpItem from './FollowUpItem'
 import { useNavigation } from '@react-navigation/native'
 import FilterModal from './FollowUpModal'
 import { useSelector } from 'react-redux'
+import EmptyListScreen from '../../../../components/CommonScreen/Empty'
 
 const DATA: any = [
   {
@@ -92,6 +93,7 @@ const FollowUpView = (props: any) => {
           renderItem={({ item }) => <FollowUpItem items={item} onPressView={onPressView} onPressEdit={onPressEdit} onPressAllFollowUp={onPressAllFollowUp} />}
           onRefresh={() => onRefresh()}
           refreshing={loadingref}
+          ListEmptyComponent={<EmptyListScreen message={strings.followup} />}
           onEndReached={() => {
             if (props?.followUpList?.length < response?.total_data) {
               console.log('onEndReached: ');

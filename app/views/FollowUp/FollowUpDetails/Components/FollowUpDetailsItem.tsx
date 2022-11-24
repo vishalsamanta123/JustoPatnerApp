@@ -83,9 +83,11 @@ const FollowUpDetailsItem = (props: any) => {
                     </View>
                     <View><Text>:</Text></View>
                     <View style={styles.nameContainer}>
-                    <Text style={styles.nameTxt}>
-                        {`${props?.data?.customer?.min_budget} ${props?.data?.customer?.min_budget_type}`} - {`${props?.data?.customer?.max_budget} ${props?.data?.customer?.max_budget_type}`}
-                        </Text>
+                        {props?.data?.customer?.min_budget && props?.data?.customer?.max_budget ?
+                            <Text style={styles.nameTxt}>
+                                {`${props?.data?.customer?.min_budget} ${props?.data?.customer?.min_budget_type}`} - {`${props?.data?.customer?.max_budget} ${props?.data?.customer?.max_budget_type}`}
+                            </Text>
+                            : null}
                     </View>
                 </View>
                 <View style={styles.Txtview}>
@@ -94,7 +96,7 @@ const FollowUpDetailsItem = (props: any) => {
                     </View>
                     <View><Text>:</Text></View>
                     <View style={styles.nameContainer}>
-                    <Text style={styles.nameTxt}>{props?.data?.customer?.funding_type}</Text>
+                        <Text style={styles.nameTxt}>{props?.data?.customer?.funding_type}</Text>
                     </View>
                 </View>
                 <View style={styles.Txtview}>
@@ -103,7 +105,7 @@ const FollowUpDetailsItem = (props: any) => {
                     </View>
                     <View><Text>:</Text></View>
                     <View style={styles.nameContainer}>
-                    <Text style={styles.nameTxt}>{props?.data?.customer?.purpose}</Text>
+                        <Text style={styles.nameTxt}>{props?.data?.customer?.purpose}</Text>
                     </View>
                 </View>
             </>
