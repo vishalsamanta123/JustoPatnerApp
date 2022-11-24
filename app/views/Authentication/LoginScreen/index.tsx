@@ -26,37 +26,39 @@ const LoginScreen = ({ navigation }: any) => {
 
   const checklogin = async () => {
     const authval = await AsyncStorage.getItem("AuthToken");
-      if (loginSelector.response && loginSelector.authToken) {
-        setIsloading(loginSelector.loading)
-        // console.log("checklogin -> loginSelector.response.status", loginSelector.response.status)
-        if (loginSelector.response.status === 200) {
-         await setDefaultHeader("token", loginSelector.response.token);
-         await AsyncStorage.setItem('loginData',JSON.stringify(loginSelector.response))
-          navigation.navigate('DashboardScreenView');
-        } else {
-          
-          ErrorMessage({
-            msg: loginSelector?.response?.message,
-            backgroundColor: RED_COLOR
-          })
-        }
-      }else {
-        setIsloading(loginSelector.loading)
-        if(authval != null){
-          await setDefaultHeader("token", authval);
-         navigation.navigate('DashboardScreenView');
-        }else{
-          ErrorMessage({
-            msg: loginSelector?.response?.message,
-            backgroundColor: RED_COLOR
-          })
+    if (loginSelector.response && loginSelector.authToken) {
+      setIsloading(loginSelector.loading)
+      // console.log("checklogin -> loginSelector.response.status", loginSelector.response.status)
+      if (loginSelector.response.status === 200) {
+        await setDefaultHeader("token", loginSelector.response.token);
+        await AsyncStorage.setItem('loginData', JSON.stringify(loginSelector.response))
+        navigation.navigate('DashboardScreenView');
+      } else {
 
+        ErrorMessage({
+          msg: loginSelector?.response?.message,
+          backgroundColor: RED_COLOR
+        })
+      }
+    } else {
+      setIsloading(loginSelector.loading)
+      if (authval != null) {
+        await setDefaultHeader("token", authval);
+        navigation.navigate('DashboardScreenView');
+      } else {
+        if (loginSelector?.response?.message) {
+          ErrorMessage({
+            msg: loginSelector?.response?.message,
+            backgroundColor: RED_COLOR
+          })
         }
+
+      }
 
       /*   await setDefaultHeader("token", authval);
         navigation.navigate('DashboardScreenView'); */
-        
-      }
+
+    }
   }
   const validation = () => {
     let isError = true;
@@ -95,15 +97,15 @@ const LoginScreen = ({ navigation }: any) => {
       // console.log("handleLoginPress -> respon", respon)
       //navigation.navigate('DashboardScreenView');
     }
-    
+
   };
   const handleSingupPress = () => {
     navigation.navigate('RegistrationScreenView');
   };
-  const handlePrivacy = (data : any) => {
-    navigation.navigate('privacyPolicy',data);
+  const handlePrivacy = (data: any) => {
+    navigation.navigate('privacyPolicy', data);
   };
- 
+
   const handleForgotPress = () => {
     navigation.navigate('ForgotPassword');
   };
@@ -115,7 +117,7 @@ const LoginScreen = ({ navigation }: any) => {
         handleLoginPress={handleLoginPress}
         handleSingupPress={handleSingupPress}
         handleForgotPress={handleForgotPress}
-        handlePrivacy={(data : any) => handlePrivacy(data)}
+        handlePrivacy={(data: any) => handlePrivacy(data)}
         setLoginData={setLoginData}
         loginData={loginData}
       />

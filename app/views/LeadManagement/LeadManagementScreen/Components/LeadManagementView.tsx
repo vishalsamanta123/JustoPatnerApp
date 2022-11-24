@@ -75,7 +75,7 @@ const LeadManagementView = (props: any) => {
     props.getVisitorsList(0, [])
     // props.setFilter({})
   }
-  
+
   return (
     <View style={styles.mainContainer}>
       <View
@@ -115,14 +115,15 @@ const LeadManagementView = (props: any) => {
         <FlatList
           data={props?.visitorList}
           showsVerticalScrollIndicator={false}
-          renderItem={({ item }) => <LeadManagementItem
-            items={item}
-            onPressView={onPressView}
-            onPressEdit={onPressEdit} />}
+          renderItem={({ item }) =>
+            <LeadManagementItem
+              items={item}
+              onPressView={onPressView}
+              onPressEdit={onPressEdit} />
+          }
           onEndReached={() => {
             if (props?.visitorList?.length < props?.moreData) {
-              console.log("ONREACH")
-              props.getVisitorsList(props?.visitorList?.length > 3 ?
+              props.getVisitorsList(props?.visitorList?.length > 2 ?
                 props.offSET + 1 : 0, props.visitorList)
             }
           }}
