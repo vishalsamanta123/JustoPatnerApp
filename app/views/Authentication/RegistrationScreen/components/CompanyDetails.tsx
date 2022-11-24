@@ -1,7 +1,7 @@
 import { View, Text, StatusBar, TouchableOpacity, ScrollView } from "react-native";
 import React, { useEffect, useState } from "react";
 import styles from "./styles";
-import { BLACK_COLOR, GRAY_LIGHT_COLOR, PRIMARY_THEME_COLOR, RED_COLOR, WHITE_COLOR } from "../../../../components/utilities/constant";
+import { BLACK_COLOR, GRAY_LIGHT_COLOR, GREEN_COLOR, PRIMARY_THEME_COLOR, RED_COLOR, WHITE_COLOR } from "../../../../components/utilities/constant";
 import { useSafeAreaInsets } from "react-native-safe-area-context";
 import Header from "../../../../components/Header";
 import strings from "../../../../components/utilities/Localization";
@@ -23,7 +23,7 @@ const CompanyDetails = ({ navigation }: any) => {
   const [lettervisible, setletterVisible] = useState(false)
   const insets = useSafeAreaInsets();
   const [formData, setFormData] = useState<any>({})
-  // console.log('formData: ', formData);
+  console.log('formData: ', formData);
   const registrationData = useSelector((state: any) => state.registrationForm)
   const createChannelPartnerData = useSelector((state: any) => state.createChannlePartner)
   const dispatch: any = useDispatch()
@@ -35,14 +35,15 @@ const CompanyDetails = ({ navigation }: any) => {
   useEffect(() => {
     setisLoading(createChannelPartnerData?.isLoading)
     handleError()
+   
   }, [createChannelPartnerData])
 
   const handleError = () => {
     setisError(true)
-    if(isError){
+    if (isError) {
       ErrorMessage({
         msg: createChannelPartnerData?.response?.message,
-        backgroundColor: RED_COLOR
+        backgroundColor: GREEN_COLOR
       })
       setisError(createChannelPartnerData?.isError)
     }
@@ -105,9 +106,11 @@ const CompanyDetails = ({ navigation }: any) => {
       setisLoading(true)
       dispatch(RegistrationForm(formData))
       dispatch(createChannelPartner(formData))
-      // navigation.navigate('OtpVerificationScreenView')
+      if (createChannelPartnerData?.response) {
+        navigation.navigate('OtpVerificationScreenView', {type: strings.registration, email: formData?.email})
+      }
     }
-    // navigation.navigate('OtpVerificationScreenView')
+    // navigation.navigate('OtpVerificationScreenView', {type: strings.registration, email: formData?.email})
   }
   return (
     <View style={styles.mainContainer}>
@@ -134,6 +137,7 @@ const CompanyDetails = ({ navigation }: any) => {
             placeholderText={"Agency Name"}
             handleInputBtnPress={() => { }}
             headingText={"RealeEstate Company"}
+            valueshow={formData?.agency_name}
             onChangeText={(val: any) => {
               setFormData({
                 ...formData, agency_name: val
@@ -145,6 +149,7 @@ const CompanyDetails = ({ navigation }: any) => {
           <InputField
             placeholderText={"GST"}
             handleInputBtnPress={() => { }}
+            valueshow={formData?.gst}
             onChangeText={(val: any) => {
               setFormData({
                 ...formData, gst: val
@@ -156,6 +161,7 @@ const CompanyDetails = ({ navigation }: any) => {
           <InputField
             placeholderText={"RERA Registration"}
             handleInputBtnPress={() => { }}
+            valueshow={formData?.rera_certificate}
             onChangeText={(val: any) => {
               setFormData({
                 ...formData, rera_registration: val
@@ -183,7 +189,7 @@ const CompanyDetails = ({ navigation }: any) => {
                 setVisible(true)
               }}
             >
-              <Text style={{ color: formData?.pancard_no ? BLACK_COLOR : PRIMARY_THEME_COLOR, fontSize: normalize(15) }}>{strings.browse}</Text>
+              <Text style={{ color: formData?.company_pancard ? BLACK_COLOR : PRIMARY_THEME_COLOR, fontSize: normalize(15) }}>{strings.browse}</Text>
             </TouchableOpacity>
           </View>
         </View>
@@ -219,6 +225,7 @@ const CompanyDetails = ({ navigation }: any) => {
             placeholderText={"Bank Name"}
             handleInputBtnPress={() => { }}
             headingText={"Bank Name"}
+            valueshow={formData?.company_bank_name}
             onChangeText={(val: any) => {
               setFormData({
                 ...formData, company_bank_name: val
@@ -231,6 +238,7 @@ const CompanyDetails = ({ navigation }: any) => {
             placeholderText={"Branch Name"}
             handleInputBtnPress={() => { }}
             headingText={"Branch Name"}
+            valueshow={formData?.company_branch_name}
             onChangeText={(val: any) => {
               setFormData({
                 ...formData, company_branch_name: val
@@ -244,6 +252,7 @@ const CompanyDetails = ({ navigation }: any) => {
             handleInputBtnPress={() => { }}
             headingText={"Account No."}
             keyboardtype={'number-pad'}
+            valueshow={formData?.company_account_no}
             onChangeText={(val: any) => {
               setFormData({
                 ...formData, company_account_no: val
@@ -256,6 +265,7 @@ const CompanyDetails = ({ navigation }: any) => {
             placeholderText={"IFSC Code"}
             handleInputBtnPress={() => { }}
             headingText={"IFSC Code"}
+            valueshow={formData?.company_ifsc_code}
             onChangeText={(val: any) => {
               setFormData({
                 ...formData, company_ifsc_code: val

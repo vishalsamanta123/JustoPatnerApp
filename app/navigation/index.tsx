@@ -52,6 +52,7 @@ import { jwtTokenGenrate } from 'app/Redux/Actions/AuthActions';
 import apiEndPoints from 'app/components/utilities/apiEndPoints';
 //import { AsyncStorage } from 'react-native';
 import AsyncStorage from '@react-native-async-storage/async-storage';
+import FollowUpAddScreen from 'app/views/FollowUp/FollowUpAdd';
 import EditBankDetails from 'app/views/Setting/EditProfileScreen/components/EditBankDetails';
 const Stack = createNativeStackNavigator();
 const Drawer = createDrawerNavigator();
@@ -152,6 +153,7 @@ const Route =  () => {
         <Stack.Screen name="FollowUpDetails" component={FollowUpDetails}  />
         <Stack.Screen name="EditFollowUp" component={EditFollowUp}  />
         <Stack.Screen name="AllFollowUpScreen" component={AllFollowUpScreen}  />
+        <Stack.Screen name="FollUpAdd" component={FollowUpAddScreen} />
         {/* Appointment */}
         <Stack.Screen name="AppointmentDetails" component={AppointmentDetails}  />
         <Stack.Screen name="AddAppointmentScreen" component={AddAppointmentScreen}  />
