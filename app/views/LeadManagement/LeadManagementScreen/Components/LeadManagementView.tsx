@@ -57,12 +57,13 @@ const LeadManagementView = (props: any) => {
   const navigation: any = useNavigation()
   const [FilterisVisible, setFilterisVisible] = useState(false)
   const onPressView = (data: any) => {
-  console.log('data: ', data);
     navigation.navigate('LeadDetails', data)
   }
+
   const onPressEdit = (data: any) => {
     navigation.navigate('AddNewVisitorScreen', { type: 'edit', data })
   }
+
   const onRefresh = () => {
     props.setFilterData({
       startdate: '',
@@ -74,6 +75,7 @@ const LeadManagementView = (props: any) => {
     props.getVisitorsList(0, [])
     // props.setFilter({})
   }
+  
   return (
     <View style={styles.mainContainer}>
       <View

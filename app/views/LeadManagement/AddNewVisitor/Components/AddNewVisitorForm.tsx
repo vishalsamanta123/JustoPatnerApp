@@ -1,10 +1,10 @@
 import { View, Text, ScrollView, StatusBar, TouchableOpacity, TextInput } from 'react-native'
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import { RadioButton } from 'react-native-paper';
 import { useSafeAreaInsets } from 'react-native-safe-area-context';
 import images from '../../../../assets/images';
 import InputField from '../../../../components/InputField';
-import { WHITE_COLOR, PRIMARY_THEME_COLOR, BLACK_COLOR } from '../../../../components/utilities/constant';
+import { PRIMARY_THEME_COLOR, BLACK_COLOR } from '../../../../components/utilities/constant';
 import strings from '../../../../components/utilities/Localization';
 import styles from './Styles';
 import Styles from '../../../../components/Modals/styles'
@@ -12,15 +12,31 @@ import Header from '../../../../components/Header';
 import Button from '../../../../components/Button';
 import moment from 'moment';
 import InputCalender from 'app/components/InputCalender';
-import { Dropdown } from 'react-native-element-dropdown';
-import { normalize, normalizeSpacing } from 'app/components/scaleFontSize';
 import DropdownInput from 'app/components/DropDown';
+import { useSelector } from 'react-redux';
 
 const AddNewVisitorForm = (props: any) => {
     const insets = useSafeAreaInsets();
-    const [gender, setGender] = useState("Male");
-    const [checked, setChecked] = React.useState("first");
+    const { response = {}, detail = "" } = useSelector((state: any) => state.visitorData)
 
+    useEffect(() => {
+        if (props.type == 'edit') {
+            if (response?.status === 200) {
+                props.setIsloading(false)
+                props.setFormData({
+                    ...response?.data[0]?.customer_detail,
+                    expected_possession_date: response?.data[0]?.expected_possession_date,
+                    lead_id: response?.data[0]?._id,
+                    property_id: response?.data[0]?.property_id,
+                    property_title: response?.data[0]?.property_title,
+                    property_type_title: response?.data[0]?.property_type_title,
+                    locality: response?.data[0]?.customer_detail?.locality ?
+                        response?.data[0]?.customer_detail?.locality : ''
+                })
+            }
+        }
+
+    }, [response])
     return (
         <View style={styles.mainContainer}>
             <View
@@ -54,12 +70,11 @@ const AddNewVisitorForm = (props: any) => {
                             inputWidth={'100%'}
                             paddingLeft={16}
                             maxHeight={300}
-                            onFocus={() => props.handleProperty()}
                             labelField="property_title"
                             valueField={'_id'}
                             value={props?.formData?.property_id}
                             onChange={(item: any) => {
-                            console.log('item: ', item);
+                                console.log('item: ', item);
                                 props.setFormData({
                                     ...props.formData,
                                     property_id: item.property_id,
@@ -304,7 +319,6 @@ const AddNewVisitorForm = (props: any) => {
                             inputWidth={'100%'}
                             paddingLeft={16}
                             maxHeight={300}
-                            onFocus={() => props.handleMasterDatas(2)}
                             labelField={"title"}
                             valueField={'_id'}
                             value={props?.formData?.configuration_id}

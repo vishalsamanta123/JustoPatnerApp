@@ -2,20 +2,19 @@ import { View, Text } from 'react-native'
 import React, { useEffect, useLayoutEffect, useState } from 'react'
 import AddNewVisitorForm from './Components/AddNewVisitorForm'
 import { useDispatch, useSelector } from 'react-redux'
-import { addVisitor, editVisitor, getVisitorDetail } from 'app/Redux/Actions/LeadsActions'
+import { addVisitor, addVisitorRemove, editVisitor, getVisitorDetail } from 'app/Redux/Actions/LeadsActions'
 import Loader from 'app/components/CommonScreen/Loader'
 import ErrorMessage from 'app/components/ErrorMessage'
-import { RED_COLOR } from 'app/components/utilities/constant'
+import { GREEN_COLOR, RED_COLOR } from 'app/components/utilities/constant'
 import { getAllMaster } from 'app/Redux/Actions/MasterActions'
 import { getAllProperty } from 'app/Redux/Actions/propertyActions'
 
 const AddNewVisitorScreen = ({ navigation, route }: any) => {
-  const { type } = route?.params || {}
+  const { type, data } = route?.params || {}
   const dispatch: any = useDispatch()
   const [isloading, setIsloading] = useState(false)
-  const { response = {}, detail = "", edit = "", create = "" } = useSelector((state: any) => state.visitorData)
+  const { response = {}, detail = "" } = useSelector((state: any) => state.visitorData)
   const [formData, setFormData] = useState<any>({
-    lead_id: '',
     first_name: '',
     min_budget_type: 'L',
     adhar_no: '',
@@ -51,213 +50,69 @@ const AddNewVisitorScreen = ({ navigation, route }: any) => {
   const [allProperty, setAllProperty] = useState<any>([])
   const masterData = useSelector((state: any) => state.masterData) || {}
   const propertyData = useSelector((state: any) => state.propertyData) || {}
-  useEffect(() => {
-    // if (edit || create) {
-    //   if (response?.status === 200) {
-    //     navigation.navigate('LeadManagement')
-    //     setIsloading(false)
-    //   } else {
-    //     ErrorMessage({
-    //       msg: response?.message,
-    //       backgroundColor: RED_COLOR
-    //     })
-    //   }
-    // }
-  }, [edit, create])
-  const handleMasterDatas = (data: any) => {
-    setIsloading(true)
-    dispatch(getAllMaster({
-      type: data
-    }))
-  }
-  useEffect(() => {
-    if (masterData?.response?.status === 200) {
-      setIsloading(false)
-      setMasterDatas(masterData?.response?.data?.length > 0 ? masterData?.response?.data : [])
-    }
-  }, [masterData])
+  const editData = useSelector((state: any) => state.editVisitorData) || {}
+  const addData = useSelector((state: any) => state.addVisitorData) || {}
+
   useLayoutEffect(() => {
     if (type === 'edit') {
-      const { data = {} } = route?.params
-      if (data._id) {
+      if (data?._id) {
         setIsloading(true)
         dispatch(getVisitorDetail({
           lead_id: data._id
         }))
-        toGetDatas()
       }
     }
   }, [detail])
-  const toGetDatas = () => {
-    if (detail) {
+
+  useEffect(() => {
+    setIsloading(true)
+    dispatch(getAllMaster({
+      type: 2
+    }))
+    handleMasterDatas()
+  }, [])
+
+  const handleMasterDatas = () => {
+    if (masterData?.response?.status === 200) {
       setIsloading(false)
-      setFormData({
-        ...response?.data[0]?.customer_detail,
-        expected_possession_date: response?.data[0]?.expected_possession_date,
-        lead_id: response?.data[0]?._id,
-        property_id: response?.data[0]?.property_id,
-        property_title: response?.data[0]?.property_title,
-        property_type_title: response?.data[0]?.property_type_title,
-        locality: ''
-      })
+      setMasterDatas(masterData?.response?.data?.length > 0 ? masterData?.response?.data : [])
     }
   }
 
-  const handleBackPress = () => {
-    navigation.goBack()
-  }
-  const OnpressseheduleVisit = () => {
-    navigation.navigate('AddAppointmentScreen')
-  }
-  const handleProperty = () => {
+  useEffect(() => {
     setIsloading(true)
     dispatch(getAllProperty({
       offset: 0,
-      limit: 10,
+      limit: '',
     }))
     getAllPropertyData()
-  }
+  }, [])
+
   const getAllPropertyData = () => {
     if (propertyData?.response?.status === 200) {
       setIsloading(false)
       setAllProperty(propertyData?.response?.data)
     }
   }
+
+  const handleBackPress = () => {
+    navigation.goBack()
+  }
+
+  const OnpressseheduleVisit = () => {
+    navigation.navigate('AddAppointmentScreen')
+  }
+
   const validation = () => {
     let isError = true;
     let errorMessage: any = ''
-    if (formData?.property_id === '' || formData?.property_type_title === '') {
+    if (formData?.first_name === '' || formData?.first_name === undefined) {
       isError = false;
-      errorMessage = "Please fill property name"
-    } else {
-      if (formData?.first_name === '') {
+      errorMessage = "Please fill visitor name"
+    } else if (type != 'edit') {
+      if (formData?.property_id === '' || formData?.property_type_title === '') {
         isError = false;
-        errorMessage = "Please fill visitor name"
-      } else {
-        if (formData?.adhar_no === '') {
-          isError = false;
-          errorMessage = "Please fill aadhar number"
-        } else {
-          if (formData?.pancard_no === '') {
-            isError = false;
-            errorMessage = "Please fill pancard number"
-          } else {
-            if (formData?.gender === '') {
-              isError = false;
-              errorMessage = "Please fill gender"
-            } else {
-              if (formData?.birth_date === '') {
-                isError = false;
-                errorMessage = "Please fill date of birth"
-              } else {
-                if (formData?.mobile === '') {
-                  isError = false;
-                  errorMessage = "Please fill mobile number"
-                } else {
-                  if (formData?.whatsapp_no === '') {
-                    isError = false;
-                    errorMessage = "Please fill wattsapp number"
-                  } else {
-                    if (formData?.email === '') {
-                      isError = false;
-                      errorMessage = "Please fill email id"
-                    } else {
-                      if (formData?.location === '') {
-                        isError = false;
-                        errorMessage = "Please fill location"
-                      } else {
-                        if (formData?.locality === '') {
-                          isError = false;
-                          errorMessage = "Please fill locality"
-                        } else {
-                          if (formData?.configuration_id === '') {
-                            isError = false;
-                            errorMessage = "Please fill configuration"
-                          } else {
-                            if (formData?.property_id === '') {
-                              isError = false;
-                              errorMessage = "Please fill property"
-                            } else {
-                              if (formData?.expected_possession_date === '') {
-                                isError = false;
-                                errorMessage = "Please fill expected possession date"
-                              } else {
-                                if (formData?.areain_sqlft === '') {
-                                  isError = false;
-                                  errorMessage = "Please fill area filled"
-                                } else {
-                                  if (formData?.min_budget === '') {
-                                    isError = false;
-                                    errorMessage = "Please fill minimum budget"
-                                  } else {
-                                    if (formData?.min_budget_type === '') {
-                                      isError = false;
-                                      errorMessage = "Please fill minimum budget type"
-                                    } else {
-                                      if (formData?.max_budget === '') {
-                                        isError = false;
-                                        errorMessage = "Please fill maximum budget"
-                                      } else {
-                                        if (formData?.funding_type === '') {
-                                          isError = false;
-                                          errorMessage = "Please fill funding type"
-                                        } else {
-                                          if (formData?.min_emi_budget === '') {
-                                            isError = false;
-                                            errorMessage = "Please fill minimum emi budget"
-                                          } else {
-                                            if (formData?.min_emi_budget_type === '') {
-                                              isError = false;
-                                              errorMessage = "Please fill minimum emi budget type"
-                                            } else {
-                                              if (formData?.max_emi_budget === '') {
-                                                isError = false;
-                                                errorMessage = "Please fill maximum emi budget"
-                                              } else {
-                                                if (formData?.max_emi_budget_type === '') {
-                                                  isError = false;
-                                                  errorMessage = "Please fill maximum emi budget type"
-                                                } else {
-                                                  if (formData?.purpose === '') {
-                                                    isError = false;
-                                                    errorMessage = "Please fill purpose"
-                                                  } else {
-                                                    if (formData?.occupation === '') {
-                                                      isError = false;
-                                                      errorMessage = "Please fill occupation"
-                                                    } else {
-                                                      if (formData?.desigantion === '') {
-                                                        isError = false;
-                                                        errorMessage = "Please fill desigantion"
-                                                      } else {
-                                                        if (formData?.office_address === '') {
-                                                          isError = false;
-                                                          errorMessage = "Please fill office address"
-                                                        }
-                                                      }
-                                                    }
-                                                  }
-                                                }
-                                              }
-                                            }
-                                          }
-                                        }
-                                      }
-                                    }
-                                  }
-                                }
-                              }
-                            }
-                          }
-                        }
-                      }
-                    }
-                  }
-                }
-              }
-            }
-          }
-        }
+        errorMessage = "Please select property name"
       }
     }
     if (errorMessage !== '') {
@@ -268,12 +123,24 @@ const AddNewVisitorScreen = ({ navigation, route }: any) => {
     }
     return isError;
   }
+
+  useEffect(() => {
+    if (editData?.update || addData?.create) {
+      dispatch(addVisitorRemove());
+      setIsloading(false)
+      navigation.navigate('LeadManagement')
+      ErrorMessage({
+        msg: editData?.update ? editData?.response?.message :
+          addData?.create ? addData?.response?.message : '',
+        backgroundColor: GREEN_COLOR
+      })
+    }
+  }, [editData, addData])
   const OnpressCreateEdit = () => {
-    //if (validation()) {
+    if (validation()) {
       setIsloading(true)
       if (type === 'edit') {
         const edit_params = {
-          //all for edit
           lead_id: formData?.lead_id,
           first_name: formData?.first_name,
           email: formData?.email,
@@ -318,7 +185,6 @@ const AddNewVisitorScreen = ({ navigation, route }: any) => {
         dispatch(editVisitor(edit_params))
       } else {
         const add_params = {
-          //all for add
           module_id: '',
           first_name: formData?.first_name,
           email: formData?.email,
@@ -357,11 +223,9 @@ const AddNewVisitorScreen = ({ navigation, route }: any) => {
           max_emi_budget_type: formData?.max_emi_budget_type ? formData?.max_emi_budget_type : '',
           locality: formData?.locality,
         }
-        setIsloading(false)
         dispatch(addVisitor(add_params))
-        // navigation.navigate('LeadManagement')
       }
-    //}
+    }
   }
 
   return (
@@ -373,11 +237,12 @@ const AddNewVisitorScreen = ({ navigation, route }: any) => {
         OnpressCreateEdit={OnpressCreateEdit}
         type={type}
         isloading={isloading}
+        setIsloading={setIsloading}
         formData={formData}
         setFormData={setFormData}
-        handleMasterDatas={handleMasterDatas}
+        // handleMasterDatas={handleMasterDatas}
         masterDatas={masterDatas}
-        handleProperty={handleProperty}
+        // handleProperty={handleProperty}
         allProperty={allProperty}
       />
     </>

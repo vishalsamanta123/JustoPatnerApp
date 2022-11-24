@@ -9,7 +9,6 @@ import { useFocusEffect } from '@react-navigation/native'
 const LeadManagementScreen = ({ navigation }: any) => {
   const dispatch: any = useDispatch()
   const { response = {}, list = "" } = useSelector((state: any) => state.visitorDataList)
-  //console.log('response: hhhhhhhhh', response);
   const moreData = response?.total_data
   const [filterData, setFilterData] = useState({
     startdate: '',
@@ -43,7 +42,6 @@ const LeadManagementScreen = ({ navigation }: any) => {
     toGetDatas(array)
   }
   const toGetDatas = (array: any) => {
-    console.log('list: ', list);
     if (list) {
       setIsloading(false)
       if (offSET === 0) {
@@ -60,7 +58,7 @@ const LeadManagementScreen = ({ navigation }: any) => {
     navigation.navigate('BulkUpload')
   }
   const handleAddNewPress = (data: any) => {
-    navigation.navigate('AddNewVisitorScreen')
+    navigation.navigate('AddNewVisitorScreen', { type: 'add', data: {} })
   }
   // const Onreachedend = (offSet: any) => {
   //   setOffset(offSet)
