@@ -1,5 +1,5 @@
 import { View, Text, Image, TouchableOpacity } from "react-native";
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import Modal from "react-native-modal";
 import styles from "../../../../components/Modals/styles";
 import images from "../../../../assets/images";
@@ -8,23 +8,43 @@ import Button from "../../../../components/Button";
 import InputField from "../../../../components/InputField";
 import { Dropdown } from "react-native-element-dropdown";
 import InputCalender from "../../../../components/InputCalender";
+import moment from "moment";
+import { useDispatch, useSelector } from "react-redux";
+import { getAllMaster } from "app/Redux/Actions/MasterActions";
 const FilterModal = (props: any) => {
-
-  const [startdate, setStartDate] = useState(new Date())
-  const [enddate, setEndDate] = useState(new Date())
-
+  const dispatch: any = useDispatch()
+  useEffect(() => {
+    dispatch(getAllMaster({
+      type: 2
+    }))
+  }, [])
+  const { response = { data: [] } } = useSelector((state: any) => state.masterData) || {}
   const datavisitingscore = [
-    { label: "High to low", value: "1" },
-    { label: "Low to high", value: "2" }
+    { label: "High to low", value: 2 },
+    { label: "Low to high", value: 1 }
   ];
-  const dataconfiguration = [
-    { label: "1 BHK", value: "1" },
-    { label: "2 BHK", value: "2" },
-    { label: "3 BHK", value: "2" }
-  ];
-  const [valuevisitingscore, setValuevisitingscore] = useState(null);
-  const [valueconfiguration, setValueconfiguration] = useState(null);
-  const renderItem = (item: any) => {
+  const dataconfiguration = response?.data?.length > 0 ? response?.data : [];
+  const resetFilter = () => {
+    props.setFilterData({
+      startdate: '',
+      enddate: '',
+      search_by_visisor_name: '',
+      search_configuration: '',
+      visit_score: '',
+    })
+    props.setIsVisible(false)
+    props.setFilter({})
+  }
+
+  const configRender = (item: any) => {
+    return (
+      <View style={styles.item}>
+        <Text style={styles.textItem}>{item.title}</Text>
+      </View>
+    );
+  };
+
+  const visitorRender = (item: any) => {
     return (
       <View style={styles.item}>
         <Text style={styles.textItem}>{item.label}</Text>
@@ -47,29 +67,53 @@ const FilterModal = (props: any) => {
           <View style={{ marginHorizontal: 10 }}>
             <View style={styles.inputWrap}>
               <InputCalender
-                mode={'date'}
-                //headingText={'Start Date'}
                 placeholderText={"Start Date"}
-                dateshow={startdate}
-                setDateshow={setStartDate}
-
+                editable={false}
+                dateData={(data: any) => {
+                  props.setFilterData({
+                    ...props.filterData,
+                    startdate: moment(data).format()
+                  })
+                }}
+                setDateshow={(data: any) => {
+                  props.setFilterData({
+                    ...props.filterData,
+                    startdate: moment(data).format()
+                  })
+                }}
+                value={props.filterData.startdate}
               />
             </View>
             <View style={styles.inputWrap}>
               <InputCalender
-                mode={'date'}
-                //headingText={'Start Date'}
                 placeholderText={"End Date"}
-                dateshow={enddate}
-                setDateshow={setEndDate}
-
+                editable={false}
+                value={props.filterData.enddate}
+                dateData={(data: any) => {
+                  props.setFilterData({
+                    ...props.filterData,
+                    enddate: moment(data).format()
+                  })
+                }}
+                setDateshow={(data: any) => {
+                  props.setFilterData({
+                    ...props.filterData,
+                    enddate: moment(data).format()
+                  })
+                }}
               />
             </View>
             <View style={styles.inputWrap}>
               <InputField
                 placeholderText={"Search by Visitor Name"}
                 handleInputBtnPress={() => { }}
-                onChangeText={() => { }}
+                onChangeText={(data: any) => {
+                  props.setFilterData({
+                    ...props.filterData,
+                    search_by_visisor_name: data
+                  })
+                }}
+                valueshow={props.filterData.search_by_visisor_name}
               />
             </View>
             <View style={styles.inputWrap}>
@@ -80,14 +124,18 @@ const FilterModal = (props: any) => {
                 iconStyle={styles.iconStyle}
                 data={dataconfiguration}
                 maxHeight={300}
-                labelField="label"
-                valueField="value"
+                labelField="title"
+                valueField={'_id'}
                 placeholder="By Configuration"
-                value={valueconfiguration}
+                value={props.filterData.search_configuration}
                 onChange={(item) => {
-                  setValueconfiguration(item.value);
+                  props.setFilterData({
+                    ...props.filterData,
+                    search_configuration: item._id
+                  })
+                  // set
                 }}
-                renderItem={renderItem}
+                renderItem={configRender}
               />
             </View>
             <View style={styles.inputWrap}>
@@ -101,16 +149,32 @@ const FilterModal = (props: any) => {
                 labelField="label"
                 valueField="value"
                 placeholder="By visiting score"
-                value={valuevisitingscore}
+                value={props.filterData.visit_score}
                 onChange={(item) => {
-                  setValuevisitingscore(item.value);
+                  props.setFilterData({
+                    ...props.filterData,
+                    visit_score: item.value
+                  })
                 }}
-                renderItem={renderItem}
+                renderItem={visitorRender}
               />
             </View>
           </View>
           <View style={{ marginVertical: 20 }}>
-            <Button handleBtnPress={() => props.setIsVisible(false)} buttonText={strings.apply} />
+            <View style={{ flexDirection: 'row' }}>
+              <Button
+                width={135}
+                buttonText={strings.reset}
+                handleBtnPress={() => resetFilter()}
+              />
+              <Button
+                width={135}
+                handleBtnPress={() => {
+                  props.setIsVisible(false)
+                  props.getVisitorsList(0)
+                }} buttonText={strings.apply}
+              />
+            </View>
           </View>
         </View>
       </Modal>

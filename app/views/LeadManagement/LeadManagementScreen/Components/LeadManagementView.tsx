@@ -1,4 +1,4 @@
-import { View, Text, FlatList, StatusBar } from "react-native";
+import { View, Text, FlatList, StatusBar, ActivityIndicator } from "react-native";
 import React, { useState } from "react";
 import styles from "./Styles";
 import images from "../../../../assets/images";
@@ -52,15 +52,30 @@ const DATA: any = [
 ];
 
 const LeadManagementView = (props: any) => {
+  const loadingref = false
   const insets = useSafeAreaInsets();
   const navigation: any = useNavigation()
   const [FilterisVisible, setFilterisVisible] = useState(false)
-  const onPressView = () => {
-    navigation.navigate('LeadDetails')
+  const onPressView = (data: any) => {
+    navigation.navigate('LeadDetails', data)
   }
-  const onPressEdit = () => {
-    navigation.navigate('AddNewVisitorScreen', { type: 'edit' })
+
+  const onPressEdit = (data: any) => {
+    navigation.navigate('AddNewVisitorScreen', { type: 'edit', data })
   }
+
+  const onRefresh = () => {
+    props.setFilterData({
+      startdate: '',
+      enddate: '',
+      search_by_name: '',
+      search_by_location: '',
+      status: ''
+    })
+    props.getVisitorsList(0, [])
+    // props.setFilter({})
+  }
+  
   return (
     <View style={styles.mainContainer}>
       <View
@@ -81,7 +96,7 @@ const LeadManagementView = (props: any) => {
         handleOnRightFirstIconPress={() => setFilterisVisible(true)}
       />
       <View style={styles.TopBtnView}>
-       {/*  <Button
+        {/*  <Button
           buttonText={"Bulk Upload"}
           width={150}
           height={30}
@@ -98,13 +113,48 @@ const LeadManagementView = (props: any) => {
       </View>
       <View style={styles.propertyListView}>
         <FlatList
-          data={DATA}
+          data={props?.visitorList}
           showsVerticalScrollIndicator={false}
-          renderItem={({ item }) => <LeadManagementItem items={item} onPressView={onPressView} onPressEdit={onPressEdit} />}
+          renderItem={({ item }) => <LeadManagementItem
+            items={item}
+            onPressView={onPressView}
+            onPressEdit={onPressEdit} />}
+          onEndReached={() => {
+            if (props?.visitorList?.length < props?.moreData) {
+              console.log("ONREACH")
+              props.getVisitorsList(props?.visitorList?.length > 3 ?
+                props.offSET + 1 : 0, props.visitorList)
+            }
+          }}
+          onRefresh={() => onRefresh()}
+          refreshing={loadingref}
+          ListFooterComponent={() => {
+            return (
+              <>
+                {props.isloading ?
+                  <View style={styles.footer}>
+                    <ActivityIndicator
+                      color="black"
+                      size={'large'}
+                      style={{ margin: 15 }} />
+                  </View>
+                  : null
+                }
+
+              </>
+            )
+          }}
         />
       </View>
       {/* <ConfirmModal Visible={isVisible} setIsVisible={setIsVisible} /> */}
-      <FilterModal Visible={FilterisVisible} setIsVisible={setFilterisVisible} />
+      <FilterModal
+        Visible={FilterisVisible}
+        setIsVisible={setFilterisVisible}
+        setFilterData={props.setFilterData}
+        filterData={props.filterData}
+        setFilter={props.setFilter}
+        getVisitorsList={() => props.getVisitorsList(props.offSET)}
+      />
     </View>
   );
 };

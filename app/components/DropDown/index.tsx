@@ -38,6 +38,7 @@ const DropdownInput = (props: any) => {
                     labelField={props.labelField ? props.labelField : "label"}
                     valueField={props.valueField ? props.valueField : "value"}
                     placeholder={props.placeholder}
+                    disable={props.disable}
                     value={props.value}
                     onChange={(item) => {
                         props.onChange(item);

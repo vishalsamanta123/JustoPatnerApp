@@ -4,14 +4,15 @@ import styles from './Styles'
 import Button from '../../../../components/Button'
 import { normalize } from '../../../../components/scaleFontSize'
 import strings from '../../../../components/utilities/Localization'
+import moment from 'moment'
 
-const LeadDetailsIteam = () => {
+const LeadDetailsIteam = (props: any) => {
     return (
         <ScrollView showsVerticalScrollIndicator={false}>
             <View style={styles.topDetailsView}>
                 <View style={styles.topTxtView}>
                     <Text style={styles.topTxt}>Visitor Score </Text>
-                    <Text style={styles.topTxt}>250</Text>
+                    <Text style={styles.topTxt}>{props?.items?.lead_score}</Text>
                 </View>
                 <View style={styles.topBtnView}>
                     <TouchableOpacity
@@ -34,7 +35,7 @@ const LeadDetailsIteam = () => {
                 </View>
                 <View><Text>:</Text></View>
                 <View style={styles.nameContainer}>
-                    <Text style={styles.nameTxt}>ABC</Text>
+                    <Text style={styles.nameTxt}>{props?.items?.property_title}</Text>
                 </View>
             </View>
             <View style={styles.Txtview}>
@@ -43,7 +44,9 @@ const LeadDetailsIteam = () => {
                 </View>
                 <View><Text>:</Text></View>
                 <View style={styles.nameContainer}>
-                    <Text style={styles.nameTxt}>21/09/2022</Text>
+                    <Text style={styles.nameTxt}>{
+                        moment(props?.items?.last_interacted_date).format('llll')
+                    }</Text>
                 </View>
             </View>
             <View style={styles.Txtview}>
@@ -52,7 +55,7 @@ const LeadDetailsIteam = () => {
                 </View>
                 <View><Text>:</Text></View>
                 <View style={styles.nameContainer}>
-                    <Text style={styles.nameTxt}>ABC</Text>
+                    <Text style={styles.nameTxt}>{props?.items?.lead_source}</Text>
                 </View>
             </View>
             <View style={styles.Txtview}>
@@ -61,152 +64,160 @@ const LeadDetailsIteam = () => {
                 </View>
                 <View><Text>:</Text></View>
                 <View style={styles.nameContainer}>
-                    <Text style={styles.nameTxt}>Last call status</Text>
+                    <Text style={styles.nameTxt}> {props?.items?.lead_status === 1 ? "Create Lead" :
+                        props?.items?.lead_status === 2 ? "Follow-up" :
+                            props?.items?.lead_status === 3 ? "Site Visit/Appointment" :
+                                props?.items?.lead_status === 4 ? "Booking" :
+                                    props?.items?.lead_status === 5 && "Registration"
+                    }</Text>
                 </View>
             </View>
             {/* Property Required */}
             <>
-            <View style={styles.headdingView}>
-                <Text style={styles.headdingTxt}>{strings.propertyrequired}</Text>
-            </View>
-            <View style={styles.Txtview}>
-                <View style={styles.projectContainer}>
-                    <Text style={styles.projectTxt}>Configuration</Text>
+                <View style={styles.headdingView}>
+                    <Text style={styles.headdingTxt}>{strings.propertyrequired}</Text>
                 </View>
-                <View><Text>:</Text></View>
-                <View style={styles.nameContainer}>
-                    <Text style={styles.nameTxt}>2 BHK</Text>
+                <View style={styles.Txtview}>
+                    <View style={styles.projectContainer}>
+                        <Text style={styles.projectTxt}>Configuration</Text>
+                    </View>
+                    <View><Text>:</Text></View>
+                    <View style={styles.nameContainer}>
+                        <Text style={styles.nameTxt}>{props?.items?.customer_detail?.configuration}</Text>
+                    </View>
                 </View>
-            </View>
-            <View style={styles.Txtview}>
-                <View style={styles.projectContainer}>
-                    <Text style={styles.projectTxt}>Area (in sq.ft)</Text>
+                <View style={styles.Txtview}>
+                    <View style={styles.projectContainer}>
+                        <Text style={styles.projectTxt}>Area (in sq.ft)</Text>
+                    </View>
+                    <View><Text>:</Text></View>
+                    <View style={styles.nameContainer}>
+                        <Text style={styles.nameTxt}>{props?.items?.customer_detail?.areain_sqlft}</Text>
+                    </View>
                 </View>
-                <View><Text>:</Text></View>
-                <View style={styles.nameContainer}>
-                    <Text style={styles.nameTxt}>600</Text>
+                <View style={styles.Txtview}>
+                    <View style={styles.projectContainer}>
+                        <Text style={styles.projectTxt}>Budget</Text>
+                    </View>
+                    <View><Text>:</Text></View>
+                    <View style={styles.nameContainer}>
+                        <Text style={styles.nameTxt}>{props?.items?.customer_detail?.budget}</Text>
+                    </View>
                 </View>
-            </View>
-            <View style={styles.Txtview}>
-                <View style={styles.projectContainer}>
-                    <Text style={styles.projectTxt}>Budget</Text>
+                <View style={styles.Txtview}>
+                    <View style={styles.projectContainer}>
+                        <Text style={styles.projectTxt}>Nature Of Funding</Text>
+                    </View>
+                    <View><Text>:</Text></View>
+                    <View style={styles.nameContainer}>
+                        <Text style={styles.nameTxt}>{props?.items?.customer_detail?.funding_type}</Text>
+                    </View>
                 </View>
-                <View><Text>:</Text></View>
-                <View style={styles.nameContainer}>
-                    <Text style={styles.nameTxt}>50L</Text>
+                <View style={styles.Txtview}>
+                    <View style={styles.projectContainer}>
+                        <Text style={styles.projectTxt}>Purpose</Text>
+                    </View>
+                    <View><Text>:</Text></View>
+                    <View style={styles.nameContainer}>
+                        <Text style={styles.nameTxt}>{props?.items?.customer_detail?.purpose}</Text>
+                    </View>
                 </View>
-            </View>
-            <View style={styles.Txtview}>
-                <View style={styles.projectContainer}>
-                    <Text style={styles.projectTxt}>Nature Of Funding</Text>
-                </View>
-                <View><Text>:</Text></View>
-                <View style={styles.nameContainer}>
-                    <Text style={styles.nameTxt}>Loan</Text>
-                </View>
-            </View>
-            <View style={styles.Txtview}>
-                <View style={styles.projectContainer}>
-                    <Text style={styles.projectTxt}>Purpose</Text>
-                </View>
-                <View><Text>:</Text></View>
-                <View style={styles.nameContainer}>
-                    <Text style={styles.nameTxt}>End Use</Text>
-                </View>
-            </View>
             </>
             {/* Customer Details */}
             <>
-            <View style={styles.headdingView}>
-                <Text style={styles.headdingTxt}>{strings.Customerdetails}</Text>
-            </View>
-            <View style={styles.Txtview}>
-                <View style={styles.projectContainer}>
-                    <Text style={styles.projectTxt}>Visitor Name</Text>
+                <View style={styles.headdingView}>
+                    <Text style={styles.headdingTxt}>{strings.Customerdetails}</Text>
                 </View>
-                <View><Text>:</Text></View>
-                <View style={styles.nameContainer}>
-                    <Text style={styles.nameTxt}>ABC</Text>
+                <View style={styles.Txtview}>
+                    <View style={styles.projectContainer}>
+                        <Text style={styles.projectTxt}>Visitor Name</Text>
+                    </View>
+                    <View><Text>:</Text></View>
+                    <View style={styles.nameContainer}>
+                        <Text style={styles.nameTxt}>{props?.items?.customer_detail?.last_name
+                            === null ? props?.items?.customer_detail?.first_name :
+                            props?.items?.customer_detail?.first_name + " " + props?.items?.customer_detail?.last_name
+                        }</Text>
+                    </View>
                 </View>
-            </View>
-            <View style={styles.Txtview}>
-                <View style={styles.projectContainer}>
-                    <Text style={styles.projectTxt}>Location</Text>
+                <View style={styles.Txtview}>
+                    <View style={styles.projectContainer}>
+                        <Text style={styles.projectTxt}>Location</Text>
+                    </View>
+                    <View><Text>:</Text></View>
+                    <View style={styles.nameContainer}>
+                        <Text style={styles.nameTxt}>{props?.items?.customer_detail?.location}</Text>
+                    </View>
                 </View>
-                <View><Text>:</Text></View>
-                <View style={styles.nameContainer}>
-                    <Text style={styles.nameTxt}>Indore</Text>
+                <View style={styles.Txtview}>
+                    <View style={styles.projectContainer}>
+                        <Text style={styles.projectTxt}>Age</Text>
+                    </View>
+                    <View><Text>:</Text></View>
+                    <View style={styles.nameContainer}>
+                        <Text style={styles.nameTxt}>{props?.items?.customer_detail?.location}</Text>
+                    </View>
                 </View>
-            </View>
-            <View style={styles.Txtview}>
-                <View style={styles.projectContainer}>
-                    <Text style={styles.projectTxt}>Age</Text>
+                <View style={styles.Txtview}>
+                    <View style={styles.projectContainer}>
+                        <Text style={styles.projectTxt}>Gender</Text>
+                    </View>
+                    <View><Text>:</Text></View>
+                    <View style={styles.nameContainer}>
+                        <Text style={styles.nameTxt}>{props?.items?.customer_detail?.gender === 1 ? "Male" : "Female"}</Text>
+                    </View>
                 </View>
-                <View><Text>:</Text></View>
-                <View style={styles.nameContainer}>
-                    <Text style={styles.nameTxt}>21</Text>
+                <View style={styles.Txtview}>
+                    <View style={styles.projectContainer}>
+                        <Text style={styles.projectTxt}>Locality</Text>
+                    </View>
+                    <View><Text>:</Text></View>
+                    <View style={styles.nameContainer}>
+                        <Text style={styles.nameTxt}>{props?.items?.customer_detail?.city}</Text>
+                    </View>
                 </View>
-            </View>
-            <View style={styles.Txtview}>
-                <View style={styles.projectContainer}>
-                    <Text style={styles.projectTxt}>Gender</Text>
-                </View>
-                <View><Text>:</Text></View>
-                <View style={styles.nameContainer}>
-                    <Text style={styles.nameTxt}>Male</Text>
-                </View>
-            </View>
-            <View style={styles.Txtview}>
-                <View style={styles.projectContainer}>
-                    <Text style={styles.projectTxt}>Locality</Text>
-                </View>
-                <View><Text>:</Text></View>
-                <View style={styles.nameContainer}>
-                    <Text style={styles.nameTxt}>Pune</Text>
-                </View>
-            </View>
             </>
             {/* Company Details */}
             <>
-            <View style={styles.headdingView}>
-                <Text style={styles.headdingTxt}>{strings.companydetails}</Text>
-            </View>
-            <View style={styles.Txtview}>
-                <View style={styles.projectContainer}>
-                    <Text style={styles.projectTxt}>Nature of Occupation</Text>
+                <View style={styles.headdingView}>
+                    <Text style={styles.headdingTxt}>{strings.companydetails}</Text>
                 </View>
-                <View><Text>:</Text></View>
-                <View style={styles.nameContainer}>
-                    <Text style={styles.nameTxt}>Salaried</Text>
+                <View style={styles.Txtview}>
+                    <View style={styles.projectContainer}>
+                        <Text style={styles.projectTxt}>Nature of Occupation</Text>
+                    </View>
+                    <View><Text>:</Text></View>
+                    <View style={styles.nameContainer}>
+                        <Text style={styles.nameTxt}>{props?.items?.customer_detail?.occupation}</Text>
+                    </View>
                 </View>
-            </View>
-            <View style={styles.Txtview}>
-                <View style={styles.projectContainer}>
-                    <Text style={styles.projectTxt}>Company Name</Text>
+                <View style={styles.Txtview}>
+                    <View style={styles.projectContainer}>
+                        <Text style={styles.projectTxt}>Company Name</Text>
+                    </View>
+                    <View><Text>:</Text></View>
+                    <View style={styles.nameContainer}>
+                        <Text style={styles.nameTxt}>{props?.items?.customer_detail?.coumpany_name}</Text>
+                    </View>
                 </View>
-                <View><Text>:</Text></View>
-                <View style={styles.nameContainer}>
-                    <Text style={styles.nameTxt}>ABC</Text>
+                <View style={styles.Txtview}>
+                    <View style={styles.projectContainer}>
+                        <Text style={styles.projectTxt}>Designation</Text>
+                    </View>
+                    <View><Text>:</Text></View>
+                    <View style={styles.nameContainer}>
+                        <Text style={styles.nameTxt}>{props?.items?.customer_detail?.desigantion}</Text>
+                    </View>
                 </View>
-            </View>
-            <View style={styles.Txtview}>
-                <View style={styles.projectContainer}>
-                    <Text style={styles.projectTxt}>Designation</Text>
+                <View style={styles.Txtview}>
+                    <View style={styles.projectContainer}>
+                        <Text style={styles.projectTxt}>Office Address</Text>
+                    </View>
+                    <View><Text>:</Text></View>
+                    <View style={styles.nameContainer}>
+                        <Text style={styles.nameTxt}>{props?.items?.customer_detail?.office_address}</Text>
+                    </View>
                 </View>
-                <View><Text>:</Text></View>
-                <View style={styles.nameContainer}>
-                    <Text style={styles.nameTxt}>Project Manager</Text>
-                </View>
-            </View>
-            <View style={styles.Txtview}>
-                <View style={styles.projectContainer}>
-                    <Text style={styles.projectTxt}>Office Address</Text>
-                </View>
-                <View><Text>:</Text></View>
-                <View style={styles.nameContainer}>
-                    <Text style={styles.nameTxt}>XYZ</Text>
-                </View>
-            </View>
             </>
         </ScrollView>
     )

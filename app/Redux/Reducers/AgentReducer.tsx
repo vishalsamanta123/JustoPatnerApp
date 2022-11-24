@@ -24,6 +24,7 @@ export function agentReducer(state = initialState, action: any) {
         ...state,
         detail: false,
         create: true,
+        edit: true,
         response: null,
       };
     case GET_AGENT_DETAIL:

@@ -1,4 +1,4 @@
-import {StyleSheet} from 'react-native';
+import { StyleSheet } from 'react-native';
 import {
   normalize,
   normalizeHeight,
@@ -6,6 +6,7 @@ import {
   normalizeWidth,
 } from '../scaleFontSize';
 import {
+  BLACK_COLOR,
   FONT_FAMILY_SEMIBOLD,
   GRAY_COLOR,
   Isios,
@@ -16,7 +17,7 @@ import {
 const styles = StyleSheet.create({
   mainContainer: {
     shadowColor: '#171717',
-    shadowOffset: {width: 0, height: 1},
+    shadowOffset: { width: 0, height: 1 },
     shadowOpacity: 0.2,
     shadowRadius: 1,
     elevation: 3,
@@ -34,14 +35,15 @@ const styles = StyleSheet.create({
     paddingLeft: normalizeSpacing(Isios ? 5 : 15),
     fontFamily: FONT_FAMILY_SEMIBOLD,
     opacity: 0.6,
+    color: BLACK_COLOR
   },
   rightImage: {
     height: normalizeHeight(20),
     width: normalizeWidth(20),
     opacity: 1,
-    marginRight:20,
+    marginRight: 20,
     //backgroundColor:'red'
-    
+
   },
   inputHeadinView: {
     position: 'absolute',

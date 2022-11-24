@@ -74,7 +74,6 @@ const styles = StyleSheet.create({
     },
     shadowOpacity: 0.2,
     shadowRadius: 1.41,
-
     elevation: 2,
   },
   icon: {
@@ -97,7 +96,7 @@ const styles = StyleSheet.create({
   },
   selectedTextStyle: {
     fontSize: 16,
-    color: GRAY_LIGHT_COLOR
+    color: GRAY_LIGHT_COLOR,
   },
   iconStyle: {
     width: 20,

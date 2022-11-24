@@ -12,13 +12,10 @@ import {
 const styles = StyleSheet.create({
   headerStyle: {
     backgroundColor: PRIMARY_THEME_COLOR,
-   
+
   },
   RightFirstIconStyle: {
     tintColor: WHITE_COLOR,
-  },
-  headerTextStyle: {
-    color: BLACK_COLOR,
   },
   mainContainer: {
     flex: 1,
@@ -75,6 +72,13 @@ const styles = StyleSheet.create({
   },
   radioTxt: {
     fontSize: normalize(15),
+    color: BLACK_COLOR
+  },
+  smallCont: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    marginBottom: normalizeSpacing(8),
+    marginLeft: normalizeSpacing(6)
   },
   workingView: {
     width: '100%',
@@ -109,7 +113,15 @@ const styles = StyleSheet.create({
     marginTop: normalizeSpacing(20)
   },
   budgetView: {
-    flexDirection: 'row'
+    flexDirection: 'row',
+  },
+  smallBox: {
+    width: "15%",
+    backgroundColor: WHITE_COLOR,
+    alignItems: "center",
+    justifyContent: "center",
+    marginLeft: 5,
+    borderRadius: 10
   },
   budgetInput: {
     backgroundColor: WHITE_COLOR,

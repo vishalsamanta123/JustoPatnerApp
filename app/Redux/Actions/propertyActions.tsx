@@ -5,6 +5,7 @@ import { GETPROPERTY_DETAIL, PROPERTY_ERROR, PROPERTY_LIST, PROPERTY_STATUS_UPDA
 export const getAllProperty = (params: any) => async (dispatch: any) => {
     try {
         const res = await apiCall("post", apiEndPoints.PROPERTYLIST, params);
+        console.log('res: ', res);
         if (res.data.status == 200) {
             dispatch({
                 type: PROPERTY_LIST,

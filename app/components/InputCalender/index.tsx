@@ -53,7 +53,6 @@ const InputCalender = (props: any) => {
           multiline={multiline}
           value={props?.value}
         />
-
         <TouchableOpacity
           onPress={() => OpenCalender()}
         //disabled={!props.handleInputBtnPress}
