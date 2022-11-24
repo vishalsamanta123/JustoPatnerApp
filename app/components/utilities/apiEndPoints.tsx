@@ -16,7 +16,7 @@ export default {
   // CREATE CHANNEL PARTNER
   CREATECHANNELPARTNER: '/channelPartner/createChannelPartner',
   CHECKEMAILMOBILE: '/auth/checkEmailMobile',
-  
+
 
   // MASTER START
   ADDMASTERLIST: "/master/getMasterList",
@@ -64,4 +64,9 @@ export default {
   VISITOR_STATUS_UPDATE: "/visit/updateVisitStatus",
   ADD_VISITOR_: "/visit/addVisit",
   EDIT_VISITOR_: "/visit/editVisit",
+
+  // Folloe-Up
+  GET_FOLLOWUP_LIST: '/followupStatus/getFollowupList',
+  GET_FOLLOWUP_DETAILS: '/followupStatus/getFollowupDetails',
+  UPDATE_FOLLOWUP: '/followupStatus/updatefollowup',
 };

@@ -4,6 +4,7 @@ import { createChannlePartnerReducer, registrationFormReducer } from "./Reggistr
 import { agentReducer, addAgentReducer, } from './AgentReducer';
 import { addVisitorReducer, visitorReducer } from "./LeadsReducer";
 import { masterDataReducer } from "./MasterReducer";
+import { followUpReducer } from "./FollowUpReducer";
 
 export default {
     login: authStore,
@@ -19,4 +20,5 @@ export default {
     visitorData: visitorReducer,
     addVisitorForm: addVisitorReducer,
     masterData: masterDataReducer,
+    followUp: followUpReducer
 }

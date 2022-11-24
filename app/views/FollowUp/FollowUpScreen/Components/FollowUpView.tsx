@@ -9,6 +9,7 @@ import { useSafeAreaInsets } from 'react-native-safe-area-context'
 import FollowUpItem from './FollowUpItem'
 import { useNavigation } from '@react-navigation/native'
 import FilterModal from './FollowUpModal'
+import { useSelector } from 'react-redux'
 
 const DATA: any = [
   {
@@ -35,21 +36,35 @@ const DATA: any = [
     budget: '60L',
     type: 'On Lead',
   },
-  
+
 ];
 
 const FollowUpView = (props: any) => {
+  const loadingref = false
   const insets = useSafeAreaInsets();
   const navigation: any = useNavigation()
   const [FilterisVisible, setFilterisVisible] = useState(false)
-  const onPressView = () => {
-    navigation.navigate('FollowUpDetails')
+  const { response = {}, list = '' } = useSelector((state: any) => state.followUp)
+  const onPressView = (id: any) => {
+    navigation.navigate('FollowUpDetails', id)
   }
-  const onPressEdit = () => {
-    navigation.navigate('EditFollowUp')
+  const onPressEdit = (data: any) => {
+    navigation.navigate('EditFollowUp', data)
   }
-  const onPressAllFollowUp = () => {
-    navigation.navigate('AllFollowUpScreen')
+  const onPressAllFollowUp = (data: any) => {
+    navigation.navigate('AllFollowUpScreen', data)
+  }
+
+  const onRefresh = () => {
+    props.setFilterData({
+      startdate: '',
+      enddate: '',
+      search_by_name: '',
+      search_by_location: '',
+      status: ''
+    })
+    props.getFollowupList(0, [])
+    // props.setFilter({})
   }
   return (
     <View style={styles.mainContainer}>
@@ -72,9 +87,17 @@ const FollowUpView = (props: any) => {
       />
       <View style={styles.followupItemView}>
         <FlatList
-          data={DATA}
+          data={props?.followUpList}
           showsVerticalScrollIndicator={false}
           renderItem={({ item }) => <FollowUpItem items={item} onPressView={onPressView} onPressEdit={onPressEdit} onPressAllFollowUp={onPressAllFollowUp} />}
+          onRefresh={() => onRefresh()}
+          refreshing={loadingref}
+          onEndReached={() => {
+            if (props?.followUpList?.length < response?.total_data) {
+              console.log('onEndReached: ');
+              props.getFollowupList(props?.followUpList?.length > 2 ? props.offSET + 1 : 0,props?.followUpList )
+            }
+          }}
         />
       </View>
       <FilterModal Visible={FilterisVisible} setIsVisible={setFilterisVisible} />

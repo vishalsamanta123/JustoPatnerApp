@@ -158,6 +158,7 @@ const AgentBasicInfoView = (props: any) => {
           </View>
           <View style={styles.inputWrap}>
             <InputCalender
+              mode={'date'}
               placeholderText={"Date of Birth"}//can edit
               editable={false}
               // onChangeText={() => { }}

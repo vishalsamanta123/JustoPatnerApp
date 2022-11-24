@@ -14,24 +14,24 @@ const FilterModal = (props: any) => {
   const [enddate, setEndDate] = useState(new Date())
 
   const datavisitingscore = [
-      { label: "High to low", value: "1" },
-      { label: "Low to high", value: "2" }
-    ];
+    { label: "High to low", value: "1" },
+    { label: "Low to high", value: "2" }
+  ];
   const dataconfiguration = [
-      { label: "1 BHK", value: "1" },
-      { label: "2 BHK", value: "2" },
-      { label: "3 BHK", value: "2" }
-    ];
- const [valuevisitingscore, setValuevisitingscore] = useState(null);
- const [valueconfiguration, setValueconfiguration] = useState(null);
- const renderItem = (item: any) => {
-      return (
-          <View style={styles.item}>
-              <Text style={styles.textItem}>{item.label}</Text>
-          </View>
-      );
+    { label: "1 BHK", value: "1" },
+    { label: "2 BHK", value: "2" },
+    { label: "3 BHK", value: "2" }
+  ];
+  const [valuevisitingscore, setValuevisitingscore] = useState(null);
+  const [valueconfiguration, setValueconfiguration] = useState(null);
+  const renderItem = (item: any) => {
+    return (
+      <View style={styles.item}>
+        <Text style={styles.textItem}>{item.label}</Text>
+      </View>
+    );
   };
- return (
+  return (
     <View>
       <Modal isVisible={props.Visible}>
         <View style={styles.mainContainer}>
@@ -44,71 +44,73 @@ const FilterModal = (props: any) => {
             </View>
           </View>
           <View style={styles.borderView} />
-          <View style={{marginHorizontal: 10}}>
+          <View style={{ marginHorizontal: 10 }}>
             <View style={styles.inputWrap}>
-               <InputCalender
-                    //headingText={'Start Date'}
-                    placeholderText={"Start Date"}
-                    dateshow={startdate}
-                    setDateshow={setStartDate}
+              <InputCalender
+                mode={'date'}
+                //headingText={'Start Date'}
+                placeholderText={"Start Date"}
+                dateshow={startdate}
+                setDateshow={setStartDate}
 
-                />
+              />
             </View>
             <View style={styles.inputWrap}>
-            <InputCalender
-                  //headingText={'Start Date'}
-                  placeholderText={"End Date"}
-                  dateshow={enddate}
-                  setDateshow={setEndDate}
+              <InputCalender
+                mode={'date'}
+                //headingText={'Start Date'}
+                placeholderText={"End Date"}
+                dateshow={enddate}
+                setDateshow={setEndDate}
 
               />
             </View>
             <View style={styles.inputWrap}>
               <InputField
                 placeholderText={"Search by Visitor Name"}
-                handleInputBtnPress={() => {}}
-                onChangeText={() => {}}
+                handleInputBtnPress={() => { }}
+                onChangeText={() => { }}
               />
             </View>
             <View style={styles.inputWrap}>
-            <Dropdown
-                  style={styles.dropdown}
-                  placeholderStyle={styles.placeholderStyle}
-                  selectedTextStyle={styles.selectedTextStyle}
-                  iconStyle={styles.iconStyle}
-                  data={dataconfiguration}
-                  maxHeight={300}
-                  labelField="label"
-                  valueField="value"
-                  placeholder="By Configuration"
-                  value={valueconfiguration}
-                  onChange={(item) => {
-                    setValueconfiguration(item.value);
-                  }}
-                  renderItem={renderItem}
+              <Dropdown
+                style={styles.dropdown}
+                placeholderStyle={styles.placeholderStyle}
+                selectedTextStyle={styles.selectedTextStyle}
+                iconStyle={styles.iconStyle}
+                data={dataconfiguration}
+                maxHeight={300}
+                labelField="label"
+                valueField="value"
+                placeholder="By Configuration"
+                value={valueconfiguration}
+                onChange={(item) => {
+                  setValueconfiguration(item.value);
+                }}
+                renderItem={renderItem}
               />
             </View>
             <View style={styles.inputWrap}>
-             <Dropdown
-                  style={styles.dropdown}
-                  placeholderStyle={styles.placeholderStyle}
-                  selectedTextStyle={styles.selectedTextStyle}
-                  iconStyle={styles.iconStyle}
-                  data={datavisitingscore}
-                  maxHeight={300}
-                  labelField="label"
-                  valueField="value"
-                  placeholder="By visiting score"
-                  value={valuevisitingscore}
-                  onChange={(item) => {
-                    setValuevisitingscore(item.value);
-                  }}
-                  renderItem={renderItem}
+              <Dropdown
+                style={styles.dropdown}
+                placeholderStyle={styles.placeholderStyle}
+                selectedTextStyle={styles.selectedTextStyle}
+                iconStyle={styles.iconStyle}
+                data={datavisitingscore}
+                maxHeight={300}
+                labelField="label"
+                valueField="value"
+                placeholder="By visiting score"
+                value={valuevisitingscore}
+                onChange={(item) => {
+                  setValuevisitingscore(item.value);
+                }}
+                renderItem={renderItem}
               />
             </View>
           </View>
-          <View style={{marginVertical: 20}}>
-          <Button  handleBtnPress={() => props.setIsVisible(false)} buttonText={strings.apply}  />
+          <View style={{ marginVertical: 20 }}>
+            <Button handleBtnPress={() => props.setIsVisible(false)} buttonText={strings.apply} />
           </View>
         </View>
       </Modal>

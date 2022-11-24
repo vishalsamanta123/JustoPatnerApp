@@ -3,13 +3,14 @@ import React from 'react'
 import { Dropdown } from 'react-native-element-dropdown';
 import styles from './styles';
 import { dropdownData } from '../utilities/DemoData';
-import { normalizeHeight } from '../scaleFontSize';
+import { normalize, normalizeHeight } from '../scaleFontSize';
 
 const DropdownInput = (props: any) => {
     const {
         inputWidth = '90%',
-        inputheight = 50
-      } = props
+        inputheight = 50,
+        paddingLeft = 0
+    } = props
     const renderItem = (item: any) => {
         return (
             <View style={styles.item}>
@@ -27,20 +28,22 @@ const DropdownInput = (props: any) => {
                     style={[styles.dropdown, {
                         width: inputWidth,
                         height: normalizeHeight(inputheight),
+                        paddingLeft: normalize(paddingLeft)
                     }]}
                     placeholderStyle={styles.placeholderStyle}
-                    selectedTextStyle={styles.selectedTextStyle}
+                    selectedTextStyle={props.selectedTextStyle ? props.selectedTextStyle : styles.selectedTextStyle}
                     iconStyle={styles.iconStyle}
-                    data={dropdownData}
-                    maxHeight={300}
-                    labelField="label"
-                    valueField="value"
+                    data={props.data ? props.data : dropdownData}
+                    maxHeight={props.maxHeight ? props.maxHeight : 300}
+                    labelField={props.labelField ? props.labelField : "label"}
+                    valueField={props.valueField ? props.valueField : "value"}
                     placeholder={props.placeholder}
                     value={props.value}
                     onChange={(item) => {
-                        props.setValue(item.value);
+                        props.onChange(item);
                     }}
-                    renderItem={renderItem}
+                    onFocus={props.onFocus}
+                    renderItem={props.newRenderItem ? props.newRenderItem : renderItem}
                 />
             </View>
         </View>

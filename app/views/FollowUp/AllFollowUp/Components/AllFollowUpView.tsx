@@ -31,7 +31,7 @@ const AllFollowUpView = (props: any) => {
       />
       <View style={styles.iteamView}>
         <FlatList
-        data={AllFolloeUpData}
+        data={props?.allFollowUpList}
         renderItem={({item}) => <AllFollowUpItem items={item} />}
          />
       </View>

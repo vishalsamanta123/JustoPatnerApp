@@ -58,23 +58,40 @@ const InputCalender = (props: any) => {
           onPress={() => OpenCalender()}
         //disabled={!props.handleInputBtnPress}
         >
-          <Image style={styles.rightImage} source={images.calender} />
+          <Image style={styles.rightImage} source={props.leftIcon} />
         </TouchableOpacity>
       </View>
-      <DatePicker
-        modal={true}
-        mode={"date"}
-        open={open}
-        date={new Date()}
-        onDateChange={(date) => {
-          props.setDateshow(date)
-        }}
-        onConfirm={(date) => onConfirmDate(date)}
-        onCancel={() => {
-          setOpen(false)
-        }}
-      />
-
+      {props.mode == 'date' ?
+        (<DatePicker
+          modal={true}
+          mode={'date'}
+          open={open}
+          date={new Date()}
+          onDateChange={(date) => {
+            props.setDateshow(date)
+          }}
+          onConfirm={(date) => onConfirmDate(date)}
+          onCancel={() => {
+            setOpen(false)
+          }}
+        />)
+        :
+        (<DatePicker
+          modal={true}
+          mode={'time'}
+          open={open}
+          date={new Date()}
+          onDateChange={(date) => {
+            props.setDateshow(date)
+          }}
+          onConfirm={(date) => {
+            onConfirmDate(date)
+          }}
+          onCancel={() => {
+            setOpen(false)
+          }}
+        />)
+      }
 
     </View>
   );
