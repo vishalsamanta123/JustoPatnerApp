@@ -7,12 +7,14 @@ import { AGENT_LIST } from 'app/Redux/types';
 import { useFocusEffect, useIsFocused } from '@react-navigation/native';
 
 const AgentListing = ({ navigation }: any) => {
-  const isFocused = useIsFocused()
+  // const isFocused = useIsFocused()
   const { response = {}, list = false } = useSelector((state: any) => state.agentData)
   const moreData = response?.total_data || 0
-  const [agentList, setAgentList] = useState([])
+  const [agentList, setAgentList] = useState<any>([])
+  console.log('agentList: ', agentList);
   const [isloading, setIsloading] = useState(false)
-  const [offset, setOffset] = useState(0)
+  const [offSET, setOffset] = useState(0)
+  console.log('offSET: ', offSET);
   const [filterData, setFilterData] = useState({
     startdate: '',
     enddate: '',
@@ -22,20 +24,19 @@ const AgentListing = ({ navigation }: any) => {
   })
   const [filter, setFilter] = useState(false)
   const [changeStatus, setChangeStatus] = useState({ _id: '', status: false })
-  const [type, setType] = useState(null)
   const dispatch: any = useDispatch()
+
   useFocusEffect(
     React.useCallback(() => {
-      getAgentList()
+      getAgentList(offSET, [])
       return () => { };
-    }, [])
+    }, [navigation])
   );
-
-
-  const getAgentList = () => {
+  const getAgentList = (offset: any, array: any) => {
     setIsloading(true)
+    setOffset(offset)
     dispatch(getAllAgentList({
-      offset: 0,
+      offset: offset,
       limit: 3,
       module_id: '',
       start_date: filterData.startdate,
@@ -45,12 +46,17 @@ const AgentListing = ({ navigation }: any) => {
       search_by_location: filterData.search_by_location,
       status: filterData.status,
     }))
-    toGetDatas()
+    toGetDatas(offset, array)
   }
-  const toGetDatas = () => {
+  const toGetDatas = (offset: any, array: any) => {
     if (list) {
       setIsloading(false)
-      setAgentList(response?.data)
+      if (offSET === 0 && offset === 0) {
+        console.log("TO THE END")
+        setAgentList(response?.data)
+      } else {
+        setAgentList([...array, ...response?.data])
+      }
     }
   }
   const handleDrawerPress = () => {
@@ -110,10 +116,11 @@ const AgentListing = ({ navigation }: any) => {
         setFilter={setFilter}
         agentList={agentList}
         Onreachedend={Onreachedend}
-        offset={offset}
+        offSET={offSET}
         moreData={moreData}
         filter={filter}
         getAgentList={getAgentList}
+        setOffset={setOffset}
       />
     </>
   )

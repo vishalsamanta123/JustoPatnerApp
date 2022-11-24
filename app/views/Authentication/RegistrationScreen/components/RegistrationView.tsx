@@ -25,6 +25,7 @@ import { normalizeSpacing } from "app/components/scaleFontSize";
 import PicturePickerModal from "app/components/Modals/PicturePicker";
 import InputCalender from "app/components/InputCalender";
 import moment from "moment";
+import MultiLocation from 'app/components/MultiLocation'
 
 const RegistrationView = (props: any) => {
   const insets = useSafeAreaInsets();
@@ -244,7 +245,8 @@ const RegistrationView = (props: any) => {
           <View>
             <Text style={styles.workTxt}>Working Location</Text>
           </View>
-          <TouchableOpacity style={styles.addBtn}>
+          <TouchableOpacity onPress={() => props.setLocationModel(true)}
+            style={styles.addBtn}>
             <Text style={styles.addTxt}>+ Add location</Text>
           </TouchableOpacity>
         </View>
@@ -259,6 +261,11 @@ const RegistrationView = (props: any) => {
               ...props.resgistrationData, profile_picture: data
             })
           }}
+        />
+        <MultiLocation
+          Visible={props.locationModel}
+          setVisible={() => props.setLocationModel(false)}
+          handleSearch={() => { }}
         />
       </ScrollView>
     </View>

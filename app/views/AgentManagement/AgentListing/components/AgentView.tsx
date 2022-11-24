@@ -74,7 +74,8 @@ const AgentView = (props: any) => {
       search_by_location: '',
       status: ''
     })
-    props.setFilter({})
+    props.setOffset(0)
+    props.getAgentList(0, [])
   }
   return (
     <View style={styles.mainContainer}>
@@ -127,14 +128,16 @@ const AgentView = (props: any) => {
             showsVerticalScrollIndicator={false}
             data={props?.agentList}
             ListEmptyComponent={<EmptyListScreen message={strings.agent} />}
-            renderItem={({ item }) => <AgentListItem items={item} setIsVisible={setIsVisible}
-              onPressView={props.onPressView}
-              setChangeStatus={props.setChangeStatus}
-            />}
+            renderItem={({ item }) =>
+              <AgentListItem items={item} setIsVisible={setIsVisible}
+                onPressView={props.onPressView}
+                setChangeStatus={props.setChangeStatus}
+              />
+            }
             onEndReached={() => {
               if (props?.agentList?.length < props?.moreData) {
-                props.Onreachedend(props?.agentList?.length > 3 ?
-                  props.offset + 1 : 0)
+                props.getAgentList(props?.agentList?.length > 2 ?
+                  props.offSET + 1 : 0, props?.agentList)
               }
             }}
             onRefresh={() => onRefresh()}

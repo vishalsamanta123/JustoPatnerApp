@@ -93,24 +93,27 @@ const strings = new LocalizedStrings({
     createAgent: 'Create Agent',
     editAgent: 'Edit Agent',
     searchAgent: 'Search Agent',
+    searchLocation: 'Search Location',
     updatepassword: 'Update Password',
     deactivconfirmation: 'Are You sure you want to Deactive this',
     update: 'Update',
     call: 'Call',
     status: 'Status',
     registration: 'registration',
+    addLocation: 'Add Locations',
+    notSelectedLocation: 'Not Selected Location',
 
     //Auth 
 
-    usernamepasswordempty : 'Username and Password is require. Please enter Username and password',
-    correctemail : 'Enter correct Email Address',
-    usernamerequired : 'Username is require. Please enter username',
-    passwordrequired : 'Password is require. Please enter password',
-    emailrequired : 'Email is require. Please enter email',
-    otprequired : 'Enter your OTP',
-    passwordnotmatch : 'Password and Confirm Password not match !',
-    requiredpassword : 'Enter your Password and Confirm Password',
-    requiredField : 'All Password field are required',
+    usernamepasswordempty: 'Username and Password is require. Please enter Username and password',
+    correctemail: 'Enter correct Email Address',
+    usernamerequired: 'Username is require. Please enter username',
+    passwordrequired: 'Password is require. Please enter password',
+    emailrequired: 'Email is require. Please enter email',
+    otprequired: 'Enter your OTP',
+    passwordnotmatch: 'Password and Confirm Password not match !',
+    requiredpassword: 'Enter your Password and Confirm Password',
+    requiredField: 'All Password field are required',
 
 
     // Appointment
@@ -169,7 +172,7 @@ const strings = new LocalizedStrings({
     txt_setting_Location:
       'Justo does not have access to your Location. To enable access, tap on Settings and turn on Location.',
 
-    notfount:'Not Found',
+    notfount: 'Not Found',
   },
 });
 

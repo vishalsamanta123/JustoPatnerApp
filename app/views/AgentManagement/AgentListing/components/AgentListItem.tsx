@@ -23,7 +23,9 @@ const AgentListItem = (props: any) => {
         </View>
         <View><Text>:</Text></View>
         <View style={styles.nameContainer}>
-          <Text style={styles.nameTxt}>{props.items.location}</Text>
+          <Text style={styles.nameTxt}>{
+            props.items.location === '' || props.items.location === undefined ?
+              strings.notfount : props.items.location}</Text>
         </View>
       </View>
       <View style={styles.Txtview} >
@@ -32,7 +34,10 @@ const AgentListItem = (props: any) => {
         </View>
         <View><Text>:</Text></View>
         <View style={styles.nameContainer}>
-          <Text style={styles.nameTxt}>{props.items.rera_certificate_no}</Text>
+          <Text style={styles.nameTxt}>{
+            props.items.rera_certificate_no === '' || props.items.rera_certificate_no === undefined ?
+              strings.notfount : props.items.rera_certificate_no
+          }</Text>
         </View>
       </View>
       <View style={styles.Txtview} >
@@ -69,7 +74,7 @@ const AgentListItem = (props: any) => {
         <View><Text>:</Text></View>
         <View style={styles.nameContainer}>
           <Text style={[styles.nameTxt, {
-            color: props.items.status ? strings.active : strings.deactive
+            // color: props.items.status ? GREEN_COLOR : RED_COLOR
           }]}>{props.items.status ? strings.active : strings.deactive}</Text>
         </View>
       </View>

@@ -7,7 +7,7 @@ const Header = (props: any) => {
     <>
       <View style={[styles.maincontainer, props.headerStyle]}>
         <View style={styles.leftView}>
-          <TouchableOpacity onPress={props. handleOnLeftIconPress}>
+          <TouchableOpacity onPress={() => props.handleOnLeftIconPress()}>
             <Image
               source={props.leftImageSrc}
               style={[styles.imageStyle, props.leftImageIconStyle]}
