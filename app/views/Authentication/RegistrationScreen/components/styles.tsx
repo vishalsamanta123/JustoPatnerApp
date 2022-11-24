@@ -1,5 +1,5 @@
-import {StyleSheet} from 'react-native';
-import {normalize, normalizeHeight, normalizeSpacing, normalizeWidth} from '../../../../components/scaleFontSize';
+import { StyleSheet } from 'react-native';
+import { normalize, normalizeHeight, normalizeSpacing, normalizeWidth } from '../../../../components/scaleFontSize';
 import {
   BLACK_COLOR,
   FONT_FAMILY_EXTRABOLD,
@@ -46,7 +46,7 @@ const styles = StyleSheet.create({
     width: normalizeWidth(100),
     alignItems: 'center',
     justifyContent: 'center',
-    
+
   },
   inputWrap: {
     marginTop: normalizeSpacing(20),
@@ -68,10 +68,10 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     marginHorizontal: normalizeSpacing(10)
   },
-  radioTxt : {
+  radioTxt: {
     fontSize: normalize(18),
   },
-  workingView : {
+  workingView: {
     width: '100%',
     flexDirection: 'row',
     justifyContent: 'space-between',
@@ -104,7 +104,12 @@ const styles = StyleSheet.create({
   loginBanner: {
     width: normalizeSpacing(100),
     height: normalizeSpacing(100),
-    borderRadius:normalizeSpacing(50),
+    borderRadius: normalizeSpacing(50),
+  },
+  DummyloginBanner: {
+    width: normalizeSpacing(80),
+    height: normalizeSpacing(80),
+    borderRadius: normalizeSpacing(50),
   },
   loginBannerView: {
     height: '100%',
@@ -119,6 +124,18 @@ const styles = StyleSheet.create({
     // bottom: 0,
     // overflow: 'hidden',
   },
+  editView: {
+    position: 'absolute',
+    top: 5,
+    bottom: 0,
+    right: 0
+  },
+  editImage: {
+    width: normalizeWidth(20),
+    height: normalizeHeight(20),
+    backgroundColor: GRAY_COLOR,
+    borderRadius: 100
+  }
 });
 
 export default styles;

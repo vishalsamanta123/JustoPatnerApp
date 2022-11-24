@@ -9,7 +9,16 @@ import InputField from '../../../../components/InputField'
 import Button from '../../../../components/Button'
 
 const ChangePasswordView = (props: any) => {
-   const {data} = props;
+   const {data, passwordData,
+    setPasswordData,
+    handleChangePress,
+    handleOldPasswordBtnPress,
+    handleNewPasswordBtnPress,
+    handlecnfmPasswordBtnPress,
+    isVisibleOldPassword,
+    isVisibleNewPassword,
+    isVisibleCnfmPassword,
+  } = props;
   return (
     <View style={styles.mainContainer}>
       <Header
@@ -27,33 +36,54 @@ const ChangePasswordView = (props: any) => {
         <View style={styles.inputWrap}>
             <InputField
                 placeholderText={"Old Password"}
-                handleInputBtnPress={() => {}}
-                onChangeText={() => {}}
+                onChangeText={(e: any) => setPasswordData({
+                  ...passwordData,
+                  oldPassword: e,
+                })}
                 headingText={"Old Password"}
+                rightImgSrc={
+                  isVisibleOldPassword ? images.showPassword : images.hiddenPassword
+                }
+                handleInputBtnPress={handleOldPasswordBtnPress}
+                isSecureText={isVisibleOldPassword}
             />
         </View>
         <View style={styles.inputWrap}>
             <InputField
                 placeholderText={"New Password"}
-                handleInputBtnPress={() => {}}
-                onChangeText={() => {}}
+                onChangeText={(e: any) => setPasswordData({
+                  ...passwordData,
+                  password: e,
+                })}
                 headingText={"New Password"}
+                rightImgSrc={
+                  isVisibleNewPassword ? images.showPassword : images.hiddenPassword
+                }
+                handleInputBtnPress={handleNewPasswordBtnPress}
+                isSecureText={isVisibleNewPassword}
             />
         </View>
         <View style={styles.inputWrap}>
             <InputField
                 placeholderText={"Confirm New Password"}
-                handleInputBtnPress={() => {}}
-                onChangeText={() => {}}
+                onChangeText={(e: any) => setPasswordData({
+                  ...passwordData,
+                  conPassword: e,
+                })}
                 headingText={"Confirm New Password"}
+                rightImgSrc={
+                  isVisibleCnfmPassword ? images.showPassword : images.hiddenPassword
+                }
+                handleInputBtnPress={handlecnfmPasswordBtnPress}
+                isSecureText={isVisibleCnfmPassword}
             />
         </View>
         <View style={styles.btnView}>
-            <Button handleBtnPress={props.onPressNext} width={300} btnTxtsize={15} buttonText={strings.changePassword} textTransform={"uppercase"} />
+            <Button handleBtnPress={handleChangePress} width={300} btnTxtsize={15} buttonText={strings.changePassword} textTransform={"uppercase"} />
         </View>
       </View>
     </View>
   )
 }
 
-export default ChangePasswordView
+export default ChangePasswordView;

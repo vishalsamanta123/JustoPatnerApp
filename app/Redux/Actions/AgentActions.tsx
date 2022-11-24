@@ -97,11 +97,18 @@ export const addAgentForm = (params: any) => async (dispatch: any) => {
 export const getAgentDetail = (params: any) => async (dispatch: any) => {
     try {
         const res = await apiCall("post", apiEndPoints.GET_AGENT_DETAIL_, params);
+        // console.log('res: GET_AGENT_DETAIL_', res);
         if (res.data.status === 200) {
             dispatch({
                 type: GET_AGENT_DETAIL,
                 payload: res.data,
             });
+
+            dispatch({
+                type: ADD_AGENT_FORM,
+                payload: res.data.data[0],
+            });
+
         } else {
             return [];
         }

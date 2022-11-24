@@ -6,12 +6,18 @@ export default {
   OTPVERIFY: "/auth/otpVerify",
   RESENDOTP: "/auth/resentOtp",
   UPDATEPASSWORD: "/auth/updatePassword",
+  CHANGEPASSWORD: "/auth/changePassword",
   REGISTERANDADDUSER: "/auth/userRegister",
   GETUSERLIST: "userManage/getUserList",
   GETUSERDETAIL: "/userManage/getUserDetail",
   GETUSERFILTERDATA: "/userManage/getUserFilterData",
   EDITUSER: "/auth/editUserProfile",
   USERSTATUSUPDATE: "/userManage/userStatusUpdate",
+
+  // CREATE CHANNEL PARTNER
+  CREATECHANNELPARTNER: '/channelPartner/createChannelPartner',
+  CHECKEMAILMOBILE: '/auth/checkEmailMobile',
+  
 
   // MASTER START
   ADDMASTERLIST: "/master/getMasterList",
@@ -59,4 +65,7 @@ export default {
   VISITOR_STATUS_UPDATE: "/visit/updateVisitStatus",
   ADD_VISITOR_: "/visit/addVisit",
   EDIT_VISITOR_: "/visit/editVisit",
+
+  //Settings
+  UPDATECHANNELPARTNER: "/channelPartner/updateChannelPartner"
 };

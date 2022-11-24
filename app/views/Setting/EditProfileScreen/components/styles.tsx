@@ -1,6 +1,6 @@
 import { StyleSheet } from "react-native";
 import { normalize, normalizeHeight, normalizeSpacing, normalizeWidth } from "../../../../components/scaleFontSize";
-import { BLACK_COLOR, GRAY_COLOR, PRIMARY_THEME_COLOR, WHITE_COLOR } from "../../../../components/utilities/constant";
+import { BLACK_COLOR, FONT_FAMILY_SEMIBOLD, GRAY_COLOR, PRIMARY_THEME_COLOR, WHITE_COLOR } from "../../../../components/utilities/constant";
 
 const styles = StyleSheet.create({
     mainContainer: {
@@ -16,7 +16,7 @@ const styles = StyleSheet.create({
         tintColor: WHITE_COLOR
       },
       wrap: {
-        flex: 1,
+        // flex: 1,
         margin: normalizeSpacing(20),
         alignItems: 'center'
       },
@@ -52,6 +52,17 @@ const styles = StyleSheet.create({
       radioTxt : {
         fontSize: normalize(18),
       },
+      headingText: {
+        fontSize: normalize(18),
+        fontFamily: FONT_FAMILY_SEMIBOLD,
+        color: PRIMARY_THEME_COLOR,
+        textAlign: 'center',
+      },
+      userImage: {
+        height: normalizeHeight(80),
+        width: normalizeWidth(80),
+        borderRadius: normalizeSpacing(80)
+    },
 });
 
 export default styles;

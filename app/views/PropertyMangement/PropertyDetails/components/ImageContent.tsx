@@ -13,6 +13,7 @@ const ImageContent = ({ navigation,route }: any) => {
   const insets = useSafeAreaInsets();
 
   const dataimage = route?.params || []
+  console.log('dataimage: ', typeof dataimage === 'string');
   const handleBackPress = () => {
     navigation.goBack();
   };
@@ -35,24 +36,34 @@ const ImageContent = ({ navigation,route }: any) => {
         handleOnLeftIconPress={handleBackPress}
       />
       <View>
+        {typeof dataimage === 'string' ? 
+        <View style={{padding:normalizeSpacing(10)}}>
+            
+        <Image
+          source={{uri:dataimage}}
+
+          style={{
+            width: '100%',
+            height: normalizeHeight(300),
+            alignItems: 'center',
+            justifyContent: 'center'
+          }}
+        />
+      </View> :
         <FlatList data={dataimage}
         numColumns={1}
         showsVerticalScrollIndicator={false}
         contentContainerStyle={{
-         /*  justifyContent: 'center',
-          alignItems: 'center' */
         }}
          renderItem={({item}) => (
           <View style={{padding:normalizeSpacing(10)}}>
             
             <Image
-              //source={item.image}
               source={{uri:item.base_url+item.document}}
 
               style={{
                 width: '100%',
                 height: normalizeHeight(300),
-               // margin: normalizeSpacing(5),
                 alignItems: 'center',
                 justifyContent: 'center'
               }}
@@ -62,7 +73,7 @@ const ImageContent = ({ navigation,route }: any) => {
          ListFooterComponent={() => (
           <View style={{height: normalizeHeight(100)}} />
          )}
-          />
+          />}
       </View>
     </View>
   );

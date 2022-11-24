@@ -31,11 +31,12 @@ const LoginScreen = ({ navigation }: any) => {
         // console.log("checklogin -> loginSelector.response.status", loginSelector.response.status)
         if (loginSelector.response.status === 200) {
          await setDefaultHeader("token", loginSelector.response.token);
+         await AsyncStorage.setItem('loginData',JSON.stringify(loginSelector.response))
           navigation.navigate('DashboardScreenView');
         } else {
           
           ErrorMessage({
-            msg: loginSelector.response.message,
+            msg: loginSelector?.response?.message,
             backgroundColor: RED_COLOR
           })
         }
@@ -46,7 +47,7 @@ const LoginScreen = ({ navigation }: any) => {
          navigation.navigate('DashboardScreenView');
         }else{
           ErrorMessage({
-            msg: loginSelector.response.message,
+            msg: loginSelector?.response?.message,
             backgroundColor: RED_COLOR
           })
 
@@ -108,7 +109,7 @@ const LoginScreen = ({ navigation }: any) => {
   };
   return (
     <>
-      {isloading ? <Loader /> : null}
+      {/* {isloading ? <Loader /> : null} */}
       <LoginView
         validEmail={validEmail}
         handleLoginPress={handleLoginPress}

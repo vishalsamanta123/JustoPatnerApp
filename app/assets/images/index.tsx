@@ -33,6 +33,7 @@ const images = {
   editIcon: require('./editIcon.png'),
   calender: require('./calender.png'),
   pdfIcone: require('./pdfIcone.png'),
+  edit: require('./edit.png'),
 };
 
 export default images;

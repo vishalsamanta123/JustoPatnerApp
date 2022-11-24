@@ -16,7 +16,7 @@ const PicturePickerModal = (props: any) => {
             multiple: props.multiple ? props.multiple : false
         }).then((image: any) => {
             props.setVisible(false);
-            props.imageData(image)
+            props.imageData(image);
         });
     }
     const handleGalleryPress = () => {
