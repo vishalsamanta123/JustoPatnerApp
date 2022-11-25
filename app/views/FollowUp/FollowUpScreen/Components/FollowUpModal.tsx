@@ -11,7 +11,6 @@ import { dropdownData } from "../../../../components/utilities/DemoData";
 import InputCalender from "app/components/InputCalender";
 import moment from "moment";
 const FilterModal = (props: any) => {
-  const [value, setValue] = useState(null);
 
   const renderItem = (item: any) => {
     return (
@@ -36,24 +35,24 @@ const FilterModal = (props: any) => {
           <View style={{ marginHorizontal: 10 }}>
             <View style={styles.inputWrap}>
               <InputCalender
-                mode={'Date'}
+                mode={'date'}
                 leftIcon={images.event}
                 placeholderText={"Start Date"}//can edit
                 editable={false}
                 // onChangeText={() => { }}
                 dateData={(data: any) => {
-                  props.setFormData({
-                    ...props.formData,
-                    next_followup_date: moment(data).format('DD-MM-YYYY')
+                  props.setFilterData({
+                    ...props.filterData,
+                    start_date: moment(data).format('YYYY-MM-DD')
                   })
                 }}
                 setDateshow={(data: any) => {
-                  props.setFormData({
-                    ...props.formData,
-                    next_followup_date: moment(data).format('DD-MM-YYYY')
+                  props.setFilterData({
+                    ...props.filterData,
+                    start_date: moment(data).format('YYYY-MM-DD')
                   })
                 }}
-                value={props?.formData?.next_followup_date}
+                value={props.filterData?.start_date}
               />
             </View>
             <View style={styles.inputWrap}>
@@ -64,18 +63,18 @@ const FilterModal = (props: any) => {
                 editable={false}
                 // onChangeText={() => { }}
                 dateData={(data: any) => {
-                  props.setFormData({
-                    ...props.formData,
-                    next_followup_date: moment(data).format('DD-MM-YYYY')
+                  props.setFilterData({
+                    ...props.filterData,
+                    end_date: moment(data).format('YYYY-MM-DD')
                   })
                 }}
                 setDateshow={(data: any) => {
-                  props.setFormData({
-                    ...props.formData,
-                    next_followup_date: moment(data).format('DD-MM-YYYY')
+                  props.setFilterData({
+                    ...props.filterData,
+                    end_date: moment(data).format('YYYY-MM-DD')
                   })
                 }}
-                value={props?.formData?.next_followup_date}
+                value={props.filterData?.end_date}
               />
             </View>
             <View style={styles.inputWrap}>
@@ -84,21 +83,32 @@ const FilterModal = (props: any) => {
                 placeholderStyle={styles.placeholderStyle}
                 selectedTextStyle={styles.selectedTextStyle}
                 iconStyle={styles.iconStyle}
-                data={dropdownData}
+                data={[
+                  { value: 1, label: 'Lead' },
+                  { value: 2, label: 'Site visit/Appoiment' },
+                  { value: 3, label: 'Booking' },
+                  { value: 4, label: 'Regstration' },
+                ]}
                 maxHeight={300}
                 labelField="label"
                 valueField="value"
                 placeholder="Search by Type"
-                value={value}
+                value={props.filterData?.followup_for}
                 onChange={(item) => {
-                  setValue(item.value);
+                  props.setFilterData({
+                    ...props.filterData, followup_for: item.value
+                  });
                 }}
                 renderItem={renderItem}
               />
             </View>
           </View>
           <View style={{ marginVertical: 20 }}>
-            <Button handleBtnPress={() => props.setIsVisible(false)} buttonText={strings.apply} />
+            <Button handleBtnPress={() => {
+              props.setIsVisible(false)
+              props.handleFilterApply()
+            }}
+              buttonText={strings.apply} />
           </View>
         </View>
       </Modal>

@@ -56,17 +56,8 @@ const FollowUpView = (props: any) => {
     navigation.navigate('AllFollowUpScreen', data)
   }
 
-  const onRefresh = () => {
-    props.setFilterData({
-      startdate: '',
-      enddate: '',
-      search_by_name: '',
-      search_by_location: '',
-      status: ''
-    })
-    props.getFollowupList(0, [])
-    // props.setFilter({})
-  }
+  
+  
   return (
     <View style={styles.mainContainer}>
       <View
@@ -91,18 +82,24 @@ const FollowUpView = (props: any) => {
           data={props?.followUpList}
           showsVerticalScrollIndicator={false}
           renderItem={({ item }) => <FollowUpItem items={item} onPressView={onPressView} onPressEdit={onPressEdit} onPressAllFollowUp={onPressAllFollowUp} />}
-          onRefresh={() => onRefresh()}
+          onRefresh={() => props.onRefresh()}
           refreshing={loadingref}
           ListEmptyComponent={<EmptyListScreen message={strings.followup} />}
           onEndReached={() => {
             if (props?.followUpList?.length < response?.total_data) {
               console.log('onEndReached: ');
-              props.getFollowupList(props?.followUpList?.length > 2 ? props.offSET + 1 : 0,props?.followUpList )
+              props.getFollowupList(props?.followUpList?.length > 2 ? props.offSET + 1 : 0)
             }
           }}
         />
       </View>
-      <FilterModal Visible={FilterisVisible} setIsVisible={setFilterisVisible} />
+      <FilterModal
+        Visible={FilterisVisible}
+        setIsVisible={setFilterisVisible}
+        setFilterData={props.setFilterData}
+        filterData={props.filterData}
+        handleFilterApply={props.handleFilterApply}
+      />
     </View>
   )
 }
