@@ -77,31 +77,12 @@ import ErrorMessage from "app/components/ErrorMessage";
       formData.append("ifsc_code", bankData?.ifsc_code);
       formData.append("rera_registration", editData?.agencies?.rera_registration);
       formData.append("owner_name", editData?.owner_name);
-      editData?.rera_certificate?.path &&
-        formData.append("rera_certificate", {
-          uri: editData?.rera_certificate?.path,
-          type: editData?.rera_certificate?.mime,
-          name: editData?.rera_certificate?.path?.substring(
-            editData?.rera_certificate?.path?.lastIndexOf("/") + 1
-          ),
-        });
-      editData?.propidership_declaration_letter?.path &&
-      formData.append("propidership_declaration_letter", {
-        uri: editData?.propidership_declaration_letter?.path,
-        type: editData?.propidership_declaration_letter?.mime,
-        name: editData?.propidership_declaration_letter?.path?.substring(
-          editData?.propidership_declaration_letter?.path?.lastIndexOf("/") + 1
-        ),
-      });
-      editData?.profile_picture?.path &&
-        formData.append("profile_picture", {
-          uri: editData?.profile_picture?.path,
-          type: editData?.profile_picture?.mime,
-          name: editData?.profile_picture?.path?.substring(
-            editData?.profile_picture?.path?.lastIndexOf("/") + 1
-          ),
-        });
-      console.log('formData: ', formData);
+      editData?.rera_certificate?.uri &&
+      formData.append("rera_certificate", editData?.rera_certificate);
+      editData?.propidership_declaration_letter?.uri &&
+      formData.append("propidership_declaration_letter", editData?.propidership_declaration_letter);
+      editData?.profile_picture?.uri &&
+      formData.append("profile_picture", editData?.profile_picture);
       dispatch(updateUserSettingData(formData));
       handleResponse()
     };
