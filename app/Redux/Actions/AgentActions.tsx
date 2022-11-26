@@ -1,7 +1,7 @@
 import { handleApiError } from "app/components/ErrorMessage/HandleApiErrors";
 import apiEndPoints from "app/components/utilities/apiEndPoints";
 import { apiCall } from "app/components/utilities/httpClient";
-import { GET_AGENT_DETAIL, AGENT_ERROR, AGENT_LIST, AGENT_STATUSUPDATE, ADD_AGENT, ADD_AGENT_FORM, EDIT_AGENT, START_LOADING, STOP_LOADING } from "../types";
+import { GET_AGENT_DETAIL, AGENT_ERROR, AGENT_LIST, AGENT_STATUSUPDATE, ADD_AGENT, ADD_AGENT_FORM, EDIT_AGENT, START_LOADING, STOP_LOADING, REMOVE_AGENT } from "../types";
 
 export const getAllAgentList = (params: any) => async (dispatch: any) => {
     dispatch({ type: START_LOADING })
@@ -53,8 +53,10 @@ export const statusUpdate = (params: any) => async (dispatch: any) => {
 };
 export const addAgent = (params: any) => async (dispatch: any) => {
     try {
+        console.log('params: ', params);
         const header = { "Content-Type": "multipart/form-data", "access-control-allow-origin": "*" }
         const res = await apiCall("post", apiEndPoints.ADD_AGENT_, params, header);
+        console.log('res:ADD_AGENT_ ', res);
         if (res.data.status == 200) {
             dispatch({
                 type: ADD_AGENT,
@@ -73,8 +75,10 @@ export const addAgent = (params: any) => async (dispatch: any) => {
 };
 export const editAgent = (params: any) => async (dispatch: any) => {
     try {
+        console.log('params: ', params);
         const header = { "Content-Type": "multipart/form-data", "access-control-allow-origin": "*" }
         const res = await apiCall("post", apiEndPoints.EDIT_AGENT_, params, header);
+        console.log('res: EDIT_AGENT_', res);
         if (res.data.status == 200) {
             dispatch({
                 type: EDIT_AGENT,
@@ -124,6 +128,19 @@ export const getAgentDetail = (params: any) => async (dispatch: any) => {
             handleApiError(res.data)
             return [];
         }
+    } catch (e) {
+        dispatch({
+            type: AGENT_ERROR,
+            payload: console.log(e),
+        });
+    }
+};
+export const addAgentRemove = () => async (dispatch: any) => {
+    try {
+        dispatch({
+            type: REMOVE_AGENT,
+            payload: null,
+        });
     } catch (e) {
         dispatch({
             type: AGENT_ERROR,

@@ -265,7 +265,7 @@ const RegistrationView = (props: any) => {
                 <View style={[styles.inputBoxItmVw, {
                   borderBottomWidth: props?.registerForm?.working_location?.length - 1 === index ? 0 : 0.6
                 }]}>
-                  <Text style={styles.inputBoxItmTxt}>{item.address}</Text>
+                  <Text style={styles.inputBoxItmTxt}>{item.location}</Text>
                   <TouchableOpacity onPress={() => handleDelete(item, index)}>
                     <Image
                       source={images.close}

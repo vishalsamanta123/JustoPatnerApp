@@ -15,40 +15,39 @@ import { handlePermission, openPermissionSetting } from '../utilities/GlobalFunc
 const locationsView = (props: any) => {
     const [allList, setAllList] = useState<any>([])
     const onPressSelect = async (data: any, details: any) => {
-        const res = await handlePermission(
-            'location',
-            strings.txt_setting_heading_location,
-            strings.txt_setting_Location,
-        );
-        if (res == 'setting1') {
-            openPermissionSetting(
-                strings.txt_setting_heading_location,
-                strings.txt_setting_Location,
-            );
-        } else if (res) {
-            handleSelect(data, details)
-        }
+        // const res = await handlePermission(
+        //     'location',
+        //     strings.txt_setting_heading_location,
+        //     strings.txt_setting_Location,
+        // );
+        // if (res == 'setting1') {
+        //     openPermissionSetting(
+        //         strings.txt_setting_heading_location,
+        //         strings.txt_setting_Location,
+        //     );
+        // } else if (res) {
+        handleSelect(data, details)
+        // }
     }
     const handleSelect = (data: any, details: any) => {
-
-        // const selectedObj = allList?.find((itm: any) => {
-        //     return itm?.address === data?.description
-        // })
-        // const valueObj = props?.value?.find((itm: any) => {
-        //     return itm?.address === data?.description
-        // })
-        // if (selectedObj?.address != data?.description) {
-        //     if (valueObj?.address != data?.description) {
-        //         const object = {
-        //             address: data?.description,
-        //             latitude: '22.0909',
-        //             logitude: '22.8909',
-        //         }
-        //         var array: any[] = [...allList];
-        //         array.push(object);
-        //         setAllList(array)
-        //     }
-        // }
+        const selectedObj = allList?.find((itm: any) => {
+            return itm?.location === data?.description
+        })
+        const valueObj = props?.value?.find((itm: any) => {
+            return itm?.location === data?.description
+        })
+        if (selectedObj?.location != data?.description) {
+            if (valueObj?.location != data?.description) {
+                const object = {
+                    location: data?.description,
+                    latitude: '22.0909',
+                    logitude: '22.8909',
+                }
+                var array: any[] = [...allList];
+                array.push(object);
+                setAllList(array)
+            }
+        }
     }
     const handleDelete = (item: any, index: any) => {
         var array: any[] = [...allList];
@@ -102,7 +101,7 @@ const locationsView = (props: any) => {
                             {allList?.map((item: any, index: any) => {
                                 return (
                                     <View style={styles.innerBoxVw}>
-                                        <Text style={styles.innerBoxTxt}>{item.address}</Text>
+                                        <Text style={styles.innerBoxTxt}>{item.location}</Text>
                                         <TouchableOpacity
                                             onPress={() => handleDelete(item, index)}
                                         >
