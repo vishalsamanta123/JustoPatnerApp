@@ -175,7 +175,7 @@ const FilterModal = (props: any) => {
                 width={135}
                 handleBtnPress={() => {
                   props.setIsVisible(false)
-                  props.getVisitorsList(0)
+                  props.getVisitorsList(0, props.filterData)
                 }} buttonText={strings.apply}
               />
             </View>

@@ -28,7 +28,9 @@ const LeadManagementItem = (props: any) => {
           <Text style={styles.projectTxt}>Configuration :</Text>
         </View>
         <View style={styles.nameContainer}>
-          <Text style={styles.nameTxt}>{props.items.configuration}</Text>
+          <Text style={styles.nameTxt}>{props.items.configuration ?
+            props.items.configuration : strings.notfount
+          }</Text>
         </View>
       </View>
       <View style={styles.Txtview}>
@@ -36,7 +38,8 @@ const LeadManagementItem = (props: any) => {
           <Text style={styles.projectTxt}>Budget :</Text>
         </View>
         <View style={styles.nameContainer}>
-          <Text style={styles.nameTxt}>{props.items.budget}</Text>
+          <Text style={styles.nameTxt}>{props.items.budget ?
+            props.items.budget : strings.notfount}</Text>
         </View>
       </View>
       <View style={styles.Txtview}>
@@ -45,7 +48,8 @@ const LeadManagementItem = (props: any) => {
         </View>
         <View style={styles.nameContainer}>
           <Text style={styles.nameTxt}>
-            {moment(props.items.last_interacted_date).format('llll')}
+            {props.items.last_interacted_date ?
+              moment(props.items.last_interacted_date).format('llll') : strings.notfount}
           </Text>
         </View>
       </View>
@@ -54,7 +58,8 @@ const LeadManagementItem = (props: any) => {
           <Text style={styles.projectTxt}>Source :</Text>
         </View>
         <View style={styles.nameContainer}>
-          <Text style={styles.nameTxt}>{props.items.lead_source}</Text>
+          <Text style={styles.nameTxt}>{props.items.created_name ?
+            props.items.created_name : strings.notfount}</Text>
         </View>
       </View>
       <View style={styles.Txtview}>

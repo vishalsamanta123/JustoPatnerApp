@@ -4,7 +4,9 @@ import { GET_VISITOR_DETAIL, VISITOR_ERROR, VISITOR_LIST, VISITOR_STATUSUPDATE, 
 
 export const getAllLeadsList = (params: any) => async (dispatch: any) => {
     try {
+        console.log('params: ', params);
         const res = await apiCall("post", apiEndPoints.VISITORLIST, params);
+        console.log('res: ', res);
         if (res.data.status == 200) {
             dispatch({
                 type: VISITOR_LIST,
@@ -62,10 +64,10 @@ export const addVisitor = (params: any) => async (dispatch: any) => {
 };
 export const addVisitorRemove = () => async (dispatch: any) => {
     try {
-            dispatch({
-                type: REMOVE_VISITOR,
-                payload: null,
-            });
+        dispatch({
+            type: REMOVE_VISITOR,
+            payload: null,
+        });
     } catch (e) {
         dispatch({
             type: VISITOR_ERROR,

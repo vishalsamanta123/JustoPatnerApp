@@ -1,20 +1,16 @@
 import React, { useEffect, useState } from 'react';
-import { getAgentDetail, getAllAgentList, statusUpdate } from 'app/Redux/Actions/AgentActions';
+import { getAllAgentList, statusUpdate } from 'app/Redux/Actions/AgentActions';
 import { useDispatch, useSelector } from 'react-redux';
 import AgentView from './components/AgentView';
 import Loader from 'app/components/CommonScreen/Loader';
-import { AGENT_LIST } from 'app/Redux/types';
-import { useFocusEffect, useIsFocused } from '@react-navigation/native';
+import { useFocusEffect } from '@react-navigation/native';
 
 const AgentListing = ({ navigation }: any) => {
-  // const isFocused = useIsFocused()
   const { response = {}, list = false } = useSelector((state: any) => state.agentData)
   const moreData = response?.total_data || 0
   const [agentList, setAgentList] = useState<any>([])
-  console.log('agentList: ', agentList);
   const [isloading, setIsloading] = useState(false)
   const [offSET, setOffset] = useState(0)
-  console.log('offSET: ', offSET);
   const [filterData, setFilterData] = useState({
     startdate: '',
     enddate: '',
@@ -22,43 +18,43 @@ const AgentListing = ({ navigation }: any) => {
     search_by_location: '',
     status: ''
   })
-  const [filter, setFilter] = useState(false)
   const [changeStatus, setChangeStatus] = useState({ _id: '', status: false })
   const dispatch: any = useDispatch()
 
   useFocusEffect(
     React.useCallback(() => {
-      getAgentList(offSET, [])
+      getAgentList(offSET, {})
       return () => { };
     }, [navigation])
   );
-  const getAgentList = (offset: any, array: any) => {
+
+  useEffect(() => {
+    if (list) {
+      setIsloading(false)
+      if (offSET === 0) {
+        setAgentList(response?.data)
+      } else {
+        setAgentList([...agentList, ...response?.data])
+      }
+    }
+  }, [response])
+  
+  const getAgentList = (offset: any, filterData: any) => {
     setIsloading(true)
     setOffset(offset)
     dispatch(getAllAgentList({
       offset: offset,
       limit: 3,
       module_id: '',
-      start_date: filterData.startdate,
-      end_date: filterData.enddate,
+      start_date: filterData?.startdate ? filterData?.startdate : '',
+      end_date: filterData?.enddate ? filterData?.enddate : '',
       user_type: 2,
-      search_by_name: filterData.search_by_name,
-      search_by_location: filterData.search_by_location,
-      status: filterData.status,
+      search_by_name: filterData?.search_by_name ? filterData?.search_by_name : '',
+      search_by_location: filterData?.search_by_location ? filterData?.search_by_location : '',
+      status: filterData?.status ? filterData?.status : '',
     }))
-    toGetDatas(offset, array)
   }
-  const toGetDatas = (offset: any, array: any) => {
-    if (list) {
-      setIsloading(false)
-      if (offSET === 0 && offset === 0) {
-        console.log("TO THE END")
-        setAgentList(response?.data)
-      } else {
-        setAgentList([...array, ...response?.data])
-      }
-    }
-  }
+
   const handleDrawerPress = () => {
     navigation.toggleDrawer();
   };
@@ -113,14 +109,14 @@ const AgentListing = ({ navigation }: any) => {
         setFilterData={setFilterData}
         filterData={filterData}
         onPressView={onPressView}
-        setFilter={setFilter}
         agentList={agentList}
         Onreachedend={Onreachedend}
         offSET={offSET}
         moreData={moreData}
-        filter={filter}
         getAgentList={getAgentList}
         setOffset={setOffset}
+        setAgentList={setAgentList}
+        setIsloading={setIsloading}
       />
     </>
   )

@@ -8,6 +8,8 @@ import { apiCall, setDefaultHeader } from 'app/components/utilities/httpClient';
 import apiEndPoints from 'app/components/utilities/apiEndPoints';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import { PersistGate } from 'redux-persist/es/integration/react';
+import { IS_LOADING } from 'app/components/utilities/constant';
+import Loader from 'app/components/CommonScreen/Loader';
 
 const App = () => {
 
@@ -41,11 +43,15 @@ const App = () => {
   //     console.log(error);
   //   }
   // }
+  
   const { persistor, store} = configureStore();
   return (
     <Provider store={store}>
       <PersistGate persistor={persistor}>
-      <Route />
+      {IS_LOADING?
+       <Loader />
+       :<Route />
+      }
       </PersistGate>
     </Provider>
   );
