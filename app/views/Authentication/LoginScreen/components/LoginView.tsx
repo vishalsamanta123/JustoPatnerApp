@@ -16,7 +16,7 @@ const LoginView = (props: any) => {
     setIsVisiblePassword(!isVisiblePassword);
   };
   return (
-    <ScrollView style={styles.mainContainer}>
+    <ScrollView style={styles.mainContainer} keyboardShouldPersistTaps="always">
       {/* <View style={styles.logoView}>
         <View style={styles.loginBannerView}>
           <Image style={styles.loginBanner} source={images.loginBanner} />
@@ -34,14 +34,14 @@ const LoginView = (props: any) => {
 
       <StatusBar backgroundColor={PRIMARY_THEME_COLOR} barStyle={"light-content"} />
 
-      
+
       <View style={styles.logoView}>
-       {/*  <Image
+        {/*  <Image
           style={styles.loginBanner}
           source={images.loginBanner}
           resizeMode="contain"
         /> */}
-        <Logoview/>
+        <Logoview />
       </View>
       <View style={styles.inputView}>
         <View style={styles.inputWrap}>
@@ -51,7 +51,7 @@ const LoginView = (props: any) => {
             isSecureText={false}
             onChangeText={(val: any) => {
               props.setLoginData({
-                ...props.loginData, email:val
+                ...props.loginData, email: val
               })
             }}
           />
@@ -66,7 +66,7 @@ const LoginView = (props: any) => {
             isSecureText={isVisiblePassword}
             onChangeText={(val: any) => {
               props.setLoginData({
-                ...props.loginData, password:val
+                ...props.loginData, password: val
               })
             }}
           />
@@ -98,7 +98,7 @@ const LoginView = (props: any) => {
       </View>
       <View style={styles.bottomView}>
         <Text style={styles.bottomText}>{strings.byCreating}</Text>
-        <TouchableOpacity style={styles.spanTouch}  onPress={() => props.handlePrivacy(strings.termsAndCondition)}>
+        <TouchableOpacity style={styles.spanTouch} onPress={() => props.handlePrivacy(strings.termsAndCondition)}>
           <Text style={styles.spanText}> {strings.termsAndCondition} </Text>
         </TouchableOpacity>
         <Text style={styles.bottomText}> {strings.and} </Text>

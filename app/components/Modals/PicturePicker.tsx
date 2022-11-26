@@ -64,7 +64,6 @@ const PicturePickerModal = (props: any) => {
                     <View style={styles.straightVw}>
                         <TouchableOpacity
                             onPress={async () => {
-
                                 const res = await handlePermission(
                                     'gallery',
                                     strings.txt_setting_heading_media,

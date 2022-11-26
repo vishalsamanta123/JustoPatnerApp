@@ -2,14 +2,12 @@ import React, { useEffect, useState } from 'react';
 import { getAllAgentList, statusUpdate } from 'app/Redux/Actions/AgentActions';
 import { useDispatch, useSelector } from 'react-redux';
 import AgentView from './components/AgentView';
-import Loader from 'app/components/CommonScreen/Loader';
 import { useFocusEffect } from '@react-navigation/native';
 
 const AgentListing = ({ navigation }: any) => {
   const { response = {}, list = false } = useSelector((state: any) => state.agentData)
   const moreData = response?.total_data || 0
   const [agentList, setAgentList] = useState<any>([])
-  const [isloading, setIsloading] = useState(false)
   const [offSET, setOffset] = useState(0)
   const [filterData, setFilterData] = useState({
     startdate: '',
@@ -30,7 +28,6 @@ const AgentListing = ({ navigation }: any) => {
 
   useEffect(() => {
     if (list) {
-      setIsloading(false)
       if (offSET === 0) {
         setAgentList(response?.data)
       } else {
@@ -38,9 +35,8 @@ const AgentListing = ({ navigation }: any) => {
       }
     }
   }, [response])
-  
+
   const getAgentList = (offset: any, filterData: any) => {
-    setIsloading(true)
     setOffset(offset)
     dispatch(getAllAgentList({
       offset: offset,
@@ -100,25 +96,21 @@ const AgentListing = ({ navigation }: any) => {
     }))
   };
   return (
-    <>
-      {isloading ? <Loader /> : null}
-      <AgentView
-        setChangeStatus={setChangeStatus}
-        handleDrawerPress={handleDrawerPress}
-        handleStatusChange={handleStatusChange}
-        setFilterData={setFilterData}
-        filterData={filterData}
-        onPressView={onPressView}
-        agentList={agentList}
-        Onreachedend={Onreachedend}
-        offSET={offSET}
-        moreData={moreData}
-        getAgentList={getAgentList}
-        setOffset={setOffset}
-        setAgentList={setAgentList}
-        setIsloading={setIsloading}
-      />
-    </>
+    <AgentView
+      setChangeStatus={setChangeStatus}
+      handleDrawerPress={handleDrawerPress}
+      handleStatusChange={handleStatusChange}
+      setFilterData={setFilterData}
+      filterData={filterData}
+      onPressView={onPressView}
+      agentList={agentList}
+      Onreachedend={Onreachedend}
+      offSET={offSET}
+      moreData={moreData}
+      getAgentList={getAgentList}
+      setOffset={setOffset}
+      setAgentList={setAgentList}
+    />
   )
 };
 

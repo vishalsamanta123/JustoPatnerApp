@@ -162,20 +162,19 @@ const AgentBasicInfoView = (props: any) => {
               leftIcon={images.event}
               placeholderText={"Date of Birth"}//can edit
               editable={false}
-              // onChangeText={() => { }}
               dateData={(data: any) => {
                 props.setAgentInfoData({
                   ...props.agentInfoData,
-                  date_of_birth: moment(data).format()
+                  date_of_birth: moment(data).format('YYYY-MM-DD')
                 })
               }}
               setDateshow={(data: any) => {
                 props.setAgentInfoData({
                   ...props.agentInfoData,
-                  date_of_birth: moment(data).format()
+                  date_of_birth: moment(data).format('YYYY-MM-DD')
                 })
               }}
-              value={props?.filterData?.date_of_birth}
+              value={moment(props?.filterData?.date_of_birth).format('DD-MM-YYYY')}
             />
           </View>
           <View style={styles.inputWrap}>

@@ -1,9 +1,10 @@
 import { handleApiError } from "app/components/ErrorMessage/HandleApiErrors";
 import apiEndPoints from "app/components/utilities/apiEndPoints";
 import { apiCall } from "app/components/utilities/httpClient";
-import { GET_AGENT_DETAIL, AGENT_ERROR, AGENT_LIST, AGENT_STATUSUPDATE, ADD_AGENT, ADD_AGENT_FORM, EDIT_AGENT } from "../types";
+import { GET_AGENT_DETAIL, AGENT_ERROR, AGENT_LIST, AGENT_STATUSUPDATE, ADD_AGENT, ADD_AGENT_FORM, EDIT_AGENT, START_LOADING, STOP_LOADING } from "../types";
 
 export const getAllAgentList = (params: any) => async (dispatch: any) => {
+    dispatch({ type: START_LOADING })
     try {
         console.log('params: ', params);
         const res = await apiCall("post", apiEndPoints.AGENTLIST, params);
@@ -25,6 +26,9 @@ export const getAllAgentList = (params: any) => async (dispatch: any) => {
             type: AGENT_ERROR,
             payload: console.log(e),
         });
+    }
+    finally {
+        dispatch({ type: STOP_LOADING })
     }
 };
 
