@@ -27,35 +27,41 @@ const AppointmentAddView = (props: any) => {
                 statusBarColor={PRIMARY_THEME_COLOR}
             />
             <View style={styles.topItemsVw}>
-                <DropdownInput
-                    headingText={'Status'}
-                    placeholder={strings.status}
-                    data={props?.masterDatas}
-                    inputWidth={'100%'}
-                    paddingLeft={16}
-                    maxHeight={300}
-                    onFocus={() => props.handleMasterDatas(5)}
-                    labelField="title"
-                    valueField={'_id'}
-                    value={props?.formData?.property_id}
-                    onChange={(item: any) => {
-                        props.setFormData({
-                            ...props.formData,
-                            followup_status: item._id,
-                        })
-                    }}
-                    newRenderItem={(item: any) => {
-                        return (
-                            <>
-                                {props?.isloading === false &&
-                                    <View style={Styles.item}>
-                                        <Text style={Styles.textItem}>{item.title}</Text>
-                                    </View>
-                                }
-                            </>
-                        );
-                    }}
-                />
+                <View style={styles.inputWrap}>
+                    <DropdownInput
+                        headingText={'Status'}
+                        placeholder={strings.status}
+                        data={[
+                            { label: "Pending", value: "1" },
+                            { label: "Confirm", value: "2" },
+                            { label: "Compleat", value: "3" },
+                            { label: "Appoiment cancel", value: "4" },
+                        ]}
+                        inputWidth={'100%'}
+                        paddingLeft={16}
+                        maxHeight={300}
+                        labelField="title"
+                        valueField={'value'}
+                        value={props?.formData?.status}
+                        onChange={(item: any) => {
+                            props.setFormData({
+                                ...props.formData,
+                                status: item.value,
+                            })
+                        }}
+                        newRenderItem={(item: any) => {
+                            return (
+                                <>
+                                    {props?.isloading === false &&
+                                        <View style={Styles.item}>
+                                            <Text style={Styles.textItem}>{item.label}</Text>
+                                        </View>
+                                    }
+                                </>
+                            );
+                        }}
+                    />
+                </View>
                 <View style={styles.inputWrap}>
                     <InputCalender
                         headingText={'Date'}
@@ -67,16 +73,16 @@ const AppointmentAddView = (props: any) => {
                         dateData={(data: any) => {
                             props.setFormData({
                                 ...props.formData,
-                                next_followup_date: moment(data).format('YYYY-MM-DD')
+                                appointment_date: moment(data).format('YYYY-MM-DD')
                             })
                         }}
                         setDateshow={(data: any) => {
                             props.setFormData({
                                 ...props.formData,
-                                next_followup_date: moment(data).format('YYYY-MM-DD')
+                                appointment_date: moment(data).format('YYYY-MM-DD')
                             })
                         }}
-                        value={props?.formData?.next_followup_date}
+                        value={props?.formData?.appointment_date}
                     />
                 </View>
                 <View style={styles.inputWrap}>
@@ -90,16 +96,16 @@ const AppointmentAddView = (props: any) => {
                         dateData={(data: any) => {
                             props.setFormData({
                                 ...props.formData,
-                                followup_time: moment(data).format('LT')
+                                appointment_time: moment(data).format('LT')
                             })
                         }}
                         setDateshow={(data: any) => {
                             props.setFormData({
                                 ...props.formData,
-                                followup_time: moment(data).format('LT')
+                                appointment_time: moment(data).format('LT')
                             })
                         }}
-                        value={props?.formData?.followup_time}
+                        value={props?.formData?.appointment_time}
                     />
                 </View>
                 <View style={styles.inputWrap}>

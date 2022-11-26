@@ -35,7 +35,7 @@ const AppointmentDetailsView = (props: any) => {
                 <AppointmentDtailsItem item={response?.data} />
             </View>
             <View style={styles.bntView}>
-                <Button handleBtnPress={() => props.handleStatusUpdate()} buttonText={strings.updatestatus}  />
+                <Button handleBtnPress={() => props.handleStatusUpdate(response?.data)} buttonText={strings.updatestatus}  />
             </View>
         </View>
     )

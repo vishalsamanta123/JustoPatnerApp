@@ -1,5 +1,6 @@
 import ErrorMessage from "app/components/ErrorMessage";
 import { RED_COLOR } from "app/components/utilities/constant";
+import { editAppointment } from "app/Redux/Actions/AppointmentActions";
 import { addFollowUp } from "app/Redux/Actions/FollowUpActions";
 import { getAllMaster } from "app/Redux/Actions/MasterActions";
 import React, { useEffect, useState } from "react";
@@ -7,36 +8,20 @@ import { useDispatch, useSelector } from "react-redux";
 import AppointmentAddView from "./components/AppointmentAdd";
 
 const AppointmentAddScreen = ({ navigation, route }: any) => {
-    const followUpId = route?.params || ''
+    const appointmentId = route?.params || ''
+    console.log('appointmentId: ', appointmentId);
     const [value, setValue] = useState(null)
     const [isloading, setIsloading] = useState(false)
-    const [masterDatas, setMasterDatas] = useState<any>([])
     const [formData, setFormData] = useState({
-        lead_id: followUpId?.lead_id ? followUpId?.lead_id : '',
-        appointment_id: followUpId?.appointment_id ? followUpId?.appointment_id : '',
-        followup_status: '',
-        next_followup_date: '',
-        remark: '',
-        followup_time: ''
+        appointment_id: appointmentId?._id ? appointmentId?._id : '',
+        status: '',
+        appointment_date: '',
+        appointment_time: '',
+        remark: ''
     })
     console.log('formData: ', formData);
     const dispatch: any = useDispatch()
-    const masterData = useSelector((state: any) => state.masterData) || {}
-
-    useEffect(() => {
-        if (masterData?.response?.status === 200) {
-            setIsloading(false)
-            setMasterDatas(masterData?.response?.data?.length > 0 ? masterData?.response?.data : [])
-        }
-    }, [masterData])
-
-
-    const handleMasterDatas = (data: any) => {
-        setIsloading(true)
-        dispatch(getAllMaster({
-            type: data
-        }))
-    }
+   
     const handleBackPress = () => {
         navigation.goBack(null)
     }
@@ -44,7 +29,7 @@ const AppointmentAddScreen = ({ navigation, route }: any) => {
     const validation = () => {
         let isError = true;
         let errorMessage: any = ''
-        if (formData.followup_status == undefined || formData.followup_status == '') {
+        if (formData.status == undefined || formData.status == '') {
             isError = false;
             errorMessage = "Followup Status is require. Please Choose Followup Status"
         }
@@ -60,12 +45,12 @@ const AppointmentAddScreen = ({ navigation, route }: any) => {
 
     const handleUpdateStatus = () => {
         if (validation()) {
-            dispatch(addFollowUp(formData))
+            dispatch(editAppointment(formData))
             navigation.goBack(null)
         }
     }
     const handleAllFollowUp = () => {
-        navigation.navigate('AllFollowUpScreen', followUpId)
+        navigation.navigate('AllFollowUpScreen', appointmentId)
     }
     return (
         <>
@@ -73,8 +58,6 @@ const AppointmentAddScreen = ({ navigation, route }: any) => {
                 value={value}
                 setValue={setValue}
                 handleBackPress={handleBackPress}
-                masterDatas={masterDatas}
-                handleMasterDatas={handleMasterDatas}
                 isloading={isloading}
                 setFormData={setFormData}
                 formData={formData}

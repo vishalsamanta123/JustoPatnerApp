@@ -32,8 +32,8 @@ const AppointmentDetails = ({navigation, route}: any) => {
   const handleBackPress = () => {
     navigation.goBack()
   }
-  const handleStatusUpdate = () => {
-    navigation.navigate('AppointmentAdd')
+  const handleStatusUpdate = (data: any) => {
+    navigation.navigate('AppointmentAdd', data)
   }
   return (
    <AppointmentDetailsView handleStatusUpdate={handleStatusUpdate} handleBackPress={handleBackPress} data={route?.params} />

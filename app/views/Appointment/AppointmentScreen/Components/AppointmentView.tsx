@@ -39,8 +39,10 @@ const AppointmentView = (props: any) => {
     const [filterData, setFilterData] = useState({
         start_date: '',
         end_date: '',
-        appointment_with: ''
+        customer_name: '',
+        status: ''
     })
+    console.log('filterData: ', filterData);
     const renderTabBar = (props: any) => (
 
         <TabBar
@@ -61,12 +63,22 @@ const AppointmentView = (props: any) => {
     const onPressAddNew = () => {
         navigation.navigate('AddAppointmentScreen')
     }
+    const handleFilterApply = () => {
+        setFilterisVisible(false)
+        getAppointmentList(0)
+    }
     const FirstRoute = () => (
         <FlatList
             data={Array.isArray(appointmentList) ? appointmentList : []}
             renderItem={({ item }) => <VisitorAppointment items={item} onPressView={onPressView} onPressEdit={onPressEdit} />}
             ListEmptyComponent={<EmptyListScreen message={strings.VisitorAppointment} />}
             onRefresh={() => {
+                setFilterData({
+                    start_date: '',
+                    end_date: '',
+                    customer_name: '',
+                    status: ''
+                })
                 getAppointmentList(0)
             }}
             refreshing={loadingref}
@@ -95,12 +107,6 @@ const AppointmentView = (props: any) => {
                 setAppointmentList([...appointmentList, ...response?.data])
             }
         }
-        else {
-            ErrorMessage({
-                msg: response?.data?.message,
-                backgroundColor: RED_COLOR
-            })
-        }
     }, [response])
     const getAppointmentList = (offset: any) => {
         setIsloading(true)
@@ -110,7 +116,8 @@ const AppointmentView = (props: any) => {
             limit: 3,
             start_date: filterData.start_date,
             end_date: filterData.end_date,
-            appointment_with: filterData.appointment_with,
+            customer_name: filterData.customer_name,
+            status: filterData.status
         }))
         // toGetDatas(array)
     }
@@ -166,7 +173,13 @@ const AppointmentView = (props: any) => {
 
                 />
             </View>
-            <FilterModal Visible={FilterisVisible} setIsVisible={setFilterisVisible} />
+            <FilterModal
+                Visible={FilterisVisible}
+                setIsVisible={setFilterisVisible}
+                filterData={filterData}
+                setFilterData={setFilterData}
+                handleFilterApply={handleFilterApply}
+            />
         </View>
     )
 }
