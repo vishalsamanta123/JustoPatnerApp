@@ -10,7 +10,7 @@ import FollowUpItem from './FollowUpItem'
 import { useNavigation } from '@react-navigation/native'
 import FilterModal from './FollowUpModal'
 import { useSelector } from 'react-redux'
-import EmptyListScreen from '../../../../components/CommonScreen/Empty'
+import EmptyListScreen from 'app/components/CommonScreen/EmptyListScreen'
 
 const DATA: any = [
   {

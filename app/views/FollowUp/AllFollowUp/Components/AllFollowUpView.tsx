@@ -8,8 +8,8 @@ import strings from '../../../../components/utilities/Localization'
 import { useSafeAreaInsets } from 'react-native-safe-area-context'
 import { AllFolloeUpData } from '../../../../components/utilities/DemoData'
 import AllFollowUpItem from './AllFollowUpItem'
-import EmptyListScreen from '../../../../components/CommonScreen/Empty'
 import { useSelector } from 'react-redux'
+import EmptyListScreen from 'app/components/CommonScreen/EmptyListScreen'
 
 const AllFollowUpView = (props: any) => {
   const { response = {}, list = '' } = useSelector((state: any) => state.followUp)

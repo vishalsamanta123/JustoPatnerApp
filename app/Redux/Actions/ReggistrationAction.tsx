@@ -1,3 +1,4 @@
+import { handleApiError } from "app/components/ErrorMessage/HandleApiErrors";
 import apiEndPoints from "app/components/utilities/apiEndPoints";
 import { apiCall } from "app/components/utilities/httpClient";
 import { CHECK_EMAIL_MOBILE, CHECK_EMAIL_MOBILE_ERROR, CREATE_CHANNEL_PARTNER, CREATE_CHANNEL_PARTNER_ERROR, REGISTRATION_ERROR, REGISTRATION_FORM } from "../types";
@@ -29,9 +30,10 @@ export const createChannelPartner = (item: any) => async (dispatch: any) => {
         payload: res.data
       })
     } else {
+      handleApiError(res?.data)
       dispatch({
         type: CREATE_CHANNEL_PARTNER_ERROR,
-        payload: res.data,
+        payload: [],
       })
     }
   }
@@ -57,9 +59,10 @@ export const checkEmailMobile = (item: any) => async (dispatch: any) => {
         payload: res.data
       })
     } else {
+      handleApiError(res?.data)
       dispatch({
         type: CHECK_EMAIL_MOBILE_ERROR,
-        payload: res.data,
+        payload: [],
       })
     }
   } catch (e) {

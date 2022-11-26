@@ -1,3 +1,4 @@
+import { handleApiError } from "app/components/ErrorMessage/HandleApiErrors";
 import apiEndPoints from "app/components/utilities/apiEndPoints";
 import { apiCall } from "app/components/utilities/httpClient";
 import { ADD_FOLLOWUP, ADD_FOLLOWUP_ERROR, FOLLOWUP_DETAILS, FOLLOWUP_DETAILS_ERROR, FOLLOWUP_ERROR, GET_FOLLOWUP_LIST, REMOVE_FOLLOWUP_DATA, UPDATE_FOLLOWUP, UPDATE_FOLLOWUP_ERROR } from "../types";
@@ -12,6 +13,7 @@ export const getAllFollowUpList = (params: any) => async (dispatch: any) => {
                 payload: res.data,
             });
         } else {
+            handleApiError(res.data)
             dispatch({
                 type: FOLLOWUP_ERROR,
                 payload: [],
@@ -34,13 +36,13 @@ export const getAllFollowUpDetails = (params: any) => async (dispatch: any) => {
                 payload: res.data,
             });
         } else {
+            handleApiError(res.data)
             dispatch({
                 type: FOLLOWUP_DETAILS_ERROR,
                 payload: [],
             });
         }
     } catch (e) {
-        console.log('e: ', e);
         dispatch({
             type: FOLLOWUP_DETAILS_ERROR,
             payload: console.log(e),
@@ -48,7 +50,7 @@ export const getAllFollowUpDetails = (params: any) => async (dispatch: any) => {
     }
 };
 export const updateFollowUp = (params: any) => async (dispatch: any) => {
-console.log('params: ', params);
+    console.log('params: ', params);
     try {
         const res = await apiCall("post", apiEndPoints.UPDATE_FOLLOWUP, params);
         console.log('res UPDATE_FOLLOWUP ===: ', res);
@@ -58,6 +60,7 @@ console.log('params: ', params);
                 payload: res.data,
             });
         } else {
+            handleApiError(res.data)
             dispatch({
                 type: UPDATE_FOLLOWUP_ERROR,
                 payload: [],
@@ -72,7 +75,7 @@ console.log('params: ', params);
     }
 };
 export const addFollowUp = (params: any) => async (dispatch: any) => {
-console.log('params: ', params);
+    console.log('params: ', params);
     try {
         const res = await apiCall("post", apiEndPoints.ADD_FOLLOWUP, params);
         console.log('res ADD_FOLLOWUP ===: ', res);
@@ -82,6 +85,7 @@ console.log('params: ', params);
                 payload: res.data,
             });
         } else {
+            handleApiError(res.data)
             dispatch({
                 type: ADD_FOLLOWUP_ERROR,
                 payload: [],
@@ -97,10 +101,10 @@ console.log('params: ', params);
 };
 export const allfollowupRemove = () => async (dispatch: any) => {
     try {
-            dispatch({
-                type: REMOVE_FOLLOWUP_DATA,
-                payload: null,
-            });
+        dispatch({
+            type: REMOVE_FOLLOWUP_DATA,
+            payload: null,
+        });
     } catch (e) {
         dispatch({
             type: FOLLOWUP_ERROR,

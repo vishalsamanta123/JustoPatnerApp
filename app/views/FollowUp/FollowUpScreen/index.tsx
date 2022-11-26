@@ -13,6 +13,7 @@ const FollowUpScreen = ({ navigation }: any) => {
     const [offSET, setOffset] = useState(0)
     const dispatch: any = useDispatch()
     const { response = {}, list = '' } = useSelector((state: any) => state.followUp)
+    console.log('response: ', response);
     const [filterData, setFilterData] = useState({
         start_date: '',
         end_date: '',
@@ -29,7 +30,7 @@ const FollowUpScreen = ({ navigation }: any) => {
         }, [navigation, list])
     );
     useEffect(() => {
-        if (list) {
+        if (list || response?.status) {
             setIsloading(false)
             if (offSET == 0) {
                 console.log('offSET == 0: ', offSET == 0);

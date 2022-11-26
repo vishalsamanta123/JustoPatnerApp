@@ -67,11 +67,17 @@ export default {
   ADD_VISITOR_: "/visit/addVisit",
   EDIT_VISITOR_: "/visit/editVisit",
 
-  // Folloe-Up
+  // Follow-Up
   GET_FOLLOWUP_LIST: '/followupStatus/getFollowupList',
   GET_FOLLOWUP_DETAILS: '/followupStatus/getFollowupDetails',
   UPDATE_FOLLOWUP: '/followupStatus/updatefollowup',
   ADD_FOLLOWUP: '/followupStatus/addfollowup',
+
+  // Appointment
+  GET_APPOINTMENT_LIST: '/appointment/getAppointmentList',
+  GET_APPOINTMENT_DETAILS: '/appointment/getAppointmentDetails',
+  ADD_APPOINTMENT: '/appointment/addAppointment',
+  EDIT_APPOINTMENT: '/appointment/editAppointment',
 
   //Settings
   UPDATECHANNELPARTNER: "/channelPartner/updateChannelPartner"

@@ -54,6 +54,7 @@ import apiEndPoints from 'app/components/utilities/apiEndPoints';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import FollowUpAddScreen from 'app/views/FollowUp/FollowUpAdd';
 import EditBankDetails from 'app/views/Setting/EditProfileScreen/components/EditBankDetails';
+import AppointmentAddScreen from 'app/views/Appointment/AppointmentAdd';
 const Stack = createNativeStackNavigator();
 const Drawer = createDrawerNavigator();
 const screenOptions = { headerShown: false, gestureEnabled: true };
@@ -65,37 +66,37 @@ const DrawerComponent = () => {
       drawerContent={props => customDrawer(props)}>
       <Drawer.Screen name="DashboardScreen" component={DashboardScreen} />
       <Drawer.Screen name="Notifications" component={NotificationScreen} />
-      <Drawer.Screen  name="PropertyScreenView" component={PropertyScreen} />
-      <Drawer.Screen name="AgentListing" component={AgentListingScreen}  />
-      <Drawer.Screen name="LeadManagement" component={LeadManagementScreen}  />
-      <Drawer.Screen name="FollowUpScreen" component={FollowUpScreen}  />
-      <Drawer.Screen name="AppointmentScreen" component={AppointmentScreen}  />
-      <Drawer.Screen name="SettingScreen" component={SettingScreen}  />
-      
+      <Drawer.Screen name="PropertyScreenView" component={PropertyScreen} />
+      <Drawer.Screen name="AgentListing" component={AgentListingScreen} />
+      <Drawer.Screen name="LeadManagement" component={LeadManagementScreen} />
+      <Drawer.Screen name="FollowUpScreen" component={FollowUpScreen} />
+      <Drawer.Screen name="AppointmentScreen" component={AppointmentScreen} />
+      <Drawer.Screen name="SettingScreen" component={SettingScreen} />
+
       {/* <Stack.Screen component={PropertyScreen} name="PropertyScreenView" /> */}
     </Drawer.Navigator>
   );
 };
-const Route =  () => {
+const Route = () => {
   const dispatch: any = useDispatch();
   const loginSelector = useSelector((state: any) => state.login);
-  useEffect( () => {
+  useEffect(() => {
     // const authval = AsyncStorage.removeItem("AuthToken");
     // console.log('authval: vv', authval);
-  
-      if (loginSelector?.response == null ||  loginSelector?.response?.status == 201 ||  loginSelector?.response?.status == 401) {
-        tokenGenrate()
-      } else {
-        setDefaultHeader("token", loginSelector?.response?.token);
-      
-      }
-   }, [loginSelector])
 
-  
+    if (loginSelector?.response == null || loginSelector?.response?.status == 201 || loginSelector?.response?.status == 401) {
+      tokenGenrate()
+    } else {
+      setDefaultHeader("token", loginSelector?.response?.token);
+
+    }
+  }, [loginSelector])
+
+
 
   async function tokenGenrate() {
     //dispatch(jwtTokenGenrate())
-     try {
+    try {
       const { data } = await apiCall("get", apiEndPoints.JWTTOKEN, {});
       //console.log('data: ', data);
       if (data) {
@@ -104,7 +105,7 @@ const Route =  () => {
       }
     } catch (error) {
       // console.log(error);
-    } 
+    }
   }
   return (
     <NavigationContainer>
@@ -131,7 +132,7 @@ const Route =  () => {
           component={OtpVerificationScreen}
           name="OtpVerificationScreenView"
         />
-         <Stack.Screen component={UpdatePasswordScreen} name="ChangePasswordScreenView" />
+        <Stack.Screen component={UpdatePasswordScreen} name="ChangePasswordScreenView" />
         <Stack.Screen component={DrawerComponent} name="DashboardScreenView" />
         <Stack.Screen component={UserBankInfo} name="UserBankInfo" />
         <Stack.Screen component={EditBankDetails} name="EditBankDetails" />
@@ -141,29 +142,29 @@ const Route =  () => {
         <Stack.Screen component={VideoContent} name="VideoContent" />
         <Stack.Screen component={CatalogueContent} name="CatalogueContent" />
         {/* Agent Management Screen */}
-        <Stack.Screen name="PendingAgentList" component={PendingAgentListScreen}  />
-        <Stack.Screen name="AgentDetails" component={AgentDetails}  />
-        <Stack.Screen name="AddnewAgent" component={AddnewAgent}  />
-        <Stack.Screen name="AgentBankInfo" component={AgentBankInfo}  />
+        <Stack.Screen name="PendingAgentList" component={PendingAgentListScreen} />
+        <Stack.Screen name="AgentDetails" component={AgentDetails} />
+        <Stack.Screen name="AddnewAgent" component={AddnewAgent} />
+        <Stack.Screen name="AgentBankInfo" component={AgentBankInfo} />
         {/* Lead Management Screens */}
-        <Stack.Screen name="BulkUpload" component={BulkUpload}  />
-        <Stack.Screen name="AddNewVisitorScreen" component={AddNewVisitorScreen}  />
-        <Stack.Screen name="LeadDetails" component={LeadDetails}  />
+        <Stack.Screen name="BulkUpload" component={BulkUpload} />
+        <Stack.Screen name="AddNewVisitorScreen" component={AddNewVisitorScreen} />
+        <Stack.Screen name="LeadDetails" component={LeadDetails} />
         {/* Follow up Screens */}
-        <Stack.Screen name="FollowUpDetails" component={FollowUpDetails}  />
-        <Stack.Screen name="EditFollowUp" component={EditFollowUp}  />
-        <Stack.Screen name="AllFollowUpScreen" component={AllFollowUpScreen}  />
+        <Stack.Screen name="FollowUpDetails" component={FollowUpDetails} />
+        <Stack.Screen name="EditFollowUp" component={EditFollowUp} />
+        <Stack.Screen name="AllFollowUpScreen" component={AllFollowUpScreen} />
         <Stack.Screen name="FollUpAdd" component={FollowUpAddScreen} />
         {/* Appointment */}
-        <Stack.Screen name="AppointmentDetails" component={AppointmentDetails}  />
-        <Stack.Screen name="AddAppointmentScreen" component={AddAppointmentScreen}  />
-
+        <Stack.Screen name="AppointmentDetails" component={AppointmentDetails} />
+        <Stack.Screen name="AddAppointmentScreen" component={AddAppointmentScreen} />
+        <Stack.Screen name="AppointmentAdd" component={AppointmentAddScreen} />
         {/*Setting screen*/}
-        <Stack.Screen name="profile" component={ProfileScreen}  />
-        <Stack.Screen name="EditProfileScreen" component={EditProfileScreen}  />
-        <Stack.Screen name="changePassword" component={ChangePasswordScreen}  />
-        <Stack.Screen name="separateLink" component={SeparateLinkScreen}  />
-        <Stack.Screen name="privacyPolicy" component={PrivacyPolicyScreen}  />
+        <Stack.Screen name="profile" component={ProfileScreen} />
+        <Stack.Screen name="EditProfileScreen" component={EditProfileScreen} />
+        <Stack.Screen name="changePassword" component={ChangePasswordScreen} />
+        <Stack.Screen name="separateLink" component={SeparateLinkScreen} />
+        <Stack.Screen name="privacyPolicy" component={PrivacyPolicyScreen} />
       </Stack.Navigator>
     </NavigationContainer>
   );
