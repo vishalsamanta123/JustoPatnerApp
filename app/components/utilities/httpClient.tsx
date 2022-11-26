@@ -1,4 +1,4 @@
-import { GLOBAL_URL, IS_LOADING } from "./constant";
+import { GLOBAL_URL } from "./constant";
 import axios from "axios";
 
 const httpClient = axios.create({
