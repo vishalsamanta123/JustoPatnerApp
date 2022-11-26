@@ -103,6 +103,7 @@ const strings = new LocalizedStrings({
     registration: 'registration',
     addLocation: 'Add Locations',
     notSelectedLocation: 'Not Selected Location',
+    searchYourlocation: 'Search your location here',
 
     //Auth 
 

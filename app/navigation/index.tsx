@@ -1,5 +1,5 @@
 import React, { useEffect } from 'react';
-import { NavigationContainer } from '@react-navigation/native';
+import { NavigationContainer, StackActions } from '@react-navigation/native';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import { createDrawerNavigator } from '@react-navigation/drawer';
 import DashboardScreen from '../views/DashboardScreen';
@@ -56,6 +56,9 @@ import FollowUpAddScreen from 'app/views/FollowUp/FollowUpAdd';
 import EditBankDetails from 'app/views/Setting/EditProfileScreen/components/EditBankDetails';
 import AppointmentAddScreen from 'app/views/Appointment/AppointmentAdd';
 const Stack = createNativeStackNavigator();
+const AuthStack = createNativeStackNavigator();
+const AppStack = createNativeStackNavigator();
+const AuthLoading = createNativeStackNavigator();
 const Drawer = createDrawerNavigator();
 const screenOptions = { headerShown: false, gestureEnabled: true };
 const DrawerComponent = () => {
@@ -77,23 +80,73 @@ const DrawerComponent = () => {
     </Drawer.Navigator>
   );
 };
-const Route = () => {
-  const dispatch: any = useDispatch();
-  const loginSelector = useSelector((state: any) => state.login);
-  useEffect(() => {
-    // const authval = AsyncStorage.removeItem("AuthToken");
-    // console.log('authval: vv', authval);
+const AuthComponent = () => {
+  return (
+    <AuthStack.Navigator screenOptions={screenOptions}>
+      <AuthStack.Screen component={LoginScreen} name="LoginScreenView" />
+      <AuthStack.Screen
+        component={RegistrationScreen}
+        name="RegistrationScreenView"
+      />
+      <AuthStack.Screen component={UserBankInfo} name="UserBankInfo" />
+      <AuthStack.Screen
+        component={ForgotPassword}
+        name="ForgotPassword"
+      />
+      <AuthStack.Screen
+        component={CompanyDetails}
+        name="CompanyDetails"
+      />
+      <AuthStack.Screen
+        component={OtpVerificationScreen}
+        name="OtpVerificationScreenView"
+      />
+      <AuthStack.Screen component={UpdatePasswordScreen} name="ChangePasswordScreenView" />
+      <AuthStack.Screen name="privacyPolicy" component={PrivacyPolicyScreen} />
+    </AuthStack.Navigator>
+  )
 
-    if (loginSelector?.response == null || loginSelector?.response?.status == 201 || loginSelector?.response?.status == 401) {
-      tokenGenrate()
-    } else {
-      setDefaultHeader("token", loginSelector?.response?.token);
+}
 
-    }
-  }, [loginSelector])
+const AppComponent = () => {
+  return (
+    <AppStack.Navigator screenOptions={screenOptions}>
+      <AppStack.Screen component={DrawerComponent} name="DashboardScreenView" />
+      <AppStack.Screen component={EditBankDetails} name="EditBankDetails" />
+      {/* Property Management Screens */}
+      <AppStack.Screen component={PropertyDetails} name="PropertyDetails" />
+      <AppStack.Screen component={ImageContent} name="ImageContent" />
+      <AppStack.Screen component={VideoContent} name="VideoContent" />
+      <AppStack.Screen component={CatalogueContent} name="CatalogueContent" />
+      {/* Agent Management Screen */}
+      <AppStack.Screen name="PendingAgentList" component={PendingAgentListScreen} />
+      <AppStack.Screen name="AgentDetails" component={AgentDetails} />
+      <AppStack.Screen name="AddnewAgent" component={AddnewAgent} />
+      <AppStack.Screen name="AgentBankInfo" component={AgentBankInfo} />
+      {/* Lead Management Screens */}
+      <AppStack.Screen name="BulkUpload" component={BulkUpload} />
+      <AppStack.Screen name="AddNewVisitorScreen" component={AddNewVisitorScreen} />
+      <AppStack.Screen name="LeadDetails" component={LeadDetails} />
+      {/* Follow up Screens */}
+      <AppStack.Screen name="FollowUpDetails" component={FollowUpDetails} />
+      <AppStack.Screen name="EditFollowUp" component={EditFollowUp} />
+      <AppStack.Screen name="AllFollowUpScreen" component={AllFollowUpScreen} />
+      <AppStack.Screen name="FollUpAdd" component={FollowUpAddScreen} />
+      {/* Appointment */}
+      <AppStack.Screen name="AppointmentDetails" component={AppointmentDetails} />
+      <AppStack.Screen name="AddAppointmentScreen" component={AddAppointmentScreen} />
 
+      {/*Setting screen*/}
+      <AppStack.Screen name="profile" component={ProfileScreen} />
+      <AppStack.Screen name="EditProfileScreen" component={EditProfileScreen} />
+      <AppStack.Screen name="changePassword" component={ChangePasswordScreen} />
+      <AppStack.Screen name="separateLink" component={SeparateLinkScreen} />
+    </AppStack.Navigator>
+  )
+}
 
-
+const AuthLoadingComponent = () => {
+  const { response, authToken = false } = useSelector((state: any) => state.login);
   async function tokenGenrate() {
     //dispatch(jwtTokenGenrate())
     try {
@@ -107,64 +160,50 @@ const Route = () => {
       // console.log(error);
     }
   }
+  useEffect(() => {
+    // const authval = AsyncStorage.removeItem("AuthToken");
+    // console.log('authval: vv', authval);
+
+    if (response == null || response?.status == 201 || response?.status == 401) {
+      tokenGenrate()
+    } else {
+      setDefaultHeader("token", response?.token);
+
+    }
+  }, [response])
+  return (
+    <AuthLoading.Navigator screenOptions={screenOptions}>
+      {!authToken ?
+        <AuthLoading.Screen component={AuthComponent} name="Auth" /> :
+        <AuthLoading.Screen component={AppComponent} name="App" />
+      }
+    </AuthLoading.Navigator>
+  )
+
+}
+const Route = () => {
+  // const dispatch: any = useDispatch();
+  // const { response, authToken = false } = useSelector((state: any) => state.login);
+  // useEffect(() => {
+  //   // const authval = AsyncStorage.removeItem("AuthToken");
+  //   // console.log('authval: vv', authval);
+
+  //   if (response == null || response?.status == 201 || response?.status == 401) {
+  //     tokenGenrate()
+  //   } else {
+  //     setDefaultHeader("token", response?.token);
+
+  //   }
+  // }, [response])
+
+
+
+
   return (
     <NavigationContainer>
       <Stack.Navigator screenOptions={screenOptions}>
-        <Stack.Screen component={SplashScreen} name="SplashScreenView" />
-        {/* <Stack.Screen
-          component={OnboardingScreen}
-          name="OnboardingScreenView"
-        />  */}
-        <Stack.Screen component={LoginScreen} name="LoginScreenView" />
-        <Stack.Screen
-          component={RegistrationScreen}
-          name="RegistrationScreenView"
-        />
-        <Stack.Screen
-          component={ForgotPassword}
-          name="ForgotPassword"
-        />
-        <Stack.Screen
-          component={CompanyDetails}
-          name="CompanyDetails"
-        />
-        <Stack.Screen
-          component={OtpVerificationScreen}
-          name="OtpVerificationScreenView"
-        />
-        <Stack.Screen component={UpdatePasswordScreen} name="ChangePasswordScreenView" />
-        <Stack.Screen component={DrawerComponent} name="DashboardScreenView" />
-        <Stack.Screen component={UserBankInfo} name="UserBankInfo" />
-        <Stack.Screen component={EditBankDetails} name="EditBankDetails" />
-        {/* Property Management Screens */}
-        <Stack.Screen component={PropertyDetails} name="PropertyDetails" />
-        <Stack.Screen component={ImageContent} name="ImageContent" />
-        <Stack.Screen component={VideoContent} name="VideoContent" />
-        <Stack.Screen component={CatalogueContent} name="CatalogueContent" />
-        {/* Agent Management Screen */}
-        <Stack.Screen name="PendingAgentList" component={PendingAgentListScreen} />
-        <Stack.Screen name="AgentDetails" component={AgentDetails} />
-        <Stack.Screen name="AddnewAgent" component={AddnewAgent} />
-        <Stack.Screen name="AgentBankInfo" component={AgentBankInfo} />
-        {/* Lead Management Screens */}
-        <Stack.Screen name="BulkUpload" component={BulkUpload} />
-        <Stack.Screen name="AddNewVisitorScreen" component={AddNewVisitorScreen} />
-        <Stack.Screen name="LeadDetails" component={LeadDetails} />
-        {/* Follow up Screens */}
-        <Stack.Screen name="FollowUpDetails" component={FollowUpDetails} />
-        <Stack.Screen name="EditFollowUp" component={EditFollowUp} />
-        <Stack.Screen name="AllFollowUpScreen" component={AllFollowUpScreen} />
-        <Stack.Screen name="FollUpAdd" component={FollowUpAddScreen} />
-        {/* Appointment */}
-        <Stack.Screen name="AppointmentDetails" component={AppointmentDetails} />
-        <Stack.Screen name="AddAppointmentScreen" component={AddAppointmentScreen} />
-        <Stack.Screen name="AppointmentAdd" component={AppointmentAddScreen} />
-        {/*Setting screen*/}
-        <Stack.Screen name="profile" component={ProfileScreen} />
-        <Stack.Screen name="EditProfileScreen" component={EditProfileScreen} />
-        <Stack.Screen name="changePassword" component={ChangePasswordScreen} />
-        <Stack.Screen name="separateLink" component={SeparateLinkScreen} />
-        <Stack.Screen name="privacyPolicy" component={PrivacyPolicyScreen} />
+        <Stack.Screen name="SplashScreen" component={SplashScreen} />
+        <Stack.Screen name="AuthLoading" component={AuthLoadingComponent} />
       </Stack.Navigator>
     </NavigationContainer>
   );

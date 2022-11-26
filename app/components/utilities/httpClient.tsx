@@ -1,4 +1,4 @@
-import { GLOBAL_URL } from "./constant";
+import { GLOBAL_URL, IS_LOADING } from "./constant";
 import axios from "axios";
 
 const httpClient = axios.create({
@@ -21,6 +21,7 @@ export async function apiCall(
   // console.log('data: ', data);
   // console.log('method: ', method);
   try {
+    // IS_LOADING = true;
     const response = await httpClient({
       method,
       url,

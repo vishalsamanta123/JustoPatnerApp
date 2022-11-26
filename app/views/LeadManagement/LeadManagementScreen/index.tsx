@@ -1,4 +1,4 @@
-import React, { useLayoutEffect, useState } from 'react'
+import React, { useEffect, useLayoutEffect, useState } from 'react'
 import { View, Text } from 'react-native'
 import LeadManagementView from './Components/LeadManagementView'
 import { getAllLeadsList } from 'app/Redux/Actions/LeadsActions'
@@ -9,7 +9,7 @@ import { useFocusEffect } from '@react-navigation/native'
 const LeadManagementScreen = ({ navigation }: any) => {
   const dispatch: any = useDispatch()
   const { response = {}, list = "" } = useSelector((state: any) => state.visitorDataList)
-  const moreData = response?.total_data
+  const moreData = response?.total_data || 0
   const [filterData, setFilterData] = useState({
     startdate: '',
     enddate: '',
@@ -23,33 +23,34 @@ const LeadManagementScreen = ({ navigation }: any) => {
 
   useFocusEffect(
     React.useCallback(() => {
-      getVisitorsList(offSET, [])
+      getVisitorsList(offSET, {})
       return () => { };
-    }, [])
+    }, [navigation])
   );
-  const getVisitorsList = (offset: any, array: any) => {
-    setIsloading(true)
-    setOffset(offset)
-    dispatch(getAllLeadsList({
-      offset: offset,
-      limit: 4,
-      start_date: filterData.startdate,
-      end_date: filterData.enddate,
-      search_by_visisor_name: filterData.search_by_visisor_name,
-      search_configuration: filterData.search_configuration,
-      visit_score: filterData.visit_score
-    }))
-    toGetDatas(array)
-  }
-  const toGetDatas = (array: any) => {
+
+  useEffect(() => {
     if (list) {
       setIsloading(false)
       if (offSET === 0) {
         setVisiitorList(response?.data)
       } else {
-        setVisiitorList([...array, ...response?.data])
+        setVisiitorList([...visitorList, ...response?.data])
       }
     }
+  }, [response])
+
+  const getVisitorsList = (offset: any, filterData: any) => {
+    setIsloading(true)
+    setOffset(offset)
+    dispatch(getAllLeadsList({
+      offset: offset,
+      limit: 3,
+      start_date: filterData?.startdate ? filterData?.startdate : '',
+      end_date: filterData?.enddate ? filterData?.enddate : '',
+      search_by_visisor_name: filterData?.search_by_visisor_name ? filterData?.search_by_visisor_name : '',
+      search_configuration: filterData?.search_configuration ? filterData?.search_configuration : '',
+      visit_score: filterData?.visit_score ? filterData?.visit_score : ''
+    }))
   }
   const handleDrawerPress = () => {
     navigation.toggleDrawer();
@@ -60,20 +61,6 @@ const LeadManagementScreen = ({ navigation }: any) => {
   const handleAddNewPress = (data: any) => {
     navigation.navigate('AddNewVisitorScreen', { type: 'add', data: {} })
   }
-  // const Onreachedend = (offSet: any) => {
-  //   setOffset(offSet)
-  //   setIsloading(true)
-  //   dispatch(getAllLeadsList({
-  //     offset: offSet,
-  //     limit: 4,
-  //     start_date: filterData.startdate,
-  //     end_date: filterData.enddate,
-  //     search_by_visisor_name: filterData.search_by_visisor_name,
-  //     search_configuration: filterData.search_configuration,
-  //     visit_score: filterData.visit_score
-  //   }))
-  //   toGetDatas()
-  // };
   return (
     <>
       {isloading ? <Loader /> : null}
@@ -88,8 +75,8 @@ const LeadManagementScreen = ({ navigation }: any) => {
         filterData={filterData}
         offSET={offSET}
         isloading={isloading}
-        // Onreachedend={Onreachedend}
         getVisitorsList={getVisitorsList}
+        setIsloading={setIsloading}
       />
     </>
   )
