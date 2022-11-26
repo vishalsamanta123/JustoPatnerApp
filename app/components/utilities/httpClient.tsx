@@ -36,23 +36,24 @@ export async function apiCall(
       return response;
     }
   } catch (error: any) {
-  // console.log('errordsfdfdfs: ', error);
+  console.log('errordsfdfdfs: ', error);
     if (error.response) {
       if (error.response.status === 401) {
         console.log(`${url}: `, error.response);
         return error.response;
       }
+      return error.response;
       // console.log("Error data : ", error.response.data);
       // console.log("Error status : ", error.response.status);
       // console.log("Error headers : ", error.response.headers);
     } else if (error.request) {
       // console.log("Error request 1: ", error.request);
+      return error.response;
     } else {
       // console.log("Error message 2: ", error.message);
     }
-    // console.log("Error config", error.config);
-    // console.log("errorresponse", error.response);
-    return error;
+    // return error;
+    return error.response;
   }
 }
 

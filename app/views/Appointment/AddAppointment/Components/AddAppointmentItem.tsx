@@ -1,6 +1,7 @@
 import { View, Text, ScrollView } from 'react-native'
 import React from 'react'
 import styles from './Styles'
+import Styles from '../../../../components/DropDown/styles'
 import InputField from '../../../../components/InputField'
 import DropdownInput from '../../../../components/DropDown'
 import strings from '../../../../components/utilities/Localization'
@@ -8,6 +9,8 @@ import images from '../../../../assets/images'
 import { RadioButton } from 'react-native-paper'
 import { PRIMARY_THEME_COLOR, BLACK_COLOR } from '../../../../components/utilities/constant'
 import Button from '../../../../components/Button'
+import InputCalender from 'app/components/InputCalender'
+import moment from 'moment'
 
 const AddAppointmentItem = (props: any) => {
     return (
@@ -17,34 +20,108 @@ const AddAppointmentItem = (props: any) => {
                     <DropdownInput
                         headingText={strings.selectLead}
                         placeholder={strings.selectLead}
-                        value={props.value}
-                        setValue={props.setValue}
+                        data={props.visitorList}
+                        inputWidth={'100%'}
+                        paddingLeft={16}
+                        maxHeight={300}
+                        onFocus={() => props.getVisitorsList()}
+                        labelField="title"
+                        valueField={'_id'}
+                        value={props.addAppointmentForm?.lead_name}
+                        onChange={(item: any) => {
+                            props.setAddAppointmentForm({
+                                ...props.addAppointmentForm,
+                                lead_id: item._id, property_id: item.property_id, lead_name: item.first_name
+                            })
+                        }}
+                        newRenderItem={(item: any) => {
+                            return (
+                                <>
+                                    {props.isloading === false &&
+                                        <View style={Styles.item}>
+                                            <Text style={Styles.textItem}>{item.first_name}</Text>
+                                        </View>
+                                    }
+                                </>
+                            );
+                        }}
                     />
                 </View>
-                <View style={styles.inputWrap}>
+                {/* <View style={styles.inputWrap}>
                     <DropdownInput
                         headingText={strings.selectproperty}
                         placeholder={strings.selectproperty}
-                        value={props.value}
-                        setValue={props.setValue}
+                        data={[]}
+                        inputWidth={'100%'}
+                        paddingLeft={16}
+                        maxHeight={300}
+                        // onFocus={() => handleMasterDatas()}
+                        labelField="title"
+                        valueField={'_id'}
+                        // value={formData?.sourcing_manager}
+                        onChange={(item: any) => {
+                            props.setFormData({
+                                ...props.formData,
+                                sourcing_manager: item._id,
+                            })
+                        }}
+                        newRenderItem={(item: any) => {
+                            return (
+                                <>
+                                    {props.isloading === false &&
+                                        <View style={Styles.item}>
+                                            <Text style={Styles.textItem}>{item.user_name}</Text>
+                                        </View>
+                                    }
+                                </>
+                            );
+                        }}
                     />
-                </View>
+                </View> */}
                 <View style={styles.inputWrap}>
-                    <InputField
+                    <InputCalender
+                        mode={'date'}
+                        leftIcon={images.event}
                         placeholderText={strings.appointmentDate}
-                        handleInputBtnPress={() => { }}
-                        onChangeText={() => { }}
                         headingText={strings.appointmentDate}
-                        rightImgSrc={images.event}
+                        editable={false}
+                        // onChangeText={() => { }}
+                        dateData={(data: any) => {
+                            props.setAddAppointmentForm({
+                                ...props.addAppointmentForm,
+                                appointment_date: moment(data).format('YYYY-MM-DD')
+                            })
+                        }}
+                        setDateshow={(data: any) => {
+                            props.setAddAppointmentForm({
+                                ...props.addAppointmentForm,
+                                appointment_date: moment(data).format('YYYY-MM-DD')
+                            })
+                        }}
+                        value={moment(props.addAppointmentForm?.appointment_date).format('DD-MM-YYYY')}
                     />
                 </View>
                 <View style={styles.inputWrap}>
-                    <InputField
+                    <InputCalender
+                        mode={'time'}
+                        leftIcon={images.timer}
                         placeholderText={strings.appointmentTime}
-                        handleInputBtnPress={() => { }}
-                        onChangeText={() => { }}
                         headingText={strings.appointmentTime}
-                        rightImgSrc={images.timer}
+                        editable={false}
+                        // onChangeText={() => { }}
+                        dateData={(data: any) => {
+                            props.setAddAppointmentForm({
+                                ...props.addAppointmentForm,
+                                appointment_time: moment(data).format('LT')
+                            })
+                        }}
+                        setDateshow={(data: any) => {
+                            props.setAddAppointmentForm({
+                                ...props.addAppointmentForm,
+                                appointment_time: moment(data).format('LT')
+                            })
+                        }}
+                        value={props.addAppointmentForm?.appointment_time}
                     />
                 </View>
                 <View style={styles.inputWrap}>
@@ -53,9 +130,14 @@ const AddAppointmentItem = (props: any) => {
                 <View style={styles.genderView}>
                     <View style={styles.radioView}>
                         <RadioButton
-                            value="first"
-                            status={props.checked === "first" ? "checked" : "unchecked"}
-                            onPress={() => props.setChecked("first")}
+                            value={strings.yes}
+                            status={props.addAppointmentForm?.pickup === strings.yes ? "checked" : "unchecked"}
+                            onPress={() => {
+                                props.setAddAppointmentForm({
+                                    ...props.addAppointmentForm,
+                                    pickup: strings.yes
+                                })
+                            }}
                             color={PRIMARY_THEME_COLOR}
                         />
                         <Text
@@ -63,7 +145,7 @@ const AddAppointmentItem = (props: any) => {
                                 styles.radioTxt,
                                 {
                                     color:
-                                        props.checked === "first" ? PRIMARY_THEME_COLOR : BLACK_COLOR,
+                                        props.addAppointmentForm?.pickup === strings.yes ? PRIMARY_THEME_COLOR : BLACK_COLOR,
                                 },
                             ]}
                         >
@@ -72,9 +154,14 @@ const AddAppointmentItem = (props: any) => {
                     </View>
                     <View style={styles.radioView}>
                         <RadioButton
-                            value="second"
-                            status={props.checked === "second" ? "checked" : "unchecked"}
-                            onPress={() => props.setChecked("second")}
+                            value={strings.no}
+                            status={props.addAppointmentForm?.pickup === strings.no ? "checked" : "unchecked"}
+                            onPress={() => {
+                                props.setAddAppointmentForm({
+                                    ...props.addAppointmentForm,
+                                    pickup: strings.no
+                                })
+                            }}
                             color={PRIMARY_THEME_COLOR}
                         />
                         <Text
@@ -82,7 +169,7 @@ const AddAppointmentItem = (props: any) => {
                                 styles.radioTxt,
                                 {
                                     color:
-                                        props.checked === "second" ? PRIMARY_THEME_COLOR : BLACK_COLOR,
+                                        props.addAppointmentForm?.pickup === strings.no ? PRIMARY_THEME_COLOR : BLACK_COLOR,
                                 },
                             ]}
                         >
@@ -94,20 +181,35 @@ const AddAppointmentItem = (props: any) => {
                     <InputField
                         placeholderText={strings.location}
                         handleInputBtnPress={() => { }}
-                        onChangeText={() => { }}
                         headingText={strings.location}
+                        valueshow={props.addAppointmentForm?.pickup_location}
+                        onChangeText={(val: any) => {
+                            props.setAddAppointmentForm({
+                                ...props.addAppointmentForm,
+                                pickup_location: val
+                            })
+                        }}
                     />
                 </View>
                 <View style={styles.inputWrap}>
                     <InputField
                         placeholderText={strings.noofguest}
                         handleInputBtnPress={() => { }}
-                        onChangeText={() => { }}
                         headingText={strings.noofguest}
+                        valueshow={props.addAppointmentForm?.number_of_guest}
+                        onChangeText={(val: any) => {
+                            props.setAddAppointmentForm({
+                                ...props.addAppointmentForm,
+                                number_of_guest: val
+                            })
+                        }}
                     />
                 </View>
                 <View style={styles.btnView}>
-                    <Button handleBtnPress={() => props.handleBtnPress()}  buttonText={strings.addNewappointment} />
+                    <Button
+                        handleBtnPress={() => props.handleBtnPress()}
+                        buttonText={props.type == strings.edit ? strings.editNewappointment : strings.addNewappointment}
+                    />
                 </View>
             </View>
         </ScrollView>

@@ -12,6 +12,7 @@ import Button from "../../../../components/Button";
 import LeadManagementItem from "./LeadManagementItem";
 import { useNavigation } from "@react-navigation/native";
 import FilterModal from "./LeadManagementModal";
+import EmptyListScreen from "app/components/CommonScreen/EmptyListScreen";
 const DATA: any = [
   {
     Projectname: 'ABC',
@@ -130,6 +131,9 @@ const LeadManagementView = (props: any) => {
           }}
           onRefresh={() => onRefresh()}
           refreshing={loadingref}
+          ListEmptyComponent={() => (
+            <EmptyListScreen message={strings.visitor} />
+          )}
           ListFooterComponent={() => {
             return (
               <>

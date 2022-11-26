@@ -54,6 +54,7 @@ import apiEndPoints from 'app/components/utilities/apiEndPoints';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import FollowUpAddScreen from 'app/views/FollowUp/FollowUpAdd';
 import EditBankDetails from 'app/views/Setting/EditProfileScreen/components/EditBankDetails';
+import AppointmentAddScreen from 'app/views/Appointment/AppointmentAdd';
 const Stack = createNativeStackNavigator();
 const AuthStack = createNativeStackNavigator();
 const AppStack = createNativeStackNavigator();

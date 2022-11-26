@@ -6,6 +6,7 @@ import { addVisitorReducer, editVisitorReducer, visitorListReducer, visitorReduc
 import { masterDataReducer } from "./MasterReducer";
 import { followUpReducer } from "./FollowUpReducer";
 import { settingReducer } from "./SettingReducer";
+import { appointmentReducer } from "./AppointmentReducer";
 
 export default {
     login: authStore,
@@ -25,5 +26,6 @@ export default {
     addVisitorData: addVisitorReducer,
     masterData: masterDataReducer,
     followUp: followUpReducer,
+    appointment: appointmentReducer,
     settingData: settingReducer,
 }

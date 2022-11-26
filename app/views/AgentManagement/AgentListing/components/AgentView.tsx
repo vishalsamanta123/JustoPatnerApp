@@ -10,9 +10,9 @@ import strings from '../../../../components/utilities/Localization';
 import ConfirmModal from '../../../../components/Modals/ConfirmModal';
 import FilterModal from './AgentFilterModel';
 import { useSelector } from 'react-redux';
-import EmptyListScreen from '../../../../components/CommonScreen/Empty'
 import { PRIMARY_THEME_COLOR_DARK } from '../../../../components/utilities/constant';
 import { BLACK_COLOR, PRIMARY_THEME_COLOR, WHITE_COLOR, } from '../../../../components/utilities/constant';
+import EmptyListScreen from 'app/components/CommonScreen/EmptyListScreen';
 
 const AgentView = (props: any) => {
   const loadingref = false

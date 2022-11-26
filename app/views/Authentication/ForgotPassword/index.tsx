@@ -27,7 +27,7 @@ const ForgotPassword = ({navigation}: any) => {
                 payload: []
             })
             setIsloading(forgotSelector.loading)
-           navigation.navigate('OtpVerificationScreenView',email);
+           navigation.navigate('OtpVerificationScreenView',{email: email});
         } else {
           if(forgotSelector.error){
             setIsloading(forgotSelector.loading)

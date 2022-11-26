@@ -1,6 +1,7 @@
 import { UPDATE_PROFILE_ERROR, UPDATE_PROFILE } from "../types";
 import apiEndPoints from "../../components/utilities/apiEndPoints";
 import { apiCall } from "app/components/utilities/httpClient";
+import { handleApiError } from "app/components/ErrorMessage/HandleApiErrors";
 
 export const updateUserSettingData =
   (userDetail: any) => async (dispatch: any) => {
@@ -22,6 +23,7 @@ export const updateUserSettingData =
           payload: res.data,
         });
       } else {
+        handleApiError(res?.data)
         dispatch({
           type: UPDATE_PROFILE_ERROR,
           payload: res.data,

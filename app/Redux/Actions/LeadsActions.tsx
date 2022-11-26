@@ -1,3 +1,4 @@
+import { handleApiError } from "app/components/ErrorMessage/HandleApiErrors";
 import apiEndPoints from "app/components/utilities/apiEndPoints";
 import { apiCall } from "app/components/utilities/httpClient";
 import { GET_VISITOR_DETAIL, VISITOR_ERROR, VISITOR_LIST, VISITOR_STATUSUPDATE, ADD_VISITOR, ADD_VISITOR_FORM, EDIT_VISITOR, REMOVE_VISITOR } from "../types";
@@ -13,6 +14,7 @@ export const getAllLeadsList = (params: any) => async (dispatch: any) => {
                 payload: res.data,
             });
         } else {
+            handleApiError(res.data)
             dispatch({
                 type: VISITOR_LIST,
                 payload: [],
@@ -35,7 +37,11 @@ export const statusUpdate = (params: any) => async (dispatch: any) => {
                 payload: res.data,
             });
         } else {
-            return [];
+            handleApiError(res.data)
+            dispatch({
+                type: VISITOR_ERROR,
+                payload: [],
+            });
         }
     } catch (e) {
         dispatch({
@@ -53,6 +59,7 @@ export const addVisitor = (params: any) => async (dispatch: any) => {
                 payload: res.data,
             });
         } else {
+            handleApiError(res.data)
             return [];
         }
     } catch (e) {
@@ -84,6 +91,7 @@ export const editVisitor = (params: any) => async (dispatch: any) => {
                 payload: res.data,
             });
         } else {
+            handleApiError(res.data)
             return [];
         }
     } catch (e) {
@@ -103,6 +111,7 @@ export const getVisitorDetail = (params: any) => async (dispatch: any) => {
                 payload: res.data,
             });
         } else {
+            handleApiError(res.data)
             return [];
         }
     } catch (e) {

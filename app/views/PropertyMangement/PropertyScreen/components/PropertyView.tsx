@@ -3,7 +3,6 @@ import React, { useState, useEffect } from 'react';
 import styles from './styles';
 import { useSafeAreaInsets } from 'react-native-safe-area-context';
 import PropertyListItem from './PropertyListItem';
-import EmptyListScreen from '../../../../components/CommonScreen/Empty';
 import { useNavigation } from '@react-navigation/native';
 import Header from '../../../../components/Header';
 import images from '../../../../assets/images';
@@ -13,14 +12,15 @@ import { PRIMARY_THEME_COLOR_DARK, PRIMARY_THEME_COLOR } from '../../../../compo
 import FilterModal from './FilterModel';
 import { useSelector, useDispatch } from 'react-redux';
 import { getAllMaster } from 'app/Redux/Actions/MasterActions';
+import EmptyListScreen from 'app/components/CommonScreen/EmptyListScreen';
 
 
 const PropertyView = (props: any) => {
   const dispatch: any = useDispatch()
   const [isVisible, setIsVisible] = useState(false)
   const [masterDataShow, setMasterDataShow] = useState([])
-  
-  
+
+
   const [FilterisVisible, setFilterisVisible] = useState(false)
   const [propertyList, setPropertyList] = useState([])
   const insets = useSafeAreaInsets();
@@ -41,10 +41,11 @@ const PropertyView = (props: any) => {
   useEffect(() => {
     if (propertyData?.response) {
       const { response, loading } = propertyData;
-      if (response?.status === 200) {
+      if (response?.status === 200 || loading) {
         setPropertyList(response?.data);
         props.setIsloading(loading);
       } else {
+        props.setIsloading(loading);
         setPropertyList([]);
         //errorToast(response.message);
       }
@@ -67,62 +68,22 @@ const PropertyView = (props: any) => {
 
 
 
-
-  const DATA: any = [
-    {
-      Projectname: 'ABC',
-      Location: 'Indore',
-      visitor: 123,
-      siteVisit: 234,
-      closeVisit: 600,
-      status: 'confirmatin Pending',
-      createddate: '11/10/2022'
-    },
-    {
-      Projectname: 'ABC',
-      Location: 'Indore',
-      visitor: 123,
-      siteVisit: 234,
-      closeVisit: 600,
-      status: 'Subscribe',
-      createddate: '11/10/2022'
-    },
-    {
-      Projectname: 'ABC',
-      Location: 'Indore',
-      visitor: 123,
-      siteVisit: 234,
-      closeVisit: 600,
-      status: 'Unsubscribe',
-      createddate: '11/10/2022'
-    },
-    {
-      Projectname: 'ABC',
-      Location: 'Indore',
-      visitor: 123,
-      siteVisit: 234,
-      closeVisit: 600,
-      status: 'confirmatin Pending ',
-      createddate: '11/10/2022'
-    },
-  ];
-
   const onPressView = (items: any) => {
     navigation.navigate('PropertyDetails', items)
   }
   const onRefresh = () => {
     props.getallproperty()
   }
-  const confirmStatus = (items : any ) => {
-    if(items.approve_status === 2) {
+  const confirmStatus = (items: any) => {
+    if (items.approve_status === 2) {
       dispatch(getAllMaster({
         type: 7
-      }))  
-    }  
+      }))
+    }
     setIsVisible(true)
     props.setCurrentStatus(items.approve_status)
     props.setCurrentProperty(items?.property_id)
-    
+
   }
 
   const renderFooter = () => {
@@ -163,8 +124,8 @@ const PropertyView = (props: any) => {
           data={propertyList}
           showsVerticalScrollIndicator={false}
           ListEmptyComponent={<EmptyListScreen message={strings.propertyHeader} />}
-          renderItem={({ item }) => <PropertyListItem items={item} setIsVisible={setIsVisible} onPressView={onPressView} 
-          confirmStatus={(items : any ) => confirmStatus(items)} />}
+          renderItem={({ item }) => <PropertyListItem items={item} setIsVisible={setIsVisible} onPressView={onPressView}
+            confirmStatus={(items: any) => confirmStatus(items)} />}
           /*   onEndReached={({ distanceFromEnd }) => {
               props.Onreachedend()
             }} 
@@ -175,7 +136,7 @@ const PropertyView = (props: any) => {
         />
       </View>
       {/* <ConfirmModal Visible={isVisible} setIsVisible={setIsVisible} /> */}
-     <ConfirmModal
+      <ConfirmModal
         Visible={isVisible}
         setIsVisible={setIsVisible}
         handleNoPress={() => {
@@ -195,8 +156,8 @@ const PropertyView = (props: any) => {
         masterDataShow={masterDataShow}
         stringshow={strings.confirmation}
         textshow={strings.deactivconfirmation + ' ' + strings.agencyHeader + '?'}
-       
-        confirmtype={props.currentStatus === 2 ? '' :  'CONFIRMATION'}
+
+        confirmtype={props.currentStatus === 2 ? '' : 'CONFIRMATION'}
       />
 
 
@@ -205,7 +166,7 @@ const PropertyView = (props: any) => {
         setIsVisible={setFilterisVisible}
         filterform={filterform}
         setFilterform={setFilterform}
-        
+
       />
     </View>
   );

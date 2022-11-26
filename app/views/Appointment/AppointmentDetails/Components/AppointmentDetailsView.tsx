@@ -8,9 +8,12 @@ import images from '../../../../assets/images';
 import strings from '../../../../components/utilities/Localization';
 import AppointmentDtailsItem from './AppointmentDtailsItem';
 import Button from '../../../../components/Button';
+import { useSelector } from 'react-redux';
 
 const AppointmentDetailsView = (props: any) => {
     const insets = useSafeAreaInsets();
+    const { response = {}, detail = "" } = useSelector((state: any) => state.appointment)
+    console.log('response: ', response);
     return (
         <View style={styles.mainContainer}>
             <View
@@ -29,10 +32,10 @@ const AppointmentDetailsView = (props: any) => {
                 headerStyle={styles.headerStyle}
             />
             <View style={styles.propertyListView}>
-                <AppointmentDtailsItem />
+                <AppointmentDtailsItem item={response?.data} />
             </View>
             <View style={styles.bntView}>
-                <Button buttonText={strings.updatestatus}  />
+                <Button handleBtnPress={() => props.handleStatusUpdate()} buttonText={strings.updatestatus}  />
             </View>
         </View>
     )

@@ -1,3 +1,4 @@
+import { handleApiError } from "app/components/ErrorMessage/HandleApiErrors";
 import apiEndPoints from "app/components/utilities/apiEndPoints";
 import { apiCall } from "app/components/utilities/httpClient";
 import { GETPROPERTY_DETAIL, PROPERTY_ERROR, PROPERTY_LIST, PROPERTY_STATUS_UPDATE } from "../types";
@@ -12,6 +13,7 @@ export const getAllProperty = (params: any) => async (dispatch: any) => {
                 payload: res.data,
             });
         } else {
+            handleApiError(res?.data)
             dispatch({
                 type: PROPERTY_LIST,
                 payload: [],
@@ -34,6 +36,7 @@ export const getFilterProperty = (params: any) => async (dispatch: any) => {
                 payload: res.data,
             });
         } else {
+            handleApiError(res?.data)
             dispatch({
                 type: PROPERTY_LIST,
                 payload: [],
@@ -57,6 +60,7 @@ export const getPropertyDetail = (params: any) => async (dispatch: any) => {
                 payload: res.data,
             }); 
         } else {
+            handleApiError(res?.data)
              dispatch({
                 type: GETPROPERTY_DETAIL,
                 payload: [],
@@ -78,6 +82,7 @@ export const statusUpdate = (params: any) => async (dispatch: any) => {
                 payload: res.data,
             }); 
         } else {
+            handleApiError(res?.data)
              dispatch({
                 type: PROPERTY_ERROR,
                 payload: [],

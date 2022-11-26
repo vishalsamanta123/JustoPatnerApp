@@ -1,3 +1,4 @@
+import { handleApiError } from "app/components/ErrorMessage/HandleApiErrors";
 import apiEndPoints from "app/components/utilities/apiEndPoints";
 import { apiCall } from "app/components/utilities/httpClient";
 import { GET_AGENT_DETAIL, AGENT_ERROR, AGENT_LIST, AGENT_STATUSUPDATE, ADD_AGENT, ADD_AGENT_FORM, EDIT_AGENT } from "../types";
@@ -13,6 +14,7 @@ export const getAllAgentList = (params: any) => async (dispatch: any) => {
                 payload: res.data,
             });
         } else {
+            handleApiError(res.data)
             dispatch({
                 type: AGENT_LIST,
                 payload: [],
@@ -35,6 +37,7 @@ export const statusUpdate = (params: any) => async (dispatch: any) => {
                 payload: res.data,
             });
         } else {
+            handleApiError(res.data)
             return [];
         }
     } catch (e) {
@@ -54,6 +57,7 @@ export const addAgent = (params: any) => async (dispatch: any) => {
                 payload: res.data,
             });
         } else {
+            handleApiError(res.data)
             return [];
         }
     } catch (e) {
@@ -73,6 +77,7 @@ export const editAgent = (params: any) => async (dispatch: any) => {
                 payload: res.data,
             });
         } else {
+            handleApiError(res.data)
             return [];
         }
     } catch (e) {
@@ -112,6 +117,7 @@ export const getAgentDetail = (params: any) => async (dispatch: any) => {
             });
 
         } else {
+            handleApiError(res.data)
             return [];
         }
     } catch (e) {
