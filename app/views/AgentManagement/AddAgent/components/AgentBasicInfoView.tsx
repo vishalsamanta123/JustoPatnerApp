@@ -21,13 +21,22 @@ import InputField from "../../../../components/InputField";
 import images from "../../../../assets/images";
 import Button from "../../../../components/Button";
 import PicturePickerModal from "../../../../components/Modals/PicturePicker";
-import { normalizeHeight, normalizeWidth } from "app/components/scaleFontSize";
+import { normalizeHeight, normalizeSpacing, normalizeWidth } from "app/components/scaleFontSize";
 import InputCalender from "app/components/InputCalender";
 import moment from "moment";
 import { Item } from "react-native-paper/lib/typescript/components/Drawer/Drawer";
+import MultiLocation from 'app/components/MultiLocation'
 
 
 const AgentBasicInfoView = (props: any) => {
+  const handleDelete = (item: any, index: any) => {
+    var array: any[] = [...props?.agentInfoData.working_location];
+    array?.splice(index, 1);
+    props?.setAgentInfoData({
+      ...props?.agentInfoData,
+      working_location: array
+    })
+  }
   const insets = useSafeAreaInsets();
   return (
     <View style={styles.mainContainer}>
@@ -46,7 +55,7 @@ const AgentBasicInfoView = (props: any) => {
         leftImageIconStyle={styles.RightFirstIconStyle}
         handleOnLeftIconPress={props.onPressBack}
       />
-      <ScrollView>
+      <ScrollView keyboardShouldPersistTaps={'handled'}>
         <View style={styles.wrap}>
           {/*  <Text style={styles.headingText}>{strings.basicInfoText}</Text> */}
           {/* <View style={styles.underlineStyle} /> */}
@@ -58,8 +67,8 @@ const AgentBasicInfoView = (props: any) => {
               :
               <Image
                 source={{
-                  uri: props?.agentInfoData?.profile_picture?.path ?
-                    props?.agentInfoData?.profile_picture?.path : props?.agentInfoData?.profile_picture
+                  uri: props?.agentInfoData?.profile_picture?.uri ?
+                    props?.agentInfoData?.profile_picture?.uri : props?.agentInfoData?.profile_picture
                 }}
                 resizeMode={'contain'}
                 style={styles.imageVw}
@@ -174,7 +183,8 @@ const AgentBasicInfoView = (props: any) => {
                   date_of_birth: moment(data).format('YYYY-MM-DD')
                 })
               }}
-              value={moment(props?.filterData?.date_of_birth).format('DD-MM-YYYY')}
+              value={moment(props?.filterData?.date_of_birth).format('DD-MM-YYYY')
+              }
             />
           </View>
           <View style={styles.inputWrap}>
@@ -234,23 +244,37 @@ const AgentBasicInfoView = (props: any) => {
           />
         </View> */}
           <View style={styles.workingView}>
-            <View>
+            <View style={{
+              top: props.agentInfoData?.working_location?.length > 0 ? 8 : 0
+            }}>
               <Text style={styles.workTxt}>Working Location</Text>
-              {props?.agentInfoData?.working_location?.length > 0 &&
-                props?.agentInfoData?.working_location?.map((item: any) => {
-                  return (//can edit
-                    <View style={{ paddingVertical: 5, paddingHorizontal: 5 }}>
-                      <Text style={{ color: BLACK_COLOR, borderBottomWidth: 0.7 }}>{item.location}</Text>
-                    </View>
-                  )
-                })
-              }
             </View>
-            <TouchableOpacity style={styles.addBtn}>
+            <TouchableOpacity onPress={() => { props.type === 'add' ? props.setLocationModel(true) : null }}
+              style={styles.addBtn}>
               <Text style={styles.addTxt}>+ Add location</Text>
             </TouchableOpacity>
           </View>
-          <View>
+          {props.agentInfoData?.working_location?.length > 0 ?
+            <View style={styles.inputBoxVw}>
+              {props.agentInfoData?.working_location?.map((item: any, index: any) => {
+                return (
+                  <View style={[styles.inputBoxItmVw, {
+                    borderBottomWidth: props?.agentInfoData?.working_location?.length - 1 === index ? 0 : 0.6
+                  }]}>
+                    <Text style={styles.inputBoxItmTxt}>{item.location}</Text>
+                    <TouchableOpacity onPress={() => handleDelete(item, index)}>
+                      <Image
+                        source={images.close}
+                        style={styles.crossVw}
+                      />
+                    </TouchableOpacity>
+                  </View>
+                )
+              })}
+            </View>
+            : null
+          }
+          <View style={{ marginVertical: normalizeSpacing(12) }}>
             <Button
               handleBtnPress={props.onPressNext}
               rightImage={images.forwardArrow}
@@ -267,6 +291,19 @@ const AgentBasicInfoView = (props: any) => {
             })
           }}
           setVisible={props.setVisible}
+        />
+        <MultiLocation
+          Visible={props.locationModel}
+          setVisible={() => props.setLocationModel(false)}
+          value={props.agentInfoData?.working_location}
+          handleAddTarget={(data: any) => {
+            if (data?.length > 0) {
+              props.setAgentInfoData({
+                ...props.agentInfoData,
+                working_location: data
+              })
+            }
+          }}
         />
       </ScrollView>
     </View>

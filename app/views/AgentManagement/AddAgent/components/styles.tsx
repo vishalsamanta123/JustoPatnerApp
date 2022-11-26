@@ -94,7 +94,8 @@ const styles = StyleSheet.create({
     width: '100%',
     flexDirection: 'row',
     justifyContent: 'space-between',
-    marginVertical: normalizeSpacing(10)
+    marginTop: normalizeSpacing(10),
+    alignItems: 'center'
   },
   browseVw: {
     width: "25%",
@@ -123,6 +124,42 @@ const styles = StyleSheet.create({
     textTransform: 'uppercase',
     fontSize: normalize(13),
     fontFamily: FONT_FAMILY_EXTRABOLD
+  },
+  inputBoxVw: {
+    shadowColor: '#171717',
+    shadowOffset: { width: 0, height: 1 },
+    shadowOpacity: 0.2,
+    shadowRadius: 1,
+    elevation: 3,
+    backgroundColor: WHITE_COLOR,
+    borderRadius: 10,
+    padding: normalizeSpacing(5),
+    borderColor: GRAY_COLOR,
+    width: '100%',
+    marginTop: normalize(6)
+  },
+  inputBoxItmVw: {
+    paddingVertical: normalize(5),
+    borderBottomWidth: 0.6,
+    borderColor: BLACK_COLOR,
+    flexDirection: 'row',
+    justifyContent: 'space-between',
+    alignItems: 'center'
+  },
+  inputBoxItmTxt: {
+    fontSize: normalize(16),
+    paddingRight: normalizeSpacing(30),
+    // paddingLeft: normalizeSpacing(Isios ? 5 : 15),
+    fontFamily: FONT_FAMILY_SEMIBOLD,
+    opacity: 0.6,
+    color: BLACK_COLOR,
+    width: '90%'
+  },
+  crossVw: {
+    width: normalizeWidth(18),
+    height: normalizeHeight(18),
+    marginHorizontal: 5,
+    tintColor: BLACK_COLOR
   },
   btnView: {
     marginBottom: normalizeSpacing(20),

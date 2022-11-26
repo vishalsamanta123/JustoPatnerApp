@@ -1,6 +1,6 @@
 import Loader from 'app/components/CommonScreen/Loader';
 import ErrorMessage from 'app/components/ErrorMessage';
-import { RED_COLOR } from 'app/components/utilities/constant';
+import { RED_COLOR, validateEmail } from 'app/components/utilities/constant';
 import { addAgentForm, getAgentDetail } from 'app/Redux/Actions/AgentActions';
 import React, { useEffect, useState, useLayoutEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
@@ -11,56 +11,77 @@ const AgentBasicInfo = ({ navigation, route }: any) => {
   const [agentInfoData, setAgentInfoData] = useState({
     agent_id: '', agent_name: '', whatsapp_number: '', adhar_no: '',
     pancard_no: "", gender: '', date_of_birth: '', rera_certificate_no: '',
-    profile_picture: '', primary_mobile: '', email: ''
+    profile_picture: '', primary_mobile: '', email: '',
+    working_location: []
   })
   const dispatch: any = useDispatch()
   const [visible, setVisible] = useState(false)
-  const [isloading, setIsloading] = useState(false)
+  const [locationModel, setLocationModel] = useState(false)
 
+  useEffect(() => {
+    const { data = {}, type = '' } = route?.params
+    if (type === 'edit') {
+      if (response?.status === 200) {
+        setAgentInfoData({ ...response?.data[0] })
+      }
+    }
+  }, [response])
   useLayoutEffect(() => {
     const { data = {}, type = '' } = route?.params
     if (type === 'edit') {
       if (data._id) {
-        setIsloading(true)
         dispatch(getAgentDetail({
           cp_id: data._id
         }))
-        toGetDatas()
       }
     }
   }, [detail])
-  const toGetDatas = () => {
-    if (detail) {
-      setIsloading(false)
-      setAgentInfoData({ ...response?.data[0] })
-    }
-  }
   const onPressBack = () => {
     navigation.goBack()
   }
   const validation = () => {
     let isError = true;
     let errorMessage: any = ''
-    if (route?.params?.type === 'add') {
-      const { agent_name, whatsapp_number, adhar_no, pancard_no, gender,
-        date_of_birth, profile_picture, primary_mobile, email
-      } = agentInfoData
-      if (agent_name === '' || whatsapp_number === '' || adhar_no === '' || pancard_no === '' || gender === '' ||
-        date_of_birth === '' || profile_picture === '' || primary_mobile === '' || email === '') {
-        isError = false;
-        errorMessage = "All Fields are required"
+    const { agent_name, whatsapp_number, adhar_no, pancard_no, gender,
+      date_of_birth, profile_picture, primary_mobile, email, working_location
+    } = agentInfoData
+    if (profile_picture === '' || profile_picture === undefined) {
+      isError = false;
+      errorMessage = "Please select profile image"
+    } else if (agent_name === '' || agent_name === undefined) {
+      isError = false;
+      errorMessage = "Please fill agent name"
+    } else if (adhar_no === '' || adhar_no === undefined) {
+      isError = false;
+      errorMessage = "Please fill aadhar number"
+    } else if (pancard_no === '' || pancard_no === undefined) {
+      isError = false;
+      errorMessage = "Please fill pancard number"
+    } else if (gender === '' || gender === undefined) {
+      isError = false;
+      errorMessage = "Please select gender"
+    } else if (date_of_birth === '' || date_of_birth === undefined) {
+      isError = false;
+      errorMessage = "Please select date of birth"
+    } else if (primary_mobile === '' || primary_mobile === undefined) {
+      isError = false;
+      errorMessage = "Please fill mobile number"
+    } else if (whatsapp_number === '' || whatsapp_number === undefined) {
+      isError = false;
+      errorMessage = "Please fill whatsapp number"
+    } else if (email === '' || email === undefined) {
+      isError = false;
+      errorMessage = "Please fill email"
+    } else if (validateEmail.test(email) === false) {
+      isError = false;
+      errorMessage = "Please fill corect email"
+    } else
+      if (route?.params?.type === 'add') {
+        if (working_location.length === 0) {
+          isError = false;
+          errorMessage = "Please select working location"
+        }
       }
-    } else {
-      const { agent_id, agent_name, whatsapp_number, adhar_no,
-        pancard_no, gender, date_of_birth,
-      } = agentInfoData
-      if (agent_id === '' || agent_name === '' || whatsapp_number === '' || adhar_no === '' ||
-        pancard_no === '' || gender === '' || date_of_birth === ''
-      ) {
-        isError = false;
-        errorMessage = "All Fields are required"
-      }
-    }
     if (errorMessage !== '') {
       ErrorMessage({
         msg: errorMessage,
@@ -75,18 +96,18 @@ const AgentBasicInfo = ({ navigation, route }: any) => {
       navigation.navigate('AgentBankInfo', { type: route?.params?.type })
     }
   }
-
   return (
-    <>
-      {isloading ? <Loader /> : null}
-      <AgentBasicInfoView
-        type={route?.params?.type}
-        agentInfoData={agentInfoData}
-        setAgentInfoData={setAgentInfoData}
-        onPressBack={onPressBack} onPressNext={onPressNext}
-        visible={visible} setVisible={setVisible}
-      />
-    </>
+    <AgentBasicInfoView
+      type={route?.params?.type}
+      agentInfoData={agentInfoData}
+      setAgentInfoData={setAgentInfoData}
+      onPressBack={onPressBack}
+      onPressNext={onPressNext}
+      visible={visible}
+      setVisible={setVisible}
+      locationModel={locationModel}
+      setLocationModel={setLocationModel}
+    />
   )
 };
 
