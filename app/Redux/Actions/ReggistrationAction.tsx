@@ -18,9 +18,10 @@ export const RegistrationForm = (item: any) => async (dispatch: any) => {
 
 export const createChannelPartner = (item: any) => async (dispatch: any) => {
   try {
+    console.log('item: ', item);
     const res = await apiCall("post", apiEndPoints.CREATECHANNELPARTNER, item);
     console.log('res: ', res);
-    if (res.data.status === 200) {
+    if (res?.data?.status === 200) {
       console.log('res.data: ', res.data);
       dispatch({
         type: CREATE_CHANNEL_PARTNER,

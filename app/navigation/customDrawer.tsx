@@ -150,7 +150,7 @@ const customDrawer = ({navigation}: any) => {
           tabTitle={strings.logout}
           handleDrawerNavigation={() => {
             dispatch(userLogout())
-            navigation.navigate('LoginScreenView');
+            navigation.navigate('AuthLoading');
           }}
         />
       </DrawerContentScrollView>

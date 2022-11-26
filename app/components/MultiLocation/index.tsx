@@ -11,7 +11,6 @@ import Header from '../Header';
 import { normalize, normalizeHeight, normalizeSpacing } from '../scaleFontSize';
 
 const locationsView = (props: any) => {
-console.log('props.value: ', props.value);
     const [allList, setAllList] = useState<any>([])
     const handleSelect = (data: any, details: any) => {
         const selectedObj = allList?.find((itm: any) => {
@@ -24,8 +23,8 @@ console.log('props.value: ', props.value);
             if (valueObj?.address != data?.description) {
                 const object = {
                     address: data?.description,
-                    latitude: details?.geometry?.location.lat,
-                    logitude: details?.geometry?.location.lng,
+                    latitude: '22.0909',
+                    logitude: '22.8909',
                 }
                 var array: any[] = [...allList];
                 array.push(object);

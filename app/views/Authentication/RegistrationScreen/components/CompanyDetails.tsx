@@ -35,7 +35,7 @@ const CompanyDetails = ({ navigation }: any) => {
   useEffect(() => {
     setisLoading(createChannelPartnerData?.isLoading)
     handleError()
-   
+
   }, [createChannelPartnerData])
 
   const handleError = () => {
@@ -104,10 +104,14 @@ const CompanyDetails = ({ navigation }: any) => {
   const onPressRegister = () => {
     if (validation()) {
       setisLoading(true)
+      const params = {
+        ...formData,
+        working_location: JSON.stringify(formData.working_location)
+      }
       dispatch(RegistrationForm(formData))
-      dispatch(createChannelPartner(formData))
+      dispatch(createChannelPartner(params))
       if (createChannelPartnerData?.response) {
-        navigation.navigate('OtpVerificationScreenView', {type: strings.registration, email: formData?.email})
+        navigation.navigate('OtpVerificationScreenView', { type: strings.registration, email: formData?.email })
       }
     }
     // navigation.navigate('OtpVerificationScreenView', {type: strings.registration, email: formData?.email})

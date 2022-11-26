@@ -29,11 +29,16 @@ import MultiLocation from 'app/components/MultiLocation'
 
 const RegistrationView = (props: any) => {
   const insets = useSafeAreaInsets();
-  const [gender, setGender] = useState("Male");
   const [profile, setProfile] = useState(false);
-  const [profileData, setProfileData] = useState('');
-  const [checked, setChecked] = React.useState("first");
-  console.log(':props?.registerForm?.working_location ', props?.registerForm?.working_location);
+  
+  const handleDelete = (item: any, index: any) => {
+    var array: any[] = [...props?.registerForm.working_location];
+    array?.splice(index, 1);
+    props?.setRegisterForm({
+      ...props?.registerForm,
+      working_location: array
+    })
+  }
   return (
     <View style={styles.mainContainer}>
       <View
@@ -261,7 +266,7 @@ const RegistrationView = (props: any) => {
                   borderBottomWidth: props?.registerForm?.working_location?.length - 1 === index ? 0 : 0.6
                 }]}>
                   <Text style={styles.inputBoxItmTxt}>{item.address}</Text>
-                  <TouchableOpacity onPress={() => props.handleDelete(item, index)}>
+                  <TouchableOpacity onPress={() => handleDelete(item, index)}>
                     <Image
                       source={images.close}
                       style={styles.crossVw}

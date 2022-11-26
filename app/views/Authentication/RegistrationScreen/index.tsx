@@ -82,7 +82,7 @@ const RegistrationScreen = ({ navigation }: any) => {
       isError = false;
       errorMessage = "Email is require. Please enter Email"
     }
-    else if (registerForm.working_location == undefined || registerForm.working_location == null) {
+    else if (registerForm.working_location.length === 0 || registerForm.working_location === undefined) {
       isError = false;
       errorMessage = "Working Location is require. Please enter Working Location"
     }
@@ -112,14 +112,6 @@ const RegistrationScreen = ({ navigation }: any) => {
   const onPressBack = () => {
     navigation.goBack()
   }
-  const handleDelete = (item: any, index: any) => {
-    var array: any[] = [...registerForm.working_location];
-    array?.splice(index, 1);
-    setRegisterForm({
-      ...registerForm,
-      working_location: array
-    })
-  }
   return <RegistrationView
     setRegisterForm={setRegisterForm}
     registerForm={registerForm}
@@ -128,7 +120,6 @@ const RegistrationScreen = ({ navigation }: any) => {
     locationModel={locationModel}
     setLocationModel={setLocationModel}
     handleCheckEmailMobile={handleCheckEmailMobile}
-    handleDelete={handleDelete}
   />;
 };
 
