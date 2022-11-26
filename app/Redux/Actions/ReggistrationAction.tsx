@@ -3,7 +3,6 @@ import { apiCall } from "app/components/utilities/httpClient";
 import { CHECK_EMAIL_MOBILE, CHECK_EMAIL_MOBILE_ERROR, CREATE_CHANNEL_PARTNER, CREATE_CHANNEL_PARTNER_ERROR, REGISTRATION_ERROR, REGISTRATION_FORM } from "../types";
 
 export const RegistrationForm = (item: any) => async (dispatch: any) => {
-  console.log('item: ', item);
   try {
     dispatch({
       type: REGISTRATION_FORM,
@@ -18,7 +17,6 @@ export const RegistrationForm = (item: any) => async (dispatch: any) => {
 };
 
 export const createChannelPartner = (item: any) => async (dispatch: any) => {
-  console.log('item =====: ', item);
   try {
     const res = await apiCall("post", apiEndPoints.CREATECHANNELPARTNER, item);
     console.log('res: ', res);

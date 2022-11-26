@@ -1,5 +1,5 @@
-import { View, Text, StatusBar, FlatList, TouchableOpacity, ActivityIndicator } from 'react-native';
-import React, { useState } from 'react';
+import { View, Text, StatusBar, FlatList, TouchableOpacity, ActivityIndicator, RefreshControl } from 'react-native';
+import React, { useState, useEffect } from 'react';
 import styles from './styles';
 import { useSafeAreaInsets } from 'react-native-safe-area-context';
 import AgentListItem from './AgentListItem';
@@ -58,15 +58,14 @@ const AgentView = (props: any) => {
       status: 'Deactive'
     },
   ];
-
   const ShowPendinglist = () => {
     navigation.navigate('PendingAgentList')
   }
   const onPressAddnewAgent = (type: any) => {
     navigation.navigate('AddnewAgent', { type })
   }
-
   const onRefresh = () => {
+    props.setIsloading(true)
     props.setFilterData({
       startdate: '',
       enddate: '',
@@ -74,8 +73,7 @@ const AgentView = (props: any) => {
       search_by_location: '',
       status: ''
     })
-    props.setOffset(0)
-    props.getAgentList(0, [])
+    props.getAgentList(0, {})
   }
   return (
     <View style={styles.mainContainer}>
@@ -96,15 +94,7 @@ const AgentView = (props: any) => {
         RightFirstIconStyle={styles.RightFirstIconStyle}
         handleOnRightFirstIconPress={() => setFilterisVisible(true)}
       />
-      {loadingref ? (
-        <View style={styles.footer}>
-          <ActivityIndicator
-            color="black"
-            style={{ margin: 15 }} />
-        </View>
-      ) : null}
       <View style={styles.propertyListView}>
-
         <View style={styles.btnView}>
           <TouchableOpacity
             onPress={() => onPressAddnewAgent('add')}
@@ -137,11 +127,11 @@ const AgentView = (props: any) => {
             onEndReached={() => {
               if (props?.agentList?.length < props?.moreData) {
                 props.getAgentList(props?.agentList?.length > 2 ?
-                  props.offSET + 1 : 0, props?.agentList)
+                  props.offSET + 1 : 0, props.filterData)
               }
             }}
-            onRefresh={() => onRefresh()}
             refreshing={loadingref}
+            onRefresh={() => onRefresh()}
           />
         </View>
       </View>
@@ -165,8 +155,7 @@ const AgentView = (props: any) => {
         setIsVisible={setFilterisVisible}
         setFilterData={props.setFilterData}
         filterData={props.filterData}
-        setFilter={props.setFilter}
-        getAgentListChange={() => props.getAgentList()}
+        getAgentList={() => props.getAgentList(0, props.filterData)}
       />
     </View>
   );

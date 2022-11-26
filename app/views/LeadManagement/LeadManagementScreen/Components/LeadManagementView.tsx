@@ -56,6 +56,7 @@ const LeadManagementView = (props: any) => {
   const insets = useSafeAreaInsets();
   const navigation: any = useNavigation()
   const [FilterisVisible, setFilterisVisible] = useState(false)
+  
   const onPressView = (data: any) => {
     navigation.navigate('LeadDetails', data)
   }
@@ -65,6 +66,7 @@ const LeadManagementView = (props: any) => {
   }
 
   const onRefresh = () => {
+    props.setIsloading(true)
     props.setFilterData({
       startdate: '',
       enddate: '',
@@ -72,8 +74,7 @@ const LeadManagementView = (props: any) => {
       search_by_location: '',
       status: ''
     })
-    props.getVisitorsList(0, [])
-    // props.setFilter({})
+    props.getVisitorsList(0, {})
   }
 
   return (
@@ -124,7 +125,7 @@ const LeadManagementView = (props: any) => {
           onEndReached={() => {
             if (props?.visitorList?.length < props?.moreData) {
               props.getVisitorsList(props?.visitorList?.length > 2 ?
-                props.offSET + 1 : 0, props.visitorList)
+                props.offSET + 1 : 0, props.filterData)
             }
           }}
           onRefresh={() => onRefresh()}
@@ -154,7 +155,7 @@ const LeadManagementView = (props: any) => {
         setFilterData={props.setFilterData}
         filterData={props.filterData}
         setFilter={props.setFilter}
-        getVisitorsList={() => props.getVisitorsList(props.offSET)}
+        getVisitorsList={() => props.getVisitorsList(props.offSET, props.filterData)}
       />
     </View>
   );

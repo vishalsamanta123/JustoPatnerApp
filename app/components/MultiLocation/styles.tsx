@@ -1,6 +1,6 @@
 import { StyleSheet } from 'react-native';
 import { normalize, normalizeHeight, normalizeSpacing, normalizeWidth } from '../scaleFontSize';
-import { BLACK_COLOR, FONT_FAMILY_MEDIUM, FONT_FAMILY_REGULAR, GRAY_COLOR, PRIMARY_THEME_COLOR, WHITE_COLOR } from '../utilities/constant';
+import { BLACK_COLOR, BLUE_COLOR, FONT_FAMILY_MEDIUM, FONT_FAMILY_REGULAR, GRAY_COLOR, GREEN_COLOR, PRIMARY_THEME_COLOR, PRIMARY_THEME_COLOR_DARK, PURPLE_COLOR, WHITE_COLOR } from '../utilities/constant';
 
 const styles = StyleSheet.create({
     mainContainer: {
@@ -14,43 +14,49 @@ const styles = StyleSheet.create({
         color: WHITE_COLOR,
     },
     containerVw: {
-        flexGrow: 1,
+        flex: 1,
         backgroundColor: WHITE_COLOR,
         paddingVertical: normalize(10)
     },
     headerTxt: {
         fontSize: normalize(16),
         color: BLACK_COLOR,
-        fontFamily: FONT_FAMILY_MEDIUM
+        fontFamily: FONT_FAMILY_MEDIUM,
+        marginTop: normalize(12)
     },
     selectedBox: {
-        paddingVertical: normalize(14),
+        paddingVertical: normalize(5),
         borderWidth: 1,
-        borderColor: PRIMARY_THEME_COLOR,
+        borderColor: GRAY_COLOR,
         marginVertical: normalize(8),
-        flexDirection: 'row',
-        flexWrap: 'wrap',
-        justifyContent: 'space-evenly',
-        borderRadius: normalize(10)
+        borderRadius: normalize(10),
+        paddingHorizontal: normalize(8),
+        minHeight: normalize(40),
+        justifyContent: 'center',
+        alignItems: 'center',
     },
     noSelectedTxt: {
-        fontSize: normalize(14),
+        fontSize: normalize(15),
         color: GRAY_COLOR,
         fontFamily: FONT_FAMILY_REGULAR,
-        paddingHorizontal: 8
+        paddingHorizontal: 8,
     },
     innerBoxVw: {
         flexDirection: 'row',
-        alignItems: 'flex-start',
-        padding: 5,
-        //paddingHorizontal: 15,
-        marginVertical: 5,
-        minWidth: 50,
+        alignItems: 'center',
         justifyContent: 'space-between',
-        //backgroundColor:'red',
-        //borderRadius:3,
-        borderWidth: 1,
-        borderColor: GRAY_COLOR
+        borderWidth: 1.5,
+        paddingVertical: normalize(8),
+        paddingHorizontal: normalize(5),
+        marginVertical: normalize(5),
+        borderRadius: normalize(8),
+        borderColor: PRIMARY_THEME_COLOR_DARK,
+    },
+    innerBoxTxt: {
+        fontSize: normalize(13),
+        color: PRIMARY_THEME_COLOR_DARK,
+        fontFamily: FONT_FAMILY_MEDIUM,
+        width: '90%'
     },
     innerBoxVwlist: {
         flexDirection: 'row',
@@ -61,29 +67,18 @@ const styles = StyleSheet.create({
         justifyContent: 'space-between',
     },
     innerCont: {
-        flex: 1,
-        justifyContent: 'flex-end',
-        marginBottom: normalize(10),
-        paddingHorizontal: normalize(16)
+        paddingBottom: normalize(10),
+        paddingHorizontal: normalize(16),
+        backgroundColor: WHITE_COLOR
     },
     innerBoxVwlistfont: {
         fontSize: 15
     },
-    searchInputVw: {
-        marginVertical: 2,
-        height: normalizeHeight(48),
-        fontFamily: FONT_FAMILY_MEDIUM,
-        fontSize: normalize(14),
-        color: BLACK_COLOR,
-        backgroundColor: WHITE_COLOR,
-        elevation: 1,
-        paddingLeft: 20,
-        borderRadius: 10
-    },
     crossVw: {
-        width: normalizeWidth(15),
-        height: normalizeHeight(15),
-        marginHorizontal: 5
+        width: normalizeWidth(18),
+        height: normalizeHeight(18),
+        marginHorizontal: 5,
+        tintColor: PRIMARY_THEME_COLOR_DARK
     },
     checkBoxVw: {
         backgroundColor: WHITE_COLOR,
@@ -95,6 +90,13 @@ const styles = StyleSheet.create({
         width: normalizeWidth(5),
         height: normalizeHeight(10),
         marginHorizontal: 5,
+    },
+    searchTxt: {
+        fontSize: normalize(14),
+        marginVertical: normalize(8),
+        marginLeft: normalize(5),
+        color: PRIMARY_THEME_COLOR_DARK,
+        marginTop: normalize(15)
     }
 })
 export default styles

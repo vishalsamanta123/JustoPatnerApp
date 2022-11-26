@@ -10,8 +10,8 @@ const RegistrationScreen = ({ navigation }: any) => {
   const [isError, setisError] = useState(false)
   const [locationModel, setLocationModel] = useState(false)
   const createChannelPartnerData = useSelector((state: any) => state.createChannlePartner)
-  const registrationData = useSelector((state: any) => state.registrationForm)
-  const [resgistrationData, setResgistrationData] = useState({
+  const registrationData = useSelector((state: any) => state.registerForm)
+  const [registerForm, setRegisterForm] = useState({
     profile_picture: {},
     owner_name: '',
     adhar_no: '',
@@ -23,9 +23,12 @@ const RegistrationScreen = ({ navigation }: any) => {
     email: '',
     working_location: [],
   })
-  console.log('resgistrationData: ', resgistrationData);
   useEffect(() => {
-    setResgistrationData({ ...registrationData.response })
+    if (registrationData?.response) {
+      setRegisterForm({
+        ...registrationData?.response
+      })
+    }
   }, [registrationData])
   useEffect(() => {
     handleError()
@@ -47,39 +50,39 @@ const RegistrationScreen = ({ navigation }: any) => {
   const validation = () => {
     let isError = true;
     let errorMessage: any = ''
-    if (resgistrationData.owner_name == undefined || resgistrationData.owner_name == '') {
+    if (registerForm.owner_name == undefined || registerForm.owner_name == '') {
       isError = false;
       errorMessage = "Owner Name is require. Please enter Owner Name"
     }
-    else if (resgistrationData.adhar_no == undefined || resgistrationData.adhar_no == '') {
+    else if (registerForm.adhar_no == undefined || registerForm.adhar_no == '') {
       isError = false;
       errorMessage = "Adhar No. is require. Please enter Adhar No."
     }
-    else if (resgistrationData.pancard_no == undefined || resgistrationData.pancard_no == '') {
+    else if (registerForm.pancard_no == undefined || registerForm.pancard_no == '') {
       isError = false;
       errorMessage = "Pancard No. is require. Please enter Pancard No."
     }
-    else if (resgistrationData.gender == undefined || resgistrationData.gender == '') {
+    else if (registerForm.gender == undefined || registerForm.gender == '') {
       isError = false;
       errorMessage = "Gender is require. Please enter Gender"
     }
-    else if (resgistrationData.date_of_birth == undefined || resgistrationData.date_of_birth == '') {
+    else if (registerForm.date_of_birth == undefined || registerForm.date_of_birth == '') {
       isError = false;
       errorMessage = "Date of Birth is require. Please enter Date of Birth"
     }
-    else if (resgistrationData.primary_mobile == undefined || resgistrationData.primary_mobile == '') {
+    else if (registerForm.primary_mobile == undefined || registerForm.primary_mobile == '') {
       isError = false;
       errorMessage = "Mobile No. is require. Please enter Mobile No."
     }
-    else if (resgistrationData.whatsapp_number == undefined || resgistrationData.whatsapp_number == '') {
+    else if (registerForm.whatsapp_number == undefined || registerForm.whatsapp_number == '') {
       isError = false;
       errorMessage = "WhatsaApp No. is require. Please enter WhatsaApp No."
     }
-    else if (resgistrationData.email == undefined || resgistrationData.email == '') {
+    else if (registerForm.email == undefined || registerForm.email == '') {
       isError = false;
       errorMessage = "Email is require. Please enter Email"
     }
-    else if (resgistrationData.working_location == undefined || resgistrationData.working_location == null) {
+    else if (registerForm.working_location == undefined || registerForm.working_location == null) {
       isError = false;
       errorMessage = "Working Location is require. Please enter Working Location"
     }
@@ -96,27 +99,36 @@ const RegistrationScreen = ({ navigation }: any) => {
 
   const onPressNext = () => {
     if (validation()) {
-      dispatch(RegistrationForm(resgistrationData))
+      dispatch(RegistrationForm(registerForm))
       navigation.navigate('UserBankInfo')
     }
     // navigation.navigate('UserBankInfo')
   }
 
   const handleCheckEmailMobile = (type: any) => {
-    const params = type == 1 ? { mobile: resgistrationData?.primary_mobile } : { email: resgistrationData?.email }
+    const params = type == 1 ? { mobile: registerForm?.primary_mobile } : { email: registerForm?.email }
     dispatch(checkEmailMobile(params))
   }
   const onPressBack = () => {
     navigation.goBack()
   }
+  const handleDelete = (item: any, index: any) => {
+    var array: any[] = [...registerForm.working_location];
+    array?.splice(index, 1);
+    setRegisterForm({
+      ...registerForm,
+      working_location: array
+    })
+  }
   return <RegistrationView
-    setResgistrationData={setResgistrationData}
-    resgistrationData={resgistrationData}
+    setRegisterForm={setRegisterForm}
+    registerForm={registerForm}
     onPressBack={onPressBack}
     onPressNext={onPressNext}
     locationModel={locationModel}
     setLocationModel={setLocationModel}
     handleCheckEmailMobile={handleCheckEmailMobile}
+    handleDelete={handleDelete}
   />;
 };
 

@@ -1,77 +1,68 @@
-import { View, Text, Image, TextInput, FlatList, TouchableOpacity, Dimensions } from 'react-native';
+import React, { useState } from 'react';
+import { View, Text, Image, TouchableOpacity, ScrollView } from 'react-native';
 import images from "app/assets/images";
 import Modal from "react-native-modal";
-import { BLACK_COLOR, GRAY_COLOR, PRIMARY_THEME_COLOR, WHITE_COLOR } from 'app/components/utilities/constant';
+import { MAP_KEY, PRIMARY_THEME_COLOR, PRIMARY_THEME_COLOR_DARK, WHITE_COLOR } from 'app/components/utilities/constant';
 import styles from './styles';
 import Button from 'app/components/Button';
 import strings from 'app/components/utilities/Localization';
-import { ScrollView } from 'react-native-gesture-handler';
+import { GooglePlacesAutocomplete } from 'react-native-google-places-autocomplete';
 import Header from '../Header';
-import { useState } from 'react';
+import { normalize, normalizeHeight, normalizeSpacing } from '../scaleFontSize';
 
 const locationsView = (props: any) => {
-    const [allList, setAllList] = useState(false)
-    const handleSelects = (item: any) => {
-        var array: any[] = [...props?.selectedLocation];
-        array.push(item);
-        props.setSelectedLocation(array)
+console.log('props.value: ', props.value);
+    const [allList, setAllList] = useState<any>([])
+    const handleSelect = (data: any, details: any) => {
+        const selectedObj = allList?.find((itm: any) => {
+            return itm?.address === data?.description
+        })
+        const valueObj = props?.value?.find((itm: any) => {
+            return itm?.address === data?.description
+        })
+        if (selectedObj?.address != data?.description) {
+            if (valueObj?.address != data?.description) {
+                const object = {
+                    address: data?.description,
+                    latitude: details?.geometry?.location.lat,
+                    logitude: details?.geometry?.location.lng,
+                }
+                var array: any[] = [...allList];
+                array.push(object);
+                setAllList(array)
+            }
+        }
     }
-    const locations = [
-        {
-            id: 1,
-            location: 'Indore ,Madhya Pradesh',
-            latitude: '22.8909',
-            longitude: '303.908',
-        },
-        {
-            id: 2,
-            location: 'Bhopal ,Madhya Pradesh',
-            latitude: '22.8909',
-            longitude: '303.780',
-        },
-        {
-            id: 3,
-            location: 'Mumbai ,Maharsatra',
-            latitude: '22.585',
-            longitude: '303.676',
-        },
-        {
-            id: 4,
-            location: 'Raipur',
-            latitude: '22.8909',
-            longitude: '303.908',
-        },
-        {
-            id: 5,
-            location: 'Goa',
-            latitude: '22.677',
-            longitude: '303.66',
-        },
-        {
-            id: 7,
-            location: 'Banglore',
-            latitude: '22.99',
-            longitude: '30688',
-        },
-        {
-            id: 8,
-            location: 'Pune ,Maharastra',
-            latitude: '22.333',
-            longitude: '900.908',
-        },
-        {
-            id: 9,
-            location: 'Gujarat',
-            latitude: '12.8909',
-            longitude: '377.908',
-        },
-        {
-            id: 10,
-            location: 'Rajasthan',
-            latitude: '12.770',
-            longitude: '555.908',
-        },
-    ]
+    const handleDelete = (item: any, index: any) => {
+        var array: any[] = [...allList];
+        array?.splice(index, 1);
+        setAllList(array)
+        // if (props?.value?.length > 0) {
+        //     var array: any[] = [...props?.value];
+        //     array?.splice(index, 1);
+        //     props.handleAddTarget(array)
+        // }
+    }
+    const onPressAdd = (array: any) => {
+        if (array?.length > 0) {
+            if (props?.value?.length === 0) {
+                props.handleAddTarget(array)
+                props.setVisible(false)
+                setAllList([])
+            } else {
+                array?.map((itmssss: any) => {
+                    var newAdd: any[] = [...props?.value];
+                    newAdd.push(itmssss);
+                    props.handleAddTarget(newAdd)
+                    props.setVisible(false)
+                    setAllList([])
+                })
+            }
+        } else {
+            props.setVisible(false)
+            setAllList([])
+        }
+    }
     return (
         <Modal deviceHeight={0}
             isVisible={props.Visible}>
@@ -86,70 +77,160 @@ const locationsView = (props: any) => {
                 barStyle={'light-content'}
                 statusBarColor={PRIMARY_THEME_COLOR}
             />
-            <ScrollView contentContainerStyle={styles.containerVw}>
-                <View style={[styles.innerCont, { justifyContent: 'flex-start', }]}>
-                    <Text style={styles.headerTxt}>{strings.location}</Text>
-                    <View style={styles.selectedBox}>
-                        {props?.selectedLocation?.length > 0 ?
-                            <>
-                                {props?.selectedLocation?.map((item: any, index: any) => {
-                                    return (
-                                        <View style={[styles.innerBoxVw, { justifyContent: 'flex-start' }]}>
-                                            <Text>{item.location}</Text>
-                                            <TouchableOpacity
-                                            // onPress={() => props.handleDelete(item, index)}
-                                            >
-                                                <Image
-                                                    source={images.close}
-                                                    style={styles.crossVw}
-                                                />
-                                            </TouchableOpacity>
-                                        </View>
-                                    )
-                                })}
-                            </> : <Text style={styles.noSelectedTxt}>{strings.notSelectedLocation}</Text>
-                        }
-                    </View>
-                    <TextInput
-                        placeholder={strings.searchLocation}
-                        placeholderTextColor={BLACK_COLOR}
-                        style={styles.searchInputVw}
-                        onFocus={() => setAllList(true)}
-                        onChangeText={(text: any) => props.handleSearch(text)}
-                    />
-                    {allList ?
-                        <FlatList
-                            data={locations}
-                            renderItem={({ item, index }: any) => {
-                                const getSelected =
-                                    props?.selectedCp?.length === 0
-                                        ? ""
-                                        : props?.selectedCp?.map(({ cpName }: any) => cpName);
+            <View style={[styles.innerCont, { flex: 1 }]}>
+                <Text style={styles.headerTxt}>{strings.location}</Text>
+                <View style={styles.selectedBox}>
+                    {allList?.length > 0 ?
+                        <ScrollView contentContainerStyle={{ marginHorizontal: 5 }}>
+                            {allList?.map((item: any, index: any) => {
                                 return (
-                                    <TouchableOpacity
-                                        // onPress={() => !getSelected?.toString()
-                                        //     ?.includes(item.location)
-                                        //     ? handleSelects(item) : console.log('')}
-                                        style={styles.innerBoxVwlist}>
-                                        <Text style={styles.innerBoxVwlistfont}>{item.location}</Text>
-                                    </TouchableOpacity>
+                                    <View style={styles.innerBoxVw}>
+                                        <Text style={styles.innerBoxTxt}>{item.address}</Text>
+                                        <TouchableOpacity
+                                            onPress={() => handleDelete(item, index)}
+                                        >
+                                            <Image
+                                                source={images.close}
+                                                style={styles.crossVw}
+                                            />
+                                        </TouchableOpacity>
+                                    </View>
                                 )
-                            }}
-                        /> : null
+                            })}
+                        </ScrollView> : <Text style={styles.noSelectedTxt}>{strings.notSelectedLocation}</Text>
                     }
                 </View>
-                <View style={styles.innerCont}>
-                    <Button
-                        width={220}
-                        height={40}
-                        btnTxtsize={16}
-                        buttonText={strings.addLocation}
-                        textTransform={null}
-                    // handleBtnPress={() => props.handleAddTarget()}
+                <ScrollView contentContainerStyle={{ flexGrow: 1 }}
+                    keyboardShouldPersistTaps={'handled'}>
+                    <Text style={styles.searchTxt}>{strings.searchYourlocation}</Text>
+                    <GooglePlacesAutocomplete
+                        placeholder={strings.location}
+                        textInputProps={{
+                            placeholderTextColor: PRIMARY_THEME_COLOR_DARK,
+                        }}
+                        styles={{
+                            textInputContainer: {
+                                borderWidth: 1.5,
+                                borderColor: PRIMARY_THEME_COLOR_DARK,
+                                borderRadius: normalize(8),
+                                paddingVertical: normalizeSpacing(5),
+                            },
+                            textInput: {
+                                height: normalizeHeight(30),
+                                color: PRIMARY_THEME_COLOR_DARK,
+                                fontSize: normalize(14),
+                            },
+                            predefinedPlacesDescription: {
+                                color: '#1faadb',
+                            },
+                        }}
+                        onPress={(data, details = null) => {
+                            handleSelect(data, details)
+                        }}
+                        query={{
+                            key: MAP_KEY,
+                            language: 'en',
+                        }}
                     />
-                </View>
-            </ScrollView>
+                </ScrollView>
+            </View>
+            <View style={styles.innerCont}>
+                <Button
+                    width={220}
+                    height={40}
+                    btnTxtsize={16}
+                    buttonText={strings.addLocation}
+                    textTransform={null}
+                    handleBtnPress={() => onPressAdd(allList)}
+                />
+            </View>
         </Modal>
     )
 }
 export default locationsView;
+{/* <View style={styles.containerVw}>
+<View style={[styles.innerCont, { justifyContent: 'flex-start', }]}>
+    <Text style={styles.headerTxt}>{strings.location}</Text>
+    <View style={styles.selectedBox}>
+        {props?.selectedLocation?.length > 0 ?
+            <>
+                {props?.selectedLocation?.map((item: any, index: any) => {
+                    return (
+                        <View style={[styles.innerBoxVw, { justifyContent: 'flex-start' }]}>
+                            <Text>{item.location}</Text>
+                            <TouchableOpacity
+                            // onPress={() => props.handleDelete(item, index)}
+                            >
+                                <Image
+                                    source={images.close}
+                                    style={styles.crossVw}
+                                />
+                            </TouchableOpacity>
+                        </View>
+                    )
+                })}
+            </> : <Text style={styles.noSelectedTxt}>{strings.notSelectedLocation}</Text>
+        }
+    </View>
+    <Text style={styles.searchTxt}>{strings.searchYourlocation}</Text>
+    <GooglePlacesAutocomplete
+        placeholder={strings.location}
+        textInputProps={{
+            placeholderTextColor: PRIMARY_THEME_COLOR_DARK,
+        }}
+        styles={{
+            textInputContainer: {
+                borderWidth: 1.5,
+                borderColor: PRIMARY_THEME_COLOR_DARK,
+                borderRadius: normalize(8),
+                paddingVertical: normalizeSpacing(5)
+            },
+            textInput: {
+                height: normalizeHeight(30),
+                color: PRIMARY_THEME_COLOR_DARK,
+                fontSize: normalize(14),
+            },
+            predefinedPlacesDescription: {
+                color: '#1faadb',
+            },
+        }}
+        onPress={(data, details = null) => {
+            console.log(data, details);
+        }}
+        query={{
+            key: MAP_KEY,
+            language: 'en',
+        }}
+    />
+    {/* {allList ?
+    <FlatList
+        data={locations}
+        renderItem={({ item, index }: any) => {
+            const getSelected =
+                props?.selectedCp?.length === 0
+                    ? ""
+                    : props?.selectedCp?.map(({ cpName }: any) => cpName);
+            return (
+                <TouchableOpacity
+                    // onPress={() => !getSelected?.toString()
+                    //     ?.includes(item.location)
+                    //     ? handleSelects(item) : console.log('')}
+                    style={styles.innerBoxVwlist}>
+                    <Text style={styles.innerBoxVwlistfont}>{item.location}</Text>
+                </TouchableOpacity>
+            )
+        }}
+    /> : null
+} */}
+// </View>
+// <View style={styles.innerCont}>
+//     <Button
+//         width={220}
+//         height={40}
+//         btnTxtsize={16}
+//         buttonText={strings.addLocation}
+//         textTransform={null}
+//     // handleBtnPress={() => props.handleAddTarget()}
+//     />
+// </View>
+// </View> */}

@@ -23,11 +23,10 @@ const FilterModal = (props: any) => {
       status: ''
     })
     props.setIsVisible(false)
-    props.setFilter({})
   }
   const handleFilter = () => {
-    props.setFilter(props.filterData)
     props.setIsVisible(false)
+    props.getAgentList(0, props.filterData)
   }
   const data = [
     { label: "Active", value: true },
