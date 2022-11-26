@@ -4,17 +4,17 @@ import AddAppointmentView from './Components/AddAppointmentView'
 import { useFocusEffect } from '@react-navigation/native'
 import { getAllLeadsList } from 'app/Redux/Actions/LeadsActions'
 import { useDispatch, useSelector } from 'react-redux'
-import { addAppointment, getAppointmentDetails } from 'app/Redux/Actions/AppointmentActions'
+import { addAppointment, editAppointment, getAppointmentDetails } from 'app/Redux/Actions/AppointmentActions'
 import ErrorMessage from 'app/components/ErrorMessage'
 import { RED_COLOR } from 'app/components/utilities/constant'
+import strings from 'app/components/utilities/Localization'
 
 const AddAppointmentScreen = ({ navigation, route }: any) => {
-  const {data, type} = route?.params || {}
+  const { data, type } = route?.params || {}
   const dispatch: any = useDispatch()
   const { response = {}, list = "" } = useSelector((state: any) => state.visitorDataList)
-  console.log('response: ', response);
+  console.log('response visitorDataList: ', response);
   const addAppointmentData = useSelector((state: any) => state.appointment)
-  console.log('addAppointmentData: ', addAppointmentData);
   const [visitorList, setVisiitorList] = useState<any>([])
   const [isloading, setIsloading] = useState(false)
   const [offSET, setOffset] = useState(0)
@@ -36,37 +36,48 @@ const AddAppointmentScreen = ({ navigation, route }: any) => {
     }))
     // toGetDatas(array)
   }
-  useEffect(() => {
-    
-  }, [])
-  
 
-  // useFocusEffect(
-  //   React.useCallback(() => {
-  //     if (data?._id) {
-  //       setIsloading(true)
-  //       dispatch(getAppointmentDetails({ appointment_id: data?._id }))
-  //       toGetDatas()
-  //     }
-  //     return () => { };
-  //   }, [navigation, addAppointmentData?.detail]))
 
-  // const toGetDatas = () => {
-  //   if (response?.status) {
-  //     setIsloading(false)
-  //   }
-  // }
-  const handleAddAppointment = (params: any) => {
-    setIsloading(true)
-    dispatch(addAppointment(params))
+  useFocusEffect(
+    React.useCallback(() => {
+      if (data?._id) {
+        setIsloading(true)
+        dispatch(getAppointmentDetails({ appointment_id: data?._id }))
+        toGetDatas()
+      }
+      return () => { };
+    }, [navigation, addAppointmentData?.detail]))
+
+  const toGetDatas = () => {
     if (addAppointmentData?.response?.status) {
       setIsloading(false)
-      navigation.navigate('AppointmentScreen')
+    }
+  }
+  const handleAddAppointment = (params: any) => {
+    if (type === strings.edit) {
+      setIsloading(true)
+      dispatch(editAppointment(params))
+      if (addAppointmentData?.response?.status) {
+        setIsloading(false)
+        navigation.navigate('AppointmentScreen')
+      } else {
+        ErrorMessage({
+          msg: addAppointmentData?.response?.message,
+          backgroundColor: RED_COLOR
+        })
+      }
     } else {
-      ErrorMessage({
-        msg: addAppointmentData?.response?.message,
-        backgroundColor: RED_COLOR
-      })
+      setIsloading(true)
+      dispatch(addAppointment(params))
+      if (addAppointmentData?.response?.status) {
+        setIsloading(false)
+        navigation.navigate('AppointmentScreen')
+      } else {
+        ErrorMessage({
+          msg: addAppointmentData?.response?.message,
+          backgroundColor: RED_COLOR
+        })
+      }
     }
   }
   const handleBackPress = () => {

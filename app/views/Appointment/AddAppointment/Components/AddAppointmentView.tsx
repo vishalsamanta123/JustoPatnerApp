@@ -1,5 +1,5 @@
 import { View, Text, StatusBar } from 'react-native'
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import styles from './Styles'
 import { useSafeAreaInsets } from 'react-native-safe-area-context';
 import { PRIMARY_THEME_COLOR, PRIMARY_THEME_COLOR_DARK, RED_COLOR } from '../../../../components/utilities/constant';
@@ -10,6 +10,7 @@ import AddAppointmentItem from './AddAppointmentItem';
 import { useNavigation } from '@react-navigation/native';
 import Loader from 'app/components/CommonScreen/Loader';
 import ErrorMessage from 'app/components/ErrorMessage';
+import { useSelector } from 'react-redux';
 
 const AddAppointmentView = (props: any) => {
     const insets = useSafeAreaInsets();
@@ -17,6 +18,16 @@ const AddAppointmentView = (props: any) => {
     const [value, setValue] = useState(null)
     const [gender, setGender] = useState("Male");
     const [checked, setChecked] = React.useState("first");
+    const {response={}} = useSelector((state: any) => state.appointment)
+    console.log('response: ', response?.data?.pickup_location);
+    useEffect(() => {
+setAddAppointmentForm({
+    ...addAppointmentForm, 
+    pickup_location: response?.data?.pickup_location,number_of_guest: response?.data?.number_of_guest
+    
+})
+    }, [response])
+    
     const [addAppointmentForm, setAddAppointmentForm] = useState<any>({
         lead_id: props?.data?.lead_id,
         property_id: props?.data?.property_id,
@@ -24,8 +35,6 @@ const AddAppointmentView = (props: any) => {
         appointment_time: props?.data?.appointment_time,
         type: 1,
         pickup: props?.data?.pickup,
-        pickup_location: props?.data?.pickup_location,
-        number_of_guest: props?.data?.number_of_guest
     })
     console.log('addAppointmentForm: ', addAppointmentForm);
     const validation = () => {

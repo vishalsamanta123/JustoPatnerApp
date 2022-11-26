@@ -76,7 +76,7 @@ export const editAppointment = (params: any) => async (dispatch: any) => {
     try {
         const res = await apiCall("post", apiEndPoints.EDIT_APPOINTMENT, params);
         console.log('res EDIT_APPOINTMENT: ', res);
-        if (res.data.status == 200) {
+        if (res?.data?.status == 200) {
             dispatch({
                 type: EDIT_APPOINTMENT,
                 payload: res.data,
