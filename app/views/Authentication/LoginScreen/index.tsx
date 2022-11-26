@@ -11,7 +11,7 @@ import strings from 'app/components/utilities/Localization';
 
 const LoginScreen = ({ navigation }: any) => {
   const dispatch: any = useDispatch()
-  const [isloading, setIsloading] = useState(false)
+  // const [isloading, setIsloading] = useState(false)
   const [validEmail, setIsValidEmail] = useState(false);
   const [loginData, setLoginData] = useState({
     email: '',
@@ -27,7 +27,7 @@ const LoginScreen = ({ navigation }: any) => {
   const checklogin = async () => {
     const authval = await AsyncStorage.getItem("AuthToken");
     if (loginSelector.response && loginSelector.authToken) {
-      setIsloading(loginSelector.loading)
+      // setIsloading(loginSelector.loading)
       // console.log("checklogin -> loginSelector.response.status", loginSelector.response.status)
       if (loginSelector.response.status === 200) {
         await setDefaultHeader("token", loginSelector.response.token);
@@ -41,7 +41,7 @@ const LoginScreen = ({ navigation }: any) => {
         })
       }
     } else {
-      setIsloading(loginSelector.loading)
+      // setIsloading(loginSelector.loading)
       if (authval != null) {
         await setDefaultHeader("token", authval);
         navigation.navigate('DashboardScreenView');
@@ -92,7 +92,7 @@ const LoginScreen = ({ navigation }: any) => {
   }
   const handleLoginPress = () => {
     if (validation()) {
-      setIsloading(true)
+      // setIsloading(true)
       const respon = dispatch(userLogin(loginData))
       // console.log("handleLoginPress -> respon", respon)
       //navigation.navigate('DashboardScreenView');

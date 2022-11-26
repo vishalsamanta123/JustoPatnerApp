@@ -7,30 +7,48 @@ import styles from './styles';
 import Button from 'app/components/Button';
 import strings from 'app/components/utilities/Localization';
 import { GooglePlacesAutocomplete } from 'react-native-google-places-autocomplete';
+import Geolocation from '@react-native-community/geolocation';
 import Header from '../Header';
 import { normalize, normalizeHeight, normalizeSpacing } from '../scaleFontSize';
+import { handlePermission, openPermissionSetting } from '../utilities/GlobalFuncations';
 
 const locationsView = (props: any) => {
     const [allList, setAllList] = useState<any>([])
-    const handleSelect = (data: any, details: any) => {
-        const selectedObj = allList?.find((itm: any) => {
-            return itm?.address === data?.description
-        })
-        const valueObj = props?.value?.find((itm: any) => {
-            return itm?.address === data?.description
-        })
-        if (selectedObj?.address != data?.description) {
-            if (valueObj?.address != data?.description) {
-                const object = {
-                    address: data?.description,
-                    latitude: '22.0909',
-                    logitude: '22.8909',
-                }
-                var array: any[] = [...allList];
-                array.push(object);
-                setAllList(array)
-            }
+    const onPressSelect = async (data: any, details: any) => {
+        const res = await handlePermission(
+            'location',
+            strings.txt_setting_heading_location,
+            strings.txt_setting_Location,
+        );
+        if (res == 'setting1') {
+            openPermissionSetting(
+                strings.txt_setting_heading_location,
+                strings.txt_setting_Location,
+            );
+        } else if (res) {
+            handleSelect(data, details)
         }
+    }
+    const handleSelect = (data: any, details: any) => {
+
+        // const selectedObj = allList?.find((itm: any) => {
+        //     return itm?.address === data?.description
+        // })
+        // const valueObj = props?.value?.find((itm: any) => {
+        //     return itm?.address === data?.description
+        // })
+        // if (selectedObj?.address != data?.description) {
+        //     if (valueObj?.address != data?.description) {
+        //         const object = {
+        //             address: data?.description,
+        //             latitude: '22.0909',
+        //             logitude: '22.8909',
+        //         }
+        //         var array: any[] = [...allList];
+        //         array.push(object);
+        //         setAllList(array)
+        //     }
+        // }
     }
     const handleDelete = (item: any, index: any) => {
         var array: any[] = [...allList];
@@ -124,7 +142,7 @@ const locationsView = (props: any) => {
                             },
                         }}
                         onPress={(data, details = null) => {
-                            handleSelect(data, details)
+                            onPressSelect(data, details)
                         }}
                         query={{
                             key: MAP_KEY,

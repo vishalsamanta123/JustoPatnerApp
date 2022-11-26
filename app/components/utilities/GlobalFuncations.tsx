@@ -117,6 +117,11 @@ export const requestPermission = async (permission: any, msgHeading: any, messag
         Isios ? PERMISSIONS.IOS.CAMERA : PERMISSIONS.ANDROID.CAMERA,
       );
       break;
+    case 'location':
+      reqRes = await request(
+        Isios ? PERMISSIONS.IOS.LOCATION_ALWAYS : PERMISSIONS.ANDROID.ACCESS_FINE_LOCATION,
+      );
+      break;
     case 'gallery':
       reqRes = await request(
         Isios
@@ -158,6 +163,9 @@ export const requestPermissions = async (permission: any) => {
   switch (permission) {
     case 'camera':
       reqRes = await request(PERMISSIONS.ANDROID.CAMERA);
+      break;
+    case 'location':
+      reqRes = await request(PERMISSIONS.ANDROID.ACCESS_FINE_LOCATION);
       break;
     case 'gallery':
       reqRes = await request(

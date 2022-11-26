@@ -1,10 +1,11 @@
-import { USER_LOGIN, USER_LOGOUT, LOGIN_ERROR, TOKEN_GENRATE,FORGOT_PASSWORD,FORGOT_ERROR, OTPVERIFY, OTPVERIFY_ERROR, UPDATEPASSWORD, UPDATEPASSWORD_ERROR, RESENDOTP, RESENDOTP_ERROR, CHANGEPASSWORD, CHANGEPASSWORD_ERROR } from '../types'
+import { USER_LOGIN, USER_LOGOUT, LOGIN_ERROR, TOKEN_GENRATE,FORGOT_PASSWORD,FORGOT_ERROR, OTPVERIFY, OTPVERIFY_ERROR, UPDATEPASSWORD, UPDATEPASSWORD_ERROR, RESENDOTP, RESENDOTP_ERROR, CHANGEPASSWORD, CHANGEPASSWORD_ERROR, START_LOADING, STOP_LOADING } from '../types'
 import axios from 'axios';
 import apiEndPoints from '../../components/utilities/apiEndPoints';
 import { apiCall } from 'app/components/utilities/httpClient';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 
 export const userLogin = (loginDetail: any) => async (dispatch: any) => {
+    dispatch({ type: START_LOADING })
     try {
         const res = await apiCall("post", apiEndPoints.LOGIN, loginDetail);
         if(res.data.status === 200){
@@ -25,6 +26,9 @@ export const userLogin = (loginDetail: any) => async (dispatch: any) => {
             type: LOGIN_ERROR,
             payload: console.log(e),
         })
+    }
+    finally{
+        dispatch({ type: STOP_LOADING })
     }
 }
 
@@ -169,6 +173,7 @@ export const userLogout = () => async (dispatch: any) => {
 }
 
 export const jwtTokenGenrate = () => async (dispatch: any) => {
+    dispatch({ type: START_LOADING })
     try {
         const res = await apiCall("get", apiEndPoints.JWTTOKEN, {});
         // console.log('res TKEN API: ', res);
@@ -187,5 +192,8 @@ export const jwtTokenGenrate = () => async (dispatch: any) => {
             type: LOGIN_ERROR,
             payload: console.log(e),
         })
+    }
+    finally{
+        dispatch({ type: STOP_LOADING })
     }
 }
