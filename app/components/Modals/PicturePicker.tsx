@@ -68,7 +68,7 @@ const PicturePickerModal = (props: any) => {
                                     'gallery',
                                     strings.txt_setting_heading_media,
                                     strings.txt_setting_description_media,
-                                );
+                                    );
                                 if (res == 'setting1') {
                                     openPermissionSetting(
                                         strings.txt_setting_heading_media,

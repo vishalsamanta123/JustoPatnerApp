@@ -1,4 +1,3 @@
-import Loader from 'app/components/CommonScreen/Loader';
 import ErrorMessage from 'app/components/ErrorMessage';
 import { RED_COLOR, validateEmail } from 'app/components/utilities/constant';
 import { addAgentForm, getAgentDetail } from 'app/Redux/Actions/AgentActions';
@@ -40,6 +39,7 @@ const AgentBasicInfo = ({ navigation, route }: any) => {
     navigation.goBack()
   }
   const validation = () => {
+    const { data = {}, type = '' } = route?.params
     let isError = true;
     let errorMessage: any = ''
     const { agent_name, whatsapp_number, adhar_no, pancard_no, gender,
@@ -72,16 +72,13 @@ const AgentBasicInfo = ({ navigation, route }: any) => {
     } else if (email === '' || email === undefined) {
       isError = false;
       errorMessage = "Please fill email"
-    } else if (validateEmail.test(email) === false) {
+    } else if (type != 'edit' && validateEmail.test(email) === false) {
       isError = false;
       errorMessage = "Please fill corect email"
-    } else
-      if (route?.params?.type === 'add') {
-        if (working_location.length === 0) {
-          isError = false;
-          errorMessage = "Please select working location"
-        }
-      }
+    } else if (working_location.length === 0) {
+      isError = false;
+      errorMessage = "Please select working location"
+    }
     if (errorMessage !== '') {
       ErrorMessage({
         msg: errorMessage,

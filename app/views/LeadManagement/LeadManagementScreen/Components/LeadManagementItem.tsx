@@ -2,8 +2,6 @@ import { View, Text, TouchableOpacity, Image } from "react-native";
 import React from "react";
 import styles from "./Styles";
 import {
-  BLACK_COLOR,
-  YELLOW_COLOR,
   PURPLE_COLOR,
   CALL_COLOR,
 } from "../../../../components/utilities/constant";

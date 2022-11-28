@@ -50,10 +50,10 @@ const AgentBankInfo = ({ navigation, route }: any) => {
     if (rera_certificate_no === '' || rera_certificate_no === undefined) {
       isError = false;
       errorMessage = "Please fill rera certificate number"
-    } else if (rera_certificate?.length === 0) {
+    } else if (rera_certificate === '' || rera_certificate === undefined) {
       isError = false;
       errorMessage = "Please select rera certificate number image"
-    } else if (propidership_declaration_letter?.length === 0) {
+    } else if (propidership_declaration_letter === '' || propidership_declaration_letter === undefined) {
       isError = false;
       errorMessage = "Please select propidership declaration letter"
     }
@@ -81,7 +81,7 @@ const AgentBankInfo = ({ navigation, route }: any) => {
       formData.append("pancard_no", agentInfoData?.pancard_no);
       formData.append("gender", agentInfoData?.gender);
       formData.append("date_of_birth", agentInfoData?.date_of_birth ? agentInfoData?.date_of_birth : '10/11/2000');
-      formData.append("location", agentInfoData?.working_location[0]?.address);
+      formData.append("location", agentInfoData?.working_location[0]?.location);
       formData.append("latitude", agentInfoData?.working_location[0]?.latitude);
       formData.append("longitude", agentInfoData?.working_location[0]?.longitude);
       formData.append("working_location", JSON.stringify(agentInfoData?.working_location));
@@ -153,6 +153,7 @@ const AgentBankInfo = ({ navigation, route }: any) => {
           <InputField
             inputWidth={"60%"}
             btnWidth={"30%"}
+            headingTextWidth={'90%'}
             browse={"browse"}
             editable={false}
             valueshow={

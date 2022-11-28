@@ -21,10 +21,9 @@ import InputField from "../../../../components/InputField";
 import images from "../../../../assets/images";
 import Button from "../../../../components/Button";
 import PicturePickerModal from "../../../../components/Modals/PicturePicker";
-import { normalizeHeight, normalizeSpacing, normalizeWidth } from "app/components/scaleFontSize";
+import { normalizeSpacing, } from "app/components/scaleFontSize";
 import InputCalender from "app/components/InputCalender";
 import moment from "moment";
-import { Item } from "react-native-paper/lib/typescript/components/Drawer/Drawer";
 import MultiLocation from 'app/components/MultiLocation'
 
 
@@ -170,6 +169,7 @@ const AgentBasicInfoView = (props: any) => {
               mode={'date'}
               leftIcon={images.event}
               placeholderText={"Date of Birth"}//can edit
+              headingText={"Date of Birth"}//can edit
               editable={false}
               dateData={(data: any) => {
                 props.setAgentInfoData({
@@ -183,8 +183,9 @@ const AgentBasicInfoView = (props: any) => {
                   date_of_birth: moment(data).format('YYYY-MM-DD')
                 })
               }}
-              value={moment(props?.filterData?.date_of_birth).format('DD-MM-YYYY')
-              }
+              value={props?.agentInfoData?.date_of_birth === '' || props?.agentInfoData?.date_of_birth === undefined ?
+                "" :
+                moment(props?.agentInfoData?.date_of_birth).format('YYYY-MM-DD')}
             />
           </View>
           <View style={styles.inputWrap}>
@@ -249,7 +250,9 @@ const AgentBasicInfoView = (props: any) => {
             }}>
               <Text style={styles.workTxt}>Working Location</Text>
             </View>
-            <TouchableOpacity onPress={() => { props.type === 'add' ? props.setLocationModel(true) : null }}
+            <TouchableOpacity
+              onPress={() => { props.setLocationModel(true) }}
+              // onPress={() => { props.type === 'add' ? props.setLocationModel(true) : null }}
               style={styles.addBtn}>
               <Text style={styles.addTxt}>+ Add location</Text>
             </TouchableOpacity>

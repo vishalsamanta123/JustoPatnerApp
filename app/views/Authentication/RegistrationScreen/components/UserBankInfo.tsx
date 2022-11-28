@@ -22,18 +22,15 @@ import { normalize, normalizeHeight, normalizeWidth } from "app/components/scale
 import ErrorMessage from "app/components/ErrorMessage";
 import { RegistrationForm } from "app/Redux/Actions/ReggistrationAction";
 import { getAllMaster, getAllSourcingManager } from "app/Redux/Actions/MasterActions";
-import Loader from "app/components/CommonScreen/Loader";
 
 const UserBankInfo = ({ navigation }: any) => {
   const insets = useSafeAreaInsets();
   const [formData, setFormData] = useState<any>({})
-  console.log('formData: ', formData);
   const [reravisible, setreraVisible] = useState(false)
   const [lettervisible, setletterVisible] = useState(false)
   const [cheaquevisible, setcheaqueVisible] = useState(false)
   const [visible, setVisible] = useState(false)
   const registrationData = useSelector((state: any) => state.registrationForm)
-  const [isloading, setIsloading] = useState(false)
   const [masterDatas, setMasterDatas] = useState<any>([])
   const dispatch: any = useDispatch()
 
@@ -45,16 +42,13 @@ const UserBankInfo = ({ navigation }: any) => {
 
   useEffect(() => {
     if (masterData?.response?.status === 200) {
-      setIsloading(false)
       setMasterDatas(masterData?.response?.data?.length > 0 ? masterData?.response?.data : [])
-    }else {
-      setIsloading(false)
+    } else {
     }
   }, [masterData])
 
 
   const handleMasterDatas = () => {
-    setIsloading(true)
     dispatch(getAllSourcingManager({
       limit: 10,
       offset: 0
@@ -120,7 +114,6 @@ const UserBankInfo = ({ navigation }: any) => {
   return (
     <>
       <View style={styles.mainContainer}>
-        {isloading ? <Loader /> : null}
         <View
           style={{
             backgroundColor: PRIMARY_THEME_COLOR,
@@ -169,11 +162,9 @@ const UserBankInfo = ({ navigation }: any) => {
               newRenderItem={(item: any) => {
                 return (
                   <>
-                    {isloading === false &&
-                      <View style={Styles.item}>
-                        <Text style={Styles.textItem}>{item.user_name}</Text>
-                      </View>
-                    }
+                    <View style={Styles.item}>
+                      <Text style={Styles.textItem}>{item.user_name}</Text>
+                    </View>
                   </>
                 );
               }}

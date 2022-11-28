@@ -15,7 +15,6 @@ import FilterModal from './AppointmentModal';
 import Button from '../../../../components/Button';
 import { useDispatch, useSelector } from 'react-redux';
 import { getAllAppointmentList } from 'app/Redux/Actions/AppointmentActions';
-import Loader from 'app/components/CommonScreen/Loader';
 import ErrorMessage from 'app/components/ErrorMessage';
 import EmptyListScreen from 'app/components/CommonScreen/EmptyListScreen';
 
@@ -30,21 +29,17 @@ const AppointmentView = (props: any) => {
         { key: 'first', title: strings.VisitorAppointment },
         { key: 'second', title: strings.SMAppointment },
     ]);
-    const [isloading, setIsloading] = useState(false)
     const [appointmentList, setAppointmentList] = useState<any>([])
     const [offSET, setOffset] = useState(0)
     const dispatch: any = useDispatch()
     const { response = {}, list = '' } = useSelector((state: any) => state.appointment)
-    console.log('response: ', response);
     const [filterData, setFilterData] = useState({
         start_date: '',
         end_date: '',
         customer_name: '',
         status: ''
     })
-    console.log('filterData: ', filterData);
     const renderTabBar = (props: any) => (
-
         <TabBar
             activeColor={TABBAR_COLOR}
             //inactiveColor={'#F4F4F4'} 
@@ -57,7 +52,6 @@ const AppointmentView = (props: any) => {
         navigation.navigate('AppointmentDetails', data)
     }
     const onPressEdit = (data: any) => {
-        console.log('data: ', data);
         navigation.navigate('AddAppointmentScreen', { data: data, type: strings.edit })
     }
     const onPressAddNew = () => {
@@ -99,7 +93,6 @@ const AppointmentView = (props: any) => {
     );
     useEffect(() => {
         if (list) {
-            setIsloading(false)
             if (offSET == 0) {
                 console.log('offSET == 0: ', offSET == 0);
                 setAppointmentList(response?.data)
@@ -109,7 +102,6 @@ const AppointmentView = (props: any) => {
         }
     }, [response])
     const getAppointmentList = (offset: any) => {
-        setIsloading(true)
         setOffset(offset)
         dispatch(getAllAppointmentList({
             offset: offset,
@@ -136,7 +128,6 @@ const AppointmentView = (props: any) => {
 
     return (
         <View style={styles.mainContainer}>
-            {isloading ? <Loader /> : null}
             <View
                 style={{
                     backgroundColor: PRIMARY_THEME_COLOR_DARK,

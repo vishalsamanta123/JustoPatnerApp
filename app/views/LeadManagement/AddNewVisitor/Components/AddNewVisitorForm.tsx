@@ -22,7 +22,6 @@ const AddNewVisitorForm = (props: any) => {
     useEffect(() => {
         if (props.type == 'edit') {
             if (response?.status === 200) {
-                props.setIsloading(false)
                 props.setFormData({
                     ...response?.data[0]?.customer_detail,
                     expected_possession_date: response?.data[0]?.expected_possession_date,
@@ -74,7 +73,6 @@ const AddNewVisitorForm = (props: any) => {
                             valueField={'_id'}
                             value={props?.formData?.property_id}
                             onChange={(item: any) => {
-                                console.log('item: ', item);
                                 props.setFormData({
                                     ...props.formData,
                                     property_id: item.property_id,
@@ -85,11 +83,9 @@ const AddNewVisitorForm = (props: any) => {
                             newRenderItem={(item: any) => {
                                 return (
                                     <>
-                                        {props?.isloading === false &&
-                                            <View style={Styles.item}>
-                                                <Text style={Styles.textItem}>{item.property_title}</Text>
-                                            </View>
-                                        }
+                                        <View style={Styles.item}>
+                                            <Text style={Styles.textItem}>{item.property_title}</Text>
+                                        </View>
                                     </>
                                 );
                             }}
@@ -117,11 +113,9 @@ const AddNewVisitorForm = (props: any) => {
                             newRenderItem={(item: any) => {
                                 return (
                                     <>
-                                        {props?.isloading === false &&
                                             <View style={Styles.item}>
                                                 <Text style={Styles.textItem}>{item.title}</Text>
                                             </View>
-                                        }
                                     </>
                                 );
                             }}
@@ -227,16 +221,18 @@ const AddNewVisitorForm = (props: any) => {
                             dateData={(data: any) => {
                                 props.setFormData({
                                     ...props.formData,
-                                    birth_date: moment(data).format(),
+                                    birth_date: moment(data).format('YYYY-MM-DD'),
                                 })
                             }}
                             setDateshow={(data: any) => {
                                 props.setFormData({
                                     ...props.formData,
-                                    birth_date: moment(data).format(),
+                                    birth_date: moment(data).format('YYYY-MM-DD'),
                                 })
                             }}
-                            value={props?.formData?.birth_date}
+                            value={props?.formData?.birth_date === '' ||
+                                props?.formData?.birth_date === undefined || props?.formData?.birth_date === null ?
+                                '' : moment(props?.formData?.birth_date).format('YYYY-MM-DD')}
                         />
                     </View>
                     <View style={styles.inputWrap}>
@@ -252,6 +248,7 @@ const AddNewVisitorForm = (props: any) => {
                             valueshow={props?.formData?.mobile}
                             headingText={"Mobile No."}
                             keyboardtype={'number-pad'}
+                            maxLength={10}
                         />
                     </View>
                     <View style={styles.inputWrap}>
@@ -267,6 +264,7 @@ const AddNewVisitorForm = (props: any) => {
                             valueshow={props?.formData?.whatsapp_no}
                             headingText={"WhatsApp No."}
                             keyboardtype={'number-pad'}
+                            maxLength={10}
                         />
                     </View>
                     <View style={styles.inputWrap}>
@@ -334,11 +332,9 @@ const AddNewVisitorForm = (props: any) => {
                             newRenderItem={(item: any) => {
                                 return (
                                     <>
-                                        {props?.isloading === false &&
-                                            <View style={Styles.item}>
-                                                <Text style={Styles.textItem}>{item.title}</Text>
-                                            </View>
-                                        }
+                                        <View style={Styles.item}>
+                                            <Text style={Styles.textItem}>{item.title}</Text>
+                                        </View>
                                     </>
                                 );
                             }}
@@ -354,16 +350,20 @@ const AddNewVisitorForm = (props: any) => {
                             dateData={(data: any) => {
                                 props.setFormData({
                                     ...props.formData,
-                                    expected_possession_date: moment(data).format(),
+                                    expected_possession_date: moment(data).format('YYYY-MM-DD'),
                                 })
                             }}
                             setDateshow={(data: any) => {
                                 props.setFormData({
                                     ...props.formData,
-                                    expected_possession_date: moment(data).format(),
+                                    expected_possession_date: moment(data).format('YYYY-MM-DD'),
                                 })
                             }}
-                            value={props?.formData?.expected_possession_date}
+                            value={props?.formData?.expected_possession_date === '' ||
+                                props?.formData?.expected_possession_date === undefined ||
+                                props?.formData?.expected_possession_date === null ?
+                                '' :
+                                moment(props?.formData?.expected_possession_date).format('YYYY-MM-DD')}
                         />
                     </View>
                     <View style={styles.inputWrap}>
@@ -396,6 +396,7 @@ const AddNewVisitorForm = (props: any) => {
                                         min_budget: data
                                     })
                                 }}
+                                keyboardType={'number-pad'}
                                 placeholder='Min Budget' style={styles.budgetInput} />
                             <TouchableOpacity
                                 onPress={() => props.setFormData({
@@ -403,7 +404,7 @@ const AddNewVisitorForm = (props: any) => {
                                     min_budget_type: props?.formData?.min_budget_type === 'C' ? "L" : "C",
                                 })}
                                 style={styles.smallBox}>
-                                <Text>{props?.formData?.min_budget_type}</Text>
+                                <Text style={{ color: BLACK_COLOR }}>{props?.formData?.min_budget_type}</Text>
                             </TouchableOpacity>
                             <TextInput
                                 value={props?.formData?.max_budget}
@@ -413,15 +414,16 @@ const AddNewVisitorForm = (props: any) => {
                                         max_budget: data
                                     })
                                 }}
+                                keyboardType={'number-pad'}
                                 placeholder='Max Budget'
                                 style={[styles.budgetInput, { marginLeft: 20 }]} />
                             <TouchableOpacity
                                 onPress={() => props.setFormData({
                                     ...props.formData,
-                                    max_budget_type: props?.formData?.max_budget_type === 'C' ? "L" : "C",
+                                    max_budget_type: props?.formData?.max_budget_type === "C" ? "L" : "C",
                                 })}
                                 style={styles.smallBox}>
-                                <Text>{props?.formData?.max_budget_type}</Text>
+                                <Text style={{ color: BLACK_COLOR }}>{props?.formData?.max_budget_type}</Text>
                             </TouchableOpacity>
                         </View>
                     </View>
@@ -510,6 +512,7 @@ const AddNewVisitorForm = (props: any) => {
                                         min_emi_budget: data
                                     })
                                 }}
+                                keyboardType={'number-pad'}
                                 placeholder='Min EMI Pay' style={styles.budgetInput} />
                             <TouchableOpacity
                                 onPress={() => props.setFormData({
@@ -527,6 +530,7 @@ const AddNewVisitorForm = (props: any) => {
                                         max_emi_budget: data
                                     })
                                 }}
+                                keyboardType={'number-pad'}
                                 placeholder='Max EMI Pay'
                                 style={[styles.budgetInput, { marginLeft: 20 }]}
                             />
@@ -660,6 +664,20 @@ const AddNewVisitorForm = (props: any) => {
                                 </Text>
                             </View>
                         </View>
+                    </View>
+                    <View style={styles.inputWrap}>
+                        <InputField
+                            placeholderText={"Company Name"}
+                            handleInputBtnPress={() => { }}
+                            onChangeText={(data: any) => {
+                                props.setFormData({
+                                    ...props.formData,
+                                    coumpany_name: data,
+                                })
+                            }}
+                            valueshow={props?.formData?.coumpany_name}
+                            headingText={"Company Name"}
+                        />
                     </View>
                     <View style={styles.inputWrap}>
                         <InputField

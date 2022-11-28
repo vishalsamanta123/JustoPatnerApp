@@ -10,10 +10,9 @@ import styles from './styles'
 import AgentDetailInfo from './AgentDetailInfo'
 import AgentDetailStats from './AgentDetailStats'
 import { TabView, SceneMap, TabBar } from 'react-native-tab-view';
-import { useSelector } from 'react-redux'
 import moment from 'moment'
 
-const PropertyDetailView = (props: any) => {
+const agentDetailView = (props: any) => {
   const insets = useSafeAreaInsets();
   const layout = useWindowDimensions();
   const [index, setIndex] = useState(0);
@@ -33,7 +32,7 @@ const PropertyDetailView = (props: any) => {
     aadharno: props?.allDetails?.adhar_no ? props?.allDetails?.adhar_no : '',
     pancardno: props?.allDetails?.pancard_no ? props?.allDetails?.pancard_no : '',
     location: props?.allDetails?.location ? props?.allDetails?.location : '',
-    workingfrom: props?.allDetails?.createdDate ? moment(props?.allDetails?.createdDate).format('MMM Do YY') : '',
+    workingfrom: props?.allDetails?.createdDate ? moment(props?.allDetails?.createdDate).format('MMM Do YYYY') : '',
     workinglocation: props?.allDetails?.working_location ? props?.allDetails?.working_location : '',
   };
   const DATASTATS: any =
@@ -41,7 +40,8 @@ const PropertyDetailView = (props: any) => {
     closingper: props?.allDetails?.agent_stats?.total_closing_percentage,
     visitor: props?.allDetails?.agent_stats?.total_visit,
     siteVisit: props?.allDetails?.agent_stats?.total_site_visit,
-    closeVisit: props?.allDetails?.agent_stats?.total_closing_percentage,
+    closeVisit: props?.allDetails?.agent_stats?.lastclosevisit ?
+      moment(props?.allDetails?.agent_stats?.lastclosevisit).format('llll') : '',
     lastlogin: props?.allDetails?.agent_stats?.last_login ?
       moment(props?.allDetails?.agent_stats?.last_login).format('llll') : '',
     lastvisit: props?.allDetails?.agent_stats?.last_lead_crate ?
@@ -125,4 +125,4 @@ const PropertyDetailView = (props: any) => {
   )
 }
 
-export default PropertyDetailView
+export default agentDetailView

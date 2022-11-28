@@ -56,20 +56,20 @@ const FilterModal = (props: any) => {
           <View style={{ marginHorizontal: 10 }}>
             <View style={styles.inputWrap}>
               <InputCalender
-                mode={'time'}
-                leftIcon={images.timer}
+                mode={'date'}
+                leftIcon={images.event}
                 placeholderText={"Start Date"}
                 editable={false}
                 dateData={(data: any) => {
                   props.setFilterData({
                     ...props.filterData,
-                    startdate: moment(data).format()
+                    startdate: moment(data).format('YYYY-MM-DD')
                   })
                 }}
                 setDateshow={(data: any) => {
                   props.setFilterData({
                     ...props.filterData,
-                    startdate: moment(data).format()
+                    startdate: moment(data).format('YYYY-MM-DD')
                   })
                 }}
                 value={props.filterData.startdate}
@@ -77,21 +77,21 @@ const FilterModal = (props: any) => {
             </View>
             <View style={styles.inputWrap}>
               <InputCalender
-                mode={'time'}
-                leftIcon={images.timer}
+                mode={'date'}
+                leftIcon={images.event}
                 placeholderText={"End Date"}
                 editable={false}
                 value={props.filterData.enddate}
                 dateData={(data: any) => {
                   props.setFilterData({
                     ...props.filterData,
-                    enddate: moment(data).format()
+                    enddate: moment(data).format('YYYY-MM-DD')
                   })
                 }}
                 setDateshow={(data: any) => {
                   props.setFilterData({
                     ...props.filterData,
-                    enddate: moment(data).format()
+                    enddate: moment(data).format('YYYY-MM-DD')
                   })
                 }}
               />

@@ -45,7 +45,10 @@ const LeadDetailsIteam = (props: any) => {
                 <View><Text>:</Text></View>
                 <View style={styles.nameContainer}>
                     <Text style={styles.nameTxt}>{
-                        moment(props?.items?.last_interacted_date).format('llll')
+                        props.items.last_interacted_date === '' ||
+                            props.items.last_interacted_date === undefined || props.items.last_interacted_date === "undefined" ?
+                            strings.notfount :
+                            moment(props?.items?.last_interacted_date).format('llll')
                     }</Text>
                 </View>
             </View>
@@ -55,7 +58,10 @@ const LeadDetailsIteam = (props: any) => {
                 </View>
                 <View><Text>:</Text></View>
                 <View style={styles.nameContainer}>
-                    <Text style={styles.nameTxt}>{props?.items?.lead_source}</Text>
+                    <Text style={styles.nameTxt}>{props.items.created_name === '' ||
+                        props.items.created_name === undefined || props.items.created_name === "undefined" ?
+                        strings.notfount :
+                        props?.items?.created_name}</Text>
                 </View>
             </View>
             <View style={styles.Txtview}>
@@ -83,7 +89,12 @@ const LeadDetailsIteam = (props: any) => {
                     </View>
                     <View><Text>:</Text></View>
                     <View style={styles.nameContainer}>
-                        <Text style={styles.nameTxt}>{props?.items?.customer_detail?.configuration}</Text>
+                        <Text style={styles.nameTxt}>{props.items?.customer_detail?.configuration === '' ||
+                            props.items?.customer_detail?.configuration === undefined ||
+                            props.items?.customer_detail?.configuration === null ||
+                            props.items?.customer_detail?.configuration === "undefined" ?
+                            strings.notfount :
+                            props?.items?.customer_detail?.configuration}</Text>
                     </View>
                 </View>
                 <View style={styles.Txtview}>
@@ -92,7 +103,11 @@ const LeadDetailsIteam = (props: any) => {
                     </View>
                     <View><Text>:</Text></View>
                     <View style={styles.nameContainer}>
-                        <Text style={styles.nameTxt}>{props?.items?.customer_detail?.areain_sqlft}</Text>
+                        <Text style={styles.nameTxt}>{props.items?.customer_detail?.areain_sqlft === '' ||
+                            props.items?.customer_detail?.areain_sqlft === undefined ||
+                            props.items?.customer_detail?.areain_sqlft === "undefined" ?
+                            strings.notfount :
+                            props?.items?.customer_detail?.areain_sqlft}</Text>
                     </View>
                 </View>
                 <View style={styles.Txtview}>
@@ -101,7 +116,11 @@ const LeadDetailsIteam = (props: any) => {
                     </View>
                     <View><Text>:</Text></View>
                     <View style={styles.nameContainer}>
-                        <Text style={styles.nameTxt}>{props?.items?.customer_detail?.budget}</Text>
+                        <Text style={styles.nameTxt}>{props.items?.customer_detail?.budget === '' ||
+                            props.items?.customer_detail?.budget === undefined ||
+                            props.items?.customer_detail?.budget === "undefined" ?
+                            strings.notfount :
+                            props?.items?.customer_detail?.budget}</Text>
                     </View>
                 </View>
                 <View style={styles.Txtview}>
@@ -110,7 +129,11 @@ const LeadDetailsIteam = (props: any) => {
                     </View>
                     <View><Text>:</Text></View>
                     <View style={styles.nameContainer}>
-                        <Text style={styles.nameTxt}>{props?.items?.customer_detail?.funding_type}</Text>
+                        <Text style={styles.nameTxt}>{props.items?.customer_detail?.funding_type === '' ||
+                            props.items?.customer_detail?.funding_type === undefined ||
+                            props.items?.customer_detail?.funding_type === "undefined" ?
+                            strings.notfount :
+                            props?.items?.customer_detail?.funding_type}</Text>
                     </View>
                 </View>
                 <View style={styles.Txtview}>
@@ -119,7 +142,11 @@ const LeadDetailsIteam = (props: any) => {
                     </View>
                     <View><Text>:</Text></View>
                     <View style={styles.nameContainer}>
-                        <Text style={styles.nameTxt}>{props?.items?.customer_detail?.purpose}</Text>
+                        <Text style={styles.nameTxt}>{props.items?.customer_detail?.purpose === '' ||
+                            props.items?.customer_detail?.purpose === undefined ||
+                            props.items?.customer_detail?.purpose === "undefined" ?
+                            strings.notfount :
+                            props?.items?.customer_detail?.purpose}</Text>
                     </View>
                 </View>
             </>
@@ -134,9 +161,11 @@ const LeadDetailsIteam = (props: any) => {
                     </View>
                     <View><Text>:</Text></View>
                     <View style={styles.nameContainer}>
-                        <Text style={styles.nameTxt}>{props?.items?.customer_detail?.last_name
-                            === null ? props?.items?.customer_detail?.first_name :
-                            props?.items?.customer_detail?.first_name + " " + props?.items?.customer_detail?.last_name
+                        <Text style={styles.nameTxt}>{props?.items?.customer_detail?.first_name === '' ||
+                            props.items?.customer_detail?.first_name === undefined ||
+                            props.items?.customer_detail?.first_name === "undefined"
+                            ? strings.notfount :
+                            props?.items?.customer_detail?.first_name
                         }</Text>
                     </View>
                 </View>
@@ -146,7 +175,11 @@ const LeadDetailsIteam = (props: any) => {
                     </View>
                     <View><Text>:</Text></View>
                     <View style={styles.nameContainer}>
-                        <Text style={styles.nameTxt}>{props?.items?.customer_detail?.location}</Text>
+                        <Text style={styles.nameTxt}>{props?.items?.customer_detail?.location === '' ||
+                            props.items?.customer_detail?.location === undefined ||
+                            props.items?.customer_detail?.location === "undefined"
+                            ? strings.notfount :
+                            props?.items?.customer_detail?.location}</Text>
                     </View>
                 </View>
                 <View style={styles.Txtview}>
@@ -155,7 +188,11 @@ const LeadDetailsIteam = (props: any) => {
                     </View>
                     <View><Text>:</Text></View>
                     <View style={styles.nameContainer}>
-                        <Text style={styles.nameTxt}>{props?.items?.customer_detail?.location}</Text>
+                        <Text style={styles.nameTxt}>{props?.items?.customer_detail?.age === '' ||
+                            props.items?.customer_detail?.age === undefined ||
+                            props.items?.customer_detail?.age === "undefined" || props.items?.customer_detail?.age === null
+                            ? strings.notfount :
+                            props?.items?.customer_detail?.age}</Text>
                     </View>
                 </View>
                 <View style={styles.Txtview}>
@@ -164,7 +201,11 @@ const LeadDetailsIteam = (props: any) => {
                     </View>
                     <View><Text>:</Text></View>
                     <View style={styles.nameContainer}>
-                        <Text style={styles.nameTxt}>{props?.items?.customer_detail?.gender === 1 ? "Male" : "Female"}</Text>
+                        <Text style={styles.nameTxt}>{props?.items?.customer_detail?.gender === '' ||
+                            props.items?.customer_detail?.gender === undefined ||
+                            props.items?.customer_detail?.gender === "undefined" || props.items?.customer_detail?.gender === null
+                            ? strings.notfount :
+                            props?.items?.customer_detail?.gender === 1 ? "Male" : "Female"}</Text>
                     </View>
                 </View>
                 <View style={styles.Txtview}>
@@ -173,7 +214,11 @@ const LeadDetailsIteam = (props: any) => {
                     </View>
                     <View><Text>:</Text></View>
                     <View style={styles.nameContainer}>
-                        <Text style={styles.nameTxt}>{props?.items?.customer_detail?.city}</Text>
+                        <Text style={styles.nameTxt}>{props?.items?.customer_detail?.city === '' ||
+                            props.items?.customer_detail?.city === undefined ||
+                            props.items?.customer_detail?.city === "undefined" || props.items?.customer_detail?.city === null
+                            ? strings.notfount :
+                            props?.items?.customer_detail?.city}</Text>
                     </View>
                 </View>
             </>
@@ -188,7 +233,11 @@ const LeadDetailsIteam = (props: any) => {
                     </View>
                     <View><Text>:</Text></View>
                     <View style={styles.nameContainer}>
-                        <Text style={styles.nameTxt}>{props?.items?.customer_detail?.occupation}</Text>
+                        <Text style={styles.nameTxt}>{props?.items?.customer_detail?.occupation === '' ||
+                            props.items?.customer_detail?.occupation === undefined ||
+                            props.items?.customer_detail?.occupation === "undefined" || props.items?.customer_detail?.occupation === null
+                            ? strings.notfount :
+                            props?.items?.customer_detail?.occupation}</Text>
                     </View>
                 </View>
                 <View style={styles.Txtview}>
@@ -197,7 +246,11 @@ const LeadDetailsIteam = (props: any) => {
                     </View>
                     <View><Text>:</Text></View>
                     <View style={styles.nameContainer}>
-                        <Text style={styles.nameTxt}>{props?.items?.customer_detail?.coumpany_name}</Text>
+                        <Text style={styles.nameTxt}>{props?.items?.customer_detail?.coumpany_name === '' ||
+                            props.items?.customer_detail?.coumpany_name === undefined ||
+                            props.items?.customer_detail?.coumpany_name === "undefined" || props.items?.customer_detail?.coumpany_name === null
+                            ? strings.notfount :
+                            props?.items?.customer_detail?.coumpany_name}</Text>
                     </View>
                 </View>
                 <View style={styles.Txtview}>
@@ -206,7 +259,11 @@ const LeadDetailsIteam = (props: any) => {
                     </View>
                     <View><Text>:</Text></View>
                     <View style={styles.nameContainer}>
-                        <Text style={styles.nameTxt}>{props?.items?.customer_detail?.desigantion}</Text>
+                        <Text style={styles.nameTxt}>{props?.items?.customer_detail?.designation === '' ||
+                            props.items?.customer_detail?.designation === undefined ||
+                            props.items?.customer_detail?.designation === "undefined" || props.items?.customer_detail?.designation === null
+                            ? strings.notfount :
+                            props?.items?.customer_detail?.desigantion}</Text>
                     </View>
                 </View>
                 <View style={styles.Txtview}>
@@ -215,7 +272,11 @@ const LeadDetailsIteam = (props: any) => {
                     </View>
                     <View><Text>:</Text></View>
                     <View style={styles.nameContainer}>
-                        <Text style={styles.nameTxt}>{props?.items?.customer_detail?.office_address}</Text>
+                        <Text style={styles.nameTxt}>{props?.items?.customer_detail?.office_address === '' ||
+                            props.items?.customer_detail?.office_address === undefined ||
+                            props.items?.customer_detail?.office_address === "undefined" || props.items?.customer_detail?.office_address === null
+                            ? strings.notfount :
+                            props?.items?.customer_detail?.office_address}</Text>
                     </View>
                 </View>
             </>

@@ -5,13 +5,11 @@ import ErrorMessage from 'app/components/ErrorMessage';
 import { useDispatch, useSelector } from 'react-redux';
 import { updatepassword } from 'app/Redux/Actions/AuthActions';
 import { UPDATEPASSWORD_NULL } from 'app/Redux/types';
-import Loader from 'app/components/CommonScreen/Loader';
 import strings from 'app/components/utilities/Localization';
 
 const ChangePassword = ({ navigation, route }: any) => {
   const dispatch: any = useDispatch()
   const [email, setEmail] = useState(route?.params);
-  const [isloading, setIsloading] = useState(false)
   const [validEmail, setIsValidEmail] = useState(false);
   const [passwordDate, setPasswordDate] = useState({
     password: '',
@@ -32,12 +30,9 @@ const ChangePassword = ({ navigation, route }: any) => {
           type: UPDATEPASSWORD_NULL,
           payload: []
         })
-        setIsloading(uPasswordSelector.loading)
         navigation.navigate('LoginScreenView');
       } else {
         if (uPasswordSelector.error) {
-          setIsloading(uPasswordSelector.loading)
-
           ErrorMessage({
             msg: uPasswordSelector.response.message,
             backgroundColor: RED_COLOR
@@ -83,28 +78,24 @@ const ChangePassword = ({ navigation, route }: any) => {
 
   const handlechanngePress = () => {
     if (validation()) {
-      setIsloading(true)
       const params = {
         email: email,
         password: passwordDate?.password
       }
       dispatch(updatepassword(params))
-      
+
     }
     //navigation.navigate('LoginScreenView');
   };
 
   return (
-    <>
-      {isloading ? <Loader /> : null}
-      <ChangePasswordView
-        setPasswordDate={setPasswordDate}
-        passwordDate={passwordDate}
-        validEmail={validEmail}
-        handlechanngePress={handlechanngePress}
+    <ChangePasswordView
+      setPasswordDate={setPasswordDate}
+      passwordDate={passwordDate}
+      validEmail={validEmail}
+      handlechanngePress={handlechanngePress}
 
-      />
-    </>
+    />
   );
 };
 

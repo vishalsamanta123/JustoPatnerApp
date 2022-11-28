@@ -1,6 +1,5 @@
 import AsyncStorage from "@react-native-async-storage/async-storage";
 import { useIsFocused } from "@react-navigation/native";
-import Loader from "app/components/CommonScreen/Loader";
 import { getAgentDetail } from "app/Redux/Actions/AgentActions";
 import React, { useEffect, useLayoutEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
@@ -9,15 +8,14 @@ import ProfileView from "./components/ProfileView";
 const ProfileScreen = ({ navigation, route }: any) => {
   const dispatch: any = useDispatch();
   const isFocused = useIsFocused()
-  const [isloading, setIsloading] = useState(false);
   const { response = {}, detail = "" } = useSelector(
     (state: any) => state.agentData
-    );
+  );
 
-  const userdata = useSelector((state: any) => state.agentData);  
+  const userdata = useSelector((state: any) => state.agentData);
 
   const [allDetails, setAllDetails] = useState({});
-  
+
   useEffect(() => {
     getDetail();
   }, [isFocused]);
@@ -26,7 +24,6 @@ const ProfileScreen = ({ navigation, route }: any) => {
     const userData: any = await AsyncStorage.getItem("loginData");
     // console.log('userData: ', userData);
     if (JSON.parse(userData).data._id) {
-      setIsloading(true);
       dispatch(
         getAgentDetail({
           cp_id: JSON.parse(userData).data?.cp_id,
@@ -35,13 +32,10 @@ const ProfileScreen = ({ navigation, route }: any) => {
       toGetDatas();
     }
   };
-  
-  const toGetDatas = () => {
 
+  const toGetDatas = () => {
     if (detail) {
-      setIsloading(false);
       setAllDetails({ ...response.data[0] });
-      
     }
   };
 
@@ -53,11 +47,10 @@ const ProfileScreen = ({ navigation, route }: any) => {
     navigation.goBack();
   };
   const handleEditProfilePress = () => {
-    navigation.navigate("EditProfileScreen", {allDetails: allDetails});
+    navigation.navigate("EditProfileScreen", { allDetails: allDetails });
   };
   return (
     <>
-      {isloading ? <Loader /> : null}
       <ProfileView
         data={route.params}
         HandleBackPress={HandleBackPress}

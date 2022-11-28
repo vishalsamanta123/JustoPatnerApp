@@ -138,6 +138,7 @@ const AppComponent = () => {
       {/* Appointment */}
       <AppStack.Screen name="AppointmentDetails" component={AppointmentDetails} />
       <AppStack.Screen name="AddAppointmentScreen" component={AddAppointmentScreen} />
+      <AppStack.Screen name="AppointmentAdd" component={AppointmentAddScreen} />
 
       {/*Setting screen*/}
       <AppStack.Screen name="profile" component={ProfileScreen} />

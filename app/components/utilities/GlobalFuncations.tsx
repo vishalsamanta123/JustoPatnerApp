@@ -33,6 +33,11 @@ export const handlePermission = async (
         Isios ? PERMISSIONS.IOS.MICROPHONE : PERMISSIONS.ANDROID.RECORD_AUDIO,
       );
       break;
+    case 'location':
+      result = await check(
+        Isios ? PERMISSIONS.IOS.LOCATION_ALWAYS : PERMISSIONS.ANDROID.ACCESS_FINE_LOCATION,
+      );
+      break;
     case 'write':
       result = permissionWrite('check');
       break;

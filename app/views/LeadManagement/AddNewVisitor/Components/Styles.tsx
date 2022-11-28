@@ -121,7 +121,7 @@ const styles = StyleSheet.create({
     alignItems: "center",
     justifyContent: "center",
     marginLeft: 5,
-    borderRadius: 10
+    borderRadius: 10,
   },
   budgetInput: {
     backgroundColor: WHITE_COLOR,

@@ -9,7 +9,6 @@ import FollowUpAddView from './components/FollowUpAdd'
 const FollowUpAddScreen = ({ navigation, route }: any) => {
     const followUpId = route?.params || ''
     const [value, setValue] = useState(null)
-    const [isloading, setIsloading] = useState(false)
     const [masterDatas, setMasterDatas] = useState<any>([])
     const [formData, setFormData] = useState({
         lead_id: followUpId?.lead_id ? followUpId?.lead_id : '',
@@ -19,20 +18,17 @@ const FollowUpAddScreen = ({ navigation, route }: any) => {
         remark: '',
         followup_time: ''
     })
-    console.log('formData: ', formData);
     const dispatch: any = useDispatch()
     const masterData = useSelector((state: any) => state.masterData) || {}
 
     useEffect(() => {
         if (masterData?.response?.status === 200) {
-            setIsloading(false)
             setMasterDatas(masterData?.response?.data?.length > 0 ? masterData?.response?.data : [])
         }
     }, [masterData])
 
 
     const handleMasterDatas = (data: any) => {
-        setIsloading(true)
         dispatch(getAllMaster({
             type: data
         }))
@@ -48,7 +44,6 @@ const FollowUpAddScreen = ({ navigation, route }: any) => {
             isError = false;
             errorMessage = "Followup Status is require. Please Choose Followup Status"
         }
-
         if (errorMessage !== '') {
             ErrorMessage({
                 msg: errorMessage,
@@ -75,7 +70,6 @@ const FollowUpAddScreen = ({ navigation, route }: any) => {
                 handleBackPress={handleBackPress}
                 masterDatas={masterDatas}
                 handleMasterDatas={handleMasterDatas}
-                isloading={isloading}
                 setFormData={setFormData}
                 formData={formData}
                 handleUpdateStatus={handleUpdateStatus}

@@ -16,7 +16,7 @@ const RegistrationScreen = ({ navigation }: any) => {
     owner_name: '',
     adhar_no: '',
     pancard_no: '',
-    gender: 'male',
+    gender: '',
     date_of_birth: '',
     primary_mobile: '',
     whatsapp_number: '',
@@ -30,22 +30,6 @@ const RegistrationScreen = ({ navigation }: any) => {
       })
     }
   }, [registrationData])
-  useEffect(() => {
-    handleError()
-  }, [createChannelPartnerData])
-
-  const handleError = () => {
-    setisError(true)
-    if (isError) {
-      setTimeout(() => {
-        ErrorMessage({
-          msg: createChannelPartnerData?.response?.message,
-          backgroundColor: RED_COLOR
-        })
-      }, 250);
-      setisError(createChannelPartnerData?.isError)
-    }
-  }
 
   const validation = () => {
     let isError = true;

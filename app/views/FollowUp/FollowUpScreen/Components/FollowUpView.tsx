@@ -56,8 +56,8 @@ const FollowUpView = (props: any) => {
     navigation.navigate('AllFollowUpScreen', data)
   }
 
-  
-  
+
+
   return (
     <View style={styles.mainContainer}>
       <View
@@ -87,8 +87,7 @@ const FollowUpView = (props: any) => {
           ListEmptyComponent={<EmptyListScreen message={strings.followup} />}
           onEndReached={() => {
             if (props?.followUpList?.length < response?.total_data) {
-              console.log('onEndReached: ');
-              props.getFollowupList(props?.followUpList?.length > 2 ? props.offSET + 1 : 0)
+              props.getFollowupList(props?.followUpList?.length > 2 ? props.offSET + 1 : 0, props.filterData)
             }
           }}
         />

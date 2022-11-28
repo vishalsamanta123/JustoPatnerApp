@@ -43,9 +43,7 @@ const PropertyView = (props: any) => {
       const { response, loading } = propertyData;
       if (response?.status === 200 || loading) {
         setPropertyList(response?.data);
-        props.setIsloading(loading);
       } else {
-        props.setIsloading(loading);
         setPropertyList([]);
         //errorToast(response.message);
       }
@@ -57,7 +55,6 @@ const PropertyView = (props: any) => {
       const { response } = masterData;
       if (response?.status === 200) {
         setMasterDataShow(response?.data);
-        //props.setIsloading(loading);
       } else {
         setMasterDataShow([]);
         //errorToast(response.message);

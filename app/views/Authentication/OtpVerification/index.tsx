@@ -5,7 +5,6 @@ import { RED_COLOR, GREEN_COLOR } from 'app/components/utilities/constant';
 import { useDispatch, useSelector } from 'react-redux';
 import { otpVerify, Resendotp } from 'app/Redux/Actions/AuthActions';
 import { OTPVERIFY_NULL } from 'app/Redux/types';
-import Loader from 'app/components/CommonScreen/Loader';
 import strings from 'app/components/utilities/Localization';
 
 const OtpVerificationScreen = ({ navigation, route }: any) => {
@@ -13,7 +12,6 @@ const OtpVerificationScreen = ({ navigation, route }: any) => {
   const dispatch: any = useDispatch()
   const [otp, setOtp] = useState('');
   // const [email, setEmail,] = useState();
-  const [isloading, setIsloading] = useState(false)
   const handleOtpChange = (value: any) => {
     setOtp(value);
   }
@@ -33,7 +31,6 @@ const OtpVerificationScreen = ({ navigation, route }: any) => {
           type: OTPVERIFY_NULL,
           payload: []
         })
-        setIsloading(otpVerifySelector.loading)
         if (!otpVerifySelector?.resend) {
           if (type == strings.registration) {
             navigation.navigate('LoginScreenView');
@@ -54,7 +51,6 @@ const OtpVerificationScreen = ({ navigation, route }: any) => {
             type: OTPVERIFY_NULL,
             payload: []
           })
-          setIsloading(otpVerifySelector.loading)
           ErrorMessage({
             msg: otpVerifySelector.response.message,
             backgroundColor: RED_COLOR
@@ -73,7 +69,6 @@ const OtpVerificationScreen = ({ navigation, route }: any) => {
 
   const OnpressConfirm = () => {
     if (validation()) {
-      setIsloading(true)
       const params = {
         email: email,
         otp: otp
@@ -83,7 +78,6 @@ const OtpVerificationScreen = ({ navigation, route }: any) => {
     }
   }
   const handleResendOtp = () => {
-    setIsloading(true)
     const params = {
       email: email,
     }
@@ -111,7 +105,6 @@ const OtpVerificationScreen = ({ navigation, route }: any) => {
 
   return (
     <>
-      {isloading ? <Loader /> : null}
       <OtpVerificationView
         otp={otp}
         setOtp={setOtp}

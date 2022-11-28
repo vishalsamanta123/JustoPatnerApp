@@ -3,11 +3,9 @@ import AllFollowUpView from './Components/AllFollowUpView'
 import { useFocusEffect } from '@react-navigation/native'
 import { allfollowupRemove, getAllFollowUpList } from 'app/Redux/Actions/FollowUpActions'
 import { useDispatch, useSelector } from 'react-redux'
-import Loader from 'app/components/CommonScreen/Loader'
 
 const AllFollowUpScreen = ({ navigation, route }: any) => {
   const data = route?.params || {}
-  const [isloading, setIsloading] = useState(false)
   const [allFollowUpList, setAllFollowUpList] = useState<any>([])
   const [offSET, setOffset] = useState(0)
   const dispatch: any = useDispatch()
@@ -19,7 +17,6 @@ const AllFollowUpScreen = ({ navigation, route }: any) => {
     }, [navigation, list])
   );
   const getFollowupList = (offset: any, array: any) => {
-    setIsloading(true)
     setOffset(offset)
     dispatch(getAllFollowUpList({
       offset: offset,
@@ -30,7 +27,6 @@ const AllFollowUpScreen = ({ navigation, route }: any) => {
   }
   const toGetDatas = (array: any) => {
     if (response?.status) {
-      setIsloading(false)
       setAllFollowUpList(response?.data)
       // if (offSET == 0) {
       // } else {
@@ -43,7 +39,6 @@ const AllFollowUpScreen = ({ navigation, route }: any) => {
   }
   return (
     <>
-      {isloading ? <Loader /> : null}
       <AllFollowUpView
         handleBackPres={handleBackPres}
         allFollowUpList={allFollowUpList}
