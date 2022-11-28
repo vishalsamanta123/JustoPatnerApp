@@ -67,7 +67,6 @@ const LeadManagementView = (props: any) => {
   }
 
   const onRefresh = () => {
-    props.setIsloading(true)
     props.setFilterData({
       startdate: '',
       enddate: '',
@@ -134,22 +133,6 @@ const LeadManagementView = (props: any) => {
           ListEmptyComponent={() => (
             <EmptyListScreen message={strings.visitor} />
           )}
-          ListFooterComponent={() => {
-            return (
-              <>
-                {props.isloading ?
-                  <View style={styles.footer}>
-                    <ActivityIndicator
-                      color="black"
-                      size={'large'}
-                      style={{ margin: 15 }} />
-                  </View>
-                  : null
-                }
-
-              </>
-            )
-          }}
         />
       </View>
       {/* <ConfirmModal Visible={isVisible} setIsVisible={setIsVisible} /> */}

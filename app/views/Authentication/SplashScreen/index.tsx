@@ -4,7 +4,7 @@ import SplashScreenVeiw from './components/SplashScreenVeiw';
 
 const SplashScreen = ({ navigation }: any) => {
   const { response, authToken = false } = useSelector((state: any) => state.login);
-  useLayoutEffect(() => { navigation.replace('AuthLoading'); }, [authToken])
+  // useLayoutEffect(() => { navigation.replace('AuthLoading'); }, [authToken])
   setTimeout(() => {
     navigation.replace('AuthLoading');
   }, 3000);

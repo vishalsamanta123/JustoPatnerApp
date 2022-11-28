@@ -16,9 +16,7 @@ import PropertyDetailItem from "./PropertyDetailItem";
 import { useNavigation } from "@react-navigation/native";
 import Button from "../../../../components/Button";
 import ConfirmModal from "../../../../components/Modals/ConfirmModal";
-import moment from "moment";
 import { useSelector } from "react-redux";
-import Loader from "app/components/CommonScreen/Loader";
 
 const PropertyDetailView = (props: any) => {
   const [isVisible, setIsVisible] = useState(false)
@@ -32,7 +30,9 @@ const PropertyDetailView = (props: any) => {
   const insets = useSafeAreaInsets();
   const navigation: any = useNavigation();
   const { response, loading } = propertyData;
-
+  const onPressCreatevisit = () => {
+    navigation.navigate('AddNewVisitorScreen', { type: 'propertySelect', data: propertydetail })
+  };
   useEffect(() => {
     if (response && response?.status === 200) {
       setPropertydetail(response?.data[0]);
@@ -41,17 +41,10 @@ const PropertyDetailView = (props: any) => {
       setPropertydocument(response?.data[0]?.property_document || [])
       setApproveStatus(props.data.approve_status)
 
-      props.setIsloading(loading);
     } else {
       setPropertydetail([]);
       //errorToast(response.message);
     }
-
-
-
-    props.setIsloading(propertyData?.loading)
-
-
   }, [propertyData])
 
 
@@ -82,9 +75,6 @@ const PropertyDetailView = (props: any) => {
   };
   return (
     <View style={styles.mainContainer}>
-
-      {loading ? <Loader /> : null}
-
       <View
         style={{
           backgroundColor: PRIMARY_THEME_COLOR_DARK,
@@ -146,18 +136,18 @@ const PropertyDetailView = (props: any) => {
 
         {approveStatus !== 1 &&
           approveStatus !== 3 ? (
-            <Button
-              handleBtnPress={() => props.onPressCreatevisit()}
-              buttonText={strings.createVisit}
-              width={150}
-              height={45}
-              bordercolor={GRAY_COLOR}
-              borderWidth={1}
-              // btnTxtcolor={PRIMARY_THEME_COLOR}
-              btnTxtsize={15}
-              textTransform={"uppercase"}
-            />
-          ) : null}
+          <Button
+            handleBtnPress={() => onPressCreatevisit()}
+            buttonText={strings.createVisit}
+            width={150}
+            height={45}
+            bordercolor={GRAY_COLOR}
+            borderWidth={1}
+            // btnTxtcolor={PRIMARY_THEME_COLOR}
+            btnTxtsize={15}
+            textTransform={"uppercase"}
+          />
+        ) : null}
       </View>
 
       <ConfirmModal Visible={isVisible} setIsVisible={setIsVisible} />

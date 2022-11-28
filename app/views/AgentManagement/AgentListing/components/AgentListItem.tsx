@@ -6,6 +6,7 @@ import { BLACK_COLOR, YELLOW_COLOR, PURPLE_COLOR, GREEN_COLOR, RED_COLOR } from 
 import images from '../../../../assets/images';
 
 const AgentListItem = (props: any) => {
+  console.log('props: ', props.items);
   return (
     <View style={styles.IteamView}>
       <View style={styles.Txtview} >
@@ -24,7 +25,7 @@ const AgentListItem = (props: any) => {
         <View><Text>:</Text></View>
         <View style={styles.nameContainer}>
           <Text style={styles.nameTxt}>{
-            props.items.location === '' || props.items.location === undefined ?
+            props.items.location === '' || props.items.location === undefined || props.items.location === "undefined" ?
               strings.notfount : props.items.location}</Text>
         </View>
       </View>

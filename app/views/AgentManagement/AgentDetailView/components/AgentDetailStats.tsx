@@ -3,8 +3,9 @@ import React from "react";
 import styles from "./styles";
 import { GRAY_COLOR } from "../../../../components/utilities/constant";
 import { normalizeSpacing } from "../../../../components/scaleFontSize";
+import strings from "app/components/utilities/Localization";
 
-const PropertyDetailItem = (props: any) => {
+const agentDetailItem = (props: any) => {
   return (
     <View>
       <View style={styles.Txtview}>
@@ -13,17 +14,23 @@ const PropertyDetailItem = (props: any) => {
         </View>
         <View><Text>:</Text></View>
         <View style={styles.nameContainer}>
-          <Text style={styles.nameTxt}>{props.items.closingper}</Text>
+          <Text style={styles.nameTxt}>{props.items.closingper === '' ||
+            props.items.closingper === undefined || props.items.closingper === "undefined" ?
+            strings.notfount :
+            props.items.closingper}</Text>
         </View>
       </View>
-     
+
       <View style={styles.Txtview}>
         <View style={styles.projectContainer}>
           <Text style={styles.projectTxt}>No. of visit</Text>
         </View>
         <View><Text>:</Text></View>
         <View style={styles.nameContainer}>
-          <Text style={styles.nameTxt}>{props.items.visitor}</Text>
+          <Text style={styles.nameTxt}>{props.items.visitor === '' ||
+            props.items.visitor === undefined || props.items.visitor === "undefined" ?
+            strings.notfount :
+            props.items.visitor}</Text>
         </View>
       </View>
       <View style={styles.Txtview}>
@@ -32,7 +39,10 @@ const PropertyDetailItem = (props: any) => {
         </View>
         <View><Text>:</Text></View>
         <View style={styles.nameContainer}>
-          <Text style={styles.nameTxt}>{props.items.siteVisit}</Text>
+          <Text style={styles.nameTxt}>{props.items.siteVisit === '' ||
+            props.items.siteVisit === undefined || props.items.siteVisit === "undefined" ?
+            strings.notfount :
+            props.items.siteVisit}</Text>
         </View>
       </View>
       <View style={styles.Txtview}>
@@ -41,7 +51,10 @@ const PropertyDetailItem = (props: any) => {
         </View>
         <View><Text>:</Text></View>
         <View style={styles.nameContainer}>
-          <Text style={styles.nameTxt}>{props.items.closeVisit}</Text>
+          <Text style={styles.nameTxt}>{props.items.closeVisit === '' ||
+            props.items.closeVisit === undefined || props.items.closeVisit === "undefined" ?
+            strings.notfount :
+            props.items.closeVisit}</Text>
         </View>
       </View>
       <View style={styles.Txtview}>
@@ -50,7 +63,10 @@ const PropertyDetailItem = (props: any) => {
         </View>
         <View><Text>:</Text></View>
         <View style={styles.nameContainer}>
-          <Text style={styles.nameTxt}>{props.items.lastlogin}</Text>
+          <Text style={styles.nameTxt}>{props.items.lastlogin === '' ||
+            props.items.lastlogin === undefined || props.items.lastlogin === "undefined" ?
+            strings.notfount :
+            props.items.lastlogin}</Text>
         </View>
       </View>
       <View style={styles.Txtview}>
@@ -59,7 +75,10 @@ const PropertyDetailItem = (props: any) => {
         </View>
         <View><Text>:</Text></View>
         <View style={styles.nameContainer}>
-          <Text style={styles.nameTxt}>{props.items.lastvisit}</Text>
+          <Text style={styles.nameTxt}>{props.items.lastvisit === '' ||
+            props.items.lastvisit === undefined || props.items.lastvisit === "undefined" ?
+            strings.notfount :
+            props.items.lastvisit}</Text>
         </View>
       </View>
       <View style={styles.Txtview}>
@@ -68,7 +87,10 @@ const PropertyDetailItem = (props: any) => {
         </View>
         <View><Text>:</Text></View>
         <View style={styles.nameContainer}>
-          <Text style={styles.nameTxt}>{props.items.lastsitevisit}</Text>
+          <Text style={styles.nameTxt}>{props.items.lastsitevisit === '' ||
+            props.items.lastsitevisit === undefined || props.items.lastsitevisit === "undefined" ?
+            strings.notfount :
+            props.items.lastsitevisit}</Text>
         </View>
       </View>
       <View style={styles.Txtview}>
@@ -77,12 +99,15 @@ const PropertyDetailItem = (props: any) => {
         </View>
         <View><Text>:</Text></View>
         <View style={styles.nameContainer}>
-          <Text style={styles.nameTxt}>{props.items.lastclosevisit}</Text>
+          <Text style={styles.nameTxt}>{props.items.lastclosevisit === '' ||
+            props.items.lastclosevisit === undefined || props.items.lastclosevisit === "undefined" ?
+            strings.notfount :
+            props.items.lastclosevisit}</Text>
         </View>
       </View>
-      
+
     </View>
   );
 };
 
-export default PropertyDetailItem;
+export default agentDetailItem;

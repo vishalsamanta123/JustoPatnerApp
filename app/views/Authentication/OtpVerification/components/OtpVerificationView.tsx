@@ -18,9 +18,7 @@ import LogoView from "../../Logoview";
 const OtpVerificationView = (props: any) => {
   const { otp, setOtp, handleOtpChange } = props;
   return (
-    <ScrollView
-      style={styles.mainContainer}
-    >
+    <ScrollView style={styles.mainContainer}>
       <StatusBar barStyle={"light-content"} backgroundColor={PRIMARY_THEME_COLOR} />
       <View style={styles.logoView}>
         <LogoView />
@@ -37,10 +35,10 @@ const OtpVerificationView = (props: any) => {
             </TouchableOpacity>
           </View> */}
           <Text style={styles.bottomText}>{strings.codeSent}</Text>
-       
+
           <Text style={styles.bottomText}> {strings.your} </Text>
           <Text style={styles.spanText}> {props.email} </Text>
-        
+
         </View>
         <OTPInputView
           style={styles.otpView}

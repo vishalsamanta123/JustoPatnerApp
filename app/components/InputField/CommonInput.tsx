@@ -1,4 +1,3 @@
-
 import { View, TextInput, Image, TouchableOpacity, Text } from 'react-native';
 import React from 'react';
 import styles from './styles';
@@ -6,14 +5,14 @@ import { BLACK_COLOR } from '../utilities/constant';
 import images from '../../assets/images';
 import { normalizeHeight } from '../scaleFontSize';
 
-const InputField = (props: any) => {
+const CommonInput = (props: any) => {
   const {
     inputWidth = '90%',
     editable = true,
     multiline = false,
     inputheight = 50,
     keyboardtype = 'default',
-    topping = 2,
+    topping = 2
   } = props
   const onSubmit = (e: any) => {
     const { text } = e;
@@ -57,50 +56,4 @@ const InputField = (props: any) => {
   );
 };
 
-export default InputField;
-
-
-
-// import { View, TextInput, Image, TouchableOpacity, Text } from 'react-native';
-// import React from 'react';
-// import styles from './styles';
-// import { BLACK_COLOR } from '../utilities/constant';
-// import images from '../../assets/images';
-// import { normalizeHeight } from '../scaleFontSize';
-// import LocationInput from './Location';
-// import CommonInput from './CommonInput';
-
-// const InputField = (props: any) => {
-//   const {
-//     inputWidth = '90%',
-//     editable = true,
-//     multiline = false,
-//     inputheight = 50,
-//     keyboardtype = 'default',
-//     topping = 2,
-//     inputType = ""
-//   } = props
-//   const onSubmit = (e: any) => {
-//     const { text } = e;
-//   };
-
-//   return (
-//     <View>
-//       {inputType === 'location' ?
-//         <LocationInput
-
-//         /> :
-//         <CommonInput
-//           editable={editable}
-//           multiline={multiline}
-//           inputheight={inputheight}
-//           keyboardtype={keyboardtype}
-//           topping={topping}
-//           inputWidth={inputWidth}
-//         />
-//       }
-//     </View>
-//   );
-// };
-
-// export default InputField;
+export default CommonInput;

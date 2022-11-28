@@ -6,9 +6,7 @@ import { GET_AGENT_DETAIL, AGENT_ERROR, AGENT_LIST, AGENT_STATUSUPDATE, ADD_AGEN
 export const getAllAgentList = (params: any) => async (dispatch: any) => {
     dispatch({ type: START_LOADING })
     try {
-        console.log('params: ', params);
         const res = await apiCall("post", apiEndPoints.AGENTLIST, params);
-        console.log('res: ', res);
         if (res.data.status == 200) {
             dispatch({
                 type: AGENT_LIST,
@@ -33,6 +31,7 @@ export const getAllAgentList = (params: any) => async (dispatch: any) => {
 };
 
 export const statusUpdate = (params: any) => async (dispatch: any) => {
+    dispatch({ type: START_LOADING })
     try {
         const res = await apiCall("post", apiEndPoints.AGENT_STATUS_UPDATE, params);
         if (res.data.status == 200) {
@@ -50,13 +49,15 @@ export const statusUpdate = (params: any) => async (dispatch: any) => {
             payload: console.log(e),
         });
     }
+    finally {
+        dispatch({ type: STOP_LOADING })
+    }
 };
 export const addAgent = (params: any) => async (dispatch: any) => {
+    dispatch({ type: START_LOADING })
     try {
-        console.log('params: ', params);
         const header = { "Content-Type": "multipart/form-data", "access-control-allow-origin": "*" }
         const res = await apiCall("post", apiEndPoints.ADD_AGENT_, params, header);
-        console.log('res:ADD_AGENT_ ', res);
         if (res.data.status == 200) {
             dispatch({
                 type: ADD_AGENT,
@@ -72,13 +73,15 @@ export const addAgent = (params: any) => async (dispatch: any) => {
             payload: console.log(e),
         });
     }
+    finally {
+        dispatch({ type: STOP_LOADING })
+    }
 };
 export const editAgent = (params: any) => async (dispatch: any) => {
+    dispatch({ type: START_LOADING })
     try {
-        console.log('params: ', params);
         const header = { "Content-Type": "multipart/form-data", "access-control-allow-origin": "*" }
         const res = await apiCall("post", apiEndPoints.EDIT_AGENT_, params, header);
-        console.log('res: EDIT_AGENT_', res);
         if (res.data.status == 200) {
             dispatch({
                 type: EDIT_AGENT,
@@ -93,6 +96,9 @@ export const editAgent = (params: any) => async (dispatch: any) => {
             type: AGENT_ERROR,
             payload: console.log(e),
         });
+    }
+    finally {
+        dispatch({ type: STOP_LOADING })
     }
 };
 export const addAgentForm = (params: any) => async (dispatch: any) => {
@@ -110,9 +116,9 @@ export const addAgentForm = (params: any) => async (dispatch: any) => {
 };
 
 export const getAgentDetail = (params: any) => async (dispatch: any) => {
+    dispatch({ type: START_LOADING })
     try {
         const res = await apiCall("post", apiEndPoints.GET_AGENT_DETAIL_, params);
-        // console.log('res: GET_AGENT_DETAIL_', res);
         if (res.data.status === 200) {
             dispatch({
                 type: GET_AGENT_DETAIL,
@@ -133,6 +139,9 @@ export const getAgentDetail = (params: any) => async (dispatch: any) => {
             type: AGENT_ERROR,
             payload: console.log(e),
         });
+    }
+    finally {
+        dispatch({ type: STOP_LOADING })
     }
 };
 export const addAgentRemove = () => async (dispatch: any) => {

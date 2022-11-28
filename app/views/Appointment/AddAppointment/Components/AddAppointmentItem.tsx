@@ -36,13 +36,9 @@ const AddAppointmentItem = (props: any) => {
                         }}
                         newRenderItem={(item: any) => {
                             return (
-                                <>
-                                    {props.isloading === false &&
-                                        <View style={Styles.item}>
-                                            <Text style={Styles.textItem}>{item.first_name}</Text>
-                                        </View>
-                                    }
-                                </>
+                                <View style={Styles.item}>
+                                    <Text style={Styles.textItem}>{item.first_name}</Text>
+                                </View>
                             );
                         }}
                     />

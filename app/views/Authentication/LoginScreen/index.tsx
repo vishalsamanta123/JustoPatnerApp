@@ -11,7 +11,6 @@ import strings from 'app/components/utilities/Localization';
 
 const LoginScreen = ({ navigation }: any) => {
   const dispatch: any = useDispatch()
-  // const [isloading, setIsloading] = useState(false)
   const [validEmail, setIsValidEmail] = useState(false);
   const [loginData, setLoginData] = useState({
     email: '',
@@ -27,7 +26,6 @@ const LoginScreen = ({ navigation }: any) => {
   const checklogin = async () => {
     const authval = await AsyncStorage.getItem("AuthToken");
     if (loginSelector.response && loginSelector.authToken) {
-      // setIsloading(loginSelector.loading)
       // console.log("checklogin -> loginSelector.response.status", loginSelector.response.status)
       if (loginSelector.response.status === 200) {
         await setDefaultHeader("token", loginSelector.response.token);
@@ -41,7 +39,6 @@ const LoginScreen = ({ navigation }: any) => {
         })
       }
     } else {
-      // setIsloading(loginSelector.loading)
       if (authval != null) {
         await setDefaultHeader("token", authval);
         navigation.navigate('DashboardScreenView');
@@ -92,7 +89,6 @@ const LoginScreen = ({ navigation }: any) => {
   }
   const handleLoginPress = () => {
     if (validation()) {
-      // setIsloading(true)
       const respon = dispatch(userLogin(loginData))
       // console.log("handleLoginPress -> respon", respon)
       //navigation.navigate('DashboardScreenView');
@@ -110,18 +106,15 @@ const LoginScreen = ({ navigation }: any) => {
     navigation.navigate('ForgotPassword');
   };
   return (
-    <>
-      {/* {isloading ? <Loader /> : null} */}
-      <LoginView
-        validEmail={validEmail}
-        handleLoginPress={handleLoginPress}
-        handleSingupPress={handleSingupPress}
-        handleForgotPress={handleForgotPress}
-        handlePrivacy={(data: any) => handlePrivacy(data)}
-        setLoginData={setLoginData}
-        loginData={loginData}
-      />
-    </>
+    <LoginView
+      validEmail={validEmail}
+      handleLoginPress={handleLoginPress}
+      handleSingupPress={handleSingupPress}
+      handleForgotPress={handleForgotPress}
+      handlePrivacy={(data: any) => handlePrivacy(data)}
+      setLoginData={setLoginData}
+      loginData={loginData}
+    />
   );
 };
 

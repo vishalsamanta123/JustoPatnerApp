@@ -48,11 +48,9 @@ const FollowUpAddView = (props: any) => {
                     newRenderItem={(item: any) => {
                         return (
                             <>
-                                {props?.isloading === false &&
-                                    <View style={Styles.item}>
-                                        <Text style={Styles.textItem}>{item.title}</Text>
-                                    </View>
-                                }
+                                <View style={Styles.item}>
+                                    <Text style={Styles.textItem}>{item.title}</Text>
+                                </View>
                             </>
                         );
                     }}

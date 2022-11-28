@@ -8,7 +8,7 @@ import Route from './route';
 const Root = () => {
     const [loading] = useLoader();
     return (
-        <View style={{ flex: 1 }}>
+        <View style={{ flex: 1,backgroundColor:'transparent' }}>
             {loading && <Loader />}
             <Route />
         </View>

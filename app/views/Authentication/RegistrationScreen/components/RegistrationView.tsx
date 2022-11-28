@@ -30,7 +30,7 @@ import MultiLocation from 'app/components/MultiLocation'
 const RegistrationView = (props: any) => {
   const insets = useSafeAreaInsets();
   const [profile, setProfile] = useState(false);
-  
+
   const handleDelete = (item: any, index: any) => {
     var array: any[] = [...props?.registerForm.working_location];
     array?.splice(index, 1);
@@ -197,7 +197,7 @@ const RegistrationView = (props: any) => {
                 date_of_birth: moment(data).format()
               })
             }}
-            value={moment(props?.registerForm?.date_of_birth).format('DD-MM-YYYY')}
+            value={props?.registerForm?.date_of_birth}
           />
         </View>
         <View style={styles.inputWrap}>

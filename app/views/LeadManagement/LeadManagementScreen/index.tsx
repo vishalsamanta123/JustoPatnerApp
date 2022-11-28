@@ -3,7 +3,6 @@ import { View, Text } from 'react-native'
 import LeadManagementView from './Components/LeadManagementView'
 import { getAllLeadsList } from 'app/Redux/Actions/LeadsActions'
 import { useDispatch, useSelector } from 'react-redux'
-import Loader from 'app/components/CommonScreen/Loader'
 import { useFocusEffect } from '@react-navigation/native'
 
 const LeadManagementScreen = ({ navigation }: any) => {
@@ -18,7 +17,6 @@ const LeadManagementScreen = ({ navigation }: any) => {
     visit_score: ''
   })
   const [visitorList, setVisiitorList] = useState<any>([])
-  const [isloading, setIsloading] = useState(false)
   const [offSET, setOffset] = useState(0)
 
   useFocusEffect(
@@ -30,7 +28,6 @@ const LeadManagementScreen = ({ navigation }: any) => {
 
   useEffect(() => {
     if (list) {
-      setIsloading(false)
       if (offSET === 0) {
         setVisiitorList(response?.data)
       } else {
@@ -40,7 +37,6 @@ const LeadManagementScreen = ({ navigation }: any) => {
   }, [response])
 
   const getVisitorsList = (offset: any, filterData: any) => {
-    setIsloading(true)
     setOffset(offset)
     dispatch(getAllLeadsList({
       offset: offset,
@@ -63,7 +59,6 @@ const LeadManagementScreen = ({ navigation }: any) => {
   }
   return (
     <>
-      {isloading ? <Loader /> : null}
       <LeadManagementView
         handleDrawerPress={handleDrawerPress}
         handleBulkUploadPress={handleBulkUploadPress}
@@ -74,9 +69,7 @@ const LeadManagementScreen = ({ navigation }: any) => {
         setFilterData={setFilterData}
         filterData={filterData}
         offSET={offSET}
-        isloading={isloading}
         getVisitorsList={getVisitorsList}
-        setIsloading={setIsloading}
       />
     </>
   )

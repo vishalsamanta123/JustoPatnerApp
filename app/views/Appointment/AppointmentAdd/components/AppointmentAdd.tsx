@@ -40,7 +40,7 @@ const AppointmentAddView = (props: any) => {
                         inputWidth={'100%'}
                         paddingLeft={16}
                         maxHeight={300}
-                        labelField="title"
+                        labelField="label"
                         valueField={'value'}
                         value={props?.formData?.status}
                         onChange={(item: any) => {
@@ -52,11 +52,9 @@ const AppointmentAddView = (props: any) => {
                         newRenderItem={(item: any) => {
                             return (
                                 <>
-                                    {props?.isloading === false &&
-                                        <View style={Styles.item}>
-                                            <Text style={Styles.textItem}>{item.label}</Text>
-                                        </View>
-                                    }
+                                    <View style={Styles.item}>
+                                        <Text style={Styles.textItem}>{item.label}</Text>
+                                    </View>
                                 </>
                             );
                         }}

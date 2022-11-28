@@ -13,10 +13,8 @@ import PicturePickerModal from "app/components/Modals/PicturePicker";
 import { useDispatch, useSelector } from "react-redux";
 import ErrorMessage from "app/components/ErrorMessage";
 import { createChannelPartner, RegistrationForm } from "app/Redux/Actions/ReggistrationAction";
-import Loader from "app/components/CommonScreen/Loader";
 
 const CompanyDetails = ({ navigation }: any) => {
-  const [isLoading, setisLoading] = useState(false)
   const [isError, setisError] = useState(false)
   const [visible, setVisible] = useState(false)
   const [panvisible, setpanVisible] = useState(false)
@@ -33,7 +31,6 @@ const CompanyDetails = ({ navigation }: any) => {
   }, [registrationData])
 
   useEffect(() => {
-    setisLoading(createChannelPartnerData?.isLoading)
     handleError()
 
   }, [createChannelPartnerData])
@@ -103,10 +100,9 @@ const CompanyDetails = ({ navigation }: any) => {
   }
   const onPressRegister = () => {
     if (validation()) {
-      setisLoading(true)
       const params = {
         ...formData,
-        working_location: JSON.stringify(formData.working_location)
+        working_location: JSON.stringify(formData?.working_location)
       }
       dispatch(RegistrationForm(formData))
       dispatch(createChannelPartner(params))
@@ -118,7 +114,6 @@ const CompanyDetails = ({ navigation }: any) => {
   }
   return (
     <View style={styles.mainContainer}>
-      {isLoading ? <Loader /> : null}
       <View
         style={{
           backgroundColor: PRIMARY_THEME_COLOR,

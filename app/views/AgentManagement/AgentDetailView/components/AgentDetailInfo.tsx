@@ -6,7 +6,7 @@ import { normalizeSpacing } from "../../../../components/scaleFontSize";
 import { ScrollView } from "react-native-gesture-handler";
 import strings from "app/components/utilities/Localization";
 
-const PropertyDetailItem = (props: any) => {
+const agentDetailItem = (props: any) => {
   return (
     <ScrollView>
       <View style={styles.Txtview}>
@@ -33,7 +33,10 @@ const PropertyDetailItem = (props: any) => {
         </View>
         <View><Text>:</Text></View>
         <View style={styles.nameContainer}>
-          <Text style={styles.nameTxt}>{props.items.Mobileno}</Text>
+          <Text style={styles.nameTxt}>{props.items.Mobileno === '' ||
+            props.items.Mobileno === undefined || props.items.Mobileno === "undefined" ?
+            strings.notfount : props.items.Mobileno
+          }</Text>
         </View>
       </View>
       <View style={styles.Txtview}>
@@ -42,7 +45,10 @@ const PropertyDetailItem = (props: any) => {
         </View>
         <View><Text>:</Text></View>
         <View style={styles.nameContainer}>
-          <Text style={styles.nameTxt}>{props.items.Email}</Text>
+          <Text style={styles.nameTxt}>{props.items.Email === '' ||
+            props.items.Email === undefined || props.items.Email === "undefined" ?
+            strings.notfount :
+            props.items.Email}</Text>
         </View>
       </View>
       <View style={styles.Txtview}>
@@ -51,7 +57,10 @@ const PropertyDetailItem = (props: any) => {
         </View>
         <View><Text>:</Text></View>
         <View style={styles.nameContainer}>
-          <Text style={styles.nameTxt}>{props.items.whatsappno}</Text>
+          <Text style={styles.nameTxt}>{props.items.whatsappno === '' ||
+            props.items.whatsappno === undefined || props.items.whatsappno === "undefined" ?
+            strings.notfount :
+            props.items.whatsappno}</Text>
         </View>
       </View>
       <View style={styles.Txtview}>
@@ -60,7 +69,10 @@ const PropertyDetailItem = (props: any) => {
         </View>
         <View><Text>:</Text></View>
         <View style={styles.nameContainer}>
-          <Text style={styles.nameTxt}>{props.items.rerano}</Text>
+          <Text style={styles.nameTxt}>{props.items.rerano === '' ||
+            props.items.rerano === undefined || props.items.rerano === "undefined" ?
+            strings.notfount :
+            props.items.rerano}</Text>
         </View>
       </View>
       <View style={styles.Txtview}>
@@ -69,7 +81,10 @@ const PropertyDetailItem = (props: any) => {
         </View>
         <View><Text>:</Text></View>
         <View style={styles.nameContainer}>
-          <Text style={styles.nameTxt}>{props.items.aadharno}</Text>
+          <Text style={styles.nameTxt}>{props.items.aadharno === '' ||
+            props.items.aadharno === undefined || props.items.aadharno === "undefined" ?
+            strings.notfount :
+            props.items.aadharno}</Text>
         </View>
       </View>
       <View style={styles.Txtview}>
@@ -78,7 +93,10 @@ const PropertyDetailItem = (props: any) => {
         </View>
         <View><Text>:</Text></View>
         <View style={styles.nameContainer}>
-          <Text style={styles.nameTxt}>{props.items.pancardno}</Text>
+          <Text style={styles.nameTxt}>{props.items.pancardno === '' ||
+            props.items.pancardno === undefined || props.items.pancardno === "undefined" ?
+            strings.notfount :
+            props.items.pancardno}</Text>
         </View>
       </View>
       <View style={styles.Txtview}>
@@ -87,7 +105,10 @@ const PropertyDetailItem = (props: any) => {
         </View>
         <View><Text>:</Text></View>
         <View style={styles.nameContainer}>
-          <Text style={styles.nameTxt}>{props.items.location}</Text>
+          <Text style={styles.nameTxt}>{props.items.location === '' ||
+            props.items.location === undefined || props.items.location === "undefined" ?
+            strings.notfount :
+            props.items.location}</Text>
         </View>
       </View>
       <View style={styles.Txtview}>
@@ -96,16 +117,19 @@ const PropertyDetailItem = (props: any) => {
         </View>
         <View><Text>:</Text></View>
         <View style={styles.nameContainer}>
-          <Text style={styles.nameTxt}>{props.items.workingfrom}</Text>
+          <Text style={styles.nameTxt}>{props.items.workingfrom === '' ||
+            props.items.workingfrom === undefined || props.items.workingfrom === "undefined" ?
+            strings.notfount :
+            props.items.workingfrom}</Text>
         </View>
       </View>
-      <View style={styles.Txtview}>
+      <View style={[styles.Txtview, { alignItems: 'flex-start' }]}>
         <View style={styles.projectContainer}>
           <Text style={styles.projectTxt}>Working Location</Text>
         </View>
         <View><Text>:</Text></View>
         <View style={styles.nameContainer}>
-          {props?.items?.workinglocation?.length > 0 &&
+          {props?.items?.workinglocation?.length > 0 ?
             props?.items?.workinglocation?.map((item: any) => {
               return (
                 <Text
@@ -123,6 +147,7 @@ const PropertyDetailItem = (props: any) => {
                 </Text>
               )
             })
+            : <Text style={styles.nameTxt}>{strings.notfount}</Text>
           }
         </View>
       </View>
@@ -131,4 +156,4 @@ const PropertyDetailItem = (props: any) => {
   );
 };
 
-export default PropertyDetailItem;
+export default agentDetailItem;

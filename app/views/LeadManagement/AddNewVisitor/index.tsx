@@ -1,9 +1,8 @@
-import { View, Text } from 'react-native'
+import { View, Text, Alert } from 'react-native'
 import React, { useEffect, useLayoutEffect, useState } from 'react'
 import AddNewVisitorForm from './Components/AddNewVisitorForm'
 import { useDispatch, useSelector } from 'react-redux'
 import { addVisitor, addVisitorRemove, editVisitor, getVisitorDetail } from 'app/Redux/Actions/LeadsActions'
-import Loader from 'app/components/CommonScreen/Loader'
 import ErrorMessage from 'app/components/ErrorMessage'
 import { GREEN_COLOR, RED_COLOR } from 'app/components/utilities/constant'
 import { getAllMaster } from 'app/Redux/Actions/MasterActions'
@@ -12,11 +11,9 @@ import { getAllProperty } from 'app/Redux/Actions/propertyActions'
 const AddNewVisitorScreen = ({ navigation, route }: any) => {
   const { type, data } = route?.params || {}
   const dispatch: any = useDispatch()
-  const [isloading, setIsloading] = useState(false)
   const { response = {}, detail = "" } = useSelector((state: any) => state.visitorData)
   const [formData, setFormData] = useState<any>({
     first_name: '',
-    min_budget_type: 'L',
     adhar_no: '',
     pancard_no: '',
     gender: '',
@@ -29,8 +26,9 @@ const AddNewVisitorScreen = ({ navigation, route }: any) => {
     configuration_id: '',
     expected_possession_date: '',
     min_budget: '',
+    min_budget_type: 'L',
     max_budget: '',
-    max_budget_type: '',
+    max_budget_type: 'L',
     funding_type: '',
     funding_emi_type: '',
     purpose: '',
@@ -44,7 +42,8 @@ const AddNewVisitorScreen = ({ navigation, route }: any) => {
     min_emi_budget_type: 'L',
     max_emi_budget: '',
     max_emi_budget_type: 'L',
-    areain_sqlft: ''
+    areain_sqlft: '',
+    coumpany_name: '',
   })
   const [masterDatas, setMasterDatas] = useState<any>([])
   const [allProperty, setAllProperty] = useState<any>([])
@@ -56,16 +55,22 @@ const AddNewVisitorScreen = ({ navigation, route }: any) => {
   useLayoutEffect(() => {
     if (type === 'edit') {
       if (data?._id) {
-        setIsloading(true)
         dispatch(getVisitorDetail({
           lead_id: data._id
         }))
       }
     }
+    if (type === 'propertySelect') {
+      setFormData({
+        ...formData,
+        property_id: data?._id,
+        property_type_title: data?.property_type_title,
+        property_title: data?.property_title,
+      })
+    }
   }, [detail])
 
   useEffect(() => {
-    setIsloading(true)
     dispatch(getAllMaster({
       type: 2
     }))
@@ -74,13 +79,11 @@ const AddNewVisitorScreen = ({ navigation, route }: any) => {
 
   const handleMasterDatas = () => {
     if (masterData?.response?.status === 200) {
-      setIsloading(false)
       setMasterDatas(masterData?.response?.data?.length > 0 ? masterData?.response?.data : [])
     }
   }
 
   useEffect(() => {
-    setIsloading(true)
     dispatch(getAllProperty({
       offset: 0,
       limit: '',
@@ -90,7 +93,6 @@ const AddNewVisitorScreen = ({ navigation, route }: any) => {
 
   const getAllPropertyData = () => {
     if (propertyData?.response?.status === 200) {
-      setIsloading(false)
       setAllProperty(propertyData?.response?.data)
     }
   }
@@ -106,14 +108,15 @@ const AddNewVisitorScreen = ({ navigation, route }: any) => {
   const validation = () => {
     let isError = true;
     let errorMessage: any = ''
-    if (formData?.first_name === '' || formData?.first_name === undefined) {
+    if (type != 'edit' && formData?.property_id === '' && formData?.property_type_title === '') {
+      isError = false;
+      errorMessage = "Please select property name"
+    } else if (formData?.first_name === '' || formData?.first_name === undefined) {
       isError = false;
       errorMessage = "Please fill visitor name"
-    } else if (type != 'edit') {
-      if (formData?.property_id === '' || formData?.property_type_title === '') {
-        isError = false;
-        errorMessage = "Please select property name"
-      }
+    } else if (formData?.mobile === '' || formData?.mobile === undefined) {
+      isError = false;
+      errorMessage = "Please fill mobile number"
     }
     if (errorMessage !== '') {
       ErrorMessage({
@@ -127,18 +130,16 @@ const AddNewVisitorScreen = ({ navigation, route }: any) => {
   useEffect(() => {
     if (editData?.update || addData?.create) {
       dispatch(addVisitorRemove());
-      setIsloading(false)
       navigation.navigate('LeadManagement')
       ErrorMessage({
         msg: editData?.update ? editData?.response?.message :
-          addData?.create ? addData?.response?.message : '',
+          addData?.create ? addData?.response?.message : 'no message',
         backgroundColor: GREEN_COLOR
       })
     }
   }, [editData, addData])
   const OnpressCreateEdit = () => {
     if (validation()) {
-      setIsloading(true)
       if (type === 'edit') {
         const edit_params = {
           lead_id: formData?.lead_id,
@@ -160,7 +161,7 @@ const AddNewVisitorScreen = ({ navigation, route }: any) => {
           configuration: formData?.configuration,
           areain_sqlft: formData?.areain_sqlft,
           income: formData?.income,
-          budget: formData?.budget,
+          budget: formData?.max_budget ? formData?.max_budget : formData?.budget && '',
           funding_type: formData?.funding_type,
           purpose: formData?.purpose,
           whenby: formData?.whenby,
@@ -197,7 +198,7 @@ const AddNewVisitorScreen = ({ navigation, route }: any) => {
           longitude: '',
           city: formData?.location,
           occupation: formData?.occupation,
-          coumpany_name: 'itinformatix',
+          coumpany_name: formData?.coumpany_name,
           desigantion: formData?.desigantion,
           office_address: formData?.office_address,
           configuration_id: formData?.configuration_id,
@@ -229,23 +230,18 @@ const AddNewVisitorScreen = ({ navigation, route }: any) => {
   }
 
   return (
-    <>
-      {isloading ? <Loader /> : null}
-      <AddNewVisitorForm
-        handleBackPress={handleBackPress}
-        OnpressseheduleVisit={OnpressseheduleVisit}
-        OnpressCreateEdit={OnpressCreateEdit}
-        type={type}
-        isloading={isloading}
-        setIsloading={setIsloading}
-        formData={formData}
-        setFormData={setFormData}
-        // handleMasterDatas={handleMasterDatas}
-        masterDatas={masterDatas}
-        // handleProperty={handleProperty}
-        allProperty={allProperty}
-      />
-    </>
+    <AddNewVisitorForm
+      handleBackPress={handleBackPress}
+      OnpressseheduleVisit={OnpressseheduleVisit}
+      OnpressCreateEdit={OnpressCreateEdit}
+      type={type}
+      formData={formData}
+      setFormData={setFormData}
+      // handleMasterDatas={handleMasterDatas}
+      masterDatas={masterDatas}
+      // handleProperty={handleProperty}
+      allProperty={allProperty}
+    />
   )
 }
 

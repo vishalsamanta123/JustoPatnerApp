@@ -13,21 +13,17 @@ const AddAppointmentScreen = ({ navigation, route }: any) => {
   const { data, type } = route?.params || {}
   const dispatch: any = useDispatch()
   const { response = {}, list = "" } = useSelector((state: any) => state.visitorDataList)
-  console.log('response visitorDataList: ', response);
   const addAppointmentData = useSelector((state: any) => state.appointment)
   const [visitorList, setVisiitorList] = useState<any>([])
-  const [isloading, setIsloading] = useState(false)
   const [offSET, setOffset] = useState(0)
 
   useEffect(() => {
     if (list) {
-      setIsloading(false)
       setVisiitorList(response?.data)
     }
   }, [response])
 
   const getVisitorsList = (offset: any, array: any) => {
-    setIsloading(true)
     setOffset(offset)
     dispatch(getAllLeadsList({
       offset: offset,
@@ -41,24 +37,16 @@ const AddAppointmentScreen = ({ navigation, route }: any) => {
   useFocusEffect(
     React.useCallback(() => {
       if (data?._id) {
-        setIsloading(true)
         dispatch(getAppointmentDetails({ appointment_id: data?._id }))
-        toGetDatas()
+        // toGetDatas()
       }
       return () => { };
     }, [navigation, addAppointmentData?.detail]))
 
-  const toGetDatas = () => {
-    if (addAppointmentData?.response?.status) {
-      setIsloading(false)
-    }
-  }
   const handleAddAppointment = (params: any) => {
     if (type === strings.edit) {
-      setIsloading(true)
       dispatch(editAppointment(params))
       if (addAppointmentData?.response?.status) {
-        setIsloading(false)
         navigation.navigate('AppointmentScreen')
       } else {
         ErrorMessage({
@@ -67,10 +55,8 @@ const AddAppointmentScreen = ({ navigation, route }: any) => {
         })
       }
     } else {
-      setIsloading(true)
       dispatch(addAppointment(params))
       if (addAppointmentData?.response?.status) {
-        setIsloading(false)
         navigation.navigate('AppointmentScreen')
       } else {
         ErrorMessage({
@@ -87,7 +73,6 @@ const AddAppointmentScreen = ({ navigation, route }: any) => {
     <AddAppointmentView
       handleBackPress={handleBackPress}
       visitorList={visitorList}
-      isloading={isloading}
       getVisitorsList={getVisitorsList}
       handleAddAppointment={handleAddAppointment}
       type={type}
