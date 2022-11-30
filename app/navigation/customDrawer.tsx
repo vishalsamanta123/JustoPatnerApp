@@ -6,24 +6,27 @@ import {
   StatusBar,
   Platform,
 } from 'react-native';
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import styles from './styles';
 import images from '../assets/images';
 import strings from '../components/utilities/Localization';
-import {useSafeAreaInsets} from 'react-native-safe-area-context';
+import { useSafeAreaInsets } from 'react-native-safe-area-context';
 
 import {
   DrawerContentScrollView,
   useDrawerStatus,
 } from '@react-navigation/drawer';
-import {PRIMARY_THEME_COLOR} from '../components/utilities/constant';
-import { useDispatch } from 'react-redux';
+import { PRIMARY_THEME_COLOR } from '../components/utilities/constant';
+import { useDispatch, useSelector } from 'react-redux';
 import { userLogout } from 'app/Redux/Actions/AuthActions';
 
-const customDrawer = ({navigation}: any) => {
+const customDrawer = ({ navigation }: any) => {
   const dispatch: any = useDispatch()
   const isDrawerOpen = useDrawerStatus() === 'open';
   const insets = useSafeAreaInsets();
+  const { response = {} } = useSelector((state: any) => state.userData)
+  const userData: any = response?.data || {}
+  console.log('response: ', response?.data);
   const toggleDrawer = () => {
     navigation.toggleDrawer();
   };
@@ -34,17 +37,18 @@ const customDrawer = ({navigation}: any) => {
           <View style={styles.NameContainer}>
             <Image
               style={styles.UserImge}
-              source={{
-                uri: 'https://images.unsplash.com/photo-1506794778202-cad84cf45f1d?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=387&q=80',
-              }}
+              source={userData?.base_url ?
+                { uri: userData?.base_url + userData?.profile_picture }
+                : images.dummyUser
+              }
             />
             <View style={styles.UserNameView}>
               <Text
                 numberOfLines={1}
-                style={[styles.UserNameText, {width: 120}]}>
-                Warren Hussen
+                style={[styles.UserNameText, { width: 120 }]}>
+                {userData?.user_name}
               </Text>
-              <Text style={[styles.UserAddress, {width: 140}]}>
+              <Text style={[styles.UserAddress, { width: 140 }]}>
                 Florida, US
               </Text>
             </View>
@@ -76,7 +80,7 @@ const customDrawer = ({navigation}: any) => {
   return (
     <View style={styles.drawerMain}>
       <View
-        style={{backgroundColor: PRIMARY_THEME_COLOR, height: insets.top}}
+        style={{ backgroundColor: PRIMARY_THEME_COLOR, height: insets.top }}
       />
       <StatusBar barStyle={'light-content'} />
       <ProfileSection />
@@ -138,7 +142,7 @@ const customDrawer = ({navigation}: any) => {
           iconSource={images.support}
           tabTitle={strings.supportHeader}
         /> */}
-        <DrawerTabSection   
+        <DrawerTabSection
           iconSource={images.setting}
           tabTitle={strings.settingHeader}
           handleDrawerNavigation={() => {

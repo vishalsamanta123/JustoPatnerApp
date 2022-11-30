@@ -118,7 +118,7 @@ const PropertyView = (props: any) => {
       />
       <View style={styles.propertyListView}>
         <FlatList
-          data={propertyList}
+          data={Array.isArray(propertyList) ? propertyList : []}
           showsVerticalScrollIndicator={false}
           ListEmptyComponent={<EmptyListScreen message={strings.propertyHeader} />}
           renderItem={({ item }) => <PropertyListItem items={item} setIsVisible={setIsVisible} onPressView={onPressView}

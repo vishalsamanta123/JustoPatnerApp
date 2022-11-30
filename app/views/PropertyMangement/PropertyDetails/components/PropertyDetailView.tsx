@@ -20,10 +20,11 @@ import { useSelector } from "react-redux";
 
 const PropertyDetailView = (props: any) => {
   const [isVisible, setIsVisible] = useState(false)
-  const [propertydetail, setPropertydetail] = useState([])
-  const [configurations, setConfigurations] = useState([])
-  const [propertydocument, setPropertydocument] = useState([])
-  const [amenity, setAmenity] = useState([])
+  const [propertydetail, setPropertydetail] = useState<any>([])
+  console.log('propertydetail: ', propertydetail);
+  const [configurations, setConfigurations] = useState<any>([])
+  const [propertydocument, setPropertydocument] = useState<any>([])
+  const [amenity, setAmenity] = useState<any>([])
   const [approveStatus, setApproveStatus] = useState(1)
   const propertyData = useSelector((state: any) => state.propertydetailData) || []
   //const propertydetail = propertyData?.response?.data[0];
@@ -35,11 +36,13 @@ const PropertyDetailView = (props: any) => {
   };
   useEffect(() => {
     if (response && response?.status === 200) {
-      setPropertydetail(response?.data[0]);
-      setConfigurations(response?.data[0]?.property_configurations || [])
-      setAmenity(response?.data[0]?.property_amenities || [])
-      setPropertydocument(response?.data[0]?.property_document || [])
-      setApproveStatus(props.data.approve_status)
+      if (response?.data?.length > 0) {
+        setPropertydetail(response?.data[0] ? response?.data[0] : []);
+        setConfigurations(response?.data[0]?.property_configurations || [])
+        setAmenity(response?.data[0]?.property_amenities || [])
+        setPropertydocument(response?.data[0]?.property_document || [])
+        setApproveStatus(props.data.approve_status)
+      }
 
     } else {
       setPropertydetail([]);
@@ -92,7 +95,10 @@ const PropertyDetailView = (props: any) => {
         handleOnLeftIconPress={props.handleBackPress}
       />
       <View style={styles.propertyListView}>
-        <PropertyDetailItem items={propertydetail} onpresContent={onpresContent}
+        <PropertyDetailItem
+          // items={Object.keys(propertydetail).length === 0 ? propertydetail : {}}
+          items={propertydetail}
+          onpresContent={onpresContent}
           configurations={configurations}
           amenity={amenity}
           propertydocument={propertydocument}
