@@ -79,7 +79,7 @@ const FollowUpView = (props: any) => {
       />
       <View style={styles.followupItemView}>
         <FlatList
-          data={props?.followUpList}
+          data={Array.isArray(props?.followUpList) ? props?.followUpList : []}
           showsVerticalScrollIndicator={false}
           renderItem={({ item }) => <FollowUpItem items={item} onPressView={onPressView} onPressEdit={onPressEdit} onPressAllFollowUp={onPressAllFollowUp} />}
           onRefresh={() => props.onRefresh()}

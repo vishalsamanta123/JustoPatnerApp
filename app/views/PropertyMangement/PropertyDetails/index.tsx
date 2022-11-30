@@ -12,7 +12,7 @@ const PropertyDetails = ({ navigation, route }: any) => {
   useLayoutEffect(() => {
     setIsloading(true)
     dispatch(getPropertyDetail({
-      property_id: data.property_id
+      property_id: data.property_id ? data.property_id : ''
     }))
   }, [])
   const handleBackPress = () => {

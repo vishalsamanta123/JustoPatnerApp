@@ -6,6 +6,12 @@ const initialState = {
     loading: true,
 
 }
+const userDataInitialState = {
+    response: null,
+    authToken: false,
+    loading: true,
+
+}
 const forgotinitialState = {
     response: null,
     loading: true,
@@ -47,6 +53,26 @@ export function loadingReducer(state = { loading: false }, action: any) {
         default: return state
     }
 
+}
+export function userDataReducer(state = userDataInitialState, action: any) {
+    switch (action.type) {
+        case USER_LOGIN:
+            return {
+                ...state,
+                response: action.payload,
+                authToken: true,
+                loading: false,
+            }
+
+        case LOGIN_ERROR:
+            return {
+                ...state,
+                response: action.payload,
+                authToken: false,
+                loading: false,
+            }
+        default: return state
+    }
 }
 export function authStore(state = initialState, action: any) {
     switch (action.type) {
