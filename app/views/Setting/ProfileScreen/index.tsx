@@ -10,7 +10,8 @@ const ProfileScreen = ({ navigation, route }: any) => {
   const isFocused = useIsFocused()
   const { response = {}, detail = "" } = useSelector(
     (state: any) => state.agentData
-  );
+    );
+    console.log('response: ', response);
 
   const userdata = useSelector((state: any) => state.agentData);
 
@@ -20,24 +21,23 @@ const ProfileScreen = ({ navigation, route }: any) => {
     getDetail();
   }, [isFocused]);
 
+  useEffect(() => {
+    if (detail && response?.status === 200) {
+      setAllDetails({ ...response.data[0] });
+    }
+  }, [response])
   const getDetail = async () => {
     const userData: any = await AsyncStorage.getItem("loginData");
-    // console.log('userData: ', userData);
-    if (JSON.parse(userData).data._id) {
+    if (JSON.parse(userData)?.data?.cp_id) {
       dispatch(
         getAgentDetail({
-          cp_id: JSON.parse(userData).data?.cp_id,
+          cp_id: JSON?.parse(userData)?.data?.cp_id,
         })
       );
-      toGetDatas();
     }
   };
 
-  const toGetDatas = () => {
-    if (detail) {
-      setAllDetails({ ...response.data[0] });
-    }
-  };
+
 
   const onpresContent = (name: any, items: any) => {
     navigation.navigate(name, items);

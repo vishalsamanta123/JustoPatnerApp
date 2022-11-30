@@ -53,6 +53,8 @@ import AsyncStorage from '@react-native-async-storage/async-storage';
 import FollowUpAddScreen from 'app/views/FollowUp/FollowUpAdd';
 import EditBankDetails from 'app/views/Setting/EditProfileScreen/components/EditBankDetails';
 import AppointmentAddScreen from 'app/views/Appointment/AppointmentAdd';
+import ErrorMessage from 'app/components/ErrorMessage';
+import { RED_COLOR } from 'app/components/utilities/constant';
 const Stack = createNativeStackNavigator();
 const AuthStack = createNativeStackNavigator();
 const AppStack = createNativeStackNavigator();
@@ -151,6 +153,24 @@ const AppComponent = () => {
 
 const AuthLoadingComponent = () => {
   const { response, authToken = false } = useSelector((state: any) => state.login);
+
+  useEffect(() => {
+    checklogin()
+  }, [response])
+
+  const checklogin = async () => {
+    if (response && authToken) {
+      if (response.status === 200) {
+        await setDefaultHeader("token", response.token);
+        await AsyncStorage.setItem('loginData', JSON.stringify(response))
+      } else {
+        ErrorMessage({
+          msg: response?.message,
+          backgroundColor: RED_COLOR
+        })
+      }
+    }
+  }
   async function tokenGenrate() {
     try {
       const { data } = await apiCall("get", apiEndPoints.JWTTOKEN, {});
