@@ -17,46 +17,6 @@ const LoginScreen = ({ navigation }: any) => {
     password: '',
     login_type: 2
   })
-  const loginSelector = useSelector((state: any) => state.login);
-  //console.log("LoginScreen -> loginSelector", loginSelector)
-  useEffect(() => {
-    checklogin()
-  }, [loginSelector])
-
-  const checklogin = async () => {
-    const authval = await AsyncStorage.getItem("AuthToken");
-    if (loginSelector.response && loginSelector.authToken) {
-      // console.log("checklogin -> loginSelector.response.status", loginSelector.response.status)
-      if (loginSelector.response.status === 200) {
-        await setDefaultHeader("token", loginSelector.response.token);
-        await AsyncStorage.setItem('loginData', JSON.stringify(loginSelector.response))
-        navigation.navigate('DashboardScreenView');
-      } else {
-
-        ErrorMessage({
-          msg: loginSelector?.response?.message,
-          backgroundColor: RED_COLOR
-        })
-      }
-    } else {
-      if (authval != null) {
-        await setDefaultHeader("token", authval);
-        navigation.navigate('DashboardScreenView');
-      } else {
-        if (loginSelector?.response?.message) {
-          ErrorMessage({
-            msg: loginSelector?.response?.message,
-            backgroundColor: RED_COLOR
-          })
-        }
-
-      }
-
-      /*   await setDefaultHeader("token", authval);
-        navigation.navigate('DashboardScreenView'); */
-
-    }
-  }
   const validation = () => {
     let isError = true;
     let errorMessage: any = ''
@@ -89,9 +49,7 @@ const LoginScreen = ({ navigation }: any) => {
   }
   const handleLoginPress = () => {
     if (validation()) {
-      const respon = dispatch(userLogin(loginData))
-      // console.log("handleLoginPress -> respon", respon)
-      //navigation.navigate('DashboardScreenView');
+      dispatch(userLogin(loginData))
     }
 
   };
