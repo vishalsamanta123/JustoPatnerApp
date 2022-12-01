@@ -42,7 +42,6 @@ import ErrorMessage from "app/components/ErrorMessage";
     const [bankData, setBankData] = useState(agentdetail?.response?.cp_bank_detail);
 
     const handleResponse=()=>{
-      console.log('agentdetail: ', agentdetail);
       if (update) {
         ErrorMessage({
           msg: response.message,
@@ -232,7 +231,6 @@ import ErrorMessage from "app/components/ErrorMessage";
           Visible={reraVisible}
           setVisible={setReraVisible}
           imageData={(data: any) => {
-          console.log('data: ', data);
             setEditData({
               ...editData,
               rera_certificate: data
@@ -243,7 +241,6 @@ import ErrorMessage from "app/components/ErrorMessage";
           Visible={letterVisible}
           setVisible={setLetterVisible}
           imageData={(data: any) => {
-          console.log('data: ', data);
             setEditData({
               ...editData,
               propidership_declaration_letter: data

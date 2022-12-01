@@ -11,7 +11,6 @@ const ProfileScreen = ({ navigation, route }: any) => {
   const { response = {}, detail = "" } = useSelector(
     (state: any) => state.agentData
     );
-    console.log('response: ', response);
 
   const userdata = useSelector((state: any) => state.agentData);
 

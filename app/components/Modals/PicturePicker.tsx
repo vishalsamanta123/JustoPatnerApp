@@ -101,7 +101,6 @@ const PicturePickerModal = (props: any) => {
                                         strings.txt_setting_description_camera,
                                     );
                                 } else if (res) {
-                                    // console.log('res: ', res);
                                     handleCameraPress()
                                 }
                             }}

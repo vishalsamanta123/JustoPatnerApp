@@ -24,7 +24,6 @@ const EditProfileView = (props: any) => {
   const [checked, setChecked] = useState("first");
   const [profileVisible, setProfileVisible] = useState(false);
 
-  console.log("editData:00000000", editData);
   const allDetailsall = useSelector((state: any) => state.agentData);
   // useEffect(() => {
   //   // setEditData(allDetails)
@@ -172,7 +171,6 @@ const EditProfileView = (props: any) => {
             editable={false}
             // onChangeText={() => { }}
             dateData={(data: any) => {
-              console.log("data: ", data);
               setEditData({
                 ...editData,
                 date_of_birth: data,
@@ -251,7 +249,6 @@ const EditProfileView = (props: any) => {
             Visible={profileVisible}
             setVisible={setProfileVisible}
             imageData={(data: any) => {
-              console.log("data: ", data);
               setEditData({
                 ...editData,
                 profile_picture: data,
