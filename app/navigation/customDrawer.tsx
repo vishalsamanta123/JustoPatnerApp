@@ -26,7 +26,6 @@ const customDrawer = ({ navigation }: any) => {
   const insets = useSafeAreaInsets();
   const { response = {} } = useSelector((state: any) => state.userData)
   const userData: any = response?.data || {}
-  console.log('response: ', response?.data);
   const toggleDrawer = () => {
     navigation.toggleDrawer();
   };

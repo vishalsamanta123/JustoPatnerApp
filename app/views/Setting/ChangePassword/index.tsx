@@ -24,7 +24,6 @@ const ChangePasswordScreen = ({ navigation, route }: any) => {
   const { response = {}, changepassword = false } = useSelector(
     (state: any) => state.changePasswordResponse
     );
-    console.log('response: ', response);
 
   useEffect(() => {
     if(changepassword === true){
@@ -91,7 +90,6 @@ const ChangePasswordScreen = ({ navigation, route }: any) => {
 
   const handleChangePress = () => {
     if (validation()) {
-      console.log("VALIDATED");
       // console.log('email: ', email);
 
       const params = {

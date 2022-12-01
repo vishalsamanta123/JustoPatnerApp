@@ -36,7 +36,7 @@ export async function apiCall(
       return response;
     }
   } catch (error: any) {
-  console.log('errordsfdfdfs: ', error);
+  // console.log('errordsfdfdfs: ', error);
     if (error.response) {
       if (error.response.status === 401) {
         console.log(`${url}: `, error.response);

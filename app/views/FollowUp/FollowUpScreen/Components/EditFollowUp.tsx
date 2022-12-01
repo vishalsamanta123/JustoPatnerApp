@@ -22,8 +22,6 @@ const EditFollowUp = ({ navigation, route }: any) => {
     const followUpId = route?.params || ''
     const [isloading, setIsloading] = useState(false)
     const { response = {}, detail = "" } = useSelector((state: any) => state.followUp)
-    console.log('responseeeeeeeeeeeeeeeeeeeee: ', response);
-
 
     const dispatch: any = useDispatch()
     const insets = useSafeAreaInsets();

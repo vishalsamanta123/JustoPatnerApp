@@ -13,7 +13,6 @@ import { useSelector } from 'react-redux';
 const AppointmentDetailsView = (props: any) => {
     const insets = useSafeAreaInsets();
     const { response = {}, detail = "" } = useSelector((state: any) => state.appointment)
-    console.log('response: ', response);
     return (
         <View style={styles.mainContainer}>
             <View

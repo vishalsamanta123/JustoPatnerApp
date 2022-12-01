@@ -16,7 +16,6 @@ const FollowUpScreen = ({ navigation }: any) => {
         end_date: '',
         followup_for: ''
     })
-    console.log('filterData: ', filterData);
     const handleDrawerPress = () => {
         navigation.toggleDrawer();
     };
