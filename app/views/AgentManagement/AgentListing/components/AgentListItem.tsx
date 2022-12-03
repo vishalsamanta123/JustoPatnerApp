@@ -6,7 +6,6 @@ import { BLACK_COLOR, YELLOW_COLOR, PURPLE_COLOR, GREEN_COLOR, RED_COLOR } from 
 import images from '../../../../assets/images';
 
 const AgentListItem = (props: any) => {
-  console.log('props: ', props.items);
   return (
     <View style={styles.IteamView}>
       <View style={styles.Txtview} >

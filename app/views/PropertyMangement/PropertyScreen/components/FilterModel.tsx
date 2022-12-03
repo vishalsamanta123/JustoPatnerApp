@@ -32,7 +32,6 @@ const FilterModal = (props: any) => {
     };
 
     const handleInputField = (e: any) => {
-        console.log("handleInputField -> e", e)
         props.setFilterform({ ...props.filterform, property_name: e })
         /*  const nextFormState = {
            ...props.filterform,

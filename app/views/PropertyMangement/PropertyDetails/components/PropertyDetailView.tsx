@@ -21,7 +21,6 @@ import { useSelector } from "react-redux";
 const PropertyDetailView = (props: any) => {
   const [isVisible, setIsVisible] = useState(false)
   const [propertydetail, setPropertydetail] = useState<any>([])
-  console.log('propertydetail: ', propertydetail);
   const [configurations, setConfigurations] = useState<any>([])
   const [propertydocument, setPropertydocument] = useState<any>([])
   const [amenity, setAmenity] = useState<any>([])

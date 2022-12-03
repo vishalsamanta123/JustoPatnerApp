@@ -19,7 +19,6 @@ const AddAppointmentView = (props: any) => {
     const [gender, setGender] = useState("Male");
     const [checked, setChecked] = React.useState("first");
     const {response={}} = useSelector((state: any) => state.appointment)
-    console.log('response: ', response?.data?.pickup_location);
     useEffect(() => {
 setAddAppointmentForm({
     ...addAppointmentForm, 
@@ -36,7 +35,6 @@ setAddAppointmentForm({
         type: 1,
         pickup: props?.data?.pickup,
     })
-    console.log('addAppointmentForm: ', addAppointmentForm);
     const validation = () => {
         let isError = true;
         let errorMessage: any = ''

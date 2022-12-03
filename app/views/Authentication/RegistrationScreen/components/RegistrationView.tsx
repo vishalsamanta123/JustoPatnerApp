@@ -121,7 +121,6 @@ const RegistrationView = (props: any) => {
             placeholderText={"Pancard No."}
             handleInputBtnPress={() => { }}
             headingText={"Pancard No."}
-            keyboardtype={'number-pad'}
             valueshow={props.registerForm?.pancard_no}
             onChangeText={(val: any) => {
               props.setRegisterForm({
@@ -185,16 +184,17 @@ const RegistrationView = (props: any) => {
             mode={'date'}
             placeholderText={"Date of Birth"}//can edit
             editable={false}
+            maximumDate={new Date()}
             dateData={(data: any) => {
               props.setRegisterForm({
                 ...props.registerForm,
-                date_of_birth: moment(data).format()
+                date_of_birth: moment(data).format('YYYY-MM-DD')
               })
             }}
             setDateshow={(data: any) => {
               props.setRegisterForm({
                 ...props.registerForm,
-                date_of_birth: moment(data).format()
+                date_of_birth: moment(data).format('YYYY-MM-DD')
               })
             }}
             value={props?.registerForm?.date_of_birth}
@@ -212,6 +212,7 @@ const RegistrationView = (props: any) => {
                 ...props.registerForm, primary_mobile: val
               })
             }}
+            maxLength={10}
             onBlur={(val: any) => {
               props.handleCheckEmailMobile(1)
             }}
@@ -229,6 +230,7 @@ const RegistrationView = (props: any) => {
                 ...props.registerForm, whatsapp_number: val
               })
             }}
+            maxLength={10}
           />
         </View>
         <View style={styles.inputWrap}>

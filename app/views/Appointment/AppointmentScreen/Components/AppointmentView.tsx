@@ -78,7 +78,6 @@ const AppointmentView = (props: any) => {
             refreshing={loadingref}
             onEndReached={() => {
                 if (appointmentList?.length < response?.total_data) {
-                    console.log('onEndReached: ');
                     getAppointmentList(appointmentList?.length > 2 ? offSET + 1 : 0)
                 }
             }}
@@ -94,7 +93,6 @@ const AppointmentView = (props: any) => {
     useEffect(() => {
         if (list) {
             if (offSET == 0) {
-                console.log('offSET == 0: ', offSET == 0);
                 setAppointmentList(response?.data)
             } else {
                 setAppointmentList([...appointmentList, ...response?.data])
