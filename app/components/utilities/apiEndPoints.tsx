@@ -39,7 +39,7 @@ export default {
 
   // property Start
   ADDPROPERTY: "/property/addProperty",
-  PROPERTYLIST: "/property/getAllProperty",
+  PROPERTYLIST: "/property/getPropertyListForCP",
   PROPERTYFILTER: "/property/filterProperty",
   EDITPROPERTY: "/property/editProperty",
   GETPROPERTYDETAIL: "/property/getPropertyDetails",

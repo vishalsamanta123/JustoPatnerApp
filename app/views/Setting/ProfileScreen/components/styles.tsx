@@ -68,6 +68,7 @@ const styles = StyleSheet.create({
     keyText: {
         fontSize: normalize(15),
         fontFamily: FONT_FAMILY_EXTRABOLD,
+        color: GRAY_LIGHT_COLOR
     },
     valueView: {
         flex: 3,

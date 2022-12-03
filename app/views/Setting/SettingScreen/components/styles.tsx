@@ -38,6 +38,7 @@ const styles = StyleSheet.create({
     headingTxt: {
         fontSize: normalize(16),
         fontFamily: FONT_FAMILY_SEMIBOLD,
+        color: GRAY_LIGHT_COLOR
     },
     rightArrowView: {
         flex: 1,
