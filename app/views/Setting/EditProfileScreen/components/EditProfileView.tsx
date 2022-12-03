@@ -168,8 +168,8 @@ const EditProfileView = (props: any) => {
             mode={"date"}
             leftIcon={images.event}
             placeholderText={"Date of Birth"} //can edit
+            headingText={"Date of Birth"}
             editable={false}
-            // onChangeText={() => { }}
             dateData={(data: any) => {
               setEditData({
                 ...editData,
