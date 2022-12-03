@@ -65,7 +65,6 @@ const AgentView = (props: any) => {
     navigation.navigate('AddnewAgent', { type })
   }
   const onRefresh = () => {
-    props.setIsloading(true)
     props.setFilterData({
       startdate: '',
       enddate: '',

@@ -7,6 +7,7 @@ import images from 'app/assets/images';
 
 const UserBankInfo = (props: any) => {
   const {allDetails} = props;
+  console.log('allDetails: ', allDetails);
 
   return (
     <ScrollView style={styles.InformationView}>
@@ -16,7 +17,7 @@ const UserBankInfo = (props: any) => {
             </View>
             <Text style={styles.colon}>:</Text>
             <View style={styles.valueView}>
-              <Text style={styles.valueText}>{allDetails?.created_name?.toUpperCase()}</Text>
+              <Text style={styles.valueText}>{allDetails?.sourcing_manager_name !== '' ? allDetails?.sourcing_manager_name?.toUpperCase(): strings.notfount}</Text>
             </View>
           </View>
           <View style={styles.fieldView}>
