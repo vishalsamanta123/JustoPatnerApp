@@ -7,6 +7,7 @@ import { masterDataReducer } from "./MasterReducer";
 import { followUpReducer } from "./FollowUpReducer";
 import { settingReducer } from "./SettingReducer";
 import { appointmentReducer } from "./AppointmentReducer";
+import { dashboardReducer, statusUpdateReducer } from "./DashboardReducer";
 
 export default {
     loadingReducer: loadingReducer,
@@ -19,6 +20,9 @@ export default {
     registrationForm: registrationFormReducer,
     createChannlePartner: createChannlePartnerReducer,
 
+    //dashbaoard
+    dashboardData: dashboardReducer,
+    statusUpdate: statusUpdateReducer,
     //property modal
     propertyData: propertyReducer,
     propertydetailData: propertyDetailReducer,

@@ -14,6 +14,9 @@ export default {
   EDITUSER: "/auth/editUserProfile",
   USERSTATUSUPDATE: "/userManage/userStatusUpdate",
 
+  //Dashbaord 
+  GET_DASHBOARD_CP: 'dashboard/dashboardDetailCP',
+  USER_STATUS_UPDATE: 'auth/userOnlineStatusUpdate',
   // CREATE CHANNEL PARTNER
   CREATECHANNELPARTNER: '/channelPartner/createChannelPartner',
   CHECKEMAILMOBILE: '/auth/checkEmailMobile',

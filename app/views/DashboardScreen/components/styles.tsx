@@ -1,4 +1,4 @@
-import {StyleSheet} from 'react-native';
+import { StyleSheet } from 'react-native';
 import {
   normalize,
   normalizeHeight,
@@ -63,7 +63,7 @@ const styles = StyleSheet.create({
     marginLeft: normalizeSpacing(10),
   },
   switchStyle: {
-    transform: [{scaleX: 0.8}, {scaleY: 0.8}],
+    transform: [{ scaleX: 0.8 }, { scaleY: 0.8 }],
   },
   welcomeView: {
     paddingVertical: normalizeSpacing(10),
@@ -130,6 +130,7 @@ const styles = StyleSheet.create({
     fontFamily: FONT_FAMILY_SEMIBOLD,
     color: WHITE_COLOR,
     textAlign: 'center',
+    paddingHorizontal: normalize(3)
   },
   numberView: {
     flex: 1,
@@ -153,7 +154,7 @@ const styles = StyleSheet.create({
   },
   thirdPortioncardView: {
     shadowColor: '#171717',
-    shadowOffset: {width: 0, height: 5},
+    shadowOffset: { width: 0, height: 5 },
     shadowOpacity: 0.2,
     shadowRadius: 10,
     elevation: 10,
