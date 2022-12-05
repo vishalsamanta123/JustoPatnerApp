@@ -47,7 +47,7 @@ import ErrorMessage from "app/components/ErrorMessage";
           msg: response.message,
           backgroundColor: GREEN_COLOR
         })
-        // navigation.goBack()
+        navigation.navigate('profile')
       }
     }
     

@@ -12,7 +12,7 @@ import UserInfo from './UserInfo'
 import UserBankInfo from './UserBankInfo'
 
 const ProfileView = (props: any) => {
-  const {data, HandleBackPress, handleEditProfilePress, onpresContent} = props;
+  const {data, HandleBackPress, handleEditProfilePress, onpresContent} = props || {};
   const layout = useWindowDimensions();
 
 
@@ -61,7 +61,7 @@ const ProfileView = (props: any) => {
     <View style={styles.mainContainer}>
       <Header
         leftImageSrc={images.backArrow}
-        headerText={data.heading}
+        headerText={data?.heading}
         headerStyle={styles.headerStyle}
         RightFirstIconStyle={styles.leftImageIconStyle}
         leftImageIconStyle={styles.leftImageIconStyle}

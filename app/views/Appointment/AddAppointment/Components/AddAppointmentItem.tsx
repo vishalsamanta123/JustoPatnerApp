@@ -25,7 +25,7 @@ const AddAppointmentItem = (props: any) => {
                         paddingLeft={16}
                         maxHeight={300}
                         onFocus={() => props.getVisitorsList()}
-                        labelField="title"
+                        labelField="first_name"
                         valueField={'_id'}
                         value={props.addAppointmentForm?.lead_name}
                         onChange={(item: any) => {
