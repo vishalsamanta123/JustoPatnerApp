@@ -73,8 +73,8 @@ const InputCalender = (props: any) => {
           onCancel={() => {
             setOpen(false)
           }}
-          minimumDate={props.minimumDate}
-          maximumDate={props.maximumDate}
+          minimumDate={props.minimumDate ? props.minimumDate : ''}
+          maximumDate={props.maximumDate ? props.maximumDate : ''}
         />)
         :
         (<DatePicker

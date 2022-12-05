@@ -1,5 +1,6 @@
 import { GLOBAL_URL } from "./constant";
 import axios from "axios";
+import { useSelector } from "react-redux";
 
 const httpClient = axios.create({
   baseURL: `${GLOBAL_URL}/api/`,
@@ -9,7 +10,6 @@ const httpClient = axios.create({
 export function setDefaultHeader(header: any, value: any) {
   httpClient.defaults.headers.common[header] = value;
 }
-
 
 export async function apiCall(
   method: any,
@@ -36,7 +36,7 @@ export async function apiCall(
       return response;
     }
   } catch (error: any) {
-  // console.log('errordsfdfdfs: ', error);
+    // console.log('errordsfdfdfs: ', error);
     if (error.response) {
       if (error.response.status === 401) {
         console.log(`${url}: `, error.response);

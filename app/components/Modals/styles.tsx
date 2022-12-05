@@ -30,11 +30,11 @@ const styles = StyleSheet.create({
     marginVertical: normalizeSpacing(10),
     justifyContent: "space-between",
     marginHorizontal: normalizeSpacing(10),
-    color:PRIMARY_THEME_COLOR
+    color: PRIMARY_THEME_COLOR
   },
   conteconfirm: {
     flexDirection: "column",
-    
+
   },
   topTxt: {
     color: BLACK_COLOR,
@@ -50,7 +50,7 @@ const styles = StyleSheet.create({
   MiddleContainer: {
     marginVertical: normalizeSpacing(25),
     marginHorizontal: normalizeSpacing(30),
-   
+
   },
   closeIcon: {
     tintColor: "red",
@@ -104,7 +104,7 @@ const styles = StyleSheet.create({
   },
   inputWrap: {
     marginTop: normalizeSpacing(30),
-  },cancelModalVw: {
+  }, cancelModalVw: {
     position: 'absolute',
     alignSelf: 'center',
     top: -30,

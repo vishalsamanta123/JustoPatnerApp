@@ -1,6 +1,6 @@
 import ErrorMessage from 'app/components/ErrorMessage';
-import { RED_COLOR } from 'app/components/utilities/constant';
-import { checkEmailMobile, RegistrationForm } from 'app/Redux/Actions/ReggistrationAction';
+import { GREEN_COLOR, RED_COLOR } from 'app/components/utilities/constant';
+import { checkEmailMobile, emailCheckRemove, RegistrationForm } from 'app/Redux/Actions/ReggistrationAction';
 import React, { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import RegistrationView from './components/RegistrationView';
@@ -9,7 +9,7 @@ const RegistrationScreen = ({ navigation }: any) => {
   const dispatch: any = useDispatch()
   const [isError, setisError] = useState(false)
   const [locationModel, setLocationModel] = useState(false)
-  const createChannelPartnerData = useSelector((state: any) => state.createChannlePartner)
+  const emailAndMobileData = useSelector((state: any) => state.emailAndMobileData)
   const registrationData = useSelector((state: any) => state.registerForm)
   const [registerForm, setRegisterForm] = useState({
     profile_picture: {},
@@ -89,6 +89,15 @@ const RegistrationScreen = ({ navigation }: any) => {
     // navigation.navigate('UserBankInfo')
   }
 
+  useEffect(() => {
+    if (emailAndMobileData?.response?.status === 200) {
+      dispatch(emailCheckRemove())
+      ErrorMessage({
+        msg: emailAndMobileData?.response?.message,
+        backgroundColor: GREEN_COLOR
+      })
+    }
+  }, [emailAndMobileData])
   const handleCheckEmailMobile = (type: any) => {
     const params = type == 1 ? { mobile: registerForm?.primary_mobile } : { email: registerForm?.email }
     dispatch(checkEmailMobile(params))

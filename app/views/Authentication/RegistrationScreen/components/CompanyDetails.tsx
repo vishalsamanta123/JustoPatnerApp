@@ -12,7 +12,7 @@ import { normalizeWidth, normalizeHeight, normalize } from "app/components/scale
 import PicturePickerModal from "app/components/Modals/PicturePicker";
 import { useDispatch, useSelector } from "react-redux";
 import ErrorMessage from "app/components/ErrorMessage";
-import { createChannelPartner, RegistrationForm } from "app/Redux/Actions/ReggistrationAction";
+import { createChannelPartner, RegistrationForm, removeRegisterData } from "app/Redux/Actions/ReggistrationAction";
 
 const CompanyDetails = ({ navigation }: any) => {
   const [isError, setisError] = useState(false)
@@ -22,28 +22,12 @@ const CompanyDetails = ({ navigation }: any) => {
   const insets = useSafeAreaInsets();
   const [formData, setFormData] = useState<any>({})
   const registrationData = useSelector((state: any) => state.registrationForm)
-  const createChannelPartnerData = useSelector((state: any) => state.createChannlePartner)
+  const createChannelPartnerData = useSelector((state: any) => state.registerData)
   const dispatch: any = useDispatch()
 
   useEffect(() => {
     setFormData({ ...registrationData.response })
   }, [registrationData])
-
-  useEffect(() => {
-    handleError()
-
-  }, [createChannelPartnerData])
-
-  const handleError = () => {
-    setisError(true)
-    if (isError) {
-      ErrorMessage({
-        msg: createChannelPartnerData?.response?.message,
-        backgroundColor: GREEN_COLOR
-      })
-      setisError(createChannelPartnerData?.isError)
-    }
-  }
 
   const validation = () => {
     let isError = true;
@@ -56,7 +40,7 @@ const CompanyDetails = ({ navigation }: any) => {
       isError = false;
       errorMessage = "GST No. is require. Please enter GST No."
     }
-    else if (formData.company_pancard == '' || formData.company_pancard == undefined) {
+    else if (formData.pancard == '' || formData.pancard == undefined) {
       isError = false;
       errorMessage = "Company pancard Image is require. Please Choose Company pancard"
     }
@@ -90,13 +74,22 @@ const CompanyDetails = ({ navigation }: any) => {
         backgroundColor: RED_COLOR
       })
     }
-    // console.log('isError: ', isError);
     return isError;
   }
 
   const onPressBack = () => {
     navigation.goBack('')
   }
+  useEffect(() => {
+    if (createChannelPartnerData?.response?.status === 200) {
+      dispatch(removeRegisterData())
+      navigation.navigate('OtpVerificationScreenView', { type: strings.registration, email: formData?.email })
+      ErrorMessage({
+        msg: createChannelPartnerData?.response?.message,
+        backgroundColor: GREEN_COLOR
+      })
+    }
+  }, [createChannelPartnerData])
   const onPressRegister = () => {
     if (validation()) {
       const params = {
@@ -105,9 +98,6 @@ const CompanyDetails = ({ navigation }: any) => {
       }
       dispatch(RegistrationForm(formData))
       dispatch(createChannelPartner(params))
-      if (createChannelPartnerData?.response) {
-        navigation.navigate('OtpVerificationScreenView', { type: strings.registration, email: formData?.email })
-      }
     }
     // navigation.navigate('OtpVerificationScreenView', {type: strings.registration, email: formData?.email})
   }
@@ -187,7 +177,7 @@ const CompanyDetails = ({ navigation }: any) => {
                 setVisible(true)
               }}
             >
-              <Text style={{ color: formData?.company_pancard ? BLACK_COLOR : PRIMARY_THEME_COLOR, fontSize: normalize(15) }}>{strings.browse}</Text>
+              <Text style={{ color: formData?.pancard ? BLACK_COLOR : PRIMARY_THEME_COLOR, fontSize: normalize(15) }}>{strings.browse}</Text>
             </TouchableOpacity>
           </View>
         </View>
@@ -281,7 +271,7 @@ const CompanyDetails = ({ navigation }: any) => {
         imageData={(data: any) => {
           if (panvisible) {
             setFormData({
-              ...formData, company_pancard: data
+              ...formData, pancard: data
             })
             setpanVisible(false)
           } else {
