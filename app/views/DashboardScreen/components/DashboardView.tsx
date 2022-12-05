@@ -8,8 +8,8 @@ import {
   TouchableOpacity,
 } from 'react-native';
 import { Switch } from 'react-native-switch';
-import {useSafeAreaInsets} from 'react-native-safe-area-context';
-import React, {useState} from 'react';
+import { useSafeAreaInsets } from 'react-native-safe-area-context';
+import React, { useState } from 'react';
 import Header from '../../../components/Header';
 import images from '../../../assets/images';
 import styles from './styles';
@@ -21,6 +21,8 @@ import {
 } from '../../../components/utilities/constant';
 
 const DashboardView = (props: any) => {
+  const targetData = props?.dashBoardData?.target || {}
+  const achieveTargetData = props?.dashBoardData?.achievetargetdata || {}
   const [isEnabled, setIsEnabled] = useState(false);
   const insets = useSafeAreaInsets();
   const DATA: any = [
@@ -55,7 +57,7 @@ const DashboardView = (props: any) => {
       closeLead: 600,
     },
   ];
-  const renderItem = ({item}: any) => {
+  const renderItem = ({ item }: any) => {
     return (
       <TouchableOpacity style={styles.headingView}>
         <Text style={styles.itemText}>{item.cpName}</Text>
@@ -92,7 +94,7 @@ const DashboardView = (props: any) => {
               <View style={styles.statusView}>
                 <Text style={styles.statusText}>Status</Text>
                 <View style={styles.switchView}>
-                 {/*  <Switch
+                  {/*  <Switch
                     thumbColor={PRIMARY_THEME_COLOR}
                     ios_backgroundColor={WHITE_COLOR}
                     onValueChange={handleSwitcPress}
@@ -101,8 +103,8 @@ const DashboardView = (props: any) => {
                   /> */}
 
                   <Switch
-                    value={isEnabled}
-                    onValueChange={(val) => handleSwitcPress()}
+                    value={props?.dashBoardData?.online_status === 1 ? true : false}
+                    onValueChange={(val) => props.updateStatusPress(props?.dashBoardData?.online_status)}
                     //disabled={false}
                     backgroundActive={'green'}
                     backgroundInactive={'gray'}
@@ -111,18 +113,18 @@ const DashboardView = (props: any) => {
                     circleSize={25}
                     activeText={''}
                     inActiveText={''}
-                   // barHeight={1}
+                    // barHeight={1}
                     circleBorderWidth={2}
-                   /*  activeText={'On'}
-                    inActiveText={'Off'}
-                    circleSize={30}
-                    barHeight={1}
-                    circleBorderWidth={3}
-                    backgroundActive={'green'}
-                    backgroundInactive={'gray'}
-                    circleActiveColor={'#30a566'}
-                    circleInActiveColor={'#000000'} */
-                   
+                  /*  activeText={'On'}
+                   inActiveText={'Off'}
+                   circleSize={30}
+                   barHeight={1}
+                   circleBorderWidth={3}
+                   backgroundActive={'green'}
+                   backgroundInactive={'gray'}
+                   circleActiveColor={'#30a566'}
+                   circleInActiveColor={'#000000'} */
+
                   />
 
 
@@ -130,11 +132,18 @@ const DashboardView = (props: any) => {
               </View>
               <View style={styles.welcomeView}>
                 <Text style={styles.welcomeToText}>Welcome to</Text>
-                <Text style={styles.welcomeNameText}>Yogesh Sarode</Text>
+                <Text style={styles.welcomeNameText}>{props?.dashBoardData?.user_name}</Text>
               </View>
             </View>
             <View style={styles.qrCodeView}>
-              <Image source={images.qrCode} style={styles.qrCodeImage} />
+              {props?.dashBoardData?.qrcode != '' ?
+                <Image source={{
+                  uri: props?.dashBoardData?.qrcode === '' || props?.dashBoardData?.qrcode === undefined ?
+                    '' : props?.dashBoardData?.qrcode
+                }} style={styles.qrCodeImage} />
+                :
+                <Image source={images.qrCode} style={styles.qrCodeImage} />
+              }
               <TouchableOpacity style={styles.linkImageView}>
                 <Image source={images.link} style={styles.linkImage} />
               </TouchableOpacity>
@@ -146,7 +155,9 @@ const DashboardView = (props: any) => {
                 <Text style={styles.cardText}>Visit Target</Text>
               </View>
               <View style={styles.numberView}>
-                <Text style={styles.numberText}>250/1000</Text>
+                <Text style={styles.numberText}>
+                  {achieveTargetData?.achieve_visit_target}/{targetData?.registration_target}
+                </Text>
               </View>
             </View>
             <View style={styles.secondCardView}>
@@ -154,7 +165,9 @@ const DashboardView = (props: any) => {
                 <Text style={styles.cardText}>Site Visit Target</Text>
               </View>
               <View style={styles.numberView}>
-                <Text style={styles.numberText}>250/1000</Text>
+                <Text style={styles.numberText}>
+                  {achieveTargetData?.achieve_site_visit_target}/{targetData?.site_visit_target}
+                </Text>
               </View>
             </View>
             <View style={styles.thirdCardView}>
@@ -162,7 +175,9 @@ const DashboardView = (props: any) => {
                 <Text style={styles.cardText}>Closing Target</Text>
               </View>
               <View style={styles.numberView}>
-                <Text style={styles.numberText}>250/1000</Text>
+                <Text style={styles.numberText}>
+                  {achieveTargetData?.achieve_closing_target}/{targetData?.closing_target}
+                </Text>
               </View>
             </View>
           </View>
