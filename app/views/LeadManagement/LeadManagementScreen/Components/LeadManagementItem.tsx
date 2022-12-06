@@ -47,7 +47,7 @@ const LeadManagementItem = (props: any) => {
         <View style={styles.nameContainer}>
           <Text style={styles.nameTxt}>
             {props.items.last_interacted_date ?
-              moment(props.items.last_interacted_date).format('llll') : strings.notfount}
+              moment(props.items.last_interacted_date).format('DD-MM-YYYY') : strings.notfount}
           </Text>
         </View>
       </View>

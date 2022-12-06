@@ -62,7 +62,11 @@ const AgentBasicInfoView = (props: any) => {
             style={styles.imageCircle}>
             {props?.agentInfoData?.profile_picture === undefined ||
               props?.agentInfoData?.profile_picture === '' ?
-              <Text>Image</Text>
+              <Image
+                style={styles.DummyloginBanner}
+                source={images.user}
+                resizeMode="contain"
+              />
               :
               <Image
                 source={{
@@ -73,6 +77,13 @@ const AgentBasicInfoView = (props: any) => {
                 style={styles.imageVw}
               />
             }
+            <View style={styles.editView}>
+              <Image
+                style={styles.editImage}
+                source={images.edit}
+                resizeMode="contain"
+              />
+            </View>
           </TouchableOpacity>
           <View style={styles.inputWrap}>
             <InputField
@@ -99,7 +110,7 @@ const AgentBasicInfoView = (props: any) => {
                 })
               }}
               valueshow={props?.agentInfoData?.adhar_no?.toString()}
-              headingText={"Adhar No."}
+              headingText={"Aadhar No."}
               keyboardtype={'number-pad'}
               maxLength={12}
             />

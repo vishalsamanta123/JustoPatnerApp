@@ -124,7 +124,7 @@ const CompanyDetails = ({ navigation }: any) => {
           <InputField
             placeholderText={"Agency Name"}
             handleInputBtnPress={() => { }}
-            headingText={"RealeEstate Company"}
+            headingText={"RealEstate Company"}
             valueshow={formData?.agency_name}
             onChangeText={(val: any) => {
               setFormData({
@@ -183,7 +183,7 @@ const CompanyDetails = ({ navigation }: any) => {
         </View>
         <View style={[styles.inputWrap, { flexDirection: "row", alignItems: 'center', justifyContent: 'space-between' }]}>
           <View style={{ flex: 1 }}>
-            <Text style={styles.headingText}>Decalaration Latter of Company</Text>
+            <Text style={styles.headingText}>Declaration Latter of Company</Text>
           </View>
           <View>
             <TouchableOpacity

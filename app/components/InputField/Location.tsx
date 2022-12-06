@@ -1,7 +1,7 @@
 import { View, Text } from 'react-native';
 import React from 'react';
 import styles from './styles';
-import { FONT_FAMILY_SEMIBOLD, GRAY_COLOR, Isios, MAP_KEY, WHITE_COLOR } from '../utilities/constant';
+import { FONT_FAMILY_SEMIBOLD, GRAY_COLOR, GRAY_LIGHT_COLOR, Isios, MAP_KEY, WHITE_COLOR } from '../utilities/constant';
 import { normalize, normalizeSpacing } from '../scaleFontSize';
 import { GooglePlacesAutocomplete } from 'react-native-google-places-autocomplete';
 import strings from '../utilities/Localization';
@@ -40,6 +40,7 @@ const LocationInput = (props: any) => {
                         paddingLeft: normalizeSpacing(Isios ? 5 : 15),
                         fontFamily: FONT_FAMILY_SEMIBOLD,
                         opacity: 0.6,
+                        color: GRAY_LIGHT_COLOR
                     },
                     predefinedPlacesDescription: {
                         color: '#1faadb',

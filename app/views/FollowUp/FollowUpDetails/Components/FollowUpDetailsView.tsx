@@ -36,7 +36,7 @@ const FollowUpDetailsView = (props: any) => {
         headerStyle={styles.headerStyle}
       />
       <View style={styles.leadDetailsItemView}>
-        <FollowUpDetailsItem data={Object.keys(response?.data).length !== 0 ? response?.data : {}} />
+        <FollowUpDetailsItem data={typeof response?.data === 'object' ? response?.data : {}} />
       </View>
       <View style={styles.btnContainer}>
         <Button
