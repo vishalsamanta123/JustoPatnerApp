@@ -1,4 +1,4 @@
-import { View, Text, Image, TouchableOpacity } from "react-native";
+import { View, Text, Image, TouchableOpacity, ScrollView } from "react-native";
 import React, { useState } from "react";
 import Modal from "react-native-modal";
 import styles from "../../../../components/Modals/styles";
@@ -20,7 +20,7 @@ const FilterModal = (props: any) => {
       enddate: '',
       search_by_name: '',
       search_by_location: '',
-      status: ''
+      status: '',
     })
     props.setIsVisible(false)
   }
@@ -41,8 +41,10 @@ const FilterModal = (props: any) => {
     );
   };
   return (
-    <View>
-      <Modal isVisible={props.Visible}>
+    <Modal isVisible={props.Visible}>
+      <ScrollView keyboardShouldPersistTaps={'handled'}
+        contentContainerStyle={{ flexGrow: 1, justifyContent: 'center', }}
+      >
         <View style={styles.mainContainer}>
           <View style={styles.topContainer}>
             <Text style={styles.topTxt}>{strings.searchAgent}</Text>
@@ -72,7 +74,7 @@ const FilterModal = (props: any) => {
                     startdate: moment(data).format('YYYY-MM-DD')
                   })
                 }}
-                value={props.filterData.startdate}
+                value={props?.filterData?.startdate}
               />
             </View>
             <View style={styles.inputWrap}>
@@ -81,7 +83,7 @@ const FilterModal = (props: any) => {
                 leftIcon={images.event}
                 placeholderText={"End Date"}
                 editable={false}
-                value={props.filterData.enddate}
+                value={props?.filterData?.enddate}
                 dateData={(data: any) => {
                   props.setFilterData({
                     ...props.filterData,
@@ -105,21 +107,20 @@ const FilterModal = (props: any) => {
                     search_by_name: data
                   })
                 }}
-                valueshow={props.filterData.search_by_name}
+                valueshow={props?.filterData?.search_by_name}
                 handleInputBtnPress={() => { }}
               />
             </View>
             <View style={styles.inputWrap}>
               <InputField
-                placeholderText={"Search by Location"}
-                handleInputBtnPress={() => { }}
-                onChangeText={(data: any) => {
+                valueshow={props?.filterData?.search_by_location}
+                inputType={'location'}
+                onPressSelect={(data: any, detail: any) => {
                   props.setFilterData({
                     ...props.filterData,
-                    search_by_location: data
+                    search_by_location: data?.description,
                   })
                 }}
-                valueshow={props.filterData.search_by_location}
               />
             </View>
             <View style={styles.inputWrap}>
@@ -133,7 +134,7 @@ const FilterModal = (props: any) => {
                 labelField="label"
                 valueField="value"
                 placeholder="Select Status"
-                value={props.filterData.status}
+                value={props?.filterData?.status}
                 onChange={(item) => {
                   props.setFilterData({
                     ...props.filterData,
@@ -145,7 +146,7 @@ const FilterModal = (props: any) => {
             </View>
           </View>
           <View style={{ marginVertical: 20 }}>
-            <View style={{ flexDirection: 'row' }}>
+            <View style={{ flexDirection: 'row', justifyContent: 'center' }}>
               <Button
                 width={135}
                 buttonText={strings.reset}
@@ -157,8 +158,8 @@ const FilterModal = (props: any) => {
             </View>
           </View>
         </View>
-      </Modal>
-    </View>
+      </ScrollView>
+    </Modal >
   );
 };
 

@@ -150,7 +150,7 @@ const UserBankInfo = ({ navigation }: any) => {
               paddingLeft={16}
               maxHeight={300}
               onFocus={() => handleMasterDatas()}
-              labelField="title"
+              labelField="user_name"
               valueField={'_id'}
               value={formData?.sourcing_manager}
               onChange={(item: any) => {

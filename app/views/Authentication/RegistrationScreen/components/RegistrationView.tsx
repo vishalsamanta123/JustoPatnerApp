@@ -13,6 +13,7 @@ import strings from "../../../../components/utilities/Localization";
 import styles from "./styles";
 import {
   BLACK_COLOR,
+  DATE_FORMAT,
   GRAY_COLOR,
   PRIMARY_THEME_COLOR,
   WHITE_COLOR,
@@ -114,6 +115,7 @@ const RegistrationView = (props: any) => {
                 ...props.registerForm, adhar_no: val
               })
             }}
+            maxLength={12}
           />
         </View>
         <View style={styles.inputWrap}>
@@ -127,6 +129,7 @@ const RegistrationView = (props: any) => {
                 ...props.registerForm, pancard_no: val
               })
             }}
+            maxLength={10}
           />
         </View>
         <View style={styles.genderView}>
@@ -182,19 +185,20 @@ const RegistrationView = (props: any) => {
           <InputCalender
             leftIcon={images.event}
             mode={'date'}
-            placeholderText={"Date of Birth"}//can edit
+            placeholderText={"Date of Birth"}
+            headingText={"Date of Birth"}
             editable={false}
             maximumDate={new Date()}
             dateData={(data: any) => {
               props.setRegisterForm({
                 ...props.registerForm,
-                date_of_birth: moment(data).format('YYYY-MM-DD')
+                date_of_birth: moment(data).format(DATE_FORMAT)
               })
             }}
             setDateshow={(data: any) => {
               props.setRegisterForm({
                 ...props.registerForm,
-                date_of_birth: moment(data).format('YYYY-MM-DD')
+                date_of_birth: moment(data).format(DATE_FORMAT)
               })
             }}
             value={props?.registerForm?.date_of_birth}

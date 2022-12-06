@@ -69,6 +69,7 @@ const styles = StyleSheet.create({
   },
   inputWrap: {
     marginTop: normalizeSpacing(30),
+    alignItems: 'center'
   },
   genderView: {
     flexDirection: 'row',
@@ -103,7 +104,8 @@ const styles = StyleSheet.create({
     alignItems: "center",
     justifyContent: "center",
     marginLeft: 10,
-    borderRadius: 10
+    borderRadius: 10,
+    paddingVertical: normalize(12)
   },
   addBtn: {
     backgroundColor: PRIMARY_THEME_COLOR,

@@ -154,23 +154,6 @@ const AppComponent = () => {
 const AuthLoadingComponent = () => {
   const { response, authToken = false } = useSelector((state: any) => state.login);
 
-  useEffect(() => {
-    checklogin()
-  }, [response])
-
-  const checklogin = async () => {
-    if (response && authToken) {
-      if (response.status === 200) {
-        await setDefaultHeader("token", response.token);
-        await AsyncStorage.setItem('loginData', JSON.stringify(response))
-      } else {
-        ErrorMessage({
-          msg: response?.message,
-          backgroundColor: RED_COLOR
-        })
-      }
-    }
-  }
   async function tokenGenrate() {
     try {
       const { data } = await apiCall("get", apiEndPoints.JWTTOKEN, {});
@@ -183,7 +166,8 @@ const AuthLoadingComponent = () => {
     }
   }
   useEffect(() => {
-    if (response == null || response?.status == 201 || response?.status == 401) {
+    if (response === null || response?.status == 201 ||
+      response?.status == 401 || response?.status == 400) {
       tokenGenrate()
     } else {
       setDefaultHeader("token", response?.token);

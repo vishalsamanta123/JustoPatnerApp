@@ -1,21 +1,12 @@
-import { View, TextInput, Image, TouchableOpacity, Text } from 'react-native';
+import { View, Text } from 'react-native';
 import React from 'react';
 import styles from './styles';
-import { BLACK_COLOR, MAP_KEY, PRIMARY_THEME_COLOR_DARK } from '../utilities/constant';
-import images from '../../assets/images';
-import { normalize, normalizeHeight, normalizeSpacing } from '../scaleFontSize';
+import { FONT_FAMILY_SEMIBOLD, GRAY_COLOR, Isios, MAP_KEY, WHITE_COLOR } from '../utilities/constant';
+import { normalize, normalizeSpacing } from '../scaleFontSize';
 import { GooglePlacesAutocomplete } from 'react-native-google-places-autocomplete';
 import strings from '../utilities/Localization';
 
 const LocationInput = (props: any) => {
-    const {
-        inputWidth = '90%',
-        editable = true,
-        multiline = false,
-        inputheight = 50,
-        keyboardtype = 'default',
-        topping = 2
-    } = props
     return (
         <View>
             <View style={styles.inputHeadinView}>
@@ -23,43 +14,45 @@ const LocationInput = (props: any) => {
                     width: props.headingTextWidth
                 }]}>{props.headingText}</Text>
             </View>
-            <View style={styles.mainContainer}>
-                <GooglePlacesAutocomplete
-                    fetchDetails={true}
-                    placeholder={strings.location}
-                    textInputProps={{
-                        placeholderTextColor: PRIMARY_THEME_COLOR_DARK,
-                    }}
-                    styles={{
-                        textInputContainer: {
-                            borderWidth: 1.5,
-                            borderColor: PRIMARY_THEME_COLOR_DARK,
-                            borderRadius: normalize(8),
-                            paddingVertical: normalizeSpacing(5),
-                        },
-                        textInput: {
-                            height: normalizeHeight(30),
-                            color: PRIMARY_THEME_COLOR_DARK,
-                            fontSize: normalize(14),
-                        },
-                        predefinedPlacesDescription: {
-                            color: '#1faadb',
-                        },
-                    }}
-                    onPress={(data, details = null) => {
-                        // onPressSelect(data, details)
-                    }}
-                    query={{
-                        key: MAP_KEY,
-                        language: 'en',
-                    }}
-                />
-                <TouchableOpacity
-                    onPress={props.handleInputBtnPress}
-                    disabled={!props.handleInputBtnPress}>
-                    <Image style={styles.rightImage} source={props.rightImgSrc} />
-                </TouchableOpacity>
-            </View>
+            <GooglePlacesAutocomplete
+                fetchDetails={true}
+                placeholder={props.placeholderText ?
+                    props.placeholderText : strings.location}
+                textInputProps={props.textInputProps}
+                styles={{
+                    textInputContainer: {
+                        shadowColor: '#171717',
+                        shadowOffset: { width: 0, height: 1 },
+                        shadowOpacity: 0.2,
+                        shadowRadius: 1,
+                        elevation: 3,
+                        backgroundColor: WHITE_COLOR,
+                        flexDirection: 'row',
+                        alignItems: 'center',
+                        justifyContent: 'space-between',
+                        borderRadius: 10,
+                        padding: normalizeSpacing(Isios ? 15 : 6),
+                        borderColor: GRAY_COLOR,
+                    },
+                    textInput: {
+                        fontSize: normalize(16),
+                        paddingRight: normalizeSpacing(30),
+                        paddingLeft: normalizeSpacing(Isios ? 5 : 15),
+                        fontFamily: FONT_FAMILY_SEMIBOLD,
+                        opacity: 0.6,
+                    },
+                    predefinedPlacesDescription: {
+                        color: '#1faadb',
+                    },
+                }}
+                onPress={(data, details = null) => {
+                    props.onPressSelect(data, details)
+                }}
+                query={{
+                    key: MAP_KEY,
+                    language: 'en',
+                }}
+            />
         </View>
     );
 };

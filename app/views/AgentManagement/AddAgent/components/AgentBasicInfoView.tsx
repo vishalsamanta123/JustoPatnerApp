@@ -101,6 +101,7 @@ const AgentBasicInfoView = (props: any) => {
               valueshow={props?.agentInfoData?.adhar_no?.toString()}
               headingText={"Adhar No."}
               keyboardtype={'number-pad'}
+              maxLength={12}
             />
           </View>
           <View style={styles.inputWrap}>
@@ -115,6 +116,7 @@ const AgentBasicInfoView = (props: any) => {
               }}
               valueshow={props?.agentInfoData?.pancard_no?.toString()}
               headingText={"Pancard No."}
+              maxLength={10}
             />
           </View>
           <View style={styles.genderView}>
@@ -177,6 +179,7 @@ const AgentBasicInfoView = (props: any) => {
                   date_of_birth: moment(data).format('YYYY-MM-DD')
                 })
               }}
+              maximumDate={new Date()}
               setDateshow={(data: any) => {
                 props.setAgentInfoData({
                   ...props.agentInfoData,
