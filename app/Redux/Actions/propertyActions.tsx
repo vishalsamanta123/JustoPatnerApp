@@ -1,7 +1,7 @@
 import { handleApiError } from "app/components/ErrorMessage/HandleApiErrors";
 import apiEndPoints from "app/components/utilities/apiEndPoints";
 import { apiCall } from "app/components/utilities/httpClient";
-import { GETPROPERTY_DETAIL, PROPERTY_ERROR, PROPERTY_LIST, PROPERTY_STATUS_UPDATE, START_LOADING, STOP_LOADING } from "../types";
+import { GETPROPERTY_DETAIL, PROPERTY_ERROR, PROPERTY_LIST, PROPERTY_STATUS_UPDATE, REMOVE_PROPERTY_STATUS, START_LOADING, STOP_LOADING } from "../types";
 
 export const getAllProperty = (params: any) => async (dispatch: any) => {
     dispatch({ type: START_LOADING })
@@ -107,5 +107,18 @@ export const statusUpdate = (params: any) => async (dispatch: any) => {
     }
     finally {
         dispatch({ type: STOP_LOADING })
+    }
+};
+export const removeStatus = () => async (dispatch: any) => {
+    try {
+        dispatch({
+            type: REMOVE_PROPERTY_STATUS,
+            payload: null,
+        });
+    } catch (e) {
+        dispatch({
+            type: PROPERTY_ERROR,
+            payload: console.log(e),
+        });
     }
 };

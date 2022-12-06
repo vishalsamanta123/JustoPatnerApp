@@ -1,5 +1,5 @@
 import { authStore, changePasswordReducer, forgotReducer, loadingReducer, otpVerifyReducer, updatepasswordReducer, userDataReducer } from "./AuthReducer";
-import { propertyReducer, propertyDetailReducer } from "./propertyReducers";
+import { propertyReducer, propertyDetailReducer, removeStatusReducer } from "./propertyReducers";
 import { createChannlePartnerReducer, emailAndMobileReducer, registerDataReducer, registrationFormReducer } from "./ReggistrationReducer";
 import { agentReducer, addAgentReducer, addAgentFormReducer, editAgentReducer } from './AgentReducer';
 import { addVisitorReducer, editVisitorReducer, visitorListReducer, visitorReducer } from "./LeadsReducer";
@@ -28,6 +28,7 @@ export default {
     //property modal
     propertyData: propertyReducer,
     propertydetailData: propertyDetailReducer,
+    removePropertyStatus: removeStatusReducer,
 
     // agent modal
     agentData: agentReducer,
