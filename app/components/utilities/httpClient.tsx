@@ -1,6 +1,8 @@
 import { GLOBAL_URL } from "./constant";
 import axios from "axios";
 import { useSelector } from "react-redux";
+import configureStore from 'app/Redux/Store'
+import AsyncStorage from "@react-native-async-storage/async-storage";
 
 const httpClient = axios.create({
   baseURL: `${GLOBAL_URL}/api/`,
@@ -11,22 +13,25 @@ export function setDefaultHeader(header: any, value: any) {
   httpClient.defaults.headers.common[header] = value;
 }
 
+
 export async function apiCall(
   method: any,
   url: any,
   data: any,
   header = { "Content-Type": "application/json", "access-control-allow-origin": "*" }
 ) {
-  // console.log('url: ', url);
-  // console.log('data: ', data);
-  // console.log('method: ', method);
+  const { response } = configureStore().store.getState().login;
+  const generatedToken = await AsyncStorage.getItem("token");
+  let headers = {
+    ...header,
+    "token": response?.token ? response?.token : generatedToken
+  }
   try {
-    // IS_LOADING = true;
     const response = await httpClient({
       method,
       url,
       data,
-      headers: header,
+      headers: headers,
       // withCredentials: false,
     });
     if (response.status === 200) {

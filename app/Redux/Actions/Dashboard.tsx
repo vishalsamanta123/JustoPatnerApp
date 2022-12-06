@@ -40,9 +40,8 @@ export const userStatusUpdateData = (params: any) => async (dispatch: any) => {
         const res = await apiCall(
             "post",
             apiEndPoints.USER_STATUS_UPDATE,
-            params
+            params,
         );
-        console.log('res: ', res);
         if (res.data.status == 200) {
             dispatch({
                 type: USER_STATUS_UPDATE,

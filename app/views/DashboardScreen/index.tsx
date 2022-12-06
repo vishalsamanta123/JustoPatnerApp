@@ -8,7 +8,7 @@ import { GREEN_COLOR } from 'app/components/utilities/constant';
 const DashboardScreen = ({ navigation }: any) => {
   const dispatch: any = useDispatch()
   const { response = {}, data = false } = useSelector((state: any) => state.dashboardData) || {}
-  // const statusData = useSelector((state: any) => state.statusUpdate) || {}
+  const statusData = useSelector((state: any) => state.statusUpdate) || {}
   const [dashBoardData, setDashBoardData] = useState<any>()
 
   useLayoutEffect(() => {
@@ -18,7 +18,7 @@ const DashboardScreen = ({ navigation }: any) => {
     if (response?.status === 200) {
       setDashBoardData(response?.data)
     }
-  }, [response])
+  }, [response, statusData])
   const getDashboard = () => {
     dispatch(dashboardData({}))
   }
@@ -26,18 +26,16 @@ const DashboardScreen = ({ navigation }: any) => {
     dispatch(userStatusUpdateData({
       online_status: data === 0 ? 1 : 0
     }))
-    getDashboard()
   }
-  // useEffect(() => {
-  //   if (statusData?.data && statusData?.response?.status === 200) {
-  //     dispatch(userStatusUpdater())
-  //     ErrorMessage({
-  //       msg: response?.message,
-  //       backgroundColor: GREEN_COLOR
-  //     })
-  //     getDashboard()
-  //   }
-  // }, [statusData])
+  useEffect(() => {
+    if (statusData?.data && statusData?.response?.status === 200) {
+      dispatch(userStatusUpdater())
+      ErrorMessage({
+        msg: response?.message,
+        backgroundColor: GREEN_COLOR
+      })
+    }
+  }, [statusData])
   const handleDrawerPress = () => {
     navigation.toggleDrawer();
   };
