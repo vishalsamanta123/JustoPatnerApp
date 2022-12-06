@@ -70,6 +70,14 @@ const PropertyView = (props: any) => {
   }
   const onRefresh = () => {
     props.getallproperty()
+    setFilterform({
+      ...props.filterform,
+      start_date: "",
+      end_date: "",
+      location: "",
+      property_name: "",
+      property_type: "",
+    });
   }
   const confirmStatus = (items: any) => {
     if (items.approve_status === 2) {

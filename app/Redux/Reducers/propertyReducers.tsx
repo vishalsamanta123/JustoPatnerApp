@@ -1,6 +1,13 @@
 import {
-  PROPERTY_LIST, ADD_PROPERTY, PROPERTY_FORM, PROPERTY_EDIT,
-  GETPROPERTY_DETAIL, PROPERTY_FORM_UPDATE, PROPERTY_FILTER_LIST, PROPERTY_STATUS_UPDATE
+  PROPERTY_LIST,
+  ADD_PROPERTY,
+  PROPERTY_FORM,
+  PROPERTY_EDIT,
+  GETPROPERTY_DETAIL,
+  PROPERTY_FORM_UPDATE,
+  PROPERTY_FILTER_LIST,
+  PROPERTY_STATUS_UPDATE,
+  REMOVE_PROPERTY_STATUS,
 } from "../types";
 
 const initialState = {
@@ -63,9 +70,7 @@ export function propertyReducer(state = initialState, action: any) {
   }
 }
 export function propertyDetailReducer(state = initialStatedetail, action: any) {
-  
   switch (action.type) {
-    
     case GETPROPERTY_DETAIL:
       return {
         ...state,
@@ -74,13 +79,13 @@ export function propertyDetailReducer(state = initialStatedetail, action: any) {
         loading: false,
         response: action.payload,
       };
-   
+
     case PROPERTY_STATUS_UPDATE:
       return {
         ...state,
         detail: false,
         create: true,
-        updateStatus:true,
+        updateStatus: true,
         response: action.payload,
       };
     default:
@@ -103,6 +108,26 @@ export function propertyFormReducer(state = initialStateForm, action: any) {
         response: action.payload,
       };
 
+    default:
+      return state;
+  }
+}
+export function removeStatusReducer(state = initialStateForm, action: any) {
+  switch (action.type) {
+    case PROPERTY_STATUS_UPDATE:
+      return {
+        ...state,
+        detail: false,
+        create: true,
+        response: action.payload,
+      };
+    case REMOVE_PROPERTY_STATUS:
+      return {
+        ...state,
+        detail: false,
+        create: false,
+        response: action.payload,
+      };
     default:
       return state;
   }
