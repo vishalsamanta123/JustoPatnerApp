@@ -1,31 +1,37 @@
-import { View, Text, StatusBar } from 'react-native'
-import React, { useEffect, useState } from 'react'
-import { BLACK_COLOR, PRIMARY_THEME_COLOR_DARK, WHITE_COLOR } from '../../../../components/utilities/constant'
-import Header from '../../../../components/Header'
-import images from '../../../../assets/images'
-import strings from '../../../../components/utilities/Localization'
-import styles from './Styles'
-import { useSafeAreaInsets } from 'react-native-safe-area-context'
-import LeadDetailsIteam from './LeadDetailsIteam'
-import Button from '../../../../components/Button'
-import { useNavigation } from '@react-navigation/native';
-import { useSelector } from 'react-redux'
+import { View, Text, StatusBar } from "react-native";
+import React, { useEffect, useState } from "react";
+import {
+  BLACK_COLOR,
+  PRIMARY_THEME_COLOR_DARK,
+  WHITE_COLOR,
+} from "../../../../components/utilities/constant";
+import Header from "../../../../components/Header";
+import images from "../../../../assets/images";
+import strings from "../../../../components/utilities/Localization";
+import styles from "./Styles";
+import { useSafeAreaInsets } from "react-native-safe-area-context";
+import LeadDetailsIteam from "./LeadDetailsIteam";
+import Button from "../../../../components/Button";
+import { useNavigation } from "@react-navigation/native";
+import { useSelector } from "react-redux";
 
 const LeadDetailsView = (props: any) => {
   const insets = useSafeAreaInsets();
-  const navigation: any = useNavigation()
-  const [userDetails, setuserDetails] = useState({})
-  const getleaddata = useSelector((state: any) => state.visitorData)
+  const navigation: any = useNavigation();
+  const [userDetails, setuserDetails] = useState({});
+  const getleaddata = useSelector((state: any) => state.visitorData);
 
   useEffect(() => {
     if (getleaddata?.response?.status === 200) {
-      setuserDetails(getleaddata?.response?.data[0])
+      if (getleaddata?.response?.data?.length > 0) {
+        setuserDetails(getleaddata?.response?.data[0]);
+      }
     }
-  }, [getleaddata])
+  }, [getleaddata]);
 
   const OnpressseheduleVisit = () => {
-    navigation.navigate('AddAppointmentScreen')
-  }
+    navigation.navigate("AddAppointmentScreen");
+  };
 
   return (
     <>
@@ -46,9 +52,7 @@ const LeadDetailsView = (props: any) => {
           headerStyle={styles.headerStyle}
         />
         <View style={styles.leadDetailsItemView}>
-          <LeadDetailsIteam
-            items={userDetails}
-          />
+          <LeadDetailsIteam items={userDetails} />
         </View>
         <View style={styles.btnContainer}>
           <Button
@@ -74,7 +78,7 @@ const LeadDetailsView = (props: any) => {
         </View>
       </View>
     </>
-  )
-}
+  );
+};
 
-export default LeadDetailsView
+export default LeadDetailsView;
