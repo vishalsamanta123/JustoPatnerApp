@@ -28,7 +28,23 @@ const styles = StyleSheet.create({
     margin: normalizeSpacing(20),
     alignItems: 'center'
   },
-
+  DummyloginBanner: {
+    width: normalizeSpacing(80),
+    height: normalizeSpacing(80),
+    borderRadius: normalizeSpacing(50),
+  },
+  editView: {
+    position: 'absolute',
+    top: 5,
+    bottom: 0,
+    right: 0
+  },
+  editImage: {
+    width: normalizeWidth(20),
+    height: normalizeHeight(20),
+    backgroundColor: GRAY_COLOR,
+    borderRadius: 100
+  },
   wraptop: {
     flex: 5.2,
     margin: normalizeSpacing(20),
@@ -63,8 +79,8 @@ const styles = StyleSheet.create({
     justifyContent: 'center'
   },
   imageVw: {
-    width: normalizeWidth(95),
-    height: normalizeHeight(95),
+    width: normalizeWidth(100),
+    height: normalizeHeight(100),
     borderRadius: 50
   },
   inputWrap: {

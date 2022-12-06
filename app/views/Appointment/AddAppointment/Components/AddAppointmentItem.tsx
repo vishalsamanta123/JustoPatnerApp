@@ -14,7 +14,7 @@ import moment from 'moment'
 
 const AddAppointmentItem = (props: any) => {
     return (
-        <ScrollView>
+        <ScrollView keyboardShouldPersistTaps={'handled'}>
             <View style={styles.wrap}>
                 <View style={styles.inputWrap}>
                     <DropdownInput
@@ -179,10 +179,11 @@ const AddAppointmentItem = (props: any) => {
                         handleInputBtnPress={() => { }}
                         headingText={strings.location}
                         valueshow={props.addAppointmentForm?.pickup_location}
-                        onChangeText={(val: any) => {
+                        inputType={'location'}
+                        onPressSelect={(data: any, detail: any) => {
                             props.setAddAppointmentForm({
                                 ...props.addAppointmentForm,
-                                pickup_location: val
+                                pickup_location: data?.description,
                             })
                         }}
                     />

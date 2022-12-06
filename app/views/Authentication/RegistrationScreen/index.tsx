@@ -40,7 +40,7 @@ const RegistrationScreen = ({ navigation }: any) => {
     }
     else if (registerForm.adhar_no == undefined || registerForm.adhar_no == '') {
       isError = false;
-      errorMessage = "Adhar No. is require. Please enter Adhar No."
+      errorMessage = "Aadhar No. is require. Please enter Aadhar No."
     }
     else if (registerForm.pancard_no == undefined || registerForm.pancard_no == '') {
       isError = false;

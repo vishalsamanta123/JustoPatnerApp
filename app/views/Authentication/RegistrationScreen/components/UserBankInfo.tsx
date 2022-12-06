@@ -209,7 +209,7 @@ const UserBankInfo = ({ navigation }: any) => {
           </View>
           <View style={[styles.inputWrap, { flexDirection: "row", alignItems: 'center' }]}>
             <View style={{ flex: 1 }}>
-              <Text style={styles.headingText}>Propidership Declaration Letter</Text>
+              <Text style={styles.headingText}>Proprietorship Declaration Letter</Text>
             </View>
             <View>
               <TouchableOpacity

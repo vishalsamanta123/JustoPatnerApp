@@ -1,5 +1,5 @@
 
-import { View, TextInput, Image, TouchableOpacity, Text } from 'react-native';
+import { View, TextInput, Image, TouchableOpacity, Text, ScrollView } from 'react-native';
 import React from 'react';
 import styles from './styles';
 import { BLACK_COLOR } from '../utilities/constant';
@@ -26,20 +26,21 @@ const InputField = (props: any) => {
     <View>
       <View>
         {inputType === 'location' ?
-          <LocationInput
-            editable={editable}
-            headingText={props.headingText}
-            headingTextWidth={props.headingTextWidth}
-            onPressSelect={props.onPressSelect}
-            placeholderText={props.placeholderText}
-            valueshow={props.valueshow}
-            onBlur={props.onBlur}
-            textInputProps={props.textInputProps ? props.textInputProps : {
-              placeholderTextColor: BLACK_COLOR,
-            }}
-            handleInputBtnPress={props.handleInputBtnPress}
-            rightImgSrc={props.rightImgSrc}
-          /> :
+            <LocationInput
+              editable={editable}
+              headingText={props.headingText}
+              headingTextWidth={props.headingTextWidth}
+              onPressSelect={props.onPressSelect}
+              placeholderText={props.placeholderText}
+              valueshow={props.valueshow}
+              onBlur={props.onBlur}
+              textInputProps={props.textInputProps ? props.textInputProps : {
+                placeholderTextColor: BLACK_COLOR,
+              }}
+              handleInputBtnPress={props.handleInputBtnPress}
+              rightImgSrc={props.rightImgSrc}
+            />
+          :
           <CommonInput
             editable={editable}
             inputWidth={inputWidth}

@@ -4,7 +4,7 @@ import { RadioButton } from 'react-native-paper';
 import { useSafeAreaInsets } from 'react-native-safe-area-context';
 import images from '../../../../assets/images';
 import InputField from '../../../../components/InputField';
-import { PRIMARY_THEME_COLOR, BLACK_COLOR } from '../../../../components/utilities/constant';
+import { PRIMARY_THEME_COLOR, BLACK_COLOR, GRAY_LIGHT_COLOR } from '../../../../components/utilities/constant';
 import strings from '../../../../components/utilities/Localization';
 import styles from './Styles';
 import Styles from '../../../../components/Modals/styles'
@@ -56,7 +56,7 @@ const AddNewVisitorForm = (props: any) => {
                 leftImageIconStyle={styles.RightFirstIconStyle}
                 handleOnLeftIconPress={props.handleBackPress}
             />
-            <ScrollView>
+            <ScrollView keyboardShouldPersistTaps={'handled'}>
                 <View style={styles.wrap}>
                     <Text style={styles.headingText}>{strings.visitordetails}</Text>
                     <View style={[styles.inputWrap]}>
@@ -137,7 +137,7 @@ const AddNewVisitorForm = (props: any) => {
                     </View>
                     <View style={styles.inputWrap}>
                         <InputField
-                            placeholderText={"Adhar No."}
+                            placeholderText={"Aadhar No."}
                             handleInputBtnPress={() => { }}
                             onChangeText={(data: any) => {
                                 props.setFormData({
@@ -146,7 +146,7 @@ const AddNewVisitorForm = (props: any) => {
                                 })
                             }}
                             valueshow={props?.formData?.adhar_no?.toString()}
-                            headingText={"Adhar No."}
+                            headingText={"Aadhar No."}
                             keyboardtype={'number-pad'}
                         />
                     </View>
@@ -281,18 +281,18 @@ const AddNewVisitorForm = (props: any) => {
                             headingText={"Email Address"}
                         />
                     </View>
-                    <View style={styles.inputWrap}>
+                    <View style={[styles.inputWrap, { width: '100%' }]}>
                         <InputField
                             placeholderText={"Location"}
-                            handleInputBtnPress={() => { }}
-                            onChangeText={(data: any) => {
-                                props.setFormData({
-                                    ...props.formData,
-                                    location: data,
-                                })
-                            }}
                             valueshow={props?.formData?.location}
                             headingText={"Location"}
+                            inputType={'location'}
+                            onPressSelect={(data: any, detail: any) => {
+                                props.setFormData({
+                                    ...props.formData,
+                                    location: data?.description,
+                                })
+                            }}
                         />
                     </View>
                     <View style={styles.inputWrap}>
@@ -396,6 +396,7 @@ const AddNewVisitorForm = (props: any) => {
                                         min_budget: data
                                     })
                                 }}
+                                placeholderTextColor={GRAY_LIGHT_COLOR}
                                 keyboardType={'number-pad'}
                                 placeholder='Min Budget' style={styles.budgetInput} />
                             <TouchableOpacity
@@ -414,6 +415,7 @@ const AddNewVisitorForm = (props: any) => {
                                         max_budget: data
                                     })
                                 }}
+                                placeholderTextColor={GRAY_LIGHT_COLOR}
                                 keyboardType={'number-pad'}
                                 placeholder='Max Budget'
                                 style={[styles.budgetInput, { marginLeft: 20 }]} />
@@ -512,6 +514,7 @@ const AddNewVisitorForm = (props: any) => {
                                         min_emi_budget: data
                                     })
                                 }}
+                                placeholderTextColor={GRAY_LIGHT_COLOR}
                                 keyboardType={'number-pad'}
                                 placeholder='Min EMI Pay' style={styles.budgetInput} />
                             <TouchableOpacity
@@ -530,6 +533,7 @@ const AddNewVisitorForm = (props: any) => {
                                         max_emi_budget: data
                                     })
                                 }}
+                                placeholderTextColor={GRAY_LIGHT_COLOR}
                                 keyboardType={'number-pad'}
                                 placeholder='Max EMI Pay'
                                 style={[styles.budgetInput, { marginLeft: 20 }]}

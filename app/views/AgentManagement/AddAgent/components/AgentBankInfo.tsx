@@ -57,7 +57,7 @@ const AgentBankInfo = ({ navigation, route }: any) => {
       errorMessage = "Please select rera certificate image"
     } else if (propidership_declaration_letter === '' || propidership_declaration_letter === undefined) {
       isError = false;
-      errorMessage = "Please select propidership declaration letter"
+      errorMessage = "Please select Proprietorship declaration letter"
     }
     if (errorMessage !== '') {
       ErrorMessage({
