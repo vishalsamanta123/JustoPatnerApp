@@ -8,7 +8,7 @@ import {
 import React, { useState, useEffect } from "react";
 import images from "../../../../assets/images";
 import InputField from "../../../../components/InputField";
-import { GREEN_COLOR, RED_COLOR, WHITE_COLOR } from "../../../../components/utilities/constant";
+import { BLACK_COLOR, GREEN_COLOR, PRIMARY_THEME_COLOR, RED_COLOR, WHITE_COLOR } from "../../../../components/utilities/constant";
 import strings from "../../../../components/utilities/Localization";
 import styles from "./styles";
 import { useSafeAreaInsets } from "react-native-safe-area-context";
@@ -18,11 +18,13 @@ import { useDispatch, useSelector } from "react-redux";
 import PicturePickerModal from "app/components/Modals/PicturePicker";
 import { addAgent, addAgentRemove, editAgent } from "app/Redux/Actions/AgentActions";
 import ErrorMessage from "app/components/ErrorMessage";
+import { normalize } from "app/components/scaleFontSize";
 
 const AgentBankInfo = ({ navigation, route }: any) => {
   const dispatch: any = useDispatch()
   const { response = {} } = useSelector((state: any) => state.addAgentForm)
   const [agentInfoData, setAgentInfoData] = useState({ ...response })
+  console.log('agentInfoData:response ', agentInfoData);
   const editData = useSelector((state: any) => state.editAgentData) || {}
   const addData = useSelector((state: any) => state.addAgentData) || {}
 
@@ -128,7 +130,7 @@ const AgentBankInfo = ({ navigation, route }: any) => {
           />
         </View>
         <View style={[styles.inputWrap, { flexDirection: "row" }]}>
-          <InputField
+          {/* <InputField
             inputWidth={"60%"}
             btnWidth={"30%"}
             browse={"browse"}
@@ -141,16 +143,22 @@ const AgentBankInfo = ({ navigation, route }: any) => {
             }
             handleInputBtnPress={() => { }}
             headingText={"RERA Certificat"}
-          />
+          /> */}
+          <View style={{ flex: 1 }}>
+            <Text style={[styles.headingText, { fontSize: normalize(17) }]}>RERA Certificate</Text>
+          </View>
           <TouchableOpacity
             onPress={() => { route?.params?.type === 'add' ? setRefraCrtf(true) : null }}
             style={styles.browseVw}
           >
-            <Text>browse</Text>
+            <Text style={{
+              color: agentInfoData?.rera_certificate === "" ?
+                BLACK_COLOR : PRIMARY_THEME_COLOR
+            }}>{strings.browse}</Text>
           </TouchableOpacity>
         </View>
         <View style={[styles.inputWrap, { flexDirection: "row" }]}>
-          <InputField
+          {/* <InputField
             inputWidth={"60%"}
             btnWidth={"30%"}
             headingTextWidth={'90%'}
@@ -166,12 +174,18 @@ const AgentBankInfo = ({ navigation, route }: any) => {
             onChangeText={() => { }}
             topping={16}
             headingText={"Propidership Declaration Letter"}
-          />
+          /> */}
+          <View style={{ flex: 1 }}>
+            <Text style={[styles.headingText, { fontSize: normalize(17) }]}>Propidership Declaration Letter</Text>
+          </View>
           <TouchableOpacity
             onPress={() => { route?.params?.type === 'add' ? setPropiderLettr(true) : null }}
             style={styles.browseVw}
           >
-            <Text>browse</Text>
+            <Text style={{
+              color: agentInfoData?.propidership_declaration_letter === "" ?
+                BLACK_COLOR : PRIMARY_THEME_COLOR
+            }}>{strings.browse}</Text>
           </TouchableOpacity>
         </View>
       </View>

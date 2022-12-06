@@ -15,6 +15,8 @@ import images from '../../../assets/images';
 import styles from './styles';
 import strings from '../../../components/utilities/Localization';
 import {
+  GRAY_COLOR,
+  GREEN_COLOR,
   PRIMARY_THEME_COLOR,
   PRIMARY_THEME_COLOR_DARK,
   WHITE_COLOR,
@@ -23,7 +25,6 @@ import {
 const DashboardView = (props: any) => {
   const targetData = props?.dashBoardData?.target || {}
   const achieveTargetData = props?.dashBoardData?.achievetargetdata || {}
-  const [isEnabled, setIsEnabled] = useState(false);
   const insets = useSafeAreaInsets();
   const DATA: any = [
     {
@@ -68,9 +69,6 @@ const DashboardView = (props: any) => {
       </TouchableOpacity>
     );
   };
-  const handleSwitcPress = () => {
-    setIsEnabled(!isEnabled);
-  };
   return (
     <>
       <View style={styles.mainContainerWrap}>
@@ -101,19 +99,16 @@ const DashboardView = (props: any) => {
                     value={isEnabled}
                     style={styles.switchStyle}
                   /> */}
-
                   <Switch
                     value={props?.dashBoardData?.online_status === 1 ? true : false}
                     onValueChange={(val) => props.updateStatusPress(props?.dashBoardData?.online_status)}
-                    //disabled={false}
-                    backgroundActive={'green'}
-                    backgroundInactive={'gray'}
+                    backgroundActive={GREEN_COLOR}
+                    backgroundInactive={GRAY_COLOR}
                     circleActiveColor={WHITE_COLOR}
                     circleInActiveColor={WHITE_COLOR}
                     circleSize={25}
                     activeText={''}
                     inActiveText={''}
-                    // barHeight={1}
                     circleBorderWidth={2}
                   /*  activeText={'On'}
                    inActiveText={'Off'}
@@ -124,10 +119,7 @@ const DashboardView = (props: any) => {
                    backgroundInactive={'gray'}
                    circleActiveColor={'#30a566'}
                    circleInActiveColor={'#000000'} */
-
                   />
-
-
                 </View>
               </View>
               <View style={styles.welcomeView}>
@@ -136,11 +128,9 @@ const DashboardView = (props: any) => {
               </View>
             </View>
             <View style={styles.qrCodeView}>
-              {props?.dashBoardData?.qrcode != '' ?
-                <Image source={{
-                  uri: props?.dashBoardData?.qrcode === '' || props?.dashBoardData?.qrcode === undefined ?
-                    '' : props?.dashBoardData?.qrcode
-                }} style={styles.qrCodeImage} />
+              {props?.dashBoardData?.qr_code != "" ?
+                <Image source={{ uri: props?.dashBoardData?.qr_code }}
+                  style={styles.qrCodeImage} />
                 :
                 <Image source={images.qrCode} style={styles.qrCodeImage} />
               }
@@ -189,7 +179,7 @@ const DashboardView = (props: any) => {
                 </Text>
               </View>
               <View style={styles.numberView}>
-                <Text style={styles.thirdPortionNumberText}>250/1000</Text>
+                <Text style={styles.thirdPortionNumberText}>{props?.dashBoardData?.total_site_visit}</Text>
               </View>
             </View>
             <View style={styles.thirdPortioncardView}>
@@ -199,7 +189,7 @@ const DashboardView = (props: any) => {
                 </Text>
               </View>
               <View style={styles.numberView}>
-                <Text style={styles.thirdPortionNumberText}>250/1000</Text>
+                <Text style={styles.thirdPortionNumberText}>{props?.dashBoardData?.total_close_visit}</Text>
               </View>
             </View>
             <View style={styles.thirdPortioncardView}>
@@ -207,23 +197,23 @@ const DashboardView = (props: any) => {
                 <Text style={styles.thirdPortionCardText}>Today Visit</Text>
               </View>
               <View style={styles.numberView}>
-                <Text style={styles.thirdPortionNumberText}>250/1000</Text>
+                <Text style={styles.thirdPortionNumberText}>{props?.dashBoardData?.total_visit}</Text>
               </View>
             </View>
-            <View style={styles.thirdPortioncardView}>
+            {/* <View style={styles.thirdPortioncardView}>
               <View style={styles.thirdPortionCardTextView}>
                 <Text style={styles.thirdPortionCardText}>Active CP</Text>
               </View>
               <View style={styles.numberView}>
                 <Text style={styles.thirdPortionNumberText}>250/1000</Text>
               </View>
-            </View>
+            </View> */}
             <View style={styles.thirdPortioncardView}>
               <View style={styles.thirdPortionCardTextView}>
                 <Text style={styles.thirdPortionCardText}>Closing Target</Text>
               </View>
               <View style={styles.numberView}>
-                <Text style={styles.thirdPortionNumberText}>250/1000</Text>
+                <Text style={styles.thirdPortionNumberText}>{targetData?.closing_target}</Text>
               </View>
             </View>
           </View>

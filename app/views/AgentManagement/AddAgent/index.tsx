@@ -11,7 +11,7 @@ const AgentBasicInfo = ({ navigation, route }: any) => {
     agent_id: '', agent_name: '', whatsapp_number: '', adhar_no: '',
     pancard_no: "", gender: '', date_of_birth: '', rera_certificate_no: '',
     profile_picture: '', primary_mobile: '', email: '',
-    working_location: []
+    working_location: [], propidership_declaration_letter: '', rera_certificate: ''
   })
   const dispatch: any = useDispatch()
   const [visible, setVisible] = useState(false)

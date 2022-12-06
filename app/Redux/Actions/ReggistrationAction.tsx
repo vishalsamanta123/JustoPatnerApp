@@ -1,7 +1,7 @@
 import { handleApiError } from "app/components/ErrorMessage/HandleApiErrors";
 import apiEndPoints from "app/components/utilities/apiEndPoints";
 import { apiCall } from "app/components/utilities/httpClient";
-import { CHECK_EMAIL_MOBILE, CHECK_EMAIL_MOBILE_ERROR, CREATE_CHANNEL_PARTNER, CREATE_CHANNEL_PARTNER_ERROR, REGISTRATION_ERROR, REGISTRATION_FORM, START_LOADING, STOP_LOADING } from "../types";
+import { CHECK_EMAIL_MOBILE, CHECK_EMAIL_MOBILE_ERROR, CREATE_CHANNEL_PARTNER, CREATE_CHANNEL_PARTNER_ERROR, REGISTRATION_ERROR, REGISTRATION_FORM, REMOVE_CREATE_CHANNEL_PARTNER, REMOVE_EMAIL_NUMBER_CHECK, START_LOADING, STOP_LOADING } from "../types";
 
 export const RegistrationForm = (item: any) => async (dispatch: any) => {
   try {
@@ -71,3 +71,29 @@ export const checkEmailMobile = (item: any) => async (dispatch: any) => {
     dispatch({ type: STOP_LOADING })
   }
 }
+export const emailCheckRemove = () => async (dispatch: any) => {
+  try {
+    dispatch({
+      type: REMOVE_EMAIL_NUMBER_CHECK,
+      payload: null,
+    });
+  } catch (e) {
+    dispatch({
+      type: CHECK_EMAIL_MOBILE_ERROR,
+      payload: console.log(e),
+    });
+  }
+};
+export const removeRegisterData = () => async (dispatch: any) => {
+  try {
+    dispatch({
+      type: REMOVE_CREATE_CHANNEL_PARTNER,
+      payload: null,
+    });
+  } catch (e) {
+    dispatch({
+      type: CHECK_EMAIL_MOBILE_ERROR,
+      payload: console.log(e),
+    });
+  }
+};
