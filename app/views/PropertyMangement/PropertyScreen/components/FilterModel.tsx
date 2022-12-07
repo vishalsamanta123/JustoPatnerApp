@@ -1,4 +1,4 @@
-import { View, Text, Image, TouchableOpacity } from "react-native";
+import { View, Text, Image, TouchableOpacity, ScrollView } from "react-native";
 import React, { useState } from "react";
 import Modal from "react-native-modal";
 import styles from "../../../../components/Modals/styles";
@@ -69,7 +69,6 @@ const FilterModal = (props: any) => {
       property_name: "",
       property_type: "",
     });
-
     dispatch(
       getAllProperty({
         offset: 0,
@@ -80,8 +79,9 @@ const FilterModal = (props: any) => {
   };
 
   return (
-    <View>
-      <Modal isVisible={props.Visible}>
+    <Modal isVisible={props.Visible}>
+      <ScrollView keyboardShouldPersistTaps={'handled'}
+        contentContainerStyle={{ flexGrow: 1, justifyContent: 'center' }}>
         <View style={styles.mainContainer}>
           <View style={styles.topContainer}>
             <Text style={styles.topTxt}>{strings.searchProperty}</Text>
@@ -150,7 +150,7 @@ const FilterModal = (props: any) => {
             <View style={styles.inputWrap}>
               <InputField
                 placeholderText={"Search by Name"}
-                handleInputBtnPress={() => {}}
+                handleInputBtnPress={() => { }}
                 onChangeText={(val: any) => {
                   props.setFilterform({
                     ...props.filterform,
@@ -158,14 +158,21 @@ const FilterModal = (props: any) => {
                   });
                 }}
                 valueshow={props.filterform.property_name}
-                //name={'property_name'}
+              //name={'property_name'}
               />
             </View>
             <View style={styles.inputWrap}>
               <InputField
                 placeholderText={"Search by Location"}
-                handleInputBtnPress={() => {}}
-                onChangeText={() => {}}
+                handleInputBtnPress={() => { }}
+                onChangeText={() => { }}
+                inputType={'location'}
+                onPressSelect={(data: any, detail: any) => {
+                  props.setFilterform({
+                    ...props.filterform,
+                    location: data?.description,
+                  })
+                }}
               />
             </View>
             <View style={styles.inputWrap}>
@@ -191,7 +198,7 @@ const FilterModal = (props: any) => {
             </View>
           </View>
           <View style={{ marginVertical: 20 }}>
-            <View style={{ flexDirection: "row" }}>
+            <View style={{ flexDirection: "row", justifyContent: 'center' }}>
               <Button
                 width={135}
                 buttonText={strings.reset}
@@ -205,8 +212,8 @@ const FilterModal = (props: any) => {
             </View>
           </View>
         </View>
-      </Modal>
-    </View>
+      </ScrollView>
+    </Modal>
   );
 };
 
