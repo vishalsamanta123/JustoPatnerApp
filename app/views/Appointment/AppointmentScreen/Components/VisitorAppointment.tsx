@@ -7,6 +7,7 @@ import { PURPLE_COLOR, CALL_COLOR } from '../../../../components/utilities/const
 import moment from 'moment'
 
 const VisitorAppointment = (props: any) => {
+  const item = props?.items || {}
   return (
     <View style={styles.IteamView}>
       <View style={styles.Txtview}>
@@ -15,7 +16,7 @@ const VisitorAppointment = (props: any) => {
         </View>
         <View><Text>:</Text></View>
         <View style={styles.nameContainer}>
-          <Text style={styles.nameTxt}>{moment(props.items.appointment_date).format('DD-MM-YYYY')}</Text>
+          <Text style={styles.nameTxt}>{moment(item?.appointment_date).format('DD-MM-YYYY')}</Text>
         </View>
       </View>
       <View style={styles.Txtview}>
@@ -24,7 +25,7 @@ const VisitorAppointment = (props: any) => {
         </View>
         <View><Text>:</Text></View>
         <View style={styles.nameContainer}>
-          <Text style={styles.nameTxt}>{`${props.items.customer_first_name} ${props.items.customer_last_name}`}</Text>
+          <Text style={styles.nameTxt}>{`${item?.customer_first_name} ${item?.customer_last_name}`}</Text>
         </View>
       </View>
       <View style={styles.Txtview}>
@@ -33,7 +34,7 @@ const VisitorAppointment = (props: any) => {
         </View>
         <View><Text>:</Text></View>
         <View style={styles.nameContainer}>
-          <Text style={styles.nameTxt}>{props.items.lead_no}</Text>
+          <Text style={styles.nameTxt}>{item?.lead_no}</Text>
         </View>
       </View>
       <View style={styles.Txtview}>
@@ -42,7 +43,7 @@ const VisitorAppointment = (props: any) => {
         </View>
         <View><Text>:</Text></View>
         <View style={styles.nameContainer}>
-          <Text style={styles.nameTxt}>{props.items.pickup}</Text>
+          <Text style={styles.nameTxt}>{item?.pickup}</Text>
         </View>
       </View>
       <View style={styles.Txtview}>
@@ -52,9 +53,9 @@ const VisitorAppointment = (props: any) => {
         <View><Text>:</Text></View>
         <View style={styles.nameContainer}>
           <Text style={styles.nameTxt}>{
-            props.items.status == 1 ? 'Pending' :
-              props.items.status == 2 ? 'Confirm' :
-                props.items.status == 3 ? 'Compleat' : 'Appoiment cancel'
+            item?.status == 1 ? 'Pending' :
+              item?.status == 2 ? 'Confirm' :
+                item?.status == 3 ? 'Compleat' : 'Appoiment cancel'
           }</Text>
         </View>
       </View>
@@ -64,14 +65,14 @@ const VisitorAppointment = (props: any) => {
         </View>
         <View><Text>:</Text></View>
         <View style={styles.nameContainer}>
-          <Text style={styles.nameTxt}>{props.items.lead_score}</Text>
+          <Text style={styles.nameTxt}>{item?.lead_score}</Text>
         </View>
       </View>
       <View style={styles.buttonContainer}>
-        {props.items.Status !== 'Confirmed' && props.items.Status !== 'Visitor not interested' ?
+        {item?.Status !== 'Confirmed' && item?.Status !== 'Visitor not interested' ?
           (<TouchableOpacity
             style={[styles.button, { borderColor: PURPLE_COLOR }]}
-            onPress={() => props.onPressEdit(props.items)}
+            onPress={() => props.onPressEdit(item)}
           >
             <Text style={[styles.buttonTxt, { color: PURPLE_COLOR }]}>{strings.edit}</Text>
           </TouchableOpacity>)
@@ -83,7 +84,7 @@ const VisitorAppointment = (props: any) => {
         >
           <Text style={[styles.buttonTxt, { color: CALL_COLOR }]}>{strings.call}</Text>
         </TouchableOpacity>
-        <TouchableOpacity style={styles.Viewbutton} onPress={() => props.onPressView(props.items)}>
+        <TouchableOpacity style={styles.Viewbutton} onPress={() => props.onPressView(item)}>
           <Image
             source={images.forwardArrow}
             style={styles.arrow}
