@@ -10,7 +10,7 @@ import InputCalender from "../../../../components/InputCalender";
 import { Dropdown } from "react-native-element-dropdown";
 import moment from "moment";
 import { useDispatch } from 'react-redux';
-import { getAllAgentList } from "app/Redux/Actions/AgentActions";
+import { DATE_FORMAT } from "app/components/utilities/constant";
 
 const FilterModal = (props: any) => {
   const dispatch: any = useDispatch()
@@ -65,13 +65,13 @@ const FilterModal = (props: any) => {
                 dateData={(data: any) => {
                   props.setFilterData({
                     ...props.filterData,
-                    startdate: moment(data).format('YYYY-MM-DD')
+                    startdate: moment(data).format(DATE_FORMAT)
                   })
                 }}
                 setDateshow={(data: any) => {
                   props.setFilterData({
                     ...props.filterData,
-                    startdate: moment(data).format('YYYY-MM-DD')
+                    startdate: moment(data).format(DATE_FORMAT)
                   })
                 }}
                 value={props?.filterData?.startdate}
@@ -87,13 +87,13 @@ const FilterModal = (props: any) => {
                 dateData={(data: any) => {
                   props.setFilterData({
                     ...props.filterData,
-                    enddate: moment(data).format('YYYY-MM-DD')
+                    enddate: moment(data).format(DATE_FORMAT)
                   })
                 }}
                 setDateshow={(data: any) => {
                   props.setFilterData({
                     ...props.filterData,
-                    enddate: moment(data).format('YYYY-MM-DD')
+                    enddate: moment(data).format(DATE_FORMAT)
                   })
                 }}
               />
@@ -116,6 +116,12 @@ const FilterModal = (props: any) => {
                 valueshow={props?.filterData?.search_by_location}
                 inputType={'location'}
                 onPressSelect={(data: any, detail: any) => {
+                  props.setFilterData({
+                    ...props.filterData,
+                    search_by_location: data?.description,
+                  })
+                }}
+                onChangeText={(data: any) => {
                   props.setFilterData({
                     ...props.filterData,
                     search_by_location: data?.description,

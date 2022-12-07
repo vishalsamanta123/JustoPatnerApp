@@ -104,7 +104,8 @@ const styles = StyleSheet.create({
   },
   inputWrap: {
     marginTop: normalizeSpacing(30),
-  }, cancelModalVw: {
+  },
+  cancelModalVw: {
     position: 'absolute',
     alignSelf: 'center',
     top: -30,

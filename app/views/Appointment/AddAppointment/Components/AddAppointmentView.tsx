@@ -18,15 +18,15 @@ const AddAppointmentView = (props: any) => {
     const [value, setValue] = useState(null)
     const [gender, setGender] = useState("Male");
     const [checked, setChecked] = React.useState("first");
-    const {response={}} = useSelector((state: any) => state.appointment)
+    const { response = {} } = useSelector((state: any) => state.appointment)
     useEffect(() => {
-setAddAppointmentForm({
-    ...addAppointmentForm, 
-    pickup_location: response?.data?.pickup_location,number_of_guest: response?.data?.number_of_guest
-    
-})
+        setAddAppointmentForm({
+            ...addAppointmentForm,
+            pickup_location: response?.data?.pickup_location, number_of_guest: response?.data?.number_of_guest
+
+        })
     }, [response])
-    
+
     const [addAppointmentForm, setAddAppointmentForm] = useState<any>({
         lead_id: props?.data?.lead_id,
         property_id: props?.data?.property_id,
