@@ -1,7 +1,7 @@
 import { View, Text, StatusBar, TextInput } from 'react-native'
 import React, { useEffect, useState } from 'react'
 import styles from './Styles'
-import { PRIMARY_THEME_COLOR_DARK, WHITE_COLOR } from '../../../../components/utilities/constant';
+import { DATE_FORMAT, PRIMARY_THEME_COLOR_DARK, TIME_FORMAT, WHITE_COLOR } from '../../../../components/utilities/constant';
 import Header from '../../../../components/Header';
 import images from '../../../../assets/images';
 import strings from '../../../../components/utilities/Localization';
@@ -135,13 +135,13 @@ const EditFollowUp = ({ navigation, route }: any) => {
                         dateData={(data: any) => {
                             setFormData({
                                 ...formData,
-                                next_followup_date: moment(data).format('YYYY-MM-DD')
+                                next_followup_date: moment(data).format(DATE_FORMAT)
                             })
                         }}
                         setDateshow={(data: any) => {
                             setFormData({
                                 ...formData,
-                                next_followup_date: moment(data).format('YYYY-MM-DD')
+                                next_followup_date: moment(data).format(DATE_FORMAT)
                             })
                         }}
                         value={formData?.next_followup_date}
@@ -158,13 +158,13 @@ const EditFollowUp = ({ navigation, route }: any) => {
                         dateData={(data: any) => {
                             setFormData({
                                 ...formData,
-                                followup_time: moment(data).format('LT')
+                                followup_time: moment(data).format(TIME_FORMAT)
                             })
                         }}
                         setDateshow={(data: any) => {
                             setFormData({
                                 ...formData,
-                                followup_time: moment(data).format('LT')
+                                followup_time: moment(data).format(TIME_FORMAT)
                             })
                         }}
                         value={formData?.followup_time}

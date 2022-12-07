@@ -5,7 +5,7 @@ import Button from "../../../../components/Button";
 import DropdownInput from "../../../../components/DropDown";
 import Header from "../../../../components/Header";
 import InputField from "../../../../components/InputField";
-import { PRIMARY_THEME_COLOR } from "../../../../components/utilities/constant";
+import { DATE_FORMAT, PRIMARY_THEME_COLOR, TIME_FORMAT } from "../../../../components/utilities/constant";
 import strings from "../../../../components/utilities/Localization";
 import styles from "./styles";
 import Styles from "../../../../components/DropDown/styles";
@@ -71,13 +71,13 @@ const AppointmentAddView = (props: any) => {
                         dateData={(data: any) => {
                             props.setFormData({
                                 ...props.formData,
-                                appointment_date: moment(data).format('YYYY-MM-DD')
+                                appointment_date: moment(data).format(DATE_FORMAT)
                             })
                         }}
                         setDateshow={(data: any) => {
                             props.setFormData({
                                 ...props.formData,
-                                appointment_date: moment(data).format('YYYY-MM-DD')
+                                appointment_date: moment(data).format(DATE_FORMAT)
                             })
                         }}
                         value={props?.formData?.appointment_date}
@@ -94,13 +94,13 @@ const AppointmentAddView = (props: any) => {
                         dateData={(data: any) => {
                             props.setFormData({
                                 ...props.formData,
-                                appointment_time: moment(data).format('LT')
+                                appointment_time: moment(data).format(TIME_FORMAT)
                             })
                         }}
                         setDateshow={(data: any) => {
                             props.setFormData({
                                 ...props.formData,
-                                appointment_time: moment(data).format('LT')
+                                appointment_time: moment(data).format(TIME_FORMAT)
                             })
                         }}
                         value={props?.formData?.appointment_time}
