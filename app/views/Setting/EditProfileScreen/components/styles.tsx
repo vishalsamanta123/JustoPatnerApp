@@ -59,8 +59,8 @@ const styles = StyleSheet.create({
         textAlign: 'center',
       },
       userImage: {
-        height: normalizeHeight(80),
-        width: normalizeWidth(80),
+        height: normalizeHeight(100),
+        width: normalizeWidth(100),
         borderRadius: normalizeSpacing(80)
     },
 });
