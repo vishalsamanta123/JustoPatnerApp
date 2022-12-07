@@ -51,19 +51,26 @@ const EditProfileView = (props: any) => {
             style={styles.imageCircle}
             onPress={() => setProfileVisible(true)}
           >
-            <Image
-              style={styles.userImage}
-              source={{
-                uri: editData?.local_profile_picture?.uri
-                  ? editData?.local_profile_picture?.uri
-                  : editData?.profile_picture,
-              }}
-            />
+            {editData?.profile_picture || editData?.local_profile_picture?.uri ?
+              <Image
+                style={styles.userImage}
+                source={{
+                  uri: editData?.local_profile_picture?.uri
+                    ? editData?.local_profile_picture?.uri
+                    : editData?.profile_picture,
+                }}
+              />
+              :
+              <Image
+                style={styles.userImage}
+                source={images.dummyUser}
+              />
+            }
           </TouchableOpacity>
           <View style={styles.inputWrap}>
             <InputField
               valueshow={editData?.agent_name}
-              handleInputBtnPress={() => {}}
+              handleInputBtnPress={() => { }}
               onChangeText={(e: any) => {
                 setEditData({
                   ...editData,
@@ -76,7 +83,7 @@ const EditProfileView = (props: any) => {
           <View style={styles.inputWrap}>
             <InputField
               valueshow={editData?.adhar_no}
-              handleInputBtnPress={() => {}}
+              handleInputBtnPress={() => { }}
               onChangeText={(e: any) => {
                 setEditData({
                   ...editData,
@@ -89,7 +96,7 @@ const EditProfileView = (props: any) => {
           <View style={styles.inputWrap}>
             <InputField
               valueshow={editData?.pancard_no}
-              handleInputBtnPress={() => {}}
+              handleInputBtnPress={() => { }}
               onChangeText={(e: any) => {
                 setEditData({
                   ...editData,
@@ -187,7 +194,7 @@ const EditProfileView = (props: any) => {
           <View style={styles.inputWrap}>
             <InputField
               valueshow={editData?.primary_mobile?.toString()}
-              handleInputBtnPress={() => {}}
+              handleInputBtnPress={() => { }}
               onChangeText={(e: any) => {
                 setEditData({
                   ...editData,
@@ -200,7 +207,7 @@ const EditProfileView = (props: any) => {
           <View style={styles.inputWrap}>
             <InputField
               valueshow={editData?.whatsapp_number?.toString()}
-              handleInputBtnPress={() => {}}
+              handleInputBtnPress={() => { }}
               onChangeText={(e: any) => {
                 setEditData({
                   ...editData,
@@ -213,7 +220,7 @@ const EditProfileView = (props: any) => {
           <View style={styles.inputWrap}>
             <InputField
               valueshow={editData?.email}
-              handleInputBtnPress={() => {}}
+              handleInputBtnPress={() => { }}
               onChangeText={(e: any) => {
                 setEditData({
                   ...editData,

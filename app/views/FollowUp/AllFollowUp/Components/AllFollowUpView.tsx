@@ -34,7 +34,7 @@ const AllFollowUpView = (props: any) => {
       />
       <View style={styles.iteamView}>
         <FlatList
-          data={props?.allFollowUpList}
+          data={Array.isArray(props?.allFollowUpList) ? props?.allFollowUpList : []}
           ListEmptyComponent={<EmptyListScreen message={strings.allfollowup} />}
           renderItem={({ item }) => <AllFollowUpItem items={item} />}
           onEndReached={() => {
