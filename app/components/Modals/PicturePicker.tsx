@@ -13,7 +13,8 @@ const PicturePickerModal = (props: any) => {
             width: 100,
             height: 100,
             cropping: true,
-            multiple: props.multiple ? props.multiple : false
+            multiple: props.multiple ? props.multiple : false,
+            compressImageQuality: 1,
         }).then((image: any) => {
             props.setVisible(false);
             props.imageData(
@@ -32,7 +33,8 @@ const PicturePickerModal = (props: any) => {
             width: 100,
             height: 100,
             cropping: true,
-            multiple: props.multiple ? props.multiple : false
+            multiple: props.multiple ? props.multiple : false,
+            compressImageQuality: 1,
         }).then((image: any) => {
             props.setVisible(false);
             props.imageData(
@@ -68,7 +70,7 @@ const PicturePickerModal = (props: any) => {
                                     'gallery',
                                     strings.txt_setting_heading_media,
                                     strings.txt_setting_description_media,
-                                    );
+                                );
                                 if (res == 'setting1') {
                                     openPermissionSetting(
                                         strings.txt_setting_heading_media,

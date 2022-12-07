@@ -72,8 +72,8 @@ const styles = StyleSheet.create({
     marginHorizontal: normalizeSpacing(2),
   },
   radioTxt: {
-    fontSize: normalize(15),
-    color: BLACK_COLOR
+    fontSize: normalize(14.5),
+    color: BLACK_COLOR,
   },
   smallCont: {
     flexDirection: 'row',

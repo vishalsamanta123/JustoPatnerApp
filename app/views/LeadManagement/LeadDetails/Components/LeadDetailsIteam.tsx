@@ -7,7 +7,6 @@ import strings from '../../../../components/utilities/Localization'
 import moment from 'moment'
 
 const LeadDetailsIteam = (props: any) => {
-console.log('props: ', props);
     return (
         <ScrollView showsVerticalScrollIndicator={false}>
             <View style={styles.topDetailsView}>

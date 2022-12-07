@@ -86,7 +86,8 @@ const DashboardView = (props: any) => {
           handleOnLeftIconPress={props.handleDrawerPress}
           headerStyle={styles.headerStyle}
         />
-        <ScrollView style={styles.dashboardScroll} bounces={false}>
+        <ScrollView contentContainerStyle={styles.dashboardScroll}
+          bounces={false}>
           <View style={styles.dashboardWrap}>
             <View style={styles.nameView}>
               <View style={styles.statusView}>
