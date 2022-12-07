@@ -62,7 +62,7 @@ const LeadDetailsView = (props: any) => {
             height={45}
             bgcolor={PRIMARY_THEME_COLOR_DARK}
             btnTxtcolor={WHITE_COLOR}
-            btnTxtsize={12}
+            btnTxtsize={11}
             textTransform={"uppercase"}
           />
           <Button

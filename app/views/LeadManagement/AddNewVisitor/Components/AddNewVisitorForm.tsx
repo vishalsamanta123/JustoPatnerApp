@@ -14,6 +14,7 @@ import moment from 'moment';
 import InputCalender from 'app/components/InputCalender';
 import DropdownInput from 'app/components/DropDown';
 import { useSelector } from 'react-redux';
+import { normalize } from 'app/components/scaleFontSize';
 
 const AddNewVisitorForm = (props: any) => {
     const insets = useSafeAreaInsets();
@@ -147,6 +148,7 @@ const AddNewVisitorForm = (props: any) => {
                             }}
                             valueshow={props?.formData?.adhar_no?.toString()}
                             headingText={"Aadhar No."}
+                            maxLength={12}
                             keyboardtype={'number-pad'}
                         />
                     </View>
@@ -160,6 +162,7 @@ const AddNewVisitorForm = (props: any) => {
                                     pancard_no: data,
                                 })
                             }}
+                            maxLength={10}
                             valueshow={props?.formData?.pancard_no}
                             headingText={"Pancard No."}
                         />
@@ -600,7 +603,7 @@ const AddNewVisitorForm = (props: any) => {
                     <Text style={styles.headingText}>Company Details</Text>
                     <View style={styles.radioBtnView}>
                         <Text style={styles.headingsTxt}>Occupation</Text>
-                        <View style={{ flexDirection: "row", width: '100%' }}>
+                        <View style={{ flexDirection: "row", width: '100%', }}>
                             <View style={styles.radioView}>
                                 <RadioButton
                                     value="salaried"

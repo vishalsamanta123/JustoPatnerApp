@@ -33,7 +33,7 @@ const styles = StyleSheet.create({
     flex: 1,
   },
   dashboardScroll: {
-    flex: 1,
+    flexGrow: 1,
   },
   dashboardWrap: {
     flex: 1,
