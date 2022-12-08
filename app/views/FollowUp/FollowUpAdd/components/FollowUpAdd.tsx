@@ -5,7 +5,7 @@ import Button from "../../../../components/Button";
 import DropdownInput from "../../../../components/DropDown";
 import Header from "../../../../components/Header";
 import InputField from "../../../../components/InputField";
-import { PRIMARY_THEME_COLOR } from "../../../../components/utilities/constant";
+import { DATE_FORMAT, PRIMARY_THEME_COLOR, TIME_FORMAT } from "../../../../components/utilities/constant";
 import strings from "../../../../components/utilities/Localization";
 import styles from "./styles";
 import Styles from "../../../../components/DropDown/styles";
@@ -66,13 +66,13 @@ const FollowUpAddView = (props: any) => {
                         dateData={(data: any) => {
                             props.setFormData({
                                 ...props.formData,
-                                next_followup_date: moment(data).format('YYYY-MM-DD')
+                                next_followup_date: moment(data).format(DATE_FORMAT)
                             })
                         }}
                         setDateshow={(data: any) => {
                             props.setFormData({
                                 ...props.formData,
-                                next_followup_date: moment(data).format('YYYY-MM-DD')
+                                next_followup_date: moment(data).format(DATE_FORMAT)
                             })
                         }}
                         value={props?.formData?.next_followup_date}
@@ -89,13 +89,13 @@ const FollowUpAddView = (props: any) => {
                         dateData={(data: any) => {
                             props.setFormData({
                                 ...props.formData,
-                                followup_time: moment(data).format('LT')
+                                followup_time: moment(data).format(TIME_FORMAT)
                             })
                         }}
                         setDateshow={(data: any) => {
                             props.setFormData({
                                 ...props.formData,
-                                followup_time: moment(data).format('LT')
+                                followup_time: moment(data).format(TIME_FORMAT)
                             })
                         }}
                         value={props?.formData?.followup_time}

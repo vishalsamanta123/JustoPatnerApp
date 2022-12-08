@@ -7,7 +7,6 @@ import strings from '../../../../components/utilities/Localization'
 import moment from 'moment'
 
 const LeadDetailsIteam = (props: any) => {
-console.log('props: ', props.items);
     return (
         <ScrollView showsVerticalScrollIndicator={false}>
             <View style={styles.topDetailsView}>
@@ -262,7 +261,7 @@ console.log('props: ', props.items);
                     <View style={styles.nameContainer}>
                         <Text style={styles.nameTxt}>{props?.items?.customer_detail?.desigantion === '' ||
                             props.items?.customer_detail?.desigantion === undefined ||
-                            props.items?.customer_detail?.desigantion === "undefined" || props.items?.customer_detail?.designation === null
+                            props.items?.customer_detail?.desigantion === "undefined" || props.items?.customer_detail?.desigantion === null
                             ? strings.notfount :
                             props?.items?.customer_detail?.desigantion}</Text>
                     </View>

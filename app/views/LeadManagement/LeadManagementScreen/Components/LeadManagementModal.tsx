@@ -1,4 +1,4 @@
-import { View, Text, Image, TouchableOpacity } from "react-native";
+import { View, Text, Image, TouchableOpacity, ScrollView } from "react-native";
 import React, { useEffect, useState } from "react";
 import Modal from "react-native-modal";
 import styles from "../../../../components/Modals/styles";
@@ -52,8 +52,8 @@ const FilterModal = (props: any) => {
     );
   };
   return (
-    <View>
-      <Modal isVisible={props.Visible}>
+    <Modal isVisible={props.Visible}>
+      <ScrollView contentContainerStyle={{ flexGrow: 1, justifyContent: 'center' }}>
         <View style={styles.mainContainer}>
           <View style={styles.topContainer}>
             <Text style={styles.topTxt}>{strings.searchvisitor}</Text>
@@ -165,7 +165,7 @@ const FilterModal = (props: any) => {
             </View>
           </View>
           <View style={{ marginVertical: 20 }}>
-            <View style={{ flexDirection: 'row' }}>
+            <View style={{ flexDirection: 'row', justifyContent: 'center' }}>
               <Button
                 width={135}
                 buttonText={strings.reset}
@@ -181,8 +181,8 @@ const FilterModal = (props: any) => {
             </View>
           </View>
         </View>
-      </Modal>
-    </View>
+      </ScrollView>
+    </Modal>
   );
 };
 
