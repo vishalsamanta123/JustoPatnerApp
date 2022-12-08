@@ -13,6 +13,7 @@ import strings from "../../../../components/utilities/Localization";
 import styles from "./styles";
 import {
   BLACK_COLOR,
+  DATE_FORMAT,
   PRIMARY_THEME_COLOR,
   WHITE_COLOR,
 } from "../../../../components/utilities/constant";
@@ -187,19 +188,19 @@ const AgentBasicInfoView = (props: any) => {
               dateData={(data: any) => {
                 props.setAgentInfoData({
                   ...props.agentInfoData,
-                  date_of_birth: moment(data).format('YYYY-MM-DD')
+                  date_of_birth: moment(data).format(DATE_FORMAT)
                 })
               }}
               maximumDate={new Date()}
               setDateshow={(data: any) => {
                 props.setAgentInfoData({
                   ...props.agentInfoData,
-                  date_of_birth: moment(data).format('YYYY-MM-DD')
+                  date_of_birth: moment(data).format(DATE_FORMAT)
                 })
               }}
               value={props?.agentInfoData?.date_of_birth === '' || props?.agentInfoData?.date_of_birth === undefined ?
                 "" :
-                moment(props?.agentInfoData?.date_of_birth).format('YYYY-MM-DD')}
+                moment(props?.agentInfoData?.date_of_birth).format(DATE_FORMAT)}
             />
           </View>
           <View style={styles.inputWrap}>

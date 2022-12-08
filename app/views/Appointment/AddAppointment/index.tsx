@@ -26,9 +26,9 @@ const AddAppointmentScreen = ({ navigation, route }: any) => {
   const getVisitorsList = (offset: any, array: any) => {
     setOffset(offset)
     dispatch(getAllLeadsList({
-      offset: offset,
+      offset: 0,
       limit: 10,
-      lead_status: 1
+      // lead_status: 1
     }))
     // toGetDatas(array)
   }

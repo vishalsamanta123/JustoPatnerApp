@@ -11,6 +11,7 @@ import InputCalender from "app/components/InputCalender";
 import moment from "moment";
 import DropdownInput from "app/components/DropDown";
 import { Dropdown } from "react-native-element-dropdown";
+import { DATE_FORMAT } from "app/components/utilities/constant";
 const FilterModal = (props: any) => {
   const renderItem = (item: any) => {
     return (
@@ -43,13 +44,13 @@ const FilterModal = (props: any) => {
                 dateData={(data: any) => {
                   props.setFilterData({
                     ...props.filterData,
-                    start_date: moment(data).format('YYYY-MM-DD')
+                    start_date: moment(data).format(DATE_FORMAT)
                   })
                 }}
                 setDateshow={(data: any) => {
                   props.setFilterData({
                     ...props.filterData,
-                    start_date: moment(data).format('YYYY-MM-DD')
+                    start_date: moment(data).format(DATE_FORMAT)
                   })
                 }}
                 value={props.filterData?.start_date}
@@ -65,13 +66,13 @@ const FilterModal = (props: any) => {
                 dateData={(data: any) => {
                   props.setFilterData({
                     ...props.filterData,
-                    end_date: moment(data).format('YYYY-MM-DD')
+                    end_date: moment(data).format(DATE_FORMAT)
                   })
                 }}
                 setDateshow={(data: any) => {
                   props.setFilterData({
                     ...props.filterData,
-                    end_date: moment(data).format('YYYY-MM-DD')
+                    end_date: moment(data).format(DATE_FORMAT)
                   })
                 }}
                 value={props.filterData?.end_date}

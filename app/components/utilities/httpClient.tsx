@@ -34,10 +34,6 @@ export async function apiCall(
       headers: headers,
       // withCredentials: false,
     });
-
-    console.log('data: ', data);
-    console.log('url: ', url);
-    console.log('method: ', method);
     if (response.status === 200) {
       return response;
     }
