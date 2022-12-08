@@ -115,7 +115,7 @@ const AgentBankInfo = ({ navigation, route }: any) => {
       <View style={styles.wraptop}>
         <View style={styles.inputWrap}>
           <InputField
-            placeholderText={"RERA Certificat No."}//can edit
+            placeholderText={"RERA Certificate No."}//can edit
             handleInputBtnPress={() => { }}
             onChangeText={(data: any) => {
               setAgentInfoData({
@@ -176,7 +176,7 @@ const AgentBankInfo = ({ navigation, route }: any) => {
             headingText={"Propidership Declaration Letter"}
           /> */}
           <View style={{ flex: 1 }}>
-            <Text style={[styles.headingText, { fontSize: normalize(17) }]}>Propidership Declaration Letter</Text>
+            <Text style={[styles.headingText, { fontSize: normalize(17) }]}>Proprietorship Declaration Letter</Text>
           </View>
           <TouchableOpacity
             onPress={() => { route?.params?.type === 'add' ? setPropiderLettr(true) : null }}
