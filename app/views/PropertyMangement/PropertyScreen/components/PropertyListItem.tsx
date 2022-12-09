@@ -44,7 +44,7 @@ const PropertyListItem = (props: any) => {
       </View>
       <View style={styles.Txtview} >
         <View style={styles.projectContainer}>
-          <Text style={styles.projectTxt}>Colse Visit :</Text>
+          <Text style={styles.projectTxt}>Close Visit :</Text>
         </View>
         <View style={styles.nameContainer}>
         <Text style={styles.nameTxt}>{props.items.close_visit}</Text>

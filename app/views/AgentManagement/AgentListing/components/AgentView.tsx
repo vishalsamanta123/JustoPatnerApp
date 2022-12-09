@@ -74,6 +74,16 @@ const AgentView = (props: any) => {
     })
     props.getAgentList(0, {})
   }
+  const onReset = () => {
+    props.setFilterData({
+      startdate: '',
+      enddate: '',
+      search_by_name: '',
+      search_by_location: '',
+      status: ''
+    })
+    props.getAgentList(0, {})
+  }
   return (
     <View style={styles.mainContainer}>
       <View
@@ -155,6 +165,7 @@ const AgentView = (props: any) => {
         setFilterData={props.setFilterData}
         filterData={props.filterData}
         getAgentList={() => props.getAgentList(0, props.filterData)}
+        onReset={onReset}
       />
     </View>
   );

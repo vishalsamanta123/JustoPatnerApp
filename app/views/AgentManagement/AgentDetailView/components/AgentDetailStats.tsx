@@ -10,7 +10,7 @@ const agentDetailItem = (props: any) => {
     <View>
       <View style={styles.Txtview}>
         <View style={styles.projectContainer}>
-          <Text style={styles.projectTxt}>Closing Persentage</Text>
+          <Text style={styles.projectTxt}>Closing Percentage</Text>
         </View>
         <View><Text>:</Text></View>
         <View style={styles.nameContainer}>
