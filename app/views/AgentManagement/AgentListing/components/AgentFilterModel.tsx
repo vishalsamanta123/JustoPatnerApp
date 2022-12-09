@@ -22,6 +22,7 @@ const FilterModal = (props: any) => {
       search_by_location: '',
       status: '',
     })
+    props.onReset()
     props.setIsVisible(false)
   }
   const handleFilter = () => {
