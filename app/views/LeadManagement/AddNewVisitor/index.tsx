@@ -60,14 +60,6 @@ const AddNewVisitorScreen = ({ navigation, route }: any) => {
         }))
       }
     }
-    if (type === 'propertySelect') {
-      setFormData({
-        ...formData,
-        property_id: data?._id,
-        property_type_title: data?.property_type_title,
-        property_title: data?.property_title,
-      })
-    }
   }, [detail])
 
   useEffect(() => {
@@ -235,6 +227,7 @@ const AddNewVisitorScreen = ({ navigation, route }: any) => {
       OnpressseheduleVisit={OnpressseheduleVisit}
       OnpressCreateEdit={OnpressCreateEdit}
       type={type}
+      data={data}
       formData={formData}
       setFormData={setFormData}
       // handleMasterDatas={handleMasterDatas}
