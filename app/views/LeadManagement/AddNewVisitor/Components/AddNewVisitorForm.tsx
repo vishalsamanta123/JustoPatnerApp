@@ -34,6 +34,15 @@ const AddNewVisitorForm = (props: any) => {
                         response?.data[0]?.customer_detail?.locality : ''
                 })
             }
+        } else {
+            if (props.type === 'propertySelect') {
+                props.setFormData({
+                    ...props.formData,
+                    property_id: props?.data?._id,
+                    property_type_title: props?.data?.property_type_title,
+                    property_title: props?.data?.property_title,
+                })
+            }
         }
 
     }, [response])
@@ -63,8 +72,8 @@ const AddNewVisitorForm = (props: any) => {
                     <View style={[styles.inputWrap]}>
                         <DropdownInput
                             headingText={'Property'}
-                            placeholder={props.formData?.property_title ?
-                                props.formData?.property_title : 'Property'}
+                            placeholder={props?.formData?.property_title ?
+                                props?.formData?.property_title : 'Property'}
                             data={props?.allProperty}
                             disable={props.type == 'edit' ? true : false}
                             inputWidth={'100%'}
