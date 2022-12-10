@@ -420,7 +420,7 @@ const AddNewVisitorForm = (props: any) => {
                             <TouchableOpacity
                                 onPress={() => props.setFormData({
                                     ...props.formData,
-                                    min_budget_type: props?.formData?.min_budget_type === 'C' ? "L" : "C",
+                                    min_budget_type: props?.formData?.min_budget_type === 'Cr' ? "L" : "Cr",
                                 })}
                                 style={styles.smallBox}>
                                 <Text style={{ color: BLACK_COLOR }}>{props?.formData?.min_budget_type}</Text>
@@ -440,7 +440,7 @@ const AddNewVisitorForm = (props: any) => {
                             <TouchableOpacity
                                 onPress={() => props.setFormData({
                                     ...props.formData,
-                                    max_budget_type: props?.formData?.max_budget_type === "C" ? "L" : "C",
+                                    max_budget_type: props?.formData?.max_budget_type === "Cr" ? "L" : "Cr",
                                 })}
                                 style={styles.smallBox}>
                                 <Text style={{ color: BLACK_COLOR }}>{props?.formData?.max_budget_type}</Text>
@@ -538,10 +538,11 @@ const AddNewVisitorForm = (props: any) => {
                             <TouchableOpacity
                                 onPress={() => props.setFormData({
                                     ...props.formData,
-                                    min_emi_budget_type: props?.formData?.min_emi_budget_type === 'C' ? "L" : "C",
+                                    min_emi_budget_type: props?.formData?.min_emi_budget_type === 'L' ?
+                                        "Cr" : props?.formData?.min_emi_budget_type === 'Cr' ? "K" : "L",
                                 })}
                                 style={styles.smallBox}>
-                                <Text>{props?.formData?.min_emi_budget_type}</Text>
+                                <Text style={{ color: BLACK_COLOR }}>{props?.formData?.min_emi_budget_type}</Text>
                             </TouchableOpacity>
                             <TextInput
                                 value={props?.formData?.max_emi_budget}
@@ -559,10 +560,11 @@ const AddNewVisitorForm = (props: any) => {
                             <TouchableOpacity
                                 onPress={() => props.setFormData({
                                     ...props.formData,
-                                    max_emi_budget_type: props?.formData?.max_emi_budget_type === 'C' ? "L" : "C",
+                                    max_emi_budget_type: props?.formData?.max_emi_budget_type === 'L'
+                                        ? "Cr" : props?.formData?.max_emi_budget_type === 'Cr' ? "K" : "L",
                                 })}
                                 style={styles.smallBox}>
-                                <Text>{props?.formData?.max_emi_budget_type}</Text>
+                                <Text style={{ color: BLACK_COLOR }}>{props?.formData?.max_emi_budget_type}</Text>
                             </TouchableOpacity>
                         </View>
                     </View>
@@ -758,9 +760,9 @@ const AddNewVisitorForm = (props: any) => {
                         }
                     </View>
                 </View>
-            </ScrollView>
+            </ScrollView >
 
-        </View>
+        </View >
     )
 }
 

@@ -57,7 +57,7 @@ const LeadManagementView = (props: any) => {
   const insets = useSafeAreaInsets();
   const navigation: any = useNavigation()
   const [FilterisVisible, setFilterisVisible] = useState(false)
-  
+
   const onPressView = (data: any) => {
     navigation.navigate('LeadDetails', data)
   }
@@ -114,7 +114,7 @@ const LeadManagementView = (props: any) => {
       </View>
       <View style={styles.propertyListView}>
         <FlatList
-          data={props?.visitorList}
+          data={Array.isArray(props?.visitorList) ? props?.visitorList : []}
           showsVerticalScrollIndicator={false}
           renderItem={({ item }) =>
             <LeadManagementItem

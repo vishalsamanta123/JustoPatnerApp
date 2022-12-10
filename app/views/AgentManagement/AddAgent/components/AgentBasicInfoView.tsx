@@ -59,7 +59,7 @@ const AgentBasicInfoView = (props: any) => {
         <View style={styles.wrap}>
           {/*  <Text style={styles.headingText}>{strings.basicInfoText}</Text> */}
           {/* <View style={styles.underlineStyle} /> */}
-          <TouchableOpacity onPress={() => { props.type === 'add' ? props.setVisible(true) : null }}
+          <TouchableOpacity onPress={() => props.setVisible(true)}
             style={styles.imageCircle}>
             {props?.agentInfoData?.profile_picture === undefined ||
               props?.agentInfoData?.profile_picture === '' ?
@@ -249,6 +249,28 @@ const AgentBasicInfoView = (props: any) => {
               }}
               valueshow={props?.agentInfoData?.email}
               headingText={"Email Address"}
+            />
+          </View>
+          <View style={[styles.inputWrap, {}]}>
+            <InputField
+              placeholderText={"Address"}
+              onChangeText={(data: any) => {
+                props.setAgentInfoData({
+                  ...props.agentInfoData,
+                  location: data
+                })
+              }}
+              valueshow={props?.agentInfoData?.location}
+              headingText={"Address"}
+              inputType={'location'}
+              onPressSelect={(data: any, detail: any) => {
+                props.setAgentInfoData({
+                  ...props.agentInfoData,
+                  location: data?.description,
+                  latitude: detail?.geometry?.location?.lat,
+                  logitude: detail?.geometry?.location?.lng,
+                })
+              }}
             />
           </View>
           {/*  <View style={styles.inputWrap}>

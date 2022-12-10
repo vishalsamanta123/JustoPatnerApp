@@ -24,7 +24,6 @@ const AgentBankInfo = ({ navigation, route }: any) => {
   const dispatch: any = useDispatch()
   const { response = {} } = useSelector((state: any) => state.addAgentForm)
   const [agentInfoData, setAgentInfoData] = useState({ ...response })
-  console.log('agentInfoData:response ', agentInfoData);
   const editData = useSelector((state: any) => state.editAgentData) || {}
   const addData = useSelector((state: any) => state.addAgentData) || {}
 
@@ -83,9 +82,9 @@ const AgentBankInfo = ({ navigation, route }: any) => {
       formData.append("pancard_no", agentInfoData?.pancard_no);
       formData.append("gender", agentInfoData?.gender);
       formData.append("date_of_birth", agentInfoData?.date_of_birth ? agentInfoData?.date_of_birth : '10/11/2000');
-      formData.append("location", agentInfoData?.working_location[0]?.location);
-      formData.append("latitude", agentInfoData?.working_location[0]?.latitude);
-      formData.append("longitude", agentInfoData?.working_location[0]?.longitude);
+      formData.append("location", agentInfoData?.location);
+      formData.append("latitude", agentInfoData?.latitude);
+      formData.append("longitude", agentInfoData?.longitude);
       formData.append("working_location", JSON.stringify(agentInfoData?.working_location));
       formData.append("rera_certificate_no", agentInfoData?.rera_certificate_no);
       agentInfoData?.profile_picture?.uri &&
@@ -148,7 +147,7 @@ const AgentBankInfo = ({ navigation, route }: any) => {
             <Text style={[styles.headingText, { fontSize: normalize(17) }]}>RERA Certificate</Text>
           </View>
           <TouchableOpacity
-            onPress={() => { route?.params?.type === 'add' ? setRefraCrtf(true) : null }}
+            onPress={() => setRefraCrtf(true)}
             style={styles.browseVw}
           >
             <Text style={{
@@ -179,7 +178,7 @@ const AgentBankInfo = ({ navigation, route }: any) => {
             <Text style={[styles.headingText, { fontSize: normalize(17) }]}>Proprietorship Declaration Letter</Text>
           </View>
           <TouchableOpacity
-            onPress={() => { route?.params?.type === 'add' ? setPropiderLettr(true) : null }}
+            onPress={() => setPropiderLettr(true)}
             style={styles.browseVw}
           >
             <Text style={{

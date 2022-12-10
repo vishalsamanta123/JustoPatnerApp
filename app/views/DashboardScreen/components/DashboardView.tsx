@@ -101,8 +101,8 @@ const DashboardView = (props: any) => {
                     style={styles.switchStyle}
                   /> */}
                   <Switch
-                    value={props?.dashBoardData?.online_status === 1 ? true : false}
-                    onValueChange={(val) => props.updateStatusPress(props?.dashBoardData?.online_status)}
+                    value={props?.isEnabled === 1 ? true : false}
+                    onValueChange={(val) => props.updateStatusPress(props?.isEnabled)}
                     backgroundActive={GREEN_COLOR}
                     backgroundInactive={GRAY_COLOR}
                     circleActiveColor={WHITE_COLOR}

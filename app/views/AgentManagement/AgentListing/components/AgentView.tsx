@@ -125,7 +125,7 @@ const AgentView = (props: any) => {
         <View style={styles.propertyListViewsec}>
           <FlatList
             showsVerticalScrollIndicator={false}
-            data={props?.agentList}
+            data={Array.isArray(props?.agentList) ? props?.agentList : []}
             ListEmptyComponent={<EmptyListScreen message={strings.agent} />}
             renderItem={({ item }) =>
               <AgentListItem items={item} setIsVisible={setIsVisible}
