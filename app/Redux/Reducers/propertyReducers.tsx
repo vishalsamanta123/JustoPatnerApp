@@ -8,6 +8,7 @@ import {
   PROPERTY_FILTER_LIST,
   PROPERTY_STATUS_UPDATE,
   REMOVE_PROPERTY_STATUS,
+  PROPERTY_ALLOCATE_LIST,
 } from "../types";
 
 const initialState = {
@@ -51,6 +52,14 @@ export function propertyReducer(state = initialState, action: any) {
         response: action.payload,
       };
     case PROPERTY_LIST:
+      return {
+        ...state,
+        detail: false,
+        create: false,
+        loading: false,
+        response: action.payload,
+      };
+    case PROPERTY_ALLOCATE_LIST:
       return {
         ...state,
         detail: false,

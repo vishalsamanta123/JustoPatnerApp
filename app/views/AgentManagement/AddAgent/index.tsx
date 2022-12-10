@@ -11,7 +11,7 @@ const AgentBasicInfo = ({ navigation, route }: any) => {
     agent_id: '', agent_name: '', whatsapp_number: '', adhar_no: '',
     pancard_no: "", gender: '', date_of_birth: '', rera_certificate_no: '',
     profile_picture: '', primary_mobile: '', email: '',
-    working_location: [], propidership_declaration_letter: '', rera_certificate: ''
+    working_location: [], location: '', propidership_declaration_letter: '', rera_certificate: ''
   })
   const dispatch: any = useDispatch()
   const [visible, setVisible] = useState(false)
@@ -43,7 +43,7 @@ const AgentBasicInfo = ({ navigation, route }: any) => {
     let isError = true;
     let errorMessage: any = ''
     const { agent_name, whatsapp_number, adhar_no, pancard_no, gender,
-      date_of_birth, profile_picture, primary_mobile, email, working_location
+      date_of_birth, profile_picture, primary_mobile, email, location, working_location
     } = agentInfoData
     if (profile_picture === '' || profile_picture === undefined) {
       isError = false;
@@ -75,6 +75,9 @@ const AgentBasicInfo = ({ navigation, route }: any) => {
     } else if (type != 'edit' && validateEmail.test(email) === false) {
       isError = false;
       errorMessage = "Please fill corect email"
+    } else if (location === '' || location === undefined) {
+      isError = false;
+      errorMessage = "Please select address"
     } else if (working_location.length === 0) {
       isError = false;
       errorMessage = "Please select working location"

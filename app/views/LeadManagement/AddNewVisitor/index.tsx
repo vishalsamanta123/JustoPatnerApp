@@ -1,4 +1,3 @@
-import { View, Text, Alert } from 'react-native'
 import React, { useEffect, useLayoutEffect, useState } from 'react'
 import AddNewVisitorForm from './Components/AddNewVisitorForm'
 import { useDispatch, useSelector } from 'react-redux'
@@ -6,7 +5,7 @@ import { addVisitor, addVisitorRemove, editVisitor, getVisitorDetail } from 'app
 import ErrorMessage from 'app/components/ErrorMessage'
 import { GREEN_COLOR, RED_COLOR } from 'app/components/utilities/constant'
 import { getAllMaster } from 'app/Redux/Actions/MasterActions'
-import { getAllProperty } from 'app/Redux/Actions/propertyActions'
+import { getAllAlloctaeProperty } from 'app/Redux/Actions/propertyActions'
 
 const AddNewVisitorScreen = ({ navigation, route }: any) => {
   const { type, data } = route?.params || {}
@@ -76,18 +75,17 @@ const AddNewVisitorScreen = ({ navigation, route }: any) => {
   }
 
   useEffect(() => {
-    dispatch(getAllProperty({
-      offset: 0,
-      limit: '',
-    }))
-    getAllPropertyData()
-  }, [])
-
-  const getAllPropertyData = () => {
     if (propertyData?.response?.status === 200) {
       setAllProperty(propertyData?.response?.data)
     }
-  }
+  }, [propertyData])
+  useEffect(() => {
+    dispatch(getAllAlloctaeProperty({
+      offset: 0,
+      limit: '',
+      module_id: ''
+    }))
+  }, [])
 
   const handleBackPress = () => {
     navigation.goBack()
