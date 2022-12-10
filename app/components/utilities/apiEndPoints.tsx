@@ -44,6 +44,7 @@ export default {
   ADDPROPERTY: "/property/addProperty",
   PROPERTYLIST: "/property/getPropertyListForCP",
   PROPERTYFILTER: "/property/filterProperty",
+  GET_ALLOCATE_PROPERTY: "/property/getAllProperty",
   EDITPROPERTY: "/property/editProperty",
   GETPROPERTYDETAIL: "/property/getPropertyDetails",
   GETPROPERTYFILTERDETAIL: "/property/filterProperty",

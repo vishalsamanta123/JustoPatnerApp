@@ -92,10 +92,10 @@ const RegistrationScreen = ({ navigation }: any) => {
   useEffect(() => {
     if (emailAndMobileData?.response?.status === 200) {
       dispatch(emailCheckRemove())
-      ErrorMessage({
-        msg: emailAndMobileData?.response?.message,
-        backgroundColor: GREEN_COLOR
-      })
+      // ErrorMessage({
+      //   msg: emailAndMobileData?.response?.message,
+      //   backgroundColor: GREEN_COLOR
+      // })
     }
   }, [emailAndMobileData])
   const handleCheckEmailMobile = (type: any) => {

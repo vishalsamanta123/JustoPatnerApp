@@ -10,15 +10,17 @@ const DashboardScreen = ({ navigation }: any) => {
   const { response = {}, data = false } = useSelector((state: any) => state.dashboardData) || {}
   const statusData = useSelector((state: any) => state.statusUpdate) || {}
   const [dashBoardData, setDashBoardData] = useState<any>()
+  const [isEnabled, setIsEnabled] = useState<any>();
 
   useLayoutEffect(() => {
     getDashboard()
-  }, [])
+  }, [isEnabled])
   useEffect(() => {
     if (response?.status === 200) {
       setDashBoardData(response?.data)
+      setIsEnabled(response?.data?.online_status)
     }
-  }, [response, statusData])
+  }, [response])
   const getDashboard = () => {
     dispatch(dashboardData({}))
   }
@@ -29,6 +31,7 @@ const DashboardScreen = ({ navigation }: any) => {
   }
   useEffect(() => {
     if (statusData?.data && statusData?.response?.status === 200) {
+      setIsEnabled(isEnabled === 0 ? 1 : 0)
       dispatch(userStatusUpdater())
       ErrorMessage({
         msg: response?.message,
@@ -43,6 +46,7 @@ const DashboardScreen = ({ navigation }: any) => {
     handleDrawerPress={handleDrawerPress}
     dashBoardData={dashBoardData}
     updateStatusPress={updateStatusPress}
+    isEnabled={isEnabled}
   />;
 };
 

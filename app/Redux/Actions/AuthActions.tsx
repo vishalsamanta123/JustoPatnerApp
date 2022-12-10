@@ -6,9 +6,11 @@ import AsyncStorage from '@react-native-async-storage/async-storage';
 import { handleApiError } from 'app/components/ErrorMessage/HandleApiErrors';
 
 export const userLogin = (loginDetail: any) => async (dispatch: any) => {
+console.log('loginDetail: ', loginDetail);
     dispatch({ type: START_LOADING })
     try {
         const res = await apiCall("post", apiEndPoints.LOGIN, loginDetail);
+        console.log('res: LOGIN', res);
         if (res.data.status === 200) {
             // await AsyncStorage.setItem("AuthToken", res?.data?.token);
             dispatch({

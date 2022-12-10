@@ -26,7 +26,6 @@ const styles = StyleSheet.create({
   wrap: {
     flex: 1,
     margin: normalizeSpacing(20),
-    alignItems: 'center'
   },
   DummyloginBanner: {
     width: normalizeSpacing(80),
@@ -76,7 +75,8 @@ const styles = StyleSheet.create({
     height: normalizeHeight(100),
     width: normalizeWidth(100),
     alignItems: 'center',
-    justifyContent: 'center'
+    justifyContent: 'center',
+    alignSelf: 'center'
   },
   imageVw: {
     width: normalizeWidth(100),
@@ -85,7 +85,7 @@ const styles = StyleSheet.create({
   },
   inputWrap: {
     marginTop: normalizeSpacing(30),
-    alignItems: 'center'
+    // alignItems: 'center'
   },
   genderView: {
     flexDirection: 'row',
