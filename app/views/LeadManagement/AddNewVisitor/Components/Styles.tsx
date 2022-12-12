@@ -6,6 +6,7 @@ import {
   FONT_FAMILY_SEMIBOLD,
   GRAY_COLOR,
   GRAY_LIGHT_COLOR,
+  Isios,
   PRIMARY_THEME_COLOR,
   WHITE_COLOR,
 } from '../../../../components/utilities/constant';
@@ -115,6 +116,7 @@ const styles = StyleSheet.create({
   },
   budgetView: {
     flexDirection: 'row',
+    height: normalizeHeight(Isios ? 50 : 0)
   },
   smallBox: {
     width: "15%",

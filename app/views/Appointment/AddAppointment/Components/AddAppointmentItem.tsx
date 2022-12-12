@@ -129,7 +129,7 @@ const AddAppointmentItem = (props: any) => {
                         </View>
                         <View style={styles.genderView}>
                             <View style={styles.radioView}>
-                                <RadioButton
+                                <RadioButton.Android
                                     value={strings.yes}
                                     status={props.addAppointmentForm?.pickup === strings.yes ? "checked" : "unchecked"}
                                     onPress={() => {
@@ -153,7 +153,7 @@ const AddAppointmentItem = (props: any) => {
                                 </Text>
                             </View>
                             <View style={styles.radioView}>
-                                <RadioButton
+                                <RadioButton.Android
                                     value={strings.no}
                                     status={props.addAppointmentForm?.pickup === strings.no ? "checked" : "unchecked"}
                                     onPress={() => {

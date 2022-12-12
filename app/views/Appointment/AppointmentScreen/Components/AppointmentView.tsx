@@ -126,13 +126,6 @@ const AppointmentView = (props: any) => {
 
     return (
         <View style={styles.mainContainer}>
-            <View
-                style={{
-                    backgroundColor: PRIMARY_THEME_COLOR_DARK,
-                    height: insets.top,
-                }}
-            />
-            <StatusBar barStyle={'light-content'} />
             <Header
                 leftImageSrc={images.menu}
                 rightFirstImageScr={images.filter}
