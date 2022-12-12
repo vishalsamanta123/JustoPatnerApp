@@ -102,7 +102,6 @@ const AgentBankInfo = ({ navigation, route }: any) => {
   }
   return (
     <View style={styles.mainContainer}>
-      <StatusBar barStyle={"light-content"} />
       <Header
         headerText={strings.rerainfo}
         headerStyle={styles.headerStyle}

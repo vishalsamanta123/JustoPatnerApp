@@ -13,44 +13,6 @@ import LeadManagementItem from "./LeadManagementItem";
 import { useNavigation } from "@react-navigation/native";
 import FilterModal from "./LeadManagementModal";
 import EmptyListScreen from "app/components/CommonScreen/EmptyListScreen";
-const DATA: any = [
-  {
-    Projectname: 'ABC',
-    Location: 'Indore',
-    visitor: 123,
-    siteVisit: 234,
-    closeVisit: 600,
-    status: 'confirmatin Pending',
-    createddate: '11/10/2022'
-  },
-  {
-    Projectname: 'ABC',
-    Location: 'Indore',
-    visitor: 123,
-    siteVisit: 234,
-    closeVisit: 600,
-    status: 'Subscribe',
-    createddate: '11/10/2022'
-  },
-  {
-    Projectname: 'ABC',
-    Location: 'Indore',
-    visitor: 123,
-    siteVisit: 234,
-    closeVisit: 600,
-    status: 'Unsubscribe',
-    createddate: '11/10/2022'
-  },
-  {
-    Projectname: 'ABC',
-    Location: 'Indore',
-    visitor: 123,
-    siteVisit: 234,
-    closeVisit: 600,
-    status: 'confirmatin Pending',
-    createddate: '11/10/2022'
-  },
-];
 
 const LeadManagementView = (props: any) => {
   const loadingref = false
@@ -79,13 +41,6 @@ const LeadManagementView = (props: any) => {
 
   return (
     <View style={styles.mainContainer}>
-      <View
-        style={{
-          backgroundColor: PRIMARY_THEME_COLOR_DARK,
-          height: insets.top,
-        }}
-      />
-      <StatusBar barStyle={"light-content"} />
       <Header
         leftImageSrc={images.menu}
         rightFirstImageScr={images.filter}

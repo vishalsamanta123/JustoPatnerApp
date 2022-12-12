@@ -13,16 +13,8 @@ import EmptyListScreen from 'app/components/CommonScreen/EmptyListScreen'
 
 const AllFollowUpView = (props: any) => {
   const { response = {}, list = '' } = useSelector((state: any) => state.followUp)
-  const insets = useSafeAreaInsets();
   return (
     <View style={styles.mainConatiner}>
-      <View
-        style={{
-          backgroundColor: PRIMARY_THEME_COLOR_DARK,
-          height: insets.top,
-        }}
-      />
-      <StatusBar backgroundColor={PRIMARY_THEME_COLOR} barStyle={"light-content"} />
       <Header
         leftImageSrc={images.backArrow}
         rightSecondImageScr={images.notification}

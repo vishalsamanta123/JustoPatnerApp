@@ -19,14 +19,6 @@ const CompanyDetails = ({navigation}: any) => {
   }
   return (
     <ScrollView style={styles.mainContainer}>
-      <View
-        style={{
-          backgroundColor: WHITE_COLOR,
-          height: insets.top,
-        }}
-      />
-
-      <StatusBar barStyle={"dark-content"} />
       <Header
         headerText={strings.companyDetails}
         headerStyle={styles.headerStyle}

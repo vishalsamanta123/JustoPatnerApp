@@ -48,7 +48,7 @@ const customDrawer = ({ navigation }: any) => {
                 {userData?.user_name}
               </Text>
               <Text style={[styles.UserAddress, { width: 140 }]}>
-                {userData?.city}
+              {userData?.city ?? 'Florida, usa'}
               </Text>
             </View>
             <TouchableOpacity

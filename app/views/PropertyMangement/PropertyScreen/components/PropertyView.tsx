@@ -1,4 +1,4 @@
-import { View, Text, StatusBar, FlatList, ActivityIndicator } from 'react-native';
+import { View, FlatList, ActivityIndicator } from 'react-native';
 import React, { useState, useEffect } from 'react';
 import styles from './styles';
 import { useSafeAreaInsets } from 'react-native-safe-area-context';
@@ -8,7 +8,6 @@ import Header from '../../../../components/Header';
 import images from '../../../../assets/images';
 import strings from '../../../../components/utilities/Localization';
 import ConfirmModal from '../../../../components/Modals/ConfirmModal';
-import { PRIMARY_THEME_COLOR_DARK, PRIMARY_THEME_COLOR } from '../../../../components/utilities/constant';
 import FilterModal from './FilterModel';
 import { useSelector, useDispatch } from 'react-redux';
 import { getAllMaster } from 'app/Redux/Actions/MasterActions';
@@ -106,13 +105,6 @@ const PropertyView = (props: any) => {
 
   return (
     <View style={styles.mainContainer}>
-      <View
-        style={{
-          backgroundColor: PRIMARY_THEME_COLOR,
-          height: insets.top,
-        }}
-      />
-      <StatusBar barStyle={'light-content'} />
 
       <Header
         leftImageSrc={images.menu}

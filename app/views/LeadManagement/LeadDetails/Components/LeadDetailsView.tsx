@@ -36,13 +36,6 @@ const LeadDetailsView = (props: any) => {
   return (
     <>
       <View style={styles.mainContainer}>
-        <View
-          style={{
-            backgroundColor: PRIMARY_THEME_COLOR_DARK,
-            height: insets.top,
-          }}
-        />
-        <StatusBar barStyle={"light-content"} />
         <Header
           leftImageSrc={images.backArrow}
           rightSecondImageScr={images.notification}

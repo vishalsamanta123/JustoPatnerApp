@@ -12,33 +12,6 @@ import FilterModal from './FollowUpModal'
 import { useSelector } from 'react-redux'
 import EmptyListScreen from 'app/components/CommonScreen/EmptyListScreen'
 
-const DATA: any = [
-  {
-    score: 600,
-    date: '11/10/2022',
-    name: 'ABC',
-    config: '3 BHK',
-    budget: '60L',
-    type: 'On Lead',
-  },
-  {
-    score: 600,
-    date: '11/10/2022',
-    name: 'ABC',
-    config: '3 BHK',
-    budget: '60L',
-    type: 'On Lead',
-  },
-  {
-    score: 600,
-    date: '11/10/2022',
-    name: 'ABC',
-    config: '3 BHK',
-    budget: '60L',
-    type: 'On Lead',
-  },
-
-];
 
 const FollowUpView = (props: any) => {
   const loadingref = false
@@ -60,13 +33,6 @@ const FollowUpView = (props: any) => {
 
   return (
     <View style={styles.mainContainer}>
-      <View
-        style={{
-          backgroundColor: PRIMARY_THEME_COLOR_DARK,
-          height: insets.top,
-        }}
-      />
-      <StatusBar barStyle={"light-content"} />
       <Header
         leftImageSrc={images.menu}
         rightFirstImageScr={images.filter}
