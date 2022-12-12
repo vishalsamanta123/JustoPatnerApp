@@ -48,7 +48,7 @@ const customDrawer = ({ navigation }: any) => {
                 {userData?.user_name}
               </Text>
               <Text style={[styles.UserAddress, { width: 140 }]}>
-              {userData?.city}
+                {userData?.city}
               </Text>
             </View>
             <TouchableOpacity
@@ -129,18 +129,48 @@ const customDrawer = ({ navigation }: any) => {
             navigation.navigate('AppointmentScreen');
           }}
         />
-        {/* <DrawerTabSection
+        <DrawerTabSection
           iconSource={images.report}
           tabTitle={strings.reportHeader}
+          handleDrawerNavigation={() => {
+            navigation.navigate('Report');
+          }}
+        />
+        <DrawerTabSection
+          iconSource={images.report}
+          tabTitle={strings.leaderHeader}
+          handleDrawerNavigation={() => {
+            navigation.navigate('LeaderBoard');
+          }}
+        />
+        <DrawerTabSection
+          iconSource={images.report}
+          tabTitle={strings.dataflowHeader}
+          handleDrawerNavigation={() => {
+            navigation.navigate('DataFlow');
+          }}
+        />
+        <DrawerTabSection
+          iconSource={images.report}
+          tabTitle={strings.supportforumHeader}
+          handleDrawerNavigation={() => {
+            navigation.navigate('SupportForum');
+          }}
         />
         <DrawerTabSection
           iconSource={images.chat}
           tabTitle={strings.chatHeader}
+          handleDrawerNavigation={() => {
+            navigation.navigate('ChatView');
+          }}
         />
         <DrawerTabSection
           iconSource={images.support}
           tabTitle={strings.supportHeader}
-        /> */}
+          handleDrawerNavigation={() => {
+            navigation.navigate('Support');
+          }}
+        />
         <DrawerTabSection
           iconSource={images.setting}
           tabTitle={strings.settingHeader}

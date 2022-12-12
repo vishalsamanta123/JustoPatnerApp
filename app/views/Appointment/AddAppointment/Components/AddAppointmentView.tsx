@@ -22,7 +22,7 @@ const AddAppointmentView = (props: any) => {
     useEffect(() => {
         setAddAppointmentForm({
             ...addAppointmentForm,
-            pickup_location: response?.data?.pickup_location, number_of_guest: response?.data?.number_of_guest
+            pickup_location: response?.data?.pickup_location, number_of_guest: response?.data?.number_of_guest, pickup_address: response?.data?.pickup_address
 
         })
     }, [response])
