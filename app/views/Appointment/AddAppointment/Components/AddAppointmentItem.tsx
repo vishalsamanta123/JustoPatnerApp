@@ -206,11 +206,11 @@ const AddAppointmentItem = (props: any) => {
                                         placeholderText={'Address'}
                                         handleInputBtnPress={() => { }}
                                         headingText={'Address'}
-                                        valueshow={props.addAppointmentForm?.address}
+                                        valueshow={props.addAppointmentForm?.pickup_address}
                                         onChangeText={(val: any) => {
                                             props.setAddAppointmentForm({
                                                 ...props.addAppointmentForm,
-                                                address: val
+                                                pickup_address: val
                                             })
                                         }}
                                     />

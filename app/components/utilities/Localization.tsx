@@ -17,8 +17,11 @@ const strings = new LocalizedStrings({
     appointmentWithCPHeader: 'Appointment With CP',
     appointmentForVisitHeader: 'Appointments',
     reportHeader: 'Report',
+    leaderHeader: 'Leaderboard',
+    dataflowHeader: 'Data Flow',
     chatHeader: 'Chat',
     supportHeader: 'Support',
+    supportforumHeader: 'Support Forum',
     settingHeader: 'Setting',
     logout: 'Logout',
     versionText: 'version',
@@ -104,6 +107,7 @@ const strings = new LocalizedStrings({
     addLocation: 'Add Locations',
     notSelectedLocation: 'Not Selected Location',
     searchYourlocation: 'Search your location here',
+    comingSoon: 'Coming Soon',
 
     //Auth 
 
