@@ -72,13 +72,6 @@ const DashboardView = (props: any) => {
   return (
     <>
       <View style={styles.mainContainerWrap}>
-        <View
-          style={{
-            backgroundColor: PRIMARY_THEME_COLOR_DARK,
-            height: insets.top,
-          }}
-        />
-        <StatusBar backgroundColor={PRIMARY_THEME_COLOR} barStyle={'light-content'} />
         <Header
           leftImageSrc={images.menu}
           rightImageScr={images.notification}

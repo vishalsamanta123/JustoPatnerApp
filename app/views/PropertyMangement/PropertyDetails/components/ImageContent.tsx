@@ -10,7 +10,6 @@ import { normalizeHeight, normalizeSpacing, normalizeWidth } from "../../../../c
 import { DATA } from "../../../../components/utilities/DemoData";
 
 const ImageContent = ({ navigation,route }: any) => {
-  const insets = useSafeAreaInsets();
 
   const dataimage = route?.params || []
   // console.log('dataimage: ', typeof dataimage === 'string');
@@ -19,13 +18,6 @@ const ImageContent = ({ navigation,route }: any) => {
   };
   return (
     <View style={styles.mainContainer}>
-      <View
-        style={{
-          backgroundColor: PRIMARY_THEME_COLOR_DARK,
-          height: insets.top,
-        }}
-      />
-      <StatusBar barStyle={"light-content"} />
       <Header
         leftImageSrc={images.backArrow}
         rightSecondImageScr={images.notification}

@@ -55,6 +55,7 @@ import EditBankDetails from 'app/views/Setting/EditProfileScreen/components/Edit
 import AppointmentAddScreen from 'app/views/Appointment/AppointmentAdd';
 import ErrorMessage from 'app/components/ErrorMessage';
 import { RED_COLOR } from 'app/components/utilities/constant';
+import axios from 'axios';
 const Stack = createNativeStackNavigator();
 const AuthStack = createNativeStackNavigator();
 const AppStack = createNativeStackNavigator();
@@ -172,7 +173,19 @@ const AuthLoadingComponent = () => {
   }
   async function tokenGenrate() {
     try {
-      const { data } = await apiCall("get", apiEndPoints.JWTTOKEN, {});
+      // const { data } = await apiCall("get", apiEndPoints.JWTTOKEN, {});
+      const options = {
+        headers: {"content-type": "application/json"}
+      }
+      const data = await axios.get('https://itinformatix.org:3044/api/token/jwtToken', options)
+      .then(res => {
+        console.log('res', res.data)
+        return res.data
+
+      }).catch(e => {
+        console.log('e', e)
+
+      })
       if (data) {
         await AsyncStorage.setItem("token", data.token);
         await setDefaultHeader("token", data.token);

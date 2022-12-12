@@ -1,6 +1,7 @@
 import { View, Text, Image, StyleSheet, ScrollView, Dimensions } from "react-native";
 import React, { useState } from "react";
 import images from "../../assets/images";
+import { Isios } from "app/components/utilities/constant";
 
 const LogoView = (props: any) => {
   const [isVisiblePassword, setIsVisiblePassword] = useState(true);
@@ -11,7 +12,7 @@ const LogoView = (props: any) => {
    
       <View>
         <Image
-          // style={styles.loginBanner}
+          style={styles.loginBanner}
           source={images.loginBanner}
           resizeMode="contain"
         />
@@ -23,8 +24,8 @@ const {width} = Dimensions.get('window');
 const styles = StyleSheet.create({
     loginBanner: {
         width: width,
-        marginTop:-5
-        //height: 220,
+        marginTop:Isios ? -50 :  -5,
+        height: Isios ? 220 : 0,
       },
   });
 

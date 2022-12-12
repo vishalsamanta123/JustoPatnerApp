@@ -8,8 +8,6 @@ import images from '../../../../assets/images';
 import strings from '../../../../components/utilities/Localization';
 import { normalizeHeight, normalizeSpacing, normalizeWidth } from '../../../../components/scaleFontSize';
 import { DATA } from '../../../../components/utilities/DemoData';
-import Video, { FilterType } from 'react-native-video';
-import { TouchableOpacity } from 'react-native-gesture-handler';
 import Videoplay from './Videoplay';
 import Button from 'app/components/Button';
 
@@ -17,7 +15,6 @@ const VideoContent = ({navigation,route}: any) => {
 
   const [playerVisible,setPlayerVisible] = useState(false)
   const [itemDetail,setItemDetail] = useState({})
-  const insets = useSafeAreaInsets();
   const datavideos = route?.params || []
   // console.log("ImageContent -> items", datavideos)
   const handleBackPress = () => {
@@ -33,13 +30,6 @@ const VideoContent = ({navigation,route}: any) => {
 
   return (
     <View style={styles.mainContainer}>
-      <View
-        style={{
-          backgroundColor: PRIMARY_THEME_COLOR_DARK,
-          height: insets.top,
-        }}
-      />
-      <StatusBar barStyle={"light-content"} />
       <Header
         leftImageSrc={images.backArrow}
         rightSecondImageScr={images.notification}

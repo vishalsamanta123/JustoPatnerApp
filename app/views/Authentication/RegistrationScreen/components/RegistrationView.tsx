@@ -135,7 +135,7 @@ const RegistrationView = (props: any) => {
         <View style={styles.genderView}>
           <Text style={styles.genderTxt}>{strings.gender}</Text>
           <View style={styles.radioView}>
-            <RadioButton
+            <RadioButton.Android
               value={props.registerForm?.gender}
               status={props.registerForm.gender === 1 ? "checked" : "unchecked"}
               onPress={() => {
@@ -158,7 +158,7 @@ const RegistrationView = (props: any) => {
             </Text>
           </View>
           <View style={styles.radioView}>
-            <RadioButton
+            <RadioButton.Android
               value={props.registerForm?.gender}
               status={props.registerForm.gender === 2 ? "checked" : "unchecked"}
               onPress={() => {
