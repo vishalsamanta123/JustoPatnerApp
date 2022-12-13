@@ -42,7 +42,7 @@ const locationsView = (props: any) => {
                 const object = {
                     location: data?.description,
                     latitude: details?.geometry?.location?.lat,
-                    logitude: details?.geometry?.location?.lng,
+                    longitude: details?.geometry?.location?.lng,
                 }
                 var array: any[] = [...allList];
                 array.push(object);

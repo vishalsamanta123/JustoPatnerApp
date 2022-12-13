@@ -261,7 +261,7 @@ const AgentBasicInfoView = (props: any) => {
                   ...props.agentInfoData,
                   location: data?.description,
                   latitude: detail?.geometry?.location?.lat,
-                  logitude: detail?.geometry?.location?.lng,
+                  longitude: detail?.geometry?.location?.lng,
                 })
               }}
             />
