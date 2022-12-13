@@ -14,7 +14,7 @@ const Header = (props: any) => {
           height: insets.top,
         }}
       />
-      <StatusBar barStyle={"light-content"} />
+      <StatusBar barStyle={"light-content"} backgroundColor={props.statusBarColor ? props.statusBarColor : PRIMARY_THEME_COLOR} />
       <View style={[styles.maincontainer, props.headerStyle]}>
         <View style={styles.leftView}>
           <TouchableOpacity onPress={() => props.handleOnLeftIconPress()}>

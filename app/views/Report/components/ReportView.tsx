@@ -1,19 +1,26 @@
-import { View, Text } from 'react-native'
+import { View, Text, FlatList, Image, TouchableOpacity } from 'react-native'
 import React from 'react'
 import styles from './styles'
 import Header from 'app/components/Header'
 import images from 'app/assets/images'
 import strings from 'app/components/utilities/Localization'
-import { PRIMARY_THEME_COLOR } from 'app/components/utilities/constant'
+import { FONT_FAMILY_SEMIBOLD, PRIMARY_THEME_COLOR, WHITE_COLOR } from 'app/components/utilities/constant'
 import ComingSoonScreen from 'app/components/CommonScreen/ComingSoon'
+import { normalize, normalizeHeight, normalizeSpacing, normalizeWidth } from 'app/components/scaleFontSize'
 
 const ReportView = (props: any) => {
+    const DATA: any = [
+        { title: 'Property Report' },
+        { title: 'Agent Report' },
+        { title: 'Visit Report' },
+        { title: 'Site VisitProperty Report' },
+        { title: 'Closing Report' },
+    ]
     return (
         <View style={styles.mainContainer}>
             <Header
                 leftImageSrc={images.menu}
-                // rightFirstImageScr={images.filter}
-                // rightSecondImageScr={images.notification}
+                rightSecondImageScr={images.notification}
                 headerText={strings.reportHeader}
                 handleOnLeftIconPress={props.handleDrawerPress}
                 headerStyle={styles.headerStyle}
@@ -22,6 +29,27 @@ const ReportView = (props: any) => {
                 barStyle={'light-content'}
             />
             <ComingSoonScreen />
+            {/* <View style={{ flex: 1, marginHorizontal: normalizeSpacing(10) }}>
+                <FlatList
+                    data={DATA}
+                    showsVerticalScrollIndicator={false}
+                    renderItem={({ item }: any) => {
+                        return (
+                            <View style={styles.mainView}>
+                                <Text style={styles.reportTxt}>{item?.title}</Text>
+                                <TouchableOpacity style={styles.btnView}>
+                                    <Image
+                                        source={images.download}
+                                        resizeMode={'contain'}
+                                        style={styles.downloadImg}
+                                    />
+                                </TouchableOpacity>
+                            </View>
+                        )
+                    }}
+                />
+
+            </View> */}
         </View>
     )
 }
