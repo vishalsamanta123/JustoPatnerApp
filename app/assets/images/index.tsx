@@ -34,6 +34,7 @@ const images = {
   calender: require('./calender.png'),
   pdfIcone: require('./pdfIcone.png'),
   edit: require('./edit.png'),
+  download: require('./download.png'),
 };
 
 export default images;

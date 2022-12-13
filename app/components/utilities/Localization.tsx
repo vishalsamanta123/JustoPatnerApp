@@ -108,6 +108,7 @@ const strings = new LocalizedStrings({
     notSelectedLocation: 'Not Selected Location',
     searchYourlocation: 'Search your location here',
     comingSoon: 'Coming Soon',
+    share: 'Share',
 
     //Auth 
 
