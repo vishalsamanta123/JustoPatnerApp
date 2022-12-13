@@ -40,13 +40,6 @@ const AgentBasicInfoView = (props: any) => {
   const insets = useSafeAreaInsets();
   return (
     <View style={styles.mainContainer}>
-      <View
-        style={{
-          backgroundColor: WHITE_COLOR,
-          height: insets.top,
-        }}
-      />
-      <StatusBar barStyle={"light-content"} />
       <Header
         headerText={strings.basicInfoText}
         headerStyle={styles.headerStyle}
@@ -134,7 +127,7 @@ const AgentBasicInfoView = (props: any) => {
           <View style={styles.genderView}>
             <Text style={styles.genderTxt}>{strings.gender}</Text>
             <View style={styles.radioView}>
-              <RadioButton
+              <RadioButton.Android
                 value={"1"}//can edit
                 status={props?.agentInfoData?.gender === 1 ? "checked" : 'unchecked'}
                 onPress={() => props.setAgentInfoData({
@@ -156,7 +149,7 @@ const AgentBasicInfoView = (props: any) => {
               </Text>
             </View>
             <View style={styles.radioView}>
-              <RadioButton
+              <RadioButton.Android
                 value={"2"}//can edit
                 status={props?.agentInfoData?.gender === 2 ? "checked" : 'unchecked'}
                 onPress={() => props.setAgentInfoData({

@@ -97,13 +97,6 @@ import ErrorMessage from "app/components/ErrorMessage";
     return (
       <>
         <View style={styles.mainContainer}>
-          <View
-            style={{
-              backgroundColor: PRIMARY_THEME_COLOR,
-              height: insets.top,
-            }}
-          />
-          <StatusBar barStyle={"light-content"} backgroundColor={PRIMARY_THEME_COLOR} />
           <Header
             headerText={strings.userbankinfo}
             headerStyle={styles.headerStyle}

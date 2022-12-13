@@ -10,7 +10,6 @@ import { DATA } from '../../../../components/utilities/DemoData';
 import { normalizeHeight, normalizeSpacing, normalizeWidth } from '../../../../components/scaleFontSize';
 
 const CatalogueContent = ({navigation,route}: any) => {
-  const insets = useSafeAreaInsets();
 
   const datadocuments = route?.params || []
   // console.log("ImageContent -> items", datadocuments)
@@ -20,13 +19,6 @@ const CatalogueContent = ({navigation,route}: any) => {
   };
   return (
     <View style={styles.mainContainer}>
-      <View
-        style={{
-          backgroundColor: PRIMARY_THEME_COLOR_DARK,
-          height: insets.top,
-        }}
-      />
-      <StatusBar barStyle={"light-content"} />
       <Header
         leftImageSrc={images.backArrow}
         rightSecondImageScr={images.notification}

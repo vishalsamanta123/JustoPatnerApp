@@ -6,6 +6,7 @@ import {
   FONT_FAMILY_SEMIBOLD,
   GRAY_COLOR,
   GRAY_LIGHT_COLOR,
+  Isios,
   PRIMARY_THEME_COLOR,
   WHITE_COLOR,
 } from '../../../../components/utilities/constant';
@@ -110,7 +111,7 @@ const styles = StyleSheet.create({
   btnContainer: {
     flexDirection: 'row',
     marginHorizontal: normalizeSpacing(10),
-    marginVertical: normalizeSpacing(5)
+    marginVertical: normalizeSpacing(Isios ? 10 : 5)
   },
   playbtntch: {
     position: 'absolute',

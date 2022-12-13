@@ -55,6 +55,13 @@ import EditBankDetails from 'app/views/Setting/EditProfileScreen/components/Edit
 import AppointmentAddScreen from 'app/views/Appointment/AppointmentAdd';
 import ErrorMessage from 'app/components/ErrorMessage';
 import { RED_COLOR } from 'app/components/utilities/constant';
+import ReportScreen from 'app/views/Report';
+import LeaderBoardScreen from 'app/views/LeaderBoard/LeaderBoardScreen';
+import SupportForumScreen from 'app/views/SupportForum';
+import DataFlowScreen from 'app/views/DataFlow';
+import SupportScreen from 'app/views/Support';
+import ChatViewScreen from 'app/views/Chat';
+import axios from 'axios';
 const Stack = createNativeStackNavigator();
 const AuthStack = createNativeStackNavigator();
 const AppStack = createNativeStackNavigator();
@@ -75,6 +82,12 @@ const DrawerComponent = () => {
       <Drawer.Screen name="FollowUpScreen" component={FollowUpScreen} />
       <Drawer.Screen name="AppointmentScreen" component={AppointmentScreen} />
       <Drawer.Screen name="SettingScreen" component={SettingScreen} />
+      <Drawer.Screen name="Report" component={ReportScreen} />
+      <Drawer.Screen name="LeaderBoard" component={LeaderBoardScreen} />
+      <Drawer.Screen name="SupportForum" component={SupportForumScreen} />
+      <Drawer.Screen name="DataFlow" component={DataFlowScreen} />
+      <Drawer.Screen name="Support" component={SupportScreen} />
+      <Drawer.Screen name="ChatView" component={ChatViewScreen} />
 
       {/* <Stack.Screen component={PropertyScreen} name="PropertyScreenView" /> */}
     </Drawer.Navigator>
@@ -172,7 +185,19 @@ const AuthLoadingComponent = () => {
   }
   async function tokenGenrate() {
     try {
-      const { data } = await apiCall("get", apiEndPoints.JWTTOKEN, {});
+      // const { data } = await apiCall("get", apiEndPoints.JWTTOKEN, {});
+      const options = {
+        headers: {"content-type": "application/json"}
+      }
+      const data = await axios.get('https://itinformatix.org:3044/api/token/jwtToken', options)
+      .then(res => {
+        console.log('res', res.data)
+        return res.data
+
+      }).catch(e => {
+        console.log('e', e)
+
+      })
       if (data) {
         await AsyncStorage.setItem("token", data.token);
         await setDefaultHeader("token", data.token);

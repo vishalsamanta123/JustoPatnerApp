@@ -22,7 +22,7 @@ const AddAppointmentView = (props: any) => {
     useEffect(() => {
         setAddAppointmentForm({
             ...addAppointmentForm,
-            pickup_location: response?.data?.pickup_location, number_of_guest: response?.data?.number_of_guest
+            pickup_location: response?.data?.pickup_location, number_of_guest: response?.data?.number_of_guest, pickup_address: response?.data?.pickup_address
 
         })
     }, [response])
@@ -67,14 +67,6 @@ const AddAppointmentView = (props: any) => {
     }
     return (
         <View style={styles.mainContainer}>
-            {props.isloading ? <Loader /> : null}
-            <View
-                style={{
-                    backgroundColor: PRIMARY_THEME_COLOR_DARK,
-                    height: insets.top,
-                }}
-            />
-            <StatusBar backgroundColor={PRIMARY_THEME_COLOR} barStyle={"light-content"} />
             <Header
                 leftImageSrc={images.backArrow}
                 rightSecondImageScr={images.notification}
