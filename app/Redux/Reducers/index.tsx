@@ -1,11 +1,11 @@
-import { authStore, changePasswordReducer, forgotReducer, loadingReducer, otpVerifyReducer, updatepasswordReducer, userDataReducer } from "./AuthReducer";
+import { authStore, changePasswordReducer, forgotReducer, loadingReducer, otpVerifyReducer, profileDataReducer, updatepasswordReducer, userDataReducer } from "./AuthReducer";
 import { propertyReducer, propertyDetailReducer, removeStatusReducer } from "./propertyReducers";
 import { createChannlePartnerReducer, emailAndMobileReducer, registerDataReducer, registrationFormReducer } from "./ReggistrationReducer";
 import { agentReducer, addAgentReducer, addAgentFormReducer, editAgentReducer } from './AgentReducer';
 import { addVisitorReducer, editVisitorReducer, visitorListReducer, visitorReducer } from "./LeadsReducer";
 import { masterDataReducer } from "./MasterReducer";
 import { followUpReducer } from "./FollowUpReducer";
-import { settingReducer } from "./SettingReducer";
+import { editUserReducer, settingReducer } from "./SettingReducer";
 import { appointmentReducer } from "./AppointmentReducer";
 import { dashboardReducer, statusUpdateReducer } from "./DashboardReducer";
 
@@ -13,6 +13,7 @@ export default {
     loadingReducer: loadingReducer,
     login: authStore,
     userData: userDataReducer,
+    profileData: profileDataReducer,
     forgotResponce: forgotReducer,
     otpVerifyResponce: otpVerifyReducer,
     updatepasswordResponce: updatepasswordReducer,
@@ -47,4 +48,5 @@ export default {
     followUp: followUpReducer,
     appointment: appointmentReducer,
     settingData: settingReducer,
+    editUserData: editUserReducer,
 }

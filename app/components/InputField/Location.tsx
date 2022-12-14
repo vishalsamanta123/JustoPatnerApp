@@ -43,7 +43,10 @@ const LocationInput = (props: any) => {
                         color: BLACK_COLOR
                     },
                     predefinedPlacesDescription: {
-                        color: '#1faadb',
+                        color: BLACK_COLOR,
+                    },
+                    description: {
+                        color: BLACK_COLOR,
                     },
                 }}
                 onPress={(data, details = null) => {

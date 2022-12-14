@@ -1,4 +1,4 @@
-import { UPDATE_PROFILE_ERROR, UPDATE_PROFILE, START_LOADING, STOP_LOADING } from "../types";
+import { UPDATE_PROFILE_ERROR, UPDATE_PROFILE, START_LOADING, STOP_LOADING, REMOVE_USERDATA } from "../types";
 import apiEndPoints from "../../components/utilities/apiEndPoints";
 import { apiCall } from "app/components/utilities/httpClient";
 import { handleApiError } from "app/components/ErrorMessage/HandleApiErrors";
@@ -36,5 +36,18 @@ export const updateUserSettingData = (userDetail: any) => async (dispatch: any) 
   }
   finally {
     dispatch({ type: STOP_LOADING })
+  }
+};
+export const removeUpdateData = () => async (dispatch: any) => {
+  try {
+    dispatch({
+      type: REMOVE_USERDATA,
+      payload: null,
+    });
+  } catch (e) {
+    dispatch({
+      type: UPDATE_PROFILE_ERROR,
+      payload: console.log(e),
+    });
   }
 };

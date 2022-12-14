@@ -20,7 +20,7 @@ const ProfileScreen = ({ navigation, route }: any) => {
     React.useCallback(() => {
       getDetail()
       return () => { };
-    }, [navigation])
+    }, [navigation, route])
   );
   // useEffect(() => {
   //   getDetail();
