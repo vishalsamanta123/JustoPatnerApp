@@ -114,8 +114,9 @@ const AppointmentView = (props: any) => {
 
     const SecondRoute = () => (
         <FlatList
-            data={AppointMentSmData}
+            data={[]}
             renderItem={({ item }) => <SmAppointment items={item} onPressView={onPressView} />}
+            ListEmptyComponent={<EmptyListScreen message={strings.SMAppointment} />}
         />
     );
     const renderScene = SceneMap({

@@ -121,8 +121,8 @@ const CompanyDetails = ({ navigation }: any) => {
       newFormData.append("company_branch_name", formData?.company_branch_name)
       newFormData.append("company_account_no", formData?.company_account_no)
       newFormData.append("company_ifsc_code", formData?.company_ifsc_code)
-      // newFormData.append("role_id", '')
-      // newFormData.append("sourcing_manager", '')
+      newFormData.append("role_id", formData?.sourcing_manager)
+      newFormData.append("sourcing_manager", formData?.sourcing_manager)
       dispatch(RegistrationForm(formData))
       dispatch(createChannelPartner(newFormData))
     }

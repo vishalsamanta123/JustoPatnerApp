@@ -130,7 +130,7 @@ const UserBankInfo = ({ navigation }: any) => {
           leftImageIconStyle={{ tintColor: WHITE_COLOR }}
         />
         <ScrollView contentContainerStyle={styles.wrap}>
-          {/* <View style={styles.inputWrap}> */}
+          <View style={styles.inputWrap}>
             {/* <DropdownInput
               headingText={"Sourcing Manager"}
               placeholder={"Sourcing Manager"}
@@ -142,7 +142,7 @@ const UserBankInfo = ({ navigation }: any) => {
                 })
               }}
             /> */}
-            {/* <DropdownInput
+            <DropdownInput
               headingText={'Sourcing Manager'}
               placeholder={'Sourcing Manager'}
               data={masterDatas}
@@ -168,8 +168,8 @@ const UserBankInfo = ({ navigation }: any) => {
                   </>
                 );
               }}
-            /> */}
-          {/* </View> */}
+            />
+          </View>
           <View style={styles.inputWrap}>
             <InputField
               placeholderText={"RERA Certificate No."}
