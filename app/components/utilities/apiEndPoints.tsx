@@ -84,5 +84,7 @@ export default {
   EDIT_APPOINTMENT: '/appointment/editAppointment',
 
   //Settings
-  UPDATECHANNELPARTNER: "/channelPartner/updateChannelPartner"
+  UPDATECHANNELPARTNER: "/channelPartner/updateChannelPartner",
+  NOTIFICATION_LIST: "/notification/getNotificationList",
+
 };
