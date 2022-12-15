@@ -92,14 +92,40 @@ const CompanyDetails = ({ navigation }: any) => {
   }, [createChannelPartnerData])
   const onPressRegister = () => {
     if (validation()) {
-      const params = {
-        ...formData,
-        working_location: JSON.stringify(formData?.working_location)
-      }
+      const newFormData = new FormData();
+      newFormData.append("module_id", '')
+      newFormData.append("profile_picture", formData?.profile_picture)
+      newFormData.append("owner_name", formData?.owner_name)
+      newFormData.append("adhar_no", formData?.adhar_no)
+      newFormData.append("pancard_no", formData?.pancard_no)
+      newFormData.append("gender", formData?.gender)
+      newFormData.append("date_of_birth", formData?.date_of_birth)
+      newFormData.append("primary_mobile", formData?.primary_mobile)
+      newFormData.append("whatsapp_number", formData?.whatsapp_number)
+      newFormData.append("email", formData?.email)
+      newFormData.append("working_location", JSON.stringify(formData?.working_location))
+      newFormData.append("rera_certificate_no", formData?.rera_certificate_no)
+      newFormData.append("rera_certificate", formData?.rera_certificate)
+      newFormData.append("propidership_declaration_letter", formData?.propidership_declaration_letter)
+      newFormData.append("bank_name", formData?.bank_name)
+      newFormData.append("branch_name", formData?.branch_name)
+      newFormData.append("account_no", formData?.account_no)
+      newFormData.append("ifsc_code", formData?.ifsc_code)
+      newFormData.append("cancel_cheaque", formData?.cancel_cheaque)
+      newFormData.append("agency_name", formData?.agency_name)
+      newFormData.append("gst", formData?.gst)
+      newFormData.append("rera_registration", formData?.rera_registration)
+      newFormData.append("pancard", formData?.pancard)
+      newFormData.append("declaration_letter_of_company", formData?.declaration_letter_of_company)
+      newFormData.append("company_bank_name", formData?.company_bank_name)
+      newFormData.append("company_branch_name", formData?.company_branch_name)
+      newFormData.append("company_account_no", formData?.company_account_no)
+      newFormData.append("company_ifsc_code", formData?.company_ifsc_code)
+      // newFormData.append("role_id", '')
+      // newFormData.append("sourcing_manager", '')
       dispatch(RegistrationForm(formData))
-      dispatch(createChannelPartner(params))
+      dispatch(createChannelPartner(newFormData))
     }
-    // navigation.navigate('OtpVerificationScreenView', {type: strings.registration, email: formData?.email})
   }
   return (
     <View style={styles.mainContainer}>

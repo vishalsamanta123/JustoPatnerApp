@@ -1,12 +1,11 @@
+import React, { useEffect, useState } from 'react';
 import {
   View,
   Text,
   Image,
   TouchableOpacity,
   StatusBar,
-  Platform,
 } from 'react-native';
-import React, { useEffect, useState } from 'react';
 import styles from './styles';
 import images from '../assets/images';
 import strings from '../components/utilities/Localization';
@@ -18,16 +17,38 @@ import {
 } from '@react-navigation/drawer';
 import { PRIMARY_THEME_COLOR } from '../components/utilities/constant';
 import { useDispatch, useSelector } from 'react-redux';
-import { userLogout } from 'app/Redux/Actions/AuthActions';
+import { getProfileData, userLogout } from 'app/Redux/Actions/AuthActions';
+import AsyncStorage from '@react-native-async-storage/async-storage';
+import { getAgentDetail } from 'app/Redux/Actions/AgentActions';
 
 const customDrawer = ({ navigation }: any) => {
   const dispatch: any = useDispatch()
   const isDrawerOpen = useDrawerStatus() === 'open';
   const insets = useSafeAreaInsets();
-  const { response = {} } = useSelector((state: any) => state.userData)
-  const userData: any = response?.data || {}
+  const { response = {} } = useSelector((state: any) => state.profileData)
+  const [userData, setUserData] = useState<any>({})
   const toggleDrawer = () => {
     navigation.toggleDrawer();
+  };
+  useEffect(() => {
+    if (response?.status === 200) {
+      setUserData(response?.data[0])
+    }
+  }, [response])
+  useEffect(() => {
+    if (isDrawerOpen && response?.status != 200) {
+      getDetail()
+    }
+  }, [isDrawerOpen])
+  const getDetail = async () => {
+    const userData: any = await AsyncStorage.getItem("loginData");
+    if (JSON.parse(userData)?.data?.cp_id) {
+      dispatch(
+        getProfileData({
+          cp_id: JSON?.parse(userData)?.data?.cp_id,
+        })
+      );
+    }
   };
   const ProfileSection = () => {
     return (
@@ -36,8 +57,8 @@ const customDrawer = ({ navigation }: any) => {
           <View style={styles.NameContainer}>
             <Image
               style={styles.UserImge}
-              source={userData?.base_url ?
-                { uri: userData?.base_url + userData?.profile_picture }
+              source={userData?.profile_picture ?
+                { uri: userData?.profile_picture }
                 : images.dummyUser
               }
             />
@@ -45,10 +66,10 @@ const customDrawer = ({ navigation }: any) => {
               <Text
                 numberOfLines={1}
                 style={[styles.UserNameText, { width: 120 }]}>
-                {userData?.user_name}
+                {userData?.agent_name}
               </Text>
               <Text style={[styles.UserAddress, { width: 140 }]}>
-              {userData?.city ?? 'Florida, usa'}
+                {userData?.agencies?.address ?? 'Florida, usa'}
               </Text>
             </View>
             <TouchableOpacity

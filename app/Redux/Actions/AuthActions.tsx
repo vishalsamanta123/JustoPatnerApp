@@ -1,4 +1,4 @@
-import { USER_LOGIN, USER_LOGOUT, LOGIN_ERROR, TOKEN_GENRATE, FORGOT_PASSWORD, FORGOT_ERROR, OTPVERIFY, OTPVERIFY_ERROR, UPDATEPASSWORD, UPDATEPASSWORD_ERROR, RESENDOTP, RESENDOTP_ERROR, CHANGEPASSWORD, CHANGEPASSWORD_ERROR, START_LOADING, STOP_LOADING } from '../types'
+import { USER_LOGIN, USER_LOGOUT, LOGIN_ERROR, TOKEN_GENRATE, FORGOT_PASSWORD, FORGOT_ERROR, OTPVERIFY, OTPVERIFY_ERROR, UPDATEPASSWORD, UPDATEPASSWORD_ERROR, RESENDOTP, RESENDOTP_ERROR, CHANGEPASSWORD, CHANGEPASSWORD_ERROR, START_LOADING, STOP_LOADING, PROFILE_DATA, PROFILE_DATA_ERROR } from '../types'
 import axios from 'axios';
 import apiEndPoints from '../../components/utilities/apiEndPoints';
 import { apiCall } from 'app/components/utilities/httpClient';
@@ -6,7 +6,7 @@ import AsyncStorage from '@react-native-async-storage/async-storage';
 import { handleApiError } from 'app/components/ErrorMessage/HandleApiErrors';
 
 export const userLogin = (loginDetail: any) => async (dispatch: any) => {
-console.log('loginDetail: ', loginDetail);
+    console.log('loginDetail: ', loginDetail);
     dispatch({ type: START_LOADING })
     try {
         const res = await apiCall("post", apiEndPoints.LOGIN, loginDetail);
@@ -35,7 +35,35 @@ console.log('loginDetail: ', loginDetail);
         dispatch({ type: STOP_LOADING })
     }
 }
+export const getProfileData = (params: any) => async (dispatch: any) => {
+    dispatch({ type: START_LOADING })
+    try {
+        const res = await apiCall("post", apiEndPoints.GET_AGENT_DETAIL_, params);
+        if (res.data.status === 200) {
+            dispatch({
+                type: PROFILE_DATA,
+                payload: res.data,
+            });
 
+            dispatch({
+                type: PROFILE_DATA,
+                payload: res.data.data[0],
+            });
+
+        } else {
+            handleApiError(res.data)
+            return [];
+        }
+    } catch (e) {
+        dispatch({
+            type: PROFILE_DATA_ERROR,
+            payload: console.log(e),
+        });
+    }
+    finally {
+        dispatch({ type: STOP_LOADING })
+    }
+};
 export const forgotemailverify = (params: any) => async (dispatch: any) => {
     dispatch({ type: START_LOADING })
     try {

@@ -1,4 +1,4 @@
-import { TOKEN_GENRATE, USER_LOGIN, USER_LOGOUT, LOGIN_ERROR, FORGOT_PASSWORD, FORGOT_ERROR, FORGOT_NULL, OTPVERIFY, OTPVERIFY_ERROR, OTPVERIFY_NULL, UPDATEPASSWORD, UPDATEPASSWORD_NULL, UPDATEPASSWORD_ERROR, RESENDOTP, RESENDOTP_ERROR, RESENDOTP_NULL, CHANGEPASSWORD_ERROR, CHANGEPASSWORD, CHANGEPASSWORD_NULL, START_LOADING, STOP_LOADING } from '../types'
+import { TOKEN_GENRATE, USER_LOGIN, USER_LOGOUT, LOGIN_ERROR, FORGOT_PASSWORD, FORGOT_ERROR, FORGOT_NULL, OTPVERIFY, OTPVERIFY_ERROR, OTPVERIFY_NULL, UPDATEPASSWORD, UPDATEPASSWORD_NULL, UPDATEPASSWORD_ERROR, RESENDOTP, RESENDOTP_ERROR, RESENDOTP_NULL, CHANGEPASSWORD_ERROR, CHANGEPASSWORD, CHANGEPASSWORD_NULL, START_LOADING, STOP_LOADING, PROFILE_DATA } from '../types'
 
 const initialState = {
     response: null,
@@ -278,4 +278,26 @@ export function changePasswordReducer(state = changePasswordinitialState, action
     }
 
 }
+export function profileDataReducer(state = changePasswordinitialState, action: any) {
+    switch (action.type) {
+        case PROFILE_DATA:
+            return {
+                ...state,
+                response: action.payload,
+                changepassword: true,
+                error: false,
+                loading: false,
+            }
+        case USER_LOGOUT:
+            return {
+                ...state,
+                response: null,
+                authToken: false,
+                loading: false,
+            }
+        default: return state
+    }
+
+}
+
 

@@ -20,7 +20,8 @@ export const RegistrationForm = (item: any) => async (dispatch: any) => {
 export const createChannelPartner = (item: any) => async (dispatch: any) => {
   dispatch({ type: START_LOADING })
   try {
-    const res = await apiCall("post", apiEndPoints.CREATECHANNELPARTNER, item);
+    const header = { "Content-Type": "multipart/form-data", "access-control-allow-origin": "*" }
+    const res = await apiCall("post", apiEndPoints.CREATECHANNELPARTNER, item, header);
     if (res?.data?.status === 200) {
       dispatch({
         type: CREATE_CHANNEL_PARTNER,
