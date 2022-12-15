@@ -8,6 +8,7 @@ import { followUpReducer } from "./FollowUpReducer";
 import { editUserReducer, settingReducer } from "./SettingReducer";
 import { appointmentReducer } from "./AppointmentReducer";
 import { dashboardReducer, statusUpdateReducer } from "./DashboardReducer";
+import { notificationListReducer } from "./NotificationReducer";
 
 export default {
     loadingReducer: loadingReducer,
@@ -22,6 +23,7 @@ export default {
     createChannlePartner: createChannlePartnerReducer,
     registerData: registerDataReducer,
     emailAndMobileData: emailAndMobileReducer,
+    notificationData: notificationListReducer,
 
     //dashbaoard
     dashboardData: dashboardReducer,

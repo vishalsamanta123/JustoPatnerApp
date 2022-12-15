@@ -7127,6 +7127,11 @@ react-native-snackbar@^2.4.0:
   resolved "https://registry.yarnpkg.com/react-native-snackbar/-/react-native-snackbar-2.4.0.tgz#dd9687f5228e379ecd57678a921e546331681bcf"
   integrity sha512-xEDIDxw0ubBHrsvzaMfrZlFoy+ai1WEJZQwyAsG55fqYxUfQM20h+V4v25u+/H/YKY7ZCRMdCZ8zB5JOnbvCQw==
 
+react-native-swipe-list-view@^3.2.9:
+  version "3.2.9"
+  resolved "https://registry.yarnpkg.com/react-native-swipe-list-view/-/react-native-swipe-list-view-3.2.9.tgz#d725c7cdf481dd5df12a00dbfe0120013b5f2e59"
+  integrity sha512-SjAEuHc/D6ovp+RjDUhfNmw6NYOntdT7+GFhfMGfP/BSLMuMWynpzJy9GKQeyB8sI78T6Lzip21TVbongOg1Mw==
+
 react-native-switch@^1.5.1:
   version "1.5.1"
   resolved "https://registry.yarnpkg.com/react-native-switch/-/react-native-switch-1.5.1.tgz#da032f66547053aa004c7a159422dbca8fadd944"
