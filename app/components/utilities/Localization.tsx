@@ -100,6 +100,7 @@ const strings = new LocalizedStrings({
     searchLocation: 'Search Location',
     updatepassword: 'Update Password',
     deactivconfirmation: 'Are You sure you want to Deactive this',
+    activconfirmation: 'Are You sure you want to Active this',
     update: 'Update',
     call: 'Call',
     status: 'Status',

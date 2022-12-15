@@ -35,6 +35,8 @@ const images = {
   pdfIcone: require('./pdfIcone.png'),
   edit: require('./edit.png'),
   download: require('./download.png'),
+  camera: require('./camera.png'),
+  gallery: require('./gallery.png'),
 };
 
 export default images;

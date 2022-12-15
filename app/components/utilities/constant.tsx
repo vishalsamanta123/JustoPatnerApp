@@ -33,6 +33,8 @@ export const DATE_FORMAT = 'YYYY-MM-DD'
 export const TIME_FORMAT = 'LT'
 
 export const  GLOBAL_URL = 'https://itinformatix.org:3044'
-export const  MAP_KEY = 'AIzaSyDdLk5tb75SiJvRk9F2B4almu-sBAi1-EM'
+// export const  MAP_KEY = 'AIzaSyDdLk5tb75SiJvRk9F2B4almu-sBAi1-EM'
+export const  MAP_KEY = 'AIzaSyCbDx7Lk4eTMzptrQKXZvOPYgEMggrq8o4'
+
 
 

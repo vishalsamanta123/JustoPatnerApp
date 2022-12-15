@@ -15,6 +15,7 @@ import EmptyListScreen from 'app/components/CommonScreen/EmptyListScreen';
 
 
 const PropertyView = (props: any) => {
+console.log('props.currentStatus: ', props.currentStatus);
   const dispatch: any = useDispatch()
   const [isVisible, setIsVisible] = useState(false)
   const [masterDataShow, setMasterDataShow] = useState([])
@@ -152,7 +153,7 @@ const PropertyView = (props: any) => {
         resion={props.resion}
         masterDataShow={masterDataShow}
         stringshow={strings.confirmation}
-        textshow={strings.deactivconfirmation + ' ' + strings.agencyHeader + '?'}
+        textshow={strings.activconfirmation + 'Property'}
 
         confirmtype={props.currentStatus === 2 ? '' : 'CONFIRMATION'}
       />
