@@ -10,6 +10,7 @@ import {
 } from "app/components/utilities/constant";
 import { useSelector } from "react-redux";
 import { SwipeListView } from "react-native-swipe-list-view";
+import EmptyListScreen from "app/components/CommonScreen/EmptyListScreen";
 
 const NotificationView = (props: any) => {
   const { onPressBack, data } = props;
@@ -75,6 +76,7 @@ const NotificationView = (props: any) => {
         renderHiddenItem={renderHiddenItem}
         leftOpenValue={75}
         rightOpenValue={-75}
+        ListEmptyComponent={<EmptyListScreen message={strings.notificationHeader}  />}
       />
     </View>
   );
