@@ -61,7 +61,7 @@ const AddNewVisitorScreen = ({ navigation, route }: any) => {
     }
   }, [detail])
 
-  useEffect(() => {
+  useLayoutEffect(() => {
     dispatch(getAllMaster({
       type: 2
     }))
