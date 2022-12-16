@@ -84,7 +84,7 @@ const PicturePickerModal = (props: any) => {
                             <Image
                                 style={styles.componentsImg}
                                 resizeMode={'contain'}
-                                source={images.camera}
+                                source={images.gallery}
                             />
                             <Text style={styles.componentsTxt}>{strings.galleryHeader}</Text>
                         </TouchableOpacity>
@@ -110,7 +110,7 @@ const PicturePickerModal = (props: any) => {
                             <Image
                                 style={styles.componentsImg}
                                 resizeMode={'contain'}
-                                source={images.gallery}
+                                source={images.camera}
                             />
                             <Text style={styles.componentsTxt}>{strings.cameraHeader}</Text>
                         </TouchableOpacity>
