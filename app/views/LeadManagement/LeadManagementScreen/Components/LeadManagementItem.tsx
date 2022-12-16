@@ -1,4 +1,4 @@
-import { View, Text, TouchableOpacity, Image } from "react-native";
+import { View, Text, TouchableOpacity, Image, Linking } from "react-native";
 import React from "react";
 import styles from "./Styles";
 import {
@@ -103,7 +103,13 @@ const LeadManagementItem = (props: any) => {
           <Text style={[styles.buttonTxt, { color: PURPLE_COLOR }]}>{strings.edit}</Text>
         </TouchableOpacity>
         <TouchableOpacity
-          style={[styles.button, { borderColor: CALL_COLOR }]}>
+          style={[styles.button, { borderColor: CALL_COLOR }]}
+          onPress={() => {
+            Linking?.openURL(
+              `tel:${props?.items?.mobile}`
+            )
+          }}
+          >
           <Text style={[styles.buttonTxt, { color: CALL_COLOR }]}>{strings.call}</Text>
         </TouchableOpacity>
         <TouchableOpacity style={styles.Viewbutton} onPress={() => props.onPressView(props.items)}>

@@ -1,4 +1,4 @@
-import { View, Text, ScrollView, TouchableOpacity } from 'react-native'
+import { View, Text, ScrollView, TouchableOpacity, Linking } from 'react-native'
 import React from 'react'
 import styles from './Styles'
 import Button from '../../../../components/Button'
@@ -16,15 +16,33 @@ const LeadDetailsIteam = (props: any) => {
                 </View>
                 <View style={styles.topBtnView}>
                     <TouchableOpacity
-                        style={styles.button} >
+                        style={styles.button}
+                        onPress={() => {
+                            Linking?.openURL(
+                                `tel:${props?.items?.customer_detail?.mobile}`
+                            )
+                        }}
+                    >
                         <Text style={styles.buttonTxt}>Call</Text>
                     </TouchableOpacity>
                     <TouchableOpacity
-                        style={styles.button} >
+                        style={styles.button}
+                        onPress={() => {
+                            Linking?.openURL(
+                                `sms:${props?.items?.customer_detail?.mobile}`
+                            )
+                        }}
+                    >
                         <Text style={styles.buttonTxt}>SMS</Text>
                     </TouchableOpacity>
                     <TouchableOpacity
-                        style={styles.button} >
+                        style={styles.button}
+                        onPress={() => {
+                            Linking?.openURL(
+                                `https:wa.me/${props?.items?.customer_detail?.whatsapp_no}`
+                            )
+                        }}
+                    >
                         <Text style={[styles.buttonTxt, { fontSize: normalize(10) }]}>WhatsApp</Text>
                     </TouchableOpacity>
                 </View>

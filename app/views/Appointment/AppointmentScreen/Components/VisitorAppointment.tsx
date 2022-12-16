@@ -1,4 +1,4 @@
-import { View, Text, TouchableOpacity, Image } from 'react-native'
+import { View, Text, TouchableOpacity, Image, Linking } from 'react-native'
 import React from 'react'
 import styles from './Styles'
 import strings from '../../../../components/utilities/Localization'
@@ -80,7 +80,11 @@ const VisitorAppointment = (props: any) => {
         }
         <TouchableOpacity
           style={[styles.button, { borderColor: CALL_COLOR }]}
-        // onPress={() => props.onPressAllFollowUp()}
+          onPress={() => {
+            Linking?.openURL(
+              `tel:${item?.mobile}`
+            )
+          }}
         >
           <Text style={[styles.buttonTxt, { color: CALL_COLOR }]}>{strings.call}</Text>
         </TouchableOpacity>
