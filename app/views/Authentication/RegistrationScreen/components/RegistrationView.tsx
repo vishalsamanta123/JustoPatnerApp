@@ -4,7 +4,7 @@ import {
   Text,
   TouchableOpacity,
   View,
-  Image
+  Image,
 } from "react-native";
 import React, { useState } from "react";
 import { RadioButton } from "react-native-paper";
@@ -26,7 +26,7 @@ import { normalizeSpacing } from "app/components/scaleFontSize";
 import PicturePickerModal from "app/components/Modals/PicturePicker";
 import InputCalender from "app/components/InputCalender";
 import moment from "moment";
-import MultiLocation from 'app/components/MultiLocation'
+import MultiLocation from "app/components/MultiLocation";
 
 const RegistrationView = (props: any) => {
   const insets = useSafeAreaInsets();
@@ -37,9 +37,9 @@ const RegistrationView = (props: any) => {
     array?.splice(index, 1);
     props?.setRegisterForm({
       ...props?.registerForm,
-      working_location: array
-    })
-  }
+      working_location: array,
+    });
+  };
   return (
     <View style={styles.mainContainer}>
       <View
@@ -48,7 +48,10 @@ const RegistrationView = (props: any) => {
           height: insets.top,
         }}
       />
-      <StatusBar barStyle={"light-content"} backgroundColor={PRIMARY_THEME_COLOR} />
+      <StatusBar
+        barStyle={"light-content"}
+        backgroundColor={PRIMARY_THEME_COLOR}
+      />
       <Header
         headerText={strings.basicInfoText}
         headerStyle={styles.headerStyle}
@@ -57,8 +60,10 @@ const RegistrationView = (props: any) => {
         handleOnLeftIconPress={props.onPressBack}
         leftImageIconStyle={{ tintColor: WHITE_COLOR }}
       />
-      <ScrollView keyboardShouldPersistTaps={'handled'}
-        contentContainerStyle={styles.wrap}>
+      <ScrollView
+        keyboardShouldPersistTaps={"handled"}
+        contentContainerStyle={styles.wrap}
+      >
         {/*  <Text style={styles.headingText}>{strings.basicInfoText}</Text> */}
         {/* <View style={styles.underlineStyle} /> */}
 
@@ -66,13 +71,13 @@ const RegistrationView = (props: any) => {
           onPress={() => setProfile(true)}
           style={[styles.imageCircle, { backgroundColor: GRAY_COLOR }]}
         >
-          {!props.registerForm?.profile_picture?.uri ?
+          {!props.registerForm?.profile_picture?.uri ? (
             <Image
               style={styles.DummyloginBanner}
               source={images.user}
               resizeMode="contain"
             />
-            :
+          ) : (
             <View style={styles.imageCircle}>
               <Image
                 style={styles.loginBanner}
@@ -80,7 +85,7 @@ const RegistrationView = (props: any) => {
                 resizeMode="contain"
               />
             </View>
-          }
+          )}
           <View style={styles.editView}>
             <Image
               style={styles.editImage}
@@ -93,27 +98,29 @@ const RegistrationView = (props: any) => {
         <View style={styles.inputWrap}>
           <InputField
             placeholderText={"Name"}
-            handleInputBtnPress={() => { }}
+            handleInputBtnPress={() => {}}
             headingText={"Owner Name"}
             valueshow={props.registerForm?.owner_name}
             onChangeText={(val: any) => {
               props.setRegisterForm({
-                ...props.registerForm, owner_name: val
-              })
+                ...props.registerForm,
+                owner_name: val,
+              });
             }}
           />
         </View>
         <View style={styles.inputWrap}>
           <InputField
             placeholderText={"Aadhar No."}
-            handleInputBtnPress={() => { }}
+            handleInputBtnPress={() => {}}
             headingText={"Aadhar No."}
-            keyboardtype={'number-pad'}
+            keyboardtype={"number-pad"}
             valueshow={props.registerForm?.adhar_no}
             onChangeText={(val: any) => {
               props.setRegisterForm({
-                ...props.registerForm, adhar_no: val
-              })
+                ...props.registerForm,
+                adhar_no: val,
+              });
             }}
             maxLength={12}
           />
@@ -121,13 +128,14 @@ const RegistrationView = (props: any) => {
         <View style={styles.inputWrap}>
           <InputField
             placeholderText={"Pancard No."}
-            handleInputBtnPress={() => { }}
+            handleInputBtnPress={() => {}}
             headingText={"Pancard No."}
             valueshow={props.registerForm?.pancard_no}
             onChangeText={(val: any) => {
               props.setRegisterForm({
-                ...props.registerForm, pancard_no: val
-              })
+                ...props.registerForm,
+                pancard_no: val,
+              });
             }}
             maxLength={10}
           />
@@ -140,8 +148,9 @@ const RegistrationView = (props: any) => {
               status={props.registerForm.gender === 1 ? "checked" : "unchecked"}
               onPress={() => {
                 props.setRegisterForm({
-                  ...props.registerForm, gender: 1
-                })
+                  ...props.registerForm,
+                  gender: 1,
+                });
               }}
               color={PRIMARY_THEME_COLOR}
             />
@@ -150,7 +159,9 @@ const RegistrationView = (props: any) => {
                 styles.radioTxt,
                 {
                   color:
-                    props.registerForm.gender === 1 ? PRIMARY_THEME_COLOR : BLACK_COLOR,
+                    props.registerForm.gender === 1
+                      ? PRIMARY_THEME_COLOR
+                      : BLACK_COLOR,
                 },
               ]}
             >
@@ -163,8 +174,9 @@ const RegistrationView = (props: any) => {
               status={props.registerForm.gender === 2 ? "checked" : "unchecked"}
               onPress={() => {
                 props.setRegisterForm({
-                  ...props.registerForm, gender: 2
-                })
+                  ...props.registerForm,
+                  gender: 2,
+                });
               }}
               color={PRIMARY_THEME_COLOR}
             />
@@ -173,7 +185,9 @@ const RegistrationView = (props: any) => {
                 styles.radioTxt,
                 {
                   color:
-                    props.registerForm.gender === 2 ? PRIMARY_THEME_COLOR : BLACK_COLOR,
+                    props.registerForm.gender === 2
+                      ? PRIMARY_THEME_COLOR
+                      : BLACK_COLOR,
                 },
               ]}
             >
@@ -184,7 +198,7 @@ const RegistrationView = (props: any) => {
         <View style={styles.inputWrap}>
           <InputCalender
             leftIcon={images.event}
-            mode={'date'}
+            mode={"date"}
             placeholderText={"Date of Birth"}
             headingText={"Date of Birth"}
             editable={false}
@@ -192,14 +206,14 @@ const RegistrationView = (props: any) => {
             dateData={(data: any) => {
               props.setRegisterForm({
                 ...props.registerForm,
-                date_of_birth: moment(data).format(DATE_FORMAT)
-              })
+                date_of_birth: moment(data).format(DATE_FORMAT),
+              });
             }}
             setDateshow={(data: any) => {
               props.setRegisterForm({
                 ...props.registerForm,
-                date_of_birth: moment(data).format(DATE_FORMAT)
-              })
+                date_of_birth: moment(data).format(DATE_FORMAT),
+              });
             }}
             value={props?.registerForm?.date_of_birth}
           />
@@ -207,32 +221,34 @@ const RegistrationView = (props: any) => {
         <View style={styles.inputWrap}>
           <InputField
             placeholderText={"Mobile No."}
-            handleInputBtnPress={() => { }}
+            handleInputBtnPress={() => {}}
             headingText={"Mobile No."}
-            keyboardtype={'number-pad'}
+            keyboardtype={"number-pad"}
             valueshow={props.registerForm?.primary_mobile}
             onChangeText={(val: any) => {
               props.setRegisterForm({
-                ...props.registerForm, primary_mobile: val
-              })
+                ...props.registerForm,
+                primary_mobile: val,
+              });
             }}
             maxLength={10}
             onBlur={(val: any) => {
-              props.handleCheckEmailMobile(1)
+              props.handleCheckEmailMobile(1);
             }}
           />
         </View>
         <View style={styles.inputWrap}>
           <InputField
             placeholderText={"WhatsApp No."}
-            handleInputBtnPress={() => { }}
+            handleInputBtnPress={() => {}}
             headingText={"WhatsApp No."}
-            keyboardtype={'number-pad'}
+            keyboardtype={"number-pad"}
             valueshow={props.registerForm?.whatsapp_number}
             onChangeText={(val: any) => {
               props.setRegisterForm({
-                ...props.registerForm, whatsapp_number: val
-              })
+                ...props.registerForm,
+                whatsapp_number: val,
+              });
             }}
             maxLength={10}
           />
@@ -240,62 +256,100 @@ const RegistrationView = (props: any) => {
         <View style={styles.inputWrap}>
           <InputField
             placeholderText={"Email Address"}
-            handleInputBtnPress={() => { }}
+            handleInputBtnPress={() => {}}
             headingText={"Email Address"}
             valueshow={props.registerForm?.email}
             onChangeText={(val: any) => {
               props.setRegisterForm({
-                ...props.registerForm, email: val
-              })
+                ...props.registerForm,
+                email: val,
+              });
             }}
             onBlur={(val: any) => {
-              props.handleCheckEmailMobile()
+              props.handleCheckEmailMobile();
+            }}
+          />
+        </View>
+        <View style={{ marginTop: normalizeSpacing(30) }}>
+          <InputField
+            placeholderText={"Address"}
+            headingText={"Address"}
+            valueshow={props.registerForm?.address}
+            onChangeText={(val: any) => {
+              props.setRegisterForm({
+                ...props.registerForm,
+                address: val,
+              });
+            }}
+            inputType={"location"}
+            onPressSelect={(data: any, detail: any) => {
+              props.setRegisterForm({
+                ...props.registerForm,
+                address: data?.description,
+                latitude: detail?.geometry?.location?.lat,
+                longitude: detail?.geometry?.location?.lng,
+              });
             }}
           />
         </View>
         <View style={styles.workingView}>
-          <View style={{
-            top: props.registerForm?.working_location?.length > 0 ? 5 : 0
-          }}>
+          <View
+            style={{
+              top: props.registerForm?.working_location?.length > 0 ? 5 : 0,
+            }}
+          >
             <Text style={styles.workTxt}>Working Location</Text>
           </View>
-          <TouchableOpacity onPress={() => props.setLocationModel(true)}
-            style={styles.addBtn}>
+          <TouchableOpacity
+            onPress={() => props.setLocationModel(true)}
+            style={styles.addBtn}
+          >
             <Text style={styles.addTxt}>+ Add location</Text>
           </TouchableOpacity>
         </View>
-        {props.registerForm?.working_location?.length > 0 ?
+        {props.registerForm?.working_location?.length > 0 ? (
           <View style={styles.inputBoxVw}>
-            {props.registerForm?.working_location?.map((item: any, index: any) => {
-              return (
-                <View style={[styles.inputBoxItmVw, {
-                  borderBottomWidth: props?.registerForm?.working_location?.length - 1 === index ? 0 : 0.6
-                }]}>
-                  <Text style={styles.inputBoxItmTxt}>{item.location}</Text>
-                  <TouchableOpacity onPress={() => handleDelete(item, index)}>
-                    <Image
-                      source={images.close}
-                      style={styles.crossVw}
-                    />
-                  </TouchableOpacity>
-                </View>
-              )
-            })}
+            {props.registerForm?.working_location?.map(
+              (item: any, index: any) => {
+                return (
+                  <View
+                    style={[
+                      styles.inputBoxItmVw,
+                      {
+                        borderBottomWidth:
+                          props?.registerForm?.working_location?.length - 1 ===
+                          index
+                            ? 0
+                            : 0.6,
+                      },
+                    ]}
+                  >
+                    <Text style={styles.inputBoxItmTxt}>{item.location}</Text>
+                    <TouchableOpacity onPress={() => handleDelete(item, index)}>
+                      <Image source={images.close} style={styles.crossVw} />
+                    </TouchableOpacity>
+                  </View>
+                );
+              }
+            )}
           </View>
-          : null
-        }
+        ) : null}
         <View style={{ marginVertical: normalizeSpacing(20) }}>
-          <Button handleBtnPress={props.onPressNext}
+          <Button
+            handleBtnPress={props.onPressNext}
             rightImage={images.forwardArrow}
-            buttonText={strings.next} textTransform={"uppercase"} />
+            buttonText={strings.next}
+            textTransform={"uppercase"}
+          />
         </View>
         <PicturePickerModal
           Visible={profile}
           setVisible={setProfile}
           imageData={(data: any) => {
             props.setRegisterForm({
-              ...props.registerForm, profile_picture: data
-            })
+              ...props.registerForm,
+              profile_picture: data,
+            });
           }}
         />
         <MultiLocation
@@ -306,8 +360,8 @@ const RegistrationView = (props: any) => {
             if (data?.length > 0) {
               props.setRegisterForm({
                 ...props.registerForm,
-                working_location: data
-              })
+                working_location: data,
+              });
             }
           }}
         />

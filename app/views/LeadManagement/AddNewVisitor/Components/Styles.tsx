@@ -116,7 +116,7 @@ const styles = StyleSheet.create({
   },
   budgetView: {
     flexDirection: 'row',
-    height: normalizeHeight(Isios ? 50 : 0)
+    height: normalizeHeight(Isios ? 50 : 50)
   },
   smallBox: {
     width: "15%",

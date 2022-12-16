@@ -1,5 +1,10 @@
-import { StyleSheet } from 'react-native';
-import { normalize, normalizeHeight, normalizeSpacing, normalizeWidth } from '../../../../components/scaleFontSize';
+import { StyleSheet } from "react-native";
+import {
+  normalize,
+  normalizeHeight,
+  normalizeSpacing,
+  normalizeWidth,
+} from "../../../../components/scaleFontSize";
 import {
   BLACK_COLOR,
   FONT_FAMILY_EXTRABOLD,
@@ -11,7 +16,7 @@ import {
   FONT_FAMILY_MEDIUM,
   Isios,
   PRIMARY_THEME_COLOR_DARK,
-} from '../../../../components/utilities/constant';
+} from "../../../../components/utilities/constant";
 
 const styles = StyleSheet.create({
   headerStyle: {
@@ -27,13 +32,13 @@ const styles = StyleSheet.create({
     flexGrow: 1,
     marginHorizontal: normalizeSpacing(10),
     marginVertical: normalizeSpacing(5),
-    alignItems: 'center'
+    // alignItems: "center",
   },
   headingText: {
     fontSize: normalize(18),
     fontFamily: FONT_FAMILY_SEMIBOLD,
     color: PRIMARY_THEME_COLOR,
-    textAlign: 'center',
+    textAlign: "center",
   },
   underlineStyle: {
     width: normalizeWidth(60),
@@ -47,63 +52,64 @@ const styles = StyleSheet.create({
     borderRadius: normalizeSpacing(100),
     height: normalizeHeight(100),
     width: normalizeWidth(100),
-    alignItems: 'center',
-    justifyContent: 'center',
-
+    alignItems: "center",
+    justifyContent: "center",
+    alignSelf: "center",
   },
   inputWrap: {
     marginTop: normalizeSpacing(20),
+    alignItems: "center",
   },
   genderView: {
-    flexDirection: 'row',
-    alignItems: 'center',
-    justifyContent: 'flex-start',
+    flexDirection: "row",
+    alignItems: "center",
+    justifyContent: "flex-start",
     marginTop: normalizeSpacing(10),
-    width: '100%'
+    width: "100%",
   },
   genderTxt: {
     fontSize: normalize(18),
-    fontWeight: 'bold',
+    fontWeight: "bold",
     color: BLACK_COLOR,
   },
   radioView: {
-    flexDirection: 'row',
-    alignItems: 'center',
-    marginHorizontal: normalizeSpacing(10)
+    flexDirection: "row",
+    alignItems: "center",
+    marginHorizontal: normalizeSpacing(10),
   },
   radioTxt: {
     fontSize: normalize(18),
   },
   workingView: {
-    width: '100%',
-    flexDirection: 'row',
-    justifyContent: 'space-between',
+    width: "100%",
+    flexDirection: "row",
+    justifyContent: "space-between",
     marginTop: normalizeSpacing(10),
-    alignItems: 'center'
+    alignItems: "center",
   },
   addBtn: {
     backgroundColor: PRIMARY_THEME_COLOR,
     width: normalizeWidth(140),
     height: normalizeHeight(25),
     borderRadius: 100,
-    alignItems: 'center',
-    justifyContent: 'center'
+    alignItems: "center",
+    justifyContent: "center",
   },
   addTxt: {
     color: WHITE_COLOR,
-    textTransform: 'uppercase',
+    textTransform: "uppercase",
     fontSize: normalize(13),
-    fontFamily: FONT_FAMILY_EXTRABOLD
+    fontFamily: FONT_FAMILY_EXTRABOLD,
   },
   workTxt: {
     color: BLACK_COLOR,
-    textTransform: 'uppercase',
+    textTransform: "uppercase",
     fontSize: normalize(13),
     fontFamily: FONT_FAMILY_EXTRABOLD,
-    marginLeft: normalize(5)
+    marginLeft: normalize(5),
   },
   inputBoxVw: {
-    shadowColor: '#171717',
+    shadowColor: "#171717",
     shadowOffset: { width: 0, height: 1 },
     shadowOpacity: 0.2,
     shadowRadius: 1,
@@ -112,16 +118,16 @@ const styles = StyleSheet.create({
     borderRadius: 10,
     padding: normalizeSpacing(5),
     borderColor: GRAY_COLOR,
-    width: '100%',
-    marginTop: normalize(6)
+    width: "100%",
+    marginTop: normalize(6),
   },
   inputBoxItmVw: {
     paddingVertical: normalize(5),
     borderBottomWidth: 0.6,
     borderColor: BLACK_COLOR,
-    flexDirection: 'row',
-    justifyContent: 'space-between',
-    alignItems: 'center'
+    flexDirection: "row",
+    justifyContent: "space-between",
+    alignItems: "center",
   },
   inputBoxItmTxt: {
     fontSize: normalize(16),
@@ -130,13 +136,13 @@ const styles = StyleSheet.create({
     fontFamily: FONT_FAMILY_SEMIBOLD,
     opacity: 0.6,
     color: BLACK_COLOR,
-    width: '90%'
+    width: "90%",
   },
   crossVw: {
     width: normalizeWidth(18),
     height: normalizeHeight(18),
     marginHorizontal: 5,
-    tintColor: BLACK_COLOR
+    tintColor: BLACK_COLOR,
   },
   btnView: {
     marginVertical: normalizeSpacing(20),
@@ -152,8 +158,8 @@ const styles = StyleSheet.create({
     borderRadius: normalizeSpacing(50),
   },
   loginBannerView: {
-    height: '100%',
-    width: '100%',
+    height: "100%",
+    width: "100%",
     // borderBottomLeftRadius: width,
     // borderBottomRightRadius: width,
     // // borderRadius: width,
@@ -165,17 +171,17 @@ const styles = StyleSheet.create({
     // overflow: 'hidden',
   },
   editView: {
-    position: 'absolute',
+    position: "absolute",
     top: 5,
     bottom: 0,
-    right: 0
+    right: 0,
   },
   editImage: {
     width: normalizeWidth(20),
     height: normalizeHeight(20),
     backgroundColor: GRAY_COLOR,
-    borderRadius: 100
-  }
+    borderRadius: 100,
+  },
 });
 
 export default styles;
