@@ -111,9 +111,9 @@ const RegistrationView = (props: any) => {
         </View>
         <View style={styles.inputWrap}>
           <InputField
-            placeholderText={"Aadhar No."}
+            placeholderText={"Aadhaar No."}
             handleInputBtnPress={() => {}}
-            headingText={"Aadhar No."}
+            headingText={"Aadhaar No."}
             keyboardtype={"number-pad"}
             valueshow={props.registerForm?.adhar_no}
             onChangeText={(val: any) => {

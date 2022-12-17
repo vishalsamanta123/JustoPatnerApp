@@ -211,7 +211,7 @@ const DashboardView = (props: any) => {
               </View>
             </View>
           </View>
-          <View style={styles.bottomSection}>
+          {/* <View style={styles.bottomSection}>
             <View style={styles.headingView}>
               <Text style={styles.headingText}>CP NAME</Text>
               <Text style={styles.headingText}>VISITOR</Text>
@@ -224,7 +224,7 @@ const DashboardView = (props: any) => {
                 Know More
               </Text>
             </TouchableOpacity>
-          </View>
+          </View> */}
         </ScrollView>
       </View>
     </>

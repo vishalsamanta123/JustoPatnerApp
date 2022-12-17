@@ -51,7 +51,7 @@ const RegistrationScreen = ({ navigation }: any) => {
       registerForm.adhar_no == ""
     ) {
       isError = false;
-      errorMessage = "Aadhar No. is require. Please enter Aadhar No.";
+      errorMessage = "Aadhaar No. is require. Please enter Aadhaar No.";
     } else if (
       registerForm.pancard_no == undefined ||
       registerForm.pancard_no == ""

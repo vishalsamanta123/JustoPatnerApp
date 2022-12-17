@@ -103,7 +103,7 @@ const ProfileView = (props: any) => {
           </View>
           <View style={styles.fieldView}>
             <View style={styles.keyView}>
-              <Text style={styles.keyText}>Aadhar No.</Text>
+              <Text style={styles.keyText}>Aadhaar No.</Text>
             </View>
             <Text style={styles.colon}>:</Text>
             <View style={styles.valueView}>

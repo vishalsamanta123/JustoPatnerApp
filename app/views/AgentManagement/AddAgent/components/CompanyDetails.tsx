@@ -56,7 +56,7 @@ const CompanyDetails = ({navigation}: any) => {
             browse={"browse"}
             handleInputBtnPress={() => {}}
             onChangeText={() => {}}
-            headingText={"Pan Card"}
+            headingText={"Pancard"}
           />
           <TouchableOpacity 
             style={{
