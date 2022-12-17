@@ -29,7 +29,7 @@ const AddAppointmentScreen = ({ navigation, route }: any) => {
     dispatch(getAllLeadsList({
       offset: 0,
       limit: 10,
-      // lead_status: 1
+      lead_status: 1
     }))
   }
 
