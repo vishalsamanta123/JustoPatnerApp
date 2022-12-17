@@ -140,7 +140,7 @@ const AddNewVisitorForm = (props: any) => {
                     </View>
                     <View style={styles.inputWrap}>
                         <InputField
-                            placeholderText={"Aadhar No."}
+                            placeholderText={"Aadhaar No."}
                             handleInputBtnPress={() => { }}
                             onChangeText={(data: any) => {
                                 props.setFormData({
@@ -149,7 +149,7 @@ const AddNewVisitorForm = (props: any) => {
                                 })
                             }}
                             valueshow={props?.formData?.adhar_no?.toString()}
-                            headingText={"Aadhar No."}
+                            headingText={"Aadhaar No."}
                             maxLength={12}
                             keyboardtype={'number-pad'}
                         />
