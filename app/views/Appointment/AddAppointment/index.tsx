@@ -18,19 +18,19 @@ const AddAppointmentScreen = ({ navigation, route }: any) => {
   const [offSET, setOffset] = useState(0)
 
   useEffect(() => {
-    if (list) {
+    if (response?.status === 200) {
       setVisiitorList(response?.data)
+    } else {
+      setVisiitorList([])
     }
   }, [response])
 
   const getVisitorsList = (offset: any, array: any) => {
-    setOffset(offset)
     dispatch(getAllLeadsList({
       offset: 0,
       limit: 10,
       lead_status: 1
     }))
-    // toGetDatas(array)
   }
 
 
@@ -38,7 +38,6 @@ const AddAppointmentScreen = ({ navigation, route }: any) => {
     React.useCallback(() => {
       if (data?._id) {
         dispatch(getAppointmentDetails({ appointment_id: data?._id }))
-        // toGetDatas()
       }
       return () => { };
     }, [navigation, addAppointmentData?.detail]))
@@ -46,7 +45,7 @@ const AddAppointmentScreen = ({ navigation, route }: any) => {
   const handleAddAppointment = (params: any) => {
     if (type === strings.edit) {
       dispatch(editAppointment(params))
-      if (addAppointmentData?.response?.status) {
+      if (addAppointmentData?.response?.status === 200) {
         navigation.navigate('AppointmentScreen')
       } else {
         ErrorMessage({
@@ -56,7 +55,7 @@ const AddAppointmentScreen = ({ navigation, route }: any) => {
       }
     } else {
       dispatch(addAppointment(params))
-      if (addAppointmentData?.response?.status) {
+      if (addAppointmentData?.response?.status === 200) {
         navigation.navigate('AppointmentScreen')
       } else {
         ErrorMessage({

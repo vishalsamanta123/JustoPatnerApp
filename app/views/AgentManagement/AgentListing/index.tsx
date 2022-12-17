@@ -21,13 +21,13 @@ const AgentListing = ({ navigation }: any) => {
 
   useFocusEffect(
     React.useCallback(() => {
-      getAgentList(offSET, {})
+      getAgentList(0, {})
       return () => { };
     }, [navigation])
   );
 
   useEffect(() => {
-    if (list) {
+    if (response?.status === 200) {
       if (offSET === 0) {
         setAgentList(response?.data)
       } else {

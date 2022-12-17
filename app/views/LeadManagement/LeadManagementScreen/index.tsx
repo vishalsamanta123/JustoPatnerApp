@@ -21,13 +21,13 @@ const LeadManagementScreen = ({ navigation }: any) => {
 
   useFocusEffect(
     React.useCallback(() => {
-      getVisitorsList(offSET, {})
+      getVisitorsList(0, {})
       return () => { };
     }, [navigation])
   );
 
   useEffect(() => {
-    if (list) {
+    if (response?.status === 200) {
       if (offSET === 0) {
         setVisiitorList(response?.data)
       } else {

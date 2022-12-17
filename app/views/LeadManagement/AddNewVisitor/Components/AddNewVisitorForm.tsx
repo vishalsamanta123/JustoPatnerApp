@@ -140,6 +140,22 @@ const AddNewVisitorForm = (props: any) => {
                     </View>
                     <View style={styles.inputWrap}>
                         <InputField
+                            placeholderText={"Mobile No."}
+                            handleInputBtnPress={() => { }}
+                            onChangeText={(data: any) => {
+                                props.setFormData({
+                                    ...props.formData,
+                                    mobile: data,
+                                })
+                            }}
+                            valueshow={props?.formData?.mobile}
+                            headingText={"Mobile No."}
+                            keyboardtype={'number-pad'}
+                            maxLength={10}
+                        />
+                    </View>
+                    <View style={styles.inputWrap}>
+                        <InputField
                             placeholderText={"Aadhaar No."}
                             handleInputBtnPress={() => { }}
                             onChangeText={(data: any) => {
@@ -240,22 +256,7 @@ const AddNewVisitorForm = (props: any) => {
                                 '' : moment(props?.formData?.birth_date).format(DATE_FORMAT)}
                         />
                     </View>
-                    <View style={styles.inputWrap}>
-                        <InputField
-                            placeholderText={"Mobile No."}
-                            handleInputBtnPress={() => { }}
-                            onChangeText={(data: any) => {
-                                props.setFormData({
-                                    ...props.formData,
-                                    mobile: data,
-                                })
-                            }}
-                            valueshow={props?.formData?.mobile}
-                            headingText={"Mobile No."}
-                            keyboardtype={'number-pad'}
-                            maxLength={10}
-                        />
-                    </View>
+
                     <View style={styles.inputWrap}>
                         <InputField
                             placeholderText={"WhatsApp No."}
