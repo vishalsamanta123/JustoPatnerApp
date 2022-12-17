@@ -65,15 +65,13 @@ const AddNewVisitorScreen = ({ navigation, route }: any) => {
     dispatch(getAllMaster({
       type: 2
     }))
-    handleMasterDatas()
-  }, [])
+  }, [navigation])
 
-  const handleMasterDatas = () => {
+  useEffect(() => {
     if (masterData?.response?.status === 200) {
       setMasterDatas(masterData?.response?.data?.length > 0 ? masterData?.response?.data : [])
     }
-  }
-
+  }, [masterData])
   useEffect(() => {
     if (propertyData?.response?.status === 200) {
       setAllProperty(propertyData?.response?.data)
@@ -82,10 +80,9 @@ const AddNewVisitorScreen = ({ navigation, route }: any) => {
   useEffect(() => {
     dispatch(getAllAlloctaeProperty({
       offset: 0,
-      limit: '',
-      module_id: ''
+      limit: 100,
     }))
-  }, [])
+  }, [navigation])
 
   const handleBackPress = () => {
     navigation.goBack()

@@ -34,7 +34,7 @@ const DashboardScreen = ({ navigation }: any) => {
       setIsEnabled(isEnabled === 1 ? 2 : 1)
       dispatch(userStatusUpdater())
       ErrorMessage({
-        msg: response?.message,
+        msg: statusData?.response?.message,
         backgroundColor: GREEN_COLOR
       })
     }
