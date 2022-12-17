@@ -274,18 +274,18 @@ const RegistrationView = (props: any) => {
           <InputField
             placeholderText={"Address"}
             headingText={"Address"}
-            valueshow={props.registerForm?.address}
+            valueshow={props.registerForm?.location}
             onChangeText={(val: any) => {
               props.setRegisterForm({
                 ...props.registerForm,
-                address: val,
+                location: val,
               });
             }}
             inputType={"location"}
             onPressSelect={(data: any, detail: any) => {
               props.setRegisterForm({
                 ...props.registerForm,
-                address: data?.description,
+                location: data?.description,
                 latitude: detail?.geometry?.location?.lat,
                 longitude: detail?.geometry?.location?.lng,
               });
