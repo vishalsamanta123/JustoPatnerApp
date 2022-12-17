@@ -28,7 +28,7 @@ const RegistrationScreen = ({ navigation }: any) => {
     whatsapp_number: "",
     email: "",
     working_location: [],
-    address: '',
+    location: '',
     latitude: '',
     longitude: '',
   });
@@ -90,8 +90,8 @@ const RegistrationScreen = ({ navigation }: any) => {
       errorMessage =
         "Working Location is require. Please enter Working Location";
     } else if (
-      registerForm.address === '' ||
-      registerForm.address === undefined
+      registerForm.location === '' ||
+      registerForm.location === undefined
     ) {
       isError = false;
       errorMessage =
