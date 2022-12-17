@@ -186,7 +186,7 @@ const CompanyDetails = ({ navigation }: any) => {
         </View>
         <View style={[styles.inputWrap, { flexDirection: "row", alignItems: 'center', justifyContent: 'space-between' }]}>
           <View style={{ flex: 1 }}>
-            <Text style={styles.headingText}>Pan Card</Text>
+            <Text style={styles.headingText}>Pancard</Text>
           </View>
           <View>
             <TouchableOpacity

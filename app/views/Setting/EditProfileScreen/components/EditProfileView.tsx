@@ -90,7 +90,7 @@ const EditProfileView = (props: any) => {
                   adhar_no: e,
                 });
               }}
-              headingText={"Adhar No."}
+              headingText={"Aadhaar No."}
             />
           </View>
           <View style={styles.inputWrap}>
