@@ -26,12 +26,12 @@ const DashboardScreen = ({ navigation }: any) => {
   }
   const updateStatusPress = (data: any) => {
     dispatch(userStatusUpdateData({
-      online_status: data === 0 ? 1 : 0
+      online_status: data === 1 ? 2 : 1
     }))
   }
   useEffect(() => {
     if (statusData?.data && statusData?.response?.status === 200) {
-      setIsEnabled(isEnabled === 0 ? 1 : 0)
+      setIsEnabled(isEnabled === 1 ? 2 : 1)
       dispatch(userStatusUpdater())
       ErrorMessage({
         msg: response?.message,
