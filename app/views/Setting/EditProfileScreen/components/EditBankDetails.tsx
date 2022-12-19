@@ -49,7 +49,11 @@ const EditBankDetails = ({ navigation }: any) => {
         backgroundColor: GREEN_COLOR
       })
       dispatch(removeUpdateData())
-      navigation.navigate('profile')
+      navigation.navigate('profile', {
+        heading: 'Profile',
+        icon: images.user,
+        type: 'profile'
+      },)
     }
   }, [editUser])
 

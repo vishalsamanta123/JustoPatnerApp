@@ -16,9 +16,8 @@ const styles = StyleSheet.create({
         tintColor: WHITE_COLOR
       },
       wrap: {
-        // flex: 1,
+        flexGrow: 1,
         margin: normalizeSpacing(20),
-        alignItems: 'center'
       },
       imageCircle: {
         backgroundColor: GRAY_COLOR,
@@ -27,7 +26,8 @@ const styles = StyleSheet.create({
         height: normalizeHeight(100),
         width: normalizeWidth(100),
         alignItems: 'center',
-        justifyContent: 'center'
+        justifyContent: 'center',
+        alignSelf: 'center',
       },
       inputWrap: {
         marginTop: normalizeSpacing(30),

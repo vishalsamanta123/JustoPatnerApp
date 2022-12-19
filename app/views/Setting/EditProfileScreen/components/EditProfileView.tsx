@@ -83,6 +83,7 @@ const EditProfileView = (props: any) => {
           <View style={styles.inputWrap}>
             <InputField
               valueshow={editData?.adhar_no}
+              keyboardtype={'number-pad'}
               handleInputBtnPress={() => { }}
               onChangeText={(e: any) => {
                 setEditData({
@@ -174,6 +175,7 @@ const EditProfileView = (props: any) => {
           <InputCalender
             mode={"date"}
             leftIcon={images.event}
+            maximumDate={new Date()}
             placeholderText={"Date of Birth"} //can edit
             headingText={"Date of Birth"}
             editable={false}
@@ -202,6 +204,7 @@ const EditProfileView = (props: any) => {
                 });
               }}
               headingText={"Mobile No."}
+              editable={false}
             />
           </View>
           <View style={styles.inputWrap}>
@@ -215,6 +218,8 @@ const EditProfileView = (props: any) => {
                 });
               }}
               headingText={"WhatsApp No."}
+              keyboardtype={'number-pad'}
+              maxLength={10}
             />
           </View>
           <View style={styles.inputWrap}>
@@ -227,9 +232,11 @@ const EditProfileView = (props: any) => {
                   email: e,
                 });
               }}
+              editable={false}
               headingText={"Email Address"}
             />
           </View>
+          
           {/*  <View style={styles.inputWrap}>
             <InputField
               placeholderText={"Sourcing Manager"}
