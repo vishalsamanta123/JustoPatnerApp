@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react';
 import { View, Text, Image, TouchableOpacity, ScrollView } from 'react-native';
 import images from "app/assets/images";
 import Modal from "react-native-modal";
-import { MAP_KEY, PRIMARY_THEME_COLOR, PRIMARY_THEME_COLOR_DARK, WHITE_COLOR } from 'app/components/utilities/constant';
+import { BLACK_COLOR, MAP_KEY, PRIMARY_THEME_COLOR, PRIMARY_THEME_COLOR_DARK, WHITE_COLOR } from 'app/components/utilities/constant';
 import styles from './styles';
 import Button from 'app/components/Button';
 import strings from 'app/components/utilities/Localization';
@@ -13,6 +13,7 @@ import { handlePermission, openPermissionSetting } from '../utilities/GlobalFunc
 
 const locationsView = (props: any) => {
     const [allList, setAllList] = useState<any>([])
+    const [address, setAddress] = useState<any>({})
     const onPressSelect = async (data: any, details: any) => {
         // const res = await handlePermission(
         //     'location',
@@ -37,6 +38,7 @@ const locationsView = (props: any) => {
         const valueObj = props?.value?.find((itm: any) => {
             return itm?.location === data?.description
         })
+        setAddress('')
         if (selectedObj?.location != data?.description) {
             if (valueObj?.location != data?.description) {
                 const object = {
@@ -123,6 +125,8 @@ const locationsView = (props: any) => {
                         placeholder={strings.location}
                         textInputProps={{
                             placeholderTextColor: PRIMARY_THEME_COLOR_DARK,
+                            value: address,
+                            onChangeText: (val: any) => setAddress(val),
                         }}
                         styles={{
                             textInputContainer: {
@@ -138,6 +142,9 @@ const locationsView = (props: any) => {
                             },
                             predefinedPlacesDescription: {
                                 color: '#1faadb',
+                            },
+                            description: {
+                                color: BLACK_COLOR,
                             },
                         }}
                         onPress={(data, details = null) => {

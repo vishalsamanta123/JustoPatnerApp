@@ -51,6 +51,7 @@ const EditProfileScreen = ({ navigation, route }: any) => {
   }
 
   const [editData, setEditData] = useState(agentdetail.response);
+  console.log('editData: ', editData);
   
   
   
