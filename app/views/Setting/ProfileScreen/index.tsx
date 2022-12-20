@@ -1,6 +1,6 @@
 import AsyncStorage from "@react-native-async-storage/async-storage";
 import { useFocusEffect, useIsFocused } from "@react-navigation/native";
-import { getAgentDetail } from "app/Redux/Actions/AgentActions";
+import { addAgentForm, getAgentDetail } from "app/Redux/Actions/AgentActions";
 import React, { useEffect, useLayoutEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import ProfileView from "./components/ProfileView";
@@ -13,9 +13,7 @@ const ProfileScreen = ({ navigation, route }: any) => {
   );
 
   const userdata = useSelector((state: any) => state.agentData);
-
   const [allDetails, setAllDetails] = useState({});
-
   useFocusEffect(
     React.useCallback(() => {
       getDetail()

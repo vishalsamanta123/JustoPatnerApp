@@ -25,7 +25,7 @@ const VisitorAppointment = (props: any) => {
         </View>
         <View><Text>:</Text></View>
         <View style={styles.nameContainer}>
-          <Text style={styles.nameTxt}>{`${item?.customer_first_name} ${item?.customer_last_name}`}</Text>
+          <Text style={styles.nameTxt}>{`${item?.customer_first_name}`}</Text>
         </View>
       </View>
       <View style={styles.Txtview}>

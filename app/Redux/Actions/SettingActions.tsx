@@ -4,6 +4,7 @@ import { apiCall } from "app/components/utilities/httpClient";
 import { handleApiError } from "app/components/ErrorMessage/HandleApiErrors";
 
 export const updateUserSettingData = (userDetail: any) => async (dispatch: any) => {
+console.log('userDetail: ', userDetail);
   dispatch({ type: START_LOADING })
   try {
     const header = {

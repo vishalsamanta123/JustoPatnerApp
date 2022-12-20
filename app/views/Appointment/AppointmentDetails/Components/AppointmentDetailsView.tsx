@@ -24,13 +24,15 @@ const AppointmentDetailsView = (props: any) => {
                 headerStyle={styles.headerStyle}
             />
             <View style={styles.propertyListView}>
-                <AppointmentDtailsItem item={response?.data} />
+                <AppointmentDtailsItem item={response?.data?.length !== 0 ?
+                    response?.data[0] : {}
+                } />
             </View>
             <View style={styles.bntView}>
                 <Button
                     handleBtnPress={() => props.handleStatusUpdate(response?.data)}
-                    buttonText={strings.updatestatus} 
-                    />
+                    buttonText={strings.updatestatus}
+                />
             </View>
         </View>
     )

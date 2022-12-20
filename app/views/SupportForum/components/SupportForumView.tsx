@@ -39,8 +39,8 @@ const SupportForumView = (props: any) => {
                 statusBarColor={PRIMARY_THEME_COLOR}
                 barStyle={'light-content'}
             />
-            <ComingSoonScreen />
-            {/* <View style={{ flex: 1, marginHorizontal: normalizeSpacing(10) }}>
+            {/* <ComingSoonScreen /> */}
+            <View style={{ flex: 1, marginHorizontal: normalizeSpacing(10) }}>
                 <FlatList
                     data={DATA}
                     showsVerticalScrollIndicator={false}
@@ -92,7 +92,7 @@ const SupportForumView = (props: any) => {
                     }}
                 />
 
-            </View> */}
+            </View>
         </View>
     )
 }

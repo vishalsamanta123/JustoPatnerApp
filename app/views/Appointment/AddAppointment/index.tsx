@@ -15,7 +15,6 @@ const AddAppointmentScreen = ({ navigation, route }: any) => {
   const { response = {}, list = "" } = useSelector((state: any) => state.visitorDataList)
   const addAppointmentData = useSelector((state: any) => state.appointment)
   const [visitorList, setVisiitorList] = useState<any>([])
-  const [offSET, setOffset] = useState(0)
 
   useEffect(() => {
     if (response?.status === 200) {
@@ -36,8 +35,10 @@ const AddAppointmentScreen = ({ navigation, route }: any) => {
 
   useFocusEffect(
     React.useCallback(() => {
-      if (data?._id) {
-        dispatch(getAppointmentDetails({ appointment_id: data?._id }))
+      if (type === strings.edit) {
+        if (data?._id) {
+          dispatch(getAppointmentDetails({ appointment_id: data?._id }))
+        }
       }
       return () => { };
     }, [navigation, addAppointmentData?.detail]))

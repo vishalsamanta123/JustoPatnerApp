@@ -55,8 +55,6 @@ const ProfileView = (props: any) => {
     second: SecondRoute,
   });
   
-  // console.log('allDetails========== ', allDetails);
-  
   return (
     <View style={styles.mainContainer}>
       <Header

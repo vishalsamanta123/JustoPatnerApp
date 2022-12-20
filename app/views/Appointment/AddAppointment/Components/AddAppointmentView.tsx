@@ -2,29 +2,29 @@ import { View, Text, StatusBar } from 'react-native'
 import React, { useEffect, useState } from 'react'
 import styles from './Styles'
 import { useSafeAreaInsets } from 'react-native-safe-area-context';
-import { PRIMARY_THEME_COLOR, PRIMARY_THEME_COLOR_DARK, RED_COLOR } from '../../../../components/utilities/constant';
+import { RED_COLOR } from '../../../../components/utilities/constant';
 import Header from '../../../../components/Header';
 import images from '../../../../assets/images';
 import strings from '../../../../components/utilities/Localization';
 import AddAppointmentItem from './AddAppointmentItem';
-import { useNavigation } from '@react-navigation/native';
-import Loader from 'app/components/CommonScreen/Loader';
 import ErrorMessage from 'app/components/ErrorMessage';
 import { useSelector } from 'react-redux';
 
 const AddAppointmentView = (props: any) => {
     const insets = useSafeAreaInsets();
-    const navigation: any = useNavigation()
-    const [value, setValue] = useState(null)
-    const [gender, setGender] = useState("Male");
-    const [checked, setChecked] = React.useState("first");
     const { response = {} } = useSelector((state: any) => state.appointment)
     useEffect(() => {
-        setAddAppointmentForm({
-            ...addAppointmentForm,
-            pickup_location: response?.data?.pickup_location, number_of_guest: response?.data?.number_of_guest, pickup_address: response?.data?.pickup_address
-
-        })
+        if (props?.type === strings.edit) {
+            setAddAppointmentForm({
+                ...addAppointmentForm,
+                pickup_location: response?.data[0]?.pickup_location,
+                number_of_guest: response?.data[0]?.number_of_guest,
+                pickup_address: response?.data[0]?.pickup_address,
+                lead_name: response?.data[0]?.first_name,
+                pickup_latitude: response?.data[0]?.pickup_latitude,
+                pickup_longitude: response?.data[0]?.pickup_longitude,
+            })
+        }
     }, [response])
 
     const [addAppointmentForm, setAddAppointmentForm] = useState<any>({
@@ -49,8 +49,18 @@ const AddAppointmentView = (props: any) => {
         else if (addAppointmentForm.appointment_time == undefined || addAppointmentForm.appointment_time == '') {
             isError = false;
             errorMessage = "Appointment Time is require. Please Select the Appointment Time Status"
+        } else if (addAppointmentForm.pickup === strings.yes) {
+            if (addAppointmentForm.pickup_location === '' || addAppointmentForm.pickup_location === undefined) {
+                isError = false;
+                errorMessage = "Pickup Location is require. Please Select the Pickup Location"
+            } else if (addAppointmentForm.pickup_address === '' || addAppointmentForm.pickup_address === undefined) {
+                isError = false;
+                errorMessage = "Pickup Area is require. Please Select the Pickup Area"
+            } else if (addAppointmentForm.number_of_guest === '' || addAppointmentForm.number_of_guest === undefined) {
+                isError = false;
+                errorMessage = "Number Of Guest is require. Please Enter the Number Of Guest"
+            }
         }
-
         if (errorMessage !== '') {
             ErrorMessage({
                 msg: errorMessage,
@@ -63,7 +73,6 @@ const AddAppointmentView = (props: any) => {
         if (validation()) {
             props.handleAddAppointment(addAppointmentForm)
         }
-        // navigation.navigate('AppointmentScreen')
     }
     return (
         <View style={styles.mainContainer}>
@@ -77,10 +86,6 @@ const AddAppointmentView = (props: any) => {
             />
             <View style={styles.AddAppointmentView}>
                 <AddAppointmentItem
-                    setValue={setValue}
-                    value={value}
-                    setChecked={setChecked}
-                    checked={checked}
                     handleBtnPress={handleBtnPress}
                     setAddAppointmentForm={setAddAppointmentForm}
                     addAppointmentForm={addAppointmentForm}

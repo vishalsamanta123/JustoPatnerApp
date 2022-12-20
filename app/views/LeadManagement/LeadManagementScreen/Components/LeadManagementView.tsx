@@ -37,6 +37,7 @@ const LeadManagementView = (props: any) => {
       status: ''
     })
     props.getVisitorsList(0, {})
+    props.setVisiitorList([])
   }
 
   return (

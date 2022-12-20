@@ -34,6 +34,7 @@ export const getAppointmentDetails = (params: any) => async (dispatch: any) => {
     dispatch({ type: START_LOADING })
     try {
         const res = await apiCall("post", apiEndPoints.GET_APPOINTMENT_DETAILS, params);
+        console.log('res GET_APPOINTMENT_DETAILS: ', res);
         if (res?.data?.status == 200) {
             dispatch({
                 type: GET_APPOINTMENT_DETAILS,

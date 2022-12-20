@@ -67,13 +67,6 @@ export function addAgentFormReducer(state = initialStateForm, action: any) {
         update: false,
         response: action.payload,
       };
-    // case PROPERTY_FORM_UPDATE:
-    //   return {
-    //     ...state,
-    //     update: true,
-    //     response: action.payload,
-    //   };
-
     default:
       return state;
   }
