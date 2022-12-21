@@ -30,9 +30,12 @@ const DropdownInput = (props: any) => {
                         height: normalizeHeight(inputheight),
                         paddingLeft: normalize(paddingLeft)
                     }]}
+                    itemTextStyle={{ fontSize: 10 }}
+                    itemContainerStyle={props.itemContainerStyle}
                     placeholderStyle={styles.placeholderStyle}
                     selectedTextStyle={props.selectedTextStyle ? props.selectedTextStyle : styles.selectedTextStyle}
-                    iconStyle={styles.iconStyle}
+                    iconStyle={props.iconStyle ? props.iconStyle :
+                        styles.iconStyle}
                     data={props.data ? props.data : dropdownData}
                     maxHeight={props.maxHeight ? props.maxHeight : 300}
                     labelField={props.labelField ? props.labelField : "label"}

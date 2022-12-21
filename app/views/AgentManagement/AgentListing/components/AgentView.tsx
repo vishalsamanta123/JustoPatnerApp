@@ -73,6 +73,7 @@ const AgentView = (props: any) => {
       status: ''
     })
     props.getAgentList(0, {})
+    props.setAgentList([])
   }
   const onReset = () => {
     props.setFilterData({

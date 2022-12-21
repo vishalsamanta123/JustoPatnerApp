@@ -284,9 +284,7 @@ export function profileDataReducer(state = changePasswordinitialState, action: a
             return {
                 ...state,
                 response: action.payload,
-                changepassword: true,
                 error: false,
-                loading: false,
             }
         case USER_LOGOUT:
             return {

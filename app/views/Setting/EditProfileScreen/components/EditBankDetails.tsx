@@ -21,6 +21,7 @@ import { normalize, normalizeHeight, normalizeWidth } from "app/components/scale
 import moment from "moment";
 import { removeUpdateData, updateUserSettingData } from "app/Redux/Actions/SettingActions";
 import ErrorMessage from "app/components/ErrorMessage";
+import { addAgentForm } from "app/Redux/Actions/AgentActions";
 
 const EditBankDetails = ({ navigation }: any) => {
   const dispatch: any = useDispatch()
@@ -37,7 +38,6 @@ const EditBankDetails = ({ navigation }: any) => {
     (state: any) => state.settingData
   );
   const editUser = useSelector((state: any) => state.editUserData);
-  // const allDetailsall = useSelector((state: any) => state.agentData);
 
   const [editData, setEditData] = useState(agentdetail?.response);
   const [bankData, setBankData] = useState(agentdetail?.response?.cp_bank_detail);

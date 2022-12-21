@@ -23,7 +23,7 @@ const AppointmentDtailsItem = (props: any) => {
         </View>
         <View><Text>:</Text></View>
         <View style={styles.nameContainer}>
-          <Text style={styles.nameTxt}>{`${props?.item?.customer_first_name} ${props?.item?.customer_last_name}`}</Text>
+          <Text style={styles.nameTxt}>{`${props?.item?.customer_first_name}`}</Text>
         </View>
       </View>
       <View style={styles.Txtview}>

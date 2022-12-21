@@ -69,7 +69,7 @@ const customDrawer = ({ navigation }: any) => {
                 {userData?.agent_name}
               </Text>
               <Text style={[styles.UserAddress, { width: 140 }]}>
-                {userData?.agencies?.address ?? ''}
+                {userData?.location ?? ''}
               </Text>
             </View>
             <TouchableOpacity

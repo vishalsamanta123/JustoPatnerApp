@@ -15,12 +15,9 @@ import EmptyListScreen from 'app/components/CommonScreen/EmptyListScreen';
 
 
 const PropertyView = (props: any) => {
-console.log('props.currentStatus: ', props.currentStatus);
   const dispatch: any = useDispatch()
   const [isVisible, setIsVisible] = useState(false)
   const [masterDataShow, setMasterDataShow] = useState([])
-
-
   const [FilterisVisible, setFilterisVisible] = useState(false)
   const [propertyList, setPropertyList] = useState([])
   const insets = useSafeAreaInsets();
@@ -91,22 +88,8 @@ console.log('props.currentStatus: ', props.currentStatus);
 
   }
 
-  const renderFooter = () => {
-    return (
-      // Footer View with Loader
-      <View style={styles.footer}>
-        {loadingref ? (
-          <ActivityIndicator
-            color="black"
-            style={{ margin: 15 }} />
-        ) : null}
-      </View>
-    );
-  };
-
   return (
     <View style={styles.mainContainer}>
-
       <Header
         leftImageSrc={images.menu}
         rightFirstImageScr={images.filter}

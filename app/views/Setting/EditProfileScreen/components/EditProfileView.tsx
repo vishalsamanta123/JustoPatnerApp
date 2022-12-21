@@ -16,20 +16,11 @@ import moment from "moment";
 import { useSelector } from "react-redux";
 import InputCalender from "app/components/InputCalender";
 import PicturePickerModal from "app/components/Modals/PicturePicker";
+import { normalizeSpacing } from "app/components/scaleFontSize";
 
 const EditProfileView = (props: any) => {
-  const { onPressBack, allDetails, setEditData, editData } = props;
   const insets = useSafeAreaInsets();
-  const [gender, setGender] = useState("Male");
-  const [checked, setChecked] = useState("first");
   const [profileVisible, setProfileVisible] = useState(false);
-
-  const allDetailsall = useSelector((state: any) => state.agentData);
-  // useEffect(() => {
-  //   // setEditData(allDetails)
-  //   setEditData(allDetailsall?.response)
-  // }, [allDetailsall])
-
   return (
     <View style={styles.mainContainer}>
       <Header
@@ -38,26 +29,25 @@ const EditProfileView = (props: any) => {
         headerTextStyle={styles.headerTextStyle}
         leftImageSrc={images.backArrow}
         leftImageIconStyle={styles.leftImageIconStyle}
-        handleOnLeftIconPress={onPressBack}
+        handleOnLeftIconPress={props.onPressBack}
         barStyle={"light-content"}
         statusBarColor={PRIMARY_THEME_COLOR}
       />
-      <ScrollView>
+      <ScrollView keyboardShouldPersistTaps={'handled'}>
         <View style={styles.wrap}>
           {/*  <Text style={styles.headingText}>{strings.basicInfoText}</Text> */}
           {/* <View style={styles.nderlineStyle} /> */}
-
           <TouchableOpacity
             style={styles.imageCircle}
             onPress={() => setProfileVisible(true)}
           >
-            {editData?.profile_picture || editData?.local_profile_picture?.uri ?
+            {props?.editData?.profile_picture || props?.editData?.local_profile_picture?.uri ?
               <Image
                 style={styles.userImage}
                 source={{
-                  uri: editData?.local_profile_picture?.uri
-                    ? editData?.local_profile_picture?.uri
-                    : editData?.profile_picture,
+                  uri: props.editData?.local_profile_picture?.uri
+                    ? props.editData?.local_profile_picture?.uri
+                    : props.editData?.profile_picture,
                 }}
               />
               :
@@ -69,11 +59,11 @@ const EditProfileView = (props: any) => {
           </TouchableOpacity>
           <View style={styles.inputWrap}>
             <InputField
-              valueshow={editData?.agent_name}
+              valueshow={props.editData?.agent_name}
               handleInputBtnPress={() => { }}
               onChangeText={(e: any) => {
-                setEditData({
-                  ...editData,
+                props.setEditData({
+                  ...props.editData,
                   agent_name: e,
                 });
               }}
@@ -82,12 +72,12 @@ const EditProfileView = (props: any) => {
           </View>
           <View style={styles.inputWrap}>
             <InputField
-              valueshow={editData?.adhar_no}
+              valueshow={props.editData?.adhar_no}
               keyboardtype={'number-pad'}
               handleInputBtnPress={() => { }}
               onChangeText={(e: any) => {
-                setEditData({
-                  ...editData,
+                props.setEditData({
+                  ...props.editData,
                   adhar_no: e,
                 });
               }}
@@ -96,11 +86,11 @@ const EditProfileView = (props: any) => {
           </View>
           <View style={styles.inputWrap}>
             <InputField
-              valueshow={editData?.pancard_no}
+              valueshow={props.editData?.pancard_no}
               handleInputBtnPress={() => { }}
               onChangeText={(e: any) => {
-                setEditData({
-                  ...editData,
+                props.setEditData({
+                  ...props.editData,
                   pancard_no: e,
                 });
               }}
@@ -111,11 +101,11 @@ const EditProfileView = (props: any) => {
             <Text style={styles.genderTxt}>{strings.gender}</Text>
             <View style={styles.radioView}>
               <RadioButton.Android
-                value={editData?.gender}
-                status={editData?.gender === 1 ? "checked" : "unchecked"}
+                value={props.editData?.gender}
+                status={props.editData?.gender === 1 ? "checked" : "unchecked"}
                 onPress={() =>
-                  setEditData({
-                    ...editData,
+                  props.setEditData({
+                    ...props.editData,
                     gender: 1,
                   })
                 }
@@ -126,7 +116,7 @@ const EditProfileView = (props: any) => {
                   styles.radioTxt,
                   {
                     color:
-                      checked === "first" ? PRIMARY_THEME_COLOR : BLACK_COLOR,
+                      props.editData?.gender === 1 ? PRIMARY_THEME_COLOR : BLACK_COLOR,
                   },
                 ]}
               >
@@ -135,11 +125,11 @@ const EditProfileView = (props: any) => {
             </View>
             <View style={styles.radioView}>
               <RadioButton.Android
-                value={editData?.gender}
-                status={editData?.gender === 2 ? "checked" : "unchecked"}
+                value={props.editData?.gender}
+                status={props.editData?.gender === 2 ? "checked" : "unchecked"}
                 onPress={() =>
-                  setEditData({
-                    ...editData,
+                  props.setEditData({
+                    ...props.editData,
                     gender: 2,
                   })
                 }
@@ -150,7 +140,7 @@ const EditProfileView = (props: any) => {
                   styles.radioTxt,
                   {
                     color:
-                      checked === "second" ? PRIMARY_THEME_COLOR : BLACK_COLOR,
+                      props.editData?.gender === 2 ? PRIMARY_THEME_COLOR : BLACK_COLOR,
                   },
                 ]}
               >
@@ -158,48 +148,36 @@ const EditProfileView = (props: any) => {
               </Text>
             </View>
           </View>
-          {/* <View style={styles.inputWrap}>
-            <InputField
-              valueshow={moment(editData?.date_of_birth).format("DD/MM/YYYY")}
-              handleInputBtnPress={() => {}}
-              onChangeText={(e: any) => {
-                setEditData({
-                  ...editData,
-                  date_of_birth: e,
+          <View style={[styles.inputWrap, { marginTop: normalizeSpacing(10) }]}>
+            <InputCalender
+              mode={"date"}
+              leftIcon={images.event}
+              maximumDate={new Date()}
+              placeholderText={"Date of Birth"} //can edit
+              headingText={"Date of Birth"}
+              editable={false}
+              dateData={(data: any) => {
+                props.setEditData({
+                  ...props.editData,
+                  date_of_birth: data,
                 });
               }}
-              headingText={"Date of Birth"}
-              rightImgSrc={images.event}
+              setDateshow={(data: any) => {
+                props.setEditData({
+                  ...props.editData,
+                  date_of_birth: data,
+                });
+              }}
+              value={moment(props.editData?.date_of_birth).format("DD/MM/YYYY")}
             />
-          </View> */}
-          <InputCalender
-            mode={"date"}
-            leftIcon={images.event}
-            maximumDate={new Date()}
-            placeholderText={"Date of Birth"} //can edit
-            headingText={"Date of Birth"}
-            editable={false}
-            dateData={(data: any) => {
-              setEditData({
-                ...editData,
-                date_of_birth: data,
-              });
-            }}
-            setDateshow={(data: any) => {
-              setEditData({
-                ...editData,
-                date_of_birth: data,
-              });
-            }}
-            value={moment(editData?.date_of_birth).format("DD/MM/YYYY")}
-          />
+          </View>
           <View style={styles.inputWrap}>
             <InputField
-              valueshow={editData?.primary_mobile?.toString()}
+              valueshow={props.editData?.primary_mobile?.toString()}
               handleInputBtnPress={() => { }}
               onChangeText={(e: any) => {
-                setEditData({
-                  ...editData,
+                props.setEditData({
+                  ...props.editData,
                   primary_mobile: e,
                 });
               }}
@@ -209,11 +187,11 @@ const EditProfileView = (props: any) => {
           </View>
           <View style={styles.inputWrap}>
             <InputField
-              valueshow={editData?.whatsapp_number?.toString()}
+              valueshow={props.editData?.whatsapp_number?.toString()}
               handleInputBtnPress={() => { }}
               onChangeText={(e: any) => {
-                setEditData({
-                  ...editData,
+                props.setEditData({
+                  ...props.editData,
                   whatsapp_number: e,
                 });
               }}
@@ -224,11 +202,11 @@ const EditProfileView = (props: any) => {
           </View>
           <View style={styles.inputWrap}>
             <InputField
-              valueshow={editData?.email}
+              valueshow={props.editData?.email}
               handleInputBtnPress={() => { }}
               onChangeText={(e: any) => {
-                setEditData({
-                  ...editData,
+                props.setEditData({
+                  ...props.editData,
                   email: e,
                 });
               }}
@@ -236,14 +214,35 @@ const EditProfileView = (props: any) => {
               headingText={"Email Address"}
             />
           </View>
-          
+          <View style={{ marginTop: normalizeSpacing(30) }}>
+            <InputField
+              placeholderText={"Address"}
+              headingText={"Address"}
+              onChangeText={(data: any) => {
+                props.setEditData({
+                  ...props.editData,
+                  location: data
+                })
+              }}
+              valueshow={props?.editData?.location}
+              inputType={'location'}
+              onPressSelect={(data: any, detail: any) => {
+                props.setEditData({
+                  ...props.editData,
+                  location: data?.description,
+                  latitude: detail?.geometry?.location?.lat,
+                  longitude: detail?.geometry?.location?.lng,
+                })
+              }}
+            />
+          </View>
           {/*  <View style={styles.inputWrap}>
             <InputField
               placeholderText={"Sourcing Manager"}
               handleInputBtnPress={() => {}}
               onChangeText={(e: any) => {
-                setEditData({
-                  ...editData,
+                props.setEditData({
+                  ...props.editData,
                   adhar_no: e
                 })
               }}
@@ -263,8 +262,8 @@ const EditProfileView = (props: any) => {
             Visible={profileVisible}
             setVisible={setProfileVisible}
             imageData={(data: any) => {
-              setEditData({
-                ...editData,
+              props.setEditData({
+                ...props.editData,
                 profile_picture: data,
                 local_profile_picture: data,
               });

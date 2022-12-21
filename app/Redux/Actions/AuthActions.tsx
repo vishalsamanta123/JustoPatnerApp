@@ -44,12 +44,6 @@ export const getProfileData = (params: any) => async (dispatch: any) => {
                 type: PROFILE_DATA,
                 payload: res.data,
             });
-
-            dispatch({
-                type: PROFILE_DATA,
-                payload: res.data.data[0],
-            });
-
         } else {
             handleApiError(res.data)
             return [];

@@ -1,5 +1,5 @@
 import { View, Text, ScrollView } from "react-native";
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import styles from "./Styles";
 import Styles from "../../../../components/DropDown/styles";
 import InputField from "../../../../components/InputField";
@@ -18,14 +18,16 @@ import InputCalender from "app/components/InputCalender";
 import moment from "moment";
 
 const AddAppointmentItem = (props: any) => {
-  const [isPickup, setisPickup] = useState("");
   return (
     <ScrollView keyboardShouldPersistTaps={"handled"}>
       <View style={styles.wrap}>
         <View style={styles.inputWrap}>
           <DropdownInput
             headingText={strings.selectLead}
-            placeholder={strings.selectLead}
+            placeholder={props?.addAppointmentForm?.lead_name === '' ||
+              props?.addAppointmentForm?.lead_name === undefined ||
+              props?.addAppointmentForm?.lead_name === null ?
+              strings.selectLead : props?.addAppointmentForm?.lead_name}
             data={props.visitorList}
             inputWidth={"100%"}
             paddingLeft={16}
@@ -40,10 +42,10 @@ const AddAppointmentItem = (props: any) => {
                 lead_id: item._id,
                 property_id: item.property_id,
                 lead_name: item.first_name,
+                pickup: item?.pickup,
               });
             }}
             newRenderItem={(item: any) => {
-              setisPickup(item?.pickup);
               return (
                 <View style={Styles.item}>
                   <Text style={Styles.textItem}>{item.first_name}</Text>
@@ -104,9 +106,13 @@ const AddAppointmentItem = (props: any) => {
                 appointment_date: moment(data).format(DATE_FORMAT),
               });
             }}
-            value={moment(props.addAppointmentForm?.appointment_date).format(
-              DATE_FORMAT
-            )}
+            value={props?.addAppointmentForm?.appointment_date === '' ||
+              props?.addAppointmentForm?.appointment_date === undefined ||
+              props?.addAppointmentForm?.appointment_date === null ?
+              "" :
+              moment(props.addAppointmentForm?.appointment_date).format(
+                DATE_FORMAT
+              )}
           />
         </View>
         <View style={styles.inputWrap}>
@@ -132,7 +138,7 @@ const AddAppointmentItem = (props: any) => {
             value={props.addAppointmentForm?.appointment_time}
           />
         </View>
-        {isPickup === "Yes" ? (
+        {props?.addAppointmentForm?.pickup === "Yes" ? (
           <>
             <View style={styles.inputWrap}>
               <Text style={styles.genderTxt}>{strings.pickupAppointment}</Text>
@@ -204,7 +210,7 @@ const AddAppointmentItem = (props: any) => {
                 <View style={styles.inputWrap}>
                   <InputField
                     placeholderText={'PickUP Location'}
-                    handleInputBtnPress={() => {}}
+                    handleInputBtnPress={() => { }}
                     headingText={'PickUP Location'}
                     valueshow={props.addAppointmentForm?.pickup_location}
                     inputType={"location"}
@@ -212,6 +218,8 @@ const AddAppointmentItem = (props: any) => {
                       props.setAddAppointmentForm({
                         ...props.addAppointmentForm,
                         pickup_location: data?.description,
+                        pickup_latitude: detail?.geometry?.location?.lat,
+                        pickup_longitude: detail?.geometry?.location?.lng,
                       });
                     }}
                     onChangeText={(data: any) => {
@@ -225,7 +233,7 @@ const AddAppointmentItem = (props: any) => {
                 <View style={styles.inputWrap}>
                   <InputField
                     placeholderText={"Area"}
-                    handleInputBtnPress={() => {}}
+                    handleInputBtnPress={() => { }}
                     headingText={"Area"}
                     valueshow={props.addAppointmentForm?.pickup_address}
                     onChangeText={(val: any) => {
@@ -239,9 +247,9 @@ const AddAppointmentItem = (props: any) => {
                 <View style={styles.inputWrap}>
                   <InputField
                     placeholderText={strings.noofguest}
-                    handleInputBtnPress={() => {}}
+                    handleInputBtnPress={() => { }}
                     headingText={strings.noofguest}
-                    valueshow={props.addAppointmentForm?.number_of_guest}
+                    valueshow={props.addAppointmentForm?.number_of_guest?.toString()}
                     onChangeText={(val: any) => {
                       props.setAddAppointmentForm({
                         ...props.addAppointmentForm,
