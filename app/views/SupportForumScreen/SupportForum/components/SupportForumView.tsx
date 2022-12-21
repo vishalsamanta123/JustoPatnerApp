@@ -30,8 +30,8 @@ const SupportForumView = (props: any) => {
                 handleOnRightSecondIconPress={() => setFilterisVisible(true)}
                 barStyle={'light-content'}
             />
-            <ComingSoonScreen />
-            {/*  <View style={{ flex: 1, marginHorizontal: normalizeSpacing(10) }}>
+            {/* <ComingSoonScreen /> */}
+             <View style={{ flex: 1, marginHorizontal: normalizeSpacing(10) }}>
                 <FlatList
                     data={Array.isArray(props?.supportForumList) ?
                         props.supportForumList : []}
@@ -120,7 +120,7 @@ const SupportForumView = (props: any) => {
                         })
                     }}
                 />
-            </View> */}
+            </View>
         </View>
     )
 }
