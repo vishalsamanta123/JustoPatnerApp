@@ -35,6 +35,7 @@ const styles = StyleSheet.create({
     Img: {
         width: normalizeWidth(100),
         height: normalizeHeight(100),
+        borderRadius: normalize(8)
     },
     btnView: {
         top: 10,
@@ -48,23 +49,28 @@ const styles = StyleSheet.create({
         height: normalizeHeight(40),
         tintColor: WHITE_COLOR
     },
+    shareImg: {
+        width: normalizeWidth(30),
+        height: normalizeHeight(30),
+        marginLeft: normalizeSpacing(10)
+    },
     buttonContainer: {
         flexDirection: 'row',
         justifyContent: 'space-between',
         marginVertical: normalizeSpacing(10),
         alignItems: 'center'
     },
-    button : {
-      top: 10,
-      backgroundColor: WHITE_COLOR,
-      width: normalizeWidth(100),
-      height: normalizeHeight(30),
-      justifyContent: 'center',
-      borderWidth: 1,
-      borderRadius: 10
+    button: {
+        top: 10,
+        backgroundColor: WHITE_COLOR,
+        width: normalizeWidth(100),
+        height: normalizeHeight(30),
+        justifyContent: 'center',
+        borderWidth: 1,
+        borderRadius: 10
     },
-    buttonTxt : {
-      textAlign: 'center'
+    buttonTxt: {
+        textAlign: 'center'
     },
 })
 export default styles

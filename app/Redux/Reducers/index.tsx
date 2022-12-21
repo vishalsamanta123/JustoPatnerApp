@@ -9,6 +9,7 @@ import { editUserReducer, settingReducer } from "./SettingReducer";
 import { appointmentReducer } from "./AppointmentReducer";
 import { dashboardReducer, statusUpdateReducer } from "./DashboardReducer";
 import { notificationListReducer } from "./NotificationReducer";
+import { supportForumReducer, supportForumUpdateReducer } from "./SupportForumReducer";
 
 export default {
     loadingReducer: loadingReducer,
@@ -51,4 +52,8 @@ export default {
     appointment: appointmentReducer,
     settingData: settingReducer,
     editUserData: editUserReducer,
+
+    //support Forum
+    supportForumData: supportForumReducer,
+    supportForumUpdateData: supportForumUpdateReducer,
 }

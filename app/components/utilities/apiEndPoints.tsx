@@ -87,4 +87,9 @@ export default {
   UPDATECHANNELPARTNER: "/channelPartner/updateChannelPartner",
   NOTIFICATION_LIST: "/notification/getNotificationList",
 
+  //Support Forum
+  GET_SUPPORT_FORUM_LIST: '/supportForum/supportForumList',
+  GET_SUPPORT_FORUM_DETAIL: '/supportForum/getSupportForumDetails',
+  UPDATE_SUPPORTFORUM: '/supportForum/statusUpdateSupportForum'
+
 };
