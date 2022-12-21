@@ -10,6 +10,7 @@ import SuportForumFilter from './SupportForumFilter'
 import moment from 'moment'
 import FastImages from 'app/components/FastImage'
 import EmptyListScreen from 'app/components/CommonScreen/EmptyListScreen'
+import ComingSoonScreen from 'app/components/CommonScreen/ComingSoon'
 
 const SupportForumView = (props: any) => {
     const [filterisVisible, setFilterisVisible] = useState(false)
@@ -29,7 +30,8 @@ const SupportForumView = (props: any) => {
                 handleOnRightSecondIconPress={() => setFilterisVisible(true)}
                 barStyle={'light-content'}
             />
-            <View style={{ flex: 1, marginHorizontal: normalizeSpacing(10) }}>
+            <ComingSoonScreen />
+            {/*  <View style={{ flex: 1, marginHorizontal: normalizeSpacing(10) }}>
                 <FlatList
                     data={Array.isArray(props?.supportForumList) ?
                         props.supportForumList : []}
@@ -118,7 +120,7 @@ const SupportForumView = (props: any) => {
                         })
                     }}
                 />
-            </View>
+            </View> */}
         </View>
     )
 }
