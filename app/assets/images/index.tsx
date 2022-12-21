@@ -37,6 +37,8 @@ const images = {
   download: require('./download.png'),
   camera: require('./camera.png'),
   gallery: require('./gallery.png'),
+  shareIcon: require('./share.png'),
+  locationIcon: require('./location.png'),
 };
 
 export default images;

@@ -57,12 +57,15 @@ import ErrorMessage from 'app/components/ErrorMessage';
 import { RED_COLOR } from 'app/components/utilities/constant';
 import ReportScreen from 'app/views/Report';
 import LeaderBoardScreen from 'app/views/LeaderBoard/LeaderBoardScreen';
-import SupportForumScreen from 'app/views/SupportForum';
+import SupportForumScreen from 'app/views/SupportForumScreen/SupportForum';
 import DataFlowScreen from 'app/views/DataFlow';
 import SupportScreen from 'app/views/Support';
 import ChatViewScreen from 'app/views/Chat';
 import axios from 'axios';
 import Notification from 'app/views/Setting/Notification';
+import SupportForumDetail from 'app/views/SupportForumScreen/SupportForumDtl';
+
+
 const Stack = createNativeStackNavigator();
 const AuthStack = createNativeStackNavigator();
 const AppStack = createNativeStackNavigator();
@@ -162,6 +165,7 @@ const AppComponent = () => {
       <AppStack.Screen name="changePassword" component={ChangePasswordScreen} />
       <AppStack.Screen name="separateLink" component={SeparateLinkScreen} />
       <AppStack.Screen name="notification" component={Notification} />
+      <AppStack.Screen name="SupportForumDetail" component={SupportForumDetail} />
     </AppStack.Navigator>
   )
 }

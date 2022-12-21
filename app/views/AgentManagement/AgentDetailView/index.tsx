@@ -15,14 +15,13 @@ const AgentDetail = ({ navigation, route }: any) => {
       dispatch(getAgentDetail({
         cp_id: data._id
       }))
-      toGetDatas()
     }
   }, [detail])
-  const toGetDatas = () => {
-    if (detail) {
+  useEffect(() => {
+    if (response?.status === 200) {
       setAllDetails(response.data[0])
     }
-  }
+  }, [response])
 
   const handleBackPress = () => {
     navigation.goBack();

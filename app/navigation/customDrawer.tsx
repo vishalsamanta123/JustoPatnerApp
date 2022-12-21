@@ -34,9 +34,9 @@ const customDrawer = ({ navigation }: any) => {
     if (response?.status === 200) {
       setUserData(response?.data[0])
     }
-  }, [response])
+  }, [response,isDrawerOpen])
   useEffect(() => {
-    if (isDrawerOpen && response?.status != 200) {
+    if (isDrawerOpen) {
       getDetail()
     }
   }, [isDrawerOpen])

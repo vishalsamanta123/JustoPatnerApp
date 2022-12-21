@@ -1,5 +1,5 @@
 import { Text, TouchableHighlight, TouchableOpacity, View } from "react-native";
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import Header from "app/components/Header";
 import styles from "./styles";
 import strings from "app/components/utilities/Localization";
@@ -15,7 +15,19 @@ import EmptyListScreen from "app/components/CommonScreen/EmptyListScreen";
 const NotificationView = (props: any) => {
   const { onPressBack, data } = props;
   const { response = [] } = useSelector((state: any) => state.notificationData) || []
-  const [listData, setListData] = useState(response?.data);
+  console.log('response: ', response);
+  const [listData, setListData] = useState<any>([]);
+
+  useEffect(() => {
+  if(response?.satus === 200){
+    if(response?.data?.length > 0){
+      setListData(response?.data)
+    }
+  }
+    return () => {
+    }
+  }, [response])
+  
 
   const closeRow = (rowMap: any, rowKey: any) => {
     if (rowMap[rowKey]) {
@@ -62,7 +74,7 @@ const NotificationView = (props: any) => {
   return (
     <View style={styles.mainContainer}>
       <Header
-        headerText={data.heading}
+        headerText={strings.notificationHeader}
         headerStyle={styles.headerStyle}
         leftImageSrc={images.backArrow}
         leftImageIconStyle={styles.leftImageIconStyle}

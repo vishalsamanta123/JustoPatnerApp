@@ -64,6 +64,18 @@ const styles = StyleSheet.create({
     width: normalizeWidth(100),
     borderRadius: normalizeSpacing(80)
   },
+  editView: {
+    position: "absolute",
+    top: 5,
+    bottom: 0,
+    right: 0,
+  },
+  editImage: {
+    width: normalizeWidth(20),
+    height: normalizeHeight(20),
+    backgroundColor: GRAY_COLOR,
+    borderRadius: 100,
+  },
 });
 
 export default styles;

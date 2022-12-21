@@ -22,6 +22,8 @@ const strings = new LocalizedStrings({
     chatHeader: 'Chat',
     supportHeader: 'Support',
     supportforumHeader: 'Support Forum',
+    supportforumDtlHeader: 'Support Forum Detail',
+    searchSupportForum: 'Search Support Forum',
     settingHeader: 'Setting',
     logout: 'Logout',
     versionText: 'version',

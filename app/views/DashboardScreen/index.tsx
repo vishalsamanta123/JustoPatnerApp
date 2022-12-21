@@ -4,6 +4,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { dashboardData, userStatusUpdateData, userStatusUpdater } from 'app/Redux/Actions/Dashboard';
 import ErrorMessage from 'app/components/ErrorMessage';
 import { GREEN_COLOR } from 'app/components/utilities/constant';
+import { useFocusEffect } from '@react-navigation/native';
 
 const DashboardScreen = ({ navigation }: any) => {
   const dispatch: any = useDispatch()
@@ -12,9 +13,12 @@ const DashboardScreen = ({ navigation }: any) => {
   const [dashBoardData, setDashBoardData] = useState<any>()
   const [isEnabled, setIsEnabled] = useState<any>();
 
-  useLayoutEffect(() => {
-    getDashboard()
-  }, [isEnabled])
+  useFocusEffect(
+    React.useCallback(() => {
+      getDashboard()
+      return () => { };
+    }, [navigation, isEnabled])
+  );
   useEffect(() => {
     if (response?.status === 200) {
       setDashBoardData(response?.data)
