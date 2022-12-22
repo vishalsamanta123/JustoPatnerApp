@@ -60,6 +60,17 @@ const styles = StyleSheet.create({
     marginTop: normalizeSpacing(20),
     alignItems: "center",
   },
+  tickImgVw: {
+    backgroundColor: PRIMARY_THEME_COLOR,
+    borderRadius: normalize(50),
+    marginRight: normalize(15),
+    padding: normalize(2)
+  },
+  tickImg: {
+    height: normalizeHeight(18),
+    width: normalizeWidth(18),
+    tintColor: WHITE_COLOR
+  },
   genderView: {
     flexDirection: "row",
     alignItems: "center",
@@ -137,6 +148,21 @@ const styles = StyleSheet.create({
     opacity: 0.6,
     color: BLACK_COLOR,
     width: "90%",
+  },
+  browseVw:  {
+    width: normalizeWidth(120),
+    height: normalizeHeight(50),
+    backgroundColor: WHITE_COLOR,
+    alignItems: "center",
+    justifyContent: "center",
+    marginLeft: 10,
+    borderRadius: 10,
+  },
+  addedTxt: {
+    width: 120,
+    fontSize: 12,
+    alignSelf: 'flex-end',
+    textAlign: 'center'
   },
   crossVw: {
     width: normalizeWidth(18),

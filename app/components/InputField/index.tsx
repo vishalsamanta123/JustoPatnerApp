@@ -59,8 +59,11 @@ const InputField = (props: any) => {
             valueshow={props.valueshow}
             maxLength={props.maxLength}
             onBlur={props.onBlur}
+            onFocus={props.onFocus}
             handleInputBtnPress={props.handleInputBtnPress}
             rightImgSrc={props.rightImgSrc}
+            rightImageSty={props.rightImageSty}
+            rightImageVw={props.rightImageVw}
           />
         }
         {/* <View style={styles.inputHeadinView}>

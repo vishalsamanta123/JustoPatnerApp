@@ -53,7 +53,8 @@ export const checkEmailMobile = (item: any) => async (dispatch: any) => {
     if (res.data.status === 200) {
       dispatch({
         type: CHECK_EMAIL_MOBILE,
-        payload: res.data
+        payload: res.data,
+        check_type: item.mobile ? "mobile" : item.email ? "email" : "",
       })
     } else {
       handleApiError(res?.data)

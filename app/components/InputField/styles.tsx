@@ -42,8 +42,6 @@ const styles = StyleSheet.create({
     width: normalizeWidth(20),
     opacity: 1,
     marginRight: 20,
-    //backgroundColor:'red'
-
   },
   inputHeadinView: {
     position: 'absolute',

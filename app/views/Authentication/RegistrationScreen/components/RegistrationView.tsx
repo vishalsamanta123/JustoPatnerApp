@@ -98,7 +98,7 @@ const RegistrationView = (props: any) => {
         <View style={styles.inputWrap}>
           <InputField
             placeholderText={"Name"}
-            handleInputBtnPress={() => {}}
+            handleInputBtnPress={() => { }}
             headingText={"Owner Name"}
             valueshow={props.registerForm?.owner_name}
             onChangeText={(val: any) => {
@@ -112,7 +112,7 @@ const RegistrationView = (props: any) => {
         <View style={styles.inputWrap}>
           <InputField
             placeholderText={"Aadhaar No."}
-            handleInputBtnPress={() => {}}
+            handleInputBtnPress={() => { }}
             headingText={"Aadhaar No."}
             keyboardtype={"number-pad"}
             valueshow={props.registerForm?.adhar_no}
@@ -128,7 +128,7 @@ const RegistrationView = (props: any) => {
         <View style={styles.inputWrap}>
           <InputField
             placeholderText={"Pancard No."}
-            handleInputBtnPress={() => {}}
+            handleInputBtnPress={() => { }}
             headingText={"Pancard No."}
             valueshow={props.registerForm?.pancard_no}
             onChangeText={(val: any) => {
@@ -221,10 +221,17 @@ const RegistrationView = (props: any) => {
         <View style={styles.inputWrap}>
           <InputField
             placeholderText={"Mobile No."}
-            handleInputBtnPress={() => {}}
+            handleInputBtnPress={() => { }}
             headingText={"Mobile No."}
             keyboardtype={"number-pad"}
+            rightImageVw={styles.tickImgVw}
+            rightImageSty={styles.tickImg}
             valueshow={props.registerForm?.primary_mobile}
+            rightImgSrc={props?.emailMobvalidation?.primary_mobile === 'mobile' ? images.check : null}
+            onFocus={() => props.setEmailMobValidation({
+              ...props.emailMobvalidation,
+              primary_mobile: null,
+            })}
             onChangeText={(val: any) => {
               props.setRegisterForm({
                 ...props.registerForm,
@@ -240,7 +247,7 @@ const RegistrationView = (props: any) => {
         <View style={styles.inputWrap}>
           <InputField
             placeholderText={"WhatsApp No."}
-            handleInputBtnPress={() => {}}
+            handleInputBtnPress={() => { }}
             headingText={"WhatsApp No."}
             keyboardtype={"number-pad"}
             valueshow={props.registerForm?.whatsapp_number}
@@ -256,7 +263,7 @@ const RegistrationView = (props: any) => {
         <View style={styles.inputWrap}>
           <InputField
             placeholderText={"Email Address"}
-            handleInputBtnPress={() => {}}
+            handleInputBtnPress={() => { }}
             headingText={"Email Address"}
             valueshow={props.registerForm?.email}
             onChangeText={(val: any) => {
@@ -265,6 +272,13 @@ const RegistrationView = (props: any) => {
                 email: val,
               });
             }}
+            onFocus={() => props.setEmailMobValidation({
+              ...props.emailMobvalidation,
+              email: null,
+            })}
+            rightImgSrc={props?.emailMobvalidation?.email === 'email' ? images.check : null}
+            rightImageVw={styles.tickImgVw}
+            rightImageSty={styles.tickImg}
             onBlur={(val: any) => {
               props.handleCheckEmailMobile();
             }}
@@ -318,7 +332,7 @@ const RegistrationView = (props: any) => {
                       {
                         borderBottomWidth:
                           props?.registerForm?.working_location?.length - 1 ===
-                          index
+                            index
                             ? 0
                             : 0.6,
                       },

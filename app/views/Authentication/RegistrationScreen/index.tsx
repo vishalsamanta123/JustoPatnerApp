@@ -1,5 +1,5 @@
 import ErrorMessage from "app/components/ErrorMessage";
-import { GREEN_COLOR, RED_COLOR } from "app/components/utilities/constant";
+import { GREEN_COLOR, RED_COLOR, validateEmail } from "app/components/utilities/constant";
 import {
   checkEmailMobile,
   emailCheckRemove,
@@ -13,6 +13,10 @@ const RegistrationScreen = ({ navigation }: any) => {
   const dispatch: any = useDispatch();
   const [isError, setisError] = useState(false);
   const [locationModel, setLocationModel] = useState(false);
+  const [emailMobvalidation, setEmailMobValidation] = useState({
+    primary_mobile: null,
+    email: null,
+  });
   const emailAndMobileData = useSelector(
     (state: any) => state.emailAndMobileData
   );
@@ -73,6 +77,9 @@ const RegistrationScreen = ({ navigation }: any) => {
     ) {
       isError = false;
       errorMessage = "Mobile No. is require. Please enter Mobile No.";
+    } else if (emailMobvalidation.primary_mobile == null) {
+      isError = false;
+      errorMessage = "Mobile No. is already registered. Please enter other Mobile No.";
     } else if (
       registerForm.whatsapp_number == undefined ||
       registerForm.whatsapp_number == ""
@@ -82,21 +89,28 @@ const RegistrationScreen = ({ navigation }: any) => {
     } else if (registerForm.email == undefined || registerForm.email == "") {
       isError = false;
       errorMessage = "Email is require. Please enter Email";
-    } else if (
-      registerForm.working_location.length === 0 ||
-      registerForm.working_location === undefined
-    ) {
+    } else if (validateEmail.test(registerForm.email) === false) {
       isError = false;
-      errorMessage =
-        "Working Location is require. Please enter Working Location";
-    } else if (
-      registerForm.location === '' ||
-      registerForm.location === undefined
-    ) {
-      isError = false;
-      errorMessage =
-        "Address is require. Please enter address";
-    }
+      errorMessage = "Email is wrong. Please enter correct Email";
+    } else
+      if (emailMobvalidation.email == null) {
+        isError = false;
+        errorMessage = "Email is already registered. Please enter other Email";
+      } else if (
+        registerForm.working_location.length === 0 ||
+        registerForm.working_location === undefined
+      ) {
+        isError = false;
+        errorMessage =
+          "Working Location is require. Please enter Working Location";
+      } else if (
+        registerForm.location === '' ||
+        registerForm.location === undefined
+      ) {
+        isError = false;
+        errorMessage =
+          "Address is require. Please enter address";
+      }
 
     if (errorMessage !== "") {
       ErrorMessage({
@@ -119,6 +133,22 @@ const RegistrationScreen = ({ navigation }: any) => {
   useEffect(() => {
     if (emailAndMobileData?.response?.status === 200) {
       dispatch(emailCheckRemove());
+      switch (emailAndMobileData?.check_type) {
+        case 'mobile':
+          setEmailMobValidation({
+            ...emailMobvalidation,
+            primary_mobile: emailAndMobileData?.check_type,
+          })
+          break;
+        case 'email':
+          setEmailMobValidation({
+            ...emailMobvalidation,
+            email: emailAndMobileData?.check_type,
+          })
+          break;
+        default:
+          break;
+      }
       // ErrorMessage({
       //   msg: emailAndMobileData?.response?.message,
       //   backgroundColor: GREEN_COLOR
@@ -144,6 +174,8 @@ const RegistrationScreen = ({ navigation }: any) => {
       locationModel={locationModel}
       setLocationModel={setLocationModel}
       handleCheckEmailMobile={handleCheckEmailMobile}
+      emailMobvalidation={emailMobvalidation}
+      setEmailMobValidation={setEmailMobValidation}
     />
   );
 };
