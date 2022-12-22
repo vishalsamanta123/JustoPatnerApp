@@ -45,7 +45,6 @@ const ConfirmModal = (props: any) => {
       </View>
     );
   };
-  console.log('props.confirmtype: ', props.confirmtype)
 
   return (
     <View>
