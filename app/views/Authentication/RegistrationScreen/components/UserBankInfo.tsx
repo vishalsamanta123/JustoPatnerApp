@@ -189,15 +189,7 @@ const UserBankInfo = ({ navigation }: any) => {
             </View>
             <View>
               <TouchableOpacity
-                style={{
-                  width: normalizeWidth(120),
-                  height: normalizeHeight(50),
-                  backgroundColor: WHITE_COLOR,
-                  alignItems: "center",
-                  justifyContent: "center",
-                  marginLeft: 10,
-                  borderRadius: 10,
-                }}
+                style={styles.browseVw}
                 onPress={() => {
                   setreraVisible(true)
                   setVisible(true)
@@ -207,21 +199,16 @@ const UserBankInfo = ({ navigation }: any) => {
               </TouchableOpacity>
             </View>
           </View>
+          {typeof formData?.rera_certificate === 'object' ?
+            <Text style={styles.addedTxt}>{"RERA Certificate Added"}</Text> : null
+          }
           <View style={[styles.inputWrap, { flexDirection: "row", alignItems: 'center' }]}>
             <View style={{ flex: 1 }}>
               <Text style={styles.headingText}>Proprietorship Declaration Letter</Text>
             </View>
             <View>
               <TouchableOpacity
-                style={{
-                  width: normalizeWidth(120),
-                  height: normalizeHeight(50),
-                  backgroundColor: WHITE_COLOR,
-                  alignItems: "center",
-                  justifyContent: "center",
-                  marginLeft: 10,
-                  borderRadius: 10,
-                }}
+                style={styles.browseVw}
                 onPress={() => {
                   setletterVisible(true)
                   setVisible(true)
@@ -231,8 +218,12 @@ const UserBankInfo = ({ navigation }: any) => {
               </TouchableOpacity>
             </View>
           </View>
+          {typeof formData?.propidership_declaration_letter === 'object' ?
+            <Text style={styles.addedTxt}>{"Proprietorship Declaration Letter Added"}</Text>
+            : null
+          }
           <View style={styles.inputWrap}>
-            <Text style={styles.headingText}>Bank details</Text>
+            <Text style={styles.headingText}>Bank Details</Text>
           </View>
           <View style={styles.inputWrap}>
             <InputField
@@ -293,24 +284,22 @@ const UserBankInfo = ({ navigation }: any) => {
             </View>
             <View>
               <TouchableOpacity
-                style={{
-                  width: normalizeWidth(120),
-                  height: normalizeHeight(50),
-                  backgroundColor: WHITE_COLOR,
-                  alignItems: "center",
-                  justifyContent: "center",
-                  marginLeft: 10,
-                  borderRadius: 10,
-                }}
+                style={styles.browseVw}
                 onPress={() => {
                   setcheaqueVisible(true)
                   setVisible(true)
                 }}
               >
-                <Text style={{ color: formData?.cancel_cheaque ? BLACK_COLOR : PRIMARY_THEME_COLOR, fontSize: normalize(15) }}>{strings.browse}</Text>
+                <Text style={{
+                  color: formData?.cancel_cheaque ? BLACK_COLOR : PRIMARY_THEME_COLOR,
+                  fontSize: normalize(15)
+                }}>{strings.browse}</Text>
               </TouchableOpacity>
             </View>
           </View>
+          {typeof formData?.cancel_cheaque === 'object' ?
+            <Text style={styles.addedTxt}>{"Cancel Cheaque Added"}</Text> : null
+          }
           <View style={{ marginVertical: 20 }}>
             <Button
               handleBtnPress={onPressNext}

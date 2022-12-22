@@ -38,22 +38,9 @@ const OtpVerificationScreen = ({ navigation, route }: any) => {
             navigation.navigate('ChangePasswordScreenView', email);
           }
         } else {
-
           ErrorMessage({
             msg: otpVerifySelector.response.message,
             backgroundColor: GREEN_COLOR
-          })
-
-        }
-      } else {
-        if (otpVerifySelector?.error) {
-          dispatch({
-            type: OTPVERIFY_NULL,
-            payload: []
-          })
-          ErrorMessage({
-            msg: otpVerifySelector.response.message,
-            backgroundColor: RED_COLOR
           })
         }
       }

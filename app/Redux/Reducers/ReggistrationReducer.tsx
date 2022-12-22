@@ -69,6 +69,7 @@ export function emailAndMobileReducer(state = initialStateForm, action: any) {
         ...state,
         detail: false,
         create: true,
+        check_type:action.check_type,
         response: action.payload,
       };
     case REMOVE_EMAIL_NUMBER_CHECK:

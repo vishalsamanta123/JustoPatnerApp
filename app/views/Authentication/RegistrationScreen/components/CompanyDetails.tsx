@@ -193,15 +193,7 @@ const CompanyDetails = ({ navigation }: any) => {
           </View>
           <View>
             <TouchableOpacity
-              style={{
-                width: normalizeWidth(120),
-                height: normalizeHeight(50),
-                backgroundColor: WHITE_COLOR,
-                alignItems: "center",
-                justifyContent: "center",
-                marginLeft: 10,
-                borderRadius: 10,
-              }}
+              style={styles.browseVw}
               onPress={() => {
                 setpanVisible(true)
                 setVisible(true)
@@ -211,21 +203,16 @@ const CompanyDetails = ({ navigation }: any) => {
             </TouchableOpacity>
           </View>
         </View>
+        {typeof formData?.pancard === 'object' ?
+          <Text style={styles.addedTxt}>{"Pancard Added"}</Text> : null
+        }
         <View style={[styles.inputWrap, { flexDirection: "row", alignItems: 'center', justifyContent: 'space-between' }]}>
           <View style={{ flex: 1 }}>
-            <Text style={styles.headingText}>Declaration Latter of Company</Text>
+            <Text style={styles.headingText}>Declaration Letter of Company</Text>
           </View>
           <View>
             <TouchableOpacity
-              style={{
-                width: normalizeWidth(120),
-                height: normalizeHeight(50),
-                backgroundColor: WHITE_COLOR,
-                alignItems: "center",
-                justifyContent: "center",
-                marginLeft: 10,
-                borderRadius: 10,
-              }}
+              style={styles.browseVw}
               onPress={() => {
                 setletterVisible(true)
                 setVisible(true)
@@ -235,8 +222,11 @@ const CompanyDetails = ({ navigation }: any) => {
             </TouchableOpacity>
           </View>
         </View>
+        {typeof formData?.declaration_letter_of_company === 'object' ?
+          <Text style={styles.addedTxt}>{"Declaration Letter Of Company Added"}</Text> : null
+        }
         <View style={styles.inputWrap}>
-          <Text style={styles.headingText}>Bank details</Text>
+          <Text style={styles.headingText}>Bank Details</Text>
         </View>
         <View style={styles.inputWrap}>
           <InputField

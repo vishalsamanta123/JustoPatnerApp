@@ -45,11 +45,18 @@ const CommonInput = (props: any) => {
           value={props.valueshow}
           maxLength={props.maxLength}
           onBlur={props.onBlur}
+          onFocus={props.onFocus}
         />
         <TouchableOpacity
           onPress={props.handleInputBtnPress}
-          disabled={!props.handleInputBtnPress}>
-          <Image style={styles.rightImage} source={props.rightImgSrc} />
+          disabled={!props.handleInputBtnPress}
+          style={props.rightImgSrc ?
+            props.rightImageVw ? props.rightImageVw : {} : {}}
+        >
+          <Image
+            style={props.rightImgSrc &&
+              props.rightImageSty ? props.rightImageSty : styles.rightImage}
+            source={props.rightImgSrc} />
         </TouchableOpacity>
       </View>
     </View>

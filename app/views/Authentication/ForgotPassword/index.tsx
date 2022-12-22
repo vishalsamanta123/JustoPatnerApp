@@ -18,20 +18,12 @@ const ForgotPassword = ({ navigation }: any) => {
 
   const checklogin = async () => {
     if (forgotSelector.response && forgotSelector.forgot) {
-      // console.log("checklogin -> forgotSelector.response.status", forgotSelector.response.status)
       if (forgotSelector.response.status === 200) {
         dispatch({
           type: FORGOT_NULL,
           payload: []
         })
         navigation.navigate('OtpVerificationScreenView', { email: email });
-      } else {
-        if (forgotSelector.error) {
-          ErrorMessage({
-            msg: forgotSelector.response.message,
-            backgroundColor: RED_COLOR
-          })
-        }
       }
     }/* else {
         ErrorMessage({

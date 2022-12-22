@@ -17,7 +17,8 @@ const ChangePasswordView = (props: any) => {
     setIsVisiblecPassword(!isVisiblecPassword);
   };
   return (
-    <ScrollView style={styles.mainContainer}>
+    <ScrollView keyboardShouldPersistTaps={'handled'}
+     style={styles.mainContainer}>
       {/* <View style={styles.logoView}>
         <View style={styles.loginBannerView}>
           <Image style={styles.loginBanner} source={images.loginBanner} />
@@ -27,7 +28,6 @@ const ChangePasswordView = (props: any) => {
         </View>
       </View> */}
       <View style={styles.logoView}>
-      
         <Logoview/>
       </View>
       <View style={styles.inputView}>
@@ -35,7 +35,7 @@ const ChangePasswordView = (props: any) => {
           <InputField
             placeholderText={"New Password"}
             rightImgSrc={
-              isVisiblePassword ? images.showPassword : images.hiddenPassword
+              isVisiblePassword ? images.hiddenPassword : images.showPassword
             }
             handleInputBtnPress={handlePasswordBtnPress}
             isSecureText={isVisiblePassword}
@@ -50,7 +50,7 @@ const ChangePasswordView = (props: any) => {
           <InputField
             placeholderText={"Confirm Password"}
             rightImgSrc={
-              isVisiblecPassword ? images.showPassword : images.hiddenPassword
+              isVisiblecPassword ? images.hiddenPassword : images.showPassword
             }
             handleInputBtnPress={handlecPasswordBtnPress}
             isSecureText={isVisiblecPassword}
