@@ -15,31 +15,31 @@ const SupportForumScreen = ({ navigation }: any) => {
         start_date: '',
         end_date: '',
     })
-    useFocusEffect(
-        React.useCallback(() => {
-            getSupportForums(0, {})
-            return () => { };
-        }, [navigation,list])
-    );
-    useEffect(() => {
-        if (response?.status === 200) {
-            if (offSET === 0) {
-                setSupportForumList(response?.data)
-            } else {
-                setSupportForumList([...supportForumList, ...response?.data])
-            }
-        }
-    }, [response])
-    const getSupportForums = (offset: any, data: any) => {
-        setOffset(offset)
-        dispatch(supportForumListData({
-            search_title: data?.search_title ? data?.search_title : '',
-            start_date: data?.start_date ? data?.start_date : '',
-            end_date: data?.end_date ? data?.end_date : '',
-            limit: 4,
-            offset: offset,
-        }))
-    }
+    // useFocusEffect(
+    //     React.useCallback(() => {
+    //         getSupportForums(0, {})
+    //         return () => { };
+    //     }, [navigation,list])
+    // );
+    // useEffect(() => {
+    //     if (response?.status === 200) {
+    //         if (offSET === 0) {
+    //             setSupportForumList(response?.data)
+    //         } else {
+    //             setSupportForumList([...supportForumList, ...response?.data])
+    //         }
+    //     }
+    // }, [response])
+    // const getSupportForums = (offset: any, data: any) => {
+    //     setOffset(offset)
+    //     dispatch(supportForumListData({
+    //         search_title: data?.search_title ? data?.search_title : '',
+    //         start_date: data?.start_date ? data?.start_date : '',
+    //         end_date: data?.end_date ? data?.end_date : '',
+    //         limit: 4,
+    //         offset: offset,
+    //     }))
+    // }
     const handleDrawerPress = () => {
         navigation.toggleDrawer();
     };
@@ -52,7 +52,7 @@ const SupportForumScreen = ({ navigation }: any) => {
             supportForumList={supportForumList}
             filterData={filterData}
             setFilterData={setFilterData}
-            getSupportForums={getSupportForums}
+            // getSupportForums={getSupportForums}
             onPressView={onPressView}
             offSET={offSET}
             moreData={moreData}

@@ -14,21 +14,14 @@ import {
   getFilterProperty,
   getAllProperty,
 } from "app/Redux/Actions/propertyActions";
+import { DATE_FORMAT } from "app/components/utilities/constant";
 
 const FilterModal = (props: any) => {
   const dispatch: any = useDispatch();
-  const [startdate, setStartDate] = useState(
-    new Date(moment(new Date()).format("YYYY-MM-DD"))
-  );
-  const [enddate, setEndDate] = useState(
-    new Date(moment(new Date()).format("YYYY-MM-DD"))
-  );
-
   const data = [
-    { label: "Active", value: "1" },
-    { label: "Inactive", value: "2" },
+    { label: "Active", value: 1 },
+    { label: "Inactive", value: 2 },
   ];
-  const [statusValue, setStatusValue] = useState(null);
   const renderItem = (item: any) => {
     return (
       <View style={styles.item}>
@@ -37,20 +30,11 @@ const FilterModal = (props: any) => {
     );
   };
 
-  const handleInputField = (e: any) => {
-    props.setFilterform({ ...props.filterform, property_name: e });
-    /*  const nextFormState = {
-           ...props.filterform,
-           [e.target.name]: e.target.value,
-         };
-         props.setFilterform(nextFormState); */
-  };
-
   const ApplyFilter = () => {
     dispatch(
       getFilterProperty({
-        // offset: 0,
-        // limit: 5,
+        offset: 0,
+        limit: 5,
         start_date: props.filterform.start_date,
         end_date: props.filterform.end_date,
         location: props.filterform.location,
@@ -59,6 +43,7 @@ const FilterModal = (props: any) => {
       })
     );
     props.setIsVisible(false);
+    props.setPropertyList([]);
   };
   const ResetFilter = () => {
     props.setFilterform({
@@ -69,12 +54,8 @@ const FilterModal = (props: any) => {
       property_name: "",
       property_type: "",
     });
-    dispatch(
-      getAllProperty({
-        offset: 0,
-        limit: 5,
-      })
-    );
+    props.getallproperty(0, {})
+    props.setPropertyList([]);
     props.setIsVisible(false);
   };
 
@@ -102,19 +83,19 @@ const FilterModal = (props: any) => {
                 dateData={(data: any) => {
                   props.setFilterform({
                     ...props.filterform,
-                    start_date: moment(data).format("YYYY-MM-DD"),
+                    start_date: moment(data).format(DATE_FORMAT),
                   });
                 }}
                 // dateshow={props.filterform.start_date}
                 value={
                   props?.filterform?.start_date !== ""
-                    ? moment(props?.filterform?.start_date).format("DD-MM-YYYY")
+                    ? moment(props?.filterform?.start_date).format(DATE_FORMAT)
                     : null
                 }
                 setDateshow={(data: any) => {
                   props.setFilterform({
                     ...props.filterform,
-                    start_date: moment(data).format("YYYY-MM-DD"),
+                    start_date: moment(data).format(DATE_FORMAT),
                   });
                 }}
               />
@@ -130,19 +111,19 @@ const FilterModal = (props: any) => {
                 dateData={(data: any) => {
                   props.setFilterform({
                     ...props.filterform,
-                    end_date: moment(data).format("YYYY-MM-DD"),
+                    end_date: moment(data).format(DATE_FORMAT),
                   });
                 }}
                 // dateshow={props.filterform.end_date}
                 value={
                   props?.filterform?.end_date !== ""
-                    ? moment(props?.filterform?.end_date).format("DD-MM-YYYY")
+                    ? moment(props?.filterform?.end_date).format(DATE_FORMAT)
                     : null
                 }
                 setDateshow={(data: any) => {
                   props.setFilterform({
                     ...props.filterform,
-                    end_date: moment(data).format("YYYY-MM-DD"),
+                    end_date: moment(data).format(DATE_FORMAT),
                   });
                 }}
               />

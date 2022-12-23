@@ -5,25 +5,21 @@ import PropertyView from './components/PropertyView';
 
 const PropertyScreen = ({ navigation }: any) => {
   const dispatch: any = useDispatch()
-  const [limit, setLimit] = useState(10)
-  const [offset, setOffset] = useState(0)
+  const [offSET, setOffset] = useState(0)
   const [currentStatus, setCurrentStatus] = useState(1)
   const [currentProperty, setCurrentProperty] = useState({})
   const [resion, setResion] = useState('')
-
   const propertyData = useSelector((state: any) => state.propertydetailData) || []
   const { response, loading, updateStatus } = propertyData;
 
 
   useEffect(() => {
-    getallproperty()
+    getallproperty(0, {})
   }, [])
 
   useEffect(() => {
     if (response && response?.status === 200 && updateStatus) {
-      getallproperty()
-    } else {
-      //errorToast(response.message);
+      getallproperty(0, {})
     }
   }, [propertyData])
 
@@ -33,45 +29,28 @@ const PropertyScreen = ({ navigation }: any) => {
       approve_status: currentStatus === 1 ? 2 : currentStatus === 2 ? 3 : 2,
       resion_id: resion,
     }))
-
-
-    // dispatch(getAllAgentList({
-    //   offset: 0,
-    //   limit: 5,
-    //   module_id: '',
-    //   start_date: '',
-    //   end_date: '',
-    //   user_type: 2,
-    //   search_by_name: '',
-    //   search_by_location: '',
-    //   status: ''
-    // }))
-    //setChangeStatus({ _id: '', status: false })
   }
 
 
-  const getallproperty = () => {
+  const getallproperty = (offset: any, data: any) => {
+    setOffset(offset)
     dispatch(getAllProperty({
-      offset: 0,
-      limit: limit,
-
+      offset: offset,
+      limit: 3,
+      start_date: data?.start_date ? data?.start_date : '',
+      end_date: data?.end_date ? data?.end_date : '',
+      location: data?.location ? data?.location : '',
+      property_name: data?.property_name ? data?.property_name : '',
+      property_type: data?.property_type ? data?.property_type : '',
     }))
   }
   const handleDrawerPress = () => {
     navigation.toggleDrawer();
   };
-  const Onreachedend = () => {
-    //  setOffset(offset + 1)
-    dispatch(getAllProperty({
-      offset: offset + 1,
-      limit: limit,
-    }))
-  };
   return (
     <>
       <PropertyView
         handleDrawerPress={handleDrawerPress}
-        Onreachedend={Onreachedend}
         getallproperty={getallproperty}
         handleStatusChange={() => handleStatusChange()}
         currentStatus={currentStatus}
@@ -79,6 +58,7 @@ const PropertyScreen = ({ navigation }: any) => {
         setCurrentProperty={setCurrentProperty}
         setResion={setResion}
         resion={resion}
+        offSET={offSET}
       />
     </>
   );

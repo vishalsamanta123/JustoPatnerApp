@@ -8,7 +8,6 @@ const SupportForumScreen = ({ navigation, route }: any) => {
     const data = route?.params
     const { response = {}, detail = "" } = useSelector((state: any) => state.supportForumData)
     const [supportForumDtl, setSupportForumDtl] = useState<any>({})
-    console.log('supportForumDtl: ', supportForumDtl);
 
     useLayoutEffect(() => {
         if (data?._id) {
@@ -25,13 +24,9 @@ const SupportForumScreen = ({ navigation, route }: any) => {
     const handleBackPress = () => {
         navigation.goBack();
     };
-    const onPressNotify = () => {
-        navigation.navigate('notification');
-    };
     return (
         <SupportForumDetail
             handleBackPress={handleBackPress}
-            onPressNotify={onPressNotify}
             supportForumDtl={supportForumDtl}
         />
     )

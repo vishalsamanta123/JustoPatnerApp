@@ -206,7 +206,7 @@ const PropertyDetailView = (props: any) => {
         masterDataShow={masterDataShow}
         stringshow={strings.confirmation}
         textshow={
-          strings.activconfirmation + 'Property'
+          strings.activconfirmation + ' Property'
         }
         confirmtype={approveStatus === 2 ? "" : "CONFIRMATION"}
       />
