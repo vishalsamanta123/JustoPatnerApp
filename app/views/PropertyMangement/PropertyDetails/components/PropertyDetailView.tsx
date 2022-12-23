@@ -132,7 +132,7 @@ const PropertyDetailView = (props: any) => {
           styles.btnContainer,
           {
             justifyContent:
-              approveStatus !== 1 && approveStatus !== 3
+              approveStatus !== 1 && approveStatus !== 3 && propertydetail?.property_active_status
                 ? "space-between"
                 : "center",
           },
@@ -169,7 +169,8 @@ const PropertyDetailView = (props: any) => {
           textTransform={"uppercase"}
         />
 
-        {approveStatus !== 1 && approveStatus !== 3 ? (
+        {propertydetail?.property_active_status &&
+        approveStatus !== 1 && approveStatus !== 3 ? (
           <Button
             handleBtnPress={() => onPressCreatevisit()}
             buttonText={strings.createVisit}
