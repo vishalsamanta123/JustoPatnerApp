@@ -23,7 +23,6 @@ const SupportForumDetail = (props: any) => {
                 RightSecondIconStyle={styles.RightFirstIconStyle}
                 leftImageIconStyle={styles.RightFirstIconStyle}
                 statusBarColor={PRIMARY_THEME_COLOR}
-                handleOnRightSecondIconPress={() => props.onPressNotify()}
                 barStyle={'light-content'}
             />
             <View style={styles.mainCon}>

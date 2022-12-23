@@ -4,8 +4,10 @@ import {
   checkEmailMobile,
   emailCheckRemove,
   RegistrationForm,
+  RegistrationFormRemv,
 } from "app/Redux/Actions/ReggistrationAction";
 import React, { useEffect, useState } from "react";
+import { Keyboard } from "react-native";
 import { useDispatch, useSelector } from "react-redux";
 import RegistrationView from "./components/RegistrationView";
 
@@ -20,7 +22,7 @@ const RegistrationScreen = ({ navigation }: any) => {
   const emailAndMobileData = useSelector(
     (state: any) => state.emailAndMobileData
   );
-  const registrationData = useSelector((state: any) => state.registerForm);
+  const registrationData = useSelector((state: any) => state.registrationForm);
   const [registerForm, setRegisterForm] = useState({
     profile_picture: {},
     owner_name: "",
@@ -37,43 +39,42 @@ const RegistrationScreen = ({ navigation }: any) => {
     longitude: '',
   });
   useEffect(() => {
-    if (registrationData?.response) {
+    if (typeof registrationData?.response === 'object') {
       setRegisterForm({
         ...registrationData?.response,
+        working_location: registrationData?.response?.working_location ?? []
       });
     }
-  }, [registrationData]);
+  }, [registrationData, navigation]);
 
   const validation = () => {
+    Keyboard.dismiss()
     let isError = true;
     let errorMessage: any = "";
     if (registerForm.owner_name == undefined || registerForm.owner_name == "") {
       isError = false;
       errorMessage = "Owner Name is require. Please enter Owner Name";
     } else if (
-      registerForm.adhar_no == undefined ||
-      registerForm.adhar_no == ""
+      registerForm.adhar_no == undefined || registerForm.adhar_no == ""
     ) {
       isError = false;
       errorMessage = "Aadhaar No. is require. Please enter Aadhaar No.";
     } else if (
-      registerForm.pancard_no == undefined ||
-      registerForm.pancard_no == ""
+      registerForm.pancard_no == undefined || registerForm.pancard_no == ""
     ) {
       isError = false;
       errorMessage = "Pancard No. is require. Please enter Pancard No.";
-    } else if (registerForm.gender == undefined || registerForm.gender == "") {
+    } else if (
+      registerForm.gender == undefined || registerForm.gender == "") {
       isError = false;
       errorMessage = "Gender is require. Please enter Gender";
     } else if (
-      registerForm.date_of_birth == undefined ||
-      registerForm.date_of_birth == ""
+      registerForm.date_of_birth == undefined || registerForm.date_of_birth == ""
     ) {
       isError = false;
       errorMessage = "Date of Birth is require. Please enter Date of Birth";
     } else if (
-      registerForm.primary_mobile == undefined ||
-      registerForm.primary_mobile == ""
+      registerForm.primary_mobile == undefined || registerForm.primary_mobile == ""
     ) {
       isError = false;
       errorMessage = "Mobile No. is require. Please enter Mobile No.";
@@ -81,8 +82,7 @@ const RegistrationScreen = ({ navigation }: any) => {
       isError = false;
       errorMessage = "Mobile No. is already registered. Please enter other Mobile No.";
     } else if (
-      registerForm.whatsapp_number == undefined ||
-      registerForm.whatsapp_number == ""
+      registerForm.whatsapp_number == undefined || registerForm.whatsapp_number == ""
     ) {
       isError = false;
       errorMessage = "WhatsaApp No. is require. Please enter WhatsaApp No.";
@@ -91,27 +91,24 @@ const RegistrationScreen = ({ navigation }: any) => {
       errorMessage = "Email is require. Please enter Email";
     } else if (validateEmail.test(registerForm.email) === false) {
       isError = false;
-      errorMessage = "Email is wrong. Please enter correct Email";
-    } else
-      if (emailMobvalidation.email == null) {
-        isError = false;
-        errorMessage = "Email is already registered. Please enter other Email";
-      } else if (
-        registerForm.working_location.length === 0 ||
-        registerForm.working_location === undefined
-      ) {
-        isError = false;
-        errorMessage =
-          "Working Location is require. Please enter Working Location";
-      } else if (
-        registerForm.location === '' ||
-        registerForm.location === undefined
-      ) {
-        isError = false;
-        errorMessage =
-          "Address is require. Please enter address";
-      }
-
+      errorMessage = "Email format is wrong. Please enter correct Email";
+    } else if (emailMobvalidation.email == null) {
+      isError = false;
+      errorMessage = "Email is already registered. Please enter other Email";
+    } else if (
+      registerForm.working_location.length === 0 ||
+      registerForm.working_location === undefined
+    ) {
+      isError = false;
+      errorMessage =
+        "Working Location is require. Please enter Working Location";
+    } else if (
+      registerForm.location === '' ||
+      registerForm.location === undefined
+    ) {
+      isError = false;
+      errorMessage = "Address is require. Please enter address";
+    }
     if (errorMessage !== "") {
       ErrorMessage({
         msg: errorMessage,
@@ -164,6 +161,7 @@ const RegistrationScreen = ({ navigation }: any) => {
   };
   const onPressBack = () => {
     navigation.goBack();
+    dispatch(RegistrationFormRemv())
   };
   return (
     <RegistrationView

@@ -24,6 +24,7 @@ import { RegistrationForm } from "app/Redux/Actions/ReggistrationAction";
 import { getAllMaster, getAllSourcingManager } from "app/Redux/Actions/MasterActions";
 
 const UserBankInfo = ({ navigation }: any) => {
+  const dispatch: any = useDispatch()
   const insets = useSafeAreaInsets();
   const [formData, setFormData] = useState<any>({})
   const [reravisible, setreraVisible] = useState(false)
@@ -32,13 +33,13 @@ const UserBankInfo = ({ navigation }: any) => {
   const [visible, setVisible] = useState(false)
   const registrationData = useSelector((state: any) => state.registrationForm)
   const [masterDatas, setMasterDatas] = useState<any>([])
-  const dispatch: any = useDispatch()
+  const masterData = useSelector((state: any) => state.masterData) || {}
 
   useEffect(() => {
-    setFormData({ ...registrationData.response })
-  }, [registrationData])
-
-  const masterData = useSelector((state: any) => state.masterData) || {}
+    if (typeof registrationData?.response === 'object') {
+      setFormData({ ...registrationData.response })
+    }
+  }, [registrationData, navigation])
 
   useEffect(() => {
     if (masterData?.response?.status === 200) {
@@ -46,7 +47,6 @@ const UserBankInfo = ({ navigation }: any) => {
     } else {
     }
   }, [masterData])
-
 
   const handleMasterDatas = () => {
     dispatch(getAllSourcingManager({
@@ -90,26 +90,24 @@ const UserBankInfo = ({ navigation }: any) => {
       isError = false;
       errorMessage = "IFSC Code is require. Please enter IFSC Code"
     }
-
     if (errorMessage !== '') {
       ErrorMessage({
         msg: errorMessage,
         backgroundColor: RED_COLOR
       })
     }
-    // console.log('isError: ', isError);
     return isError;
   }
 
   const onPressBack = () => {
     navigation.goBack()
+    dispatch(RegistrationForm(formData))
   }
   const onPressNext = () => {
     if (validation()) {
       dispatch(RegistrationForm(formData))
       navigation.navigate('CompanyDetails')
     }
-    // navigation.navigate('CompanyDetails')
   }
   return (
     <>
@@ -271,6 +269,7 @@ const UserBankInfo = ({ navigation }: any) => {
               handleInputBtnPress={() => { }}
               headingText={"IFSC Code"}
               valueshow={formData?.ifsc_code}
+              maxLength={11}
               onChangeText={(val: any) => {
                 setFormData({
                   ...formData, ifsc_code: val

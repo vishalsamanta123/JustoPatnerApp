@@ -4,9 +4,11 @@ import { apiCall } from "app/components/utilities/httpClient";
 import { GETPROPERTY_DETAIL, PROPERTY_ALLOCATE_LIST, PROPERTY_ERROR, PROPERTY_LIST, PROPERTY_STATUS_UPDATE, REMOVE_PROPERTY_STATUS, START_LOADING, STOP_LOADING } from "../types";
 
 export const getAllProperty = (params: any) => async (dispatch: any) => {
+console.log('params: ', params);
     dispatch({ type: START_LOADING })
     try {
         const res = await apiCall("post", apiEndPoints.PROPERTYLIST, params);
+        console.log('res:PROPERTYLIST ', res);
         if (res.data.status == 200) {
             dispatch({
                 type: PROPERTY_LIST,
@@ -56,9 +58,11 @@ export const getAllAlloctaeProperty = (params: any) => async (dispatch: any) => 
     }
 };
 export const getFilterProperty = (params: any) => async (dispatch: any) => {
+console.log('params: ', params);
     dispatch({ type: START_LOADING })
     try {
         const res = await apiCall("post", apiEndPoints.PROPERTYFILTER, params);
+        console.log('res: PROPERTYFILTER', res);
         if (res.data.status == 200) {
             dispatch({
                 type: PROPERTY_LIST,
