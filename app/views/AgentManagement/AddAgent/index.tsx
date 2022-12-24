@@ -91,10 +91,10 @@ const AgentBasicInfo = ({ navigation, route }: any) => {
     return isError;
   }
   const onPressNext = () => {
-    if (validation()) {
+    // if (validation()) {
       dispatch(addAgentForm(agentInfoData))
       navigation.navigate('AgentBankInfo', { type: route?.params?.type })
-    }
+    // }
   }
   return (
     <AgentBasicInfoView

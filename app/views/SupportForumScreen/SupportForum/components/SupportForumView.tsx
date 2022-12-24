@@ -27,11 +27,11 @@ const SupportForumView = (props: any) => {
                 RightFirstIconStyle={styles.RightFirstIconStyle}
                 RightSecondIconStyle={styles.RightFirstIconStyle}
                 statusBarColor={PRIMARY_THEME_COLOR}
-                handleOnRightSecondIconPress={() => {}}
+                handleOnRightSecondIconPress={() => setFilterisVisible(true)}
                 barStyle={'light-content'}
             />
             <ComingSoonScreen />
-             {/* <View style={{ flex: 1, marginHorizontal: normalizeSpacing(10) }}>
+            {/* <View style={{ flex: 1, marginHorizontal: normalizeSpacing(10) }}>
                 <FlatList
                     data={Array.isArray(props?.supportForumList) ?
                         props.supportForumList : []}
