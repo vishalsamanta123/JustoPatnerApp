@@ -6,8 +6,8 @@ import SupportForumView from './components/SupportForumView'
 
 const SupportForumScreen = ({ navigation }: any) => {
     const dispatch: any = useDispatch()
-    const { response = {}, list = '' } = useSelector((state: any) => state.supportForumData) || {}
-    const moreData = response?.total_data || 0
+    // const { response = {}, list = '' } = useSelector((state: any) => state.supportForumData) || {}
+    // const moreData = response?.total_data || 0
     const [supportForumList, setSupportForumList] = useState<any>([])
     const [offSET, setOffset] = useState(0)
     const [filterData, setFilterData] = useState({
@@ -55,7 +55,7 @@ const SupportForumScreen = ({ navigation }: any) => {
             // getSupportForums={getSupportForums}
             onPressView={onPressView}
             offSET={offSET}
-            moreData={moreData}
+            // moreData={moreData}
         />
     )
 }
