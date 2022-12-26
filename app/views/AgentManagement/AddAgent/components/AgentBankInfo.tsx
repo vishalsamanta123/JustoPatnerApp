@@ -19,6 +19,8 @@ import PicturePickerModal from "app/components/Modals/PicturePicker";
 import { addAgent, addAgentRemove, editAgent } from "app/Redux/Actions/AgentActions";
 import ErrorMessage from "app/components/ErrorMessage";
 import { normalize } from "app/components/scaleFontSize";
+import auth from "@react-native-firebase/auth";
+
 
 const AgentBankInfo = ({ navigation, route }: any) => {
   const dispatch: any = useDispatch()
@@ -31,6 +33,12 @@ const AgentBankInfo = ({ navigation, route }: any) => {
     if (editData?.update || addData?.create) {
       dispatch(addAgentRemove());
       navigation.navigate('AgentListing')
+      auth()
+        .createUserWithEmailAndPassword(agentInfoData?.email, "123456")
+        .then(async (res: any) => {
+          console.log("res: IN CREATE", res);
+          console.log("User account created & signed in!");
+        });
       ErrorMessage({
         msg: editData?.update ? editData?.response?.message :
           addData?.create ? addData?.response?.message : '',

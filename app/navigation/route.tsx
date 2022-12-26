@@ -60,10 +60,12 @@ import LeaderBoardScreen from 'app/views/LeaderBoard/LeaderBoardScreen';
 import SupportForumScreen from 'app/views/SupportForumScreen/SupportForum';
 import DataFlowScreen from 'app/views/DataFlow';
 import SupportScreen from 'app/views/Support';
-import ChatViewScreen from 'app/views/Chat';
 import axios from 'axios';
 import Notification from 'app/views/Setting/Notification';
 import SupportForumDetail from 'app/views/SupportForumScreen/SupportForumDtl';
+import PropertyChat from 'app/views/ChatManagement/PropertyChat';
+import ChatViewScreen from 'app/views/ChatManagement/Chat';
+import ChatScreen from 'app/views/ChatManagement/Chat/components/ChatScreen';
 
 
 const Stack = createNativeStackNavigator();
@@ -91,7 +93,7 @@ const DrawerComponent = () => {
       <Drawer.Screen name="SupportForum" component={SupportForumScreen} />
       <Drawer.Screen name="DataFlow" component={DataFlowScreen} />
       <Drawer.Screen name="Support" component={SupportScreen} />
-      <Drawer.Screen name="ChatView" component={ChatViewScreen} />
+      <Drawer.Screen name="PropertyChatView" component={PropertyChat} />
 
       {/* <Stack.Screen component={PropertyScreen} name="PropertyScreenView" /> */}
     </Drawer.Navigator>
@@ -166,6 +168,11 @@ const AppComponent = () => {
       <AppStack.Screen name="separateLink" component={SeparateLinkScreen} />
       <AppStack.Screen name="notification" component={Notification} />
       <AppStack.Screen name="SupportForumDetail" component={SupportForumDetail} />
+
+      {/* chat management */}
+      <AppStack.Screen name="UserChatListView" component={ChatViewScreen} />
+      <AppStack.Screen name="ChatScreen" component={ChatScreen} />
+
     </AppStack.Navigator>
   )
 }

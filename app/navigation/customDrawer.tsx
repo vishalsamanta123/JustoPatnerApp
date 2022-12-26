@@ -182,7 +182,7 @@ const customDrawer = ({ navigation }: any) => {
           iconSource={images.chat}
           tabTitle={strings.chatHeader}
           handleDrawerNavigation={() => {
-            navigation.navigate('ChatView');
+            navigation.navigate('PropertyChatView');
           }}
         />
         <DrawerTabSection

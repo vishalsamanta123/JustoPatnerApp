@@ -39,6 +39,9 @@ const images = {
   gallery: require('./gallery.png'),
   shareIcon: require('./share.png'),
   locationIcon: require('./location.png'),
+  addCircle: require('./addCircle.png'),
+  send: require('./send.png'),
+  attach: require('./attach.png'),
 };
 
 export default images;

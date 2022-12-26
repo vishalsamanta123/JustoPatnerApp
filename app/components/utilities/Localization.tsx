@@ -112,6 +112,8 @@ const strings = new LocalizedStrings({
     searchYourlocation: 'Search your location here',
     comingSoon: 'Coming Soon',
     share: 'Share',
+    propertyForchat: 'Property for chat',
+    chat: 'Chat',
 
     //Auth 
 
