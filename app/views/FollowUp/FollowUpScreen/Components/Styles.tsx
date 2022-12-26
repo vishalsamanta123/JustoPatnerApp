@@ -22,7 +22,7 @@ const styles = StyleSheet.create({
     borderRadius: 10,
     marginVertical: normalizeSpacing(10),
   },
-  Txtview : {
+  Txtview: {
     flexDirection: 'row',
     alignItems: 'center',
     borderBottomColor: GRAY_COLOR,
@@ -30,31 +30,31 @@ const styles = StyleSheet.create({
     padding: normalizeSpacing(4),
     marginTop: normalizeSpacing(2),
   },
-  projectContainer : {
+  projectContainer: {
     flex: 2.5,
     alignItems: 'flex-end',
   },
-  projectTxt : {
+  projectTxt: {
     fontSize: normalize(15),
     fontFamily: FONT_FAMILY_SEMIBOLD,
     color: GRAY_LIGHT_COLOR
   },
-  nameContainer : {
+  nameContainer: {
     flex: 3.5,
     alignItems: 'flex-start',
   },
-  nameTxt : {
+  nameTxt: {
     fontSize: normalize(15),
     fontFamily: FONT_FAMILY_EXTRABOLD,
     color: BLACK_COLOR,
     marginHorizontal: normalizeSpacing(10)
   },
-  buttonContainer : {
+  buttonContainer: {
     flexDirection: 'row',
     justifyContent: 'space-between',
     marginVertical: normalizeSpacing(10),
   },
-  button : {
+  button: {
     top: 10,
     backgroundColor: WHITE_COLOR,
     width: normalizeWidth(100),
@@ -64,23 +64,24 @@ const styles = StyleSheet.create({
     borderWidth: 1,
     borderRadius: 10
   },
-  Viewbutton : {
+  Viewbutton: {
     top: 10,
     backgroundColor: PRIMARY_THEME_COLOR,
     borderBottomEndRadius: 10,
     borderTopLeftRadius: 10,
     padding: normalizeSpacing(5)
   },
-  arrow : {
+  arrow: {
     tintColor: WHITE_COLOR,
     width: normalizeWidth(30),
     height: normalizeHeight(30)
   },
-  buttonTxt : {
+  buttonTxt: {
     textAlign: 'center'
   },
   editInputView: {
-    marginHorizontal: normalizeSpacing(10)
+    marginHorizontal: normalizeSpacing(10),
+    flex: 1
   },
   inputWarp: {
     marginTop: normalizeSpacing(20)

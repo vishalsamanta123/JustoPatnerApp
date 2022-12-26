@@ -1,4 +1,4 @@
-import { ADD_FOLLOWUP, ADD_FOLLOWUP_ERROR, FOLLOWUP_DETAILS, FOLLOWUP_DETAILS_ERROR, FOLLOWUP_ERROR, GET_FOLLOWUP_LIST, REMOVE_FOLLOWUP_DATA, UPDATE_FOLLOWUP, UPDATE_FOLLOWUP_ERROR } from "../types";
+import { ADD_FOLLOWUP, ADD_FOLLOWUP_ERROR, FOLLOWUP_DETAILS, FOLLOWUP_DETAILS_ERROR, FOLLOWUP_ERROR, GET_FOLLOWUP_LIST, REMOVE_FOLLOWUP_DATA, REMOVE_UPDATE_FOLLOWUP, UPDATE_FOLLOWUP, UPDATE_FOLLOWUP_ERROR } from "../types";
 
 const initialState = {
     response: null,
@@ -88,6 +88,34 @@ export function followUpReducer(state = initialState, action: any) {
                 detail: false,
                 create: false,
                 list: false,
+                update: false,
+                response: action.payload,
+            };
+        default:
+            return state;
+    }
+}
+
+export function editAddFollowupReducer(state = initialState, action: any) {
+    switch (action.type) {
+        case UPDATE_FOLLOWUP:
+            return {
+                ...state,
+                update: true,
+                response: action.payload,
+            };
+        case ADD_FOLLOWUP:
+            return {
+                ...state,
+                create: false,
+                detail: false,
+                list: false,
+                update: false,
+                response: action.payload,
+            };
+        case REMOVE_UPDATE_FOLLOWUP:
+            return {
+                ...state,
                 update: false,
                 response: action.payload,
             };

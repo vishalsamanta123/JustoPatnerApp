@@ -1,14 +1,13 @@
 import { handleApiError } from "app/components/ErrorMessage/HandleApiErrors";
 import apiEndPoints from "app/components/utilities/apiEndPoints";
 import { apiCall } from "app/components/utilities/httpClient";
-import { ADD_FOLLOWUP, ADD_FOLLOWUP_ERROR, FOLLOWUP_DETAILS, FOLLOWUP_DETAILS_ERROR, FOLLOWUP_ERROR, GET_FOLLOWUP_LIST, REMOVE_FOLLOWUP_DATA, START_LOADING, STOP_LOADING, UPDATE_FOLLOWUP, UPDATE_FOLLOWUP_ERROR } from "../types";
+import { ADD_FOLLOWUP, ADD_FOLLOWUP_ERROR, FOLLOWUP_DETAILS, FOLLOWUP_DETAILS_ERROR, FOLLOWUP_ERROR, GET_FOLLOWUP_LIST, REMOVE_FOLLOWUP_DATA, REMOVE_UPDATE_FOLLOWUP, START_LOADING, STOP_LOADING, UPDATE_FOLLOWUP, UPDATE_FOLLOWUP_ERROR } from "../types";
 
 export const getAllFollowUpList = (params: any) => async (dispatch: any) => {
     dispatch({ type: START_LOADING })
     try {
         const res = await apiCall("post", apiEndPoints.GET_FOLLOWUP_LIST, params);
         if (res.data.status == 200) {
-        console.log('res.data: ', res.data);
             dispatch({
                 type: GET_FOLLOWUP_LIST,
                 payload: res.data,
@@ -106,6 +105,19 @@ export const addFollowUp = (params: any) => async (dispatch: any) => {
     }
     finally {
         dispatch({ type: STOP_LOADING })
+    }
+};
+export const addEditFollowupRemove = () => async (dispatch: any) => {
+    try {
+        dispatch({
+            type: REMOVE_UPDATE_FOLLOWUP,
+            payload: null,
+        });
+    } catch (e) {
+        dispatch({
+            type: UPDATE_FOLLOWUP_ERROR,
+            payload: console.log(e),
+        });
     }
 };
 export const allfollowupRemove = () => async (dispatch: any) => {

@@ -7,6 +7,7 @@ import { useDispatch, useSelector } from 'react-redux'
 const AllFollowUpScreen = ({ navigation, route }: any) => {
   const data = route?.params || {}
   const [allFollowUpList, setAllFollowUpList] = useState<any>([])
+  console.log('allFollowUpList: ', allFollowUpList);
   const [offSET, setOffset] = useState(0)
   const dispatch: any = useDispatch()
   const { response = {}, list = '' } = useSelector((state: any) => state.followUp)

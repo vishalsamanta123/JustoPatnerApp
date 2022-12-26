@@ -10,7 +10,7 @@ const styles = StyleSheet.create({
         tintColor: WHITE_COLOR,
     },
     mainConatiner: {
-        flex: 1
+        flex: 1,
     },
     iteamView: {
         flex: 1,
