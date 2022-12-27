@@ -2,6 +2,7 @@ import { getAllProperty, statusUpdate } from 'app/Redux/Actions/propertyActions'
 import React, { useLayoutEffect, useState, useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import PropertyView from './components/PropertyView';
+import { useFocusEffect } from '@react-navigation/native';
 
 const PropertyScreen = ({ navigation }: any) => {
   const dispatch: any = useDispatch()
@@ -12,7 +13,12 @@ const PropertyScreen = ({ navigation }: any) => {
   const propertyData = useSelector((state: any) => state.propertydetailData) || []
   const { response, loading, updateStatus } = propertyData;
 
-
+  useFocusEffect(
+    React.useCallback(() => {
+      getallproperty(0, {})
+      return () => { };
+    }, [navigation])
+  );
   useEffect(() => {
     getallproperty(0, {})
   }, [])

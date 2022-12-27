@@ -5,9 +5,11 @@ import strings from '../../../../components/utilities/Localization';
 import { BLACK_COLOR, YELLOW_COLOR, GOLDEN_COLOR, GREEN_COLOR, RED_COLOR } from '../../../../components/utilities/constant';
 import images from '../../../../assets/images';
 import moment from 'moment';
+import { useDispatch } from 'react-redux';
+import { statusUpdate } from 'app/Redux/Actions/propertyActions';
 
 const PropertyListItem = (props: any) => {
-
+  const dispatch: any = useDispatch()
   return (
     <View style={styles.IteamView}>
       <View style={styles.Txtview} >
@@ -98,7 +100,13 @@ const PropertyListItem = (props: any) => {
           </TouchableOpacity>)
           :
           (<TouchableOpacity
-            // onPress={() => props.confirmStatus(props.items)}
+            onPress={() => {
+              dispatch(statusUpdate({
+                property_id: props?.items?.property_id,
+                approve_status: 3,
+                resion_id: '',
+              }))
+            }}
             style={[styles.button, {
               borderColor: RED_COLOR
             }]} >

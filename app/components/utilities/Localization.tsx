@@ -45,6 +45,7 @@ const strings = new LocalizedStrings({
     ConfirmationModalTxt: 'Select the reason for\r\nunsubscribe this property.',
     Confirm: 'Confirm',
     searchProperty: 'Search Property',
+    searchInChat: 'Search in Chat',
     playVideo: 'Play',
     pauseVideo: 'Pause',
     apply: 'APPLY',
@@ -114,6 +115,9 @@ const strings = new LocalizedStrings({
     comingSoon: 'Coming Soon',
     share: 'Share',
     search:'Search',
+    propertyForchat: 'Property for chat',
+    chat: 'Chat',
+
     //Auth 
 
     usernamepasswordempty: 'Username and Password is require. Please enter Username and password',
