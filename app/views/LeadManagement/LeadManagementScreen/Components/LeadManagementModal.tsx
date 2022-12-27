@@ -33,6 +33,7 @@ const FilterModal = (props: any) => {
       visit_score: '',
     })
     props.setIsVisible(false)
+    props.onRefresh()
   }
 
   const configRender = (item: any) => {

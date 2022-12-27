@@ -12,7 +12,15 @@ import InputCalender from "app/components/InputCalender";
 import moment from "moment";
 import { DATE_FORMAT } from "app/components/utilities/constant";
 const FilterModal = (props: any) => {
-
+  const resetFilter = () => {
+    props.setFilterData({
+      start_date: '',
+      end_date: '',
+      followup_for: ''
+    })
+    props.onReset()
+    props.setIsVisible(false)
+  }
   const renderItem = (item: any) => {
     return (
       <View style={styles.item}>
@@ -105,11 +113,19 @@ const FilterModal = (props: any) => {
             </View>
           </View>
           <View style={{ marginVertical: 20 }}>
-            <Button handleBtnPress={() => {
-              props.setIsVisible(false)
-              props.handleFilterApply()
-            }}
-              buttonText={strings.apply} />
+            <View style={{ flexDirection: 'row', justifyContent: 'center' }}>
+              <Button
+                width={135}
+                buttonText={strings.reset}
+                handleBtnPress={() => resetFilter()} />
+              <Button
+                width={135}
+                handleBtnPress={() => {
+                  props.setIsVisible(false)
+                  props.handleFilterApply()
+                }}
+                buttonText={strings.apply} />
+            </View>
           </View>
         </View>
       </Modal>

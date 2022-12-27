@@ -16,7 +16,7 @@ const FollowUpDetailsView = (props: any) => {
   const navigation: any = useNavigation()
   const { response = {} } = useSelector((state: any) => state.followUp)
   const onpressSchedule = () => {
-    navigation.navigate('AddAppointmentScreen')
+    navigation.navigate('AddAppointmentScreen', { data: {}, type: 'add' })
   }
   return (
     <View style={styles.mainContainer}>
@@ -34,7 +34,7 @@ const FollowUpDetailsView = (props: any) => {
       <View style={styles.btnContainer}>
         <Button
           buttonText={strings.ScheduleSitevisite}
-          width={Isios? 200 : 150}
+          width={Isios ? 200 : 150}
           height={45}
           bgcolor={PRIMARY_THEME_COLOR_DARK}
           btnTxtcolor={WHITE_COLOR}
@@ -48,7 +48,7 @@ const FollowUpDetailsView = (props: any) => {
           height={45}
           bgcolor={PRIMARY_THEME_COLOR_DARK}
           btnTxtcolor={WHITE_COLOR}
-          btnTxtsize={Isios? 12 : 14}
+          btnTxtsize={Isios ? 12 : 14}
           textTransform={"uppercase"}
           handleBtnPress={() => props.handleStatusUpdate()}
         />

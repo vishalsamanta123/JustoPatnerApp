@@ -1,6 +1,6 @@
 import ErrorMessage from "app/components/ErrorMessage";
-import { RED_COLOR } from "app/components/utilities/constant";
-import { addFollowUp } from "app/Redux/Actions/FollowUpActions";
+import { GREEN_COLOR, RED_COLOR } from "app/components/utilities/constant";
+import { addEditFollowupRemove, addFollowUp } from "app/Redux/Actions/FollowUpActions";
 import { getAllMaster } from "app/Redux/Actions/MasterActions";
 import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
@@ -20,19 +20,18 @@ const FollowUpAddScreen = ({ navigation, route }: any) => {
     })
     const dispatch: any = useDispatch()
     const masterData = useSelector((state: any) => state.masterData) || {}
-
+    const editAddFollowupData = useSelector((state: any) => state.editAddFollowup) || {}
     useEffect(() => {
         if (masterData?.response?.status === 200) {
             setMasterDatas(masterData?.response?.data?.length > 0 ? masterData?.response?.data : [])
         }
     }, [masterData])
 
-
-    const handleMasterDatas = (data: any) => {
+    useEffect(() => {
         dispatch(getAllMaster({
-            type: data
+            type: 5
         }))
-    }
+    }, [])
     const handleBackPress = () => {
         navigation.goBack(null)
     }
@@ -52,11 +51,19 @@ const FollowUpAddScreen = ({ navigation, route }: any) => {
         }
         return isError;
     }
-
+    useEffect(() => {
+        if (editAddFollowupData?.response?.status === 200) {
+            dispatch(addEditFollowupRemove())
+            navigation.goBack(null)
+            ErrorMessage({
+                msg: editAddFollowupData?.response?.message,
+                backgroundColor: GREEN_COLOR
+            })
+        }
+    }, [editAddFollowupData])
     const handleUpdateStatus = () => {
         if (validation()) {
             dispatch(addFollowUp(formData))
-            navigation.goBack(null)
         }
     }
     const handleAllFollowUp = () => {
@@ -69,7 +76,6 @@ const FollowUpAddScreen = ({ navigation, route }: any) => {
                 setValue={setValue}
                 handleBackPress={handleBackPress}
                 masterDatas={masterDatas}
-                handleMasterDatas={handleMasterDatas}
                 setFormData={setFormData}
                 formData={formData}
                 handleUpdateStatus={handleUpdateStatus}

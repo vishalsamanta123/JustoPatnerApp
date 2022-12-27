@@ -4,9 +4,9 @@ import { createChannlePartnerReducer, emailAndMobileReducer, registerDataReducer
 import { agentReducer, addAgentReducer, addAgentFormReducer, editAgentReducer } from './AgentReducer';
 import { addVisitorReducer, editVisitorReducer, visitorListReducer, visitorReducer } from "./LeadsReducer";
 import { masterDataReducer } from "./MasterReducer";
-import { followUpReducer } from "./FollowUpReducer";
+import { editAddFollowupReducer, followUpReducer } from "./FollowUpReducer";
 import { editUserReducer, settingReducer } from "./SettingReducer";
-import { appointmentReducer } from "./AppointmentReducer";
+import { appointmentReducer, editAddAppointmentReducer } from "./AppointmentReducer";
 import { dashboardReducer, statusUpdateReducer } from "./DashboardReducer";
 import { notificationListReducer } from "./NotificationReducer";
 import { supportForumReducer, supportForumUpdateReducer } from "./SupportForumReducer";
@@ -49,7 +49,9 @@ export default {
 
     masterData: masterDataReducer,
     followUp: followUpReducer,
+    editAddFollowup: editAddFollowupReducer,
     appointment: appointmentReducer,
+    editAddAppointment: editAddAppointmentReducer,
     settingData: settingReducer,
     editUserData: editUserReducer,
 
