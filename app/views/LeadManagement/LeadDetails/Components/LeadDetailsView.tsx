@@ -30,7 +30,7 @@ const LeadDetailsView = (props: any) => {
   }, [getleaddata]);
 
   const OnpressseheduleVisit = () => {
-    navigation.navigate("AddAppointmentScreen");
+    navigation.navigate("AddAppointmentScreen", { data: {}, type: 'add' });
   };
 
   return (

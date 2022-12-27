@@ -29,8 +29,6 @@ const FollowUpView = (props: any) => {
     navigation.navigate('AllFollowUpScreen', data)
   }
 
-
-
   return (
     <View style={styles.mainContainer}>
       <Header
@@ -64,6 +62,7 @@ const FollowUpView = (props: any) => {
         setFilterData={props.setFilterData}
         filterData={props.filterData}
         handleFilterApply={props.handleFilterApply}
+        onReset={props.onRefresh}
       />
     </View>
   )

@@ -24,7 +24,7 @@ const PropertyDetails = ({ navigation, route }: any) => {
         property_id: data.property_id ? data.property_id : "",
       })
     );
-  }, []);
+  }, [statusUpdateData]);
   useEffect(() => {
     if (statusUpdateData?.response?.status === 200) {
       dispatch(removeStatus());

@@ -98,6 +98,7 @@ const LeadManagementView = (props: any) => {
         setFilterData={props.setFilterData}
         filterData={props.filterData}
         setVisiitorList={props.setVisiitorList}
+        onRefresh={() => onRefresh()}
         getVisitorsList={() => props.getVisitorsList(props.offSET, props.filterData)}
       />
     </View>

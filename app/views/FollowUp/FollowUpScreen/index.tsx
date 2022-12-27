@@ -6,7 +6,6 @@ import { allfollowupRemove, getAllFollowUpList } from 'app/Redux/Actions/FollowU
 import { useFocusEffect } from '@react-navigation/native'
 
 const FollowUpScreen = ({ navigation }: any) => {
-    const [filter, setFilter] = useState(null)
     const [followUpList, setFollowUpList] = useState<any>([])
     const [offSET, setOffset] = useState(0)
     const dispatch: any = useDispatch()
@@ -22,12 +21,12 @@ const FollowUpScreen = ({ navigation }: any) => {
 
     useFocusEffect(
         React.useCallback(() => {
-            getFollowupList(offSET, {})
+            getFollowupList(0, {})
             return () => { };
         }, [navigation, list])
     );
     useEffect(() => {
-        if (list || response?.status) {
+        if (list && response?.status === 200) {
             if (offSET == 0) {
                 setFollowUpList(response?.data)
             } else {
@@ -53,9 +52,10 @@ const FollowUpScreen = ({ navigation }: any) => {
             followup_for: ''
         })
         getFollowupList(0, {})
+        setFollowUpList([])
     }
     const handleFilterApply = () => {
-        // dispatch(allfollowupRemove())
+        setFollowUpList([])
         getFollowupList(0, filterData)
     }
     return (

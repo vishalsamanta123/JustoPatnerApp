@@ -18,6 +18,7 @@ import Button from "../../../../components/Button";
 import ConfirmModal from "../../../../components/Modals/ConfirmModal";
 import { useDispatch, useSelector } from "react-redux";
 import { getAllMaster } from "app/Redux/Actions/MasterActions";
+import { statusUpdate } from "app/Redux/Actions/propertyActions";
 
 const PropertyDetailView = (props: any) => {
   const dispatch: any = useDispatch();
@@ -138,39 +139,61 @@ const PropertyDetailView = (props: any) => {
           },
         ]}
       >
-        <Button
-          handleBtnPress={() => confirmStatus()}
-          buttonText={
-            approveStatus === 1
-              ? strings.active
-              : approveStatus === 2
-              ? strings.unsubscribe
-              : strings.subscribe
-          }
-          width={150}
-          height={45}
-          bgcolor={""}
-          bordercolor={
-            approveStatus === 1
-              ? BLACK_COLOR
-              : approveStatus === 2
-              ? "red"
-              : YELLOW_COLOR
-          }
-          borderWidth={1.5}
-          btnTxtcolor={
-            approveStatus === 1
-              ? BLACK_COLOR
-              : approveStatus === 2
-              ? "red"
-              : YELLOW_COLOR
-          }
-          btnTxtsize={15}
-          textTransform={"uppercase"}
-        />
+        {propertydetail?.property_active_status || typeof propertydetail?.property_active_status === 'undefined' ?
+          (<Button
+            handleBtnPress={() => confirmStatus()}
+            buttonText={
+              approveStatus === 1
+                ? strings.active
+                : approveStatus === 2
+                  ? strings.unsubscribe
+                  : strings.subscribe
+            }
+            width={150}
+            height={45}
+            bgcolor={""}
+            bordercolor={
+              approveStatus === 1
+                ? BLACK_COLOR
+                : approveStatus === 2
+                  ? "red"
+                  : YELLOW_COLOR
+            }
+            borderWidth={1.5}
+            btnTxtcolor={
+              approveStatus === 1
+                ? BLACK_COLOR
+                : approveStatus === 2
+                  ? "red"
+                  : YELLOW_COLOR
+            }
+            btnTxtsize={15}
+            textTransform={"uppercase"}
+          />)
+          :
+          (<Button
+            handleBtnPress={() => {
+              dispatch(statusUpdate({
+                property_id: props?.data?.property_id,
+                approve_status: 3,
+                resion_id: '',
+              }))
+            }}
+            buttonText={strings.deactive}
+            width={150}
+            height={45}
+            bgcolor={""}
+            bordercolor={'red'}
+            borderWidth={1.5}
+            btnTxtcolor={'red'}
+            btnTxtsize={15}
+            textTransform={"uppercase"}
+          />
+          )}
+
 
         {propertydetail?.property_active_status &&
-        approveStatus !== 1 && approveStatus !== 3 ? (
+          approveStatus !== 1 && approveStatus !== 3 ? (
           <Button
             handleBtnPress={() => onPressCreatevisit()}
             buttonText={strings.createVisit}

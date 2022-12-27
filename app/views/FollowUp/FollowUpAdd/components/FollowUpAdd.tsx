@@ -28,33 +28,34 @@ const FollowUpAddView = (props: any) => {
                 statusBarColor={PRIMARY_THEME_COLOR}
             />
             <View style={styles.topItemsVw}>
-                <DropdownInput
-                    headingText={'Status'}
-                    placeholder={strings.status}
-                    data={props?.masterDatas}
-                    inputWidth={'100%'}
-                    paddingLeft={16}
-                    maxHeight={300}
-                    onFocus={() => props.handleMasterDatas(5)}
-                    labelField="title"
-                    valueField={'_id'}
-                    value={props?.formData?.property_id}
-                    onChange={(item: any) => {
-                        props.setFormData({
-                            ...props.formData,
-                            followup_status: item._id,
-                        })
-                    }}
-                    newRenderItem={(item: any) => {
-                        return (
-                            <>
-                                <View style={Styles.item}>
-                                    <Text style={Styles.textItem}>{item.title}</Text>
-                                </View>
-                            </>
-                        );
-                    }}
-                />
+                <View style={styles.inputWrap}>
+                    <DropdownInput
+                        headingText={'Status'}
+                        placeholder={strings.status}
+                        data={props?.masterDatas}
+                        inputWidth={'100%'}
+                        paddingLeft={16}
+                        maxHeight={300}
+                        labelField="title"
+                        valueField={'_id'}
+                        value={props?.formData?.property_id}
+                        onChange={(item: any) => {
+                            props.setFormData({
+                                ...props.formData,
+                                followup_status: item._id,
+                            })
+                        }}
+                        newRenderItem={(item: any) => {
+                            return (
+                                <>
+                                    <View style={Styles.item}>
+                                        <Text style={Styles.textItem}>{item.title}</Text>
+                                    </View>
+                                </>
+                            );
+                        }}
+                    />
+                </View>
                 <View style={styles.inputWrap}>
                     <InputCalender
                         headingText={'Date'}
