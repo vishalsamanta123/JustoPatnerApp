@@ -64,6 +64,7 @@ import ChatViewScreen from 'app/views/Chat';
 import axios from 'axios';
 import Notification from 'app/views/Setting/Notification';
 import SupportForumDetail from 'app/views/SupportForumScreen/SupportForumDtl';
+import LeaderBoardSearchScreen from 'app/views/LeaderBoard/LeaderBoardSearch';
 
 
 const Stack = createNativeStackNavigator();
@@ -166,6 +167,7 @@ const AppComponent = () => {
       <AppStack.Screen name="separateLink" component={SeparateLinkScreen} />
       <AppStack.Screen name="notification" component={Notification} />
       <AppStack.Screen name="SupportForumDetail" component={SupportForumDetail} />
+      <AppStack.Screen name="LeaderBoardSearch" component={LeaderBoardSearchScreen} />
     </AppStack.Navigator>
   )
 }

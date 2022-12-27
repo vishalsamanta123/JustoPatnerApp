@@ -46,6 +46,7 @@ const strings = new LocalizedStrings({
     Confirm: 'Confirm',
     searchProperty: 'Search Property',
     playVideo: 'Play',
+    pauseVideo: 'Pause',
     apply: 'APPLY',
     reset: 'RESET',
     resend: 'Resend',
@@ -112,7 +113,7 @@ const strings = new LocalizedStrings({
     searchYourlocation: 'Search your location here',
     comingSoon: 'Coming Soon',
     share: 'Share',
-
+    search:'Search',
     //Auth 
 
     usernamepasswordempty: 'Username and Password is require. Please enter Username and password',

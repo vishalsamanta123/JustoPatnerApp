@@ -90,6 +90,9 @@ export default {
   //Support Forum
   GET_SUPPORT_FORUM_LIST: '/supportForum/supportForumList',
   GET_SUPPORT_FORUM_DETAIL: '/supportForum/getSupportForumDetails',
-  UPDATE_SUPPORTFORUM: '/supportForum/statusUpdateSupportForum'
+  UPDATE_SUPPORTFORUM: '/supportForum/statusUpdateSupportForum',
+
+  //LeaderBoard
+  GET_LEADERBOARD:''
 
 };

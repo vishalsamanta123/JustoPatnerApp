@@ -39,6 +39,7 @@ const images = {
   gallery: require('./gallery.png'),
   shareIcon: require('./share.png'),
   locationIcon: require('./location.png'),
+  playbuttonIcon: require('./playbutton.png'),
 };
 
 export default images;
