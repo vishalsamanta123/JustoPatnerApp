@@ -23,6 +23,8 @@ export const GOLDEN_COLOR = '#E4D00A';
 export const GREEN_COLOR = '#008000';
 export const RED_COLOR = '#FF0000';
 export const CALL_COLOR = '#52a4ff';
+export const BORDER_COLOR = '#d9effa';
+
 
 export const validateEmail =
   /^(([^<>()[\]\\.,;:\s@\']+(\.[^<>()[\]\\.,;:\s@\']+)*)|(\'.+\'))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;

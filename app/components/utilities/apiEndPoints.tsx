@@ -13,6 +13,8 @@ export default {
   GETUSERFILTERDATA: "/userManage/getUserFilterData",
   EDITUSER: "/auth/editUserProfile",
   USERSTATUSUPDATE: "/userManage/userStatusUpdate",
+  FIREBASE_UPDATE: '/auth/firebaseIdUpdate',
+  FIREBASE_DATABASE_URL: "https://justo-d8d17-default-rtdb.firebaseio.com/",
 
   //Dashbaord 
   GET_DASHBOARD_CP: 'dashboard/dashboardDetailCP',
@@ -90,6 +92,10 @@ export default {
   //Support Forum
   GET_SUPPORT_FORUM_LIST: '/supportForum/supportForumList',
   GET_SUPPORT_FORUM_DETAIL: '/supportForum/getSupportForumDetails',
-  UPDATE_SUPPORTFORUM: '/supportForum/statusUpdateSupportForum'
+  UPDATE_SUPPORTFORUM: '/supportForum/statusUpdateSupportForum',
+
+  // Chat management
+  GET_PROPERTY_LIST_FOR_CHAT: '/chat/getCpActivePropertyList',
+  GET_ALL_CHAT_IN_PROPERTY: '/chat/getPropertyUserListForChat'
 
 };
