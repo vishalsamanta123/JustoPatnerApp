@@ -47,6 +47,7 @@ const strings = new LocalizedStrings({
     searchProperty: 'Search Property',
     searchInChat: 'Search in Chat',
     playVideo: 'Play',
+    pauseVideo: 'Pause',
     apply: 'APPLY',
     reset: 'RESET',
     resend: 'Resend',
@@ -113,6 +114,7 @@ const strings = new LocalizedStrings({
     searchYourlocation: 'Search your location here',
     comingSoon: 'Coming Soon',
     share: 'Share',
+    search:'Search',
     propertyForchat: 'Property for chat',
     chat: 'Chat',
 

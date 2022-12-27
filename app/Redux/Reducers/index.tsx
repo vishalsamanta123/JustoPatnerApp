@@ -10,6 +10,7 @@ import { appointmentReducer, editAddAppointmentReducer } from "./AppointmentRedu
 import { dashboardReducer, statusUpdateReducer } from "./DashboardReducer";
 import { notificationListReducer } from "./NotificationReducer";
 import { supportForumReducer, supportForumUpdateReducer } from "./SupportForumReducer";
+import { leaderBoardReducer } from "./LearderBoardReducer";
 import { allUserChatListReducer, propertyChatReducer } from "./ChatReducer";
 import { firebaseReducer } from "./FirebaseReducer";
 
@@ -61,6 +62,9 @@ export default {
     //support Forum
     supportForumData: supportForumReducer,
     supportForumUpdateData: supportForumUpdateReducer,
+
+    //ledearboard
+    leaderBoard: leaderBoardReducer,
     
     // chat management
     propertyChatData: propertyChatReducer,

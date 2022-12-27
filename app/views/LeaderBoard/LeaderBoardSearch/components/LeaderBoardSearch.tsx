@@ -14,7 +14,7 @@ const LeaderBoardSearchView = (props: any) => {
     return (
         <View style={styles.mainContainer}>
             <Header
-                headerText={strings.leaderBoardHeader}
+                headerText={strings.leaderHeader}
                 headerStyle={styles.headerStyle}
                 headerTextStyle={styles.headerTextStyle}
                 leftImageSrc={images.backArrow}

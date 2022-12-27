@@ -63,6 +63,7 @@ import SupportScreen from 'app/views/Support';
 import axios from 'axios';
 import Notification from 'app/views/Setting/Notification';
 import SupportForumDetail from 'app/views/SupportForumScreen/SupportForumDtl';
+import LeaderBoardSearchScreen from 'app/views/LeaderBoard/LeaderBoardSearch';
 import PropertyChat from 'app/views/ChatManagement/PropertyChat';
 import ChatViewScreen from 'app/views/ChatManagement/Chat';
 import ChatScreen from 'app/views/ChatManagement/Chat/components/ChatScreen';
@@ -171,6 +172,7 @@ const AppComponent = () => {
       <AppStack.Screen name="separateLink" component={SeparateLinkScreen} />
       <AppStack.Screen name="notification" component={Notification} />
       <AppStack.Screen name="SupportForumDetail" component={SupportForumDetail} />
+      <AppStack.Screen name="LeaderBoardSearch" component={LeaderBoardSearchScreen} />
 
       {/* chat management */}
       <AppStack.Screen name="UserChatListView" component={ChatViewScreen} />

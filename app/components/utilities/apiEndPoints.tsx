@@ -94,6 +94,8 @@ export default {
   GET_SUPPORT_FORUM_DETAIL: '/supportForum/getSupportForumDetails',
   UPDATE_SUPPORTFORUM: '/supportForum/statusUpdateSupportForum',
 
+  //LeaderBoard
+  GET_LEADERBOARD:'',
   // Chat management
   GET_PROPERTY_LIST_FOR_CHAT: '/chat/getCpActivePropertyList',
   GET_ALL_CHAT_IN_PROPERTY: '/chat/getPropertyUserListForChat'

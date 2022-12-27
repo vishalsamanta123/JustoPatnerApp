@@ -1,5 +1,5 @@
 import React from "react";
-import { View, Text, Image, FlatList } from 'react-native';
+import { View, FlatList } from 'react-native';
 import images from "../../../../assets/images";
 import Button from "../../../../components/Button";
 import Header from "../../../../components/Header";
@@ -8,7 +8,7 @@ import { normalize } from "../../../../components/scaleFontSize";
 import { PRIMARY_THEME_COLOR } from "../../../../components/utilities/constant";
 import strings from "../../../../components/utilities/Localization";
 import styles from "./styles";
-import LeaderBoardItems from './LeaderBoardItems'
+import LeaderBoardItems from './LeaderBoardItems';
 import ComingSoonScreen from "app/components/CommonScreen/ComingSoon";
 
 const LeaderBoardView = (props: any) => {
@@ -24,8 +24,8 @@ const LeaderBoardView = (props: any) => {
                 statusBarColor={PRIMARY_THEME_COLOR}
                 barStyle={'light-content'}
             />
-            <ComingSoonScreen />
-            {/* <View style={styles.topItemsVw}>
+            {/* <ComingSoonScreen /> */}
+            <View style={styles.topItemsVw}>
                 <InputField
                     placeholderText={'Search Project Name'}
                     handleInputBtnPress={() => { }}
@@ -51,7 +51,7 @@ const LeaderBoardView = (props: any) => {
                         )
                     }}
                 />
-            </View> */}
+            </View>
         </View>
     )
 }

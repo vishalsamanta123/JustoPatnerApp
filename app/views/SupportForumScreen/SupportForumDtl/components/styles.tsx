@@ -73,7 +73,16 @@ const styles = StyleSheet.create({
     contentImgs: {
         width: '90%',
         height: '90%',
-    }
+    },
+    playbtntch: {
+        position: 'absolute',
+        justifyContent: 'center',
+        alignItems: 'center',
+        bottom: 0,
+        left: 0,
+        right: 0,
+        top: 0,
+    },
 })
 
 export default styles
