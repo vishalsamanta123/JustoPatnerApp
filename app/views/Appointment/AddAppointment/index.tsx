@@ -30,7 +30,6 @@ const AddAppointmentScreen = ({ navigation, route }: any) => {
     pickup_latitude: '',
     pickup_longitude: '',
   })
-  console.log(':addAppointmentForm ',addAppointmentForm );
   useFocusEffect(
     React.useCallback(() => {
       if (type === strings.edit) {

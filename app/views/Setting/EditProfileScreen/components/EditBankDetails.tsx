@@ -82,7 +82,7 @@ const EditBankDetails = ({ navigation }: any) => {
     formData.append("ifsc_code", bankData?.ifsc_code);
     formData.append("rera_registration", editData?.agencies?.rera_registration);
     formData.append("owner_name", editData?.owner_name);
-    editData?.rera_certificate?.uri &&
+    editData?.rera_certificate?.uri  &&
       formData.append("rera_certificate", editData?.rera_certificate);
     editData?.propidership_declaration_letter?.uri &&
       formData.append("propidership_declaration_letter", editData?.propidership_declaration_letter);
@@ -123,46 +123,42 @@ const EditBankDetails = ({ navigation }: any) => {
               }}
             />
           </View>
-          <View style={[styles.inputWrap, { flexDirection: "row", alignItems: 'center', justifyContent: 'space-between' }]}>
-            <View style={{ flex: 1 }}>
+          <View style={[styles.inputWrap, { flexDirection: "row", }]}>
+            <View style={{ flex: 1, justifyContent: 'center' }}>
               <Text style={styles.headingText}>RERA Certificate</Text>
             </View>
-            <View>
+            <View style={{ flex: 0.6, }}>
               <TouchableOpacity
-                style={{
-                  width: normalizeWidth(120),
-                  height: normalizeHeight(50),
-                  backgroundColor: WHITE_COLOR,
-                  alignItems: "center",
-                  justifyContent: "center",
-                  marginLeft: 10,
-                  borderRadius: 10,
-                }}
+                style={styles.browseVw}
                 onPress={() => setReraVisible(true)}
               >
                 <Text style={{ color: PRIMARY_THEME_COLOR, fontSize: normalize(15) }}>{strings.browse}</Text>
               </TouchableOpacity>
+              {editData?.rera_certificate === null ||
+                editData?.rera_certificate === "" ||
+                editData?.rera_certificate === undefined ?
+                null :
+                <Text style={styles.addedTxt}>{"RERA Certificate Added"}</Text>
+              }
             </View>
           </View>
-          <View style={[styles.inputWrap, { flexDirection: "row", alignItems: 'center' }]}>
-            <View style={{ flex: 1 }}>
+          <View style={[styles.inputWrap, { flexDirection: "row", }]}>
+            <View style={{ flex: 1, justifyContent: 'center' }}>
               <Text style={styles.headingText}>Propidership Declaration Letter</Text>
             </View>
-            <View>
+            <View style={{ flex: 0.6, }}>
               <TouchableOpacity
-                style={{
-                  width: normalizeWidth(120),
-                  height: normalizeHeight(50),
-                  backgroundColor: WHITE_COLOR,
-                  alignItems: "center",
-                  justifyContent: "center",
-                  marginLeft: 10,
-                  borderRadius: 10,
-                }}
+                style={styles.browseVw}
                 onPress={() => setLetterVisible(true)}
               >
                 <Text style={{ color: PRIMARY_THEME_COLOR, fontSize: normalize(15) }}>{strings.browse}</Text>
               </TouchableOpacity>
+              {editData?.propidership_declaration_letter === null ||
+                editData?.propidership_declaration_letter === "" ||
+                editData?.propidership_declaration_letter === undefined ?
+                null :
+                <Text style={styles.addedTxt}>{"Propidership Declaration Letter Added"}</Text>
+              }
             </View>
           </View>
           <View style={styles.inputWrap}>
