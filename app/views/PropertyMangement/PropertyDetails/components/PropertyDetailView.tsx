@@ -18,6 +18,7 @@ import Button from "../../../../components/Button";
 import ConfirmModal from "../../../../components/Modals/ConfirmModal";
 import { useDispatch, useSelector } from "react-redux";
 import { getAllMaster } from "app/Redux/Actions/MasterActions";
+import { statusUpdate } from "app/Redux/Actions/propertyActions";
 
 const PropertyDetailView = (props: any) => {
   const dispatch: any = useDispatch();
@@ -171,7 +172,13 @@ const PropertyDetailView = (props: any) => {
           />)
           :
           (<Button
-            handleBtnPress={() => confirmStatus()}
+            handleBtnPress={() => {
+              dispatch(statusUpdate({
+                property_id: props?.data?.property_id,
+                approve_status: 3,
+                resion_id: '',
+              }))
+            }}
             buttonText={strings.deactive}
             width={150}
             height={45}
