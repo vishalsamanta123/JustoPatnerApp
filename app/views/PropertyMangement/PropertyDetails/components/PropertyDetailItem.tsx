@@ -1,9 +1,10 @@
 import { View, Text, Image, ScrollView, TouchableOpacity } from "react-native";
 import React from "react";
 import styles from "./styles";
-import { GRAY_COLOR } from "../../../../components/utilities/constant";
+import { BLACK_COLOR, GRAY_COLOR, RED_COLOR, YELLOW_COLOR } from "../../../../components/utilities/constant";
 import { normalizeSpacing } from "../../../../components/scaleFontSize";
 import images from "../../../../assets/images";
+import strings from "app/components/utilities/Localization";
 
 const PropertyDetailItem = (props: any) => {
   const imagearray = props.propertydocument?.filter((el: any) => {
@@ -29,9 +30,19 @@ const PropertyDetailItem = (props: any) => {
           <Text>:</Text>
         </View>
         <View style={styles.nameContainer}>
-          <Text style={styles.nameTxt}>
-            {props.items.status ? "Active" : "Inactive"}
-          </Text>
+          <Text style={[styles.nameTxt, {
+            color: typeof props.items.property_active_status === 'undefined' || props.items.property_active_status ?
+              props.items.approve_status === 1 ? BLACK_COLOR :
+                props.items.approve_status === 2 ? YELLOW_COLOR :
+                  RED_COLOR : RED_COLOR
+          }]}>{
+              typeof props.items.property_active_status === 'undefined' || props.items.property_active_status ?
+                props.items.approve_status === 1 ? strings.pendingconfirm :
+                  props.items.approve_status === 2 ? strings.subscribe :
+                    props.items.approve_status === 3 && strings.unsubscribe
+                : 'Pending Allocation'
+
+            }</Text>
         </View>
       </View>
       <View style={styles.Txtview}>
