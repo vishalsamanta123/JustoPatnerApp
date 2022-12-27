@@ -128,63 +128,48 @@ const AgentBankInfo = ({ navigation, route }: any) => {
           />
         </View>
         <View style={[styles.inputWrap, { flexDirection: "row" }]}>
-          {/* <InputField
-            inputWidth={"60%"}
-            btnWidth={"30%"}
-            browse={"browse"}
-            editable={false}
-            valueshow={
-              agentInfoData?.rera_certificate?.uri ?
-                agentInfoData?.rera_certificate?.uri.substring(
-                  agentInfoData?.rera_certificate?.uri?.lastIndexOf("/")) :
-                agentInfoData?.rera_certificate?.substring(agentInfoData?.rera_certificate?.lastIndexOf("/"))
-            }
-            handleInputBtnPress={() => { }}
-            headingText={"RERA Certificat"}
-          /> */}
-          <View style={{ flex: 1 }}>
-            <Text style={[styles.headingText, { fontSize: normalize(17) }]}>RERA Certificate</Text>
+          <View style={{ flex: 1, justifyContent: 'center' }}>
+            <Text style={[styles.headingText, { fontSize: normalize(17), }]}>RERA Certificate</Text>
           </View>
-          <TouchableOpacity
-            onPress={() => setRefraCrtf(true)}
-            style={styles.browseVw}
-          >
-            <Text style={{
-              color: agentInfoData?.rera_certificate === "" ?
-                BLACK_COLOR : PRIMARY_THEME_COLOR
-            }}>{strings.browse}</Text>
-          </TouchableOpacity>
+          <View style={{ flex: 0.5, }}>
+            <TouchableOpacity
+              onPress={() => setRefraCrtf(true)}
+              style={styles.browseVw}
+            >
+              <Text style={{
+                color: agentInfoData?.rera_certificate === "" ?
+                  BLACK_COLOR : PRIMARY_THEME_COLOR
+              }}>{strings.browse}</Text>
+            </TouchableOpacity>
+            {agentInfoData?.rera_certificate === null ||
+              agentInfoData?.rera_certificate === "" ||
+              agentInfoData?.rera_certificate === undefined ?
+              null :
+              <Text style={styles.addedTxt}>{"RERA Certificate Added"}</Text>
+            }
+          </View>
         </View>
         <View style={[styles.inputWrap, { flexDirection: "row" }]}>
-          {/* <InputField
-            inputWidth={"60%"}
-            btnWidth={"30%"}
-            headingTextWidth={'90%'}
-            browse={"browse"}
-            editable={false}
-            valueshow={
-              agentInfoData?.propidership_declaration_letter?.uri ?
-                agentInfoData?.propidership_declaration_letter?.uri.substring(
-                  agentInfoData?.propidership_declaration_letter?.uri?.lastIndexOf("/")) :
-                agentInfoData?.propidership_declaration_letter?.substring(agentInfoData?.propidership_declaration_letter?.lastIndexOf("/"))
-            }
-            handleInputBtnPress={() => { }}
-            onChangeText={() => { }}
-            topping={16}
-            headingText={"Propidership Declaration Letter"}
-          /> */}
-          <View style={{ flex: 1 }}>
+          <View style={{ flex: 1, justifyContent: 'center' }}>
             <Text style={[styles.headingText, { fontSize: normalize(17) }]}>Proprietorship Declaration Letter</Text>
           </View>
-          <TouchableOpacity
-            onPress={() => setPropiderLettr(true)}
-            style={styles.browseVw}
-          >
-            <Text style={{
-              color: agentInfoData?.propidership_declaration_letter === "" ?
-                BLACK_COLOR : PRIMARY_THEME_COLOR
-            }}>{strings.browse}</Text>
-          </TouchableOpacity>
+          <View style={{ flex: 0.5, }}>
+            <TouchableOpacity
+              onPress={() => setPropiderLettr(true)}
+              style={styles.browseVw}
+            >
+              <Text style={{
+                color: agentInfoData?.propidership_declaration_letter === "" ?
+                  BLACK_COLOR : PRIMARY_THEME_COLOR
+              }}>{strings.browse}</Text>
+            </TouchableOpacity>
+            {agentInfoData?.propidership_declaration_letter === null ||
+              agentInfoData?.propidership_declaration_letter === "" ||
+              agentInfoData?.propidership_declaration_letter === undefined ?
+              null :
+              <Text style={styles.addedTxt}>{"Proprietorship Declaration Letter Added"}</Text>
+            }
+          </View>
         </View>
       </View>
       <View style={styles.wrapbottum}>

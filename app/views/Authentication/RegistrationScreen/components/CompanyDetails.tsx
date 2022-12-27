@@ -12,7 +12,8 @@ import { normalizeWidth, normalizeHeight, normalize } from "app/components/scale
 import PicturePickerModal from "app/components/Modals/PicturePicker";
 import { useDispatch, useSelector } from "react-redux";
 import ErrorMessage from "app/components/ErrorMessage";
-import { createChannelPartner, RegistrationForm, removeRegisterData } from "app/Redux/Actions/ReggistrationAction";
+import { createChannelPartner, RegistrationForm, RegistrationFormRemv, removeRegisterData } from "app/Redux/Actions/ReggistrationAction";
+import { useFocusEffect } from "@react-navigation/native";
 
 const CompanyDetails = ({ navigation }: any) => {
   const [isError, setisError] = useState(false)
@@ -21,13 +22,19 @@ const CompanyDetails = ({ navigation }: any) => {
   const [lettervisible, setletterVisible] = useState(false)
   const insets = useSafeAreaInsets();
   const [formData, setFormData] = useState<any>({})
+  console.log('formData: ', formData);
   const registrationData = useSelector((state: any) => state.registrationForm)
   const createChannelPartnerData = useSelector((state: any) => state.registerData)
   const dispatch: any = useDispatch()
 
-  useEffect(() => {
-    setFormData({ ...registrationData.response })
-  }, [registrationData])
+  useFocusEffect(
+    React.useCallback(() => {
+      if (typeof registrationData?.response === 'object') {
+        setFormData({ ...registrationData.response })
+      }
+      return () => { };
+    }, [registrationData, navigation])
+  );
 
   const validation = () => {
     let isError = true;
@@ -79,10 +86,12 @@ const CompanyDetails = ({ navigation }: any) => {
 
   const onPressBack = () => {
     navigation.goBack('')
+    dispatch(RegistrationForm(formData))
   }
   useEffect(() => {
     if (createChannelPartnerData?.response?.status === 200) {
       dispatch(removeRegisterData())
+      dispatch(RegistrationFormRemv())
       navigation.navigate('OtpVerificationScreenView', { type: strings.registration, email: formData?.email })
       ErrorMessage({
         msg: createChannelPartnerData?.response?.message,
@@ -149,7 +158,8 @@ const CompanyDetails = ({ navigation }: any) => {
         handleOnLeftIconPress={onPressBack}
         leftImageIconStyle={{ tintColor: WHITE_COLOR }}
       />
-      <ScrollView contentContainerStyle={styles.wrap}>
+      <ScrollView keyboardShouldPersistTaps={'handled'}
+        contentContainerStyle={styles.wrap}>
         <View style={styles.inputWrap}>
           <InputField
             placeholderText={"Agency Name"}
@@ -168,6 +178,7 @@ const CompanyDetails = ({ navigation }: any) => {
             placeholderText={"GST"}
             handleInputBtnPress={() => { }}
             valueshow={formData?.gst}
+            maxLength={15}
             onChangeText={(val: any) => {
               setFormData({
                 ...formData, gst: val
@@ -274,6 +285,7 @@ const CompanyDetails = ({ navigation }: any) => {
             handleInputBtnPress={() => { }}
             headingText={"IFSC Code"}
             valueshow={formData?.company_ifsc_code}
+            maxLength={11}
             onChangeText={(val: any) => {
               setFormData({
                 ...formData, company_ifsc_code: val

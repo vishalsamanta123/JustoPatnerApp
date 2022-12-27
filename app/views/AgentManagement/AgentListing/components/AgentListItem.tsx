@@ -89,8 +89,7 @@ const AgentListItem = (props: any) => {
             color: PURPLE_COLOR
           }]}>{strings.edit}</Text>
         </TouchableOpacity>
-
-        <TouchableOpacity
+        {/* <TouchableOpacity
           onPress={() => { props.setIsVisible(true), props.setChangeStatus(props.items) }}
           style={[styles.buttonbox, {
             borderColor: props.items.status ? RED_COLOR : GREEN_COLOR
@@ -98,7 +97,7 @@ const AgentListItem = (props: any) => {
           <Text style={[styles.buttonTxt, {
             color: props.items.status ? RED_COLOR : GREEN_COLOR
           }]}>{props.items.status ? strings.deactive : strings.active}</Text>
-        </TouchableOpacity>
+        </TouchableOpacity> */}
         <TouchableOpacity style={styles.Viewbutton} onPress={() => props.onPressView(props.items, 'view')} >
           <Image
             source={images.forwardArrow}

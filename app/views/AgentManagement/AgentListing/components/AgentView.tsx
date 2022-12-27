@@ -160,6 +160,7 @@ const AgentView = (props: any) => {
         filterData={props.filterData}
         getAgentList={() => props.getAgentList(0, props.filterData)}
         onReset={onReset}
+        setAgentList={props.setAgentList}
       />
     </View>
   );

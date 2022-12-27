@@ -89,7 +89,7 @@ const AddNewVisitorScreen = ({ navigation, route }: any) => {
   }
 
   const OnpressseheduleVisit = () => {
-    navigation.navigate('AddAppointmentScreen')
+    navigation.navigate('AddAppointmentScreen', { data: {}, type: 'add' })
   }
 
   const validation = () => {

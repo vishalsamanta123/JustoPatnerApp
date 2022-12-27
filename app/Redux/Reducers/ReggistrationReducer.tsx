@@ -1,4 +1,9 @@
-import { CHECK_EMAIL_MOBILE, CHECK_EMAIL_MOBILE_ERROR, CREATE_CHANNEL_PARTNER, CREATE_CHANNEL_PARTNER_ERROR, REGISTRATION_FORM, REGISTRATION_UPDATE, REMOVE_CREATE_CHANNEL_PARTNER, REMOVE_EMAIL_NUMBER_CHECK } from "../types";
+import {
+  CHECK_EMAIL_MOBILE, CHECK_EMAIL_MOBILE_ERROR,
+  CREATE_CHANNEL_PARTNER, CREATE_CHANNEL_PARTNER_ERROR,
+  REMOVE_CREATE_CHANNEL_PARTNER, REMOVE_EMAIL_NUMBER_CHECK,
+  REGISTRATION_FORM_REMOVE, REGISTRATION_FORM
+} from "../types";
 const initialStateForm = {
   response: null,
   update: false,
@@ -11,13 +16,13 @@ const initialStateCreate = {
 
 export function registrationFormReducer(state = initialStateForm, action: any) {
   switch (action.type) {
-    case REGISTRATION_FORM:
+    case REGISTRATION_FORM_REMOVE:
       return {
         ...state,
         update: false,
         response: action.payload,
       };
-    case REGISTRATION_UPDATE:
+    case REGISTRATION_FORM:
       return {
         ...state,
         update: true,
@@ -69,7 +74,7 @@ export function emailAndMobileReducer(state = initialStateForm, action: any) {
         ...state,
         detail: false,
         create: true,
-        check_type:action.check_type,
+        check_type: action.check_type,
         response: action.payload,
       };
     case REMOVE_EMAIL_NUMBER_CHECK:

@@ -1,5 +1,5 @@
 import { View, Text } from 'react-native'
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import AppointmentDetailsView from './Components/AppointmentDetailsView'
 import { useFocusEffect } from '@react-navigation/native'
 import { useDispatch, useSelector } from 'react-redux'
@@ -7,7 +7,10 @@ import { getAppointmentDetails } from 'app/Redux/Actions/AppointmentActions'
 
 const AppointmentDetails = ({ navigation, route }: any) => {
   const AppointmentId = route?.params || {}
+  const [detailsData, setDetailsData] = useState<any>({})
+  console.log('detailsData: ', detailsData);
   const { response = {}, detail = "" } = useSelector((state: any) => state.appointment)
+  console.log('response: ', response);
 
   const dispatch: any = useDispatch()
   useFocusEffect(
@@ -18,6 +21,13 @@ const AppointmentDetails = ({ navigation, route }: any) => {
       return () => { };
     }, [navigation, detail]))
 
+  useEffect(() => {
+    if (response?.status === 200) {
+      if (response?.data?.length > 0) {
+        setDetailsData(response?.data[0])
+      }
+    }
+  }, [response])
 
   const handleBackPress = () => {
     navigation.goBack()
@@ -28,7 +38,9 @@ const AppointmentDetails = ({ navigation, route }: any) => {
   return (
     <AppointmentDetailsView
       handleStatusUpdate={handleStatusUpdate}
-      handleBackPress={handleBackPress} data={route?.params} />
+      handleBackPress={handleBackPress}
+      detailsData={detailsData}
+    />
   )
 }
 

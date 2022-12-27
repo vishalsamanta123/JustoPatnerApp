@@ -70,7 +70,7 @@ const FollowUpItem = (props: any) => {
           <Text style={styles.nameTxt}>{
             item.followup_for == 1 ? 'Lead' :
             item.followup_for == 2 ? 'Site visit' :
-            item.followup_for == 3 ? 'Booking' : 'regstration'
+            item.followup_for == 3 ? 'Booking' : 'Registration'
           }</Text>
         </View>
       </View>

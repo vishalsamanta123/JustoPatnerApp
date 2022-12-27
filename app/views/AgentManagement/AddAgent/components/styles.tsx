@@ -55,12 +55,19 @@ const styles = StyleSheet.create({
     margin: normalizeSpacing(20),
     alignItems: 'center'
   },
-
   headingText: {
     fontSize: normalize(18),
     fontFamily: FONT_FAMILY_SEMIBOLD,
     color: PRIMARY_THEME_COLOR,
     textAlign: 'center'
+  },
+  addedTxt: {
+    width: '80%',
+    fontSize: 11,
+    textAlign: 'center',
+    alignSelf: 'center',
+    marginLeft: normalize(12),
+    top: normalize(8)
   },
   underlineStyle: {
     width: normalizeWidth(60),
@@ -85,7 +92,6 @@ const styles = StyleSheet.create({
   },
   inputWrap: {
     marginTop: normalizeSpacing(30),
-    // alignItems: 'center'
   },
   genderView: {
     flexDirection: 'row',
@@ -115,13 +121,13 @@ const styles = StyleSheet.create({
     alignItems: 'center'
   },
   browseVw: {
-    width: "25%",
     backgroundColor: WHITE_COLOR,
     alignItems: "center",
     justifyContent: "center",
-    marginLeft: 10,
-    borderRadius: 10,
-    paddingVertical: normalize(12)
+    marginLeft: normalize(10),
+    borderRadius: normalize(10),
+    paddingVertical: normalize(12),
+    top: normalize(8)
   },
   addBtn: {
     backgroundColor: PRIMARY_THEME_COLOR,

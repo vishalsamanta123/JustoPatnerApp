@@ -19,13 +19,13 @@ const PropertyView = (props: any) => {
   const [isVisible, setIsVisible] = useState(false)
   const [masterDataShow, setMasterDataShow] = useState([])
   const [FilterisVisible, setFilterisVisible] = useState(false)
-  const [propertyList, setPropertyList] = useState([])
+  const [propertyList, setPropertyList] = useState<any>([])
   const insets = useSafeAreaInsets();
   const propertyData = useSelector((state: any) => state.propertyData) || {}
+  const moreData = propertyData?.response?.total_data || 0
   const masterData = useSelector((state: any) => state.masterData) || {}
   const navigation: any = useNavigation()
-  const [loadingref, setLoadingref] = useState(false);
-
+  const loadingref = false;
   const [filterform, setFilterform] = useState({
     start_date: "",
     end_date: "",
@@ -37,13 +37,19 @@ const PropertyView = (props: any) => {
 
   useEffect(() => {
     if (propertyData?.response) {
-      const { response, loading } = propertyData;
-      if (response?.status === 200 || loading) {
-        setPropertyList(response?.data);
-      } else {
-        setPropertyList([]);
-        //errorToast(response.message);
+      const { response = {} } = propertyData;
+      if (response?.status === 200) {
+        if (response?.data?.length > 0) {
+          if (props?.offSET === 0) {
+            setPropertyList(response?.data)
+          } else {
+            setPropertyList([...propertyList, ...response?.data])
+          }
+        }
       }
+      // else {
+      //   setPropertyList([]);
+      // }
     }
   }, [propertyData]);
 
@@ -54,27 +60,24 @@ const PropertyView = (props: any) => {
         setMasterDataShow(response?.data);
       } else {
         setMasterDataShow([]);
-        //errorToast(response.message);
       }
     }
   }, [masterData]);
-
-
-
 
   const onPressView = (items: any) => {
     navigation.navigate('PropertyDetails', items)
   }
   const onRefresh = () => {
-    props.getallproperty()
+    props.getallproperty(0, {})
     setFilterform({
-      ...props.filterform,
+      ...filterform,
       start_date: "",
       end_date: "",
       location: "",
       property_name: "",
       property_type: "",
     });
+    setPropertyList([])
   }
   const confirmStatus = (items: any) => {
     if (items.approve_status === 2) {
@@ -85,7 +88,6 @@ const PropertyView = (props: any) => {
     setIsVisible(true)
     props.setCurrentStatus(items.approve_status)
     props.setCurrentProperty(items?.property_id)
-
   }
 
   return (
@@ -107,16 +109,19 @@ const PropertyView = (props: any) => {
           ListEmptyComponent={<EmptyListScreen message={strings.propertyHeader} />}
           renderItem={({ item }) => <PropertyListItem items={item} setIsVisible={setIsVisible} onPressView={onPressView}
             confirmStatus={(items: any) => confirmStatus(items)} />}
-          /*   onEndReached={({ distanceFromEnd }) => {
-              props.Onreachedend()
-            }} 
-            onEndReachedThreshold={0.5} */
+          onEndReached={() => {
+            if (propertyList?.length < moreData) {
+              props.getallproperty(propertyList?.length >= 3 ? props?.offSET + 1 : 0,
+                filterform
+              )
+            }
+          }}
+          // onEndReachedThreshold={0.5} */
           //ListFooterComponent={renderFooter}
           onRefresh={() => onRefresh()}
           refreshing={loadingref}
         />
       </View>
-      {/* <ConfirmModal Visible={isVisible} setIsVisible={setIsVisible} /> */}
       <ConfirmModal
         Visible={isVisible}
         setIsVisible={setIsVisible}
@@ -136,18 +141,16 @@ const PropertyView = (props: any) => {
         resion={props.resion}
         masterDataShow={masterDataShow}
         stringshow={strings.confirmation}
-        textshow={strings.activconfirmation + 'Property'}
-
+        textshow={strings.activconfirmation + ' Property'}
         confirmtype={props.currentStatus === 2 ? '' : 'CONFIRMATION'}
       />
-
-
       <FilterModal
         Visible={FilterisVisible}
         setIsVisible={setFilterisVisible}
         filterform={filterform}
         setFilterform={setFilterform}
-
+        setPropertyList={setPropertyList}
+        getallproperty={props.getallproperty}
       />
     </View>
   );

@@ -55,7 +55,7 @@ const AppointmentView = (props: any) => {
         navigation.navigate('AddAppointmentScreen', { data: data, type: strings.edit })
     }
     const onPressAddNew = () => {
-        navigation.navigate('AddAppointmentScreen')
+        navigation.navigate('AddAppointmentScreen', { data: {}, type: 'add' })
     }
     const handleFilterApply = () => {
         setFilterisVisible(false)

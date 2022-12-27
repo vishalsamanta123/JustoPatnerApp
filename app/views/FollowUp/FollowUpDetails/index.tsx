@@ -7,8 +7,6 @@ import { useFocusEffect } from '@react-navigation/native'
 const FollowUpDetails = ({ navigation, route }: any) => {
   const followUpId = route?.params || ''
   const { response = {}, detail = "" } = useSelector((state: any) => state.followUp)
-
-
   const dispatch: any = useDispatch()
   const handleBackPress = () => {
     navigation.goBack()

@@ -33,7 +33,7 @@ const FilterModal = (props: any) => {
       visit_score: '',
     })
     props.setIsVisible(false)
-    props.setFilter({})
+    props.onRefresh()
   }
 
   const configRender = (item: any) => {
@@ -176,6 +176,7 @@ const FilterModal = (props: any) => {
                 handleBtnPress={() => {
                   props.setIsVisible(false)
                   props.getVisitorsList(0, props.filterData)
+                  props.setVisiitorList([])
                 }} buttonText={strings.apply}
               />
             </View>

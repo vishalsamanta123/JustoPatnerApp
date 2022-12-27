@@ -6,7 +6,7 @@ import {
   View,
   Image,
 } from "react-native";
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { RadioButton } from "react-native-paper";
 import Header from "../../../../components/Header";
 import strings from "../../../../components/utilities/Localization";
@@ -29,6 +29,9 @@ import moment from "moment";
 import MultiLocation from "app/components/MultiLocation";
 
 const RegistrationView = (props: any) => {
+  useEffect(() => {
+
+  }, [])
   const insets = useSafeAreaInsets();
   const [profile, setProfile] = useState(false);
 
