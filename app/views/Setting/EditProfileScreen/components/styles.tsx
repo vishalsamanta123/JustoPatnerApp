@@ -64,6 +64,21 @@ const styles = StyleSheet.create({
     width: normalizeWidth(100),
     borderRadius: normalizeSpacing(80)
   },
+  browseVw:  {
+    width: normalizeWidth(120),
+    height: normalizeHeight(50),
+    backgroundColor: WHITE_COLOR,
+    alignItems: "center",
+    justifyContent: "center",
+    marginLeft: 10,
+    borderRadius: 10,
+  },
+  addedTxt: {
+    width: 120,
+    fontSize: 12,
+    alignSelf: 'flex-end',
+    textAlign: 'center'
+  },
   editView: {
     position: "absolute",
     top: 5,
