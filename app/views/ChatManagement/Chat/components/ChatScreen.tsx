@@ -31,7 +31,6 @@ import { normalizeSpacing } from "app/components/scaleFontSize";
 
 const ChatScreen = ({ navigation, route }: any) => {
   const item = route.params || {};
-  console.log('item: IN CHAT SCREEN', item);
   const isFocused = useIsFocused();
   const [keys, setkeys] = useState([]);
   const [messages, setMessages] = useState<any>([]);
@@ -110,7 +109,6 @@ const ChatScreen = ({ navigation, route }: any) => {
       )
       // .limitToLast(10)
       .on("value", async (snapshot: any) => {
-      console.log('snapshot: ', snapshot);
         if (snapshot?.val()) {
           var copy: any = Object.keys(snapshot?.val());
           setkeys(copy);

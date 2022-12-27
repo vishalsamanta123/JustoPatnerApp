@@ -20,6 +20,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { getProfileData, userLogout } from 'app/Redux/Actions/AuthActions';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import { getAgentDetail } from 'app/Redux/Actions/AgentActions';
+import auth from '@react-native-firebase/auth';
 
 const customDrawer = ({ navigation }: any) => {
   const dispatch: any = useDispatch()
@@ -204,6 +205,7 @@ const customDrawer = ({ navigation }: any) => {
           tabTitle={strings.logout}
           handleDrawerNavigation={() => {
             dispatch(userLogout())
+            auth().signOut();
             navigation.navigate('AuthLoading');
           }}
         />

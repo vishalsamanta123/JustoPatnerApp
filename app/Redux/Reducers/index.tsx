@@ -11,6 +11,7 @@ import { dashboardReducer, statusUpdateReducer } from "./DashboardReducer";
 import { notificationListReducer } from "./NotificationReducer";
 import { supportForumReducer, supportForumUpdateReducer } from "./SupportForumReducer";
 import { allUserChatListReducer, propertyChatReducer } from "./ChatReducer";
+import { firebaseReducer } from "./FirebaseReducer";
 
 export default {
     loadingReducer: loadingReducer,
@@ -26,6 +27,7 @@ export default {
     registerData: registerDataReducer,
     emailAndMobileData: emailAndMobileReducer,
     notificationData: notificationListReducer,
+    firebaseData: firebaseReducer,
 
     //dashbaoard
     dashboardData: dashboardReducer,

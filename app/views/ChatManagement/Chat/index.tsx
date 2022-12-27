@@ -5,9 +5,7 @@ import { useDispatch, useSelector } from "react-redux";
 import ChatView from "./components/ChatView";
 
 const ChatViewScreen = ({ navigation, route }: any) => {
-  console.log("route: ", route?.params);
   const { _id: property_id } = route?.params;
-  console.log("property_id: ", property_id);
   const DATA = [
     {
       userChatData: [
@@ -269,7 +267,6 @@ const ChatViewScreen = ({ navigation, route }: any) => {
   const isFocused = useIsFocused();
 
   const { response = {} } = useSelector((state: any) => state.allUserchatList);
-  console.log("response: ", response);
 
   const dispatch: any = useDispatch();
 

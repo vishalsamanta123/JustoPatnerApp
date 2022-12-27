@@ -47,7 +47,7 @@ import PrivacyPolicyScreen from '../views/Authentication/PrivacyPolicy';
 
 
 import { setDefaultHeader, apiCall } from 'app/components/utilities/httpClient';
-import { useSelector } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import apiEndPoints from 'app/components/utilities/apiEndPoints';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import FollowUpAddScreen from 'app/views/FollowUp/FollowUpAdd';
@@ -66,6 +66,9 @@ import SupportForumDetail from 'app/views/SupportForumScreen/SupportForumDtl';
 import PropertyChat from 'app/views/ChatManagement/PropertyChat';
 import ChatViewScreen from 'app/views/ChatManagement/Chat';
 import ChatScreen from 'app/views/ChatManagement/Chat/components/ChatScreen';
+import auth from "@react-native-firebase/auth";
+import { updateFirebase } from 'app/Redux/Actions/FirebaseActions';
+
 
 
 const Stack = createNativeStackNavigator();
@@ -179,15 +182,44 @@ const AppComponent = () => {
 
 const AuthLoadingComponent = () => {
   const { response, authToken = false } = useSelector((state: any) => state.login);
+  const dispatch: any = useDispatch();
   useEffect(() => {
     checklogin()
   }, [response])
 
   const checklogin = async () => {
     if (response && authToken) {
+    console.log('response: ', response);
       if (response.status === 200) {
-        await setDefaultHeader("token", response.token);
-        await AsyncStorage.setItem('loginData', JSON.stringify(response))
+        // await setDefaultHeader("token", response.token);
+        // await AsyncStorage.setItem('loginData', JSON.stringify(response))
+        if (
+          typeof response?.data?.firebase_id === "undefined" || response?.data?.firebase_id === null
+        ) {
+          console.log('if = = = = = = =>>')
+          auth()
+            .createUserWithEmailAndPassword(response?.data?.email, "123456")
+            .then(async (res: any) => {
+              console.log("res: IN CREATE", res.user.uid);
+              console.log("User account created & signed in!");
+              await setDefaultHeader("token", response.token);
+              await AsyncStorage.setItem("loginData", JSON.stringify(response));
+              await AsyncStorage.setItem("firebase_id", JSON.stringify(res.user.uid));
+              dispatch(updateFirebase({ firebase_id: res.user.uid }));
+              // checklogin()
+            });
+        } else {
+          console.log('else = = = = = = =>>')
+          auth()
+            .signInWithEmailAndPassword(response?.data?.email, "123456")
+            .then(async (res: any) => {
+              console.log("res: IN SIGN IN", res.user.uid);
+              console.log("User signed in!");
+              await setDefaultHeader("token", response.token);
+              await AsyncStorage.setItem("loginData", JSON.stringify(response));
+              await AsyncStorage.setItem("firebase_id", JSON.stringify(res.user.uid));
+            });
+        }
       } else {
         ErrorMessage({
           msg: response?.message,

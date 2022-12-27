@@ -23,8 +23,8 @@ const ChatViewView = (props: any) => {
     navigation.navigate("ChatScreen", item);
   };
   const handleChangeText = (val: any) => {
-    const final = props?.chatlist?.data?.filter(function (el: any) {
-      const name = `${el.property}`;
+    const final = props?.chatlist?.filter(function (el: any) {
+      const name = `${el.user_name}`;
       return name?.toLowerCase().indexOf(val.toLowerCase()) > -1;
     });
     setFilteredData(final);
@@ -73,7 +73,7 @@ const ChatViewView = (props: any) => {
       />
       {/* <ComingSoonScreen /> */}
       <SearchBar
-        placeholderText={strings.searchProperty}
+        placeholderText={strings.searchInChat}
         onChangeText={handleChangeText}
         onSubmit={onSubmit}
       />

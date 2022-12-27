@@ -12,7 +12,6 @@ const PropertyChat = ({ navigation, route }: any) => {
 
   const dispatch: any = useDispatch();
   useLayoutEffect(() => {
-  console.log('response: ', response);
 
     dispatch(
       getChatListForProperty({

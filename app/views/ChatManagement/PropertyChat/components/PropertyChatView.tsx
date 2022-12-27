@@ -1,5 +1,5 @@
 import { View, Text, TouchableOpacity, Image } from "react-native";
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import Header from "app/components/Header";
 import images from "app/assets/images";
 import styles from "./styles";
@@ -14,12 +14,14 @@ import FastImages from "app/components/FastImage";
 const PropertyChatView = (props: any) => {
   const { handleDrawerPress, propertyChatList } = props;
   const navigation: any = useNavigation();
-  // const [filteredData, setFilteredData] = useState(chatData);
+  const [filteredData, setFilteredData] = useState([]);
+  useEffect(() => {
+    setFilteredData(propertyChatList);
+  }, [propertyChatList]);
   const handleChatPress = (item: any) => {
     navigation.navigate("UserChatListView", item);
   };
   const renderPropertyList = (item: any, index: any) => {
-  console.log('item: ', item);
     return (
       <TouchableOpacity
         onPress={() => handleChatPress(item)}
@@ -37,14 +39,13 @@ const PropertyChatView = (props: any) => {
     );
   };
   const handleChangeText = (val: any) => {
-    // const final = chatData.userName?.filter(function (el: any) {
-    // const name = `${el}`;
-    // return name?.toLowerCase().indexOf(val.toLowerCase()) > -1;
-    // });
-    // setFilteredData(final);
+    const final = filteredData?.filter(function (el: any) {
+      const name = `${el.property_title}`;
+      return name?.toLowerCase().indexOf(val.toLowerCase()) > -1;
+    });
+    setFilteredData(val === "" ? propertyChatList : final);
   };
-  const onSubmit = (val: any) => {
-  };
+  const onSubmit = (val: any) => {};
   return (
     <View style={styles.mainContainer}>
       <Header
@@ -66,9 +67,11 @@ const PropertyChatView = (props: any) => {
         onSubmit={onSubmit}
       />
       <FlatList
-        data={propertyChatList}
-        renderItem={({item, index}) => renderPropertyList(item, index)}
-        ListEmptyComponent={<EmptyListScreen message={strings.propertyForchat} />}
+        data={filteredData}
+        renderItem={({ item, index }) => renderPropertyList(item, index)}
+        ListEmptyComponent={
+          <EmptyListScreen message={strings.propertyForchat} />
+        }
       />
     </View>
   );

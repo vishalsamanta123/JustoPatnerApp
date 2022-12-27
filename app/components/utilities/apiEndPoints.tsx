@@ -13,6 +13,7 @@ export default {
   GETUSERFILTERDATA: "/userManage/getUserFilterData",
   EDITUSER: "/auth/editUserProfile",
   USERSTATUSUPDATE: "/userManage/userStatusUpdate",
+  FIREBASE_UPDATE: '/auth/firebaseIdUpdate',
   FIREBASE_DATABASE_URL: "https://justo-d8d17-default-rtdb.firebaseio.com/",
 
   //Dashbaord 
