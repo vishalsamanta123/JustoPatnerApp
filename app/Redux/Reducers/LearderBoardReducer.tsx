@@ -1,4 +1,7 @@
-import { DASHBOARD, DASHBOARD_ERROR, LEADERBOARD, LEADERBOARD_ERROR, STATUS_UPDATER, USER_STATUS_UPDATE } from "../types";
+import {
+    LEADERBOARD, LEADERBOARD_DETAIL, LEADERBOARD_DETAIL_ERROR,
+    LEADERBOARD_ERROR,
+} from "../types";
 const initialStateForm = {
     response: null,
     update: false,
@@ -9,13 +12,25 @@ export function leaderBoardReducer(state = initialStateForm, action: any) {
         case LEADERBOARD:
             return {
                 ...state,
-                data: true,
+                list: true,
                 response: action.payload,
             };
         case LEADERBOARD_ERROR:
             return {
                 ...state,
-                update: false,
+                list: false,
+                response: action.payload,
+            };
+        case LEADERBOARD_DETAIL:
+            return {
+                ...state,
+                detail: true,
+                response: action.payload,
+            };
+        case LEADERBOARD_DETAIL_ERROR:
+            return {
+                ...state,
+                detail: false,
                 response: action.payload,
             };
         default:
