@@ -13,10 +13,10 @@ const styles = StyleSheet.create({
         tintColor: WHITE_COLOR,
     },
     topItemsVw: {
-        flex: 0.9,
         paddingHorizontal: normalize(18),
         paddingVertical: normalize(10),
-        justifyContent: 'center'
+        justifyContent: 'center',
+        height: normalizeHeight(190),
     },
     IteamView: {
         backgroundColor: WHITE_COLOR,
@@ -31,11 +31,13 @@ const styles = StyleSheet.create({
         alignItems: 'center',
         paddingHorizontal: normalize(12),
         justifyContent: 'space-between',
+        paddingVertical: normalize(8),
     },
     projectTxt: {
         fontSize: normalize(18),
         fontFamily: FONT_FAMILY_EXTRABOLD,
-        color: BLACK_COLOR
+        color: BLACK_COLOR,
+        textTransform: 'capitalize',
     },
     columnVw: {
         paddingRight: normalize(20),
@@ -49,13 +51,14 @@ const styles = StyleSheet.create({
     txtStyle: {
         color: PRIMARY_THEME_COLOR,
         fontFamily: FONT_FAMILY_REGULAR,
-        fontSize: normalize(15)
+        fontSize: normalize(15),
+        marginLeft: normalize(3)
     },
     Viewbutton: {
         backgroundColor: PRIMARY_THEME_COLOR,
-        borderBottomEndRadius: 10,
-        borderTopLeftRadius: 10,
-
+        borderBottomEndRadius: normalize(10),
+        borderTopLeftRadius: normalize(10),
+        marginRight: normalize(10)
     },
     arrow: {
         tintColor: WHITE_COLOR,

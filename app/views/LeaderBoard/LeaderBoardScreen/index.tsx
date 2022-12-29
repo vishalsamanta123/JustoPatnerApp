@@ -1,58 +1,61 @@
-import React from "react";
+import { useFocusEffect } from "@react-navigation/native";
+import { learderBoardData } from "app/Redux/Actions/LeaderBoardAction";
+import React, { useEffect, useState } from "react";
+import { useDispatch, useSelector } from "react-redux";
 import images from "../../../assets/images";
 import LeaderBoardView from './components/LeaderBoard'
 
 const LeaderBoardScreen = ({ navigation }: any) => {
-    const DATA: any = [
-        {
-            projectname: 'Project Name 1',
-            projectImg: images.buildings,
-            Location: 'Indore',
-            rerano: '123566648',
-            totalFlat: 500,
-            sold_out: 234,
-            status: 'Active'
-        },
-        {
-            projectname: 'Project Name 2',
-            projectImg: images.loginBanner,
-            Location: 'Indore',
-            rerano: '123566648',
-            totalFlat: 400,
-            sold_out: 300,
-            status: 'Deactive'
-        },
-        {
-            projectname: 'Project Name 3',
-            projectImg: images.buildings,
-            Location: 'Indore',
-            rerano: '123566648',
-            totalFlat: 300,
-            sold_out: 100,
-            status: 'Active'
-        },
-        {
-            projectname: 'Project Name 4',
-            projectImg: images.loginBanner,
-            Location: 'Indore',
-            rerano: '123566648',
-            totalFlat: 123,
-            sold_out: 80,
-            status: 'Deactive'
-        },
-    ];
+    const dispatch: any = useDispatch()
+    const { response = {}, list = '' } = useSelector((state: any) => state.leaderBoard) || {}
+    const moreData = response?.total_data || 0
+    const [leaderBoardList, setLeaderBoardList] = useState<any>([])
+    const [offSET, setOffset] = useState(0)
+    const [filterData, setFilterData] = useState({
+        property_name: '',
+    })
+    useFocusEffect(
+        React.useCallback(() => {
+            getLeaderBoard(0, {})
+            return () => { };
+        }, [navigation])
+    );
+    useEffect(() => {
+        if (response?.status === 200) {
+            if (offSET === 0) {
+                setLeaderBoardList(response?.data)
+            } else {
+                setLeaderBoardList([...leaderBoardList, ...response?.data])
+            }
+        } else {
+            setLeaderBoardList([])
+        }
+    }, [response])
+    const getLeaderBoard = (offset: any, data: any) => {
+        setOffset(offset)
+        dispatch(learderBoardData({
+            limit: offset === 0 ? 6 : 3,
+            offset: offset,
+            property_name: data?.property_name ? data?.property_name : '',
+        }))
+    }
     const handleDrawerPress = () => {
         navigation.toggleDrawer();
     };
-    const handleView = () => {
-        navigation.navigate('LeaderBoardSearch')
+    const handleView = (data: any) => {
+        navigation.navigate('LeaderBoardSearch', data)
     }
     return (
         <>
             <LeaderBoardView
-                DATA={DATA}
+                leaderBoardList={leaderBoardList}
+                filterData={filterData}
+                setFilterData={setFilterData}
                 handleDrawerPress={handleDrawerPress}
                 handleView={handleView}
+                moreData={moreData}
+                getLeaderBoard={getLeaderBoard}
+                offSET={offSET}
             />
         </>
     )

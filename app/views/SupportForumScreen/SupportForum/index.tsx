@@ -5,16 +5,16 @@ import { useDispatch, useSelector } from 'react-redux';
 import SupportForumView from './components/SupportForumView'
 
 const SupportForumScreen = ({ navigation }: any) => {
-    const dispatch: any = useDispatch()
+    // const dispatch: any = useDispatch()
     // const { response = {}, list = '' } = useSelector((state: any) => state.supportForumData) || {}
     // const moreData = response?.total_data || 0
-    const [supportForumList, setSupportForumList] = useState<any>([])
-    const [offSET, setOffset] = useState(0)
-    const [filterData, setFilterData] = useState({
-        search_title: '',
-        start_date: '',
-        end_date: '',
-    })
+    // const [supportForumList, setSupportForumList] = useState<any>([])
+    // const [offSET, setOffset] = useState(0)
+    // const [filterData, setFilterData] = useState({
+    //     search_title: '',
+    //     start_date: '',
+    //     end_date: '',
+    // })
     // useFocusEffect(
     //     React.useCallback(() => {
     //         getSupportForums(0, {})
@@ -49,12 +49,12 @@ const SupportForumScreen = ({ navigation }: any) => {
     return (
         <SupportForumView
             handleDrawerPress={handleDrawerPress}
-            supportForumList={supportForumList}
-            filterData={filterData}
-            setFilterData={setFilterData}
+            // supportForumList={supportForumList}
+            // filterData={filterData}
+            // setFilterData={setFilterData}
             // getSupportForums={getSupportForums}
-            onPressView={onPressView}
-            offSET={offSET}
+            // onPressView={onPressView}
+            // offSET={offSET}
             // moreData={moreData}
         />
     )
