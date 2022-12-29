@@ -1,7 +1,6 @@
 import { StyleSheet } from 'react-native';
 import { normalize, normalizeSpacing } from '../../../../components/scaleFontSize';
 import { BLACK_COLOR, FONT_FAMILY_EXTRABOLD, FONT_FAMILY_MEDIUM, FONT_FAMILY_REGULAR, GRAY_COLOR, GRAY_LIGHT_COLOR, PRIMARY_THEME_COLOR, WHITE_COLOR } from '../../../../components/utilities/constant';
-
 const styles = StyleSheet.create({
     mainContainer: {
         flex: 1
@@ -28,6 +27,14 @@ const styles = StyleSheet.create({
         alignItems: 'center',
         paddingVertical: normalize(8)
     },
+    headTxt: {
+        fontFamily: FONT_FAMILY_EXTRABOLD,
+        fontSize: normalizeSpacing(20),
+        color: BLACK_COLOR,
+        textAlign: 'center',
+        marginVertical: normalizeSpacing(10),
+        textTransform: 'capitalize',
+    },
     Txtview: {
         flex: 1,
         flexDirection: 'row',
@@ -52,7 +59,8 @@ const styles = StyleSheet.create({
     txtStyle: {
         color: BLACK_COLOR,
         fontFamily: FONT_FAMILY_REGULAR,
-        fontSize: normalize(15)
+        fontSize: normalize(15),
+        textTransform: 'capitalize',
     },
     Viewbutton: {
         backgroundColor: PRIMARY_THEME_COLOR,

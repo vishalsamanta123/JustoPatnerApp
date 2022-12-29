@@ -9,6 +9,8 @@ import { PRIMARY_THEME_COLOR, WHITE_COLOR } from "../../../../components/utiliti
 import strings from "../../../../components/utilities/Localization";
 import styles from "./styles";
 import LeaderBoardCPItems from '../components/LeaderBoardCPItems'
+import EmptyListScreen from "app/components/CommonScreen/EmptyListScreen";
+import Styles from "app/components/DropDown/styles";
 
 const LeaderBoardSearchView = (props: any) => {
     return (
@@ -25,9 +27,32 @@ const LeaderBoardSearchView = (props: any) => {
                 barStyle={'light-content'}
                 statusBarColor={PRIMARY_THEME_COLOR}
             />
-            <View style={styles.topItemsVw}>
+            {/* <View style={styles.topItemsVw}>
                 <DropdownInput
                     placeholder={'Select Cp Name'}
+                    data={[]}
+                    inputWidth={'100%'}
+                    paddingLeft={16}
+                    maxHeight={300}
+                    // onFocus={() => handleMasterDatas()}
+                    labelField="user_name"
+                    valueField={'_id'}
+                    // value={formData?.sourcing_manager}
+                    onChange={(item: any) => {
+                        // props.setFormData({
+                        //     ...props.formData,
+                        //     sourcing_manager: item._id,
+                        // })
+                    }}
+                    newRenderItem={(item: any) => {
+                        return (
+                            <>
+                                <View style={Styles.item}>
+                                    <Text style={Styles.textItem}>{item.user_name}</Text>
+                                </View>
+                            </>
+                        );
+                    }}
                 />
                 <View style={{ marginTop: normalize(30) }}>
                     <Button
@@ -36,7 +61,8 @@ const LeaderBoardSearchView = (props: any) => {
                         handleBtnPress={() => { }}
                     />
                 </View>
-            </View>
+            </View> */}
+            <Text style={styles.headTxt}>{props?.leaderBoardDetail?.property_title}</Text>
             <View style={{ flex: 2.5 }}>
                 <View style={styles.IteamView}>
                     <Text style={[styles.txtStyle, {
@@ -50,11 +76,19 @@ const LeaderBoardSearchView = (props: any) => {
                     }]}>Sold</Text>
                 </View>
                 <FlatList
-                    data={props.DATA}
-                    renderItem={({ item }) => {
+                    data={props?.leaderBoardDetail?.property_allocateds &&
+                        Array.isArray(props?.leaderBoardDetail?.property_allocateds) ?
+                        props?.leaderBoardDetail?.property_allocateds : []}
+                    ListEmptyComponent={
+                        <EmptyListScreen
+                            styled={{ alignItems: 'center', marginTop: normalize(60) }}
+                            message={'CP'} />}
+                    renderItem={({ item, index }) => {
                         return (
                             <LeaderBoardCPItems
                                 items={item}
+                                indexs={index}
+                                userDataResp={props?.userDataResp}
                                 onPressView={() => props.handleView()}
                             />
                         )
