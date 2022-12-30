@@ -1,34 +1,34 @@
 {
   "project_info": {
-    "project_number": "524321360258",
-    "firebase_url": "https://justo-d8d17-default-rtdb.firebaseio.com",
-    "project_id": "justo-d8d17",
-    "storage_bucket": "justo-d8d17.appspot.com"
+    "project_number": "810445659968",
+    "firebase_url": "https://justo-37d73-default-rtdb.firebaseio.com",
+    "project_id": "justo-37d73",
+    "storage_bucket": "justo-37d73.appspot.com"
   },
   "client": [
     {
       "client_info": {
-        "mobilesdk_app_id": "1:524321360258:android:91952b2a25c7c836bf279b",
+        "mobilesdk_app_id": "1:810445659968:android:d6792c222b3c53f69124a5",
         "android_client_info": {
           "package_name": "com.justo"
         }
       },
       "oauth_client": [
         {
-          "client_id": "524321360258-or1mc24lpa7ud7b2qp22ukuglhkdcev1.apps.googleusercontent.com",
+          "client_id": "810445659968-3frm93i6kj56tkvdfm94h9cvcppg6pi2.apps.googleusercontent.com",
           "client_type": 3
         }
       ],
       "api_key": [
         {
-          "current_key": "AIzaSyAXARjQJz3jjGpIY4mJsckP7Xet9GuS7Os"
+          "current_key": "AIzaSyCCmUNkcDekIZLCeAJ-nuvik_IZ_nicoaQ"
         }
       ],
       "services": {
         "appinvite_service": {
           "other_platform_oauth_client": [
             {
-              "client_id": "524321360258-or1mc24lpa7ud7b2qp22ukuglhkdcev1.apps.googleusercontent.com",
+              "client_id": "810445659968-3frm93i6kj56tkvdfm94h9cvcppg6pi2.apps.googleusercontent.com",
               "client_type": 3
             }
           ]
@@ -37,27 +37,27 @@
     },
     {
       "client_info": {
-        "mobilesdk_app_id": "1:524321360258:android:bacdb41724415ffabf279b",
+        "mobilesdk_app_id": "1:810445659968:android:fdd4ba1d4439deb19124a5",
         "android_client_info": {
           "package_name": "com.justopartner"
         }
       },
       "oauth_client": [
         {
-          "client_id": "524321360258-or1mc24lpa7ud7b2qp22ukuglhkdcev1.apps.googleusercontent.com",
+          "client_id": "810445659968-3frm93i6kj56tkvdfm94h9cvcppg6pi2.apps.googleusercontent.com",
           "client_type": 3
         }
       ],
       "api_key": [
         {
-          "current_key": "AIzaSyAXARjQJz3jjGpIY4mJsckP7Xet9GuS7Os"
+          "current_key": "AIzaSyCCmUNkcDekIZLCeAJ-nuvik_IZ_nicoaQ"
         }
       ],
       "services": {
         "appinvite_service": {
           "other_platform_oauth_client": [
             {
-              "client_id": "524321360258-or1mc24lpa7ud7b2qp22ukuglhkdcev1.apps.googleusercontent.com",
+              "client_id": "810445659968-3frm93i6kj56tkvdfm94h9cvcppg6pi2.apps.googleusercontent.com",
               "client_type": 3
             }
           ]

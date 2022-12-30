@@ -11,6 +11,7 @@ export const updateFirebase = (params: any) => async (dispatch: any) => {
   dispatch({ type: START_LOADING });
   try {
     const res = await apiCall("post", apiEndPoints.FIREBASE_UPDATE, params);
+    console.log('res: IN UPDATE FIREBASE', res);
     if (res.data.status === 200) {
       /*  await AsyncStorage.setItem("AuthToken", res?.data?.token);   */
       dispatch({

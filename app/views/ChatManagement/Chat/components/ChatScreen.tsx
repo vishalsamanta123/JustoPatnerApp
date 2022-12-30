@@ -27,40 +27,21 @@ import apiEndPoints from "app/components/utilities/apiEndPoints";
 import { useIsFocused } from "@react-navigation/native";
 import moment from "moment";
 import ImagePicker from "react-native-image-crop-picker";
+import DocumentPicker from "react-native-document-picker";
 import { normalizeSpacing } from "app/components/scaleFontSize";
+import Video from "react-native-video";
+import RNFetchBlob from "rn-fetch-blob";
 
 const ChatScreen = ({ navigation, route }: any) => {
   const item = route.params || {};
-  const isFocused = useIsFocused();
   const [keys, setkeys] = useState([]);
   const [messages, setMessages] = useState<any>([]);
   const [senderID, setSenderID] = useState<any>("");
-  const [pickerVisible, setPickerVisible] = useState<any>();
-  // const [imgUrl, setimgUrl] = useState("");
-  useEffect(() => {
-    setMessages([
-      // {
-      //   _id: 1222,
-      //   text: "Hello developer",
-      //   createdAt: new Date(),
-      //   user: {
-      //     _id: 1222222,
-      //     name: "React Native",
-      //     avatar: "https://placeimg.com/140/140/any",
-      //   },
-      // },
-      // {
-      //   _id: 22222,
-      //   text: "hell0 surendra",
-      //   createdAt: new Date(),
-      //   user: {
-      //     _id: senderID,
-      //     name: "React Native",
-      //     avatar: "https://placeimg.com/140/140/any",
-      //   },
-      // },
-    ]);
-  }, []);
+  const [attachments, setAttachments] = useState({
+    type: "",
+    url: "",
+  });
+  const { dirs } = RNFetchBlob.fs;
 
   useEffect(() => {
     getMsgList();
@@ -107,12 +88,10 @@ const ChatScreen = ({ navigation, route }: any) => {
           ? senderID + "-" + item?.firebase_id
           : item?.firebase_id + "-" + senderID
       )
-      // .limitToLast(10)
       .on("value", async (snapshot: any) => {
         if (snapshot?.val()) {
           var copy: any = Object.keys(snapshot?.val());
           setkeys(copy);
-          // ReadMsg(Object.values(snapshot?.val()));
           const message_array: any = [];
           await snapshot.forEach((childSnapshot: any) => {
             message_array.push({
@@ -124,26 +103,25 @@ const ChatScreen = ({ navigation, route }: any) => {
             message_array.filter((i: any) => i?.["delete-" + senderID] == false)
           );
           const finalChatArray = msgArray.map((item: any) => {
-            return {
-              _id: item?.msgId,
-              text: item?.text,
-              image: item?.image,
-              createdAt: new Date(),
-              user: {
-                _id: item?._id,
-                name: "React Native",
-                avatar: "https://placeimg.com/140/140/any",
-              },
-            };
+            if (item?.text !== "" || item?.image !== "" || item?.video !== "") {
+              return {
+                _id: item?.msgId,
+                text: item?.text,
+                image: item?.image,
+                filename: item?.filename,
+                type: item?.type === "doc" ? item.type : "",
+                video: item?.video,
+                createdAt: new Date(),
+                user: {
+                  _id: item?._id,
+                  name: "React Native",
+                  avatar: "https://placeimg.com/140/140/any",
+                },
+              };
+            }
           });
-          // setMessages((previousMessages: any) =>
-          //   GiftedChat.append(previousMessages, finalChatArray)
-          // );
           setMessages(finalChatArray);
         }
-        //  else {
-        //   setIsLoadMore(false);
-        // }
       });
   };
 
@@ -157,46 +135,32 @@ const ChatScreen = ({ navigation, route }: any) => {
       senderUserId: senderID,
       recevierID: item?.firebase_id,
       _id: senderID,
-      // firstName: item?.firstName,
       ["isRead-" + senderID]: true,
       ["isRead-" + item?.firebase_id]: false,
       isDelete: false,
       ["delete-" + senderID]: false,
       ["delete-" + item?.firebase_id]: false,
-      // replyMessage: replyMessage,
-      // replyOnEvent: replyOnEvent,
     };
-    // ref?.current?.scrollToOffset({animated: true, y: 0});
-    await firebase
-      .app()
-      .database(apiEndPoints.FIREBASE_DATABASE_URL)
-      .ref(
-        senderID > item?.firebase_id
-          ? senderID + "-" + item?.firebase_id
-          : item?.firebase_id + "-" + senderID
-      )
-      .push()
-      .set(params)
-      .then((ref: any) => {
-        // setReplyOnEvent("");
-        // setReplyMessage(null);
-      });
+
+    if (msg.trim() !== "") {
+      await firebase
+        .app()
+        .database(apiEndPoints.FIREBASE_DATABASE_URL)
+        .ref(
+          senderID > item?.firebase_id
+            ? senderID + "-" + item?.firebase_id
+            : item?.firebase_id + "-" + senderID
+        )
+        .push()
+        .set(params)
+        .then((ref: any) => {});
+    }
   };
 
   const onSend = useCallback((messages: any) => {
-    // setMessages((previousMessages: any) =>
-    //   GiftedChat.append(previousMessages, messages)
-    // );
     _handleChatSend(messages[0]?.text);
   }, []);
 
-  const renderMessage = (data: any) => {
-    return (
-      <View style={{ backgroundColor: "red" }}>
-        <Text>kskjdvj</Text>
-      </View>
-    );
-  };
   const renderBubble = (props: any) => {
     return (
       <Bubble
@@ -243,105 +207,77 @@ const ChatScreen = ({ navigation, route }: any) => {
   };
 
   const handleAttachPress = async () => {
-    // const result = await ImagePicker.openPicker({
-    //   width: 100,
-    //   height: 100,
-    //   cropping: true,
-    //   multiple: false,
-    //   compressImageQuality: 0.8,
-    // }).then((image: any) => {
-    //   return image;
-    //   // props.setVisible(false);
-    //   // props.imageData({
-    //   //   uri: image?.path,
-    //   //   type: image?.mime,
-    //   //   name: image?.path?.substring(image?.path?.lastIndexOf("/") + 1),
-    //   // });
-    // });
+    const result: any = await DocumentPicker.pick({
+      type: [DocumentPicker.types.allFiles],
+    });
 
-    const options: any = {
-      mediaType: "mixed",
+    let imageRef: any;
+    let mediaObject: any = {
+      url: "",
+      type: "",
     };
-
-    const result: any = await launchImageLibrary(options);
-
-    // const result: any = await DocumentPicker.pickSingle();
-
-
-    let url: any;
-    if (result?.assets[0]?.type !== "video/mp4") {
-      const reference = storage().ref(`images/${result?.assets[0]?.fileName}`);
-      const pathToFile = result?.assets[0]?.uri;
-      await reference.putFile(pathToFile);
-      url = await storage()
-        .ref(`images/${result?.assets[0]?.fileName}`)
-        .getDownloadURL();
-
-      // setimgUrl(url);
-    } else {
-      const reference = storage().ref(`video/${result?.assets[0]?.fileName}`);
-      const pathToFile = result?.assets[0]?.uri;
-      await reference.putFile(pathToFile);
-      url = await storage()
-        .ref(`video/${result?.assets[0]?.fileName}`)
-        .getDownloadURL();
-      // setimgUrl(url);
+    if (result[0].type === "image/jpeg") {
+      imageRef = storage().ref(`images/${result[0].name}`);
+      mediaObject = {
+        ...mediaObject,
+        type: "image",
+      };
+    } else if (result[0].type === "application/pdf") {
+      imageRef = storage().ref(`docFiles/${result[0].name}`);
+      mediaObject = {
+        ...mediaObject,
+        type: "doc",
+      };
+    } else if (result[0].type === "video/mp4") {
+      imageRef = storage().ref(`videos/${result[0].name}`);
+      mediaObject = {
+        ...mediaObject,
+        type: "video",
+      };
     }
-
+    let fileuri = result[0].uri;
+    let filename = result[0].name;
+    const response = await fetch(fileuri);
+    const blob = await response.blob();
+    await imageRef.put(blob);
+    var dwnload = await imageRef.getDownloadURL();
+    mediaObject = {
+      ...mediaObject,
+      url: dwnload,
+    };
     const asyncSenderID: any = await AsyncStorage.getItem("firebase_id");
     const senderID: any = JSON.parse(asyncSenderID);
     setSenderID(senderID);
-    const params = {
-      createdAt: new Date().toISOString(),
-      // text: msg.trim(),
-      image: url,
-      type: "image",
-      senderUserId: senderID,
-      recevierID: item?.firebase_id,
-      _id: senderID,
-      // firstName: item?.firstName,
-      ["isRead-" + senderID]: true,
-      ["isRead-" + item?.firebase_id]: false,
-      isDelete: false,
-      ["delete-" + senderID]: false,
-      ["delete-" + item?.firebase_id]: false,
-      // replyMessage: replyMessage,
-      // replyOnEvent: replyOnEvent,
-    };
-    // ref?.current?.scrollToOffset({animated: true, y: 0});
-    await firebase
-      .app()
-      .database(apiEndPoints.FIREBASE_DATABASE_URL)
-      .ref(
-        senderID > item?.firebase_id
-          ? senderID + "-" + item?.firebase_id
-          : item?.firebase_id + "-" + senderID
-      )
-      .push()
-      .set(params)
-      .then((ref: any) => {
-        setMessages([
-          {
-            _id: item?.msgId,
-            image: url,
-            user: {
-              _id: senderID,
-              name: "React Native",
-              avatar: "https://placeimg.com/140/140/any",
-            },
-          },
-          ...messages,
-        ]);
-      });
 
-    // setMessages((previousMessages: any) =>
-    //   GiftedChat.append(previousMessages,[...messages, {image: result[0].uri, user: {
-    //     _id: senderID,
-    //     name: "React Native",
-    //     avatar: "https://placeimg.com/140/140/any",
-    //   }}])
-    // );
-    // renderMessage(result);
+    if (mediaObject.url !== "") {
+      const params = {
+        createdAt: new Date().toISOString(),
+        [mediaObject.type === "doc" ? "image" : mediaObject.type]: dwnload,
+        type: mediaObject.type,
+        filename: filename,
+        senderUserId: senderID,
+        recevierID: item?.firebase_id,
+        _id: senderID,
+        ["isRead-" + senderID]: true,
+        ["isRead-" + item?.firebase_id]: false,
+        isDelete: false,
+        ["delete-" + senderID]: false,
+        ["delete-" + item?.firebase_id]: false,
+      };
+
+
+      await firebase
+        .app()
+        .database(apiEndPoints.FIREBASE_DATABASE_URL)
+        .ref(
+          senderID > item?.firebase_id
+            ? senderID + "-" + item?.firebase_id
+            : item?.firebase_id + "-" + senderID
+        )
+        .push()
+        .set(params)
+        .then((ref: any) => {});
+    }
   };
   const renderComposer = (props: any) => {
     return (
@@ -354,26 +290,83 @@ const ChatScreen = ({ navigation, route }: any) => {
             style={styles.attachIconImage}
           />
         </TouchableOpacity>
-        {/* <TouchableOpacity onPress={(messages: any) => onSend(messages)}>
-          <Image
-            source={images.send}
-            // resizeMode={"contain"}
-            style={styles.attachIconImage}
-          />
-        </TouchableOpacity> */}
       </View>
     );
+  };
+
+  const handlePdfDownload = (data: any) => {
+    RNFetchBlob.config({
+      fileCache: true,
+      addAndroidDownloads: {
+        useDownloadManager: true,
+        notification: true,
+        mediaScannable: true,
+        title: data?.filename,
+        path: `${dirs.DownloadDir}/${data?.filename}`,
+      },
+    })
+      .fetch("GET", data?.image, {})
+      .then((res) => {
+      })
+      .catch((e) => {
+      });
   };
 
   const renderImageMessage = (data: any) => {
     return (
       <View>
-        <Image
+        {data?.currentMessage?.type !== "doc" ? (
+          <Image
+            source={{
+              uri: data.currentMessage.image
+                ? data.currentMessage.image
+                : messages.image,
+            }}
+            style={styles.imageMessageView}
+            resizeMode={"cover"}
+          />
+        ) : data.currentMessage.user._id === senderID ? (
+          <View style={styles.senderpdfMessageView}>
+            <Text style={styles.pdfnameTxt}>
+              {data.currentMessage.filename}
+            </Text>
+          </View>
+        ) : (
+          <View style={styles.recieverpdfMessageView}>
+            <View style={{width: '80%'}}>
+              <Text style={styles.pdfRecievednameTxt} numberOfLines={1}>
+                {data.currentMessage.filename}
+              </Text>
+            </View>
+            <TouchableOpacity
+              onPress={() => handlePdfDownload(data.currentMessage)}
+            >
+              <Image
+                source={images.download}
+                resizeMode={"contain"}
+                style={styles.downloadImage}
+              />
+            </TouchableOpacity>
+          </View>
+        )}
+      </View>
+    );
+  };
+
+  const renderVideoMessage = (data: any) => {
+    return (
+      <View>
+        <Video
           source={{
-            uri: data.currentMessage.image
-              ? data.currentMessage.image
-              : messages.image,
-          }}
+            uri: data.currentMessage.video
+              ? data.currentMessage.video
+              : messages.video,
+          }} // Can be a URL or a local file.
+          ref={(ref: any) => {
+            // player = ref;
+          }} // Store reference
+          // onBuffer={this.onBuffer} // Callback when remote video is buffering
+          // onError={this.videoError} // Callback when video cannot be loaded
           style={{
             height: 200,
             width: 200,
@@ -392,8 +385,6 @@ const ChatScreen = ({ navigation, route }: any) => {
     <View style={styles.mainContainer}>
       <Header
         leftImageSrc={images.backArrow}
-        // rightFirstImageScr={images.filter}
-        // rightSecondImageScr={images.notification}
         headerText={item.user_name}
         leftImageIconStyle={styles.leftImageIconStyle}
         handleOnLeftIconPress={handleBackPress}
@@ -415,7 +406,7 @@ const ChatScreen = ({ navigation, route }: any) => {
           return renderImageMessage(props);
         }}
         renderMessageVideo={(props: any) => {
-          return renderImageMessage(props);
+          return renderVideoMessage(props);
         }}
         renderInputToolbar={(props: any) => {
           return (
