@@ -1,14 +1,14 @@
-import { View, Text, StatusBar, TouchableOpacity, ScrollView } from "react-native";
+import { View, Text, StatusBar, TouchableOpacity, ScrollView, BackHandler } from "react-native";
 import React, { useEffect, useState } from "react";
 import styles from "./styles";
-import { BLACK_COLOR, GRAY_LIGHT_COLOR, GREEN_COLOR, PRIMARY_THEME_COLOR, RED_COLOR, WHITE_COLOR } from "../../../../components/utilities/constant";
+import { BLACK_COLOR, GREEN_COLOR, PRIMARY_THEME_COLOR, RED_COLOR, WHITE_COLOR } from "../../../../components/utilities/constant";
 import { useSafeAreaInsets } from "react-native-safe-area-context";
 import Header from "../../../../components/Header";
 import strings from "../../../../components/utilities/Localization";
 import InputField from "../../../../components/InputField";
 import Button from "../../../../components/Button";
 import images from "../../../../assets/images";
-import { normalizeWidth, normalizeHeight, normalize } from "app/components/scaleFontSize";
+import { normalize } from "app/components/scaleFontSize";
 import PicturePickerModal from "app/components/Modals/PicturePicker";
 import { useDispatch, useSelector } from "react-redux";
 import ErrorMessage from "app/components/ErrorMessage";
@@ -16,6 +16,11 @@ import { createChannelPartner, RegistrationForm, RegistrationFormRemv, removeReg
 import { useFocusEffect } from "@react-navigation/native";
 
 const CompanyDetails = ({ navigation }: any) => {
+  useEffect(() => {
+    const backHandler = BackHandler.addEventListener('hardwareBackPress', () => true)
+    return () => backHandler.remove()
+  }, [])
+
   const [isError, setisError] = useState(false)
   const [visible, setVisible] = useState(false)
   const [panvisible, setpanVisible] = useState(false)
@@ -132,7 +137,9 @@ const CompanyDetails = ({ navigation }: any) => {
       newFormData.append("company_branch_name", formData?.company_branch_name)
       newFormData.append("company_account_no", formData?.company_account_no)
       newFormData.append("company_ifsc_code", formData?.company_ifsc_code)
-      newFormData.append("sourcing_manager", formData?.sourcing_manager)
+      if (formData?.sourcing_manager) {
+        newFormData.append("sourcing_manager", formData?.sourcing_manager)
+      }
       newFormData.append("location", formData?.location)
       newFormData.append("latitude", formData?.latitude)
       newFormData.append("longitude", formData?.longitude)
