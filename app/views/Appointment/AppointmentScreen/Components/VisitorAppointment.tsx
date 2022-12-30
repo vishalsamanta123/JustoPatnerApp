@@ -55,7 +55,7 @@ const VisitorAppointment = (props: any) => {
           <Text style={styles.nameTxt}>{
             item?.status == 1 ? 'Pending' :
               item?.status == 2 ? 'Confirm' :
-                item?.status == 3 ? 'Compleat' : 'Appoiment cancel'
+                item?.status == 3 ? 'Complete' : 'Appoiment cancel'
           }</Text>
         </View>
       </View>

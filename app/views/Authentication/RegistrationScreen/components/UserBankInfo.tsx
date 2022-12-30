@@ -50,7 +50,7 @@ const UserBankInfo = ({ navigation }: any) => {
 
   const handleMasterDatas = () => {
     dispatch(getAllSourcingManager({
-      limit: 10,
+      limit: 100,
       offset: 0
     }))
   }

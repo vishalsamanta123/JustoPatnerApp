@@ -10,8 +10,15 @@ import strings from "../../../../components/utilities/Localization";
 import styles from "./styles";
 import LeaderBoardItems from './LeaderBoardItems';
 import ComingSoonScreen from "app/components/CommonScreen/ComingSoon";
+import EmptyListScreen from "app/components/CommonScreen/EmptyListScreen";
 
 const LeaderBoardView = (props: any) => {
+    const onRefresh = () => {
+        props.setFilterData({
+            property_name: ''
+        })
+        props.getLeaderBoard(0, {})
+    }
     return (
         <View style={styles.mainContainer}>
             <Header
@@ -29,29 +36,56 @@ const LeaderBoardView = (props: any) => {
                 <InputField
                     placeholderText={'Search Project Name'}
                     handleInputBtnPress={() => { }}
-                    onChangeText={() => { }}
+                    inputheight={45}
+                    onChangeText={(data: any) => {
+                        props.setFilterData({
+                            ...props.filterData,
+                            property_name: data
+                        })
+                        if (data === '') {
+                            props.getLeaderBoard(0, {})
+                        }
+                    }}
+                    valueshow={props?.filterData?.property_name}
                 />
                 <View style={{ marginTop: normalize(30) }}>
                     <Button
                         width={300}
                         buttonText={strings.search}
-                        handleBtnPress={() => { }}
+                        handleBtnPress={() => {
+                            if (props?.filterData?.property_name) {
+                                props.getLeaderBoard(0, props?.filterData)
+                            }
+                        }}
                     />
                 </View>
             </View>
-            <View style={{ flex: 2.5 }}>
-                <FlatList
-                    data={props.DATA}
-                    renderItem={({ item }) => {
-                        return (
-                            <LeaderBoardItems
-                                items={item}
-                                onPressView={() => props.handleView()}
-                            />
-                        )
-                    }}
-                />
-            </View>
+            <FlatList
+                data={Array.isArray(props?.leaderBoardList) ?
+                    props?.leaderBoardList : []}
+                scrollEnabled={true}
+                showsVerticalScrollIndicator={false}
+                ListEmptyComponent={
+                    <EmptyListScreen
+                        styled={{ alignItems: 'center', marginTop: normalize(60) }}
+                        message={strings.leaderHeader} />}
+                onEndReached={() => {
+                    if (props?.leaderBoardList?.length < props?.moreData) {
+                        props.getLeaderBoard(props?.leaderBoardList?.length > 5 ?
+                            props.offSET + 1 : 0, props?.filterData)
+                    }
+                }}
+                refreshing={false}
+                onRefresh={() => onRefresh()}
+                renderItem={({ item }) => {
+                    return (
+                        <LeaderBoardItems
+                            items={item}
+                            onPressView={() => props.handleView(item)}
+                        />
+                    )
+                }}
+            />
         </View>
     )
 }
