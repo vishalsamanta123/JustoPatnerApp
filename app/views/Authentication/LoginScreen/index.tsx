@@ -8,6 +8,7 @@ import LoginView from './components/LoginView';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import Loader from 'app/components/CommonScreen/Loader';
 import strings from 'app/components/utilities/Localization';
+import { RegistrationFormRemv } from 'app/Redux/Actions/ReggistrationAction';
 
 const LoginScreen = ({ navigation }: any) => {
   const dispatch: any = useDispatch()
@@ -55,6 +56,7 @@ const LoginScreen = ({ navigation }: any) => {
   };
   const handleSingupPress = () => {
     navigation.navigate('RegistrationScreenView');
+    dispatch(RegistrationFormRemv())
   };
   const handlePrivacy = (data: any) => {
     navigation.navigate('privacyPolicy', data);

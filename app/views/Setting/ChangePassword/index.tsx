@@ -32,16 +32,11 @@ const ChangePasswordScreen = ({ navigation, route }: any) => {
           msg: response.message,
           backgroundColor: GREEN_COLOR,
         });
-
+        navigation.goBack();
         dispatch({
           type: CHANGEPASSWORD_NULL,
-          payload: {}
+          payload: []
       })
-      } else {
-        ErrorMessage({
-          msg: response.message,
-          backgroundColor: RED_COLOR,
-        });
       }
    }
   }, [response]);

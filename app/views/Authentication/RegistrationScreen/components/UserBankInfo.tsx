@@ -4,6 +4,8 @@ import {
   ScrollView,
   StatusBar,
   TouchableOpacity,
+  Alert,
+  BackHandler,
 } from "react-native";
 import React, { useEffect, useState } from "react";
 import images from "../../../../assets/images";
@@ -24,6 +26,11 @@ import { RegistrationForm } from "app/Redux/Actions/ReggistrationAction";
 import { getAllMaster, getAllSourcingManager } from "app/Redux/Actions/MasterActions";
 
 const UserBankInfo = ({ navigation }: any) => {
+  useEffect(() => {
+    const backHandler = BackHandler.addEventListener('hardwareBackPress', () => true)
+    return () => backHandler.remove()
+  }, [])
+
   const dispatch: any = useDispatch()
   const insets = useSafeAreaInsets();
   const [formData, setFormData] = useState<any>({})
@@ -98,8 +105,8 @@ const UserBankInfo = ({ navigation }: any) => {
     }
     return isError;
   }
-
   const onPressBack = () => {
+    console.log("onPressBack")
     navigation.goBack()
     dispatch(RegistrationForm(formData))
   }
