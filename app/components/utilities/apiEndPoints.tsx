@@ -14,7 +14,8 @@ export default {
   EDITUSER: "/auth/editUserProfile",
   USERSTATUSUPDATE: "/userManage/userStatusUpdate",
   FIREBASE_UPDATE: '/auth/firebaseIdUpdate',
-  FIREBASE_DATABASE_URL: "https://justo-d8d17-default-rtdb.firebaseio.com/",
+  // FIREBASE_DATABASE_URL: "https://justo-d8d17-default-rtdb.firebaseio.com/",
+  FIREBASE_DATABASE_URL: "https://justo-37d73-default-rtdb.firebaseio.com/",
 
   //Dashbaord 
   GET_DASHBOARD_CP: 'dashboard/dashboardDetailCP',

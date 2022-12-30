@@ -97,5 +97,47 @@ const styles = StyleSheet.create({
     justifyContent: "center",
     // backgroundColor: "red",
   },
+  imageMessageView: {
+    height: normalizeHeight(200),
+    width: normalizeWidth(200),
+    borderTopRightRadius: 15,
+    borderTopLeftRadius: 15,
+    borderColor: PRIMARY_THEME_COLOR,
+    borderWidth: 4,
+  },
+  senderpdfMessageView: {
+    height: normalizeHeight(50),
+    width: normalizeWidth(200),
+    borderTopRightRadius: 15,
+    borderTopLeftRadius: 15,
+    justifyContent: "center",
+  },
+  recieverpdfMessageView: {
+    height: normalizeHeight(50),
+    width: normalizeWidth(230),
+    borderTopRightRadius: 15,
+    borderTopLeftRadius: 15,
+    justifyContent: "center",
+    flexDirection: "row",
+    alignItems: "center",
+  },
+  pdfnameTxt: {
+    fontSize: normalize(15),
+    fontFamily: FONT_FAMILY_SEMIBOLD,
+    marginLeft: normalize(20),
+    color: WHITE_COLOR,
+  },
+  pdfRecievednameTxt: {
+    fontSize: normalize(15),
+    fontFamily: FONT_FAMILY_SEMIBOLD,
+    marginLeft: normalize(20),
+    color: BLACK_COLOR,
+  },
+  downloadImage: {
+    height: normalizeHeight(30),
+    width: normalizeWidth(30),
+    tintColor: BLACK_COLOR,
+    padding: normalizeSpacing(10),
+  },
 });
 export default styles;
