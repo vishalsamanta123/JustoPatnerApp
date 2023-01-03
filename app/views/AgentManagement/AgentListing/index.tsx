@@ -21,6 +21,7 @@ const AgentListing = ({ navigation }: any) => {
 
   useFocusEffect(
     React.useCallback(() => {
+      setAgentList([])
       getAgentList(0, {})
       return () => { };
     }, [navigation])
