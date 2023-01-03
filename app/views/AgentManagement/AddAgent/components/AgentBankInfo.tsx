@@ -33,12 +33,12 @@ const AgentBankInfo = ({ navigation, route }: any) => {
     if (editData?.update || addData?.create) {
       dispatch(addAgentRemove());
       navigation.navigate('AgentListing')
-      auth()
-        .createUserWithEmailAndPassword(agentInfoData?.email, "123456")
-        .then(async (res: any) => {
-          console.log("res: IN CREATE", res);
-          console.log("User account created & signed in!");
-        });
+      // auth()
+      //   .createUserWithEmailAndPassword(agentInfoData?.email, "123456")
+      //   .then(async (res: any) => {
+      //     console.log("res: IN CREATE", res);
+      //     console.log("User account created & signed in!");
+      //   });
       ErrorMessage({
         msg: editData?.update ? editData?.response?.message :
           addData?.create ? addData?.response?.message : '',
