@@ -3,7 +3,7 @@ import React from 'react'
 import styles from './Styles'
 import strings from '../../../../components/utilities/Localization'
 import images from '../../../../assets/images'
-import { PURPLE_COLOR, CALL_COLOR } from '../../../../components/utilities/constant'
+import { PURPLE_COLOR, CALL_COLOR, BLACK_COLOR } from '../../../../components/utilities/constant'
 import moment from 'moment'
 
 const VisitorAppointment = (props: any) => {
@@ -52,10 +52,14 @@ const VisitorAppointment = (props: any) => {
         </View>
         <View><Text>:</Text></View>
         <View style={styles.nameContainer}>
-          <Text style={styles.nameTxt}>{
-            item?.status == 1 ? 'Pending' :
-              item?.status == 2 ? 'Confirm' :
-                item?.status == 3 ? 'Complete' : 'Appoiment cancel'
+          <Text style={[styles.nameTxt,{
+            color: item?.lead_status === 6 || item?.status === 5 ? 'red' : BLACK_COLOR
+          }]}>{
+            item?.lead_status === 6 ? 'Close' :
+              item?.status == 1 ? 'Pending' :
+                item?.status == 2 ? 'Confirm' :
+                  item?.status == 3 ? 'Complete' : 
+                  item?.status === 5 && 'Appoiment cancel'  
           }</Text>
         </View>
       </View>

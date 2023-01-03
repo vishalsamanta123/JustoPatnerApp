@@ -15,22 +15,22 @@ const SettingView = (props: any) => {
         },
         {
             heading: 'Change password',
-            icon: images.user,
+            icon: images.lock,
             type: 'changePassword'
         },
         {
             heading: 'Separate Link',
-            icon: images.user,
+            icon: images.link,
             type: 'separateLink'
         },
         {
             heading: 'Notification',
-            icon: images.user,
+            icon: images.bell,
             type: 'notification',
         },
         {
             heading: 'Logout',
-            icon: images.user,
+            icon: images.logout,
             type: 'logout',
         }
     ];

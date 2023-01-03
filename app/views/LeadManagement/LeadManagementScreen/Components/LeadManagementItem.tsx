@@ -4,6 +4,8 @@ import styles from "./Styles";
 import {
   PURPLE_COLOR,
   CALL_COLOR,
+  BLACK_COLOR,
+  YELLOW_COLOR,
 } from "../../../../components/utilities/constant";
 import images from "../../../../assets/images";
 import strings from "../../../../components/utilities/Localization";
@@ -77,12 +79,8 @@ const LeadManagementItem = (props: any) => {
             style={[
               styles.nameTxt,
               {
-                // color:
-                //   props.items.lead_status == "confirmatin Pending"
-                //     ? BLACK_COLOR
-                //     : props.items.status == "Subscribe"
-                //       ? YELLOW_COLOR
-                //       : "red",
+                color: props.items.lead_status === 6 ? 'red' : BLACK_COLOR
+
               },
             ]}
           >
@@ -90,7 +88,8 @@ const LeadManagementItem = (props: any) => {
               props.items.lead_status === 2 ? "Follow-up" :
                 props.items.lead_status === 3 ? "Site Visit/Appointment" :
                   props.items.lead_status === 4 ? "Booking" :
-                    props.items.lead_status === 5 ? "Registration" : strings.notfount
+                    props.items.lead_status === 5 ? "Registration" :
+                    props.items.lead_status === 6 ? "Close" : strings.notfount
             }
           </Text>
         </View>

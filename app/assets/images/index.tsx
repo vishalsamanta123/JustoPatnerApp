@@ -43,6 +43,8 @@ const images = {
   addCircle: require('./addCircle.png'),
   send: require('./send.png'),
   attach: require('./attach.png'),
+  lock: require('./lock.png'),
+  bell: require('./notification.png'),
 };
 
 export default images;
