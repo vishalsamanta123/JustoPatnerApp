@@ -144,7 +144,7 @@ const PropertyDetailView = (props: any) => {
             handleBtnPress={() => confirmStatus()}
             buttonText={
               approveStatus === 1
-                ? strings.active
+                ? strings.accept
                 : approveStatus === 2
                   ? strings.unsubscribe
                   : strings.subscribe

@@ -90,7 +90,7 @@ const AgentBasicInfoView = (props: any) => {
                 })
               }}
               valueshow={props?.agentInfoData?.agent_name}
-              headingText={"Agent Name"}
+              headingText={" Name"}
             />
           </View>
           <View style={styles.inputWrap}>
@@ -184,7 +184,6 @@ const AgentBasicInfoView = (props: any) => {
                   date_of_birth: moment(data).format(DATE_FORMAT)
                 })
               }}
-              maximumDate={new Date()}
               setDateshow={(data: any) => {
                 props.setAgentInfoData({
                   ...props.agentInfoData,

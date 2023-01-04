@@ -15,6 +15,7 @@ const initialState = {
   response: null,
   detail: false,
   create: false,
+  type: ''
 };
 const initialStatedetail = {
   response: null,
@@ -65,6 +66,7 @@ export function propertyReducer(state = initialState, action: any) {
         detail: false,
         create: false,
         loading: false,
+        type:'ALLOCATE',
         response: action.payload,
       };
     case PROPERTY_STATUS_UPDATE:

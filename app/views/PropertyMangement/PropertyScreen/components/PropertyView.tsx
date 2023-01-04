@@ -34,7 +34,6 @@ const PropertyView = (props: any) => {
     property_type: "",
   });
 
-
   useEffect(() => {
     if (propertyData?.response) {
       const { response = {} } = propertyData;

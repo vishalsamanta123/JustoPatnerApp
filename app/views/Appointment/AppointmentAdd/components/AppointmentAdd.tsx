@@ -32,10 +32,9 @@ const AppointmentAddView = (props: any) => {
                         headingText={'Status'}
                         placeholder={strings.status}
                         data={[
-                            { label: "Pending", value: "1" },
+                            { label: "Rescheduled", value: "1" },
                             { label: "Confirm", value: "2" },
-                            { label: "Compleat", value: "3" },
-                            { label: "Appoiment cancel", value: "4" },
+                            { label: "Appointment cancel", value: "4" },
                         ]}
                         inputWidth={'100%'}
                         paddingLeft={16}
@@ -60,52 +59,58 @@ const AppointmentAddView = (props: any) => {
                         }}
                     />
                 </View>
-                <View style={styles.inputWrap}>
-                    <InputCalender
-                        headingText={'Date'}
-                        mode={'date'}
-                        leftIcon={images.event}
-                        placeholderText={"Date"}//can edit
-                        editable={false}
-                        // onChangeText={() => { }}
-                        dateData={(data: any) => {
-                            props.setFormData({
-                                ...props.formData,
-                                appointment_date: moment(data).format(DATE_FORMAT)
-                            })
-                        }}
-                        setDateshow={(data: any) => {
-                            props.setFormData({
-                                ...props.formData,
-                                appointment_date: moment(data).format(DATE_FORMAT)
-                            })
-                        }}
-                        value={props?.formData?.appointment_date}
-                    />
-                </View>
-                <View style={styles.inputWrap}>
-                    <InputCalender
-                        headingText={'Time'}
-                        mode={'time'}
-                        leftIcon={images.timer}
-                        placeholderText={"Time"}//can edit
-                        editable={false}
-                        // onChangeText={() => { }}
-                        dateData={(data: any) => {
-                            props.setFormData({
-                                ...props.formData,
-                                appointment_time: moment(data).format(TIME_FORMAT)
-                            })
-                        }}
-                        setDateshow={(data: any) => {
-                            props.setFormData({
-                                ...props.formData,
-                                appointment_time: moment(data).format(TIME_FORMAT)
-                            })
-                        }}
-                        value={props?.formData?.appointment_time}
-                    />
-                </View>
+                {props?.formData?.status === "1" ?
+                    (
+                        <>
+                            <View style={styles.inputWrap}>
+                                <InputCalender
+                                    headingText={'Date'}
+                                    mode={'date'}
+                                    leftIcon={images.event}
+                                    placeholderText={"Date"}//can edit
+                                    editable={false}
+                                    minimumDate={new Date()}
+                                    // onChangeText={() => { }}
+                                    dateData={(data: any) => {
+                                        props.setFormData({
+                                            ...props.formData,
+                                            appointment_date: moment(data).format(DATE_FORMAT)
+                                        })
+                                    }}
+                                    setDateshow={(data: any) => {
+                                        props.setFormData({
+                                            ...props.formData,
+                                            appointment_date: moment(data).format(DATE_FORMAT)
+                                        })
+                                    }}
+                                    value={props?.formData?.appointment_date}
+                                />
+                            </View>
+                            <View style={styles.inputWrap}>
+                                <InputCalender
+                                    headingText={'Time'}
+                                    mode={'time'}
+                                    leftIcon={images.timer}
+                                    placeholderText={"Time"}//can edit
+                                    editable={false}
+                                    // onChangeText={() => { }}
+                                    dateData={(data: any) => {
+                                        props.setFormData({
+                                            ...props.formData,
+                                            appointment_time: moment(data).format(TIME_FORMAT)
+                                        })
+                                    }}
+                                    setDateshow={(data: any) => {
+                                        props.setFormData({
+                                            ...props.formData,
+                                            appointment_time: moment(data).format(TIME_FORMAT)
+                                        })
+                                    }}
+                                    value={props?.formData?.appointment_time}
+                                />
+                            </View>
+                        </>
+                    ) : null}
                 <View style={styles.inputWrap}>
                     <InputField
                         headingText={'Description'}

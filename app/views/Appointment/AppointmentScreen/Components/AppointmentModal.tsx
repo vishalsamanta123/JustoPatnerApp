@@ -36,44 +36,44 @@ const FilterModal = (props: any) => {
           <View style={{ marginHorizontal: 10 }}>
             <View style={styles.inputWrap}>
               <InputCalender
-                mode={'date'}
+                mode={"date"}
                 leftIcon={images.event}
-                placeholderText={"Start Date"}//can edit
+                placeholderText={"Start Date"} //can edit
                 editable={false}
                 // onChangeText={() => { }}
                 dateData={(data: any) => {
                   props.setFilterData({
                     ...props.filterData,
-                    start_date: moment(data).format(DATE_FORMAT)
-                  })
+                    start_date: moment(data).format(DATE_FORMAT),
+                  });
                 }}
                 setDateshow={(data: any) => {
                   props.setFilterData({
                     ...props.filterData,
-                    start_date: moment(data).format(DATE_FORMAT)
-                  })
+                    start_date: moment(data).format(DATE_FORMAT),
+                  });
                 }}
                 value={props.filterData?.start_date}
               />
             </View>
             <View style={styles.inputWrap}>
               <InputCalender
-                mode={'date'}
+                mode={"date"}
                 leftIcon={images.event}
-                placeholderText={" End Date"}//can edit
+                placeholderText={" End Date"} //can edit
                 editable={false}
                 // onChangeText={() => { }}
                 dateData={(data: any) => {
                   props.setFilterData({
                     ...props.filterData,
-                    end_date: moment(data).format(DATE_FORMAT)
-                  })
+                    end_date: moment(data).format(DATE_FORMAT),
+                  });
                 }}
                 setDateshow={(data: any) => {
                   props.setFilterData({
                     ...props.filterData,
-                    end_date: moment(data).format(DATE_FORMAT)
-                  })
+                    end_date: moment(data).format(DATE_FORMAT),
+                  });
                 }}
                 value={props.filterData?.end_date}
               />
@@ -81,13 +81,13 @@ const FilterModal = (props: any) => {
             <View style={styles.inputWrap}>
               <InputField
                 placeholderText={"Search by Name"}
-                handleInputBtnPress={() => { }}
+                handleInputBtnPress={() => {}}
                 valueshow={props.filterData?.customer_name}
                 onChangeText={(val: any) => {
                   props.setFilterData({
                     ...props.filterData,
-                    customer_name: val
-                  })
+                    customer_name: val,
+                  });
                 }}
               />
             </View>
@@ -107,7 +107,7 @@ const FilterModal = (props: any) => {
                 data={[
                   { label: "Pending", value: "1" },
                   { label: "Confirm", value: "2" },
-                  { label: "Compleat", value: "3" },
+                  { label: "Complete", value: "3" },
                   { label: "Appoiment cancel", value: "4" },
                 ]}
                 maxHeight={300}
@@ -117,7 +117,8 @@ const FilterModal = (props: any) => {
                 value={props.filterData?.status}
                 onChange={(item) => {
                   props.setFilterData({
-                    ...props.filterData, status: item.value
+                    ...props.filterData,
+                    status: item.value,
                   });
                 }}
                 renderItem={renderItem}
@@ -125,7 +126,28 @@ const FilterModal = (props: any) => {
             </View>
           </View>
           <View style={{ marginVertical: 20 }}>
-            <Button handleBtnPress={() => props.handleFilterApply(false)} buttonText={strings.apply} />
+            <View style={{ flexDirection: "row", justifyContent: "center" }}>
+              <Button
+                width={135}
+                buttonText={strings.reset}
+                handleBtnPress={() => {
+                  props.setFilterData({
+                    start_date: "",
+                    end_date: "",
+                    customer_name: "",
+                    status: "",
+                  });
+                  props.getAppointmentList(0);
+                  props.setAppointmentList([]);
+                  props.setIsVisible(false)
+                }}
+              />
+              <Button
+                width={135}
+                handleBtnPress={() => props.handleFilterApply(false)}
+                buttonText={strings.apply}
+              />
+            </View>
           </View>
         </View>
       </Modal>
