@@ -103,6 +103,7 @@ const FilterModal = (props: any) => {
             <View style={styles.inputWrap}>
               <InputField
                 placeholderText={"Search by Name"}
+                headingText={"Search by Name"}
                 onChangeText={(data: any) => {
                   props.setFilterData({
                     ...props.filterData,

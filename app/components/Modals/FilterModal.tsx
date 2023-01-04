@@ -24,6 +24,7 @@ const FilterModal = (props: any) => {
             <View style={styles.inputWrap}>
               <InputField
                 placeholderText={"Start Date"}
+                headingText={"Start Date"}
                 handleInputBtnPress={() => {}}
                 onChangeText={() => {}}
               />
@@ -31,6 +32,7 @@ const FilterModal = (props: any) => {
             <View style={styles.inputWrap}>
               <InputField
                 placeholderText={"End Date"}
+                headingText={"End Date"}
                 handleInputBtnPress={() => {}}
                 onChangeText={() => {}}
               />
@@ -38,6 +40,7 @@ const FilterModal = (props: any) => {
             <View style={styles.inputWrap}>
               <InputField
                 placeholderText={"Search by Name"}
+                headingText={"Search by Name"}
                 handleInputBtnPress={() => {}}
                 onChangeText={() => {}}
               />
@@ -45,6 +48,7 @@ const FilterModal = (props: any) => {
             <View style={styles.inputWrap}>
               <InputField
                 placeholderText={"Search by Location"}
+                headingText={"Search by Location"}
                 handleInputBtnPress={() => {}}
                 onChangeText={() => {}}
               />
@@ -52,6 +56,7 @@ const FilterModal = (props: any) => {
             <View style={styles.inputWrap}>
               <InputField
                 placeholderText={"Start Type"}
+                headingText={"Start Type"}
                 handleInputBtnPress={() => {}}
                 onChangeText={() => {}}
               />

@@ -11,6 +11,8 @@ import strings from 'app/components/utilities/Localization'
 
 const AddAppointmentScreen = ({ navigation, route }: any) => {
   const { data = {}, type = "" } = route?.params || {}
+  console.log('type: ', type);
+  console.log('data ========: ', data);
   const dispatch: any = useDispatch()
   const { response = {}, list = "" } = useSelector((state: any) => state.visitorDataList)
   const addAppointmentData = useSelector((state: any) => state.appointment)
@@ -36,9 +38,17 @@ const AddAppointmentScreen = ({ navigation, route }: any) => {
         if (data?._id) {
           dispatch(getAppointmentDetails({ appointment_id: data?._id }))
         }
+      } else if (type === 'Add') {
+        setAddAppointmentForm({
+          ...addAppointmentForm,
+          lead_id: data?._id,
+          lead_name: data?.customer_first_name ? data?.customer_first_name : data?.customer_detail?.first_name,
+          pickup: data?.pickup,
+          property_id: data?.property_id
+        })
       }
       return () => { };
-    }, [navigation, type]))
+    }, [navigation]))
   useEffect(() => {
     if (type === strings.edit) {
       if (addAppointmentData?.response?.status === 200) {
