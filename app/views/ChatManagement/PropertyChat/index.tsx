@@ -11,15 +11,15 @@ const PropertyChat = ({ navigation, route }: any) => {
 
 
   const dispatch: any = useDispatch();
-  useLayoutEffect(() => {
+  // useLayoutEffect(() => {
 
-    dispatch(
-      getChatListForProperty({
-        limit: 10,
-        offset: 0,
-      })
-    );
-  }, [isFocused]);
+  //   dispatch(
+  //     getChatListForProperty({
+  //       limit: 10,
+  //       offset: 0,
+  //     })
+  //   );
+  // }, [isFocused]);
   const handleDrawerPress = () => {
     navigation.toggleDrawer();
   };

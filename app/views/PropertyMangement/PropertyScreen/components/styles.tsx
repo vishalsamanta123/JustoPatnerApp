@@ -78,7 +78,7 @@ const styles = StyleSheet.create({
     backgroundColor: PRIMARY_THEME_COLOR,
     borderBottomEndRadius: 10,
     borderTopLeftRadius: 10,
-    padding: normalizeSpacing(5)
+    padding: normalizeSpacing(5),
   },
   arrow : {
     tintColor: WHITE_COLOR,

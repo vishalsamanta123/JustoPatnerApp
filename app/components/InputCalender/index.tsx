@@ -1,35 +1,34 @@
-import { View, TextInput, Image, TouchableOpacity, Text } from 'react-native';
-import React, { useState } from 'react';
-import styles from '../InputField/styles';
-import { BLACK_COLOR } from '../utilities/constant';
-import images from '../../assets/images';
-import { normalizeHeight } from '../scaleFontSize';
-import DatePicker from 'react-native-date-picker'
-import moment from 'moment';
+import { View, TextInput, Image, TouchableOpacity, Text } from "react-native";
+import React, { useState } from "react";
+import styles from "../InputField/styles";
+import { BLACK_COLOR } from "../utilities/constant";
+import images from "../../assets/images";
+import { normalizeHeight } from "../scaleFontSize";
+import DatePicker from "react-native-date-picker";
+import moment from "moment";
 
 const InputCalender = (props: any) => {
+  const minDate: any = moment().subtract(18, "years");
   const onConfirmDate = (date: any) => {
-    setOpen(false)
-    props.setDateshow(date)
-    props.dateData(date)
-  }
+    setOpen(false);
+    props.setDateshow(date);
+    props.dateData(date);
+  };
 
-  const [open, setOpen] = useState(false)
+  const [open, setOpen] = useState(false);
   const {
-    inputWidth = '90%',
+    inputWidth = "90%",
     editable = true,
     multiline = false,
     inputheight = 50,
-
-  } = props
+  } = props;
   const onSubmit = (e: any) => {
     const { text } = e;
   };
 
-
   const OpenCalender = () => {
-    setOpen(true)
-  }
+    setOpen(true);
+  };
   return (
     <View>
       <View style={styles.inputHeadinView}>
@@ -37,63 +36,72 @@ const InputCalender = (props: any) => {
       </View>
       <View style={styles.mainContainer}>
         <TextInput
-          style={[styles.input, {
-            width: inputWidth,
-            height: normalizeHeight(inputheight),
-            textAlignVertical: 'top',
-            color: BLACK_COLOR
-          }]}
-          onChangeText={val => props.onChangeText(val)}
+          style={[
+            styles.input,
+            {
+              width: inputWidth,
+              height: normalizeHeight(inputheight),
+              textAlignVertical: "top",
+              color: BLACK_COLOR,
+            },
+          ]}
+          onChangeText={(val) => props.onChangeText(val)}
           onSubmitEditing={onSubmit}
           placeholder={props.placeholderText}
           placeholderTextColor={BLACK_COLOR}
           secureTextEntry={props.isSecureText}
-          autoCapitalize={'none'}
+          autoCapitalize={"none"}
           editable={editable}
           multiline={multiline}
           value={props?.value}
         />
         <TouchableOpacity
           onPress={() => OpenCalender()}
-        //disabled={!props.handleInputBtnPress}
+          //disabled={!props.handleInputBtnPress}
         >
           <Image style={styles.rightImage} source={props.leftIcon} />
         </TouchableOpacity>
       </View>
-      {props.mode == 'date' ?
-        (<DatePicker
+      {props.mode == "date" ? (
+        <DatePicker
           modal={true}
-          mode={'date'}
+          mode={"date"}
           open={open}
-          date={new Date()}
           onDateChange={(date) => {
-            props.setDateshow(date)
+            props.setDateshow(date);
           }}
           onConfirm={(date) => onConfirmDate(date)}
           onCancel={() => {
-            setOpen(false)
+            setOpen(false);
           }}
-          minimumDate={props.minimumDate ? props.minimumDate : ''}
-          maximumDate={props.maximumDate ? props.maximumDate : ''}
-        />)
-        :
-        (<DatePicker
+          minimumDate={props?.minimumDate ? props?.minimumDate : ""}
+          maximumDate={
+            props.headingText === "Date of Birth" ||
+            props.placeholderText === "Date of Birth"
+              ? moment()?.subtract(18, "years")
+              : props.maximumDate
+              ? props.maximumDate
+              : ""
+          }
+          date={new Date(moment(minDate).format())}
+        />
+      ) : (
+        <DatePicker
           modal={true}
-          mode={'time'}
+          mode={"time"}
           open={open}
           date={new Date()}
           onDateChange={(date) => {
-            props.setDateshow(date)
+            props.setDateshow(date);
           }}
           onConfirm={(date) => {
-            onConfirmDate(date)
+            onConfirmDate(date);
           }}
           onCancel={() => {
-            setOpen(false)
+            setOpen(false);
           }}
-        />)
-      }
-
+        />
+      )}
     </View>
   );
 };

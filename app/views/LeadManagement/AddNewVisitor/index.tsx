@@ -73,14 +73,14 @@ const AddNewVisitorScreen = ({ navigation, route }: any) => {
     }
   }, [masterData])
   useEffect(() => {
-    if (propertyData?.response?.status === 200) {
+    console.log('propertyData?.type: ', propertyData?.type);
+    if (propertyData?.response?.status === 200 && propertyData?.type === "ALLOCATE") {
       setAllProperty(propertyData?.response?.data)
     }
-  }, [propertyData])
+  }, [navigation])
   useEffect(() => {
     dispatch(getAllAlloctaeProperty({
       offset: 0,
-      limit: 100,
     }))
   }, [navigation])
 

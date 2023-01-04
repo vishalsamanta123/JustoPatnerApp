@@ -196,7 +196,7 @@ const AuthLoadingComponent = () => {
         // await setDefaultHeader("token", response.token);
         // await AsyncStorage.setItem('loginData', JSON.stringify(response))
         if (
-          typeof response?.data?.firebase_id === "undefined" || response?.data?.firebase_id === null
+          typeof response?.data?.firebase_id === "undefined" || response?.data?.firebase_id === null || response?.data?.firebase_id === ""
         ) {
           console.log('if = = = = = = =>>')
           auth()

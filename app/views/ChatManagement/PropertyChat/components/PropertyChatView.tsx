@@ -10,6 +10,7 @@ import SearchBar from "app/components/SearchBar";
 import strings from "app/components/utilities/Localization";
 import EmptyListScreen from "app/components/CommonScreen/EmptyListScreen";
 import FastImages from "app/components/FastImage";
+import ComingSoonScreen from "app/components/CommonScreen/ComingSoon";
 
 const PropertyChatView = (props: any) => {
   const { handleDrawerPress, propertyChatList } = props;
@@ -61,7 +62,8 @@ const PropertyChatView = (props: any) => {
         statusBarColor={PRIMARY_THEME_COLOR}
         barStyle={"light-content"}
       />
-      <SearchBar
+      <ComingSoonScreen/>
+      {/* <SearchBar
         placeholderText={strings.searchProperty}
         onChangeText={handleChangeText}
         onSubmit={onSubmit}
@@ -72,7 +74,7 @@ const PropertyChatView = (props: any) => {
         ListEmptyComponent={
           <EmptyListScreen message={strings.propertyForchat} />
         }
-      />
+      /> */}
     </View>
   );
 };

@@ -74,7 +74,7 @@ const FilterModal = (props: any) => {
           </View>
           <View style={styles.borderView} />
           <View style={{ marginHorizontal: 10 }}>
-            <View style={styles.inputWrap}>
+            {/* <View style={styles.inputWrap}>
               <InputCalender
                 mode={"date"}
                 leftIcon={images.event}
@@ -100,9 +100,8 @@ const FilterModal = (props: any) => {
                 }}
               />
 
-              {/*  <Button title="Open" handleBtnPress={() => setOpen(true)} /> */}
-            </View>
-            <View style={styles.inputWrap}>
+            </View> */}
+            {/* <View style={styles.inputWrap}>
               <InputCalender
                 mode={"date"}
                 leftIcon={images.event}
@@ -127,10 +126,32 @@ const FilterModal = (props: any) => {
                   });
                 }}
               />
+            </View> */}
+            <View style={styles.inputWrap}>
+              <Dropdown
+                style={styles.dropdown}
+                placeholderStyle={styles.placeholderStyle}
+                selectedTextStyle={styles.selectedTextStyle}
+                iconStyle={styles.iconStyle}
+                data={data}
+                maxHeight={300}
+                labelField="label"
+                valueField="value"
+                placeholder="Property Status"
+                value={props.filterform.property_type}
+                onChange={(item) => {
+                  props.setFilterform({
+                    ...props.filterform,
+                    property_type: item.value,
+                  });
+                }}
+                renderItem={renderItem}
+              />
             </View>
             <View style={styles.inputWrap}>
               <InputField
                 placeholderText={"Search by Name"}
+                headingText={'Search by Name'}
                 handleInputBtnPress={() => { }}
                 onChangeText={(val: any) => {
                   props.setFilterform({
@@ -144,8 +165,9 @@ const FilterModal = (props: any) => {
             </View>
             <View style={styles.inputWrap}>
               <InputField
-                placeholderText={"Search by Location"}
+                // placeholderText={"Search by Location"}
                 handleInputBtnPress={() => { }}
+                headingText={'Search by Location'}
                 valueshow={props?.filterform?.location}
                 onChangeText={(data: any) => {
                   props.setFilterform({
@@ -153,34 +175,13 @@ const FilterModal = (props: any) => {
                     location: data,
                   })
                 }}
-                inputType={'location'}
+                // inputType={'location'}
                 onPressSelect={(data: any, detail: any) => {
                   props.setFilterform({
                     ...props.filterform,
                     location: data?.description,
                   })
                 }}
-              />
-            </View>
-            <View style={styles.inputWrap}>
-              <Dropdown
-                style={styles.dropdown}
-                placeholderStyle={styles.placeholderStyle}
-                selectedTextStyle={styles.selectedTextStyle}
-                iconStyle={styles.iconStyle}
-                data={data}
-                maxHeight={300}
-                labelField="label"
-                valueField="value"
-                placeholder="Select Status"
-                value={props.filterform.property_type}
-                onChange={(item) => {
-                  props.setFilterform({
-                    ...props.filterform,
-                    property_type: item.value,
-                  });
-                }}
-                renderItem={renderItem}
               />
             </View>
           </View>

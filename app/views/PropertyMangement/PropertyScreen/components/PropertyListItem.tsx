@@ -54,7 +54,7 @@ const PropertyListItem = (props: any) => {
       </View>
       <View style={styles.Txtview} >
         <View style={styles.projectContainer}>
-          <Text style={styles.projectTxt}>Status :</Text>
+          <Text style={styles.projectTxt}>Approve Status :</Text>
         </View>
         <View style={styles.nameContainer}>
           <Text style={[styles.nameTxt, {
@@ -64,12 +64,22 @@ const PropertyListItem = (props: any) => {
                   RED_COLOR : RED_COLOR
           }]}>{
               typeof props.items.property_active_status === 'undefined' || props.items.property_active_status ?
-                props.items.approve_status === 1 ? strings.pendingconfirm :
+                props.items.approve_status === 1 ? strings.pending :
                   props.items.approve_status === 2 ? strings.subscribe :
                     props.items.approve_status === 3 && strings.unsubscribe
-                : 'Pending Allocation'
+                : strings.inprocess
 
             }</Text>
+        </View>
+      </View>
+      <View style={[styles.Txtview, { borderBottomWidth: 0 }]} >
+        <View style={styles.projectContainer}>
+          <Text style={styles.projectTxt}>Property Status :</Text>
+        </View>
+        <View style={styles.nameContainer}>
+          <Text style={[styles.nameTxt, {
+            color:props.items.status? GREEN_COLOR : RED_COLOR
+          }]}>{props.items.status ? 'Active' : 'Inactive'}</Text>
         </View>
       </View>
       <View style={[styles.Txtview, { borderBottomWidth: 0 }]} >
@@ -93,29 +103,30 @@ const PropertyListItem = (props: any) => {
               color: props.items.approve_status === 1 ? GREEN_COLOR :
                 props.items.approve_status === 2 ? RED_COLOR : GOLDEN_COLOR
             }]}>{
-                props.items.approve_status === 1 ? strings.active :
+                props.items.approve_status === 1 ? strings.accept :
                   props.items.approve_status === 2 ? strings.unsubscribe : strings.subscribe
 
               }</Text>
           </TouchableOpacity>)
           :
-          (<TouchableOpacity
-            onPress={() => {
-              dispatch(statusUpdate({
-                property_id: props?.items?.property_id,
-                approve_status: 3,
-                resion_id: '',
-              }))
-            }}
-            style={[styles.button, {
-              borderColor: RED_COLOR
-            }]} >
-            <Text style={[styles.buttonTxt, {
-              color: RED_COLOR
-            }]}>{
-                'DeActive'
-              }</Text>
-          </TouchableOpacity>)
+          // (<TouchableOpacity
+          //   onPress={() => {
+          //     dispatch(statusUpdate({
+          //       property_id: props?.items?.property_id,
+          //       approve_status: 3,
+          //       resion_id: '',
+          //     }))
+          //   }}
+          //   style={[styles.button, {
+          //     borderColor: RED_COLOR
+          //   }]} >
+          //   <Text style={[styles.buttonTxt, {
+          //     color: RED_COLOR
+          //   }]}>{
+          //       'DeActive'
+          //     }</Text>
+          // </TouchableOpacity>)
+          <View></View>
         }
         <TouchableOpacity style={styles.Viewbutton} onPress={() => props.onPressView(props.items)} >
           <Image

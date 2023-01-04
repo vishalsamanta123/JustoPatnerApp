@@ -94,9 +94,9 @@ const FilterModal = (props: any) => {
                 iconStyle={styles.iconStyle}
                 data={[
                   { value: 1, label: 'Lead' },
-                  { value: 2, label: 'Site visit/Appoiment' },
+                  { value: 2, label: 'Site visit/Appointment' },
                   { value: 3, label: 'Booking' },
-                  { value: 4, label: 'Regstration' },
+                  { value: 4, label: 'Registration' },
                 ]}
                 maxHeight={300}
                 labelField="label"
