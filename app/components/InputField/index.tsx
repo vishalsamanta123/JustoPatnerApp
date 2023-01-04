@@ -31,7 +31,7 @@ const InputField = (props: any) => {
             headingText={props.headingText}
             headingTextWidth={props.headingTextWidth}
             onPressSelect={props.onPressSelect}
-            placeholderText={props.placeholderText}
+            // placeholderText={props.placeholderText}
             valueshow={props.valueshow}
             onBlur={props.onBlur}
             textInputProps={props.textInputProps ? props.textInputProps : {

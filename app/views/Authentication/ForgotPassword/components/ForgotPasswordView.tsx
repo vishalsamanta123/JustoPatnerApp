@@ -21,6 +21,7 @@ const ForgotPasswordView = (props: any) => {
         <View style={styles.inputWrap}>
           <InputField
             placeholderText={"Email Address"}
+            headingText={"Email Address"}
             rightImgSrc={images.emailIcon}
             isSecureText={false}
             onChangeText={(val: any) => {

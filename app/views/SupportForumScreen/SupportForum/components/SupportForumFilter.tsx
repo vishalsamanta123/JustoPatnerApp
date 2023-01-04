@@ -76,6 +76,7 @@ const SuportForumFilter = (props: any) => {
             <View style={styles.inputWrap}>
               <InputField
                 placeholderText={"Search Project Name"}
+                headingText={"Search Project Name"}
                 valueshow={props?.filterData?.search_title}
                 onChangeText={(data: any) => {
                   props.setFilterData({

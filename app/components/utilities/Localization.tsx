@@ -90,7 +90,7 @@ const strings = new LocalizedStrings({
     Customerdetails: 'Customer Details',
     companydetails: 'Company Details',
     Statusupdate: 'Status Update',
-    ScheduleSitevisite: 'Schedule Site Visite',
+    ScheduleSitevisite: 'Schedule Site Visit',
     followupHeader: 'Follow-up',
     followupDetails: 'Follow-Up Detail',
     searchfollowup: 'Search Follow-Up',

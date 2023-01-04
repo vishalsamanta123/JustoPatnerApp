@@ -73,7 +73,7 @@ const AppointmentView = (props: any) => {
     });
   };
   const onPressAddNew = () => {
-    navigation.navigate("AddAppointmentScreen", { data: {}, type: "add" });
+    navigation.navigate("AddAppointmentScreen", { data: {}, type: "Add" });
   };
   const handleFilterApply = () => {
     setFilterisVisible(false);

@@ -9,6 +9,7 @@ import { getAllAlloctaeProperty } from 'app/Redux/Actions/propertyActions'
 
 const AddNewVisitorScreen = ({ navigation, route }: any) => {
   const { type, data } = route?.params || {}
+  console.log('data: ', data);
   const dispatch: any = useDispatch()
   const { response = {}, detail = "" } = useSelector((state: any) => state.visitorData)
   const [formData, setFormData] = useState<any>({
@@ -45,6 +46,7 @@ const AddNewVisitorScreen = ({ navigation, route }: any) => {
     coumpany_name: '',
   })
   const [masterDatas, setMasterDatas] = useState<any>([])
+  const [NavigationType, setNavigationType] = useState(0)
   const [allProperty, setAllProperty] = useState<any>([])
   const masterData = useSelector((state: any) => state.masterData) || {}
   const propertyData = useSelector((state: any) => state.propertyData) || {}
@@ -89,7 +91,9 @@ const AddNewVisitorScreen = ({ navigation, route }: any) => {
   }
 
   const OnpressseheduleVisit = () => {
-    navigation.navigate('AddAppointmentScreen', { data: {}, type: 'add' })
+    if(validation()){
+      OnpressCreateEdit()
+    }
   }
 
   const validation = () => {
@@ -117,7 +121,21 @@ const AddNewVisitorScreen = ({ navigation, route }: any) => {
   useEffect(() => {
     if (editData?.update || addData?.create) {
       dispatch(addVisitorRemove());
-      navigation.navigate('LeadManagement')
+      if (NavigationType === 1) {
+        setNavigationType(0)
+        navigation.navigate('LeadManagementScreen')
+      } else if (NavigationType === 2) {
+        setNavigationType(0)
+        navigation.navigate('AddAppointmentScreen', {
+          type: 'Add', data: {
+            _id: addData?.response?.data?._id ? addData?.response?.data?._id : '',
+            customer_first_name: addData?.response?.data?.customer?.first_name ? addData?.response?.data?.customer?.first_name : '',
+            property_id: addData?.response?.data?.property_id ? addData?.response?.data?.property_id : '',
+            property_title: data?.property_title ? data?.property_title : '',
+            pickup: data?.pickup
+          }
+        })
+      }
       ErrorMessage({
         msg: editData?.update ? editData?.response?.message :
           addData?.create ? addData?.response?.message : 'no message',
@@ -229,6 +247,7 @@ const AddNewVisitorScreen = ({ navigation, route }: any) => {
       masterDatas={masterDatas}
       // handleProperty={handleProperty}
       allProperty={allProperty}
+      setNavigationType={setNavigationType}
     />
   )
 }
