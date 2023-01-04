@@ -132,7 +132,7 @@ const AgentBankInfo = ({ navigation, route }: any) => {
             valueshow={
               agentInfoData?.rera_certificate_no?.toString()
             }
-            headingText={"RERA Certificat No."}
+            headingText={"RERA Certificate No."}
           />
         </View>
         <View style={[styles.inputWrap, { flexDirection: "row" }]}>

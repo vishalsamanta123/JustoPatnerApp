@@ -37,10 +37,10 @@ const PropertyDetailItem = (props: any) => {
                   RED_COLOR : RED_COLOR
           }]}>{
               typeof props.items.property_active_status === 'undefined' || props.items.property_active_status ?
-                props.items.approve_status === 1 ? strings.pendingconfirm :
+                props.items.approve_status === 1 ? strings.pending :
                   props.items.approve_status === 2 ? strings.subscribe :
                     props.items.approve_status === 3 && strings.unsubscribe
-                : 'Pending Allocation'
+                : strings.inprocess
 
             }</Text>
         </View>

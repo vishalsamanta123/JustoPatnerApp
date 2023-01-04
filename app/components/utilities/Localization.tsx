@@ -11,7 +11,7 @@ const strings = new LocalizedStrings({
     registernow: 'register now',
     propertyHeader: 'Property',
     propertyManagementHeader: 'Property Management',
-    agencyHeader: 'Agent Management',
+    agencyHeader: 'Team Management',
     agencyHeaderpending: 'Pending Agent',
     leadManagementHeader: 'Lead Management',
     appointmentWithCPHeader: 'Appointment With CP',
@@ -20,7 +20,7 @@ const strings = new LocalizedStrings({
     leaderHeader: 'Leaderboard',
     dataflowHeader: 'Data Flow',
     chatHeader: 'Chat',
-    supportHeader: 'Support',
+    supportHeader: 'Raise Ticket',
     supportforumHeader: 'Support Forum',
     supportforumDtlHeader: 'Support Forum Detail',
     searchSupportForum: 'Search Support Forum',
@@ -37,6 +37,7 @@ const strings = new LocalizedStrings({
     ofJusto: 'of Justo.',
     basicInfoText: 'Basic Information',
     active: 'Active',
+    accept: 'Accept',
     view: 'View',
     unsubscribe: 'Unsubscribe',
     subscribe: 'Subscribe',
@@ -64,11 +65,12 @@ const strings = new LocalizedStrings({
     male: "Male",
     female: "Female",
     next: 'next',
-    addnewagent: 'Add new Agent',
+    addnewagent: 'Add Team Member',
     pendingconfirm: 'Pending Confirm',
+    pending: 'Pending',
     edit: 'Edit',
     deactive: 'Deactive',
-    agentdetail: 'Agent Detail',
+    agentdetail: 'Member Detail',
     userbankinfo: 'User Bank Info',
     createnewagency: 'Create New Agency',
     sendotp: 'Send OTP',
@@ -132,7 +134,7 @@ const strings = new LocalizedStrings({
 
 
     // Appointment
-    appointmnet: 'Appointmnet',
+    appointmnet: 'Appointment',
     appointmnetdetail: 'Appointmnet Detail',
     updatestatus: 'Update Status',
     searchappointment: 'Search Appointment',
@@ -160,7 +162,7 @@ const strings = new LocalizedStrings({
     // COMMOM
     cameraHeader: 'Camera',
     galleryHeader: 'Gallery',
-    browse: 'Browse',
+    browse: 'Attachment',
 
     // PERMISSION
     txt_setting_heading_media: 'Justo Would Like to Access Your Photos',
@@ -191,6 +193,7 @@ const strings = new LocalizedStrings({
       'Justo does not have access to your Location. To enable access, tap on Settings and turn on Location.',
 
     notfount: 'Not Found',
+    inprocess: 'In Process',
   },
 });
 

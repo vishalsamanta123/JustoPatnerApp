@@ -159,7 +159,6 @@ const EditProfileView = (props: any) => {
             <InputCalender
               mode={"date"}
               leftIcon={images.event}
-              maximumDate={new Date()}
               placeholderText={"Date of Birth"} //can edit
               headingText={"Date of Birth"}
               editable={false}

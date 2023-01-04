@@ -15,8 +15,8 @@ const AppointmentAddScreen = ({ navigation, route }: any) => {
     const [formData, setFormData] = useState({
         appointment_id: appointmentId?._id ? appointmentId?._id : '',
         status: '',
-        appointment_date: '',
-        appointment_time: '',
+        appointment_date: appointmentId?.appointment_date ? appointmentId?.appointment_date : '',
+        appointment_time: appointmentId?.appointment_time ? appointmentId?.appointment_time :  '',
         remark: ''
     })
     const dispatch: any = useDispatch()
@@ -31,6 +31,16 @@ const AppointmentAddScreen = ({ navigation, route }: any) => {
         if (formData.status == undefined || formData.status == '') {
             isError = false;
             errorMessage = "Followup Status is require. Please Choose Followup Status"
+        }
+        else if (formData?.status === "1") {
+            if (formData.appointment_date == undefined || formData.appointment_date == '') {
+                isError = false;
+                errorMessage = "Date is require. Please Choose Date"
+            }
+            else if (formData.appointment_time == undefined || formData.appointment_time == '') {
+                isError = false;
+                errorMessage = "Time is require. Please Choose Time"
+            }
         }
         if (errorMessage !== '') {
             ErrorMessage({

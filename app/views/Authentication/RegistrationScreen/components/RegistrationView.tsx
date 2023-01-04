@@ -205,7 +205,6 @@ const RegistrationView = (props: any) => {
             placeholderText={"Date of Birth"}
             headingText={"Date of Birth"}
             editable={false}
-            maximumDate={new Date()}
             dateData={(data: any) => {
               props.setRegisterForm({
                 ...props.registerForm,

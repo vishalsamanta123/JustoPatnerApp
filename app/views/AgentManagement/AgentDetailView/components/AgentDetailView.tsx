@@ -17,8 +17,8 @@ const agentDetailView = (props: any) => {
   const layout = useWindowDimensions();
   const [index, setIndex] = useState(0);
   const [routes] = useState([
-    { key: 'first', title: 'Agent Info' },
-    { key: 'second', title: 'Agent Stats' },
+    { key: 'first', title: 'Information' },
+    { key: 'second', title: 'Stats' },
   ]);
 
   const DATAINFO: any =
