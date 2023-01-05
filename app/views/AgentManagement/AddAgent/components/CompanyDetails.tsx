@@ -38,6 +38,7 @@ const CompanyDetails = ({navigation}: any) => {
         <View style={styles.inputWrap}>
           <InputField
             placeholderText={"GST"}
+            headingText={"GST"}
             handleInputBtnPress={() => {}}
             onChangeText={() => {}}
           />
@@ -45,6 +46,7 @@ const CompanyDetails = ({navigation}: any) => {
         <View style={styles.inputWrap}>
           <InputField
             placeholderText={"RERA Registration"}
+            headingText={"RERA Registration"}
             handleInputBtnPress={() => {}}
             onChangeText={() => {}}
           />

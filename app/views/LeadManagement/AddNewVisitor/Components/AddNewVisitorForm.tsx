@@ -337,7 +337,7 @@ const AddNewVisitorForm = (props: any) => {
           </View>
           <View style={styles.inputWrap}>
             <InputField
-              placeholderText={"Localitiy"}
+              placeholderText={"Locality"}
               handleInputBtnPress={() => {}}
               onChangeText={(data: any) => {
                 props.setFormData({
@@ -346,7 +346,7 @@ const AddNewVisitorForm = (props: any) => {
                 });
               }}
               valueshow={props?.formData?.locality}
-              headingText={"Localitiy"}
+              headingText={"Locality"}
             />
           </View>
           <Text style={[styles.headingText, { marginTop: 20 }]}>
@@ -392,6 +392,7 @@ const AddNewVisitorForm = (props: any) => {
               placeholderText={"Expected Possession Date"}
               headingText={"Expected Possession Date"}
               editable={false}
+              minimumDate={new Date()}
               dateData={(data: any) => {
                 props.setFormData({
                   ...props.formData,
@@ -926,20 +927,29 @@ const AddNewVisitorForm = (props: any) => {
                 height={45}
                 buttonText={strings.editVisitor}
                 btnTxtsize={16}
-                handleBtnPress={() => props.OnpressCreateEdit()}
+                handleBtnPress={() => {
+                  props.setNavigationType(1);
+                  props.OnpressCreateEdit();
+                }}
               />
             ) : (
               <>
                 <Button
                   width={150}
-                  handleBtnPress={() => props.OnpressCreateEdit()}
+                  handleBtnPress={() => {
+                    props.setNavigationType(1);
+                    props.OnpressCreateEdit();
+                  }}
                   height={45}
                   buttonText={strings.createVisitor}
                   btnTxtsize={16}
                 />
                 <Button
                   width={150}
-                  handleBtnPress={() => props.OnpressseheduleVisit()}
+                  handleBtnPress={() => {
+                    props.setNavigationType(2);
+                    props.OnpressseheduleVisit();
+                  }}
                   height={45}
                   buttonText={strings.createandschedule}
                   btnTxtsize={14}

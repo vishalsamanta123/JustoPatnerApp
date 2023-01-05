@@ -11,6 +11,7 @@ import InputCalender from "../../../../components/InputCalender";
 import moment from "moment";
 import { useDispatch, useSelector } from "react-redux";
 import { getAllMaster } from "app/Redux/Actions/MasterActions";
+import { DATE_FORMAT } from "app/components/utilities/constant";
 const FilterModal = (props: any) => {
   const dispatch: any = useDispatch()
   useEffect(() => {
@@ -67,20 +68,20 @@ const FilterModal = (props: any) => {
           <View style={{ marginHorizontal: 10 }}>
             <View style={styles.inputWrap}>
               <InputCalender
-                mode={'time'}
-                leftIcon={images.timer}
+                mode={'date'}
+                leftIcon={images.event}
                 placeholderText={"Start Date"}
                 editable={false}
                 dateData={(data: any) => {
                   props.setFilterData({
                     ...props.filterData,
-                    startdate: moment(data).format()
+                    startdate: moment(data).format(DATE_FORMAT)
                   })
                 }}
                 setDateshow={(data: any) => {
                   props.setFilterData({
                     ...props.filterData,
-                    startdate: moment(data).format()
+                    startdate: moment(data).format(DATE_FORMAT)
                   })
                 }}
                 value={props.filterData.startdate}
@@ -88,21 +89,21 @@ const FilterModal = (props: any) => {
             </View>
             <View style={styles.inputWrap}>
               <InputCalender
-                mode={'time'}
-                leftIcon={images.timer}
+                mode={'date'}
+                leftIcon={images.event}
                 placeholderText={"End Date"}
                 editable={false}
                 value={props.filterData.enddate}
                 dateData={(data: any) => {
                   props.setFilterData({
                     ...props.filterData,
-                    enddate: moment(data).format()
+                    enddate: moment(data).format(DATE_FORMAT)
                   })
                 }}
                 setDateshow={(data: any) => {
                   props.setFilterData({
                     ...props.filterData,
-                    enddate: moment(data).format()
+                    enddate: moment(data).format(DATE_FORMAT)
                   })
                 }}
               />

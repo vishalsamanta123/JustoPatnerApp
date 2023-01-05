@@ -183,6 +183,7 @@ const CompanyDetails = ({ navigation }: any) => {
         <View style={styles.inputWrap}>
           <InputField
             placeholderText={"GST"}
+            headingText={"GST"}
             handleInputBtnPress={() => { }}
             valueshow={formData?.gst}
             maxLength={15}
@@ -196,6 +197,7 @@ const CompanyDetails = ({ navigation }: any) => {
         <View style={styles.inputWrap}>
           <InputField
             placeholderText={"RERA Registration"}
+            headingText={"RERA Registration"}
             handleInputBtnPress={() => { }}
             valueshow={formData?.rera_certificate}
             onChangeText={(val: any) => {

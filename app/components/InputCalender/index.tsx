@@ -47,7 +47,9 @@ const InputCalender = (props: any) => {
           ]}
           onChangeText={(val) => props.onChangeText(val)}
           onSubmitEditing={onSubmit}
-          placeholder={props.placeholderText}
+          // placeholder={props.placeholderText}
+          placeholder={props.placeholderText === 'Date of Birth' ? "" :
+          props.placeholderText}
           placeholderTextColor={BLACK_COLOR}
           secureTextEntry={props.isSecureText}
           autoCapitalize={"none"}
@@ -83,7 +85,12 @@ const InputCalender = (props: any) => {
               ? props.maximumDate
               : ""
           }
-          date={new Date(moment(minDate).format())}
+          date={
+            props.headingText === "Date of Birth" ||
+            props.placeholderText === "Date of Birth"
+              ? new Date(moment(minDate).format())
+              : new Date()
+          }
         />
       ) : (
         <DatePicker
