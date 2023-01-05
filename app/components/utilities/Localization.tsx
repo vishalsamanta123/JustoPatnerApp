@@ -162,7 +162,7 @@ const strings = new LocalizedStrings({
     // COMMOM
     cameraHeader: 'Camera',
     galleryHeader: 'Gallery',
-    browse: 'Attachment',
+    browse: 'Attach',
 
     // PERMISSION
     txt_setting_heading_media: 'Justo Would Like to Access Your Photos',
