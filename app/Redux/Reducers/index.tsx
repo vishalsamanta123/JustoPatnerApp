@@ -13,6 +13,7 @@ import { supportForumReducer, supportForumUpdateReducer } from "./SupportForumRe
 import { leaderBoardReducer } from "./LearderBoardReducer";
 import { allUserChatListReducer, propertyChatReducer } from "./ChatReducer";
 import { firebaseReducer } from "./FirebaseReducer";
+import { userAppointmentReducer, userUpdateAppointmentReducer } from "./AppointmentWithUserReducer";
 
 export default {
     loadingReducer: loadingReducer,
@@ -50,6 +51,8 @@ export default {
     editVisitorData: editVisitorReducer,
     addVisitorData: addVisitorReducer,
 
+    userAppointmentData: userAppointmentReducer,
+    updateStatusAppointmentData: userUpdateAppointmentReducer,
 
     masterData: masterDataReducer,
     followUp: followUpReducer,

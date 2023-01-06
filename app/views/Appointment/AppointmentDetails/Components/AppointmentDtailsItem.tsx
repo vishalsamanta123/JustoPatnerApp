@@ -7,6 +7,7 @@ import strings from "app/components/utilities/Localization";
 import { DATE_FORMAT } from "app/components/utilities/constant";
 
 const AppointmentDtailsItem = (props: any) => {
+console.log('props: AppointmentDtailsItem', props);
   return (
     <ScrollView>
       <View style={styles.topDetailsView}>
@@ -14,7 +15,7 @@ const AppointmentDtailsItem = (props: any) => {
           <Text style={styles.topTxt}>Visitor Score </Text>
           <Text style={styles.topTxt}>{props?.item?.lead_score}</Text>
         </View>
-        <Image source={images.qrCode} style={styles.qrImg} />
+        <Image source={{uri: props?.item?.qr_code}} style={styles.qrImg} />
       </View>
       <View style={styles.Txtview}>
         <View style={styles.projectContainer}>

@@ -7,7 +7,7 @@ export const getAllAppointmentList = (params: any) => async (dispatch: any) => {
     dispatch({ type: START_LOADING })
     try {
         const res = await apiCall("post", apiEndPoints.GET_APPOINTMENT_LIST, params);
-        console.log('res.data: ', res.data);
+        console.log('res.data: IN getAllAppointmentList', res.data);
         if (res.data.status == 200) {
             dispatch({
                 type: GET_APPOINTMENT_LIST,

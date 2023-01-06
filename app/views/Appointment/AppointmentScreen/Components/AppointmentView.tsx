@@ -30,6 +30,11 @@ import { useDispatch, useSelector } from "react-redux";
 import { getAllAppointmentList } from "app/Redux/Actions/AppointmentActions";
 import ErrorMessage from "app/components/ErrorMessage";
 import EmptyListScreen from "app/components/CommonScreen/EmptyListScreen";
+import {
+  getUserAppointmentList,
+  updateUserAppointmentStatus,
+} from "app/Redux/Actions/AppiontmentWithUserActions";
+import AppointmentModal from "./AppointmentModal";
 
 const AppointmentView = (props: any) => {
   const loadingref = false;
@@ -43,17 +48,77 @@ const AppointmentView = (props: any) => {
     { key: "second", title: strings.SMAppointment },
   ]);
   const [appointmentList, setAppointmentList] = useState<any>([]);
+  const [userAppointmentList, setUserAppointmentList] = useState<any>([]);
   const [offSET, setOffset] = useState(0);
   const dispatch: any = useDispatch();
   const { response = {}, list = "" } = useSelector(
     (state: any) => state.appointment
   );
+  const { getUserListResponse = {}, userList = "" } = useSelector(
+    (state: any) => state.userAppointmentData
+  );
+  const { updateUserStatusResponse = {}, statusUpdate = "" } = useSelector(
+    (state: any) => state.updateStatusAppointmentData
+  );
+
   const [filterData, setFilterData] = useState({
     start_date: "",
     end_date: "",
     customer_name: "",
     status: "",
   });
+  const [isVisible, setIsVisible] = useState<any>(false);
+  const [params, setParams] = useState({
+    appointment_id: "",
+    appointment_status: "",
+    remark: "",
+  });
+  useEffect(() => {
+    console.log("props.role: ", props.role);
+    if (index == 1) {
+      // getAppointmentList(props.role === 'TL'? 3 : 1);
+      handleUserAppointmentList(1);
+    } else {
+      getAppointmentList(offSET);
+    }
+  }, [index]);
+  useEffect(() => {
+    console.log("props.role: ", props.role);
+    if (index == 1) {
+      // getAppointmentList(props.role === 'TL'? 3 : 1);
+      handleUserAppointmentList(1);
+    } else {
+      getAppointmentList(offSET);
+    }
+  }, [updateUserStatusResponse]);
+
+  const handleUserAppointmentList = (type: any) => {
+    console.log("type: ", type);
+    dispatch(
+      getUserAppointmentList({
+        appoiment: type,
+      })
+    );
+    // toGetDatas(array)
+  };
+  const handleOptionPress = (id: any, status: any) => {
+    console.log(id, "= = == ", status);
+    setParams({
+      ...params,
+      appointment_id: id,
+      appointment_status: status,
+    });
+    setIsVisible(true);
+  };
+
+  const handleOnPressYesInModal = () => {
+    console.log("params: IN APPOINTMENT UPDATE", params);
+    dispatch(
+      updateUserAppointmentStatus(params)
+    );
+    setIsVisible(false);
+  };
+
   const renderTabBar = (props: any) => (
     <TabBar
       activeColor={TABBAR_COLOR}
@@ -65,6 +130,9 @@ const AppointmentView = (props: any) => {
   );
   const onPressView = (data: any) => {
     navigation.navigate("AppointmentDetails", data);
+  };
+  const hanndleUserDetailPress = (data: any) => {
+    navigation.navigate("UserAppointmentDetails", data);
   };
   const onPressEdit = (data: any) => {
     navigation.navigate("AddAppointmentScreen", {
@@ -110,7 +178,32 @@ const AppointmentView = (props: any) => {
       }}
     />
   );
-
+  const SecondRoute = () => (
+    <FlatList
+      data={userAppointmentList}
+      renderItem={({ item }) => (
+        <SmAppointment
+          items={item}
+          hanndleUserDetailPress={hanndleUserDetailPress}
+          handleOptionPress={handleOptionPress}
+        />
+      )}
+      ListEmptyComponent={
+        <EmptyListScreen message={strings.VisitorAppointment} />
+      }
+      onRefresh={() => {
+        setFilterData({
+          start_date: "",
+          end_date: "",
+          customer_name: "",
+          status: "",
+        });
+        handleUserAppointmentList(1);
+        setUserAppointmentList([]);
+      }}
+      refreshing={loadingref}
+    />
+  );
   useFocusEffect(
     React.useCallback(() => {
       getAppointmentList(offSET);
@@ -118,14 +211,31 @@ const AppointmentView = (props: any) => {
     }, [navigation, list])
   );
   useEffect(() => {
-    if (list) {
-      if (offSET == 0) {
-        setAppointmentList(response?.data);
-      } else {
-        setAppointmentList([...appointmentList, ...response?.data]);
+    if (response?.status === 200) {
+      if (response?.data?.length > 0) {
+        if (offSET == 0) {
+          setAppointmentList(response?.data);
+        } else {
+          setAppointmentList([...appointmentList, ...response?.data]);
+        }
       }
     }
   }, [response]);
+  useEffect(() => {
+    console.log("getUserListResponse: ", getUserListResponse);
+    if (getUserListResponse?.status === 200) {
+      if (getUserListResponse?.data?.length > 0) {
+        if (offSET == 0) {
+          setUserAppointmentList(getUserListResponse?.data);
+        } else {
+          setUserAppointmentList([
+            ...userAppointmentList,
+            ...getUserListResponse?.data,
+          ]);
+        }
+      }
+    }
+  }, [getUserListResponse]);
   const getAppointmentList = (offset: any) => {
     setOffset(offset);
     dispatch(
@@ -141,15 +251,6 @@ const AppointmentView = (props: any) => {
     // toGetDatas(array)
   };
 
-  const SecondRoute = () => (
-    <FlatList
-      data={[]}
-      renderItem={({ item }) => (
-        <SmAppointment items={item} onPressView={onPressView} />
-      )}
-      ListEmptyComponent={<EmptyListScreen message={strings.SMAppointment} />}
-    />
-  );
   const renderScene = SceneMap({
     first: FirstRoute,
     second: SecondRoute,
@@ -177,15 +278,14 @@ const AppointmentView = (props: any) => {
         />
       </View>
       <View style={styles.propertyListView}>
-        {/* <TabView
-                    renderTabBar={renderTabBar}
-                    navigationState={{ index, routes }}
-                    renderScene={renderScene}
-                    onIndexChange={setIndex}
-                    initialLayout={{ width: layout.width }}
-
-                /> */}
-        <FlatList
+        <TabView
+          renderTabBar={renderTabBar}
+          navigationState={{ index, routes }}
+          renderScene={renderScene}
+          onIndexChange={setIndex}
+          initialLayout={{ width: layout.width }}
+        />
+        {/* <FlatList
           data={Array.isArray(appointmentList) ? appointmentList : []}
           renderItem={({ item }) => (
             <VisitorAppointment
@@ -213,16 +313,14 @@ const AppointmentView = (props: any) => {
               getAppointmentList(appointmentList?.length > 2 ? offSET + 1 : 0);
             }
           }}
-        />
+        /> */}
       </View>
-      <FilterModal
-        Visible={FilterisVisible}
-        setIsVisible={setFilterisVisible}
-        filterData={filterData}
-        setFilterData={setFilterData}
-        handleFilterApply={handleFilterApply}
-        getAppointmentList={getAppointmentList}
-        setAppointmentList={setAppointmentList}
+      <AppointmentModal
+        Visible={isVisible}
+        setIsVisible={setIsVisible}
+        params={params}
+        setParams={setParams}
+        handleOnPressYesInModal={handleOnPressYesInModal}
       />
     </View>
   );
