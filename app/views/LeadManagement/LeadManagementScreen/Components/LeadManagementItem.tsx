@@ -89,7 +89,9 @@ const LeadManagementItem = (props: any) => {
                 props.items.lead_status === 3 ? "Site Visit/Appointment" :
                   props.items.lead_status === 4 ? "Booking" :
                     props.items.lead_status === 5 ? "Registration" :
-                    props.items.lead_status === 6 ? "Close" : strings.notfount
+                      props.items.lead_status === 6 ? "Close" :
+                        props.items.lead_status === 7 ? "Ready To Book" :
+                          strings.notfount
             }
           </Text>
         </View>
@@ -108,7 +110,7 @@ const LeadManagementItem = (props: any) => {
               `tel:${props?.items?.mobile}`
             )
           }}
-          >
+        >
           <Text style={[styles.buttonTxt, { color: CALL_COLOR }]}>{strings.call}</Text>
         </TouchableOpacity>
         <TouchableOpacity style={styles.Viewbutton} onPress={() => props.onPressView(props.items)}>
