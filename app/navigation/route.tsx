@@ -69,6 +69,7 @@ import ChatViewScreen from 'app/views/ChatManagement/Chat';
 import ChatScreen from 'app/views/ChatManagement/Chat/components/ChatScreen';
 import auth from "@react-native-firebase/auth";
 import { updateFirebase } from 'app/Redux/Actions/FirebaseActions';
+import UserAppointmentDetails from 'app/views/Appointment/UserAppointmentDetails';
 
 
 
@@ -164,6 +165,7 @@ const AppComponent = () => {
       <AppStack.Screen name="AppointmentDetails" component={AppointmentDetails} />
       <AppStack.Screen name="AddAppointmentScreen" component={AddAppointmentScreen} />
       <AppStack.Screen name="AppointmentAdd" component={AppointmentAddScreen} />
+      <AppStack.Screen name="UserAppointmentDetails" component={UserAppointmentDetails} />
 
       {/*Setting screen*/}
       <AppStack.Screen name="profile" component={ProfileScreen} />

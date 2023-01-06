@@ -119,6 +119,9 @@ const strings = new LocalizedStrings({
     search:'Search',
     propertyForchat: 'Property for chat',
     chat: 'Chat',
+    cancel: 'Cancel',
+    confirm: 'Confirm',
+    updateStatus: 'Update Status',
 
     //Auth 
 

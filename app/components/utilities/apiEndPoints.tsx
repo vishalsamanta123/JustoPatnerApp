@@ -86,6 +86,9 @@ export default {
   ADD_APPOINTMENT: '/appointment/addAppointment',
   EDIT_APPOINTMENT: '/appointment/editAppointment',
 
+  GET_USER_APPOINTMENT_LIST: '/userAppointment/getUSerAppoinmentList',
+  UPDATE_USER_APPOINTMENT_STATUS: '/userAppointment/userAppointmentStatusUpdate',
+
   //Settings
   UPDATECHANNELPARTNER: "/channelPartner/updateChannelPartner",
   NOTIFICATION_LIST: "/notification/getNotificationList",
