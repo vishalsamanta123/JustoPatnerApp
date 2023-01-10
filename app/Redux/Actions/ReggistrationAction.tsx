@@ -38,12 +38,10 @@ export const RegistrationFormRemv = () => async (dispatch: any) => {
 };
 
 export const createChannelPartner = (item: any) => async (dispatch: any) => {
-  console.log('item: ', item);
   dispatch({ type: START_LOADING })
   try {
     const header = { "Content-Type": "multipart/form-data", "access-control-allow-origin": "*" }
     const res = await apiCall("post", apiEndPoints.CREATECHANNELPARTNER, item, header);
-    console.log('res: CREATECHANNELPARTNER', res);
     if (res?.data?.status === 200) {
       dispatch({
         type: CREATE_CHANNEL_PARTNER,

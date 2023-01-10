@@ -48,9 +48,6 @@ export async function apiCall(
         return error.response;
       }
       return error.response;
-      // console.log("Error data : ", error.response.data);
-      // console.log("Error status : ", error.response.status);
-      // console.log("Error headers : ", error.response.headers);
     } else if (error.request) {
       // console.log("Error request 1: ", error.request);
       return error.response;

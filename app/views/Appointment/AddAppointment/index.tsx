@@ -11,8 +11,6 @@ import strings from 'app/components/utilities/Localization'
 
 const AddAppointmentScreen = ({ navigation, route }: any) => {
   const { data = {}, type = "" } = route?.params || {}
-  console.log('type: ', type);
-  console.log('data ========: ', data);
   const dispatch: any = useDispatch()
   const { response = {}, list = "" } = useSelector((state: any) => state.visitorDataList)
   const addAppointmentData = useSelector((state: any) => state.appointment)

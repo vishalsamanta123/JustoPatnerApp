@@ -193,7 +193,6 @@ const AuthLoadingComponent = () => {
 
   const checklogin = async () => {
     if (response && authToken) {
-    console.log('response: ', response);
       if (response.status === 200) {
         // await setDefaultHeader("token", response.token);
         // await AsyncStorage.setItem('loginData', JSON.stringify(response))
@@ -204,7 +203,6 @@ const AuthLoadingComponent = () => {
           auth()
             .createUserWithEmailAndPassword(response?.data?.email, "123456")
             .then(async (res: any) => {
-              console.log("res: IN CREATE", res.user.uid);
               console.log("User account created & signed in!");
               await setDefaultHeader("token", response.token);
               await AsyncStorage.setItem("loginData", JSON.stringify(response));

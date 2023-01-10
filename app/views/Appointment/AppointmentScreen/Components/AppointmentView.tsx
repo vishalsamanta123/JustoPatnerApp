@@ -74,18 +74,14 @@ const AppointmentView = (props: any) => {
     remark: "",
   });
   useEffect(() => {
-    console.log("props.role: ", props.role);
     if (index == 1) {
-      // getAppointmentList(props.role === 'TL'? 3 : 1);
       handleUserAppointmentList(1);
     } else {
       getAppointmentList(offSET);
     }
   }, [index]);
   useEffect(() => {
-    console.log("props.role: ", props.role);
     if (index == 1) {
-      // getAppointmentList(props.role === 'TL'? 3 : 1);
       handleUserAppointmentList(1);
     } else {
       getAppointmentList(offSET);
@@ -93,7 +89,6 @@ const AppointmentView = (props: any) => {
   }, [updateUserStatusResponse]);
 
   const handleUserAppointmentList = (type: any) => {
-    console.log("type: ", type);
     dispatch(
       getUserAppointmentList({
         appoiment: type,
@@ -102,7 +97,6 @@ const AppointmentView = (props: any) => {
     // toGetDatas(array)
   };
   const handleOptionPress = (id: any, status: any) => {
-    console.log(id, "= = == ", status);
     setParams({
       ...params,
       appointment_id: id,
@@ -112,7 +106,6 @@ const AppointmentView = (props: any) => {
   };
 
   const handleOnPressYesInModal = () => {
-    console.log("params: IN APPOINTMENT UPDATE", params);
     dispatch(
       updateUserAppointmentStatus(params)
     );
@@ -222,7 +215,6 @@ const AppointmentView = (props: any) => {
     }
   }, [response]);
   useEffect(() => {
-    console.log("getUserListResponse: ", getUserListResponse);
     if (getUserListResponse?.status === 200) {
       if (getUserListResponse?.data?.length > 0) {
         if (offSET == 0) {

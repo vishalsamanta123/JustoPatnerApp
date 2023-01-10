@@ -7,7 +7,6 @@ export const getAllAppointmentList = (params: any) => async (dispatch: any) => {
     dispatch({ type: START_LOADING })
     try {
         const res = await apiCall("post", apiEndPoints.GET_APPOINTMENT_LIST, params);
-        console.log('res.data: IN getAllAppointmentList', res.data);
         if (res.data.status == 200) {
             dispatch({
                 type: GET_APPOINTMENT_LIST,
@@ -57,11 +56,9 @@ export const getAppointmentDetails = (params: any) => async (dispatch: any) => {
     }
 };
 export const addAppointment = (params: any) => async (dispatch: any) => {
-console.log('params: ADD_APPOINTMENT', params);
     dispatch({ type: START_LOADING })
     try {
         const res = await apiCall("post", apiEndPoints.ADD_APPOINTMENT, params);
-        console.log('res:ADD_APPOINTMENT ', res);
         if (res.data.status == 200) {
             dispatch({
                 type: ADD_APPOINTMENT,
@@ -85,11 +82,9 @@ console.log('params: ADD_APPOINTMENT', params);
     }
 };
 export const editAppointment = (params: any) => async (dispatch: any) => {
-console.log('params: EDIT_APPOINTMENT', params);
     dispatch({ type: START_LOADING })
     try {
         const res = await apiCall("post", apiEndPoints.EDIT_APPOINTMENT, params);
-        console.log('res: EDIT_APPOINTMENT', res);
         if (res?.data?.status == 200) {
             dispatch({
                 type: EDIT_APPOINTMENT,

@@ -14,7 +14,6 @@ import RNFS from "react-native-fs";
 const CatalogueContent = ({ navigation, route }: any) => {
 
   const datadocuments = route?.params || []
-  // console.log("ImageContent -> items", datadocuments)
 
   const handleBackPress = () => {
     navigation.goBack();

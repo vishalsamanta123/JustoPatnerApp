@@ -27,7 +27,6 @@ const CompanyDetails = ({ navigation }: any) => {
   const [lettervisible, setletterVisible] = useState(false)
   const insets = useSafeAreaInsets();
   const [formData, setFormData] = useState<any>({})
-  console.log('formData: ', formData);
   const registrationData = useSelector((state: any) => state.registrationForm)
   const createChannelPartnerData = useSelector((state: any) => state.registerData)
   const dispatch: any = useDispatch()

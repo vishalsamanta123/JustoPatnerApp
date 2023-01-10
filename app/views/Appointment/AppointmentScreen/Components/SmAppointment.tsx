@@ -13,7 +13,6 @@ import {
 import moment from "moment";
 
 const SmAppointment = (props: any) => {
-  console.log("props: SmAppointment", props);
   return (
     <View style={styles.IteamView}>
       <View style={styles.Txtview}>

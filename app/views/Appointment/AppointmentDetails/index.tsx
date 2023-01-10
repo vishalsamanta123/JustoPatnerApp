@@ -8,9 +8,7 @@ import { getAppointmentDetails } from 'app/Redux/Actions/AppointmentActions'
 const AppointmentDetails = ({ navigation, route }: any) => {
   const AppointmentId = route?.params || {}
   const [detailsData, setDetailsData] = useState<any>({})
-  console.log('detailsData: ', detailsData);
   const { response = {}, detail = "" } = useSelector((state: any) => state.appointment)
-  console.log('response: ', response);
 
   const dispatch: any = useDispatch()
   useFocusEffect(

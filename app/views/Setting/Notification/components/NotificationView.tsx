@@ -15,7 +15,6 @@ import EmptyListScreen from "app/components/CommonScreen/EmptyListScreen";
 const NotificationView = (props: any) => {
   const { onPressBack, data } = props;
   const { response = [] } = useSelector((state: any) => state.notificationData) || []
-  console.log('response: ', response);
   const [listData, setListData] = useState<any>([]);
 
   useEffect(() => {
@@ -44,7 +43,6 @@ const NotificationView = (props: any) => {
 
   const renderItem = (data: any) => {
     const { subject, message } = data.item;
-    console.log("data: ", data);
     return (
       <TouchableHighlight
         onPress={() => console.log("You touched me")}

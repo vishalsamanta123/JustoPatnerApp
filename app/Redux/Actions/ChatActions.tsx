@@ -3,11 +3,9 @@ import { apiCall } from "app/components/utilities/httpClient";
 import { GET_CHAT_ALL_USER_PROPERTY, GET_CHAT_PROPERTY_LIST, PROPERTY_LIST_ERROR, START_LOADING, STOP_LOADING, USER_CHAT_LIST_ERROR } from "../types";
 
 export const getChatListForProperty = (params: any) => async (dispatch: any) => {
-    console.log('loginDetail: ', params);
     dispatch({ type: START_LOADING })
     try {
         const res = await apiCall("post", apiEndPoints.GET_PROPERTY_LIST_FOR_CHAT, params);
-        console.log('res: GET_PROPERTY_LIST_FOR_CHAT', res.data);
         if (res.data.status === 200) {
             // await AsyncStorage.setItem("AuthToken", res?.data?.token);
             dispatch({
@@ -32,13 +30,10 @@ export const getChatListForProperty = (params: any) => async (dispatch: any) => 
     }
 }
 export const getAllChatInProperty = (params: any) => async (dispatch: any) => {
-    console.log('GET_ALL_CHAT_IN_PROPERTY: PARAMS', params);
     dispatch({ type: START_LOADING })
     try {
         const res = await apiCall("post", apiEndPoints.GET_ALL_CHAT_IN_PROPERTY, params);
-        console.log('res: GET_ALL_CHAT_IN_PROPERTY', res.data);
         if (res.data.status === 200) {
-            // await AsyncStorage.setItem("AuthToken", res?.data?.token);
             dispatch({
                 type: GET_CHAT_ALL_USER_PROPERTY,
                 payload: res.data

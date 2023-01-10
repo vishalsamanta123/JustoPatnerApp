@@ -9,7 +9,6 @@ import AppointmentAddView from "./components/AppointmentAdd";
 
 const AppointmentAddScreen = ({ navigation, route }: any) => {
     const appointmentId = route?.params || {}
-    console.log('appointmentId: ', appointmentId);
     const [value, setValue] = useState(null)
     const [isloading, setIsloading] = useState(false)
     const editAddAppointmentData = useSelector((state: any) => state.editAddAppointment)

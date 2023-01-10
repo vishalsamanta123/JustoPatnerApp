@@ -11,7 +11,6 @@ import Button from "../../../../components/Button";
 import { useSelector } from "react-redux";
 
 const AppointmentDetailsView = (props: any) => {
-  console.log("props?.detailsData: ", props?.detailsData);
 
   const insets = useSafeAreaInsets();
   const { response = {}, detail = "" } = useSelector(

@@ -16,17 +16,14 @@ const VideoContent = ({navigation,route}: any) => {
   const [playerVisible,setPlayerVisible] = useState(false)
   const [itemDetail,setItemDetail] = useState({})
   const datavideos = route?.params || []
-  // console.log("ImageContent -> items", datavideos)
   const handleBackPress = () => {
     navigation.goBack();
   };
   const playvideo = (item : any) => {
-    //console.log(item)
     setItemDetail(item)
     setPlayerVisible(true)
   };
 
-  //const playerRef = React.useRef<Video>(null);
 
   return (
     <View style={styles.mainContainer}>
@@ -40,12 +37,6 @@ const VideoContent = ({navigation,route}: any) => {
         handleOnLeftIconPress={handleBackPress}
       />
       <View>
-        {/*  <VideoPlayer
-        video={{ uri: 'http://commondatastorage.googleapis.com/gtv-videos-bucket/sample/BigBuckBunny.mp4' }}
-        videoWidth={1600}
-        videoHeight={900}
-        thumbnail={{ uri: 'https://i.picsum.photos/id/866/1600/900.jpg' }}
-        /> */}
         <FlatList data={datavideos}
         numColumns={1}
         showsVerticalScrollIndicator={false}
@@ -58,12 +49,10 @@ const VideoContent = ({navigation,route}: any) => {
            
           
             <Image
-              //source={item.image}
               source={images.buildings}
               style={{
                 width: '100%',
                 height: normalizeHeight(300),
-                //margin: normalizeSpacing(5),
                 alignItems: 'center',
                 justifyContent: 'center'
               }}

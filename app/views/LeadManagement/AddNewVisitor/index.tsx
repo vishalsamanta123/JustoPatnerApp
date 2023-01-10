@@ -9,7 +9,6 @@ import { getAllAlloctaeProperty } from 'app/Redux/Actions/propertyActions'
 
 const AddNewVisitorScreen = ({ navigation, route }: any) => {
   const { type, data } = route?.params || {}
-  console.log('data: ', data);
   const dispatch: any = useDispatch()
   const { response = {}, detail = "" } = useSelector((state: any) => state.visitorData)
   const [formData, setFormData] = useState<any>({
@@ -75,7 +74,6 @@ const AddNewVisitorScreen = ({ navigation, route }: any) => {
     }
   }, [masterData])
   useEffect(() => {
-    console.log('propertyData?.type: ', propertyData?.type);
     if (propertyData?.response?.status === 200 && propertyData?.type === "ALLOCATE") {
       setAllProperty(propertyData?.response?.data)
     }

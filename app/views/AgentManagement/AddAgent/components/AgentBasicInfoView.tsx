@@ -98,7 +98,7 @@ const AgentBasicInfoView = (props: any) => {
           <View style={styles.inputWrap}>
             <InputField
               require={true}
-              placeholderText={"Aadhaar No."}//can edit
+              placeholderText={"3675 9834 6012"}//can edit
               handleInputBtnPress={() => { }}
               onChangeText={(data: any) => {
                 props.setAgentInfoData({
@@ -115,7 +115,7 @@ const AgentBasicInfoView = (props: any) => {
           <View style={styles.inputWrap}>
             <InputField
               require={true}
-              placeholderText={"Pancard No."}//can edit
+              placeholderText={"BNZAA2318JM"}//can edit
               handleInputBtnPress={() => { }}
               onChangeText={(data: any) => {
                 props.setAgentInfoData({

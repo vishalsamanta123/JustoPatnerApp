@@ -24,7 +24,6 @@ const ChangePassword = ({ navigation, route }: any) => {
 
   const checklogin = async () => {
     if (uPasswordSelector.response && uPasswordSelector.updatepassword) {
-      // console.log("checklogin -> uPasswordSelector.response.status", uPasswordSelector.response.status)
       if (uPasswordSelector.response.status === 200) {
         dispatch({
           type: UPDATEPASSWORD_NULL,

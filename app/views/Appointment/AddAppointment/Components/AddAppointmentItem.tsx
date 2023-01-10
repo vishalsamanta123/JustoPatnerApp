@@ -18,7 +18,6 @@ import InputCalender from "app/components/InputCalender";
 import moment from "moment";
 
 const AddAppointmentItem = (props: any) => {
-  console.log('props?.addAppointmentForm: ', props?.addAppointmentForm);
 
   return (
     <ScrollView keyboardShouldPersistTaps={"handled"}>

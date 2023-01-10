@@ -12,7 +12,6 @@ import { DATA } from "../../../../components/utilities/DemoData";
 const ImageContent = ({ navigation,route }: any) => {
 
   const dataimage = route?.params || []
-  // console.log('dataimage: ', typeof dataimage === 'string');
   const handleBackPress = () => {
     navigation.goBack();
   };

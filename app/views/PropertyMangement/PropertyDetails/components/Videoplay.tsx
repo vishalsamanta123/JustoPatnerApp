@@ -1,25 +1,12 @@
 import { View, Text, Image, TouchableOpacity } from "react-native";
-import React, { useState } from "react";
+import React from "react";
 import Modal from "react-native-modal";
 import styles from "../../../../components/Modals/styles";
 import images from "../../../../assets/images";
 import strings from "../../../../components/utilities/Localization";
-import Button from "../../../../components/Button";
-import InputField from "../../../../components/InputField";
-import InputCalender from "../../../../components/InputCalender";
-import { Dropdown } from "react-native-element-dropdown";
-import moment from 'moment';
-import { useDispatch } from 'react-redux';
-import { getFilterProperty, getAllProperty } from 'app/Redux/Actions/propertyActions';
 import Video from "react-native-video";
 
 const Videoplay = (props: any) => {
-    const dispatch: any = useDispatch()
-    console.log("Videoplay -> props.itemDetail", props.itemDetail?.document_type)
-
-
-
-
 
     return (
         <View>

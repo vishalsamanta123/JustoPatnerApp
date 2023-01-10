@@ -11,7 +11,6 @@ export const dashboardData = (userDetail: any) => async (dispatch: any) => {
             apiEndPoints.GET_DASHBOARD_CP,
             {}
         );
-        console.log('res: ', res);
         if (res.data.status == 200) {
             dispatch({
                 type: DASHBOARD,

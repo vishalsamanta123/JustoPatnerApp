@@ -7,7 +7,6 @@ import strings from "app/components/utilities/Localization";
 import { DATE_FORMAT } from "app/components/utilities/constant";
 
 const AppointmentDtailsItem = (props: any) => {
-console.log('props: AppointmentDtailsItem', props);
   return (
     <ScrollView>
       <View style={styles.topDetailsView}>

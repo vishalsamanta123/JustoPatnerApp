@@ -45,7 +45,6 @@ const LoginScreen = ({ navigation }: any) => {
         backgroundColor: RED_COLOR
       })
     }
-    //console.log('isError: ', isError);
     return isError;
   }
   const handleLoginPress = () => {

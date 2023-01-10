@@ -47,8 +47,10 @@ const CommonInput = (props: any) => {
           }]}
           onChangeText={val => props.onChangeText(val)}
           onSubmitEditing={onSubmit}
-          // placeholder={props.placeholderText}
-          //placeholderTextColor={BLACK_COLOR}
+          placeholder={
+            props.placeholderText === '3675 9834 6012' || props.placeholderText === 'BNZAA2318JM' ?
+            props.placeholderText : null}
+          placeholderTextColor={BLACK_COLOR}
           secureTextEntry={props.isSecureText}
           autoCapitalize={'none'}
           editable={editable}

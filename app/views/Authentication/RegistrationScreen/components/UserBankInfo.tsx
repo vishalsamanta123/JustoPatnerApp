@@ -107,7 +107,6 @@ const UserBankInfo = ({ navigation }: any) => {
     return isError;
   }
   const onPressBack = () => {
-    console.log("onPressBack")
     navigation.goBack()
     dispatch(RegistrationForm(formData))
   }

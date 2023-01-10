@@ -85,7 +85,6 @@ const ChangePasswordScreen = ({ navigation, route }: any) => {
 
   const handleChangePress = () => {
     if (validation()) {
-      // console.log('email: ', email);
 
       const params = {
         old_password: passwordData.oldPassword,

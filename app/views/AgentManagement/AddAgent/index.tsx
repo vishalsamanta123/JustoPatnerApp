@@ -1,5 +1,5 @@
 import ErrorMessage from 'app/components/ErrorMessage';
-import { RED_COLOR, validateEmail } from 'app/components/utilities/constant';
+import { RED_COLOR, Regexs, validateEmail } from 'app/components/utilities/constant';
 import { addAgentForm, getAgentDetail } from 'app/Redux/Actions/AgentActions';
 import React, { useEffect, useState, useLayoutEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
@@ -54,10 +54,24 @@ const AgentBasicInfo = ({ navigation, route }: any) => {
     } else if (adhar_no === '' || adhar_no === undefined) {
       isError = false;
       errorMessage = "Please fill aadhar number"
-    } else if (pancard_no === '' || pancard_no === undefined) {
+    } 
+    else if (
+      Regexs.AadharRegex.test(adhar_no) === false
+    ) {
+      isError = false;
+      errorMessage = "Please enter the valid Aadhaar number";
+    }
+    else if (pancard_no === '' || pancard_no === undefined) {
       isError = false;
       errorMessage = "Please fill pancard number"
-    } else if (gender === '' || gender === undefined) {
+    } 
+    else if (
+      Regexs.AadharRegex.test(pancard_no) === false
+    ) {
+      isError = false;
+      errorMessage = "Please enter the valid Pancard number";
+    }
+    else if (gender === '' || gender === undefined) {
       isError = false;
       errorMessage = "Please select gender"
     } else if (date_of_birth === '' || date_of_birth === undefined) {

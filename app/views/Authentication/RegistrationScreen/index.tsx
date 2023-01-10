@@ -1,5 +1,5 @@
 import ErrorMessage from "app/components/ErrorMessage";
-import { GREEN_COLOR, RED_COLOR, validateEmail } from "app/components/utilities/constant";
+import { GREEN_COLOR, RED_COLOR, Regexs, validateEmail } from "app/components/utilities/constant";
 import {
   checkEmailMobile,
   emailCheckRemove,
@@ -80,12 +80,26 @@ const RegistrationScreen = ({ navigation }: any) => {
       ) {
         isError = false;
         errorMessage = "Aadhaar No. is require. Please enter Aadhaar No.";
-      } else if (
+      } 
+      else if (
+        Regexs.AadharRegex.test(registerForm.adhar_no) === false
+      ) {
+        isError = false;
+        errorMessage = "Please enter the valid Aadhaar number";
+      }
+      else if (
         registerForm.pancard_no == undefined || registerForm.pancard_no == ""
       ) {
         isError = false;
         errorMessage = "Pancard No. is require. Please enter Pancard No.";
-      } else if (
+      } 
+      else if (
+        Regexs.panRegex.test(registerForm.pancard_no) === false
+      ) {
+        isError = false;
+        errorMessage = "Please enter the valid Pancard number";
+      }
+      else if (
         registerForm.gender == undefined || registerForm.gender == "") {
         isError = false;
         errorMessage = "Gender is require. Please enter Gender";
