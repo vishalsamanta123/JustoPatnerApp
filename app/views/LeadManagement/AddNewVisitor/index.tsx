@@ -123,7 +123,7 @@ const AddNewVisitorScreen = ({ navigation, route }: any) => {
       dispatch(addVisitorRemove());
       if (NavigationType === 1) {
         setNavigationType(0)
-        navigation.navigate('LeadManagementScreen')
+        navigation.navigate('LeadManagement')
       } else if (NavigationType === 2) {
         setNavigationType(0)
         navigation.navigate('AddAppointmentScreen', {

@@ -3,7 +3,7 @@ import React, { useState } from "react";
 import styles from "../InputField/styles";
 import { BLACK_COLOR } from "../utilities/constant";
 import images from "../../assets/images";
-import { normalizeHeight } from "../scaleFontSize";
+import { normalizeHeight, normalizeSpacing, normalizeWidth } from "../scaleFontSize";
 import DatePicker from "react-native-date-picker";
 import moment from "moment";
 
@@ -33,6 +33,18 @@ const InputCalender = (props: any) => {
     <View>
       <View style={styles.inputHeadinView}>
         <Text style={styles.inputHeadingText}>{props.headingText}</Text>
+        {props.require ?
+          (<Image
+            source={images.star}
+            style={{
+              width: normalizeWidth(5),
+              height: normalizeHeight(5),
+              marginLeft: normalizeSpacing(5),
+              marginBottom: normalizeSpacing(5),
+            }}
+          />)
+          : null
+        }
       </View>
       <View style={styles.mainContainer}>
         <TextInput

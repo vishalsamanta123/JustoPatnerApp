@@ -3,7 +3,7 @@ import React from 'react';
 import styles from './styles';
 import { BLACK_COLOR } from '../utilities/constant';
 import images from '../../assets/images';
-import { normalizeHeight } from '../scaleFontSize';
+import { normalizeHeight, normalizeSpacing, normalizeWidth } from '../scaleFontSize';
 
 const CommonInput = (props: any) => {
   const {
@@ -24,6 +24,18 @@ const CommonInput = (props: any) => {
         <Text style={[styles.inputHeadingText, {
           width: props.headingTextWidth
         }]}>{props.headingText}</Text>
+        {props.require ?
+          (<Image
+            source={images.star}
+            style={{
+              width: normalizeWidth(5),
+              height: normalizeHeight(5),
+              marginLeft: normalizeSpacing(5),
+              marginBottom: normalizeSpacing(5),
+            }}
+          />)
+          : null
+        }
       </View>
       <View style={styles.mainContainer}>
         <TextInput

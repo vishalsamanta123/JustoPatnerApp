@@ -1,10 +1,11 @@
-import { View, Text } from 'react-native';
+import { View, Text, Image } from 'react-native';
 import React from 'react';
 import styles from './styles';
 import { BLACK_COLOR, FONT_FAMILY_SEMIBOLD, GRAY_COLOR, GRAY_LIGHT_COLOR, Isios, MAP_KEY, WHITE_COLOR } from '../utilities/constant';
-import { normalize, normalizeSpacing } from '../scaleFontSize';
+import { normalize, normalizeHeight, normalizeSpacing, normalizeWidth } from '../scaleFontSize';
 import { GooglePlacesAutocomplete } from 'react-native-google-places-autocomplete';
 import strings from '../utilities/Localization';
+import images from 'app/assets/images';
 
 const LocationInput = (props: any) => {
     return (
@@ -13,6 +14,18 @@ const LocationInput = (props: any) => {
                 <Text style={[styles.inputHeadingText, {
                     width: props.headingTextWidth
                 }]}>{props.headingText}</Text>
+                {props.require ?
+                    (<Image
+                        source={images.star}
+                        style={{
+                            width: normalizeWidth(5),
+                            height: normalizeHeight(5),
+                            marginLeft: normalizeSpacing(5),
+                            marginBottom: normalizeSpacing(5),
+                        }}
+                    />)
+                    : null
+                }
             </View>
             <GooglePlacesAutocomplete
                 fetchDetails={true}

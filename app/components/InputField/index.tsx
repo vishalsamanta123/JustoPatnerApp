@@ -16,7 +16,8 @@ const InputField = (props: any) => {
     inputheight = 50,
     keyboardtype = 'default',
     topping = 2,
-    inputType = "normal"
+    inputType = "normal",
+    require = false
   } = props
   const onSubmit = (e: any) => {
     const { text } = e;
@@ -27,6 +28,7 @@ const InputField = (props: any) => {
       <View>
         {inputType === 'location' ?
           <LocationInput
+            require={require}
             editable={editable}
             headingText={props.headingText}
             headingTextWidth={props.headingTextWidth}
@@ -44,6 +46,7 @@ const InputField = (props: any) => {
           />
           :
           <CommonInput
+            require={require}
             editable={editable}
             inputWidth={inputWidth}
             multiline={multiline}

@@ -68,6 +68,8 @@ const styles = StyleSheet.create({
     top: normalizeSpacing(-10),
     left: normalizeSpacing(20),
     zIndex: 1,
+    flexDirection: 'row',
+    alignItems: 'center'
     // backgroundColor: 'transparent',
   },
   inputHeadingText: {

@@ -12,14 +12,15 @@ import { ScrollView } from 'react-native-gesture-handler'
 const ForgotPasswordView = (props: any) => {
   return (
     <ScrollView style={styles.mainContainer}>
-      
+
       <View style={styles.logoView}>
-         <LogoView/>
+        <LogoView />
       </View>
-      
+
       <View style={styles.inputView}>
         <View style={styles.inputWrap}>
           <InputField
+            require={true}
             placeholderText={"Email Address"}
             headingText={"Email Address"}
             rightImgSrc={images.emailIcon}
@@ -29,16 +30,16 @@ const ForgotPasswordView = (props: any) => {
             }}
           />
         </View>
-     
-      <View style={styles.btnView}>
-        <Button
+
+        <View style={styles.btnView}>
+          <Button
             buttonText={strings.sendotp}
             handleBtnPress={props.handleOtp}
-         />
-      </View>
+          />
+        </View>
       </View>
       <View style={styles.bottomView}>
-      <Text style={styles.bottomText}>{strings.byCreating}</Text>
+        <Text style={styles.bottomText}>{strings.byCreating}</Text>
         <TouchableOpacity style={styles.spanTouch}>
           <Text style={styles.spanText}> {strings.termsAndCondition} </Text>
         </TouchableOpacity>

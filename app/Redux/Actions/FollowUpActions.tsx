@@ -33,6 +33,7 @@ export const getAllFollowUpDetails = (params: any) => async (dispatch: any) => {
     dispatch({ type: START_LOADING })
     try {
         const res = await apiCall("post", apiEndPoints.GET_FOLLOWUP_DETAILS, params);
+        console.log('res GET_FOLLOWUP_DETAILS: ', res.data);
         if (res.data.status == 200) {
             dispatch({
                 type: FOLLOWUP_DETAILS,

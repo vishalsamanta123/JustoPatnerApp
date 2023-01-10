@@ -20,6 +20,7 @@ import { addAgent, addAgentRemove, editAgent } from "app/Redux/Actions/AgentActi
 import ErrorMessage from "app/components/ErrorMessage";
 import { normalize } from "app/components/scaleFontSize";
 import auth from "@react-native-firebase/auth";
+import { RequiredStart } from "app/components/utilities/GlobalFuncations";
 
 
 const AgentBankInfo = ({ navigation, route }: any) => {
@@ -121,6 +122,7 @@ const AgentBankInfo = ({ navigation, route }: any) => {
       <View style={styles.wraptop}>
         <View style={styles.inputWrap}>
           <InputField
+            require={true}
             placeholderText={"RERA Certificate No."}//can edit
             handleInputBtnPress={() => { }}
             onChangeText={(data: any) => {
@@ -136,8 +138,9 @@ const AgentBankInfo = ({ navigation, route }: any) => {
           />
         </View>
         <View style={[styles.inputWrap, { flexDirection: "row" }]}>
-          <View style={{ flex: 1, justifyContent: 'center' }}>
+          <View style={{ flex: 1, flexDirection: 'row', alignItems: 'center', justifyContent: 'center' }}>
             <Text style={[styles.headingText, { fontSize: normalize(17), }]}>RERA Certificate</Text>
+            <RequiredStart />
           </View>
           <View style={{ flex: 0.5, }}>
             <TouchableOpacity
@@ -158,8 +161,9 @@ const AgentBankInfo = ({ navigation, route }: any) => {
           </View>
         </View>
         <View style={[styles.inputWrap, { flexDirection: "row" }]}>
-          <View style={{ flex: 1, justifyContent: 'center' }}>
+          <View style={{ flex: 1, justifyContent: 'center', flexDirection: 'row', alignItems: 'center' }}>
             <Text style={[styles.headingText, { fontSize: normalize(17) }]}>Proprietorship Declaration Letter</Text>
+            <RequiredStart />
           </View>
           <View style={{ flex: 0.5, }}>
             <TouchableOpacity

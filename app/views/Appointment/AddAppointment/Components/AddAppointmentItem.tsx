@@ -25,6 +25,7 @@ const AddAppointmentItem = (props: any) => {
       <View style={styles.wrap}>
         <View style={styles.inputWrap}>
           <DropdownInput
+            require={true}
             headingText={strings.selectLead}
             placeholder={props?.addAppointmentForm?.lead_name === '' ||
               props?.addAppointmentForm?.lead_name === undefined ||
@@ -56,39 +57,9 @@ const AddAppointmentItem = (props: any) => {
             }}
           />
         </View>
-        {/* <View style={styles.inputWrap}>
-                    <DropdownInput
-                        headingText={strings.selectproperty}
-                        placeholder={strings.selectproperty}
-                        data={[]}
-                        inputWidth={'100%'}
-                        paddingLeft={16}
-                        maxHeight={300}
-                        // onFocus={() => handleMasterDatas()}
-                        labelField="title"
-                        valueField={'_id'}
-                        // value={formData?.sourcing_manager}
-                        onChange={(item: any) => {
-                            props.setFormData({
-                                ...props.formData,
-                                sourcing_manager: item._id,
-                            })
-                        }}
-                        newRenderItem={(item: any) => {
-                            return (
-                                <>
-                                    {props.isloading === false &&
-                                        <View style={Styles.item}>
-                                            <Text style={Styles.textItem}>{item.user_name}</Text>
-                                        </View>
-                                    }
-                                </>
-                            );
-                        }}
-                    />
-                </View> */}
         <View style={styles.inputWrap}>
           <InputCalender
+            require={true}
             mode={"date"}
             minimumDate={new Date()}
             leftIcon={images.event}
@@ -119,6 +90,7 @@ const AddAppointmentItem = (props: any) => {
         </View>
         <View style={styles.inputWrap}>
           <InputCalender
+            require={true}
             mode={"time"}
             leftIcon={images.timer}
             placeholderText={strings.appointmentTime}
@@ -211,6 +183,7 @@ const AddAppointmentItem = (props: any) => {
               <>
                 <View style={styles.inputWrap}>
                   <InputField
+                    require={true}
                     placeholderText={'PickUP Location'}
                     handleInputBtnPress={() => { }}
                     headingText={'PickUP Location'}
@@ -234,6 +207,7 @@ const AddAppointmentItem = (props: any) => {
                 </View>
                 <View style={styles.inputWrap}>
                   <InputField
+                    require={true}
                     placeholderText={"Area"}
                     handleInputBtnPress={() => { }}
                     headingText={"Area"}
@@ -248,6 +222,7 @@ const AddAppointmentItem = (props: any) => {
                 </View>
                 <View style={styles.inputWrap}>
                   <InputField
+                    require={true}
                     placeholderText={strings.noofguest}
                     handleInputBtnPress={() => { }}
                     headingText={strings.noofguest}

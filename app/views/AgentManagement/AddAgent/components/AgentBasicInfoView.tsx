@@ -26,6 +26,7 @@ import { normalizeSpacing, } from "app/components/scaleFontSize";
 import InputCalender from "app/components/InputCalender";
 import moment from "moment";
 import MultiLocation from 'app/components/MultiLocation'
+import { RequiredStart } from "app/components/utilities/GlobalFuncations";
 
 
 const AgentBasicInfoView = (props: any) => {
@@ -81,6 +82,7 @@ const AgentBasicInfoView = (props: any) => {
           </TouchableOpacity>
           <View style={styles.inputWrap}>
             <InputField
+              require={true}
               placeholderText={"Name"}//can edit
               handleInputBtnPress={() => { }}
               onChangeText={(data: any) => {
@@ -95,6 +97,7 @@ const AgentBasicInfoView = (props: any) => {
           </View>
           <View style={styles.inputWrap}>
             <InputField
+              require={true}
               placeholderText={"Aadhaar No."}//can edit
               handleInputBtnPress={() => { }}
               onChangeText={(data: any) => {
@@ -111,6 +114,7 @@ const AgentBasicInfoView = (props: any) => {
           </View>
           <View style={styles.inputWrap}>
             <InputField
+              require={true}
               placeholderText={"Pancard No."}//can edit
               handleInputBtnPress={() => { }}
               onChangeText={(data: any) => {
@@ -126,6 +130,7 @@ const AgentBasicInfoView = (props: any) => {
           </View>
           <View style={styles.genderView}>
             <Text style={styles.genderTxt}>{strings.gender}</Text>
+            <RequiredStart />
             <View style={styles.radioView}>
               <RadioButton.Android
                 value={"1"}//can edit
@@ -173,6 +178,7 @@ const AgentBasicInfoView = (props: any) => {
           </View>
           <View style={styles.inputWrap}>
             <InputCalender
+              require={true}
               mode={'date'}
               leftIcon={images.event}
               placeholderText={"Date of Birth"}//can edit
@@ -197,6 +203,7 @@ const AgentBasicInfoView = (props: any) => {
           </View>
           <View style={styles.inputWrap}>
             <InputField
+              require={true}
               placeholderText={"Mobile No."}
               editable={props.type === 'add' ? true : false}
               handleInputBtnPress={() => { }}
@@ -214,6 +221,7 @@ const AgentBasicInfoView = (props: any) => {
           </View>
           <View style={styles.inputWrap}>
             <InputField
+              require={true}
               placeholderText={"WhatsApp No."}//can edit
               handleInputBtnPress={() => { }}
               onChangeText={(data: any) => {
@@ -230,6 +238,7 @@ const AgentBasicInfoView = (props: any) => {
           </View>
           <View style={styles.inputWrap}>
             <InputField
+              require={true}
               placeholderText={"Email Address"}
               editable={props.type === 'add' ? true : false}
               handleInputBtnPress={() => { }}
@@ -245,6 +254,7 @@ const AgentBasicInfoView = (props: any) => {
           </View>
           <View style={[styles.inputWrap, {}]}>
             <InputField
+              require={true}
               placeholderText={"Address"}
               onChangeText={(data: any) => {
                 props.setAgentInfoData({
@@ -267,6 +277,7 @@ const AgentBasicInfoView = (props: any) => {
           </View>
           {/*  <View style={styles.inputWrap}>
           <InputField
+          require={true}
             placeholderText={"Sourcing Manager"}
             handleInputBtnPress={() => {}}
             onChangeText={() => {}}
@@ -275,9 +286,12 @@ const AgentBasicInfoView = (props: any) => {
         </View> */}
           <View style={styles.workingView}>
             <View style={{
-              top: props.agentInfoData?.working_location?.length > 0 ? 8 : 0
+              top: props.agentInfoData?.working_location?.length > 0 ? 8 : 0,
+              flexDirection: 'row',
+              alignItems: 'center'
             }}>
               <Text style={styles.workTxt}>Working Location</Text>
+              <RequiredStart />
             </View>
             <TouchableOpacity
               onPress={() => { props.setLocationModel(true) }}

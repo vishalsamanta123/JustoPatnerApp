@@ -9,7 +9,7 @@ import InputField from "../../../../components/InputField";
 import Button from "../../../../components/Button";
 import images from "../../../../assets/images";
 
-const CompanyDetails = ({navigation}: any) => {
+const CompanyDetails = ({ navigation }: any) => {
   const insets = useSafeAreaInsets();
   const onPressBack = () => {
     navigation.goBack('')
@@ -29,38 +29,42 @@ const CompanyDetails = ({navigation}: any) => {
       <View style={styles.wrap}>
         <View style={styles.inputWrap}>
           <InputField
+            require={true}
             placeholderText={"Agency Name"}
-            handleInputBtnPress={() => {}}
-            onChangeText={() => {}}
+            handleInputBtnPress={() => { }}
+            onChangeText={() => { }}
             headingText={"RealeEstate Company"}
           />
         </View>
         <View style={styles.inputWrap}>
           <InputField
+            require={true}
             placeholderText={"GST"}
             headingText={"GST"}
-            handleInputBtnPress={() => {}}
-            onChangeText={() => {}}
+            handleInputBtnPress={() => { }}
+            onChangeText={() => { }}
           />
         </View>
         <View style={styles.inputWrap}>
           <InputField
+            require={true}
             placeholderText={"RERA Registration"}
             headingText={"RERA Registration"}
-            handleInputBtnPress={() => {}}
-            onChangeText={() => {}}
+            handleInputBtnPress={() => { }}
+            onChangeText={() => { }}
           />
         </View>
         <View style={[styles.inputWrap, { flexDirection: "row" }]}>
           <InputField
+            require={true}
             inputWidth={"60%"}
             btnWidth={"30%"}
             browse={"browse"}
-            handleInputBtnPress={() => {}}
-            onChangeText={() => {}}
+            handleInputBtnPress={() => { }}
+            onChangeText={() => { }}
             headingText={"Pancard"}
           />
-          <TouchableOpacity 
+          <TouchableOpacity
             style={{
               width: "25%",
               backgroundColor: WHITE_COLOR,
@@ -75,14 +79,15 @@ const CompanyDetails = ({navigation}: any) => {
         </View>
         <View style={[styles.inputWrap, { flexDirection: "row" }]}>
           <InputField
+            require={true}
             inputWidth={"60%"}
             btnWidth={"30%"}
             browse={"browse"}
-            handleInputBtnPress={() => {}}
-            onChangeText={() => {}}
+            handleInputBtnPress={() => { }}
+            onChangeText={() => { }}
             headingText={"Decalaration Latter of Company"}
           />
-          <TouchableOpacity 
+          <TouchableOpacity
             style={{
               width: "25%",
               backgroundColor: WHITE_COLOR,
@@ -100,39 +105,43 @@ const CompanyDetails = ({navigation}: any) => {
         </View>
         <View style={styles.inputWrap}>
           <InputField
+            require={true}
             placeholderText={"Bank Name"}
-            handleInputBtnPress={() => {}}
-            onChangeText={() => {}}
+            handleInputBtnPress={() => { }}
+            onChangeText={() => { }}
             headingText={"Bank Name"}
           />
         </View>
         <View style={styles.inputWrap}>
           <InputField
+            require={true}
             placeholderText={"Branch Name"}
-            handleInputBtnPress={() => {}}
-            onChangeText={() => {}}
+            handleInputBtnPress={() => { }}
+            onChangeText={() => { }}
             headingText={"Branch Name"}
           />
         </View>
         <View style={styles.inputWrap}>
           <InputField
+            require={true}
             placeholderText={"Account No."}
-            handleInputBtnPress={() => {}}
-            onChangeText={() => {}}
+            handleInputBtnPress={() => { }}
+            onChangeText={() => { }}
             headingText={"Account No."}
           />
         </View>
         <View style={styles.inputWrap}>
           <InputField
+            require={true}
             placeholderText={"IFSC Code"}
-            handleInputBtnPress={() => {}}
-            onChangeText={() => {}}
+            handleInputBtnPress={() => { }}
+            onChangeText={() => { }}
             headingText={"IFSC Code"}
           />
         </View>
       </View>
       <View style={styles.btnView}>
-        <Button handleBtnPress={onPressRegister}  buttonText={strings.createnewagency} textTransform={'uppercase'}  />
+        <Button handleBtnPress={onPressRegister} buttonText={strings.createnewagency} textTransform={'uppercase'} />
       </View>
     </ScrollView>
   );

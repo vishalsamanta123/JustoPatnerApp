@@ -22,7 +22,7 @@ import { useSafeAreaInsets } from "react-native-safe-area-context";
 import InputField from "../../../../components/InputField";
 import images from "../../../../assets/images";
 import Button from "../../../../components/Button";
-import { normalizeSpacing } from "app/components/scaleFontSize";
+import { normalizeHeight, normalizeSpacing, normalizeWidth } from "app/components/scaleFontSize";
 import PicturePickerModal from "app/components/Modals/PicturePicker";
 import InputCalender from "app/components/InputCalender";
 import moment from "moment";
@@ -101,6 +101,7 @@ const RegistrationView = (props: any) => {
         <View style={styles.inputWrap}>
           <InputField
             placeholderText={"Name"}
+            require={true}
             handleInputBtnPress={() => { }}
             headingText={"Owner Name"}
             valueshow={props.registerForm?.owner_name}
@@ -114,6 +115,7 @@ const RegistrationView = (props: any) => {
         </View>
         <View style={styles.inputWrap}>
           <InputField
+            require={true}
             placeholderText={"Aadhaar No."}
             handleInputBtnPress={() => { }}
             headingText={"Aadhaar No."}
@@ -130,6 +132,7 @@ const RegistrationView = (props: any) => {
         </View>
         <View style={styles.inputWrap}>
           <InputField
+            require={true}
             placeholderText={"Pancard No."}
             handleInputBtnPress={() => { }}
             headingText={"Pancard No."}
@@ -145,6 +148,15 @@ const RegistrationView = (props: any) => {
         </View>
         <View style={styles.genderView}>
           <Text style={styles.genderTxt}>{strings.gender}</Text>
+          <Image
+            source={images.star}
+            style={{
+              width: normalizeWidth(8),
+              height: normalizeHeight(8),
+              marginLeft: normalizeSpacing(5),
+              marginBottom: normalizeSpacing(5),
+            }}
+          />
           <View style={styles.radioView}>
             <RadioButton.Android
               value={props.registerForm?.gender}
@@ -200,6 +212,7 @@ const RegistrationView = (props: any) => {
         </View>
         <View style={styles.inputWrap}>
           <InputCalender
+            require={true}
             leftIcon={images.event}
             mode={"date"}
             placeholderText={"Date of Birth"}
@@ -222,6 +235,7 @@ const RegistrationView = (props: any) => {
         </View>
         <View style={styles.inputWrap}>
           <InputField
+            require={true}
             placeholderText={"Mobile No."}
             handleInputBtnPress={() => { }}
             headingText={"Mobile No."}
@@ -248,6 +262,7 @@ const RegistrationView = (props: any) => {
         </View>
         <View style={styles.inputWrap}>
           <InputField
+            require={true}
             placeholderText={"WhatsApp No."}
             handleInputBtnPress={() => { }}
             headingText={"WhatsApp No."}
@@ -264,6 +279,7 @@ const RegistrationView = (props: any) => {
         </View>
         <View style={styles.inputWrap}>
           <InputField
+            require={true}
             placeholderText={"Email Address"}
             handleInputBtnPress={() => { }}
             headingText={"Email Address"}
@@ -288,6 +304,7 @@ const RegistrationView = (props: any) => {
         </View>
         <View style={{ marginTop: normalizeSpacing(30) }}>
           <InputField
+            require={true}
             placeholderText={"Address"}
             headingText={"Address"}
             valueshow={props.registerForm?.location}
@@ -312,9 +329,19 @@ const RegistrationView = (props: any) => {
           <View
             style={{
               top: props.registerForm?.working_location?.length > 0 ? 5 : 0,
+              flexDirection: 'row', alignItems: "center"
             }}
           >
             <Text style={styles.workTxt}>Working Location</Text>
+            <Image
+              source={images.star}
+              style={{
+                width: normalizeWidth(8),
+                height: normalizeHeight(8),
+                marginLeft: normalizeSpacing(5),
+                marginBottom: normalizeSpacing(5),
+              }}
+            />
           </View>
           <TouchableOpacity
             onPress={() => props.setLocationModel(true)}

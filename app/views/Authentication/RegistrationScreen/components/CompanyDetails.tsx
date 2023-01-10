@@ -1,4 +1,4 @@
-import { View, Text, StatusBar, TouchableOpacity, ScrollView, BackHandler } from "react-native";
+import { View, Text, StatusBar, TouchableOpacity, ScrollView, BackHandler, Image } from "react-native";
 import React, { useEffect, useState } from "react";
 import styles from "./styles";
 import { BLACK_COLOR, GREEN_COLOR, PRIMARY_THEME_COLOR, RED_COLOR, WHITE_COLOR } from "../../../../components/utilities/constant";
@@ -8,7 +8,7 @@ import strings from "../../../../components/utilities/Localization";
 import InputField from "../../../../components/InputField";
 import Button from "../../../../components/Button";
 import images from "../../../../assets/images";
-import { normalize } from "app/components/scaleFontSize";
+import { normalize, normalizeHeight, normalizeSpacing, normalizeWidth } from "app/components/scaleFontSize";
 import PicturePickerModal from "app/components/Modals/PicturePicker";
 import { useDispatch, useSelector } from "react-redux";
 import ErrorMessage from "app/components/ErrorMessage";
@@ -169,6 +169,7 @@ const CompanyDetails = ({ navigation }: any) => {
         contentContainerStyle={styles.wrap}>
         <View style={styles.inputWrap}>
           <InputField
+            require={true}
             placeholderText={"Agency Name"}
             handleInputBtnPress={() => { }}
             headingText={"RealEstate Company"}
@@ -182,6 +183,7 @@ const CompanyDetails = ({ navigation }: any) => {
         </View>
         <View style={styles.inputWrap}>
           <InputField
+            require={true}
             placeholderText={"GST"}
             headingText={"GST"}
             handleInputBtnPress={() => { }}
@@ -196,6 +198,7 @@ const CompanyDetails = ({ navigation }: any) => {
         </View>
         <View style={styles.inputWrap}>
           <InputField
+            require={true}
             placeholderText={"RERA Registration"}
             headingText={"RERA Registration"}
             handleInputBtnPress={() => { }}
@@ -208,8 +211,17 @@ const CompanyDetails = ({ navigation }: any) => {
           />
         </View>
         <View style={[styles.inputWrap, { flexDirection: "row", alignItems: 'center', justifyContent: 'space-between' }]}>
-          <View style={{ flex: 1 }}>
+          <View style={{ flex: 1, flexDirection: 'row', alignItems: 'center' }}>
             <Text style={styles.headingText}>Pancard</Text>
+            <Image
+              source={images.star}
+              style={{
+                width: normalizeWidth(8),
+                height: normalizeHeight(8),
+                marginLeft: normalizeSpacing(5),
+                marginBottom: normalizeSpacing(5),
+              }}
+            />
           </View>
           <View>
             <TouchableOpacity
@@ -227,8 +239,17 @@ const CompanyDetails = ({ navigation }: any) => {
           <Text style={styles.addedTxt}>{"Pancard Added"}</Text> : null
         }
         <View style={[styles.inputWrap, { flexDirection: "row", alignItems: 'center', justifyContent: 'space-between' }]}>
-          <View style={{ flex: 1 }}>
+          <View style={{ flex: 1, flexDirection: 'row', alignItems: 'center' }}>
             <Text style={styles.headingText}>Declaration Letter of Company</Text>
+            <Image
+              source={images.star}
+              style={{
+                width: normalizeWidth(8),
+                height: normalizeHeight(8),
+                marginLeft: normalizeSpacing(5),
+                marginBottom: normalizeSpacing(5),
+              }}
+            />
           </View>
           <View>
             <TouchableOpacity
@@ -250,6 +271,7 @@ const CompanyDetails = ({ navigation }: any) => {
         </View>
         <View style={styles.inputWrap}>
           <InputField
+            require={true}
             placeholderText={"Bank Name"}
             handleInputBtnPress={() => { }}
             headingText={"Bank Name"}
@@ -263,6 +285,7 @@ const CompanyDetails = ({ navigation }: any) => {
         </View>
         <View style={styles.inputWrap}>
           <InputField
+            require={true}
             placeholderText={"Branch Name"}
             handleInputBtnPress={() => { }}
             headingText={"Branch Name"}
@@ -276,6 +299,7 @@ const CompanyDetails = ({ navigation }: any) => {
         </View>
         <View style={styles.inputWrap}>
           <InputField
+            require={true}
             placeholderText={"Account No."}
             handleInputBtnPress={() => { }}
             headingText={"Account No."}
@@ -290,6 +314,7 @@ const CompanyDetails = ({ navigation }: any) => {
         </View>
         <View style={styles.inputWrap}>
           <InputField
+            require={true}
             placeholderText={"IFSC Code"}
             handleInputBtnPress={() => { }}
             headingText={"IFSC Code"}

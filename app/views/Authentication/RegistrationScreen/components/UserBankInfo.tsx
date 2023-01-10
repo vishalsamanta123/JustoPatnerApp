@@ -6,6 +6,7 @@ import {
   TouchableOpacity,
   Alert,
   BackHandler,
+  Image,
 } from "react-native";
 import React, { useEffect, useState } from "react";
 import images from "../../../../assets/images";
@@ -20,7 +21,7 @@ import Header from "../../../../components/Header";
 import { useDispatch, useSelector } from "react-redux";
 import DropdownInput from "app/components/DropDown";
 import PicturePickerModal from "app/components/Modals/PicturePicker";
-import { normalize, normalizeHeight, normalizeWidth } from "app/components/scaleFontSize";
+import { normalize, normalizeHeight, normalizeSpacing, normalizeWidth } from "app/components/scaleFontSize";
 import ErrorMessage from "app/components/ErrorMessage";
 import { RegistrationForm } from "app/Redux/Actions/ReggistrationAction";
 import { getAllMaster, getAllSourcingManager } from "app/Redux/Actions/MasterActions";
@@ -177,6 +178,7 @@ const UserBankInfo = ({ navigation }: any) => {
           </View>
           <View style={styles.inputWrap}>
             <InputField
+              require={true}
               placeholderText={"RERA Certificate No."}
               handleInputBtnPress={() => { }}
               headingText={"RERA Certificate No."}
@@ -189,8 +191,17 @@ const UserBankInfo = ({ navigation }: any) => {
             />
           </View>
           <View style={[styles.inputWrap, { flexDirection: "row", alignItems: 'center', justifyContent: 'space-between' }]}>
-            <View style={{ flex: 1 }}>
+            <View style={{ flex: 1, flexDirection: 'row', alignItems: 'center' }}>
               <Text style={styles.headingText}>RERA Certificate</Text>
+              <Image
+                source={images.star}
+                style={{
+                  width: normalizeWidth(8),
+                  height: normalizeHeight(8),
+                  marginLeft: normalizeSpacing(5),
+                  marginBottom: normalizeSpacing(5),
+                }}
+              />
             </View>
             <View>
               <TouchableOpacity
@@ -208,8 +219,17 @@ const UserBankInfo = ({ navigation }: any) => {
             <Text style={styles.addedTxt}>{"RERA Certificate Added"}</Text> : null
           }
           <View style={[styles.inputWrap, { flexDirection: "row", alignItems: 'center' }]}>
-            <View style={{ flex: 1 }}>
+            <View style={{ flex: 1, flexDirection: 'row', alignItems: 'center' }}>
               <Text style={styles.headingText}>Proprietorship Declaration Letter</Text>
+              <Image
+                source={images.star}
+                style={{
+                  width: normalizeWidth(8),
+                  height: normalizeHeight(8),
+                  marginLeft: normalizeSpacing(5),
+                  marginBottom: normalizeSpacing(5),
+                }}
+              />
             </View>
             <View>
               <TouchableOpacity
@@ -232,6 +252,7 @@ const UserBankInfo = ({ navigation }: any) => {
           </View>
           <View style={styles.inputWrap}>
             <InputField
+              require={true}
               placeholderText={"Bank Name"}
               handleInputBtnPress={() => { }}
               headingText={"Bank Name"}
@@ -245,6 +266,7 @@ const UserBankInfo = ({ navigation }: any) => {
           </View>
           <View style={styles.inputWrap}>
             <InputField
+              require={true}
               placeholderText={"Branch Name"}
               handleInputBtnPress={() => { }}
               headingText={"Branch Name"}
@@ -258,6 +280,7 @@ const UserBankInfo = ({ navigation }: any) => {
           </View>
           <View style={styles.inputWrap}>
             <InputField
+              require={true}
               placeholderText={"Account No."}
               handleInputBtnPress={() => { }}
               headingText={"Account No."}
@@ -272,6 +295,7 @@ const UserBankInfo = ({ navigation }: any) => {
           </View>
           <View style={styles.inputWrap}>
             <InputField
+              require={true}
               placeholderText={"IFSC Code"}
               handleInputBtnPress={() => { }}
               headingText={"IFSC Code"}
@@ -285,8 +309,17 @@ const UserBankInfo = ({ navigation }: any) => {
             />
           </View>
           <View style={[styles.inputWrap, { flexDirection: "row", alignItems: 'center' }]}>
-            <View style={{ flex: 1, justifyContent: 'flex-end' }}>
+            <View style={{ flex: 1, flexDirection: 'row', alignItems: 'center' }}>
               <Text style={styles.headingText}>Cancel Cheaque</Text>
+              <Image
+                source={images.star}
+                style={{
+                  width: normalizeWidth(8),
+                  height: normalizeHeight(8),
+                  marginLeft: normalizeSpacing(5),
+                  marginBottom: normalizeSpacing(5),
+                }}
+              />
             </View>
             <View>
               <TouchableOpacity
