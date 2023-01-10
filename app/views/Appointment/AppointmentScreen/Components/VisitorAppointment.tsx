@@ -59,7 +59,7 @@ const VisitorAppointment = (props: any) => {
               item?.status == 1 ? 'Pending' :
                 item?.status == 2 ? 'Confirm' :
                   item?.status == 3 ? 'Complete' : 
-                  item?.status === 5 && 'Appoiment cancel'  
+                  item?.status === 5 && 'Appoitment cancel'  
           }</Text>
         </View>
       </View>
