@@ -43,9 +43,9 @@ const SupportForumScreen = ({ navigation }: any) => {
     const handleDrawerPress = () => {
         navigation.toggleDrawer();
     };
-    const onPressView = (data: any) => {
-        navigation.navigate('SupportForumDetail', data);
-    };
+    // const onPressView = (data: any) => {
+    //     navigation.navigate('SupportForumDetail', data);
+    // };
     return (
         <SupportForumView
             handleDrawerPress={handleDrawerPress}

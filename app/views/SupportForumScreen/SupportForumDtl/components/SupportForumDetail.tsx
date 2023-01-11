@@ -9,6 +9,7 @@ import FastImages from 'app/components/FastImage'
 import ContentView from './ContentView'
 import { Item } from 'react-native-paper/lib/typescript/components/Drawer/Drawer'
 import Button from 'app/components/Button'
+import { normalizeSpacing } from 'app/components/scaleFontSize'
 
 const SupportForumDetail = (props: any) => {
     const [contentView, setContentView] = useState<any>({})
@@ -44,19 +45,23 @@ const SupportForumDetail = (props: any) => {
                         <View style={styles.demoImgView}>
                             {props?.supportForumDtl?.support_forum_content?.map((itm: any, indx: any) => {
                                 return (
-                                    <TouchableOpacity onPress={() => {
-                                        setContentView({
-                                            content: itm?.content,
-                                            content_type: itm?.content_type,
-                                            support_forum_id: itm?.support_forum_id,
-                                        })
-                                        setContentViewModal(true)
-                                    }}>
-                                        <FastImages
-                                            source={{ uri: props?.supportForumDtl?.base_url + itm?.content }}
-                                            style={styles.Img}
-                                        />
-                                    </TouchableOpacity>
+                                    <>{itm?.content_type === 'image' ?
+                                        <TouchableOpacity onPress={() => {
+                                            setContentView({
+                                                content: itm?.content,
+                                                content_type: itm?.content_type,
+                                                support_forum_id: itm?.support_forum_id,
+                                            })
+                                            setContentViewModal(true)
+                                        }}>
+                                            <FastImages
+                                                source={{ uri: props?.supportForumDtl?.base_url + itm?.content }}
+                                                style={styles.Img}
+                                            />
+                                        </TouchableOpacity>
+                                        : null
+                                    }
+                                    </>
                                 )
                             })
                             }
@@ -67,23 +72,27 @@ const SupportForumDetail = (props: any) => {
                         <View style={styles.demoImgView}>
                             {props?.supportForumDtl?.support_forum_content?.map((itm: any, indx: any) => {
                                 return (
-                                    <View>
-                                        <Image
-                                            source={{ uri: props?.supportForumDtl?.base_url + itm?.video_thumbnail }}
-                                            style={styles.Img}
-                                        />
-                                        <TouchableOpacity
-                                            onPress={() => {
-                                                setContentView(itm)
-                                                setContentViewModal(true)
-                                            }}
-                                            style={styles.playbtntch}>
+                                    <>{itm?.content_type === 'video' ?
+                                        <View style={{ marginVertical: normalizeSpacing(20) }}>
                                             <Image
-                                                source={images.playbuttonIcon}
-                                                style={{ tintColor: WHITE_COLOR }}
+                                                source={{ uri: props?.supportForumDtl?.base_url + itm?.video_thumbnail }}
+                                                style={styles.Img}
                                             />
-                                        </TouchableOpacity>
-                                    </View>
+                                            <TouchableOpacity
+                                                onPress={() => {
+                                                    setContentView(itm)
+                                                    setContentViewModal(true)
+                                                }}
+                                                style={styles.playbtntch}>
+                                                <Image
+                                                    source={images.playbuttonIcon}
+                                                    style={{ tintColor: WHITE_COLOR }}
+                                                />
+                                            </TouchableOpacity>
+                                        </View>
+                                        : null
+                                    }
+                                    </>
                                 )
                             })
                             }
