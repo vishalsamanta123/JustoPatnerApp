@@ -155,7 +155,7 @@ const AddNewVisitorForm = (props: any) => {
               }}
               valueshow={props?.formData?.adhar_no?.toString()}
               headingText={"Aadhaar No."}
-              maxLength={12}
+              maxLength={14}
               keyboardtype={"number-pad"}
             />
           </View>
@@ -169,7 +169,7 @@ const AddNewVisitorForm = (props: any) => {
                   pancard_no: data,
                 });
               }}
-              maxLength={10}
+              maxLength={11}
               valueshow={props?.formData?.pancard_no}
               headingText={"Pancard No."}
             />

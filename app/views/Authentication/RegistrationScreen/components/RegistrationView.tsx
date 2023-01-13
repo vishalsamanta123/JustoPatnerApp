@@ -127,7 +127,7 @@ const RegistrationView = (props: any) => {
                 adhar_no: val,
               });
             }}
-            maxLength={12}
+            maxLength={14}
           />
         </View>
         <View style={styles.inputWrap}>
@@ -143,7 +143,7 @@ const RegistrationView = (props: any) => {
                 pancard_no: val,
               });
             }}
-            maxLength={10}
+            maxLength={11}
           />
         </View>
         <View style={styles.genderView}>

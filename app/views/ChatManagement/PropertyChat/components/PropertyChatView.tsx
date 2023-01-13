@@ -18,6 +18,7 @@ const PropertyChatView = (props: any) => {
   const [filteredData, setFilteredData] = useState([]);
   useEffect(() => {
     setFilteredData(propertyChatList);
+    console.log('propertyChatList: ', propertyChatList);
   }, [propertyChatList]);
   const handleChatPress = (item: any) => {
     navigation.navigate("UserChatListView", item);
@@ -62,8 +63,8 @@ const PropertyChatView = (props: any) => {
         statusBarColor={PRIMARY_THEME_COLOR}
         barStyle={"light-content"}
       />
-      <ComingSoonScreen/>
-      {/* <SearchBar
+      {/* <ComingSoonScreen/> */}
+      <SearchBar
         placeholderText={strings.searchProperty}
         onChangeText={handleChangeText}
         onSubmit={onSubmit}
@@ -74,7 +75,7 @@ const PropertyChatView = (props: any) => {
         ListEmptyComponent={
           <EmptyListScreen message={strings.propertyForchat} />
         }
-      /> */}
+      />
     </View>
   );
 };

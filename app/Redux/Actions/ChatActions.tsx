@@ -6,6 +6,7 @@ export const getChatListForProperty = (params: any) => async (dispatch: any) => 
     dispatch({ type: START_LOADING })
     try {
         const res = await apiCall("post", apiEndPoints.GET_PROPERTY_LIST_FOR_CHAT, params);
+        console.log('res: ', res);
         if (res.data.status === 200) {
             // await AsyncStorage.setItem("AuthToken", res?.data?.token);
             dispatch({

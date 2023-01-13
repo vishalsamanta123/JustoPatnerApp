@@ -131,15 +131,15 @@ const AppointmentDtailsItem = (props: any) => {
         </View>
         <View style={styles.nameContainer}>
           <Text style={styles.nameTxt}>
-            {props?.item?.status == 1
+            {props?.item?.status === 1
               ? "Pending"
-              : props?.item?.status == 2
+              : props?.item?.status === 2
               ? "Confirm"
-              : props?.item?.status == 3
+              : props?.item?.status === 3
               ? "Complete"
-              : props?.item?.status == 4
-              ? "Appoinment cancel"
-              : props?.item?.status == 5 && "Close"}
+              : props?.item?.status === 5
+              ? "Appointment cancel"
+              : props?.item?.status === 6 && "Close"}
           </Text>
         </View>
       </View>

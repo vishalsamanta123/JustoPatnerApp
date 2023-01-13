@@ -109,7 +109,7 @@ const AgentBasicInfoView = (props: any) => {
               valueshow={props?.agentInfoData?.adhar_no?.toString()}
               headingText={"Aadhaar No."}
               keyboardtype={'number-pad'}
-              maxLength={12}
+              maxLength={14}
             />
           </View>
           <View style={styles.inputWrap}>
@@ -125,7 +125,7 @@ const AgentBasicInfoView = (props: any) => {
               }}
               valueshow={props?.agentInfoData?.pancard_no?.toString()}
               headingText={"Pancard No."}
-              maxLength={10}
+              maxLength={11}
             />
           </View>
           <View style={styles.genderView}>

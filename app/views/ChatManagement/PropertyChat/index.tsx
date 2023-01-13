@@ -1,5 +1,4 @@
-import { View, Text } from "react-native";
-import React, { useEffect, useLayoutEffect } from "react";
+import React, { useLayoutEffect } from "react";
 import PropertyChatView from "./components/PropertyChatView";
 import { useDispatch, useSelector } from "react-redux";
 import { getChatListForProperty } from "app/Redux/Actions/ChatActions";
@@ -7,19 +6,19 @@ import { useIsFocused } from "@react-navigation/native";
 
 const PropertyChat = ({ navigation, route }: any) => {
   const { response = {},  } = useSelector((state: any) => state.propertyChatData);
+  console.log('response: ', response);
   const isFocused = useIsFocused();
 
-
   const dispatch: any = useDispatch();
-  // useLayoutEffect(() => {
+  useLayoutEffect(() => {
 
-  //   dispatch(
-  //     getChatListForProperty({
-  //       limit: 10,
-  //       offset: 0,
-  //     })
-  //   );
-  // }, [isFocused]);
+    dispatch(
+      getChatListForProperty({
+        limit: 10,
+        offset: 0,
+      })
+    );
+  }, [isFocused]);
   const handleDrawerPress = () => {
     navigation.toggleDrawer();
   };
