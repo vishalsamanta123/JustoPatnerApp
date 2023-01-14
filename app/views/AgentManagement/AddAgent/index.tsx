@@ -66,7 +66,7 @@ const AgentBasicInfo = ({ navigation, route }: any) => {
       errorMessage = "Please fill pancard number"
     } 
     else if (
-      Regexs.AadharRegex.test(pancard_no) === false
+      Regexs.panRegex.test(pancard_no) === false
     ) {
       isError = false;
       errorMessage = "Please enter the valid Pancard number";
