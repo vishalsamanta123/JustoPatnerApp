@@ -91,13 +91,24 @@ const PropertyDetailItem = (props: any) => {
       </View>
       <View style={styles.Txtview}>
         <View style={styles.projectContainer}>
-          <Text style={styles.projectTxt}>Location </Text>
+          <Text style={styles.projectTxt}>Locality </Text>
         </View>
         <View>
           <Text>:</Text>
         </View>
         <View style={styles.nameContainer}>
           <Text style={styles.nameTxt}>{props.items.location}</Text>
+        </View>
+      </View>
+      <View style={styles.Txtview}>
+        <View style={styles.projectContainer}>
+          <Text style={styles.projectTxt}>Location </Text>
+        </View>
+        <View>
+          <Text>:</Text>
+        </View>
+        <View style={styles.nameContainer}>
+          <Text style={styles.nameTxt}>{props.items.area ? props.items.area : strings.notfount}</Text>
         </View>
       </View>
       <View style={styles.Txtview}>
