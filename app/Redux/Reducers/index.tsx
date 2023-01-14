@@ -7,7 +7,7 @@ import { masterDataReducer } from "./MasterReducer";
 import { editAddFollowupReducer, followUpReducer } from "./FollowUpReducer";
 import { editUserReducer, settingReducer } from "./SettingReducer";
 import { appointmentReducer, editAddAppointmentReducer } from "./AppointmentReducer";
-import { dashboardReducer, statusUpdateReducer } from "./DashboardReducer";
+import { dashboardReducer, generateQrCode, statusUpdateReducer } from "./DashboardReducer";
 import { notificationListReducer } from "./NotificationReducer";
 import { supportForumReducer, supportForumUpdateReducer } from "./SupportForumReducer";
 import { leaderBoardReducer } from "./LearderBoardReducer";
@@ -34,6 +34,7 @@ export default {
     //dashbaoard
     dashboardData: dashboardReducer,
     statusUpdate: statusUpdateReducer,
+    qrCodeData: generateQrCode,
     //property modal
     propertyData: propertyReducer,
     propertydetailData: propertyDetailReducer,

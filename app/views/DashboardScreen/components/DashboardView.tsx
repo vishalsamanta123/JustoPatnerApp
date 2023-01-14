@@ -60,11 +60,11 @@ const DashboardView = (props: any) => {
   ];
   const renderItem = ({ item }: any) => {
     return (
-      <TouchableOpacity style={styles.headingView}>
-        <Text style={styles.itemText}>{item.cpName}</Text>
-        <Text style={styles.itemText}>{item.visitor}</Text>
+      <TouchableOpacity style={styles.headingView} onPress={() =>  props.onPressView(item)}>
+        <Text style={styles.itemText}>{item.property_title}</Text>
+        {/* <Text style={styles.itemText}>{item.visitor}</Text>
         <Text style={styles.itemText}>{item.siteVisit}</Text>
-        <Text style={styles.itemText}>{item.closeLead}</Text>
+        <Text style={styles.itemText}>{item.closeLead}</Text> */}
         <Image source={images.rightArrow} style={styles.rightArrowImage} />
       </TouchableOpacity>
     );
@@ -128,9 +128,9 @@ const DashboardView = (props: any) => {
                 :
                 <Image source={images.qrCode} style={styles.qrCodeImage} />
               }
-              <TouchableOpacity style={styles.linkImageView}>
+              {/* <TouchableOpacity style={styles.linkImageView}>
                 <Image source={images.link} style={styles.linkImage} />
-              </TouchableOpacity>
+              </TouchableOpacity> */}
             </View>
           </View>
           <View style={styles.secondPortion}>
@@ -211,20 +211,20 @@ const DashboardView = (props: any) => {
               </View>
             </View>
           </View>
-          {/* <View style={styles.bottomSection}>
+          <View style={styles.bottomSection}>
             <View style={styles.headingView}>
-              <Text style={styles.headingText}>CP NAME</Text>
-              <Text style={styles.headingText}>VISITOR</Text>
+              <Text style={styles.headingText}>PROPERTY NAME</Text>
+              {/* <Text style={styles.headingText}>VISITOR</Text>
               <Text style={styles.headingText}>SITE VISIT</Text>
-              <Text style={styles.headingText}>CLOSE LEAD</Text>
+              <Text style={styles.headingText}>CLOSE LEAD</Text> */}
             </View>
-            <FlatList data={DATA} renderItem={renderItem} />
+            <FlatList data={props.activepropertyData} renderItem={renderItem} />
             <TouchableOpacity style={styles.headingView}>
               <Text style={[styles.headingText, styles.knowMoreText]}>
                 Know More
               </Text>
             </TouchableOpacity>
-          </View> */}
+          </View>
         </ScrollView>
       </View>
     </>

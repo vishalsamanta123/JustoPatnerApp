@@ -20,6 +20,7 @@ export default {
   //Dashbaord 
   GET_DASHBOARD_CP: 'dashboard/dashboardDetailCP',
   USER_STATUS_UPDATE: 'auth/userOnlineStatusUpdate',
+  GENERATE_QR_CODE: '/channelPartner/genrateQrCode',
   // CREATE CHANNEL PARTNER
   CREATECHANNELPARTNER: '/channelPartner/createChannelPartner',
   CHECKEMAILMOBILE: '/auth/checkEmailMobile',

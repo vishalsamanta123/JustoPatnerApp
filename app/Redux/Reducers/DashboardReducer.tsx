@@ -1,4 +1,4 @@
-import { DASHBOARD, DASHBOARD_ERROR, STATUS_UPDATER, USER_STATUS_UPDATE } from "../types";
+import { DASHBOARD, DASHBOARD_ERROR, DASHBOARD_QR, DASHBOARD_QR_ERROR, STATUS_UPDATER, USER_STATUS_UPDATE } from "../types";
 const initialStateForm = {
     response: null,
     update: false,
@@ -32,6 +32,25 @@ export function statusUpdateReducer(state = initialStateForm, action: any) {
                 response: action.payload,
             };
         case STATUS_UPDATER:
+            return {
+                ...state,
+                data: false,
+                response: action.payload,
+            };
+        default:
+            return state;
+    }
+}
+export function generateQrCode(state = initialStateForm, action: any) {
+    switch (action.type) {
+        
+        case DASHBOARD_QR:
+            return {
+                ...state,
+                data: true,
+                response: action.payload,
+            };
+        case DASHBOARD_QR_ERROR:
             return {
                 ...state,
                 data: false,
