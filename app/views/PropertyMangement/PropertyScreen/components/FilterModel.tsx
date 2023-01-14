@@ -167,7 +167,7 @@ const FilterModal = (props: any) => {
               <InputField
                 // placeholderText={"Search by Location"}
                 handleInputBtnPress={() => { }}
-                headingText={'Search by Location'}
+                headingText={'Search by Locality'}
                 valueshow={props?.filterform?.location}
                 onChangeText={(data: any) => {
                   props.setFilterform({
