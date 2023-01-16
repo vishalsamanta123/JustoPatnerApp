@@ -1,13 +1,14 @@
-import { View, Text } from 'react-native'
+import { View, Text, ScrollView } from 'react-native'
 import React from 'react'
 import styles from './styles'
 import strings from 'app/components/utilities/Localization'
 import moment from 'moment'
+import { normalize, normalizeSpacing } from 'app/components/scaleFontSize'
 
 const UserInfo = (props: any) => {
   const {allDetails} = props;
   return (
-    <View style={styles.InformationView}>
+    <ScrollView style={styles.InformationView}>
           <View style={styles.fieldView}>
             <View style={styles.keyView}>
               <Text style={styles.keyText}>Name</Text>
@@ -76,11 +77,15 @@ const UserInfo = (props: any) => {
               <Text style={styles.keyText}>Email</Text>
             </View>
             <Text style={styles.colon}>:</Text>
-            <View style={styles.valueView}>
-              <Text style={styles.valueText}>{allDetails?.email}</Text>
+            <View style={[styles.valueView,]}>
+              <Text style={[styles.valueText, {
+                width: '100%',
+                fontSize: normalize(14),
+                paddingLeft: normalizeSpacing(15)
+              }]}>{allDetails?.email}</Text>
             </View>
           </View>
-        </View>
+        </ScrollView>
   )
 }
 

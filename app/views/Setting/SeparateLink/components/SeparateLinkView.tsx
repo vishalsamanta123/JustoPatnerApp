@@ -8,7 +8,7 @@ import Button from '../../../../components/Button'
 import strings from '../../../../components/utilities/Localization'
 
 const SeparateLinkView = (props: any) => {
-    const {data, handleBackPress} = props;
+    const {data, handleBackPress, response} = props;
   return (
     <View style={styles.mainContainer}>
       <Header
@@ -23,7 +23,7 @@ const SeparateLinkView = (props: any) => {
         statusBarColor={PRIMARY_THEME_COLOR}
       />
       <View style={styles.warp}>
-        <Image style={styles.qrcodeImage} source={images.qrCode} />
+        <Image style={styles.qrcodeImage} source={{uri:response.qr_code}} />
       </View>
       <View style={styles.btnCopyLinkView}>
         <Button handleBtnPress={props.onPressNext} width={300} btnTxtcolor={BLACK_COLOR} btnTxtsize={15} bgcolor={WHITE_COLOR} buttonText={strings.copyLink} textTransform={"uppercase"} />
