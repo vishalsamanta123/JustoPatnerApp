@@ -43,7 +43,7 @@ const DashboardScreen = ({ navigation }: any) => {
     }else {
       // dispatch(generateQrCode({}))
     }
-  }, [])
+  }, [response, dashBoardData])
 
   const getDashboard = () => {
     dispatch(dashboardData({}))
