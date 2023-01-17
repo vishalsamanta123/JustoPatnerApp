@@ -86,8 +86,8 @@ const styles = StyleSheet.create({
     borderRadius: 15,
   },
   qrCodeImage: {
-    height: normalizeHeight(50),
-    width: normalizeWidth(60),
+    height: normalizeHeight(100),
+    width: normalizeWidth(100),
   },
   linkImageView: {
     position: 'absolute',
@@ -191,6 +191,7 @@ const styles = StyleSheet.create({
     borderBottomColor: WHITE_COLOR,
     borderBottomWidth: 3,
     alignItems: 'center',
+    justifyContent: 'space-around',
   },
   headingText: {
     flex: 1,
@@ -198,15 +199,15 @@ const styles = StyleSheet.create({
     color: PRIMARY_THEME_COLOR,
     fontSize: normalize(11),
     fontFamily: FONT_FAMILY_EXTRABOLD,
-    textAlign: 'center',
+    // textAlign: 'center',
   },
   itemText: {
     flex: 1,
     padding: normalizeSpacing(5),
     color: PRIMARY_THEME_COLOR,
-    fontSize: normalize(11),
+    fontSize: normalize(12),
     fontFamily: FONT_FAMILY_EXTRABOLD,
-    textAlign: 'center',
+    // textAlign: 'center',
   },
   rightArrowImage: {
     height: normalizeHeight(15),
@@ -214,6 +215,8 @@ const styles = StyleSheet.create({
   },
   knowMoreText: {
     fontSize: normalize(14),
+    textAlign: 'center',
+
   },
 });
 
