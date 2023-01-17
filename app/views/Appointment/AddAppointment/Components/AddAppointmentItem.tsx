@@ -12,6 +12,7 @@ import {
   BLACK_COLOR,
   DATE_FORMAT,
   TIME_FORMAT,
+  ONE_MONTH_DATES,
 } from "../../../../components/utilities/constant";
 import Button from "../../../../components/Button";
 import InputCalender from "app/components/InputCalender";
@@ -61,6 +62,7 @@ const AddAppointmentItem = (props: any) => {
             require={true}
             mode={"date"}
             minimumDate={new Date()}
+            maximumDate={ONE_MONTH_DATES}
             leftIcon={images.event}
             placeholderText={strings.appointmentDate}
             headingText={strings.appointmentDate}
