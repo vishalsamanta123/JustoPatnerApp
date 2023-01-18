@@ -179,7 +179,7 @@ const customDrawer = ({ navigation }: any) => {
             navigation.navigate('SupportForum');
           }}
         />
-        <DrawerTabSection
+        {/* <DrawerTabSection
           iconSource={images.chat}
           tabTitle={strings.chatHeader}
           handleDrawerNavigation={() => {
@@ -192,7 +192,7 @@ const customDrawer = ({ navigation }: any) => {
           handleDrawerNavigation={() => {
             navigation.navigate('Support');
           }}
-        />
+        /> */}
         <DrawerTabSection
           iconSource={images.setting}
           tabTitle={strings.settingHeader}
