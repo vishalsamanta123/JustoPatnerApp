@@ -69,7 +69,7 @@ const customDrawer = ({ navigation }: any) => {
                 style={[styles.UserNameText, { width: 120 }]}>
                 {userData?.agent_name}
               </Text>
-              <Text style={[styles.UserAddress, { width: 140 }]}>
+              <Text numberOfLines={2} style={[styles.UserAddress, { width: 140 }]}>
                 {userData?.location ?? ''}
               </Text>
             </View>
@@ -179,7 +179,7 @@ const customDrawer = ({ navigation }: any) => {
             navigation.navigate('SupportForum');
           }}
         />
-        <DrawerTabSection
+        {/* <DrawerTabSection
           iconSource={images.chat}
           tabTitle={strings.chatHeader}
           handleDrawerNavigation={() => {
@@ -192,7 +192,7 @@ const customDrawer = ({ navigation }: any) => {
           handleDrawerNavigation={() => {
             navigation.navigate('Support');
           }}
-        />
+        /> */}
         <DrawerTabSection
           iconSource={images.setting}
           tabTitle={strings.settingHeader}

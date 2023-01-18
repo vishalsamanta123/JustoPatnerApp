@@ -86,6 +86,7 @@ const NotificationView = (props: any) => {
         renderHiddenItem={renderHiddenItem}
         leftOpenValue={75}
         rightOpenValue={-75}
+        disableRightSwipe={true}
         ListEmptyComponent={<EmptyListScreen message={strings.notificationHeader}  />}
       />
     </View>

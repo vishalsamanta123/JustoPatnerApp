@@ -2,6 +2,8 @@ import { View, Text, ScrollView } from 'react-native'
 import React from 'react'
 import styles from './Styles'
 import strings from '../../../../components/utilities/Localization'
+import moment from 'moment'
+import { DATE_FORMAT, DATE_TIME_FORMAT } from 'app/components/utilities/constant'
 
 const FollowUpDetailsItem = (props: any) => {
     const data = props?.data || {}
@@ -47,7 +49,7 @@ const FollowUpDetailsItem = (props: any) => {
                     <Text style={styles.nameTxt}>{data?.followup_date === '' ||
                         data?.followup_date === undefined ||
                         data?.followup_date === null ? strings.notfount
-                        : data?.followup_date}</Text>
+                        : moment(data?.followup_date).format(DATE_TIME_FORMAT)}</Text>
                 </View>
             </View>
             <View style={styles.Txtview}>
