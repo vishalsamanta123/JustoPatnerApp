@@ -145,7 +145,7 @@ const AddNewVisitorForm = (props: any) => {
           </View>
           <View style={styles.inputWrap}>
             <InputField
-              placeholderText={"3675 9834 6012"}
+              placeholderText={"Ex:- 3675 9834 6012"}
               handleInputBtnPress={() => { }}
               onChangeText={(data: any) => {
                 props.setFormData({

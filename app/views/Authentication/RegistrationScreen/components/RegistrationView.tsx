@@ -116,7 +116,7 @@ const RegistrationView = (props: any) => {
         <View style={styles.inputWrap}>
           <InputField
             require={true}
-            placeholderText={"3675 9834 6012"}
+            placeholderText={"Ex:- 3675 9834 6012"}
             handleInputBtnPress={() => { }}
             headingText={"Aadhaar No."}
             inputType={'aadhaar'}

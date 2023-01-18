@@ -34,6 +34,7 @@ import RNFetchBlob from "rn-fetch-blob";
 
 const ChatScreen = ({ navigation, route }: any) => {
   const item = route.params || {};
+  console.log("item: ", item);
   const [keys, setkeys] = useState([]);
   const [messages, setMessages] = useState<any>([]);
   const [senderID, setSenderID] = useState<any>("");
@@ -102,20 +103,24 @@ const ChatScreen = ({ navigation, route }: any) => {
           const msgArray = generateItems(
             message_array.filter((i: any) => i?.["delete-" + senderID] == false)
           );
-          const finalChatArray = msgArray.map((item: any) => {
-            if (item?.text !== "" || item?.image !== "" || item?.video !== "") {
+          const finalChatArray = msgArray.map((items: any) => {
+            if (
+              items?.text !== "" ||
+              items?.image !== "" ||
+              items?.video !== ""
+            ) {
               return {
-                _id: item?.msgId,
-                text: item?.text,
-                image: item?.image,
-                filename: item?.filename,
-                type: item?.type === "doc" ? item.type : "",
-                video: item?.video,
+                _id: items?.msgId,
+                text: items?.text,
+                image: items?.image,
+                filename: items?.filename,
+                type: items?.type === "doc" ? items.type : "",
+                video: items?.video,
                 createdAt: new Date(),
                 user: {
-                  _id: item?._id,
+                  _id: items?._id,
                   name: "React Native",
-                  avatar: "https://placeimg.com/140/140/any",
+                  avatar: item.base_url + item.profile_picture,
                 },
               };
             }
@@ -265,7 +270,6 @@ const ChatScreen = ({ navigation, route }: any) => {
         ["delete-" + item?.firebase_id]: false,
       };
 
-
       await firebase
         .app()
         .database(apiEndPoints.FIREBASE_DATABASE_URL)
@@ -306,10 +310,8 @@ const ChatScreen = ({ navigation, route }: any) => {
       },
     })
       .fetch("GET", data?.image, {})
-      .then((res) => {
-      })
-      .catch((e) => {
-      });
+      .then((res) => {})
+      .catch((e) => {});
   };
 
   const renderImageMessage = (data: any) => {
@@ -333,7 +335,7 @@ const ChatScreen = ({ navigation, route }: any) => {
           </View>
         ) : (
           <View style={styles.recieverpdfMessageView}>
-            <View style={{width: '80%'}}>
+            <View style={{ width: "80%" }}>
               <Text style={styles.pdfRecievednameTxt} numberOfLines={1}>
                 {data.currentMessage.filename}
               </Text>

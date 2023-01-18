@@ -161,6 +161,7 @@ const strings = new LocalizedStrings({
     editProfile: 'Edit Profile',
     changePassword: 'Change Password',
     copyLink: 'Copy Link',
+    shareQr: 'Share QR',
 
     // COMMOM
     cameraHeader: 'Camera',

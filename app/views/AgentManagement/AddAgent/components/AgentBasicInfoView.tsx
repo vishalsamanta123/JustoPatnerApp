@@ -100,7 +100,7 @@ const AgentBasicInfoView = (props: any) => {
           <View style={styles.inputWrap}>
             <InputField
               require={true}
-              placeholderText={"3675 9834 6012"} //can edit
+              placeholderText={"Ex:- 3675 9834 6012"} //can edit
               handleInputBtnPress={() => {}}
               onChangeText={(data: any) => {
                 props.setAgentInfoData({

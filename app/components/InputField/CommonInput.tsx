@@ -1,7 +1,7 @@
 import { View, TextInput, Image, TouchableOpacity, Text } from "react-native";
 import React from "react";
 import styles from "./styles";
-import { BLACK_COLOR } from "../utilities/constant";
+import { BLACK_COLOR, GRAY_LIGHT_COLOR } from "../utilities/constant";
 import images from "../../assets/images";
 import {
   normalizeHeight,
@@ -73,12 +73,12 @@ const CommonInput = (props: any) => {
           }}
           onSubmitEditing={onSubmit}
           placeholder={
-            props.placeholderText === "3675 9834 6012" ||
+            props.placeholderText === "Ex:- 3675 9834 6012" ||
             props.placeholderText === "BNZAA2318JM"
               ? props.placeholderText
               : null
           }
-          placeholderTextColor={BLACK_COLOR}
+          placeholderTextColor={GRAY_LIGHT_COLOR}
           secureTextEntry={props.isSecureText}
           autoCapitalize={"none"}
           editable={editable}
