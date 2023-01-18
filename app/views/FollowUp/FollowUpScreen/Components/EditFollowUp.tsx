@@ -44,7 +44,9 @@ const EditFollowUp = ({ navigation, route }: any) => {
         }, [navigation, detail]))
     useEffect(() => {
         if (response?.status === 200) {
-            setFormData(response.data)
+            if (response?.data?.length > 0) {
+                setFormData(response.data[0])
+            }
         }
     }, [response])
 
@@ -120,56 +122,62 @@ const EditFollowUp = ({ navigation, route }: any) => {
                             }}
                         />
                     </View>
-                    <View style={styles.inputWarp}>
-                        <InputCalender
-                            headingText={'Date'}
-                            mode={'date'}
-                            leftIcon={images.event}
-                            placeholderText={"Date"}//can edit
-                            editable={false}
-                            // onChangeText={() => { }}
-                            dateData={(data: any) => {
-                                setFormData({
-                                    ...formData,
-                                    followup_date: moment(data).format(DATE_FORMAT)
-                                })
-                            }}
-                            setDateshow={(data: any) => {
-                                setFormData({
-                                    ...formData,
-                                    followup_date: moment(data).format(DATE_FORMAT)
-                                })
-                            }}
-                            value={
-                                formData?.followup_date === '' ||
-                                    formData?.followup_date === undefined ||
-                                    formData?.followup_date === null ? "" :
-                                    moment(formData?.followup_date).format(DATE_FORMAT)}
-                        />
-                    </View>
-                    <View style={styles.inputWarp}>
-                        <InputCalender
-                            headingText={'Time'}
-                            mode={'time'}
-                            leftIcon={images.timer}
-                            placeholderText={"Time"}//can edit
-                            editable={false}
-                            // onChangeText={() => { }}
-                            dateData={(data: any) => {
-                                setFormData({
-                                    ...formData,
-                                    followup_time: moment(data).format(TIME_FORMAT)
-                                })
-                            }}
-                            setDateshow={(data: any) => {
-                                setFormData({
-                                    ...formData,
-                                    followup_time: moment(data).format(TIME_FORMAT)
-                                })
-                            }}
-                            value={formData?.followup_time}
-                        />
-                    </View>
+                    {formData?.followup_status === '6360c6d52ca46e9d3636fbf4' ? (
+                        <>
+                            <View style={styles.inputWarp}>
+                                <InputCalender
+                                    headingText={'Date'}
+                                    mode={'date'}
+                                    leftIcon={images.event}
+                                    placeholderText={"Date"}//can edit
+                                    editable={false}
+                                    // onChangeText={() => { }}
+                                    dateData={(data: any) => {
+                                        setFormData({
+                                            ...formData,
+                                            followup_date: moment(data).format(DATE_FORMAT)
+                                        })
+                                    }}
+                                    setDateshow={(data: any) => {
+                                        setFormData({
+                                            ...formData,
+                                            followup_date: moment(data).format(DATE_FORMAT)
+                                        })
+                                    }}
+                                    value={
+                                        formData?.followup_date === '' ||
+                                            formData?.followup_date === undefined ||
+                                            formData?.followup_date === null ? "" :
+                                            moment(formData?.followup_date).format(DATE_FORMAT)}
+                                />
+                            </View>
+                            <View style={styles.inputWarp}>
+                                <InputCalender
+                                    headingText={'Time'}
+                                    mode={'time'}
+                                    leftIcon={images.timer}
+                                    placeholderText={"Time"}//can edit
+                                    editable={false}
+                                    // onChangeText={() => { }}
+                                    dateData={(data: any) => {
+                                        setFormData({
+                                            ...formData,
+                                            followup_time: moment(data).format(TIME_FORMAT)
+                                        })
+                                    }}
+                                    setDateshow={(data: any) => {
+                                        setFormData({
+                                            ...formData,
+                                            followup_time: moment(data).format(TIME_FORMAT)
+                                        })
+                                    }}
+                                    value={formData?.followup_time}
+                                />
+                            </View>
+                        </>
+                    )
+                        : null
+                    }
                     <View style={styles.inputWarp}>
                         <InputField
                             placeholderText={"Description"}

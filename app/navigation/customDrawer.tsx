@@ -69,7 +69,7 @@ const customDrawer = ({ navigation }: any) => {
                 style={[styles.UserNameText, { width: 120 }]}>
                 {userData?.agent_name}
               </Text>
-              <Text style={[styles.UserAddress, { width: 140 }]}>
+              <Text numberOfLines={2} style={[styles.UserAddress, { width: 140 }]}>
                 {userData?.location ?? ''}
               </Text>
             </View>

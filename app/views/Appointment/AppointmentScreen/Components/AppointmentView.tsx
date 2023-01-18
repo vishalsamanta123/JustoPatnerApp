@@ -35,6 +35,7 @@ import {
   updateUserAppointmentStatus,
 } from "app/Redux/Actions/AppiontmentWithUserActions";
 import AppointmentModal from "./AppointmentModal";
+import AppointmentFilterModal from "./AppointmentFilterModal";
 
 const AppointmentView = (props: any) => {
   const loadingref = false;
@@ -200,7 +201,7 @@ const AppointmentView = (props: any) => {
   useFocusEffect(
     React.useCallback(() => {
       getAppointmentList(offSET);
-      return () => {};
+      return () => { };
     }, [navigation, list])
   );
   useEffect(() => {
@@ -310,6 +311,13 @@ const AppointmentView = (props: any) => {
       <AppointmentModal
         Visible={isVisible}
         setIsVisible={setIsVisible}
+        params={params}
+        setParams={setParams}
+        handleOnPressYesInModal={handleOnPressYesInModal}
+      />
+      <AppointmentFilterModal
+        Visible={FilterisVisible}
+        setIsVisible={setFilterisVisible}
         params={params}
         setParams={setParams}
         handleOnPressYesInModal={handleOnPressYesInModal}

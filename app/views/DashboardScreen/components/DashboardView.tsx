@@ -25,39 +25,6 @@ import {
 const DashboardView = (props: any) => {
   const targetData = props?.dashBoardData?.target || {}
   const achieveTargetData = props?.dashBoardData?.achievetargetdata || {}
-  const insets = useSafeAreaInsets();
-  const DATA: any = [
-    {
-      cpName: 'Rohit Sharma',
-      visitor: 123,
-      siteVisit: 234,
-      closeLead: 600,
-    },
-    {
-      cpName: 'Sachin Tendulkar',
-      visitor: 37,
-      siteVisit: 345,
-      closeLead: 600,
-    },
-    {
-      cpName: 'Virat kohli',
-      visitor: 57,
-      siteVisit: 3,
-      closeLead: 600,
-    },
-    {
-      cpName: 'Ramesh Suresh',
-      visitor: 48,
-      siteVisit: 6,
-      closeLead: 600,
-    },
-    {
-      cpName: 'Danieal vitoree',
-      visitor: 768,
-      siteVisit: 867,
-      closeLead: 600,
-    },
-  ];
   const renderItem = ({ item }: any) => {
     return (
       <TouchableOpacity style={styles.headingView} onPress={() =>  props.onPressView(item)}>
@@ -78,6 +45,7 @@ const DashboardView = (props: any) => {
           headerText={strings.dashboardHeader}
           handleOnLeftIconPress={props.handleDrawerPress}
           headerStyle={styles.headerStyle}
+          rightSecondImageScr={images.bell}
         />
         <ScrollView contentContainerStyle={styles.dashboardScroll}
           bounces={false}>
