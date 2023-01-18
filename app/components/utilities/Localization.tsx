@@ -94,7 +94,7 @@ const strings = new LocalizedStrings({
     followupHeader: 'Follow-up',
     followupDetails: 'Follow-Up Detail',
     searchfollowup: 'Search Follow-Up',
-    allfollowup: 'All Followup',
+    allfollowup: 'History',
     editfollowup: 'Edit Follow-Up',
     followup: 'Follow-Up',
     no: 'No',
