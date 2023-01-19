@@ -16,12 +16,6 @@ import {
 import { Dropdown } from "react-native-element-dropdown";
 
 const AppointmentFilterModal = (props: any) => {
-  useEffect(() => {
-    props.setParams({
-      ...props.params,
-      remark: '',
-    });
-  }, [])
   const renderItem = (item: any) => {
     return (
       <View style={styles.item}>
@@ -43,27 +37,27 @@ const AppointmentFilterModal = (props: any) => {
           </View>
           <View style={styles.borderView} />
           <View style={{ marginHorizontal: 10 }}>
-            {/* <View style={styles.inputWrap}>
+            <View style={styles.inputWrap}>
               <InputCalender
                 mode={"date"}
                 leftIcon={images.event}
                 //headingText={'Start Date'}
                 placeholderText={"Start Date"}
                 dateData={(data: any) => {
-                  props.setFilterform({
-                    ...props.filterform,
+                  props.setParams({
+                    ...props.params,
                     start_date: moment(data).format(DATE_FORMAT),
                   });
                 }}
-                // dateshow={props.filterform.start_date}
+                // dateshow={props.params.start_date}
                 value={
-                  props?.filterform?.start_date !== ""
-                    ? moment(props?.filterform?.start_date).format(DATE_FORMAT)
+                  props?.params?.start_date !== ""
+                    ? moment(props?.params?.start_date).format(DATE_FORMAT)
                     : null
                 }
                 setDateshow={(data: any) => {
-                  props.setFilterform({
-                    ...props.filterform,
+                  props.setParams({
+                    ...props.params,
                     start_date: moment(data).format(DATE_FORMAT),
                   });
                 }}
@@ -77,44 +71,23 @@ const AppointmentFilterModal = (props: any) => {
                 //headingText={'Start Date'}
                 placeholderText={"End Date"}
                 dateData={(data: any) => {
-                  props.setFilterform({
-                    ...props.filterform,
+                  props.setParams({
+                    ...props.params,
                     end_date: moment(data).format(DATE_FORMAT),
                   });
                 }}
-                // dateshow={props.filterform.end_date}
+                // dateshow={props.params.end_date}
                 value={
-                  props?.filterform?.end_date !== ""
-                    ? moment(props?.filterform?.end_date).format(DATE_FORMAT)
+                  props?.params?.end_date !== ""
+                    ? moment(props?.params?.end_date).format(DATE_FORMAT)
                     : null
                 }
                 setDateshow={(data: any) => {
-                  props.setFilterform({
-                    ...props.filterform,
+                  props.setParams({
+                    ...props.params,
                     end_date: moment(data).format(DATE_FORMAT),
                   });
                 }}
-              />
-            </View> */}
-            <View style={styles.inputWrap}>
-              <Dropdown
-                style={styles.dropdown}
-                placeholderStyle={styles.placeholderStyle}
-                selectedTextStyle={styles.selectedTextStyle}
-                iconStyle={styles.iconStyle}
-                data={[]}
-                maxHeight={300}
-                labelField="label"
-                valueField="value"
-                placeholder="Appointment With"
-                value={''}
-                onChange={(item) => {
-                  props.setFilterform({
-                    ...props.filterform,
-                    property_type: item.value,
-                  });
-                }}
-                renderItem={renderItem}
               />
             </View>
             <View style={styles.inputWrap}>
@@ -122,11 +95,11 @@ const AppointmentFilterModal = (props: any) => {
                 placeholderText={"By Customer Name"}
                 headingText={"By Customer Name"}
                 handleInputBtnPress={() => { }}
-                valueshow={props?.params?.remark}
+                valueshow={props?.params?.customer_name}
                 onChangeText={(val: any) => {
                   props.setParams({
                     ...props.params,
-                    remark: val,
+                    customer_name: val,
                   });
                 }}
               />
@@ -137,40 +110,39 @@ const AppointmentFilterModal = (props: any) => {
                 placeholderStyle={styles.placeholderStyle}
                 selectedTextStyle={styles.selectedTextStyle}
                 iconStyle={styles.iconStyle}
-                data={[]}
+                data={[
+                  // 1= Pending, 2 = Confirm, 3= Compleat
+                  { label: 'Pending', value: 1 },
+                  { label: 'Confirm', value: 2 },
+                  { label: 'Complete', value: 3 },
+                  { label: 'Appointment cancel', value: 5 },
+                  { label: 'Close', value: 6 },
+                ]}
                 maxHeight={300}
                 labelField="label"
                 valueField="value"
                 placeholder="By Status"
-                value={''}
+                value={props?.params?.status}
                 onChange={(item) => {
-                  props.setFilterform({
-                    ...props.filterform,
-                    property_type: item.value,
+                  props.setParams({
+                    ...props.params,
+                    status: item.value,
                   });
                 }}
                 renderItem={renderItem}
               />
             </View>
-            <View style={styles.inputWrap}>
-              <InputField
-                placeholderText={"By Property Name"}
-                headingText={"By Property Name"}
-                handleInputBtnPress={() => { }}
-                valueshow={props?.params?.remark}
-                onChangeText={(val: any) => {
-                  props.setParams({
-                    ...props.params,
-                    remark: val,
-                  });
-                }}
-              />
-            </View>
           </View>
-          <View style={{ marginVertical: 20 }}>
+          <View style={{ marginVertical: 20, flexDirection: 'row', justifyContent: 'space-around' }}>
             <Button
-              handleBtnPress={() => props.handleOnPressYesInModal()}
-              buttonText={strings.update}
+              handleBtnPress={() => props.onPressReset()}
+              buttonText={strings.reset}
+              width={150}
+            />
+            <Button
+              handleBtnPress={() => props.handleFilterApply()}
+              buttonText={strings.apply}
+              width={150}
             />
           </View>
         </View>

@@ -5,7 +5,7 @@ import Button from '../../../../components/Button'
 import { normalize } from '../../../../components/scaleFontSize'
 import strings from '../../../../components/utilities/Localization'
 import moment from 'moment'
-import { BLACK_COLOR } from 'app/components/utilities/constant'
+import { BLACK_COLOR, DATE_TIME_FORMAT } from 'app/components/utilities/constant'
 
 const LeadDetailsIteam = (props: any) => {
     return (
@@ -67,7 +67,7 @@ const LeadDetailsIteam = (props: any) => {
                         props.items.last_interacted_date === '' ||
                             props.items.last_interacted_date === undefined || props.items.last_interacted_date === "undefined" ?
                             strings.notfount :
-                            moment(props?.items?.last_interacted_date).format('llll')
+                            moment(props?.items?.last_interacted_date).format(DATE_TIME_FORMAT)
                     }</Text>
                 </View>
             </View>

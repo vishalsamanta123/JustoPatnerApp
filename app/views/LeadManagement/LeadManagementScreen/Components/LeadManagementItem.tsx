@@ -6,6 +6,7 @@ import {
   CALL_COLOR,
   BLACK_COLOR,
   YELLOW_COLOR,
+  DATE_TIME_FORMAT,
 } from "../../../../components/utilities/constant";
 import images from "../../../../assets/images";
 import strings from "../../../../components/utilities/Localization";
@@ -14,6 +15,15 @@ import moment from "moment";
 const LeadManagementItem = (props: any) => {
   return (
     <View style={styles.IteamView}>
+      <View style={styles.Txtview}>
+        <View style={styles.projectContainer}>
+          <Text style={styles.projectTxt}>Property Name :</Text>
+        </View>
+        <View style={styles.nameContainer}>
+          <Text style={styles.nameTxt}>{
+            props?.items.property_title === null ? '' : props.items.property_title}</Text>
+        </View>
+      </View>
       <View style={styles.Txtview}>
         <View style={styles.projectContainer}>
           <Text style={styles.projectTxt}>Visitor Name :</Text>
@@ -49,7 +59,7 @@ const LeadManagementItem = (props: any) => {
         <View style={styles.nameContainer}>
           <Text style={styles.nameTxt}>
             {props.items.last_interacted_date ?
-              moment(props.items.last_interacted_date).format('DD-MM-YYYY') : strings.notfount}
+              moment(props.items.last_interacted_date).format(DATE_TIME_FORMAT) : strings.notfount}
           </Text>
         </View>
       </View>
@@ -68,6 +78,18 @@ const LeadManagementItem = (props: any) => {
         </View>
         <View style={styles.nameContainer}>
           <Text style={styles.nameTxt}>{props.items.lead_score}</Text>
+        </View>
+      </View>
+      <View style={styles.Txtview}>
+        <View style={styles.projectContainer}>
+          <Text style={styles.projectTxt}>Created Date :</Text>
+        </View>
+        <View style={styles.nameContainer}>
+          <Text style={styles.nameTxt}>{
+            props.items.createdDate ?
+              moment(props.items.createdDate).format(DATE_TIME_FORMAT) :
+              strings.notfount
+          }</Text>
         </View>
       </View>
       <View style={styles.Txtview}>

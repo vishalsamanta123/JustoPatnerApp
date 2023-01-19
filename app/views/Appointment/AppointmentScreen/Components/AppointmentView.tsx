@@ -78,14 +78,14 @@ const AppointmentView = (props: any) => {
     if (index == 1) {
       handleUserAppointmentList(1);
     } else {
-      getAppointmentList(offSET);
+      getAppointmentList(offSET, {});
     }
   }, [index]);
   useEffect(() => {
     if (index == 1) {
       handleUserAppointmentList(1);
     } else {
-      getAppointmentList(offSET);
+      getAppointmentList(offSET, {});
     }
   }, [updateUserStatusResponse]);
 
@@ -139,8 +139,20 @@ const AppointmentView = (props: any) => {
   };
   const handleFilterApply = () => {
     setFilterisVisible(false);
-    getAppointmentList(0);
+    getAppointmentList(0, filterData);
   };
+
+  const onPressReset = () => {
+    setFilterData({
+      start_date: "",
+      end_date: "",
+      customer_name: "",
+      status: "",
+    });
+    getAppointmentList(0, {});
+    setFilterisVisible(false);
+  }
+
   const FirstRoute = () => (
     <FlatList
       data={Array.isArray(appointmentList) ? appointmentList : []}
@@ -161,13 +173,13 @@ const AppointmentView = (props: any) => {
           customer_name: "",
           status: "",
         });
-        getAppointmentList(0);
+        getAppointmentList(0, {});
         setAppointmentList([]);
       }}
       refreshing={loadingref}
       onEndReached={() => {
         if (appointmentList?.length < response?.total_data) {
-          getAppointmentList(appointmentList?.length > 2 ? offSET + 1 : 0);
+          getAppointmentList(appointmentList?.length > 2 ? offSET + 1 : 0, filterData);
         }
       }}
     />
@@ -200,7 +212,7 @@ const AppointmentView = (props: any) => {
   );
   useFocusEffect(
     React.useCallback(() => {
-      getAppointmentList(offSET);
+      getAppointmentList(offSET, {});
       return () => { };
     }, [navigation, list])
   );
@@ -229,16 +241,16 @@ const AppointmentView = (props: any) => {
       }
     }
   }, [getUserListResponse]);
-  const getAppointmentList = (offset: any) => {
+  const getAppointmentList = (offset: any, data: any) => {
     setOffset(offset);
     dispatch(
       getAllAppointmentList({
         offset: offset,
         limit: 3,
-        start_date: filterData.start_date,
-        end_date: filterData.end_date,
-        customer_name: filterData.customer_name,
-        status: filterData.status,
+        start_date: data.start_date,
+        end_date: data.end_date,
+        customer_name: data.customer_name,
+        status: data.status,
       })
     );
     // toGetDatas(array)
@@ -253,7 +265,7 @@ const AppointmentView = (props: any) => {
     <View style={styles.mainContainer}>
       <Header
         leftImageSrc={images.menu}
-        // rightFirstImageScr={images.filter}
+        rightFirstImageScr={index === 0 ? images.filter : null}
         rightSecondImageScr={images.notification}
         headerText={strings.appointmnet}
         handleOnLeftIconPress={props.handleDrawerPress}
@@ -318,9 +330,10 @@ const AppointmentView = (props: any) => {
       <AppointmentFilterModal
         Visible={FilterisVisible}
         setIsVisible={setFilterisVisible}
-        params={params}
-        setParams={setParams}
-        handleOnPressYesInModal={handleOnPressYesInModal}
+        params={filterData}
+        setParams={setFilterData}
+        handleFilterApply={handleFilterApply}
+        onPressReset={onPressReset}
       />
     </View>
   );
