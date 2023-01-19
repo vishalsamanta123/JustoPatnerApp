@@ -1,7 +1,8 @@
 import { View, Text, ScrollView } from 'react-native'
 import React from 'react'
 import styles from './Styles'
-import { WHITE_COLOR } from '../../../../components/utilities/constant'
+import { DATE_TIME_FORMAT, WHITE_COLOR } from '../../../../components/utilities/constant'
+import moment from 'moment'
 
 const AllFollowUpItem = (props: any) => {
     return (
@@ -34,7 +35,7 @@ const AllFollowUpItem = (props: any) => {
                 </View>
                 <View><Text>:</Text></View>
                 <View style={styles.nameContainer}>
-                    <Text style={styles.nameTxt}>{props.items.followup_date}</Text>
+                    <Text style={styles.nameTxt}>{moment(props.items.followup_date).format(DATE_TIME_FORMAT)}</Text>
                 </View>
             </View>
             <View style={styles.Txtviewlast}>

@@ -110,6 +110,7 @@ const FilterModal = (props: any) => {
             </View>
             <View style={styles.inputWrap}>
               <InputField
+                headingText={'Search by Visitor Name'}
                 placeholderText={"Search by Visitor Name"}
                 handleInputBtnPress={() => { }}
                 onChangeText={(data: any) => {
