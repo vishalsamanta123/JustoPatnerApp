@@ -113,7 +113,6 @@ const AddAppointmentItem = (props: any) => {
             value={props.addAppointmentForm?.appointment_time}
           />
         </View>
-        {props?.addAppointmentForm?.pickup === "Yes" ? (
           <>
             <View style={styles.inputWrap}>
               <Text style={styles.genderTxt}>{strings.pickupAppointment}</Text>
@@ -239,7 +238,6 @@ const AddAppointmentItem = (props: any) => {
               </>
             ) : null}
           </>
-        ) : null}
         <View style={styles.btnView}>
           <Button
             handleBtnPress={() => props.handleBtnPress()}

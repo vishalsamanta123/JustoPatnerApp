@@ -40,7 +40,7 @@ const DashboardScreen = ({ navigation }: any) => {
   useEffect(() => {
     if (dashBoardData?.qr_code === "") {
       dispatch(generateQrCode({}))
-    }else {
+    } else {
       // dispatch(generateQrCode({}))
     }
   }, [response, dashBoardData])
@@ -69,6 +69,22 @@ const DashboardScreen = ({ navigation }: any) => {
   const onPressView = (items: any) => {
     navigation.navigate('PropertyDetails', items)
   }
+  const onPressMore = () => {
+    navigation.navigate('PropertyScreenView')
+  }
+
+  const onpressButton = (type: any) => {
+    if (type === 'visit') {
+      navigation.navigate('LeadManagement')
+    } else if (type === 'appointment') {
+      navigation.navigate('AppointmentScreen')
+    } else {
+      navigation.navigate('AgentListing')
+    }
+
+  }
+
+
   return <DashboardView
     handleDrawerPress={handleDrawerPress}
     dashBoardData={dashBoardData}
@@ -76,6 +92,8 @@ const DashboardScreen = ({ navigation }: any) => {
     isEnabled={isEnabled}
     activepropertyData={activepropertyData?.response?.data}
     onPressView={onPressView}
+    onpressButton={onpressButton}
+    onPressMore={onPressMore}
   />;
 };
 

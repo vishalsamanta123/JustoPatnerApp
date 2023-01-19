@@ -27,7 +27,7 @@ const DashboardView = (props: any) => {
   const achieveTargetData = props?.dashBoardData?.achievetargetdata || {}
   const renderItem = ({ item }: any) => {
     return (
-      <TouchableOpacity style={styles.headingView} onPress={() =>  props.onPressView(item)}>
+      <TouchableOpacity style={styles.headingView} onPress={() => props.onPressView(item)}>
         <Text style={styles.itemText}>{item.property_title}</Text>
         {/* <Text style={styles.itemText}>{item.visitor}</Text>
         <Text style={styles.itemText}>{item.siteVisit}</Text>
@@ -122,7 +122,7 @@ const DashboardView = (props: any) => {
                 </Text>
               </View>
             </View>
-            <View style={styles.thirdCardView}>
+            {/* <View style={styles.thirdCardView}>
               <View style={styles.cardTextView}>
                 <Text style={styles.cardText}>Closing Target</Text>
               </View>
@@ -131,10 +131,22 @@ const DashboardView = (props: any) => {
                   {achieveTargetData?.achieve_closing_target}/{targetData?.closing_target}
                 </Text>
               </View>
-            </View>
+            </View> */}
           </View>
           <View style={styles.thirdPortion}>
-            <View style={styles.thirdPortioncardView}>
+            <TouchableOpacity
+              onPress={() => props.onpressButton('visit')}
+              style={styles.thirdPortioncardView}>
+              <View style={styles.thirdPortionCardTextView}>
+                <Text style={styles.thirdPortionCardText}>Today Visit</Text>
+              </View>
+              <View style={styles.numberView}>
+                <Text style={styles.thirdPortionNumberText}>{props?.dashBoardData?.total_visit}</Text>
+              </View>
+            </TouchableOpacity>
+            <TouchableOpacity
+              onPress={() => props.onpressButton('appointment')}
+              style={styles.thirdPortioncardView}>
               <View style={styles.thirdPortionCardTextView}>
                 <Text style={styles.thirdPortionCardText} numberOfLines={2}>
                   Today Site Visit
@@ -143,8 +155,10 @@ const DashboardView = (props: any) => {
               <View style={styles.numberView}>
                 <Text style={styles.thirdPortionNumberText}>{props?.dashBoardData?.total_site_visit}</Text>
               </View>
-            </View>
-            <View style={styles.thirdPortioncardView}>
+            </TouchableOpacity>
+            <TouchableOpacity
+              onPress={() => props.onpressButton('appointment')}
+              style={styles.thirdPortioncardView}>
               <View style={styles.thirdPortionCardTextView}>
                 <Text style={styles.thirdPortionCardText}>
                   Today Closed Visit
@@ -153,45 +167,44 @@ const DashboardView = (props: any) => {
               <View style={styles.numberView}>
                 <Text style={styles.thirdPortionNumberText}>{props?.dashBoardData?.total_close_visit}</Text>
               </View>
-            </View>
-            <View style={styles.thirdPortioncardView}>
+            </TouchableOpacity>
+            <TouchableOpacity
+              onPress={() => props.onpressButton()}
+              style={styles.thirdPortioncardView}>
               <View style={styles.thirdPortionCardTextView}>
-                <Text style={styles.thirdPortionCardText}>Today Visit</Text>
+                <Text style={styles.thirdPortionCardText}>Active Agent</Text>
               </View>
               <View style={styles.numberView}>
-                <Text style={styles.thirdPortionNumberText}>{props?.dashBoardData?.total_visit}</Text>
+                <Text style={styles.thirdPortionNumberText}>{props?.dashBoardData?.active_agent}</Text>
               </View>
-            </View>
-            {/* <View style={styles.thirdPortioncardView}>
-              <View style={styles.thirdPortionCardTextView}>
-                <Text style={styles.thirdPortionCardText}>Active CP</Text>
-              </View>
-              <View style={styles.numberView}>
-                <Text style={styles.thirdPortionNumberText}>250/1000</Text>
-              </View>
-            </View> */}
-            <View style={styles.thirdPortioncardView}>
+            </TouchableOpacity>
+            {/* <TouchableOpacity style={styles.thirdPortioncardView}>
               <View style={styles.thirdPortionCardTextView}>
                 <Text style={styles.thirdPortionCardText}>Closing Target</Text>
               </View>
               <View style={styles.numberView}>
                 <Text style={styles.thirdPortionNumberText}>{targetData?.closing_target}</Text>
               </View>
-            </View>
+            </TouchableOpacity> */}
           </View>
           <View style={styles.bottomSection}>
             <View style={styles.headingView}>
-              <Text style={styles.headingText}>PROPERTY NAME</Text>
+              <Text style={styles.headingText}>ACTIVE PROPERTY</Text>
               {/* <Text style={styles.headingText}>VISITOR</Text>
               <Text style={styles.headingText}>SITE VISIT</Text>
               <Text style={styles.headingText}>CLOSE LEAD</Text> */}
             </View>
             <FlatList data={props.activepropertyData} renderItem={renderItem} />
-            <TouchableOpacity style={styles.headingView}>
-              <Text style={[styles.headingText, styles.knowMoreText]}>
-                Know More
-              </Text>
-            </TouchableOpacity>
+            {props.activepropertyData?.length > 4 ?
+              (<TouchableOpacity
+                onPress={() => props.onPressMore()}
+                style={styles.headingView}>
+                <Text style={[styles.headingText, styles.knowMoreText]}>
+                  Know More
+                </Text>
+              </TouchableOpacity>)
+              : null
+            }
           </View>
         </ScrollView>
       </View>

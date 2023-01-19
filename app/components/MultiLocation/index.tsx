@@ -150,9 +150,16 @@ const locationsView = (props: any) => {
                         onPress={(data, details = null) => {
                             onPressSelect(data, details)
                         }}
+                        filterReverseGeocodingByTypes={[
+                            'locality',
+                            'administrative_area_level_1',
+                        ]}
+                        nearbyPlacesAPI="GooglePlacesSearch"
                         query={{
                             key: MAP_KEY,
                             language: 'en',
+                            // types: '(cities)', //<=== use this to only show country cities
+                            components: 'country:in', // <=== use this to restrict to country
                         }}
                     />
                 </ScrollView>
