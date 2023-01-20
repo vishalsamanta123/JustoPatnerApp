@@ -356,7 +356,7 @@ const AddNewVisitorScreen = ({ navigation, route }: any) => {
             : "",
           locality: formData?.locality,
         };
-        // dispatch(addVisitor(add_params));
+        dispatch(addVisitor(add_params));
       }
     }
   };
