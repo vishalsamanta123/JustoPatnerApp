@@ -54,7 +54,7 @@ import FollowUpAddScreen from 'app/views/FollowUp/FollowUpAdd';
 import EditBankDetails from 'app/views/Setting/EditProfileScreen/components/EditBankDetails';
 import AppointmentAddScreen from 'app/views/Appointment/AppointmentAdd';
 import ErrorMessage from 'app/components/ErrorMessage';
-import { RED_COLOR } from 'app/components/utilities/constant';
+import { GLOBAL_URL, RED_COLOR } from 'app/components/utilities/constant';
 import ReportScreen from 'app/views/Report';
 import LeaderBoardScreen from 'app/views/LeaderBoard/LeaderBoardScreen';
 import SupportForumScreen from 'app/views/SupportForumScreen/SupportForum';
@@ -236,7 +236,7 @@ const AuthLoadingComponent = () => {
       const options = {
         headers: {"content-type": "application/json"}
       }
-      const data = await axios.get('https://itinformatix.org:3044/api/token/jwtToken', options)
+      const data = await axios.get(`${GLOBAL_URL}/api/token/jwtToken`, options)
       .then(res => {
         console.log('res', res.data)
         return res.data
