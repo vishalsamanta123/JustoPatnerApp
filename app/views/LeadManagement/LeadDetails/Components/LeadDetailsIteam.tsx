@@ -110,6 +110,19 @@ const LeadDetailsIteam = (props: any) => {
                     </Text>
                 </View>
             </View>
+            <View style={styles.Txtview}>
+                <View style={styles.projectContainer}>
+                    <Text style={styles.projectTxt}>Acquisition Source :</Text>
+                </View>
+                <View style={styles.nameContainer}>
+                    <Text style={[styles.nameTxt,]}>
+                        {/*  1- By User 2 - By Self acquisition_source */}
+                        {props.items.acquisition_source === 1 ? "By User" :
+                            props.items.acquisition_source === 2 ? "By Self" : strings.notfount
+                        }
+                    </Text>
+                </View>
+            </View>
             {/* Property Required */}
             <>
                 <View style={styles.headdingView}>

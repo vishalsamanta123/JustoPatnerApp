@@ -132,18 +132,31 @@ const LeadManagementItem = (props: any) => {
             {props.items.lead_status === 1
               ? "Create Lead"
               : props.items.lead_status === 2
-              ? "Follow-up"
-              : props.items.lead_status === 3
-              ? "Site Visit/Appointment"
-              : props.items.lead_status === 4
-              ? "Booking"
-              : props.items.lead_status === 5
-              ? "Registration"
-              : props.items.lead_status === 6
-              ? "Close"
-              : props.items.lead_status === 7
-              ? "Ready To Book"
-              : strings.notfount}
+                ? "Follow-up"
+                : props.items.lead_status === 3
+                  ? "Site Visit/Appointment"
+                  : props.items.lead_status === 4
+                    ? "Booking"
+                    : props.items.lead_status === 5
+                      ? "Registration"
+                      : props.items.lead_status === 6
+                        ? "Close"
+                        : props.items.lead_status === 7
+                          ? "Ready To Book"
+                          : strings.notfount}
+          </Text>
+        </View>
+      </View>
+      <View style={styles.Txtview}>
+        <View style={styles.projectContainer}>
+          <Text style={styles.projectTxt}>Acquisition Source :</Text>
+        </View>
+        <View style={styles.nameContainer}>
+          <Text style={[styles.nameTxt,]}>
+            {/*  1- By User 2 - By Self acquisition_source */}
+            {props.items.acquisition_source === 1 ? "By User" :
+              props.items.acquisition_source === 2 ? "By Self" : strings.notfount
+            }
           </Text>
         </View>
       </View>
