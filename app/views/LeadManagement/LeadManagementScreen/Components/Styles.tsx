@@ -129,6 +129,11 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     flexDirection: 'row',
   },
+  browseView:{
+    alignItems: 'center',
+    justifyContent: "center",
+    margin: normalizeSpacing(20)
+  }
 });
 
 export default styles;

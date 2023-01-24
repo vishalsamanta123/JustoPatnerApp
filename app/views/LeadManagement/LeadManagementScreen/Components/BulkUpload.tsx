@@ -13,6 +13,9 @@ const BulkUpload = ({ navigation }: any) => {
     const handleBackPress = () => {
         navigation.goBack()
     }
+    const handleNavigation = (navigateTo: any) => {
+        navigation.navigate(navigateTo)
+    }
     return (
         <View style={styles.mainContainer}>
             <View
@@ -33,10 +36,10 @@ const BulkUpload = ({ navigation }: any) => {
             //   handleOnRightFirstIconPress={() => setFilterisVisible(true)}
             />
             <View style={styles.BulkMainView}>
-                <TouchableOpacity style={styles.uploadView}>
+                <TouchableOpacity style={styles.uploadView} onPress={() => handleNavigation('CSVUpload')}>
                     <Text style={styles.uploadTxt}>{strings.uploadCSV}</Text>
                 </TouchableOpacity>
-                <TouchableOpacity style={[styles.uploadView,{marginTop: normalizeSpacing(50)}]}>
+                <TouchableOpacity style={[styles.uploadView,{marginTop: normalizeSpacing(50)}]} onPress={() => handleNavigation('ImageUpload')}>
                     <Text style={styles.uploadTxt}>{strings.uploadimage}</Text>
                 </TouchableOpacity>
             </View>

@@ -53,13 +53,13 @@ const LeadManagementView = (props: any) => {
         handleOnRightFirstIconPress={() => setFilterisVisible(true)}
       />
       <View style={styles.TopBtnView}>
-        {/*  <Button
+         <Button
           buttonText={"Bulk Upload"}
           width={150}
           height={30}
           btnTxtsize={15}
           handleBtnPress={props.handleBulkUploadPress}
-        /> */}
+        />
         <Button
           buttonText={"Add New Visitor"}
           width={150}
