@@ -1,6 +1,6 @@
 import apiEndPoints from "app/components/utilities/apiEndPoints";
 import { apiCall } from "app/components/utilities/httpClient";
-import { GET_CHAT_ALL_USER_PROPERTY, GET_CHAT_PROPERTY_LIST, PROPERTY_LIST_ERROR, START_LOADING, STOP_LOADING, USER_CHAT_LIST_ERROR } from "../types";
+import { GET_CHAT_ALL_USER_PROPERTY, GET_CHAT_PROPERTY_LIST, PROPERTY_LIST_ERROR, START_LOADING, STOP_LOADING, UPDATE_CHAT_STATUS, UPDATE_CHAT_STATUS_ERROR, USER_CHAT_LIST_ERROR } from "../types";
 
 export const getChatListForProperty = (params: any) => async (dispatch: any) => {
     dispatch({ type: START_LOADING })
@@ -56,3 +56,29 @@ export const getAllChatInProperty = (params: any) => async (dispatch: any) => {
         dispatch({ type: STOP_LOADING })
     }
 }
+
+export const chatStatusUpdate = (params: any) => async (dispatch: any) => {
+    dispatch({ type: START_LOADING });
+    try {
+      const res = await apiCall("post", apiEndPoints.UPDATE_CHAT_STATUS, params);
+      console.log('res: chatStatusUpdate', res);
+      if (res.data.status === 200) {
+        dispatch({
+          type: UPDATE_CHAT_STATUS,
+          payload: res.data,
+        });
+      } else {
+        dispatch({
+          type: UPDATE_CHAT_STATUS_ERROR,
+          payload: [],
+        });
+      }
+    } catch (e) {
+      dispatch({
+        type: UPDATE_CHAT_STATUS_ERROR,
+        payload: [],
+      });
+    } finally {
+      dispatch({ type: STOP_LOADING });
+    }
+  };

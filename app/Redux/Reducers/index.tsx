@@ -11,7 +11,7 @@ import { dashboardReducer, generateQrCode, statusUpdateReducer } from "./Dashboa
 import { notificationListReducer } from "./NotificationReducer";
 import { supportForumReducer, supportForumUpdateReducer } from "./SupportForumReducer";
 import { leaderBoardReducer } from "./LearderBoardReducer";
-import { allUserChatListReducer, propertyChatReducer } from "./ChatReducer";
+import { allUserChatListReducer, propertyChatReducer, updateChatStatus } from "./ChatReducer";
 import { firebaseReducer } from "./FirebaseReducer";
 import { userAppointmentReducer, userUpdateAppointmentReducer } from "./AppointmentWithUserReducer";
 
@@ -72,6 +72,7 @@ export default {
     
     // chat management
     propertyChatData: propertyChatReducer,
+    chatStatusData: updateChatStatus,
     allUserchatList: allUserChatListReducer,
 
 }

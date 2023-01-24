@@ -30,6 +30,7 @@ const ChatViewScreen = ({ navigation, route }: any) => {
     <>
       <ChatView
         chatlist={response?.data}
+        property_id={property_id}
         handleBackPress={handleBackPress}
       />
     </>

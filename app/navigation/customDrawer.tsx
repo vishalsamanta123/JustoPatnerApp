@@ -179,14 +179,14 @@ const customDrawer = ({ navigation }: any) => {
             navigation.navigate('SupportForum');
           }}
         />
-        {/* <DrawerTabSection
+         <DrawerTabSection
           iconSource={images.chat}
           tabTitle={strings.chatHeader}
           handleDrawerNavigation={() => {
             navigation.navigate('PropertyChatView');
           }}
         />
-        <DrawerTabSection
+        {/*<DrawerTabSection
           iconSource={images.support}
           tabTitle={strings.supportHeader}
           handleDrawerNavigation={() => {

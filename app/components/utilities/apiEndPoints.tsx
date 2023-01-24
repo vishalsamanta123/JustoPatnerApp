@@ -104,6 +104,6 @@ export default {
   GET_LEADERBOARD_DETAIL:'/leaderboard/getPropertyLeaderboardDetails',
   // Chat management
   GET_PROPERTY_LIST_FOR_CHAT: '/chat/getCpActivePropertyList',
-  GET_ALL_CHAT_IN_PROPERTY: '/chat/getPropertyUserListForChat'
-
+  GET_ALL_CHAT_IN_PROPERTY: '/chat/getPropertyUserListForChat',
+  UPDATE_CHAT_STATUS: '/chat/userChatStatusUpdate',
 };

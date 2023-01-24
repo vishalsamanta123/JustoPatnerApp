@@ -31,10 +31,13 @@ import DocumentPicker from "react-native-document-picker";
 import { normalizeSpacing } from "app/components/scaleFontSize";
 import Video from "react-native-video";
 import RNFetchBlob from "rn-fetch-blob";
+import { chatStatusUpdate } from "app/Redux/Actions/ChatActions";
+import { useDispatch, useSelector } from "react-redux";
 
 const ChatScreen = ({ navigation, route }: any) => {
   const item = route.params || {};
-  console.log("item: ", item);
+  const dispatch: any = useDispatch();
+  const { response = {} } = useSelector((state: any) => state.chatStatusData);
   const [keys, setkeys] = useState([]);
   const [messages, setMessages] = useState<any>([]);
   const [senderID, setSenderID] = useState<any>("");
@@ -46,6 +49,11 @@ const ChatScreen = ({ navigation, route }: any) => {
 
   useEffect(() => {
     getMsgList();
+    chatStatusUpdate({
+      property_id: item?.property_id,
+      receiver_id: item?._id,
+      msg_status: 1,
+    })
   }, []);
 
   const handleBackPress = () => {
@@ -158,7 +166,15 @@ const ChatScreen = ({ navigation, route }: any) => {
         )
         .push()
         .set(params)
-        .then((ref: any) => {});
+        .then((ref: any) => {
+          dispatch(
+            chatStatusUpdate({
+              property_id: item?.property_id,
+              receiver_id: item?._id,
+              msg_status: 1,
+            })
+          );
+        });
     }
   };
 

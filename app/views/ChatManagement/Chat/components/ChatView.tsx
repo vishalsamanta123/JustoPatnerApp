@@ -20,7 +20,7 @@ const ChatViewView = (props: any) => {
   }, [props.chatlist])
   const navigation: any = useNavigation();
   const handleChatPress = (item: any) => {
-    navigation.navigate("ChatScreen", item);
+    navigation.navigate("ChatScreen", {...item, property_id: props.property_id});
   };
   const handleChangeText = (val: any) => {
     const final = props?.chatlist?.filter(function (el: any) {
