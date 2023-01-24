@@ -144,7 +144,7 @@ const RegistrationView = (props: any) => {
                 pancard_no: val,
               });
             }}
-            maxLength={11}
+            maxLength={10}
           />
         </View>
         <View style={styles.genderView}>
