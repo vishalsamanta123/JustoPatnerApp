@@ -122,7 +122,7 @@ const strings = new LocalizedStrings({
     cancel: 'Cancel',
     confirm: 'Confirm',
     updateStatus: 'Update Status',
-
+    browseToUploadMsg: 'Browse to Upload Image',
     //Auth 
 
     usernamepasswordempty: 'Username and Password is require. Please enter Username and password',

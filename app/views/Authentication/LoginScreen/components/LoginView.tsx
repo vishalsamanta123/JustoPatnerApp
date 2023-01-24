@@ -62,7 +62,7 @@ const LoginView = (props: any) => {
             placeholderText={"Password"}
             headingText={'Password'}
             rightImgSrc={
-              isVisiblePassword ? images.showPassword : images.hiddenPassword
+              isVisiblePassword ? images.hiddenPassword : images.showPassword
             }
             handleInputBtnPress={handlePasswordBtnPress}
             isSecureText={isVisiblePassword}

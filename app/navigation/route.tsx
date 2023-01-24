@@ -70,6 +70,8 @@ import ChatScreen from 'app/views/ChatManagement/Chat/components/ChatScreen';
 import auth from "@react-native-firebase/auth";
 import { updateFirebase } from 'app/Redux/Actions/FirebaseActions';
 import UserAppointmentDetails from 'app/views/Appointment/UserAppointmentDetails';
+import ImageUpload from 'app/views/LeadManagement/LeadManagementScreen/Components/ImageUpload';
+import CSVUpload from 'app/views/LeadManagement/LeadManagementScreen/Components/CSVUpload';
 
 
 
@@ -154,6 +156,8 @@ const AppComponent = () => {
       <AppStack.Screen name="BulkUpload" component={BulkUpload} />
       <AppStack.Screen name="AddNewVisitorScreen" component={AddNewVisitorScreen} />
       <AppStack.Screen name="LeadDetails" component={LeadDetails} />
+      <AppStack.Screen name="ImageUpload" component={ImageUpload} />
+      <AppStack.Screen name="CSVUpload" component={CSVUpload} />
 
       {/* Follow up Screens */}
       <AppStack.Screen name="FollowUpDetails" component={FollowUpDetails} />
