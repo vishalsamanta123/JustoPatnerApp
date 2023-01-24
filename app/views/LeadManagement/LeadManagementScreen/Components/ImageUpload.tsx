@@ -5,6 +5,7 @@ import strings from "app/components/utilities/Localization";
 import styles from "./Styles";
 import Header from "app/components/Header";
 import Button from "app/components/Button";
+import PicturePickerModal from "app/components/Modals/PicturePicker";
 
 const ImageUpload = ({ navigation }: any) => {
   const handleBackPress = () => {
@@ -27,13 +28,34 @@ const ImageUpload = ({ navigation }: any) => {
       </TouchableOpacity> */}
       <View style={styles.browseView}>
         <Button
-          buttonText={"Upload "}
+          buttonText={"Browse"}
           width={150}
           height={30}
           btnTxtsize={15}
           handleBtnPress={() => {}}
         />
       </View>
+      <View style={styles.uploadImage}></View>
+      <View style={styles.uploadButton}>
+        <Button
+          buttonText={"Upload"}
+          width={200}
+          height={50}
+          btnTxtsize={20}
+          handleBtnPress={() => {}}
+        />
+      </View>
+      {/* <PicturePickerModal
+            Visible={profileVisible}
+            setVisible={setProfileVisible}
+            imageData={(data: any) => {
+              props.setEditData({
+                ...props.editData,
+                profile_picture: data,
+                local_profile_picture: data,
+              });
+            }}
+          /> */}
     </View>
   );
 };

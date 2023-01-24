@@ -132,7 +132,16 @@ const styles = StyleSheet.create({
   browseView:{
     alignItems: 'center',
     justifyContent: "center",
-    margin: normalizeSpacing(20)
+    margin: normalizeSpacing(20),
+    flex: 2,
+  },
+  uploadImage:{
+    flex: 2
+  },
+  uploadButton:{
+    flex: 2,
+    justifyContent: 'flex-end',
+    marginBottom: normalizeSpacing(10)
   }
 });
 
