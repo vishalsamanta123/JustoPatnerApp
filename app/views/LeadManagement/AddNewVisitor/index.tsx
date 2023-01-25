@@ -18,10 +18,11 @@ import { getAllAlloctaeProperty } from "app/Redux/Actions/propertyActions";
 
 const AddNewVisitorScreen = ({ navigation, route }: any) => {
   const { type, data } = route?.params || {};
+  console.log('data: ', data);
   const dispatch: any = useDispatch();
   const { response = {}, detail = "" } = useSelector(
     (state: any) => state.visitorData
-  );
+    );
   const [formData, setFormData] = useState<any>({
     first_name: "",
     adhar_no: "",
@@ -34,6 +35,7 @@ const AddNewVisitorScreen = ({ navigation, route }: any) => {
     location: "",
     locality: "",
     configuration_id: "",
+    configuration: "",
     expected_possession_date: "",
     min_budget: "",
     min_budget_type: "L",
@@ -82,6 +84,7 @@ const AddNewVisitorScreen = ({ navigation, route }: any) => {
       })
     );
   }, [navigation]);
+  
 
   useEffect(() => {
     if (masterData?.response?.status === 200) {
@@ -380,20 +383,3 @@ const AddNewVisitorScreen = ({ navigation, route }: any) => {
 };
 
 export default AddNewVisitorScreen;
-
-// lead_id: '',/////
-// first_name: '',
-// last_name: '',////
-// address: '',////
-// latitude: '',////
-// longitude: '',////
-// city: '',////
-// coumpany_name: '',////
-// configuration_id: '',////
-// areain_sqlft: '',////
-// income: '',////
-// budget: '',///
-// whenby: '',////
-// agent_code: '',////
-// min_budget_type: '',///
-// max_budget_type: '',////

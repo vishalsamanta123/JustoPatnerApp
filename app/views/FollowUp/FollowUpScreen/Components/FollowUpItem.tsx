@@ -15,6 +15,7 @@ import moment from "moment";
 
 const FollowUpItem = (props: any) => {
   const item = props?.items || {};
+  console.log('item: ', item);
   return (
     <View style={styles.IteamView}>
       <View style={styles.Txtview}>

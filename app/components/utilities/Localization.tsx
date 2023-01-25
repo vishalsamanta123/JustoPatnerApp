@@ -125,6 +125,8 @@ const strings = new LocalizedStrings({
     confirm: 'Confirm',
     updateStatus: 'Update Status',
     browseToUploadMsg: 'Browse to Upload Image',
+    browseToUploadCsv: 'Browse to Upload CSV File',
+
     //Auth 
 
     usernamepasswordempty: 'Username and Password is require. Please enter Username and password',

@@ -75,6 +75,8 @@ export default {
   ADD_VISITOR_: "/visit/addVisit",
   EDIT_VISITOR_: "/visit/editVisit",
   UPLOAD_IMAGE: "/visit/bulkVisitImageUpload",
+  UPLOAD_CSVFile: "/visit/bulkVisitCsvUpload",
+
 
   // Follow-Up
   GET_FOLLOWUP_LIST: '/followupStatus/getFollowupList',
