@@ -78,6 +78,8 @@ const strings = new LocalizedStrings({
     visitor: 'Visitor',
     bulkupload: 'Bulk Upload',
     uploadCSV: 'Upload CSV',
+    browser: 'Browse',
+    dowloadCSV: 'Dowload Sample CSV',
     uploadimage: 'Upload Image',
     addnewvisitor: 'Add New Visitor',
     editVisitor: 'Update Visitor',

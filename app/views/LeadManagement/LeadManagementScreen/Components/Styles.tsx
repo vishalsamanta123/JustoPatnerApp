@@ -18,6 +18,9 @@ const styles = StyleSheet.create({
   RightFirstIconStyle: {
     tintColor: WHITE_COLOR,
   },
+  inputWrap : {
+    marginTop: normalizeSpacing(30),
+  },
   mainContainer: {
     flex: 1,
   },
@@ -121,7 +124,8 @@ const styles = StyleSheet.create({
   },
   uploadTxt: {
     color: BLACK_COLOR,
-    fontSize: normalize(18),
+    fontSize: normalize(16),
+    fontFamily: FONT_FAMILY_SEMIBOLD
   },
   footer: {
     padding: 10,
@@ -141,6 +145,7 @@ const styles = StyleSheet.create({
   uploadButton:{
     flex: 2,
     justifyContent: 'flex-end',
+    alignItems:'center',
     marginBottom: normalizeSpacing(10)
   }
 });
