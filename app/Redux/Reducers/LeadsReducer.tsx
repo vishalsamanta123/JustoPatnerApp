@@ -1,4 +1,4 @@
-import { ADD_VISITOR, ADD_VISITOR_FORM, EDIT_VISITOR, GET_VISITOR_DETAIL, REMOVE_VISITOR, UPLOAD_IMAGE, UPLOAD_IMAGE_ERROR, UPLOAD_IMAGE_REMOVE, VISITOR_LIST, VISITOR_STATUSUPDATE } from "../types";
+import { ADD_VISITOR, ADD_VISITOR_FORM, EDIT_VISITOR, GET_VISITOR_DETAIL, REMOVE_VISITOR, UPLOAD_CSV_FILE, UPLOAD_CSV_FILE_ERROR, UPLOAD_CSV_FILE_REMOVE, UPLOAD_IMAGE, UPLOAD_IMAGE_ERROR, UPLOAD_IMAGE_REMOVE, VISITOR_LIST, VISITOR_STATUSUPDATE } from "../types";
 
 const initialState = {
   response: null,
@@ -152,6 +152,29 @@ export function uploadImageReducer(state = initialStateUploadImage, action: any)
       };
     default:
       return state;
+  }}
+  export function uploadCSVFileEReducer(state = initialStateUploadImage, action: any) {
+    switch (action.type) {
+        case UPLOAD_CSV_FILE:
+        return {
+          ...state,
+          upload: true,
+          response: action.payload,
+        };
+      case UPLOAD_CSV_FILE_REMOVE:
+        return {
+          ...state,
+          upload: false,
+          response: action.payload,
+        };
+        case UPLOAD_CSV_FILE_ERROR:
+        return {
+          ...state,
+          upload: false,
+          response: action.payload,
+        };
+      default:
+        return state;
+    }
   }
-}
 

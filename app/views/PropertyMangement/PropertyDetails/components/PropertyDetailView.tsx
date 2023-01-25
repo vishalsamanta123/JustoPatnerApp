@@ -40,6 +40,7 @@ const PropertyDetailView = (props: any) => {
   const insets = useSafeAreaInsets();
   const navigation: any = useNavigation();
   const { response, loading } = propertyData;
+  console.log('response: ', response);
   const onPressCreatevisit = () => {
     navigation.navigate("AddNewVisitorScreen", {
       type: "propertySelect",
@@ -51,8 +52,8 @@ const PropertyDetailView = (props: any) => {
     if (response && response?.status === 200) {
       if (response?.data?.length > 0) {
         setPropertydetail(response?.data[0] ? response?.data[0] : []);
-        setConfigurations(response?.data[0]?.property_configurations || []);
-        setAmenity(response?.data[0]?.property_amenities || []);
+        setConfigurations(response?.data[0]?.configuration_area || []);
+        setAmenity(response?.data[0]?.amenity || []);
         setPropertydocument(response?.data[0]?.property_document || []);
         setApproveStatus(props.data.approve_status);
       }

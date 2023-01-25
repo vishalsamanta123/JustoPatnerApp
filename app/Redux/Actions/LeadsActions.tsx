@@ -1,7 +1,7 @@
 import { handleApiError } from "app/components/ErrorMessage/HandleApiErrors";
 import apiEndPoints from "app/components/utilities/apiEndPoints";
 import { apiCall } from "app/components/utilities/httpClient";
-import { GET_VISITOR_DETAIL, VISITOR_ERROR, VISITOR_LIST, VISITOR_STATUSUPDATE, ADD_VISITOR, ADD_VISITOR_FORM, EDIT_VISITOR, REMOVE_VISITOR, START_LOADING, STOP_LOADING, UPLOAD_IMAGE, UPLOAD_IMAGE_ERROR, UPLOAD_IMAGE_REMOVE } from "../types";
+import { GET_VISITOR_DETAIL, VISITOR_ERROR, VISITOR_LIST, VISITOR_STATUSUPDATE, ADD_VISITOR, ADD_VISITOR_FORM, EDIT_VISITOR, REMOVE_VISITOR, START_LOADING, STOP_LOADING, UPLOAD_IMAGE, UPLOAD_IMAGE_ERROR, UPLOAD_IMAGE_REMOVE, UPLOAD_CSV_FILE, UPLOAD_CSV_FILE_ERROR, UPLOAD_CSV_FILE_REMOVE } from "../types";
 
 export const getAllLeadsList = (params: any) => async (dispatch: any) => {
     dispatch({ type: START_LOADING })
@@ -166,10 +166,51 @@ export const uploadImage = (params: any) => async (dispatch: any) => {
         dispatch({ type: STOP_LOADING })
     }
 };
+export const uploadCSVFile = (params: any) => async (dispatch: any) => {
+    dispatch({ type: START_LOADING })
+    try {
+        const header = {
+            "Content-Type": "multipart/form-data",
+            "access-control-allow-origin": "*",
+          };
+        const res = await apiCall("post", apiEndPoints.UPLOAD_CSVFile, params, header);
+        if (res.data.status === 200) {
+            dispatch({
+                type: UPLOAD_CSV_FILE,
+                payload: res.data,
+            });
+        } else {
+            handleApiError(res.data)
+            return [];
+        }
+    } catch (e) {
+        dispatch({
+            type: UPLOAD_CSV_FILE_ERROR,
+            payload: console.log(e),
+        });
+    }
+    finally {
+        dispatch({ type: STOP_LOADING })
+    }
+};
 export const UploadImageRemove = () => async (dispatch: any) => {
     try {
         dispatch({
             type: UPLOAD_IMAGE_REMOVE,
+            payload: null,
+        });
+    } catch (e) {
+        dispatch({
+            type: VISITOR_ERROR,
+            payload: console.log(e),
+        });
+    }
+};
+
+export const UploadCSVFileRemove = () => async (dispatch: any) => {
+    try {
+        dispatch({
+            type: UPLOAD_CSV_FILE_REMOVE,
             payload: null,
         });
     } catch (e) {
