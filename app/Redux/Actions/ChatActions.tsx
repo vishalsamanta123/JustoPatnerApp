@@ -58,6 +58,7 @@ export const getAllChatInProperty = (params: any) => async (dispatch: any) => {
 }
 
 export const chatStatusUpdate = (params: any) => async (dispatch: any) => {
+console.log('params: chatStatusUpdate', params);
     dispatch({ type: START_LOADING });
     try {
       const res = await apiCall("post", apiEndPoints.UPDATE_CHAT_STATUS, params);

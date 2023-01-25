@@ -18,7 +18,6 @@ const styles = StyleSheet.create({
   mainContainer: {
     flex: 1,
     marginBottom: 20,
-
   },
   headerStyle: {
     backgroundColor: PRIMARY_THEME_COLOR,
@@ -26,12 +25,12 @@ const styles = StyleSheet.create({
   RightFirstIconStyle: {
     tintColor: WHITE_COLOR,
   },
-  
+
   chatListView: {
     flex: 1,
     flexDirection: "row",
-    justifyContent: 'space-between',
-    alignItems: 'center',
+    justifyContent: "space-between",
+    alignItems: "center",
     padding: normalizeSpacing(15),
     borderBottomWidth: 1,
     borderBottomColor: BORDER_COLOR,
@@ -40,17 +39,17 @@ const styles = StyleSheet.create({
     fontSize: normalize(15),
     fontFamily: FONT_FAMILY_SEMIBOLD,
     marginLeft: normalize(20),
-    color: PRIMARY_THEME_COLOR
+    color: PRIMARY_THEME_COLOR,
   },
   iconStyle: {
     height: normalizeHeight(20),
     width: normalizeWidth(20),
   },
-  straight:{
-    flexDirection: 'row',
-    alignItems: 'center'
+  straight: {
+    flexDirection: "row",
+    alignItems: "center",
   },
-  profileImage:{
+  profileImage: {
     height: normalizeHeight(35),
     width: normalizeWidth(35),
     borderRadius: normalize(35),
@@ -138,6 +137,20 @@ const styles = StyleSheet.create({
     width: normalizeWidth(30),
     tintColor: BLACK_COLOR,
     padding: normalizeSpacing(10),
+  },
+  dot: {
+    height: 10,
+    width: 10,
+    backgroundColor: PRIMARY_THEME_COLOR,
+    borderRadius: 10,
+    alignItems: "flex-end",
+    justifyContent: "flex-end",
+    marginRight: normalize(20)
+  },
+  dotWrap: {
+    flexDirection: "row",
+    justifyContent: "center",
+    alignItems: "center",
   },
 });
 export default styles;
