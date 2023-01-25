@@ -76,7 +76,7 @@ const UserBankInfo = ({ navigation }: any) => {
     }
     else if (formData.propidership_declaration_letter == '' || formData.propidership_declaration_letter == undefined) {
       isError = false;
-      errorMessage = "Propidership Declaration Letter Image is require. Please Choose Propidership Declaration Letter Image"
+      errorMessage = "Proprietorship Declaration Letter Image is require. Please Choose Proprietorship Declaration Letter Image"
     }
     else if (formData.cancel_cheaque == '' || formData.cancel_cheaque == undefined) {
       isError = false;

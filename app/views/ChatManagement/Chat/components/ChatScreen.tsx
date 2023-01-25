@@ -49,11 +49,12 @@ const ChatScreen = ({ navigation, route }: any) => {
 
   useEffect(() => {
     getMsgList();
-    chatStatusUpdate({
+    console.log('USEEFFECT CALLEF')
+    dispatch(chatStatusUpdate({
       property_id: item?.property_id,
       receiver_id: item?._id,
       msg_status: 1,
-    })
+    }))
   }, []);
 
   const handleBackPress = () => {
