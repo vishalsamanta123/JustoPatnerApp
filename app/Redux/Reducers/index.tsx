@@ -2,7 +2,7 @@ import { authStore, changePasswordReducer, forgotReducer, loadingReducer, otpVer
 import { propertyReducer, propertyDetailReducer, removeStatusReducer } from "./propertyReducers";
 import { createChannlePartnerReducer, emailAndMobileReducer, registerDataReducer, registrationFormReducer } from "./ReggistrationReducer";
 import { agentReducer, addAgentReducer, addAgentFormReducer, editAgentReducer } from './AgentReducer';
-import { addVisitorReducer, editVisitorReducer, uploadImageReducer, visitorListReducer, visitorReducer } from "./LeadsReducer";
+import { addVisitorReducer, editVisitorReducer, uploadImageReducer, uploadCSVFileEReducer ,visitorListReducer, visitorReducer } from "./LeadsReducer";
 import { masterDataReducer } from "./MasterReducer";
 import { editAddFollowupReducer, followUpReducer } from "./FollowUpReducer";
 import { editUserReducer, settingReducer } from "./SettingReducer";
@@ -52,6 +52,8 @@ export default {
     editVisitorData: editVisitorReducer,
     addVisitorData: addVisitorReducer,
     uploadVisitorDetailImageData: uploadImageReducer,
+    uploadVisitorDetailCSVFileData: uploadCSVFileEReducer,
+
 
     userAppointmentData: userAppointmentReducer,
     updateStatusAppointmentData: userUpdateAppointmentReducer,

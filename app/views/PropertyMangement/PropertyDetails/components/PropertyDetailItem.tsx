@@ -225,11 +225,11 @@ const PropertyDetailItem = (props: any) => {
                 },
               ]}
             >
-              {amenity.title}
+              {amenity.title},
             </Text>
           ))}
 
-          <Text
+          {/* <Text
             key={imagearray._id}
             style={[
               styles.nameTxt,
@@ -241,7 +241,7 @@ const PropertyDetailItem = (props: any) => {
             ]}
           >
             {props.items.amenity}
-          </Text>
+          </Text> */}
           {/* <Text
             style={[
               styles.nameTxt,

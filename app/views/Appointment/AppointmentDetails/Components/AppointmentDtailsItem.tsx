@@ -7,6 +7,7 @@ import strings from "app/components/utilities/Localization";
 import { DATE_FORMAT } from "app/components/utilities/constant";
 
 const AppointmentDtailsItem = (props: any) => {
+console.log('props: ', props);
   return (
     <ScrollView>
       <View style={styles.topDetailsView}>
@@ -53,7 +54,7 @@ const AppointmentDtailsItem = (props: any) => {
           </View>
         </View>
       </View>
-      <View style={styles.Txtview}>
+      {/* <View style={styles.Txtview}>
         <View style={styles.projectContainer}>
           <Text style={styles.projectTxt}>When to buy</Text>
         </View>
@@ -61,14 +62,14 @@ const AppointmentDtailsItem = (props: any) => {
           <Text>:</Text>
         </View>
         <View style={styles.nameContainer}>
-          {/* <Text style={styles.nameTxt}>{props?.item?.customer_first_name === '' ||
+          <Text style={styles.nameTxt}>{props?.item?.customer_first_name === '' ||
             props?.item?.customer_first_name === undefined ||
             props?.item?.customer_first_name === null
             ? strings.notfount
-            : props?.item?.customer_first_name}</Text> */}
+            : props?.item?.customer_first_name}</Text>
           <Text style={styles.nameTxt}>{strings.notfount}</Text>
         </View>
-      </View>
+      </View> */}
       <View style={styles.Txtview}>
         <View style={styles.projectContainer}>
           <Text style={styles.projectTxt}>Configuration</Text>

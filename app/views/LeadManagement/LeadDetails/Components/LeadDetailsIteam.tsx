@@ -134,12 +134,12 @@ const LeadDetailsIteam = (props: any) => {
                     </View>
                     <View><Text>:</Text></View>
                     <View style={styles.nameContainer}>
-                        <Text style={styles.nameTxt}>{props.items?.customer_detail?.configuration === '' ||
-                            props.items?.customer_detail?.configuration === undefined ||
-                            props.items?.customer_detail?.configuration === null ||
-                            props.items?.customer_detail?.configuration === "undefined" ?
+                        <Text style={styles.nameTxt}>{props.items?.configuration === '' ||
+                            props.items?.configuration === undefined ||
+                            props.items?.configuration === null ||
+                            props.items?.configuration === "undefined" ?
                             strings.notfount :
-                            props?.items?.customer_detail?.configuration}</Text>
+                            props?.items?.configuration}</Text>
                     </View>
                 </View>
                 <View style={styles.Txtview}>
@@ -148,11 +148,11 @@ const LeadDetailsIteam = (props: any) => {
                     </View>
                     <View><Text>:</Text></View>
                     <View style={styles.nameContainer}>
-                        <Text style={styles.nameTxt}>{props.items?.customer_detail?.areain_sqlft === '' ||
-                            props.items?.customer_detail?.areain_sqlft === undefined ||
-                            props.items?.customer_detail?.areain_sqlft === "undefined" ?
+                        <Text style={styles.nameTxt}>{props.items?.areain_sqlft === '' ||
+                            props.items?.areain_sqlft === undefined ||
+                            props.items?.areain_sqlft === "undefined" ?
                             strings.notfount :
-                            props?.items?.customer_detail?.areain_sqlft}</Text>
+                            props?.items?.areain_sqlft}</Text>
                     </View>
                 </View>
                 <View style={styles.Txtview}>
@@ -161,11 +161,10 @@ const LeadDetailsIteam = (props: any) => {
                     </View>
                     <View><Text>:</Text></View>
                     <View style={styles.nameContainer}>
-                        <Text style={styles.nameTxt}>{props.items?.customer_detail?.budget === '' ||
-                            props.items?.customer_detail?.budget === undefined ||
-                            props.items?.customer_detail?.budget === "undefined" ?
-                            strings.notfount :
-                            props?.items?.customer_detail?.budget}</Text>
+                        <Text style={styles.nameTxt}>{props.items?.min_budget || props.items?.max_budget ?
+                            `${props.items?.min_budget} ${props.items?.min_budget_type} - ${props.items?.max_budget} ${props.items?.max_budget_type}`
+                            : strings.notfount
+                        }</Text>
                     </View>
                 </View>
                 <View style={styles.Txtview}>
@@ -174,11 +173,11 @@ const LeadDetailsIteam = (props: any) => {
                     </View>
                     <View><Text>:</Text></View>
                     <View style={styles.nameContainer}>
-                        <Text style={styles.nameTxt}>{props.items?.customer_detail?.funding_type === '' ||
-                            props.items?.customer_detail?.funding_type === undefined ||
-                            props.items?.customer_detail?.funding_type === "undefined" ?
+                        <Text style={styles.nameTxt}>{props.items?.funding_type === '' ||
+                            props.items?.funding_type === undefined ||
+                            props.items?.funding_type === "undefined" ?
                             strings.notfount :
-                            props?.items?.customer_detail?.funding_type}</Text>
+                            props?.items?.funding_type}</Text>
                     </View>
                 </View>
                 <View style={styles.Txtview}>
@@ -187,11 +186,11 @@ const LeadDetailsIteam = (props: any) => {
                     </View>
                     <View><Text>:</Text></View>
                     <View style={styles.nameContainer}>
-                        <Text style={styles.nameTxt}>{props.items?.customer_detail?.purpose === '' ||
-                            props.items?.customer_detail?.purpose === undefined ||
-                            props.items?.customer_detail?.purpose === "undefined" ?
+                        <Text style={styles.nameTxt}>{props.items?.purpose === '' ||
+                            props.items?.purpose === undefined ||
+                            props.items?.purpose === "undefined" ?
                             strings.notfount :
-                            props?.items?.customer_detail?.purpose}</Text>
+                            props?.items?.purpose}</Text>
                     </View>
                 </View>
             </>
@@ -259,11 +258,10 @@ const LeadDetailsIteam = (props: any) => {
                     </View>
                     <View><Text>:</Text></View>
                     <View style={styles.nameContainer}>
-                        <Text style={styles.nameTxt}>{props?.items?.customer_detail?.city === '' ||
-                            props.items?.customer_detail?.city === undefined ||
-                            props.items?.customer_detail?.city === "undefined" || props.items?.customer_detail?.city === null
-                            ? strings.notfount :
-                            props?.items?.customer_detail?.city}</Text>
+                        <Text style={styles.nameTxt}>{
+                            props?.items?.customer_detail?.city ? props?.items?.customer_detail?.city :
+                                props?.items?.customer_detail?.locality ? props?.items?.customer_detail?.locality
+                                    : strings.notfount}</Text>
                     </View>
                 </View>
             </>
