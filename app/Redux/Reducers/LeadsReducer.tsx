@@ -1,4 +1,4 @@
-import { ADD_VISITOR, ADD_VISITOR_FORM, EDIT_VISITOR, GET_VISITOR_DETAIL, REMOVE_VISITOR, VISITOR_LIST, VISITOR_STATUSUPDATE } from "../types";
+import { ADD_VISITOR, ADD_VISITOR_FORM, EDIT_VISITOR, GET_VISITOR_DETAIL, REMOVE_VISITOR, UPLOAD_IMAGE, UPLOAD_IMAGE_ERROR, UPLOAD_IMAGE_REMOVE, VISITOR_LIST, VISITOR_STATUSUPDATE } from "../types";
 
 const initialState = {
   response: null,
@@ -18,6 +18,10 @@ const initiallistState = {
 const initialStateForm = {
   response: null,
   update: false,
+};
+const initialStateUploadImage = {
+  response: null,
+  upload: false,
 };
 
 export function visitorReducer(state = initialState, action: any) {
@@ -126,3 +130,28 @@ export function editVisitorReducer(state = initialEditState, action: any) {
       return state;
   }
 }
+export function uploadImageReducer(state = initialStateUploadImage, action: any) {
+  switch (action.type) {
+    case UPLOAD_IMAGE:
+      return {
+        ...state,
+        upload: true,
+        response: action.payload,
+      };
+    case UPLOAD_IMAGE_REMOVE:
+      return {
+        ...state,
+        upload: false,
+        response: action.payload,
+      };
+    case UPLOAD_IMAGE_ERROR:
+      return {
+        ...state,
+        upload: false,
+        response: action.payload,
+      };
+    default:
+      return state;
+  }
+}
+

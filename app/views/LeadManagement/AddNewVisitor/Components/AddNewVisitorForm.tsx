@@ -170,7 +170,7 @@ const AddNewVisitorForm = (props: any) => {
                   pancard_no: data,
                 });
               }}
-              maxLength={11}
+              maxLength={10}
               valueshow={props?.formData?.pancard_no}
               headingText={"Pancard No."}
             />

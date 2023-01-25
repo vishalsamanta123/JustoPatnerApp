@@ -128,7 +128,7 @@ const AgentBasicInfoView = (props: any) => {
               }}
               valueshow={props?.agentInfoData?.pancard_no?.toString()}
               headingText={"Pancard No."}
-              maxLength={11}
+              maxLength={10}
             />
           </View>
           <View style={styles.genderView}>

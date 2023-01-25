@@ -42,7 +42,7 @@ const ChangePasswordView = (props: any) => {
                 })}
                 headingText={"Old Password"}
                 rightImgSrc={
-                  isVisibleOldPassword ? images.showPassword : images.hiddenPassword
+                  isVisibleOldPassword ? images.hiddenPassword : images.showPassword
                 }
                 handleInputBtnPress={handleOldPasswordBtnPress}
                 isSecureText={isVisibleOldPassword}
@@ -57,7 +57,7 @@ const ChangePasswordView = (props: any) => {
                 })}
                 headingText={"New Password"}
                 rightImgSrc={
-                  isVisibleNewPassword ? images.showPassword : images.hiddenPassword
+                  isVisibleNewPassword ? images.hiddenPassword : images.showPassword
                 }
                 handleInputBtnPress={handleNewPasswordBtnPress}
                 isSecureText={isVisibleNewPassword}
@@ -72,7 +72,7 @@ const ChangePasswordView = (props: any) => {
                 })}
                 headingText={"Confirm New Password"}
                 rightImgSrc={
-                  isVisibleCnfmPassword ? images.showPassword : images.hiddenPassword
+                  isVisibleCnfmPassword ? images.hiddenPassword : images.showPassword
                 }
                 handleInputBtnPress={handlecnfmPasswordBtnPress}
                 isSecureText={isVisibleCnfmPassword}
