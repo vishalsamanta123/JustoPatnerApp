@@ -40,7 +40,7 @@ const PropertyDetailView = (props: any) => {
   const insets = useSafeAreaInsets();
   const navigation: any = useNavigation();
   const { response, loading } = propertyData;
-  console.log('response: ', response);
+  console.log("response: ", response);
   const onPressCreatevisit = () => {
     navigation.navigate("AddNewVisitorScreen", {
       type: "propertySelect",
@@ -134,67 +134,72 @@ const PropertyDetailView = (props: any) => {
           styles.btnContainer,
           {
             justifyContent:
-              approveStatus !== 1 && approveStatus !== 3 && propertydetail?.property_active_status
+              approveStatus !== 1 &&
+              approveStatus !== 3 &&
+              propertydetail?.property_active_status
                 ? "space-between"
                 : "center",
           },
         ]}
       >
-        {propertydetail?.property_active_status || typeof propertydetail?.property_active_status === 'undefined' ?
-          (<Button
-            handleBtnPress={() => confirmStatus()}
-            buttonText={
-              approveStatus === 1
-                ? strings.accept
-                : approveStatus === 2
+        {
+          propertydetail?.property_active_status ||
+          typeof propertydetail?.property_active_status === "undefined" ? (
+            <Button
+              handleBtnPress={() => confirmStatus()}
+              buttonText={
+                approveStatus === 1
+                  ? strings.accept
+                  : approveStatus === 2
                   ? strings.unsubscribe
                   : strings.subscribe
-            }
-            width={150}
-            height={45}
-            bgcolor={""}
-            bordercolor={
-              approveStatus === 1
-                ? BLACK_COLOR
-                : approveStatus === 2
+              }
+              width={150}
+              height={45}
+              bgcolor={""}
+              bordercolor={
+                approveStatus === 1
+                  ? BLACK_COLOR
+                  : approveStatus === 2
                   ? "red"
                   : YELLOW_COLOR
-            }
-            borderWidth={1.5}
-            btnTxtcolor={
-              approveStatus === 1
-                ? BLACK_COLOR
-                : approveStatus === 2
+              }
+              borderWidth={1.5}
+              btnTxtcolor={
+                approveStatus === 1
+                  ? BLACK_COLOR
+                  : approveStatus === 2
                   ? "red"
                   : YELLOW_COLOR
-            }
-            btnTxtsize={15}
-            textTransform={"uppercase"}
-          />)
-          :
-          (<Button
-            handleBtnPress={() => {
-              dispatch(statusUpdate({
-                property_id: props?.data?.property_id,
-                approve_status: 3,
-                resion_id: '',
-              }))
-            }}
-            buttonText={strings.deactive}
-            width={150}
-            height={45}
-            bgcolor={""}
-            bordercolor={'red'}
-            borderWidth={1.5}
-            btnTxtcolor={'red'}
-            btnTxtsize={15}
-            textTransform={"uppercase"}
-          />
-          )}
-
+              }
+              btnTxtsize={15}
+              textTransform={"uppercase"}
+            />
+          ) : null
+          // (<Button
+          //   handleBtnPress={() => {
+          //     dispatch(statusUpdate({
+          //       property_id: props?.data?.property_id,
+          //       approve_status: 3,
+          //       resion_id: '',
+          //     }))
+          //   }}
+          //   buttonText={strings.deactive}
+          //   width={150}
+          //   height={45}
+          //   bgcolor={""}
+          //   bordercolor={'red'}
+          //   borderWidth={1.5}
+          //   btnTxtcolor={'red'}
+          //   btnTxtsize={15}
+          //   textTransform={"uppercase"}
+          // />
+          // )
+        }
 
         {propertydetail?.property_active_status &&
-          approveStatus !== 1 && approveStatus !== 3 ? (
+        approveStatus !== 1 &&
+        approveStatus !== 3 ? (
           <Button
             handleBtnPress={() => onPressCreatevisit()}
             buttonText={strings.createVisit}
@@ -229,9 +234,7 @@ const PropertyDetailView = (props: any) => {
         resion={resion}
         masterDataShow={masterDataShow}
         stringshow={strings.confirmation}
-        textshow={
-          strings.activconfirmation + ' Property'
-        }
+        textshow={strings.activconfirmation + " Property"}
         confirmtype={approveStatus === 2 ? "" : "CONFIRMATION"}
       />
     </View>
