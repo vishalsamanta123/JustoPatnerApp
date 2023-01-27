@@ -52,8 +52,8 @@ const PropertyChatView = (props: any) => {
     <View style={styles.mainContainer}>
       <Header
         leftImageSrc={images.menu}
-        rightFirstImageScr={images.notification}
-        rightSecondImageScr={images.addCircle}
+        // rightFirstImageScr={images.notification}
+        rightSecondImageScr={images.notification}
         headerText={strings.propertyForchat}
         leftImageIconStyle={styles.leftImageIconStyle}
         RightSecondIconStyle={styles.RightSecondIconStyle}

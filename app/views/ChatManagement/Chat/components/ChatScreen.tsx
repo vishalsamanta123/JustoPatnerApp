@@ -53,7 +53,7 @@ const ChatScreen = ({ navigation, route }: any) => {
     dispatch(chatStatusUpdate({
       property_id: item?.property_id,
       receiver_id: item?._id,
-      msg_status: 1,
+      msg_status: 2,
     }))
   }, []);
 

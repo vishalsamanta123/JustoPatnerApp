@@ -11,14 +11,16 @@ const PropertyChat = ({ navigation, route }: any) => {
 
   const dispatch: any = useDispatch();
   useLayoutEffect(() => {
-
+    getPropertyListForChat()
+  }, [isFocused]);
+  const getPropertyListForChat = () => {
     dispatch(
       getChatListForProperty({
         limit: 10,
         offset: 0,
       })
     );
-  }, [isFocused]);
+  }
   const handleDrawerPress = () => {
     navigation.toggleDrawer();
   };
@@ -27,6 +29,7 @@ const PropertyChat = ({ navigation, route }: any) => {
     <PropertyChatView
       propertyChatList={Array.isArray(response?.data) ? response?.data : []}
       handleDrawerPress={handleDrawerPress}
+      getPropertyListForChat={getPropertyListForChat}
     />
   );
 };

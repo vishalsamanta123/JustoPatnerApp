@@ -2,7 +2,7 @@ import { View, Text, StatusBar, FlatList, Image, TouchableOpacity } from 'react-
 import React from 'react'
 import { useSafeAreaInsets } from 'react-native-safe-area-context';
 import styles from './styles';
-import { PRIMARY_THEME_COLOR_DARK, GRAY_LIGHT_COLOR } from '../../../../components/utilities/constant';
+import { PRIMARY_THEME_COLOR_DARK, GRAY_LIGHT_COLOR, RED_COLOR } from '../../../../components/utilities/constant';
 import Header from '../../../../components/Header';
 import images from '../../../../assets/images';
 import strings from '../../../../components/utilities/Localization';
@@ -10,10 +10,11 @@ import { DATA } from '../../../../components/utilities/DemoData';
 import { normalizeHeight, normalizeSpacing, normalizeWidth } from '../../../../components/scaleFontSize';
 import FileViewer from "react-native-file-viewer";
 import RNFS from "react-native-fs";
+import ErrorMessage from 'app/components/ErrorMessage';
 
 const CatalogueContent = ({ navigation, route }: any) => {
 
-  const datadocuments = route?.params || []
+  const { array, base_url } = route?.params || [];
 
   const handleBackPress = () => {
     navigation.goBack();
@@ -38,6 +39,10 @@ const CatalogueContent = ({ navigation, route }: any) => {
       .catch((error) => {
         console.log("error", error);
         // error
+        ErrorMessage({
+          msg: error?.message,
+          backgroundColor: RED_COLOR
+        })
       });
   };
   return (
@@ -52,7 +57,7 @@ const CatalogueContent = ({ navigation, route }: any) => {
         handleOnLeftIconPress={handleBackPress}
       />
       <View>
-        <FlatList data={datadocuments}
+        <FlatList data={array}
           numColumns={1}
           showsVerticalScrollIndicator={false}
           contentContainerStyle={{
@@ -61,7 +66,7 @@ const CatalogueContent = ({ navigation, route }: any) => {
           }}
           renderItem={({ item }) => (
             <TouchableOpacity
-              onPress={() => OpenDoc(`${item?.base_url}${item?.document}`)}
+              onPress={() => OpenDoc(`${base_url}${item?.document}`)}
               style={{ padding: 10, borderColor: GRAY_LIGHT_COLOR, borderWidth: 1 }} >
               <Image
                 //source={item.image}
