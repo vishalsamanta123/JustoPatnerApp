@@ -4,10 +4,16 @@ import styles from "./Styles";
 import images from "../../../../assets/images";
 import moment from "moment";
 import strings from "app/components/utilities/Localization";
-import { DATE_FORMAT } from "app/components/utilities/constant";
+import {
+  BLACK_COLOR,
+  DATE_FORMAT,
+  GREEN_COLOR,
+  RED_COLOR,
+  YELLOW_COLOR,
+} from "app/components/utilities/constant";
 
 const AppointmentDtailsItem = (props: any) => {
-console.log('props: ', props);
+  console.log("props: ", props);
   return (
     <ScrollView>
       <View style={styles.topDetailsView}>
@@ -15,7 +21,7 @@ console.log('props: ', props);
           <Text style={styles.topTxt}>Visitor Score </Text>
           <Text style={styles.topTxt}>{props?.item?.lead_score}</Text>
         </View>
-        <Image source={{uri: props?.item?.qr_code}} style={styles.qrImg} />
+        <Image source={{ uri: props?.item?.qr_code }} style={styles.qrImg} />
       </View>
       <View style={styles.Txtview}>
         <View style={styles.projectContainer}>
@@ -131,16 +137,32 @@ console.log('props: ', props);
           <Text>:</Text>
         </View>
         <View style={styles.nameContainer}>
-          <Text style={styles.nameTxt}>
+          <Text
+            style={[
+              styles.nameTxt,
+              {
+                color:
+                  props?.item?.status === 1 ||
+                  props?.item?.status === 4 ||
+                  props?.item?.status === 5
+                    ? RED_COLOR
+                    : props?.item?.status === 2
+                    ? YELLOW_COLOR
+                    : props?.item?.status === 3
+                    ? GREEN_COLOR
+                    : BLACK_COLOR
+              },
+            ]}
+          >
             {props?.item?.status === 1
-              ? "Pending"
+              ? "Upcoming"
               : props?.item?.status === 2
-              ? "Confirm"
+              ? "Upcoming"
               : props?.item?.status === 3
-              ? "Complete"
-              : props?.item?.status === 5
-              ? "Appointment cancel"
-              : props?.item?.status === 6 && "Close"}
+              ? "Completed"
+              : props?.item?.status === 4
+              ? "Canceled"
+              : props?.item?.status === 5 && "Canceled"}
           </Text>
         </View>
       </View>

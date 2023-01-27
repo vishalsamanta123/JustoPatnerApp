@@ -7,6 +7,9 @@ import {
   PURPLE_COLOR,
   CALL_COLOR,
   BLACK_COLOR,
+  RED_COLOR,
+  YELLOW_COLOR,
+  GREEN_COLOR,
 } from "../../../../components/utilities/constant";
 import moment from "moment";
 
@@ -85,26 +88,32 @@ const VisitorAppointment = (props: any) => {
           <Text>:</Text>
         </View>
         <View style={styles.nameContainer}>
-          <Text
+        <Text
             style={[
               styles.nameTxt,
               {
                 color:
-                  item?.lead_status === 6 || item?.status === 5
-                    ? "red"
-                    : BLACK_COLOR,
+                  item?.status === 1 ||
+                  item?.status === 4 ||
+                  item?.status === 5
+                    ? RED_COLOR
+                    : item?.status === 2
+                    ? YELLOW_COLOR
+                    : item?.status === 3
+                    ? GREEN_COLOR
+                    : BLACK_COLOR
               },
             ]}
           >
-            {item?.status == 1
-              ? "Pending"
-              : item?.status == 2
-              ? "Confirm"
-              : item?.status == 3
-              ? "Complete"
-              : item?.status === 5
-              ? "Appointment cancel"
-              : item?.lead_status === 6 && "Close"}
+            {item?.status === 1
+              ? "Upcoming"
+              : item?.status === 2
+              ? "Upcoming"
+              : item?.status === 3
+              ? "Completed"
+              : item?.status === 4
+              ? "Canceled"
+              : item?.status === 5 && "Canceled"}
           </Text>
         </View>
       </View>
