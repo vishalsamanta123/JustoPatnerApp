@@ -87,10 +87,10 @@ const FollowUpDetailsItem = (props: any) => {
                     </View>
                     <View><Text>:</Text></View>
                     <View style={styles.nameContainer}>
-                        <Text style={styles.nameTxt}>{data?.customer?.configuration === '' ||
-                            data?.customer?.configuration === undefined ||
-                            data?.customer?.configuration === null ? strings.notfount
-                            : data?.customer?.configuration}</Text>
+                        <Text style={styles.nameTxt}>{data?.configuration === '' ||
+                            data?.configuration === undefined ||
+                            data?.configuration === null ? strings.notfount
+                            : data?.configuration}</Text>
                     </View>
                 </View>
                 <View style={styles.Txtview}>
@@ -99,10 +99,10 @@ const FollowUpDetailsItem = (props: any) => {
                     </View>
                     <View><Text>:</Text></View>
                     <View style={styles.nameContainer}>
-                        <Text style={styles.nameTxt}>{data?.customer?.areain_sqlft === '' ||
-                            data?.customer?.areain_sqlft === undefined ||
-                            data?.customer?.areain_sqlft === null ? strings.notfount
-                            : data?.customer?.areain_sqlft}</Text>
+                        <Text style={styles.nameTxt}>{data?.areain_sqlft === '' ||
+                            data?.areain_sqlft === undefined ||
+                            data?.areain_sqlft === null ? strings.notfount
+                            : data?.areain_sqlft}</Text>
                     </View>
                 </View>
                 <View style={styles.Txtview}>
@@ -111,9 +111,9 @@ const FollowUpDetailsItem = (props: any) => {
                     </View>
                     <View><Text>:</Text></View>
                     <View style={styles.nameContainer}>
-                        {data?.customer?.min_budget && data?.customer?.max_budget ?
+                        {data?.min_budget && data?.max_budget ?
                             <Text style={styles.nameTxt}>
-                                {`${data?.customer?.min_budget} ${data?.customer?.min_budget_type}`} - {`${data?.customer?.max_budget} ${data?.customer?.max_budget_type}`}
+                                {`${data?.min_budget} ${data?.min_budget_type}`} - {`${data?.max_budget} ${data?.max_budget_type}`}
                             </Text>
                             :
                             <Text style={styles.nameTxt}>{strings.notfount}</Text>}
@@ -125,10 +125,10 @@ const FollowUpDetailsItem = (props: any) => {
                     </View>
                     <View><Text>:</Text></View>
                     <View style={styles.nameContainer}>
-                        <Text style={styles.nameTxt}>{data?.customer?.funding_type === '' ||
-                            data?.customer?.funding_type === undefined ||
-                            data?.customer?.funding_type === null ? strings.notfount
-                            : data?.customer?.funding_type}</Text>
+                        <Text style={styles.nameTxt}>{data?.funding_type === '' ||
+                            data?.funding_type === undefined ||
+                            data?.funding_type === null ? strings.notfount
+                            : data?.funding_type}</Text>
                     </View>
                 </View>
                 <View style={styles.Txtview}>
@@ -137,10 +137,10 @@ const FollowUpDetailsItem = (props: any) => {
                     </View>
                     <View><Text>:</Text></View>
                     <View style={styles.nameContainer}>
-                        <Text style={styles.nameTxt}>{data?.customer?.purpose === '' ||
-                            data?.customer?.purpose === undefined ||
-                            data?.customer?.purpose === null ? strings.notfount
-                            : data?.customer?.purpose}</Text>
+                        <Text style={styles.nameTxt}>{data?.purpose === '' ||
+                            data?.purpose === undefined ||
+                            data?.purpose === null ? strings.notfount
+                            : data?.purpose}</Text>
                     </View>
                 </View>
             </>

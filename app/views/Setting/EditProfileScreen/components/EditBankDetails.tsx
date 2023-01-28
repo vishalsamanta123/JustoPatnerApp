@@ -144,7 +144,7 @@ const EditBankDetails = ({ navigation }: any) => {
           </View>
           <View style={[styles.inputWrap, { flexDirection: "row", }]}>
             <View style={{ flex: 1, justifyContent: 'center' }}>
-              <Text style={styles.headingText}>Propidership Declaration Letter</Text>
+              <Text style={styles.headingText}>Proprietorship Declaration Letter</Text>
             </View>
             <View style={{ flex: 0.6, }}>
               <TouchableOpacity
@@ -157,7 +157,7 @@ const EditBankDetails = ({ navigation }: any) => {
                 editData?.propidership_declaration_letter === "" ||
                 editData?.propidership_declaration_letter === undefined ?
                 null :
-                <Text style={styles.addedTxt}>{"Propidership Declaration Letter Added"}</Text>
+                <Text style={styles.addedTxt}>{"Proprietorship Declaration Letter Added"}</Text>
               }
             </View>
           </View>

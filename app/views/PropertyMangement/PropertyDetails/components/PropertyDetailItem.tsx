@@ -16,7 +16,7 @@ const PropertyDetailItem = (props: any) => {
     return videos;
   });
   const documentarray = props.propertydocument?.filter((el: any) => {
-    const count = el.document_type == "document";
+    const count = el.document_type == "document" || el.document_type == "";
     return count;
   });
 
@@ -173,7 +173,7 @@ const PropertyDetailItem = (props: any) => {
                 },
               ]}
             >
-              {configuration.configuration_type}/ Min - {configuration.min_rate}
+              {configuration.configuration_title}/ Min - {configuration.min_rate}
               {configuration.min_rate_type}/ Max - {configuration.max_rate}
               {configuration.max_rate_type}
             </Text>
@@ -225,11 +225,11 @@ const PropertyDetailItem = (props: any) => {
                 },
               ]}
             >
-              {amenity.title}
+              {amenity.title},
             </Text>
           ))}
 
-          <Text
+          {/* <Text
             key={imagearray._id}
             style={[
               styles.nameTxt,
@@ -241,7 +241,7 @@ const PropertyDetailItem = (props: any) => {
             ]}
           >
             {props.items.amenity}
-          </Text>
+          </Text> */}
           {/* <Text
             style={[
               styles.nameTxt,
@@ -264,25 +264,6 @@ const PropertyDetailItem = (props: any) => {
           <Text>:</Text>
         </View>
         <View style={styles.nameContainer}>
-          {/* <Text style={styles.nameTxt}>Images</Text>
-          <View style={styles.ImageSliderContainer}>
-
-            { imagearray.map((imagearray: any) => (
-               <Image
-                  source={{uri:imagearray.base_url+imagearray.document}}
-                  style={styles.imageSlider}
-                
-                /> 
-              ))
-              
-              }
-            <TouchableOpacity style={styles.shadowView} onPress={() => props.onpresContent('ImageContent',imagearray)}>
-              <Image
-                source={images.forwardArrow}
-                style={styles.arrow}
-              />
-            </TouchableOpacity>
-          </View> */}
 
           {imagearray.length > 0 ? (
             <>
@@ -293,7 +274,7 @@ const PropertyDetailItem = (props: any) => {
                     <Image
                       key={index}
                       source={{
-                        uri: imagearray.base_url + imagearray.document,
+                        uri: props.items.base_url + imagearray.document,
                       }}
                       style={styles.imageSlider}
                     />
@@ -302,7 +283,7 @@ const PropertyDetailItem = (props: any) => {
                 <TouchableOpacity
                   style={styles.shadowView}
                   onPress={() =>
-                    props.onpresContent("ImageContent", imagearray)
+                    props.onpresContent("ImageContent", {array : imagearray, base_url : props.items.base_url})
                   }
                 >
                   <Image source={images.forwardArrow} style={styles.arrow} />
@@ -327,7 +308,7 @@ const PropertyDetailItem = (props: any) => {
                 <TouchableOpacity
                   style={styles.shadowView}
                   onPress={() =>
-                    props.onpresContent("VideoContent", videoarray)
+                    props.onpresContent("VideoContent",{array : videoarray, base_url : props.items.base_url})
                   }
                 >
                   <Image source={images.forwardArrow} style={styles.arrow} />
@@ -353,7 +334,7 @@ const PropertyDetailItem = (props: any) => {
                 <TouchableOpacity
                   style={styles.shadowView}
                   onPress={() =>
-                    props.onpresContent("CatalogueContent", documentarray)
+                    props.onpresContent("CatalogueContent", {array : documentarray, base_url : props.items.base_url})
                   }
                 >
                   <Image source={images.forwardArrow} style={styles.arrow} />

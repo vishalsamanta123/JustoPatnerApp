@@ -15,6 +15,8 @@ import FilterModal from "./LeadManagementModal";
 import EmptyListScreen from "app/components/CommonScreen/EmptyListScreen";
 
 const LeadManagementView = (props: any) => {
+  console.log('props?.visitorList): ', props?.visitorList);
+
   const loadingref = false
   const insets = useSafeAreaInsets();
   const navigation: any = useNavigation()

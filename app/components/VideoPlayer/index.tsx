@@ -24,6 +24,10 @@ const VideoPlayer = (props: any) => {
         onLoadStart={() => setOnLoad(true)}
         onReadyForDisplay={() => setOnLoad(false)}
         resizeMode={resizeMode}
+        selectedVideoTrack={{
+          type: 'resolution',
+          value: '480'
+        }}
         // isLooping
         // onBuffer={() => setOnLoad(true)}
         // bufferConfig={{

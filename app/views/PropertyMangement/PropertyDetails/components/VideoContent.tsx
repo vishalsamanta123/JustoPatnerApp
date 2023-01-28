@@ -15,7 +15,7 @@ const VideoContent = ({navigation,route}: any) => {
 
   const [playerVisible,setPlayerVisible] = useState(false)
   const [itemDetail,setItemDetail] = useState({})
-  const datavideos = route?.params || []
+  const { array, base_url } = route?.params || [];
   const handleBackPress = () => {
     navigation.goBack();
   };
@@ -23,6 +23,8 @@ const VideoContent = ({navigation,route}: any) => {
     setItemDetail(item)
     setPlayerVisible(true)
   };
+  console.log('array: ', array);
+  console.log('base_url: ', base_url);
 
 
   return (
@@ -37,7 +39,7 @@ const VideoContent = ({navigation,route}: any) => {
         handleOnLeftIconPress={handleBackPress}
       />
       <View>
-        <FlatList data={datavideos}
+        <FlatList data={array}
         numColumns={1}
         showsVerticalScrollIndicator={false}
         contentContainerStyle={{
@@ -49,7 +51,7 @@ const VideoContent = ({navigation,route}: any) => {
            
           
             <Image
-              source={images.buildings}
+              source={{uri: base_url + item?.video_thumbnail}}
               style={{
                 width: '100%',
                 height: normalizeHeight(300),
@@ -75,6 +77,7 @@ const VideoContent = ({navigation,route}: any) => {
         Visible={playerVisible}
         setIsVisible={setPlayerVisible}
         itemDetail={itemDetail}
+        base_url={base_url}
       />
 
     </View>

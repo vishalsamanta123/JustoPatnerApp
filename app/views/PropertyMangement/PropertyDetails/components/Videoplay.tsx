@@ -7,6 +7,7 @@ import strings from "../../../../components/utilities/Localization";
 import Video from "react-native-video";
 
 const Videoplay = (props: any) => {
+    console.log('props.itemDetail: ', props.itemDetail);
 
     return (
         <View>
@@ -30,7 +31,7 @@ const Videoplay = (props: any) => {
                             ref={ref => {
                                 this.video = ref;
                             }}
-                            source={{uri:props.itemDetail?.base_url+props.itemDetail?.document}}
+                            source={{uri:props?.base_url+props.itemDetail?.document}}
                             //poster={item.videos[0].thumbnail}
                             // shouldPlay={false}
                             repeat
@@ -40,13 +41,17 @@ const Videoplay = (props: any) => {
                             resizeMode="contain"
                             // posterResizeMode={"contain"}
                             style={{
-                                height: 250,
+                                height: 500,
                                 width: '100%',
+                            }}
+                            selectedVideoTrack={{
+                                type: "resolution",
+                                value: 480
                             }}
                         />
                         : 
                         <Image 
-                        source={{uri:props.itemDetail?.base_url+props.itemDetail?.document}}
+                        source={{uri:props?.base_url+props.itemDetail?.document}}
                         />
                         
                         }

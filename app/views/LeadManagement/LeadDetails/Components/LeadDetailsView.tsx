@@ -20,6 +20,7 @@ const LeadDetailsView = (props: any) => {
   const navigation: any = useNavigation();
   const [userDetails, setuserDetails] = useState({});
   const getleaddata = useSelector((state: any) => state.visitorData);
+  console.log('getleaddata: ', getleaddata?.response?.data);
 
   useEffect(() => {
     if (getleaddata?.response?.status === 200) {

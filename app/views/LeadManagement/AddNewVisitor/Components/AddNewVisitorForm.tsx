@@ -34,6 +34,7 @@ const AddNewVisitorForm = (props: any) => {
   const { response = {}, detail = "" } = useSelector(
     (state: any) => state.visitorData
   );
+  console.log('response: ', response);
 
   useEffect(() => {
     if (props.type == "edit") {
@@ -48,6 +49,20 @@ const AddNewVisitorForm = (props: any) => {
           locality: response?.data[0]?.customer_detail?.locality
             ? response?.data[0]?.customer_detail?.locality
             : "",
+          configuration_id: response?.data[0]?.configuration_id,
+          configuration: response?.data[0]?.configuration,
+          areain_sqlft: response?.data[0]?.areain_sqlft,
+          min_budget: response?.data[0]?.min_budget,
+          min_budget_type: response?.data[0]?.min_budget_type,
+          max_budget: response?.data[0]?.max_budget,
+          max_budget_type: response?.data[0]?.max_budget_type,
+          funding_type: response?.data[0]?.funding_type,
+          funding_emi_type: response?.data[0]?.funding_emi_type,
+          purpose: response?.data[0]?.purpose,
+          min_emi_budget: response?.data[0]?.min_emi_budget,
+          min_emi_budget_type: response?.data[0]?.min_emi_budget_type,
+          max_emi_budget: response?.data[0]?.max_emi_budget,
+          max_emi_budget_type: response?.data[0]?.max_emi_budget_type,
         });
       }
     } else {
@@ -392,7 +407,7 @@ const AddNewVisitorForm = (props: any) => {
           </View>
           <View style={styles.inputWrap}>
             <InputField
-              placeholderText={"Area"}
+              placeholderText={"Area(Sq ft.)"}
               handleInputBtnPress={() => { }}
               onChangeText={(data: any) => {
                 props.setFormData({
@@ -401,7 +416,7 @@ const AddNewVisitorForm = (props: any) => {
                 });
               }}
               valueshow={props?.formData?.areain_sqlft}
-              headingText={"Area"}
+              headingText={"Area(Sq ft.)"}
               keyboardtype={"number-pad"}
             // keyboardtype={'phone-pad'}
             />
