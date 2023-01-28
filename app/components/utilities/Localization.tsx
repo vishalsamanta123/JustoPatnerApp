@@ -130,7 +130,7 @@ const strings = new LocalizedStrings({
     //Auth 
 
     usernamepasswordempty: 'Username and Password is require. Please enter Username and password',
-    correctemail: 'Enter correct Email Address',
+    correctemail: 'Enter correct Email Address or Phone Number',
     usernamerequired: 'Username is require. Please enter username',
     passwordrequired: 'Password is require. Please enter password',
     emailrequired: 'Email is require. Please enter email',

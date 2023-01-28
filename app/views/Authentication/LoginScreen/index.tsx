@@ -3,7 +3,7 @@ import { setDefaultHeader } from 'app/components/utilities/httpClient';
 import { userLogin } from 'app/Redux/Actions/AuthActions';
 import React, { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { validateEmail, RED_COLOR } from '../../../components/utilities/constant';
+import { validateEmail, RED_COLOR, Regexs } from '../../../components/utilities/constant';
 import LoginView from './components/LoginView';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import Loader from 'app/components/CommonScreen/Loader';
@@ -26,7 +26,7 @@ const LoginScreen = ({ navigation }: any) => {
       isError = false;
       errorMessage = strings.usernamepasswordempty
     }
-    else if (reg.test(loginData.email) === false) {
+    else if ( Regexs.emailOrPhone.test(loginData.email) === false) {
       isError = false;
       errorMessage = strings.correctemail
     }
