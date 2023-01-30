@@ -32,6 +32,9 @@ const AddAppointmentView = (props: any) => {
                     visitorList={props.visitorList}
                     isloading={props.isloading}
                     type={props?.type}
+                    allProperty={props.allProperty}
+                    PropertyStatus={props.PropertyStatus}
+                    setPropertyStatus={props.setPropertyStatus}
                 />
             </View>
         </View>

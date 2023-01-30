@@ -1,7 +1,7 @@
 import { handleApiError } from "app/components/ErrorMessage/HandleApiErrors";
 import apiEndPoints from "app/components/utilities/apiEndPoints";
 import { apiCall } from "app/components/utilities/httpClient";
-import { GET_VISITOR_DETAIL, VISITOR_ERROR, VISITOR_LIST, VISITOR_STATUSUPDATE, ADD_VISITOR, ADD_VISITOR_FORM, EDIT_VISITOR, REMOVE_VISITOR, START_LOADING, STOP_LOADING, UPLOAD_IMAGE, UPLOAD_IMAGE_ERROR, UPLOAD_IMAGE_REMOVE, UPLOAD_CSV_FILE, UPLOAD_CSV_FILE_ERROR, UPLOAD_CSV_FILE_REMOVE } from "../types";
+import { GET_VISITOR_DETAIL, VISITOR_ERROR, VISITOR_LIST, VISITOR_STATUSUPDATE, ADD_VISITOR, ADD_VISITOR_FORM, EDIT_VISITOR, REMOVE_VISITOR, START_LOADING, STOP_LOADING, UPLOAD_IMAGE, UPLOAD_IMAGE_ERROR, UPLOAD_IMAGE_REMOVE, UPLOAD_CSV_FILE, UPLOAD_CSV_FILE_ERROR, UPLOAD_CSV_FILE_REMOVE, ADD_VISITOR_WITHOUT_PROPERTY } from "../types";
 
 export const getAllLeadsList = (params: any) => async (dispatch: any) => {
     dispatch({ type: START_LOADING })
@@ -63,6 +63,30 @@ export const addVisitor = (params: any) => async (dispatch: any) => {
         if (res.data.status == 200) {
             dispatch({
                 type: ADD_VISITOR,
+                payload: res.data,
+            });
+        } else {
+            handleApiError(res.data)
+            return [];
+        }
+    } catch (e) {
+        dispatch({
+            type: VISITOR_ERROR,
+            payload: console.log(e),
+        });
+    }
+    finally {
+        dispatch({ type: STOP_LOADING })
+    }
+};
+export const addVisitorWithoutProperty = (params: any) => async (dispatch: any) => {
+    dispatch({ type: START_LOADING })
+    try {
+        const res = await apiCall("post", apiEndPoints.CREATE_VISIT_WITHOUT_PROPERTY, params);
+        console.log('res IN addVisitorWithoutProperty: ', res);
+        if (res.data.status == 200) {
+            dispatch({
+                type: ADD_VISITOR_WITHOUT_PROPERTY,
                 payload: res.data,
             });
         } else {

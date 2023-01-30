@@ -56,7 +56,7 @@ const LeadDetailsView = (props: any) => {
             height={45}
             bgcolor={PRIMARY_THEME_COLOR_DARK}
             btnTxtcolor={WHITE_COLOR}
-            btnTxtsize={11}
+            btnTxtsize={13}
             textTransform={"uppercase"}
           />
           <Button
@@ -65,7 +65,7 @@ const LeadDetailsView = (props: any) => {
             height={45}
             bgcolor={PRIMARY_THEME_COLOR_DARK}
             btnTxtcolor={WHITE_COLOR}
-            btnTxtsize={14}
+            btnTxtsize={15}
             textTransform={"uppercase"}
             handleBtnPress={() => props.handleStatusUpdate()}
           />

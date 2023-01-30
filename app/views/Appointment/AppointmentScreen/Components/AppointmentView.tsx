@@ -135,7 +135,7 @@ const AppointmentView = (props: any) => {
     });
   };
   const onPressAddNew = () => {
-    navigation.navigate("AddAppointmentScreen", { data: {}, type: "Add" });
+    navigation.navigate("AddAppointmentScreen", { data: {} });
   };
   const handleFilterApply = () => {
     setFilterisVisible(false);

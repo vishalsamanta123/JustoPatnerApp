@@ -30,11 +30,10 @@ import DropdownInput from "app/components/DropDown";
 import { useSelector } from "react-redux";
 
 const AddNewVisitorForm = (props: any) => {
-  const insets = useSafeAreaInsets();
+  const [PropertyStatus, setPropertyStatus] = useState(false)
   const { response = {}, detail = "" } = useSelector(
     (state: any) => state.visitorData
   );
-  console.log('response: ', response);
 
   useEffect(() => {
     if (props.type == "edit") {
@@ -66,14 +65,19 @@ const AddNewVisitorForm = (props: any) => {
         });
       }
     } else {
-      if (props.type === "propertySelect") {
-        props.setFormData({
-          ...props.formData,
-          property_id: props?.data?._id,
-          property_type_title: props?.data?.property_type_title,
-          property_title: props?.data?.property_title,
-        });
-      }
+      // if (props.type === "propertySelect") {
+      //   props.setFormData({
+      //     ...props.formData,
+      //     property_id: props?.data?._id,
+      //     property_type_title: props?.data?.property_type_title,
+      //     property_title: props?.data?.property_title,
+      //   });
+      // }
+    }
+    if (response?.data[0]?.property_id !== "" && response?.data[0]?.property_id !== null) {
+      setPropertyStatus(true)
+    } else {
+      setPropertyStatus(false)
     }
   }, [response]);
   return (
@@ -90,42 +94,6 @@ const AddNewVisitorForm = (props: any) => {
       <ScrollView keyboardShouldPersistTaps={"handled"}>
         <View style={styles.wrap}>
           <Text style={styles.headingText}>{strings.visitordetails}</Text>
-          <View style={[styles.inputWrap]}>
-            <DropdownInput
-              require={true}
-              headingText={"Property"}
-              placeholder={
-                props?.formData?.property_title
-                  ? props?.formData?.property_title
-                  : "Property"
-              }
-              data={props?.allProperty}
-              disable={props.type == "edit" ? true : false}
-              inputWidth={"100%"}
-              paddingLeft={16}
-              maxHeight={300}
-              labelField="property_title"
-              valueField={"_id"}
-              value={props?.formData?.property_id}
-              onChange={(item: any) => {
-                props.setFormData({
-                  ...props.formData,
-                  property_id: item.property_id,
-                  property_type_title: item.property_type,
-                  property_title: item.property_title,
-                });
-              }}
-              newRenderItem={(item: any) => {
-                return (
-                  <>
-                    <View style={Styles.item}>
-                      <Text style={Styles.textItem}>{item.property_title}</Text>
-                    </View>
-                  </>
-                );
-              }}
-            />
-          </View>
           <View style={styles.inputWrap}>
             <InputField
               require={true}
@@ -341,6 +309,43 @@ const AddNewVisitorForm = (props: any) => {
           <Text style={[styles.headingText, { marginTop: 20 }]}>
             {strings.propertyrequire}
           </Text>
+          <View style={[styles.inputWrap]}>
+            <DropdownInput
+              require={true}
+              headingText={"Property"}
+              placeholder={
+                props?.formData?.property_title
+                  ? props?.formData?.property_title
+                  : "Property"
+              }
+              data={props?.allProperty}
+              // disable={props?.formData?.property_id !== "" && props?.formData?.property_id !== null ? true : false}
+              disable={PropertyStatus}
+              inputWidth={"100%"}
+              paddingLeft={16}
+              maxHeight={300}
+              labelField="property_title"
+              valueField={"_id"}
+              value={props?.formData?.property_id}
+              onChange={(item: any) => {
+                props.setFormData({
+                  ...props.formData,
+                  property_id: item.property_id,
+                  property_type_title: item.property_type,
+                  property_title: item.property_title,
+                });
+              }}
+              newRenderItem={(item: any) => {
+                return (
+                  <>
+                    <View style={Styles.item}>
+                      <Text style={Styles.textItem}>{item.property_title}</Text>
+                    </View>
+                  </>
+                );
+              }}
+            />
+          </View>
           <View style={[styles.inputWrap]}>
             <DropdownInput
               headingText={"Configuration"}

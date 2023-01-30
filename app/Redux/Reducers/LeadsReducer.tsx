@@ -1,4 +1,4 @@
-import { ADD_VISITOR, ADD_VISITOR_FORM, EDIT_VISITOR, GET_VISITOR_DETAIL, REMOVE_VISITOR, UPLOAD_CSV_FILE, UPLOAD_CSV_FILE_ERROR, UPLOAD_CSV_FILE_REMOVE, UPLOAD_IMAGE, UPLOAD_IMAGE_ERROR, UPLOAD_IMAGE_REMOVE, VISITOR_LIST, VISITOR_STATUSUPDATE } from "../types";
+import { ADD_VISITOR, ADD_VISITOR_FORM, ADD_VISITOR_WITHOUT_PROPERTY, EDIT_VISITOR, GET_VISITOR_DETAIL, REMOVE_VISITOR, UPLOAD_CSV_FILE, UPLOAD_CSV_FILE_ERROR, UPLOAD_CSV_FILE_REMOVE, UPLOAD_IMAGE, UPLOAD_IMAGE_ERROR, UPLOAD_IMAGE_REMOVE, VISITOR_LIST, VISITOR_STATUSUPDATE } from "../types";
 
 const initialState = {
   response: null,
@@ -27,6 +27,14 @@ const initialStateUploadImage = {
 export function visitorReducer(state = initialState, action: any) {
   switch (action.type) {
     case ADD_VISITOR:
+      return {
+        ...state,
+        detail: false,
+        create: true,
+        loading: false,
+        response: action.payload,
+      };
+    case ADD_VISITOR_WITHOUT_PROPERTY:
       return {
         ...state,
         detail: false,
@@ -95,6 +103,13 @@ export function visitorListReducer(state = initiallistState, action: any) {
 export function addVisitorReducer(state = initialStateForm, action: any) {
   switch (action.type) {
     case ADD_VISITOR:
+      return {
+        ...state,
+        detail: false,
+        create: true,
+        response: action.payload,
+      };
+    case ADD_VISITOR_WITHOUT_PROPERTY:
       return {
         ...state,
         detail: false,

@@ -4,6 +4,7 @@ import { useDispatch, useSelector } from "react-redux";
 import {
   addVisitor,
   addVisitorRemove,
+  addVisitorWithoutProperty,
   editVisitor,
   getVisitorDetail,
 } from "app/Redux/Actions/LeadsActions";
@@ -22,7 +23,7 @@ const AddNewVisitorScreen = ({ navigation, route }: any) => {
   const dispatch: any = useDispatch();
   const { response = {}, detail = "" } = useSelector(
     (state: any) => state.visitorData
-    );
+  );
   const [formData, setFormData] = useState<any>({
     first_name: "",
     adhar_no: "",
@@ -84,7 +85,7 @@ const AddNewVisitorScreen = ({ navigation, route }: any) => {
       })
     );
   }, [navigation]);
-  
+
 
   useEffect(() => {
     if (masterData?.response?.status === 200) {
@@ -120,18 +121,18 @@ const AddNewVisitorScreen = ({ navigation, route }: any) => {
   };
 
   const validation = () => {
-    console.log('formData?.pancard_no: ', formData?.pancard_no);
 
     let isError = true;
     let errorMessage: any = "";
+    // if (
+    //   type != "edit" &&
+    //   formData?.property_id === "" &&
+    //   formData?.property_type_title === ""
+    // ) {
+    //   isError = false;
+    //   errorMessage = "Please select property name";
+    // } else
     if (
-      type != "edit" &&
-      formData?.property_id === "" &&
-      formData?.property_type_title === ""
-    ) {
-      isError = false;
-      errorMessage = "Please select property name";
-    } else if (
       formData?.first_name === "" ||
       formData?.first_name === undefined
     ) {
@@ -151,7 +152,7 @@ const AddNewVisitorScreen = ({ navigation, route }: any) => {
         isError = false;
         errorMessage = "Please enter valid Pancard number";
       }
-    } 
+    }
     if (formData?.email) {
       if (Regexs.emailRegex.test(formData?.email) === false) {
         isError = false;
@@ -163,19 +164,19 @@ const AddNewVisitorScreen = ({ navigation, route }: any) => {
       formData?.min_budget_type === "K"
         ? (tempMinVal = formData?.min_budget * 1000)
         : formData?.min_budget_type === "L"
-        ? (tempMinVal = formData?.min_budget * 100000)
-        : formData?.min_budget_type === "Cr"
-        ? (tempMinVal = formData?.min_budget * 10000000)
-        : null;
+          ? (tempMinVal = formData?.min_budget * 100000)
+          : formData?.min_budget_type === "Cr"
+            ? (tempMinVal = formData?.min_budget * 10000000)
+            : null;
 
       let tempMaxVal: any;
       formData?.max_budget_type === "K"
         ? (tempMaxVal = formData?.max_budget * 1000)
         : formData?.max_budget_type === "L"
-        ? (tempMaxVal = formData?.max_budget * 100000)
-        : formData?.max_budget_type === "Cr"
-        ? (tempMaxVal = formData?.max_budget * 10000000)
-        : null;
+          ? (tempMaxVal = formData?.max_budget * 100000)
+          : formData?.max_budget_type === "Cr"
+            ? (tempMaxVal = formData?.max_budget * 10000000)
+            : null;
       console.log("tempMaxVal:", tempMaxVal);
       console.log("tempMinVal: ", tempMinVal);
 
@@ -183,25 +184,25 @@ const AddNewVisitorScreen = ({ navigation, route }: any) => {
         isError = false;
         errorMessage = "Maximum budget should more than minumum budget";
       }
-    } 
+    }
     if (formData?.min_emi_budget && formData.max_emi_budget) {
       let tempMinVal: any;
       formData?.min_emi_budget_type === "K"
         ? (tempMinVal = formData?.min_emi_budget * 1000)
         : formData?.min_emi_budget_type === "L"
-        ? (tempMinVal = formData?.min_emi_budget * 100000)
-        : formData?.min_emi_budget_type === "Cr"
-        ? (tempMinVal = formData?.min_emi_budget * 10000000)
-        : null;
+          ? (tempMinVal = formData?.min_emi_budget * 100000)
+          : formData?.min_emi_budget_type === "Cr"
+            ? (tempMinVal = formData?.min_emi_budget * 10000000)
+            : null;
 
       let tempMaxVal: any;
       formData?.max_emi_budget_type === "K"
         ? (tempMaxVal = formData?.max_emi_budget * 1000)
         : formData?.max_emi_budget_type === "L"
-        ? (tempMaxVal = formData?.max_emi_budget * 100000)
-        : formData?.max_emi_budget_type === "Cr"
-        ? (tempMaxVal = formData?.max_emi_budget * 10000000)
-        : null;
+          ? (tempMaxVal = formData?.max_emi_budget * 100000)
+          : formData?.max_emi_budget_type === "Cr"
+            ? (tempMaxVal = formData?.max_emi_budget * 10000000)
+            : null;
       console.log("tempMaxVal:", tempMaxVal);
       console.log("tempMinVal: ", tempMinVal);
 
@@ -248,8 +249,8 @@ const AddNewVisitorScreen = ({ navigation, route }: any) => {
         msg: editData?.update
           ? editData?.response?.message
           : addData?.create
-          ? addData?.response?.message
-          : "no message",
+            ? addData?.response?.message
+            : "no message",
         backgroundColor: GREEN_COLOR,
       });
     }
@@ -359,7 +360,11 @@ const AddNewVisitorScreen = ({ navigation, route }: any) => {
             : "",
           locality: formData?.locality,
         };
-        dispatch(addVisitor(add_params));
+        if (formData?.property_id !== '') {
+          dispatch(addVisitor(add_params));
+        } else {
+          dispatch(addVisitorWithoutProperty(add_params));
+        }
       }
     }
   };
