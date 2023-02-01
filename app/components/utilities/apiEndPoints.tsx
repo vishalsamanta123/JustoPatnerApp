@@ -111,4 +111,7 @@ export default {
   GET_PROPERTY_LIST_FOR_CHAT: '/chat/getCpActivePropertyList',
   GET_ALL_CHAT_IN_PROPERTY: '/chat/getPropertyUserListForChat',
   UPDATE_CHAT_STATUS: '/chat/userChatStatusUpdate',
+  
+  //Permission
+  PERMISSION_MODULE: "/userManage/getUsermodels",
 };
