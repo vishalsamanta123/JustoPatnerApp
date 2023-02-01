@@ -14,6 +14,7 @@ import { leaderBoardReducer } from "./LearderBoardReducer";
 import { allUserChatListReducer, propertyChatReducer, updateChatStatus } from "./ChatReducer";
 import { firebaseReducer } from "./FirebaseReducer";
 import { userAppointmentReducer, userUpdateAppointmentReducer } from "./AppointmentWithUserReducer";
+import permissionReducer from "./permissionReducer";
 
 export default {
     loadingReducer: loadingReducer,
@@ -78,4 +79,6 @@ export default {
     chatStatusData: updateChatStatus,
     allUserchatList: allUserChatListReducer,
 
+    // Permissions
+    permissions: permissionReducer,
 }
