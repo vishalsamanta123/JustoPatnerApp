@@ -40,7 +40,7 @@ const ChatViewView = (props: any) => {
         : item?.roles === "Sourcing Manager"
         ? "SM"
         : item?.roles === "Closing Manager"
-        ? "CM"
+        ? "CM" 
         : item?.roles === "Closing TL"
         ? "CTL"
         : "Agent";
@@ -51,7 +51,7 @@ const ChatViewView = (props: any) => {
       >
         <View style={styles.straight}>
           <FastImages
-            source={{ uri: item.base_url + item.profile_picture }}
+            source={{ uri: item.base_url + '/' + item.profile_picture }}
             style={styles.profileImage}
           />
           <Text
