@@ -31,6 +31,7 @@ import { useSelector } from "react-redux";
 
 const AddNewVisitorForm = (props: any) => {
   const [PropertyStatus, setPropertyStatus] = useState(false)
+  console.log('PropertyStatus: ', PropertyStatus);
   const { response = {}, detail = "" } = useSelector(
     (state: any) => state.visitorData
   );
@@ -64,6 +65,11 @@ const AddNewVisitorForm = (props: any) => {
           max_emi_budget_type: response?.data[0]?.max_emi_budget_type,
         });
       }
+      if (response?.data[0]?.property_id !== "" && response?.data[0]?.property_id !== null) {
+        setPropertyStatus(true)
+      } else {
+        setPropertyStatus(false)
+      }
     } else {
       // if (props.type === "propertySelect") {
       //   props.setFormData({
@@ -74,7 +80,7 @@ const AddNewVisitorForm = (props: any) => {
       //   });
       // }
     }
-    if (response?.data[0]?.property_id !== "" && response?.data[0]?.property_id !== null) {
+    if (props?.formData?.property_id !== "" && props?.formData?.property_id !== null) {
       setPropertyStatus(true)
     } else {
       setPropertyStatus(false)
