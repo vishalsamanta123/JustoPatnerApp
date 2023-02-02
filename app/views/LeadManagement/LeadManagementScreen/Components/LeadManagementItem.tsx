@@ -20,22 +20,25 @@ const LeadManagementItem = (props: any) => {
   })
   return (
     <View style={styles.IteamView}>
-      <View style={styles.Txtview}>
-        <View style={styles.projectContainer}>
-          <Text style={styles.projectTxt}>Property Name :</Text>
-        </View>
-        <View style={styles.nameContainer}>
-          <Text style={styles.nameTxt}>{
-            props?.items.property_title === null ? '' : props.items.property_title}</Text>
-        </View>
-      </View>
+      {props?.items.property_title !== '' ?
+        (<View style={styles.Txtview}>
+          <View style={styles.projectContainer}>
+            <Text style={styles.projectTxt}>Property Name :</Text>
+          </View>
+          <View style={styles.nameContainer}>
+            <Text style={styles.nameTxt}>{
+              props?.items.property_title === '' ? strings.notfount : props.items.property_title}</Text>
+          </View>
+        </View>)
+        : null
+      }
       <View style={styles.Txtview}>
         <View style={styles.projectContainer}>
           <Text style={styles.projectTxt}>Visitor Name :</Text>
         </View>
         <View style={styles.nameContainer}>
           <Text style={styles.nameTxt}>
-            {props?.items.first_name === null ? "" : props.items.first_name}
+            {props?.items.first_name === '' ? strings.notfount : props.items.first_name}
           </Text>
         </View>
       </View>

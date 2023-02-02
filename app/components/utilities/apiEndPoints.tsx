@@ -76,6 +76,8 @@ export default {
   EDIT_VISITOR_: "/visit/editVisit",
   UPLOAD_IMAGE: "/visit/bulkVisitImageUpload",
   UPLOAD_CSVFile: "/visit/bulkVisitCsvUpload",
+  CREATE_VISIT_WITHOUT_PROPERTY: '/visit/addVisitProperty',
+
 
 
   // Follow-Up

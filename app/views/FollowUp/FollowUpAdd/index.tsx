@@ -82,7 +82,7 @@ const FollowUpAddScreen = ({ navigation, route }: any) => {
   useEffect(() => {
     if (editAddFollowupData?.response?.status === 200) {
       dispatch(addEditFollowupRemove());
-      navigation.goBack(null);
+      navigation.navigate('FollowUpScreen');
       ErrorMessage({
         msg: editAddFollowupData?.response?.message,
         backgroundColor: GREEN_COLOR,

@@ -46,7 +46,7 @@ const Button = (props: any) => {
               fontSize: normalize(btnTxtsize),
               color: btnTxtcolor,
               fontFamily: FONT_FAMILY_SEMIBOLD,
-              textTransform: props.textTransform ? props?.textTransform :  'capitalize',
+              textTransform: 'capitalize',
             }}
           >
             {props.buttonText}

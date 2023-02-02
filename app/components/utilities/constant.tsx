@@ -35,7 +35,7 @@ export const DATE_FORMAT = 'YYYY-MM-DD'
 export const TIME_FORMAT = 'LT'
 export const DATE_TIME_FORMAT = 'YYYY-MM-DD, h:mm a'
 export const AMOUNT_TYPE = [{ value: "Cr" }, { value: "L" }, { value: "K" }]
-export const ONE_MONTH_DATES = new Date(new Date().getFullYear(),new Date().getMonth() +1,0)
+export const ONE_MONTH_DATES = new Date(new Date().setDate(new Date().getDate() + 31));
 
 export const GLOBAL_URL = 'http://192.168.1.27:3000'
 // export const GLOBAL_URL = 'https://api.justoverse.com:3000'

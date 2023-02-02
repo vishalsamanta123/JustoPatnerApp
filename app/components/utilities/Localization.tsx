@@ -60,7 +60,7 @@ const strings = new LocalizedStrings({
     imagecontentHeader: 'Images',
     videocontentHeader: 'Videos',
     cataloguecontentHeader: 'Catalogue',
-    createVisit: 'CREATE VISIT',
+    createVisit: 'CREATE VISITOR',
     gender: "Gender :",
     male: "Male",
     female: "Female",
