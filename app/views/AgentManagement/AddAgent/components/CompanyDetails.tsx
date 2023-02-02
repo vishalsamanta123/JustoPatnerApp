@@ -85,7 +85,7 @@ const CompanyDetails = ({ navigation }: any) => {
             browse={"browse"}
             handleInputBtnPress={() => { }}
             onChangeText={() => { }}
-            headingText={"Decalaration Latter of Company"}
+            headingText={"Decalaration Letter of Company"}
           />
           <TouchableOpacity
             style={{

@@ -45,7 +45,7 @@ const SupportForumDetail = (props: any) => {
                         <View style={styles.demoImgView}>
                             {props?.supportForumDtl?.support_forum_content?.map((itm: any, indx: any) => {
                                 return (
-                                    <>{itm?.content_type === 'image' ?
+                                    <View style={{ margin: 5 }}>{itm?.content_type === 'image' ?
                                         <TouchableOpacity onPress={() => {
                                             setContentView({
                                                 content: itm?.content,
@@ -61,7 +61,7 @@ const SupportForumDetail = (props: any) => {
                                         </TouchableOpacity>
                                         : null
                                     }
-                                    </>
+                                    </View>
                                 )
                             })
                             }

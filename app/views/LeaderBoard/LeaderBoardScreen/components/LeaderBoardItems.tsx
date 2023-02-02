@@ -6,14 +6,13 @@ import {
   normalizeHeight,
   normalizeWidth,
 } from "../../../../components/scaleFontSize";
+import usePermission from "app/components/utilities/UserPermissions";
 
 const LeaderBoardItems = (props: any) => {
+  const { view } = usePermission({
+    view: 'view_leader_Board',
+  })
   const item = props?.items || {};
-  console.log("item: ", item);
-  console.log(
-    "item?.base_url + item?.property_image: ",
-    item?.base_url + item?.property_image
-  );
   return (
     <View style={styles.IteamView}>
       <Image
@@ -40,11 +39,13 @@ const LeaderBoardItems = (props: any) => {
           </View>
         </View>
       </View>
-      <View style={{ position: "absolute", bottom: 0, right: 0 }}>
-        <TouchableOpacity style={styles.Viewbutton} onPress={props.onPressView}>
-          <Image source={images.forwardArrow} style={styles.arrow} />
-        </TouchableOpacity>
-      </View>
+      {view &&
+        (<View style={{ position: "absolute", bottom: 0, right: 0 }}>
+          <TouchableOpacity style={styles.Viewbutton} onPress={props.onPressView}>
+            <Image source={images.forwardArrow} style={styles.arrow} />
+          </TouchableOpacity>
+        </View>)
+      }
     </View>
   );
 };

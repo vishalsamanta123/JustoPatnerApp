@@ -23,7 +23,7 @@ export const MENUITEMS = [
         path: "AgentListing",
         permission: true,
         deploy: true,
-        slug: '',
+        slug: 'agent',
     },
     {
         title: strings.leadManagementHeader,
@@ -71,7 +71,7 @@ export const MENUITEMS = [
         path: "DataFlow",
         permission: true,
         deploy: true,
-        slug: '',
+        slug: 'data_flow',
     },
     {
         title: strings.supportforumHeader,

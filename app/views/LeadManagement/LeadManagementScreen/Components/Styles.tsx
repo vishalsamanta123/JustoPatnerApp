@@ -38,7 +38,6 @@ const styles = StyleSheet.create({
   TopBtnView: {
     flexDirection: "row",
     marginVertical: normalizeSpacing(10),
-    justifyContent: "flex-end",
     alignItems: "flex-end",
   },
   IteamView: {

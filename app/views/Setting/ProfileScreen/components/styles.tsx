@@ -1,6 +1,6 @@
 import { StyleSheet } from "react-native";
 import { normalize, normalizeHeight, normalizeSpacing, normalizeWidth } from "../../../../components/scaleFontSize";
-import { FONT_FAMILY_EXTRABOLD, FONT_FAMILY_SEMIBOLD, GRAY_LIGHT_COLOR, PRIMARY_THEME_COLOR, WHITE_COLOR } from "../../../../components/utilities/constant";
+import { BLACK_COLOR, FONT_FAMILY_EXTRABOLD, FONT_FAMILY_SEMIBOLD, GRAY_LIGHT_COLOR, PRIMARY_THEME_COLOR, WHITE_COLOR } from "../../../../components/utilities/constant";
 
 const styles = StyleSheet.create({
     mainContainer: {
@@ -12,7 +12,7 @@ const styles = StyleSheet.create({
     leftImageIconStyle: {
         tintColor: WHITE_COLOR,
     },
-    ProfileView:{
+    ProfileView: {
         flex: 1,
     },
     roleView: {
@@ -79,11 +79,11 @@ const styles = StyleSheet.create({
         fontFamily: FONT_FAMILY_SEMIBOLD,
         color: GRAY_LIGHT_COLOR
     },
-    colon:{
+    colon: {
         fontSize: normalize(15),
         fontFamily: FONT_FAMILY_EXTRABOLD,
-    }, 
-    userInfoTabView:{
+    },
+    userInfoTabView: {
         flex: 5
     },
     ImageSliderContainer: {
@@ -107,15 +107,24 @@ const styles = StyleSheet.create({
         justifyContent: 'center',
         alignItems: 'flex-end',
         shadowColor: WHITE_COLOR,
-        shadowOffset: {width: 0, height: 5},
+        shadowOffset: { width: 0, height: 5 },
         shadowOpacity: 0.2,
         shadowRadius: 10,
         elevation: 15,
-      },
-      arrow : {
+    },
+    arrow: {
         width: normalizeWidth(30),
         height: normalizeHeight(30),
-      },
+    },
+    subHeadVw: {
+        marginVertical: normalizeSpacing(12),
+        alignItems: 'center'
+    },
+    subHeadTxt: {
+        fontSize: normalize(18),
+        fontFamily: FONT_FAMILY_SEMIBOLD,
+        color: BLACK_COLOR
+    }
 });
 
 export default styles;

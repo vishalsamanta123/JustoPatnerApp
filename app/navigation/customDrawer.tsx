@@ -120,13 +120,6 @@ const customDrawer = ({ navigation }: any) => {
             navigation.navigate('DashboardScreen');
           }}
         />
-        <DrawerTabSection
-          iconSource={images.agency}
-          tabTitle={strings.agencyHeader}
-          handleDrawerNavigation={() => {
-            navigation.navigate('AgentListing');
-          }}
-        />
         {permissionResponse?.response?.data?.length > 0 &&
           permissionResponse?.response?.data?.map((item: any, index: any) => {
             return item.permission && item.path && (
@@ -141,13 +134,6 @@ const customDrawer = ({ navigation }: any) => {
               />
             )
           })}
-        <DrawerTabSection
-          iconSource={images.report}
-          tabTitle={strings.dataflowHeader}
-          handleDrawerNavigation={() => {
-            navigation.navigate('DataFlow');
-          }}
-        />
         {/* <DrawerTabSection
           iconSource={images.property}
           tabTitle={strings.propertyManagementHeader}
