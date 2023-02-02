@@ -15,12 +15,11 @@ const ProfileView = (props: any) => {
   const {data, HandleBackPress, handleEditProfilePress, onpresContent} = props || {};
   const layout = useWindowDimensions();
 
-
   const [allDetails , setAllDetails] = useState<any>({})
   const [index, setIndex] = useState(0);
   const [routes] = useState([
     { key: 'first', title: 'User Info' },
-    { key: 'second', title: 'Bank Info' },
+    { key: 'second', title: 'Co. Info' },
   ]);
 
   const allDetailsall = useSelector((state: any) => state.agentData);

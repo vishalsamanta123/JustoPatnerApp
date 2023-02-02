@@ -13,6 +13,7 @@ import { useSelector } from 'react-redux';
 import { PRIMARY_THEME_COLOR_DARK } from '../../../../components/utilities/constant';
 import { BLACK_COLOR, PRIMARY_THEME_COLOR, WHITE_COLOR, } from '../../../../components/utilities/constant';
 import EmptyListScreen from 'app/components/CommonScreen/EmptyListScreen';
+import usePermission from 'app/components/utilities/UserPermissions';
 
 const AgentView = (props: any) => {
   const loadingref = false
@@ -85,6 +86,11 @@ const AgentView = (props: any) => {
     })
     props.getAgentList(0, {})
   }
+  const { edit, view, create } = usePermission({
+    edit: 'edit_agent',
+    view: 'view_agent_details',
+    create: 'add_agent'
+  })
   return (
     <View style={styles.mainContainer}>
       <Header
@@ -99,14 +105,16 @@ const AgentView = (props: any) => {
       />
       <View style={styles.propertyListView}>
         <View style={styles.btnView}>
-          <TouchableOpacity
-            onPress={() => onPressAddnewAgent('add')}
-            style={[styles.button, { borderColor: BLACK_COLOR, backgroundColor: PRIMARY_THEME_COLOR }]} >
-            <Text style={[styles.buttonTxt, {
-              color: WHITE_COLOR
-            }]}>{strings.addnewagent}</Text>
+          {create &&
+            (<TouchableOpacity
+              onPress={() => onPressAddnewAgent('add')}
+              style={[styles.button, { borderColor: BLACK_COLOR, backgroundColor: PRIMARY_THEME_COLOR }]} >
+              <Text style={[styles.buttonTxt, {
+                color: WHITE_COLOR
+              }]}>{strings.addnewagent}</Text>
 
-          </TouchableOpacity>
+            </TouchableOpacity>)
+          }
           {/* <TouchableOpacity
             onPress={() => ShowPendinglist()}
             style={[styles.button, { borderColor: BLACK_COLOR, backgroundColor: PRIMARY_THEME_COLOR }]} >
@@ -125,6 +133,7 @@ const AgentView = (props: any) => {
               <AgentListItem items={item} setIsVisible={setIsVisible}
                 onPressView={props.onPressView}
                 setChangeStatus={props.setChangeStatus}
+                edit={edit} view={view}
               />
             }
             onEndReached={() => {

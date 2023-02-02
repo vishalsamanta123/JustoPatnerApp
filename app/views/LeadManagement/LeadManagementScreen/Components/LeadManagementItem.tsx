@@ -11,8 +11,13 @@ import {
 import images from "../../../../assets/images";
 import strings from "../../../../components/utilities/Localization";
 import moment from "moment";
+import usePermission from "app/components/utilities/UserPermissions";
 
 const LeadManagementItem = (props: any) => {
+  const { edit, view } = usePermission({
+    edit: 'edit_visitor',
+    view: 'view_visitor',
+  })
   return (
     <View style={styles.IteamView}>
       {props?.items.property_title !== '' ?
@@ -164,14 +169,16 @@ const LeadManagementItem = (props: any) => {
         </View>
       </View>
       <View style={styles.buttonContainer}>
-        <TouchableOpacity
-          style={[styles.button, { borderColor: PURPLE_COLOR }]}
-          onPress={() => props.onPressEdit(props.items)}
-        >
-          <Text style={[styles.buttonTxt, { color: PURPLE_COLOR }]}>
-            {strings.edit}
-          </Text>
-        </TouchableOpacity>
+        {edit &&
+          (<TouchableOpacity
+            style={[styles.button, { borderColor: PURPLE_COLOR }]}
+            onPress={() => props.onPressEdit(props.items)}
+          >
+            <Text style={[styles.buttonTxt, { color: PURPLE_COLOR }]}>
+              {strings.edit}
+            </Text>
+          </TouchableOpacity>)
+        }
         <TouchableOpacity
           style={[styles.button, { borderColor: CALL_COLOR }]}
           onPress={() => {
@@ -182,12 +189,14 @@ const LeadManagementItem = (props: any) => {
             {strings.call}
           </Text>
         </TouchableOpacity>
-        <TouchableOpacity
-          style={styles.Viewbutton}
-          onPress={() => props.onPressView(props.items)}
-        >
-          <Image source={images.forwardArrow} style={styles.arrow} />
-        </TouchableOpacity>
+        {view &&
+          (<TouchableOpacity
+            style={styles.Viewbutton}
+            onPress={() => props.onPressView(props.items)}
+          >
+            <Image source={images.forwardArrow} style={styles.arrow} />
+          </TouchableOpacity>)
+        }
       </View>
     </View>
   );

@@ -12,9 +12,15 @@ import {
   GREEN_COLOR,
 } from "../../../../components/utilities/constant";
 import moment from "moment";
+import usePermission from "app/components/utilities/UserPermissions";
 
 const VisitorAppointment = (props: any) => {
+  const { edit, view } = usePermission({
+    edit: 'edit_appointment',
+    view: 'view_appointment',
+  })
   const item = props?.items || {};
+  console.log('item:++ ', item);
   return (
     <View style={styles.IteamView}>
       <View style={styles.Txtview}>
@@ -41,9 +47,8 @@ const VisitorAppointment = (props: any) => {
           <Text style={styles.nameTxt}>
             {item?.createdDate === "" || !item?.createdDate
               ? strings.notfount
-              : `${moment(item?.createdDate).format("DD-MM-YYYY")},${
-                  item?.appointment_time
-                }`}
+              : `${moment(item?.createdDate).format("DD-MM-YYYY")},${item?.appointment_time
+              }`}
           </Text>
         </View>
       </View>
@@ -56,6 +61,19 @@ const VisitorAppointment = (props: any) => {
         </View>
         <View style={styles.nameContainer}>
           <Text style={styles.nameTxt}>{`${item?.customer_first_name}`}</Text>
+        </View>
+      </View>
+      <View style={[styles.Txtview, {
+        alignItems: 'flex-start'
+      }]}>
+        <View style={styles.projectContainer}>
+          <Text style={styles.projectTxt}>Property Name</Text>
+        </View>
+        <View>
+          <Text>:</Text>
+        </View>
+        <View style={styles.nameContainer}>
+          <Text style={styles.nameTxt}>{`${item?.property_title}`}</Text>
         </View>
       </View>
       <View style={styles.Txtview}>
@@ -88,32 +106,32 @@ const VisitorAppointment = (props: any) => {
           <Text>:</Text>
         </View>
         <View style={styles.nameContainer}>
-        <Text
+          <Text
             style={[
               styles.nameTxt,
               {
                 color:
                   item?.status === 1 ||
-                  item?.status === 4 ||
-                  item?.status === 5
+                    item?.status === 4 ||
+                    item?.status === 5
                     ? RED_COLOR
                     : item?.status === 2
-                    ? YELLOW_COLOR
-                    : item?.status === 3
-                    ? GREEN_COLOR
-                    : BLACK_COLOR
+                      ? YELLOW_COLOR
+                      : item?.status === 3
+                        ? GREEN_COLOR
+                        : BLACK_COLOR
               },
             ]}
           >
             {item?.status === 1
               ? "Upcoming"
               : item?.status === 2
-              ? "Upcoming"
-              : item?.status === 3
-              ? "Completed"
-              : item?.status === 4
-              ? "Canceled"
-              : item?.status === 5 && "Canceled"}
+                ? "Upcoming"
+                : item?.status === 3
+                  ? "Completed"
+                  : item?.status === 4
+                    ? "Canceled"
+                    : item?.status === 5 && "Canceled"}
           </Text>
         </View>
       </View>
@@ -129,7 +147,7 @@ const VisitorAppointment = (props: any) => {
         </View>
       </View>
       <View style={styles.buttonContainer}>
-        {item?.status === 1 || item?.status === 2 ? (
+        {edit ? item?.status === 1 || item?.status === 2 ? (
           <TouchableOpacity
             style={[styles.button, { borderColor: PURPLE_COLOR }]}
             onPress={() => props.onPressEdit(item)}
@@ -138,7 +156,7 @@ const VisitorAppointment = (props: any) => {
               {strings.edit}
             </Text>
           </TouchableOpacity>
-        ) : null}
+        ) : null : null}
         <TouchableOpacity
           style={[styles.button, { borderColor: CALL_COLOR }]}
           onPress={() => {
@@ -149,12 +167,14 @@ const VisitorAppointment = (props: any) => {
             {strings.call}
           </Text>
         </TouchableOpacity>
-        <TouchableOpacity
-          style={styles.Viewbutton}
-          onPress={() => props.onPressView(item)}
-        >
-          <Image source={images.forwardArrow} style={styles.arrow} />
-        </TouchableOpacity>
+        {view &&
+          (<TouchableOpacity
+            style={styles.Viewbutton}
+            onPress={() => props.onPressView(item)}
+          >
+            <Image source={images.forwardArrow} style={styles.arrow} />
+          </TouchableOpacity>)
+        }
       </View>
     </View>
   );

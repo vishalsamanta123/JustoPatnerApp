@@ -36,6 +36,7 @@ import {
 } from "app/Redux/Actions/AppiontmentWithUserActions";
 import AppointmentModal from "./AppointmentModal";
 import AppointmentFilterModal from "./AppointmentFilterModal";
+import usePermission from "app/components/utilities/UserPermissions";
 
 const AppointmentView = (props: any) => {
   const loadingref = false;
@@ -260,7 +261,9 @@ const AppointmentView = (props: any) => {
     first: FirstRoute,
     second: SecondRoute,
   });
-
+  const { create } = usePermission({
+    create: 'add_appointment',
+  })
   return (
     <View style={styles.mainContainer}>
       <Header
@@ -273,15 +276,17 @@ const AppointmentView = (props: any) => {
         RightFirstIconStyle={styles.RightFirstIconStyle}
         handleOnRightFirstIconPress={() => setFilterisVisible(true)}
       />
-      <View style={{ marginVertical: 10, alignItems: "flex-end" }}>
-        <Button
-          width={200}
-          height={30}
-          buttonText={strings.addNewappointment}
-          btnTxtsize={14}
-          handleBtnPress={() => onPressAddNew()}
-        />
-      </View>
+      {create &&
+        (<View style={{ marginVertical: 10, alignItems: "flex-end" }}>
+          <Button
+            width={200}
+            height={30}
+            buttonText={strings.addNewappointment}
+            btnTxtsize={14}
+            handleBtnPress={() => onPressAddNew()}
+          />
+        </View>)
+      }
       <View style={styles.propertyListView}>
         <TabView
           renderTabBar={renderTabBar}

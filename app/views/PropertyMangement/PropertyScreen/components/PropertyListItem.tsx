@@ -7,9 +7,14 @@ import images from '../../../../assets/images';
 import moment from 'moment';
 import { useDispatch } from 'react-redux';
 import { statusUpdate } from 'app/Redux/Actions/propertyActions';
+import usePermission from 'app/components/utilities/UserPermissions';
 
 const PropertyListItem = (props: any) => {
   const dispatch: any = useDispatch()
+  const { status, view } = usePermission({
+    status: 'property_status_update',
+    view: 'view_property',
+  })
   return (
     <View style={styles.IteamView}>
       <View style={styles.Txtview} >
@@ -86,7 +91,7 @@ const PropertyListItem = (props: any) => {
         </View>
         <View style={styles.nameContainer}>
           <Text style={[styles.nameTxt, {
-            color:props.items.status? GREEN_COLOR : RED_COLOR
+            color: props.items.status ? GREEN_COLOR : RED_COLOR
           }]}>{props.items.status ? 'Active' : 'Inactive'}</Text>
         </View>
       </View>
@@ -99,7 +104,7 @@ const PropertyListItem = (props: any) => {
         </View>
       </View>
       <View style={styles.buttonContainer}>
-        {typeof props.items.property_active_status === 'undefined' || props.items.property_active_status ?
+        {status ? typeof props.items.property_active_status === 'undefined' || props.items.property_active_status ?
           (<TouchableOpacity
             /* onPress={() => props.items.approve_status === 2 ? props.setIsVisible(true) : props.setIsVisible(true)} */
             onPress={() => props.confirmStatus(props.items)}
@@ -135,13 +140,15 @@ const PropertyListItem = (props: any) => {
           //     }</Text>
           // </TouchableOpacity>)
           <View></View>
+          : <View/>
         }
-        <TouchableOpacity style={styles.Viewbutton} onPress={() => props.onPressView(props.items)} >
-          <Image
-            source={images.forwardArrow}
-            style={styles.arrow}
-          />
-        </TouchableOpacity>
+        {view &&
+          (<TouchableOpacity style={styles.Viewbutton} onPress={() => props.onPressView(props.items)} >
+            <Image
+              source={images.forwardArrow}
+              style={styles.arrow}
+            />
+          </TouchableOpacity>)}
       </View>
     </View>
   );

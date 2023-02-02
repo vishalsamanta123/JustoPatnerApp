@@ -55,9 +55,9 @@ const styles = StyleSheet.create({
     },
     demoImgView: {
         flexDirection: 'row',
-        justifyContent: 'space-between',
         alignItems: 'center',
         flexWrap: 'wrap',
+        justifyContent: 'space-between',
     },
     Img: {
         width: normalizeWidth(100),

@@ -19,7 +19,6 @@ import { getAllAlloctaeProperty } from "app/Redux/Actions/propertyActions";
 
 const AddNewVisitorScreen = ({ navigation, route }: any) => {
   const { type, data } = route?.params || {};
-  console.log('data: ', data);
   const dispatch: any = useDispatch();
   const { response = {}, detail = "" } = useSelector(
     (state: any) => state.visitorData

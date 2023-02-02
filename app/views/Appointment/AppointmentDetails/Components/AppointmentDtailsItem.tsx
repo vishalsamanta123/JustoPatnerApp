@@ -13,7 +13,6 @@ import {
 } from "app/components/utilities/constant";
 
 const AppointmentDtailsItem = (props: any) => {
-  console.log("props: ", props);
   return (
     <ScrollView>
       <View style={styles.topDetailsView}>
