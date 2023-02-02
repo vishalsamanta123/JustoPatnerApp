@@ -18,11 +18,11 @@ import { getAllAlloctaeProperty } from "app/Redux/Actions/propertyActions";
 
 const AddNewVisitorScreen = ({ navigation, route }: any) => {
   const { type, data } = route?.params || {};
-  console.log('data: ', data);
   const dispatch: any = useDispatch();
   const { response = {}, detail = "" } = useSelector(
     (state: any) => state.visitorData
     );
+    console.log('response: ++++++++++++++++++', response?.data[0]);
   const [formData, setFormData] = useState<any>({
     first_name: "",
     adhar_no: "",

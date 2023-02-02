@@ -13,10 +13,9 @@ import LeadManagementItem from "./LeadManagementItem";
 import { useNavigation } from "@react-navigation/native";
 import FilterModal from "./LeadManagementModal";
 import EmptyListScreen from "app/components/CommonScreen/EmptyListScreen";
+import usePermission from "app/components/utilities/UserPermissions";
 
 const LeadManagementView = (props: any) => {
-  console.log('props?.visitorList): ', props?.visitorList);
-
   const loadingref = false
   const insets = useSafeAreaInsets();
   const navigation: any = useNavigation()
@@ -41,7 +40,10 @@ const LeadManagementView = (props: any) => {
     props.getVisitorsList(0, {})
     props.setVisiitorList([])
   }
-
+  const { create, status } = usePermission({
+    create: 'add_visitor',
+    status: 'bulk_upload',
+  })
   return (
     <View style={styles.mainContainer}>
       <Header
@@ -54,21 +56,27 @@ const LeadManagementView = (props: any) => {
         RightFirstIconStyle={styles.RightFirstIconStyle}
         handleOnRightFirstIconPress={() => setFilterisVisible(true)}
       />
-      <View style={styles.TopBtnView}>
-         <Button
-          buttonText={"Bulk Upload"}
-          width={150}
-          height={30}
-          btnTxtsize={15}
-          handleBtnPress={props.handleBulkUploadPress}
-        />
-        <Button
-          buttonText={"Add New Visitor"}
-          width={150}
-          height={30}
-          btnTxtsize={15}
-          handleBtnPress={props.handleAddNewPress}
-        />
+      <View style={[styles.TopBtnView, {
+        justifyContent: create && status ? "center" : 'flex-end',
+      }]}>
+        {status &&
+          (<Button
+            buttonText={"Bulk Upload"}
+            width={150}
+            height={30}
+            btnTxtsize={15}
+            handleBtnPress={props.handleBulkUploadPress}
+          />)
+        }
+        {create &&
+          (<Button
+            buttonText={"Add New Visitor"}
+            width={150}
+            height={30}
+            btnTxtsize={15}
+            handleBtnPress={props.handleAddNewPress}
+          />)
+        }
       </View>
       <View style={styles.propertyListView}>
         <FlatList

@@ -12,10 +12,14 @@ import {
 } from "../../../../components/utilities/constant";
 import strings from "../../../../components/utilities/Localization";
 import moment from "moment";
+import usePermission from "app/components/utilities/UserPermissions";
 
 const FollowUpItem = (props: any) => {
+  const { edit, view } = usePermission({
+    edit: 'edit_follow',
+    view: 'view_follow'
+  })
   const item = props?.items || {};
-  console.log('item: ', item);
   return (
     <View style={styles.IteamView}>
       <View style={styles.Txtview}>
@@ -93,22 +97,24 @@ const FollowUpItem = (props: any) => {
             {item.followup_for == 1
               ? "Lead"
               : item.followup_for == 2
-              ? "Site visit"
-              : item.followup_for == 3
-              ? "Booking"
-              : "Registration"}
+                ? "Site visit"
+                : item.followup_for == 3
+                  ? "Booking"
+                  : "Registration"}
           </Text>
         </View>
       </View>
       <View style={styles.buttonContainer}>
-        <TouchableOpacity
-          style={[styles.button, { borderColor: PURPLE_COLOR }]}
-          onPress={() => props.onPressEdit(item)}
-        >
-          <Text style={[styles.buttonTxt, { color: PURPLE_COLOR }]}>
-            {strings.edit}
-          </Text>
-        </TouchableOpacity>
+        {edit &&
+          (<TouchableOpacity
+            style={[styles.button, { borderColor: PURPLE_COLOR }]}
+            onPress={() => props.onPressEdit(item)}
+          >
+            <Text style={[styles.buttonTxt, { color: PURPLE_COLOR }]}>
+              {strings.edit}
+            </Text>
+          </TouchableOpacity>)
+        }
         <TouchableOpacity
           style={[styles.button, { borderColor: PRIMARY_THEME_COLOR }]}
           onPress={() => props.onPressAllFollowUp(item)}
@@ -117,12 +123,14 @@ const FollowUpItem = (props: any) => {
             {strings.allfollowup}
           </Text>
         </TouchableOpacity>
-        <TouchableOpacity
-          style={styles.Viewbutton}
-          onPress={() => props.onPressView(item)}
-        >
-          <Image source={images.forwardArrow} style={styles.arrow} />
-        </TouchableOpacity>
+        {view &&
+          (<TouchableOpacity
+            style={styles.Viewbutton}
+            onPress={() => props.onPressView(item)}
+          >
+            <Image source={images.forwardArrow} style={styles.arrow} />
+          </TouchableOpacity>)
+        }
       </View>
     </View>
   );

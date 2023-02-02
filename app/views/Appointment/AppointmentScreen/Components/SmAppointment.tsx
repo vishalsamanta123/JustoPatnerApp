@@ -11,8 +11,13 @@ import {
   GREEN_COLOR,
 } from "../../../../components/utilities/constant";
 import moment from "moment";
+import usePermission from "app/components/utilities/UserPermissions";
 
 const SmAppointment = (props: any) => {
+  const { status, approve } = usePermission({
+    status: 'cancel_status_for_sm_appointment',
+    approve: 'confirm_status_for_sm_appointment',
+  })
   return (
     <View style={styles.IteamView}>
       <View style={styles.Txtview}>
@@ -75,22 +80,22 @@ const SmAppointment = (props: any) => {
             {props.items.appointment_status == 1
               ? "Pending"
               : props.items.appointment_status == 2
-              ? "Confirm"
-              : props.items.appointment_status == 3
-              ? "Complete"
-              : "Appointment cancel"}
+                ? "Confirm"
+                : props.items.appointment_status == 3
+                  ? "Complete"
+                  : "Appointment cancel"}
           </Text>
         </View>
       </View>
       <View style={[styles.buttonContainer, {
-            justifyContent:
-              props.items.appointment_status === 3 ||
-              props.items.appointment_status === 4 
-                ? "flex-end"
-                : "space-between",
-          },]}>
-        {props.items?.appointment_status === 3 ||
-        props.items?.appointment_status === 4 ? null : (
+        justifyContent:
+          props.items.appointment_status === 3 ||
+            props.items.appointment_status === 4
+            ? "flex-end"
+            : "space-between",
+      },]}>
+        {status && (props.items?.appointment_status === 3 ||
+          props.items?.appointment_status === 4 ? null : (
           <TouchableOpacity
             style={[styles.button, { borderColor: RED_COLOR }]}
             onPress={() => props.handleOptionPress(props.items._id, 4)}
@@ -98,9 +103,9 @@ const SmAppointment = (props: any) => {
             <Text style={[styles.buttonTxt, { color: RED_COLOR }]}>
               {strings.cancel}
             </Text>
-          </TouchableOpacity>
+          </TouchableOpacity>)
         )}
-        {props.items?.appointment_status === 1 ? (
+        {approve ? props.items?.appointment_status === 1 ? (
           <TouchableOpacity
             style={[styles.button, { borderColor: GREEN_COLOR }]}
             onPress={() => props.handleOptionPress(props.items._id, 2)}
@@ -109,13 +114,14 @@ const SmAppointment = (props: any) => {
               {strings.confirm}
             </Text>
           </TouchableOpacity>
-        ) : null}
+        ) : null : <View />}
         <TouchableOpacity
           style={styles.Viewbutton}
           onPress={() => props.hanndleUserDetailPress(props.items)}
         >
           <Image source={images.forwardArrow} style={styles.arrow} />
         </TouchableOpacity>
+
       </View>
     </View>
   );

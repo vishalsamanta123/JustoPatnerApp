@@ -241,3 +241,12 @@ export const RequiredStart = () => {
     />
   )
 }
+export function handleDetailResponse(result: any) {
+  let data;
+  if (Array.isArray(result)) {
+    data = result[0];
+  } else {
+    data = result;
+  }
+  return data;
+}

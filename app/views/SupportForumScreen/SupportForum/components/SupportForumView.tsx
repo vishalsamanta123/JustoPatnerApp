@@ -11,11 +11,14 @@ import moment from 'moment'
 import FastImages from 'app/components/FastImage'
 import EmptyListScreen from 'app/components/CommonScreen/EmptyListScreen'
 import ComingSoonScreen from 'app/components/CommonScreen/ComingSoon'
+import usePermission from 'app/components/utilities/UserPermissions'
 
 const SupportForumView = (props: any) => {
     const [filterisVisible, setFilterisVisible] = useState(false)
     const loadingref = false
-
+    const { view } = usePermission({
+        view: 'view_support_forum',
+    })
     return (
         <View style={styles.mainContainer}>
             <Header
@@ -92,14 +95,16 @@ const SupportForumView = (props: any) => {
                                             style={styles.shareImg}
                                         />
                                     </TouchableOpacity>
-                                    <TouchableOpacity onPress={() => props.onPressView(item)}
-                                        style={styles.btnView}>
-                                        <Image
-                                            source={images.forwardArrow}
-                                            resizeMode={'contain'}
-                                            style={styles.downloadImg}
-                                        />
-                                    </TouchableOpacity>
+                                    {view &&
+                                        (<TouchableOpacity onPress={() => props.onPressView(item)}
+                                            style={styles.btnView}>
+                                            <Image
+                                                source={images.forwardArrow}
+                                                resizeMode={'contain'}
+                                                style={styles.downloadImg}
+                                            />
+                                        </TouchableOpacity>)
+                                    }
                                 </View>
                             </View>
                         )

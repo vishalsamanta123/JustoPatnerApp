@@ -28,14 +28,13 @@ import moment from "moment";
 import InputCalender from "app/components/InputCalender";
 import DropdownInput from "app/components/DropDown";
 import { useSelector } from "react-redux";
+import usePermission from "app/components/utilities/UserPermissions";
 
 const AddNewVisitorForm = (props: any) => {
   const insets = useSafeAreaInsets();
   const { response = {}, detail = "" } = useSelector(
     (state: any) => state.visitorData
   );
-  console.log('response: ', response);
-
   useEffect(() => {
     if (props.type == "edit") {
       if (response?.status === 200) {
@@ -76,6 +75,11 @@ const AddNewVisitorForm = (props: any) => {
       }
     }
   }, [response]);
+  const { edit, create, status } = usePermission({
+    edit: 'edit_visitor',
+    create: 'add_visitor',
+    status: 'add_appointment'
+  })
   return (
     <View style={styles.mainContainer}>
       <Header
@@ -910,7 +914,7 @@ const AddNewVisitorForm = (props: any) => {
             />
           </View>
           <View style={styles.btnView}>
-            {props.type == "edit" ? (
+            {edit && props.type == "edit" ? (
               <Button
                 width={150}
                 height={45}
@@ -923,26 +927,30 @@ const AddNewVisitorForm = (props: any) => {
               />
             ) : (
               <>
-                <Button
-                  width={150}
-                  handleBtnPress={() => {
-                    props.setNavigationType(1);
-                    props.OnpressCreateEdit();
-                  }}
-                  height={45}
-                  buttonText={strings.createVisitor}
-                  btnTxtsize={16}
-                />
-                <Button
-                  width={150}
-                  handleBtnPress={() => {
-                    props.setNavigationType(2);
-                    props.OnpressseheduleVisit();
-                  }}
-                  height={45}
-                  buttonText={strings.createandschedule}
-                  btnTxtsize={14}
-                />
+                {create &&
+                  (<Button
+                    width={150}
+                    handleBtnPress={() => {
+                      props.setNavigationType(1);
+                      props.OnpressCreateEdit();
+                    }}
+                    height={45}
+                    buttonText={strings.createVisitor}
+                    btnTxtsize={16}
+                  />)
+                }
+                {create && status ?
+                  (<Button
+                    width={150}
+                    handleBtnPress={() => {
+                      props.setNavigationType(2);
+                      props.OnpressseheduleVisit();
+                    }}
+                    height={45}
+                    buttonText={strings.createandschedule}
+                    btnTxtsize={14}
+                  />) : null
+                }
               </>
             )}
           </View>
