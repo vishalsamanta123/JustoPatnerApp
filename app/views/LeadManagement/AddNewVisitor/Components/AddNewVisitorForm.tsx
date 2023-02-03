@@ -32,7 +32,7 @@ import usePermission from "app/components/utilities/UserPermissions";
 
 const AddNewVisitorForm = (props: any) => {
   const [PropertyStatus, setPropertyStatus] = useState(false)
-  console.log('PropertyStatus: ', PropertyStatus);
+  console.log('PropertyStatus: ', props.type);
   const { response = {}, detail = "" } = useSelector(
     (state: any) => state.visitorData
   );
@@ -71,20 +71,22 @@ const AddNewVisitorForm = (props: any) => {
         setPropertyStatus(false)
       }
     } else {
-      // if (props.type === "propertySelect") {
-      //   props.setFormData({
-      //     ...props.formData,
-      //     property_id: props?.data?._id,
-      //     property_type_title: props?.data?.property_type_title,
-      //     property_title: props?.data?.property_title,
-      //   });
-      // }
-    }
-    if (props?.formData?.property_id !== "" && props?.formData?.property_id !== null) {
+      if (props.type === "propertySelect") {
+        props.setFormData({
+          ...props.formData,
+          property_id: props?.data?._id,
+          property_type_title: props?.data?.property_type_title,
+          property_title: props?.data?.property_title,
+        });
+      }
       setPropertyStatus(true)
-    } else {
+    }
+    if (props.type === "add") {
       setPropertyStatus(false)
     }
+    // if (props?.formData?.property_id !== "" && props?.formData?.property_id !== null) {
+    // } else {
+    // }
   }, [response]);
   const { edit, create, status } = usePermission({
     edit: 'edit_visitor',
