@@ -14,6 +14,7 @@ import LeadDetailsIteam from "./LeadDetailsIteam";
 import Button from "../../../../components/Button";
 import { useNavigation } from "@react-navigation/native";
 import { useSelector } from "react-redux";
+import usePermission from "app/components/utilities/UserPermissions";
 
 const LeadDetailsView = (props: any) => {
   const insets = useSafeAreaInsets();
@@ -33,7 +34,10 @@ const LeadDetailsView = (props: any) => {
   const OnpressseheduleVisit = () => {
     navigation.navigate("AddAppointmentScreen", { data: userDetails, type: 'Add' });
   };
-
+  const { create, status } = usePermission({
+    create: 'add_appointment',
+    status: 'add_followup',
+  })
   return (
     <>
       <View style={styles.mainContainer}>
@@ -49,26 +53,30 @@ const LeadDetailsView = (props: any) => {
           <LeadDetailsIteam items={userDetails} />
         </View>
         <View style={styles.btnContainer}>
-          <Button
-            handleBtnPress={() => OnpressseheduleVisit()}
-            buttonText={strings.ScheduleSitevisite}
-            width={150}
-            height={45}
-            bgcolor={PRIMARY_THEME_COLOR_DARK}
-            btnTxtcolor={WHITE_COLOR}
-            btnTxtsize={11}
-            textTransform={"uppercase"}
-          />
-          <Button
-            buttonText={strings.Statusupdate}
-            width={150}
-            height={45}
-            bgcolor={PRIMARY_THEME_COLOR_DARK}
-            btnTxtcolor={WHITE_COLOR}
-            btnTxtsize={14}
-            textTransform={"uppercase"}
-            handleBtnPress={() => props.handleStatusUpdate()}
-          />
+          {create &&
+            (<Button
+              handleBtnPress={() => OnpressseheduleVisit()}
+              buttonText={strings.ScheduleSitevisite}
+              width={150}
+              height={45}
+              bgcolor={PRIMARY_THEME_COLOR_DARK}
+              btnTxtcolor={WHITE_COLOR}
+              btnTxtsize={11}
+              textTransform={"uppercase"}
+            />)
+          }
+          {status &&
+            (<Button
+              buttonText={strings.Statusupdate}
+              width={150}
+              height={45}
+              bgcolor={PRIMARY_THEME_COLOR_DARK}
+              btnTxtcolor={WHITE_COLOR}
+              btnTxtsize={14}
+              textTransform={"uppercase"}
+              handleBtnPress={() => props.handleStatusUpdate()}
+            />)
+          }
         </View>
       </View>
     </>

@@ -28,14 +28,14 @@ import moment from "moment";
 import InputCalender from "app/components/InputCalender";
 import DropdownInput from "app/components/DropDown";
 import { useSelector } from "react-redux";
+import usePermission from "app/components/utilities/UserPermissions";
 
 const AddNewVisitorForm = (props: any) => {
-  const insets = useSafeAreaInsets();
+  const [PropertyStatus, setPropertyStatus] = useState(false)
+  console.log('PropertyStatus: ', props.type);
   const { response = {}, detail = "" } = useSelector(
     (state: any) => state.visitorData
   );
-  console.log('response: ', response);
-
   useEffect(() => {
     if (props.type == "edit") {
       if (response?.status === 200) {
@@ -65,6 +65,11 @@ const AddNewVisitorForm = (props: any) => {
           max_emi_budget_type: response?.data[0]?.max_emi_budget_type,
         });
       }
+      if (response?.data[0]?.property_id !== "" && response?.data[0]?.property_id !== null) {
+        setPropertyStatus(true)
+      } else {
+        setPropertyStatus(false)
+      }
     } else {
       if (props.type === "propertySelect") {
         props.setFormData({
@@ -74,8 +79,20 @@ const AddNewVisitorForm = (props: any) => {
           property_title: props?.data?.property_title,
         });
       }
+      setPropertyStatus(true)
     }
+    if (props.type === "add") {
+      setPropertyStatus(false)
+    }
+    // if (props?.formData?.property_id !== "" && props?.formData?.property_id !== null) {
+    // } else {
+    // }
   }, [response]);
+  const { edit, create, status } = usePermission({
+    edit: 'edit_visitor',
+    create: 'add_visitor',
+    status: 'add_appointment'
+  })
   return (
     <View style={styles.mainContainer}>
       <Header
@@ -90,42 +107,6 @@ const AddNewVisitorForm = (props: any) => {
       <ScrollView keyboardShouldPersistTaps={"handled"}>
         <View style={styles.wrap}>
           <Text style={styles.headingText}>{strings.visitordetails}</Text>
-          <View style={[styles.inputWrap]}>
-            <DropdownInput
-              require={true}
-              headingText={"Property"}
-              placeholder={
-                props?.formData?.property_title
-                  ? props?.formData?.property_title
-                  : "Property"
-              }
-              data={props?.allProperty}
-              disable={props.type == "edit" ? true : false}
-              inputWidth={"100%"}
-              paddingLeft={16}
-              maxHeight={300}
-              labelField="property_title"
-              valueField={"_id"}
-              value={props?.formData?.property_id}
-              onChange={(item: any) => {
-                props.setFormData({
-                  ...props.formData,
-                  property_id: item.property_id,
-                  property_type_title: item.property_type,
-                  property_title: item.property_title,
-                });
-              }}
-              newRenderItem={(item: any) => {
-                return (
-                  <>
-                    <View style={Styles.item}>
-                      <Text style={Styles.textItem}>{item.property_title}</Text>
-                    </View>
-                  </>
-                );
-              }}
-            />
-          </View>
           <View style={styles.inputWrap}>
             <InputField
               require={true}
@@ -341,6 +322,43 @@ const AddNewVisitorForm = (props: any) => {
           <Text style={[styles.headingText, { marginTop: 20 }]}>
             {strings.propertyrequire}
           </Text>
+          <View style={[styles.inputWrap]}>
+            <DropdownInput
+              require={true}
+              headingText={"Property"}
+              placeholder={
+                props?.formData?.property_title
+                  ? props?.formData?.property_title
+                  : "Property"
+              }
+              data={props?.allProperty}
+              // disable={props?.formData?.property_id !== "" && props?.formData?.property_id !== null ? true : false}
+              disable={PropertyStatus}
+              inputWidth={"100%"}
+              paddingLeft={16}
+              maxHeight={300}
+              labelField="property_title"
+              valueField={"_id"}
+              value={props?.formData?.property_id}
+              onChange={(item: any) => {
+                props.setFormData({
+                  ...props.formData,
+                  property_id: item.property_id,
+                  property_type_title: item.property_type,
+                  property_title: item.property_title,
+                });
+              }}
+              newRenderItem={(item: any) => {
+                return (
+                  <>
+                    <View style={Styles.item}>
+                      <Text style={Styles.textItem}>{item.property_title}</Text>
+                    </View>
+                  </>
+                );
+              }}
+            />
+          </View>
           <View style={[styles.inputWrap]}>
             <DropdownInput
               headingText={"Configuration"}
@@ -910,7 +928,7 @@ const AddNewVisitorForm = (props: any) => {
             />
           </View>
           <View style={styles.btnView}>
-            {props.type == "edit" ? (
+            {edit && props.type == "edit" ? (
               <Button
                 width={150}
                 height={45}
@@ -923,26 +941,30 @@ const AddNewVisitorForm = (props: any) => {
               />
             ) : (
               <>
-                <Button
-                  width={150}
-                  handleBtnPress={() => {
-                    props.setNavigationType(1);
-                    props.OnpressCreateEdit();
-                  }}
-                  height={45}
-                  buttonText={strings.createVisitor}
-                  btnTxtsize={16}
-                />
-                <Button
-                  width={150}
-                  handleBtnPress={() => {
-                    props.setNavigationType(2);
-                    props.OnpressseheduleVisit();
-                  }}
-                  height={45}
-                  buttonText={strings.createandschedule}
-                  btnTxtsize={14}
-                />
+                {create &&
+                  (<Button
+                    width={150}
+                    handleBtnPress={() => {
+                      props.setNavigationType(1);
+                      props.OnpressCreateEdit();
+                    }}
+                    height={45}
+                    buttonText={strings.createVisitor}
+                    btnTxtsize={16}
+                  />)
+                }
+                {create && status ?
+                  (<Button
+                    width={150}
+                    handleBtnPress={() => {
+                      props.setNavigationType(2);
+                      props.OnpressseheduleVisit();
+                    }}
+                    height={45}
+                    buttonText={strings.createandschedule}
+                    btnTxtsize={14}
+                  />) : null
+                }
               </>
             )}
           </View>

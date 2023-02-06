@@ -19,6 +19,7 @@ import ConfirmModal from "../../../../components/Modals/ConfirmModal";
 import { useDispatch, useSelector } from "react-redux";
 import { getAllMaster } from "app/Redux/Actions/MasterActions";
 import { statusUpdate } from "app/Redux/Actions/propertyActions";
+import usePermission from "app/components/utilities/UserPermissions";
 
 const PropertyDetailView = (props: any) => {
   const dispatch: any = useDispatch();
@@ -40,7 +41,6 @@ const PropertyDetailView = (props: any) => {
   const insets = useSafeAreaInsets();
   const navigation: any = useNavigation();
   const { response, loading } = propertyData;
-  console.log("response: ", response);
   const onPressCreatevisit = () => {
     navigation.navigate("AddNewVisitorScreen", {
       type: "propertySelect",
@@ -108,6 +108,10 @@ const PropertyDetailView = (props: any) => {
   const onpresContent = (name: any, items: any) => {
     navigation.navigate(name, items);
   };
+  const { create, status } = usePermission({
+    create: 'add_visitor',
+    status: 'property_status_update'
+  })
   return (
     <View style={styles.mainContainer}>
       <Header
@@ -135,24 +139,24 @@ const PropertyDetailView = (props: any) => {
           {
             justifyContent:
               approveStatus !== 1 &&
-              approveStatus !== 3 &&
-              propertydetail?.property_active_status
+                approveStatus !== 3 &&
+                propertydetail?.property_active_status
                 ? "space-between"
                 : "center",
           },
         ]}
       >
-        {
+        {status ?
           propertydetail?.property_active_status ||
-          typeof propertydetail?.property_active_status === "undefined" ? (
+            typeof propertydetail?.property_active_status === "undefined" ? (
             <Button
               handleBtnPress={() => confirmStatus()}
               buttonText={
                 approveStatus === 1
                   ? strings.accept
                   : approveStatus === 2
-                  ? strings.unsubscribe
-                  : strings.subscribe
+                    ? strings.unsubscribe
+                    : strings.subscribe
               }
               width={150}
               height={45}
@@ -161,21 +165,21 @@ const PropertyDetailView = (props: any) => {
                 approveStatus === 1
                   ? BLACK_COLOR
                   : approveStatus === 2
-                  ? "red"
-                  : YELLOW_COLOR
+                    ? "red"
+                    : YELLOW_COLOR
               }
               borderWidth={1.5}
               btnTxtcolor={
                 approveStatus === 1
                   ? BLACK_COLOR
                   : approveStatus === 2
-                  ? "red"
-                  : YELLOW_COLOR
+                    ? "red"
+                    : YELLOW_COLOR
               }
               btnTxtsize={15}
               textTransform={"uppercase"}
             />
-          ) : null
+          ) : null : null
           // (<Button
           //   handleBtnPress={() => {
           //     dispatch(statusUpdate({
@@ -197,9 +201,9 @@ const PropertyDetailView = (props: any) => {
           // )
         }
 
-        {propertydetail?.property_active_status &&
-        approveStatus !== 1 &&
-        approveStatus !== 3 ? (
+        {create ? propertydetail?.property_active_status &&
+          approveStatus !== 1 &&
+          approveStatus !== 3 ? (
           <Button
             handleBtnPress={() => onPressCreatevisit()}
             buttonText={strings.createVisit}
@@ -211,7 +215,7 @@ const PropertyDetailView = (props: any) => {
             btnTxtsize={15}
             textTransform={"uppercase"}
           />
-        ) : null}
+        ) : null : null}
       </View>
 
       {/* <ConfirmModal Visible={isVisible} setIsVisible={setIsVisible} /> */}

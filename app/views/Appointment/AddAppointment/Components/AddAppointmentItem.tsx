@@ -31,6 +31,7 @@ const AddAppointmentItem = (props: any) => {
               props?.addAppointmentForm?.lead_name === undefined ||
               props?.addAppointmentForm?.lead_name === null ?
               strings.selectLead : props?.addAppointmentForm?.lead_name}
+            disable={props.type === 'Add' || props.type === 'Edit' ? true : false}
             data={props.visitorList}
             inputWidth={"100%"}
             paddingLeft={16}
@@ -47,12 +48,52 @@ const AddAppointmentItem = (props: any) => {
                 lead_name: item.first_name,
                 pickup: item?.pickup,
               });
+              if (item?.property_id !== '' && item?.property_id !== null) {
+                props.setPropertyStatus(true)
+              }
+              else {
+                props.setPropertyStatus(false)
+              }
             }}
             newRenderItem={(item: any) => {
               return (
                 <View style={Styles.item}>
                   <Text style={Styles.textItem}>{item.first_name}</Text>
                 </View>
+              );
+            }}
+          />
+        </View>
+        <View style={[styles.inputWrap]}>
+          <DropdownInput
+            require={true}
+            headingText={"Property"}
+            placeholder={"Property"}
+            data={props?.allProperty}
+            // disable={
+            //   props?.addAppointmentForm?.property_id !== "" && props?.addAppointmentForm?.property_id !== null ? true : false}
+            disable={props.PropertyStatus}
+            inputWidth={"100%"}
+            paddingLeft={16}
+            maxHeight={300}
+            labelField="property_title"
+            valueField={"_id"}
+            value={props?.addAppointmentForm?.property_id}
+            onChange={(item: any) => {
+              props.setAddAppointmentForm({
+                ...props.addAppointmentForm,
+                property_id: item.property_id,
+                property_type_title: item.property_type,
+                property_title: item.property_title,
+              });
+            }}
+            newRenderItem={(item: any) => {
+              return (
+                <>
+                  <View style={Styles.item}>
+                    <Text style={Styles.textItem}>{item.property_title}</Text>
+                  </View>
+                </>
               );
             }}
           />
@@ -113,131 +154,131 @@ const AddAppointmentItem = (props: any) => {
             value={props.addAppointmentForm?.appointment_time}
           />
         </View>
-          <>
-            <View style={styles.inputWrap}>
-              <Text style={styles.genderTxt}>{strings.pickupAppointment}</Text>
+        <>
+          <View style={styles.inputWrap}>
+            <Text style={styles.genderTxt}>{strings.pickupAppointment}</Text>
+          </View>
+          <View style={styles.genderView}>
+            <View style={styles.radioView}>
+              <RadioButton.Android
+                value={strings.yes}
+                status={
+                  props.addAppointmentForm?.pickup === strings.yes
+                    ? "checked"
+                    : "unchecked"
+                }
+                onPress={() => {
+                  props.setAddAppointmentForm({
+                    ...props.addAppointmentForm,
+                    pickup: strings.yes,
+                  });
+                }}
+                color={PRIMARY_THEME_COLOR}
+              />
+              <Text
+                style={[
+                  styles.radioTxt,
+                  {
+                    color:
+                      props.addAppointmentForm?.pickup === strings.yes
+                        ? PRIMARY_THEME_COLOR
+                        : BLACK_COLOR,
+                  },
+                ]}
+              >
+                {strings.yes}
+              </Text>
             </View>
-            <View style={styles.genderView}>
-              <View style={styles.radioView}>
-                <RadioButton.Android
-                  value={strings.yes}
-                  status={
-                    props.addAppointmentForm?.pickup === strings.yes
-                      ? "checked"
-                      : "unchecked"
-                  }
-                  onPress={() => {
+            <View style={styles.radioView}>
+              <RadioButton.Android
+                value={strings.no}
+                status={
+                  props.addAppointmentForm?.pickup === strings.no
+                    ? "checked"
+                    : "unchecked"
+                }
+                onPress={() => {
+                  props.setAddAppointmentForm({
+                    ...props.addAppointmentForm,
+                    pickup: strings.no,
+                  });
+                }}
+                color={PRIMARY_THEME_COLOR}
+              />
+              <Text
+                style={[
+                  styles.radioTxt,
+                  {
+                    color:
+                      props.addAppointmentForm?.pickup === strings.no
+                        ? PRIMARY_THEME_COLOR
+                        : BLACK_COLOR,
+                  },
+                ]}
+              >
+                {strings.no}
+              </Text>
+            </View>
+          </View>
+          {props.addAppointmentForm?.pickup == strings.yes ? (
+            <>
+              <View style={styles.inputWrap}>
+                <InputField
+                  require={true}
+                  placeholderText={'PickUP Location'}
+                  handleInputBtnPress={() => { }}
+                  headingText={'PickUP Location'}
+                  valueshow={props.addAppointmentForm?.pickup_location}
+                  inputType={"location"}
+                  onPressSelect={(data: any, detail: any) => {
                     props.setAddAppointmentForm({
                       ...props.addAppointmentForm,
-                      pickup: strings.yes,
+                      pickup_location: data?.description,
+                      pickup_latitude: detail?.geometry?.location?.lat,
+                      pickup_longitude: detail?.geometry?.location?.lng,
                     });
                   }}
-                  color={PRIMARY_THEME_COLOR}
-                />
-                <Text
-                  style={[
-                    styles.radioTxt,
-                    {
-                      color:
-                        props.addAppointmentForm?.pickup === strings.yes
-                          ? PRIMARY_THEME_COLOR
-                          : BLACK_COLOR,
-                    },
-                  ]}
-                >
-                  {strings.yes}
-                </Text>
-              </View>
-              <View style={styles.radioView}>
-                <RadioButton.Android
-                  value={strings.no}
-                  status={
-                    props.addAppointmentForm?.pickup === strings.no
-                      ? "checked"
-                      : "unchecked"
-                  }
-                  onPress={() => {
+                  onChangeText={(data: any) => {
                     props.setAddAppointmentForm({
                       ...props.addAppointmentForm,
-                      pickup: strings.no,
+                      pickup_location: data?.description,
                     });
                   }}
-                  color={PRIMARY_THEME_COLOR}
                 />
-                <Text
-                  style={[
-                    styles.radioTxt,
-                    {
-                      color:
-                        props.addAppointmentForm?.pickup === strings.no
-                          ? PRIMARY_THEME_COLOR
-                          : BLACK_COLOR,
-                    },
-                  ]}
-                >
-                  {strings.no}
-                </Text>
               </View>
-            </View>
-            {props.addAppointmentForm?.pickup == strings.yes ? (
-              <>
-                <View style={styles.inputWrap}>
-                  <InputField
-                    require={true}
-                    placeholderText={'PickUP Location'}
-                    handleInputBtnPress={() => { }}
-                    headingText={'PickUP Location'}
-                    valueshow={props.addAppointmentForm?.pickup_location}
-                    inputType={"location"}
-                    onPressSelect={(data: any, detail: any) => {
-                      props.setAddAppointmentForm({
-                        ...props.addAppointmentForm,
-                        pickup_location: data?.description,
-                        pickup_latitude: detail?.geometry?.location?.lat,
-                        pickup_longitude: detail?.geometry?.location?.lng,
-                      });
-                    }}
-                    onChangeText={(data: any) => {
-                      props.setAddAppointmentForm({
-                        ...props.addAppointmentForm,
-                        pickup_location: data?.description,
-                      });
-                    }}
-                  />
-                </View>
-                <View style={styles.inputWrap}>
-                  <InputField
-                    require={true}
-                    placeholderText={"Area"}
-                    handleInputBtnPress={() => { }}
-                    headingText={"Area"}
-                    valueshow={props.addAppointmentForm?.pickup_address}
-                    onChangeText={(val: any) => {
-                      props.setAddAppointmentForm({
-                        ...props.addAppointmentForm,
-                        pickup_address: val,
-                      });
-                    }}
-                  />
-                </View>
-                <View style={styles.inputWrap}>
-                  <InputField
-                    require={true}
-                    placeholderText={strings.noofguest}
-                    handleInputBtnPress={() => { }}
-                    headingText={strings.noofguest}
-                    valueshow={props.addAppointmentForm?.number_of_guest?.toString()}
-                    onChangeText={(val: any) => {
-                      props.setAddAppointmentForm({
-                        ...props.addAppointmentForm,
-                        number_of_guest: val,
-                      });
-                    }}
-                  />
-                </View>
-              </>
-            ) : null}
-          </>
+              <View style={styles.inputWrap}>
+                <InputField
+                  require={true}
+                  placeholderText={"Area"}
+                  handleInputBtnPress={() => { }}
+                  headingText={"Area"}
+                  valueshow={props.addAppointmentForm?.pickup_address}
+                  onChangeText={(val: any) => {
+                    props.setAddAppointmentForm({
+                      ...props.addAppointmentForm,
+                      pickup_address: val,
+                    });
+                  }}
+                />
+              </View>
+              <View style={styles.inputWrap}>
+                <InputField
+                  require={true}
+                  placeholderText={strings.noofguest}
+                  handleInputBtnPress={() => { }}
+                  headingText={strings.noofguest}
+                  valueshow={props.addAppointmentForm?.number_of_guest?.toString()}
+                  onChangeText={(val: any) => {
+                    props.setAddAppointmentForm({
+                      ...props.addAppointmentForm,
+                      number_of_guest: val,
+                    });
+                  }}
+                />
+              </View>
+            </>
+          ) : null}
+        </>
         <View style={styles.btnView}>
           <Button
             handleBtnPress={() => props.handleBtnPress()}

@@ -48,15 +48,18 @@ const LeadDetailsIteam = (props: any) => {
                     </TouchableOpacity>
                 </View>
             </View>
-            <View style={styles.Txtview}>
-                <View style={styles.projectContainer}>
-                    <Text style={styles.projectTxt}>Property Name</Text>
-                </View>
-                <View><Text>:</Text></View>
-                <View style={styles.nameContainer}>
-                    <Text style={styles.nameTxt}>{props?.items?.property_title}</Text>
-                </View>
-            </View>
+            {props?.items?.property_title !== '' ?
+                (<View style={styles.Txtview}>
+                    <View style={styles.projectContainer}>
+                        <Text style={styles.projectTxt}>Property Name</Text>
+                    </View>
+                    <View><Text>:</Text></View>
+                    <View style={styles.nameContainer}>
+                        <Text style={styles.nameTxt}>{props?.items?.property_title ? props?.items?.property_title : strings.notfount}</Text>
+                    </View>
+                </View>)
+                : null
+            }
             <View style={styles.Txtview}>
                 <View style={styles.projectContainer}>
                     <Text style={styles.projectTxt}>Last Interacted</Text>

@@ -8,6 +8,7 @@ import { addAppointment, addEditAppointmntRemove, editAppointment, getAppointmen
 import ErrorMessage from 'app/components/ErrorMessage'
 import { GREEN_COLOR, RED_COLOR } from 'app/components/utilities/constant'
 import strings from 'app/components/utilities/Localization'
+import { getAllAlloctaeProperty } from 'app/Redux/Actions/propertyActions'
 
 const AddAppointmentScreen = ({ navigation, route }: any) => {
   const { data = {}, type = "" } = route?.params || {}
@@ -15,7 +16,11 @@ const AddAppointmentScreen = ({ navigation, route }: any) => {
   const { response = {}, list = "" } = useSelector((state: any) => state.visitorDataList)
   const addAppointmentData = useSelector((state: any) => state.appointment)
   const editAddAppointmentData = useSelector((state: any) => state.editAddAppointment)
+  const propertyData = useSelector((state: any) => state.propertyData) || {};
   const [visitorList, setVisiitorList] = useState<any>([])
+  const [allProperty, setAllProperty] = useState<any>([]);
+  const [PropertyStatus, setPropertyStatus] = useState(false)
+
   const [addAppointmentForm, setAddAppointmentForm] = useState<any>({
     lead_id: '',
     property_id: '',
@@ -45,11 +50,45 @@ const AddAppointmentScreen = ({ navigation, route }: any) => {
           property_id: data?.property_id
         })
       }
+      dispatch(
+        getAllAlloctaeProperty({
+          offset: 0,
+        })
+      );
+
+      handlePropertSelect()
       return () => { };
     }, [navigation]))
+
+  const handlePropertSelect = () => {
+    if (type === 'Add') {
+      if (data?.property_id !== '' && data?.property_id !== null) {
+        setPropertyStatus(true)
+      }
+      else {
+        setPropertyStatus(false)
+      }
+    }
+  }
+
+  useEffect(() => {
+    if (
+      propertyData?.response?.status === 200 &&
+      propertyData?.type === "ALLOCATE"
+    ) {
+      setAllProperty(propertyData?.response?.data);
+    }
+  }, [propertyData]);
+
+
   useEffect(() => {
     if (type === strings.edit) {
       if (addAppointmentData?.response?.status === 200) {
+        if (addAppointmentData?.response?.data[0]?.property_id !== '' && addAppointmentData?.response?.data[0]?.property_id !== null) {
+          setPropertyStatus(true)
+        } else {
+          setPropertyStatus(false)
+        }
         setAddAppointmentForm({
           lead_id: addAppointmentData?.response?.data[0]?.lead_id ?
             addAppointmentData?.response?.data[0]?.lead_id : '',
@@ -100,6 +139,13 @@ const AddAppointmentScreen = ({ navigation, route }: any) => {
     if (addAppointmentForm.lead_id == undefined || addAppointmentForm.lead_id == '') {
       isError = false;
       errorMessage = "Lead is require. Please Select the lead Status"
+    }
+    else if (
+      addAppointmentForm?.property_id === "" &&
+      addAppointmentForm?.property_type_title === ""
+    ) {
+      isError = false;
+      errorMessage = "Please select property name";
     }
     else if (addAppointmentForm.appointment_date == undefined || addAppointmentForm.appointment_date == '') {
       isError = false;
@@ -161,6 +207,9 @@ const AddAppointmentScreen = ({ navigation, route }: any) => {
       handleBtnPress={handleBtnPress}
       addAppointmentForm={addAppointmentForm}
       setAddAppointmentForm={setAddAppointmentForm}
+      allProperty={allProperty}
+      PropertyStatus={PropertyStatus}
+      setPropertyStatus={setPropertyStatus}
     />
   )
 }

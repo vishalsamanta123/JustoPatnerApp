@@ -76,6 +76,8 @@ export default {
   EDIT_VISITOR_: "/visit/editVisit",
   UPLOAD_IMAGE: "/visit/bulkVisitImageUpload",
   UPLOAD_CSVFile: "/visit/bulkVisitCsvUpload",
+  CREATE_VISIT_WITHOUT_PROPERTY: '/visit/addVisitProperty',
+
 
 
   // Follow-Up
@@ -109,4 +111,7 @@ export default {
   GET_PROPERTY_LIST_FOR_CHAT: '/chat/getCpActivePropertyList',
   GET_ALL_CHAT_IN_PROPERTY: '/chat/getPropertyUserListForChat',
   UPDATE_CHAT_STATUS: '/chat/userChatStatusUpdate',
+  
+  //Permission
+  PERMISSION_MODULE: "/userManage/getUsermodels",
 };

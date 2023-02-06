@@ -9,6 +9,7 @@ import strings from "../../../../components/utilities/Localization";
 import AppointmentDtailsItem from "./AppointmentDtailsItem";
 import Button from "../../../../components/Button";
 import { useSelector } from "react-redux";
+import usePermission from "app/components/utilities/UserPermissions";
 
 const AppointmentDetailsView = (props: any) => {
 
@@ -16,6 +17,9 @@ const AppointmentDetailsView = (props: any) => {
   const { response = {}, detail = "" } = useSelector(
     (state: any) => state.appointment
   );
+  const { status } = usePermission({
+    status: 'appointment_status_update',
+  })
   return (
     <View style={styles.mainContainer}>
       <Header
@@ -29,14 +33,14 @@ const AppointmentDetailsView = (props: any) => {
       <View style={styles.propertyListView}>
         <AppointmentDtailsItem item={props?.detailsData} />
       </View>
-      {props?.detailsData?.status === 1 || props?.detailsData?.status === 2 ? (
+      {status ? props?.detailsData?.status === 1 || props?.detailsData?.status === 2 ? (
         <View style={styles.bntView}>
           <Button
             handleBtnPress={() => props.handleStatusUpdate(props?.detailsData)}
             buttonText={strings.updatestatus}
           />
         </View>
-      ) : null}
+      ) : null : null}
     </View>
   );
 };

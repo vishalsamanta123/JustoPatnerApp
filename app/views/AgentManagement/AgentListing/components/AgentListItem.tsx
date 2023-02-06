@@ -80,15 +80,18 @@ const AgentListItem = (props: any) => {
       </View>
 
       <View style={styles.buttonContainer}>
-        <TouchableOpacity
-          onPress={() => props.onPressView(props.items, 'edit')}
-          style={[styles.buttonbox, {
-            borderColor: PURPLE_COLOR
-          }]} >
-          <Text style={[styles.buttonTxt, {
-            color: PURPLE_COLOR
-          }]}>{strings.edit}</Text>
-        </TouchableOpacity>
+        {props.edit ?
+          (<TouchableOpacity
+            onPress={() => props.onPressView(props.items, 'edit')}
+            style={[styles.buttonbox, {
+              borderColor: PURPLE_COLOR
+            }]} >
+            <Text style={[styles.buttonTxt, {
+              color: PURPLE_COLOR
+            }]}>{strings.edit}</Text>
+          </TouchableOpacity>)
+          : <View />
+        }
         {/* <TouchableOpacity
           onPress={() => { props.setIsVisible(true), props.setChangeStatus(props.items) }}
           style={[styles.buttonbox, {
@@ -98,12 +101,14 @@ const AgentListItem = (props: any) => {
             color: props.items.status ? RED_COLOR : GREEN_COLOR
           }]}>{props.items.status ? strings.deactive : strings.active}</Text>
         </TouchableOpacity> */}
-        <TouchableOpacity style={styles.Viewbutton} onPress={() => props.onPressView(props.items, 'view')} >
-          <Image
-            source={images.forwardArrow}
-            style={styles.arrow}
-          />
-        </TouchableOpacity>
+        {props.view &&
+          (<TouchableOpacity style={styles.Viewbutton} onPress={() => props.onPressView(props.items, 'view')} >
+            <Image
+              source={images.forwardArrow}
+              style={styles.arrow}
+            />
+          </TouchableOpacity>)
+        }
       </View>
     </View>
   );

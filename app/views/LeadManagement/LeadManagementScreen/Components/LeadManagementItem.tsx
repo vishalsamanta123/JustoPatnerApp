@@ -11,26 +11,34 @@ import {
 import images from "../../../../assets/images";
 import strings from "../../../../components/utilities/Localization";
 import moment from "moment";
+import usePermission from "app/components/utilities/UserPermissions";
 
 const LeadManagementItem = (props: any) => {
+  const { edit, view } = usePermission({
+    edit: 'edit_visitor',
+    view: 'view_visitor',
+  })
   return (
     <View style={styles.IteamView}>
-      <View style={styles.Txtview}>
-        <View style={styles.projectContainer}>
-          <Text style={styles.projectTxt}>Property Name :</Text>
-        </View>
-        <View style={styles.nameContainer}>
-          <Text style={styles.nameTxt}>{
-            props?.items.property_title === null ? '' : props.items.property_title}</Text>
-        </View>
-      </View>
+      {props?.items.property_title !== '' ?
+        (<View style={styles.Txtview}>
+          <View style={styles.projectContainer}>
+            <Text style={styles.projectTxt}>Property Name :</Text>
+          </View>
+          <View style={styles.nameContainer}>
+            <Text style={styles.nameTxt}>{
+              props?.items.property_title === '' ? strings.notfount : props.items.property_title}</Text>
+          </View>
+        </View>)
+        : null
+      }
       <View style={styles.Txtview}>
         <View style={styles.projectContainer}>
           <Text style={styles.projectTxt}>Visitor Name :</Text>
         </View>
         <View style={styles.nameContainer}>
           <Text style={styles.nameTxt}>
-            {props?.items.first_name === null ? "" : props.items.first_name}
+            {props?.items.first_name === '' ? strings.notfount : props.items.first_name}
           </Text>
         </View>
       </View>
@@ -161,14 +169,16 @@ const LeadManagementItem = (props: any) => {
         </View>
       </View>
       <View style={styles.buttonContainer}>
-        <TouchableOpacity
-          style={[styles.button, { borderColor: PURPLE_COLOR }]}
-          onPress={() => props.onPressEdit(props.items)}
-        >
-          <Text style={[styles.buttonTxt, { color: PURPLE_COLOR }]}>
-            {strings.edit}
-          </Text>
-        </TouchableOpacity>
+        {edit &&
+          (<TouchableOpacity
+            style={[styles.button, { borderColor: PURPLE_COLOR }]}
+            onPress={() => props.onPressEdit(props.items)}
+          >
+            <Text style={[styles.buttonTxt, { color: PURPLE_COLOR }]}>
+              {strings.edit}
+            </Text>
+          </TouchableOpacity>)
+        }
         <TouchableOpacity
           style={[styles.button, { borderColor: CALL_COLOR }]}
           onPress={() => {
@@ -179,12 +189,14 @@ const LeadManagementItem = (props: any) => {
             {strings.call}
           </Text>
         </TouchableOpacity>
-        <TouchableOpacity
-          style={styles.Viewbutton}
-          onPress={() => props.onPressView(props.items)}
-        >
-          <Image source={images.forwardArrow} style={styles.arrow} />
-        </TouchableOpacity>
+        {view &&
+          (<TouchableOpacity
+            style={styles.Viewbutton}
+            onPress={() => props.onPressView(props.items)}
+          >
+            <Image source={images.forwardArrow} style={styles.arrow} />
+          </TouchableOpacity>)
+        }
       </View>
     </View>
   );

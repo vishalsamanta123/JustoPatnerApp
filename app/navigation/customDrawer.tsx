@@ -21,12 +21,15 @@ import { getProfileData, userLogout } from 'app/Redux/Actions/AuthActions';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import { getAgentDetail } from 'app/Redux/Actions/AgentActions';
 import auth from '@react-native-firebase/auth';
+import { getPermission } from 'app/Redux/Actions/permissionAction';
 
 const customDrawer = ({ navigation }: any) => {
   const dispatch: any = useDispatch()
   const isDrawerOpen = useDrawerStatus() === 'open';
   const insets = useSafeAreaInsets();
   const { response = {} } = useSelector((state: any) => state.profileData)
+  const permissionResponse = useSelector((state: any) => state.permissions);
+  console.log('permissionResponse: ', permissionResponse);
   const [userData, setUserData] = useState<any>({})
   const toggleDrawer = () => {
     navigation.toggleDrawer();
@@ -35,10 +38,11 @@ const customDrawer = ({ navigation }: any) => {
     if (response?.status === 200) {
       setUserData(response?.data[0])
     }
-  }, [response,isDrawerOpen])
+  }, [response, isDrawerOpen])
   useEffect(() => {
     if (isDrawerOpen) {
       getDetail()
+      dispatch(getPermission({}))
     }
   }, [isDrawerOpen])
   const getDetail = async () => {
@@ -116,7 +120,21 @@ const customDrawer = ({ navigation }: any) => {
             navigation.navigate('DashboardScreen');
           }}
         />
-        <DrawerTabSection
+        {permissionResponse?.response?.data?.length > 0 &&
+          permissionResponse?.response?.data?.map((item: any, index: any) => {
+            return item.permission && item.path && (
+              <DrawerTabSection
+                key={index}
+                type={"all"}
+                iconSource={item.icon}
+                tabTitle={item?.title}
+                handleDrawerNavigation={() => {
+                  navigation.navigate(item.path, { type: item.type });
+                }}
+              />
+            )
+          })}
+        {/* <DrawerTabSection
           iconSource={images.property}
           tabTitle={strings.propertyManagementHeader}
           handleDrawerNavigation={() => {
@@ -185,7 +203,7 @@ const customDrawer = ({ navigation }: any) => {
           handleDrawerNavigation={() => {
             navigation.navigate('PropertyChatView');
           }}
-        />
+        /> */}
         {/*<DrawerTabSection
           iconSource={images.support}
           tabTitle={strings.supportHeader}
@@ -193,13 +211,13 @@ const customDrawer = ({ navigation }: any) => {
             navigation.navigate('Support');
           }}
         /> */}
-        <DrawerTabSection
+        {/* <DrawerTabSection
           iconSource={images.setting}
           tabTitle={strings.settingHeader}
           handleDrawerNavigation={() => {
             navigation.navigate('SettingScreen');
           }}
-        />
+        /> */}
         <DrawerTabSection
           iconSource={images.logout}
           tabTitle={strings.logout}
