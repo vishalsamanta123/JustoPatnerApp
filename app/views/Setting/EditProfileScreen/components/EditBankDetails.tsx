@@ -193,6 +193,7 @@ const EditBankDetails = ({ navigation }: any) => {
               valueshow={bankData?.account_no}
               handleInputBtnPress={() => { }}
               headingText={"Account No."}
+              maxLength={18}
               onChangeText={(val: any) => {
                 setBankData({
                   ...bankData, account_no: val
@@ -205,6 +206,7 @@ const EditBankDetails = ({ navigation }: any) => {
               valueshow={bankData?.ifsc_code}
               handleInputBtnPress={() => { }}
               headingText={"IFSC Code"}
+              maxLength={11}
               onChangeText={(val: any) => {
                 setBankData({
                   ...bankData, ifsc_code: val
