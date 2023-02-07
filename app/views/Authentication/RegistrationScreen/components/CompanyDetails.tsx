@@ -187,7 +187,7 @@ const CompanyDetails = ({ navigation }: any) => {
             headingText={"GST"}
             handleInputBtnPress={() => { }}
             valueshow={formData?.gst}
-            maxLength={15}
+            maxLength={20}
             onChangeText={(val: any) => {
               setFormData({
                 ...formData, gst: val
@@ -199,6 +199,7 @@ const CompanyDetails = ({ navigation }: any) => {
           <InputField
             require={true}
             placeholderText={"RERA Registration"}
+            maxLength={20}
             headingText={"RERA Registration"}
             handleInputBtnPress={() => { }}
             valueshow={formData?.rera_certificate}

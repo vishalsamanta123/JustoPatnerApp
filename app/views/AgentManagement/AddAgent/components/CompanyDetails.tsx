@@ -40,6 +40,7 @@ const CompanyDetails = ({ navigation }: any) => {
           <InputField
             require={true}
             placeholderText={"GST"}
+            maxLength={20}
             headingText={"GST"}
             handleInputBtnPress={() => { }}
             onChangeText={() => { }}
@@ -48,6 +49,7 @@ const CompanyDetails = ({ navigation }: any) => {
         <View style={styles.inputWrap}>
           <InputField
             require={true}
+            maxLength={20}
             placeholderText={"RERA Registration"}
             headingText={"RERA Registration"}
             handleInputBtnPress={() => { }}
@@ -136,6 +138,7 @@ const CompanyDetails = ({ navigation }: any) => {
             placeholderText={"IFSC Code"}
             handleInputBtnPress={() => { }}
             onChangeText={() => { }}
+            maxLength={11}
             headingText={"IFSC Code"}
           />
         </View>
