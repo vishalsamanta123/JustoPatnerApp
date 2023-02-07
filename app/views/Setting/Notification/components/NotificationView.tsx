@@ -18,7 +18,7 @@ const NotificationView = (props: any) => {
   const [listData, setListData] = useState<any>([]);
 
   useEffect(() => {
-  if(response?.satus === 200){
+  if(response?.status === 200){
     if(response?.data?.length > 0){
       setListData(response?.data)
     }

@@ -1,11 +1,10 @@
-import { View, Text, ScrollView, Image } from 'react-native'
-import React from 'react'
-import styles from './styles'
-import strings from 'app/components/utilities/Localization'
-import moment from 'moment'
-import { normalize, normalizeSpacing } from 'app/components/scaleFontSize'
-import { TouchableOpacity } from 'react-native-gesture-handler'
-import images from 'app/assets/images'
+import { View, Text, ScrollView, Image, TouchableOpacity } from "react-native";
+import React from "react";
+import styles from "./styles";
+import strings from "app/components/utilities/Localization";
+import moment from "moment";
+import { normalize, normalizeSpacing } from "app/components/scaleFontSize";
+import images from "app/assets/images";
 
 const UserInfo = (props: any) => {
   const { allDetails } = props;
@@ -178,7 +177,9 @@ const UserInfo = (props: any) => {
           <TouchableOpacity
             style={styles.shadowView}
             onPress={() =>
-              props.onpresContent("ImageContent", allDetails?.rera_certificate)
+              props.onpresContent("ImageContent", {
+                array: allDetails?.rera_certificate,
+              })
             }
           >
             <Image source={images.forwardArrow} style={styles.arrow} />
@@ -197,10 +198,9 @@ const UserInfo = (props: any) => {
           <TouchableOpacity
             style={styles.shadowView}
             onPress={() =>
-              props.onpresContent(
-                "ImageContent",
-                allDetails?.propidership_declaration_letter
-              )
+              props.onpresContent("ImageContent", {
+                array: allDetails?.propidership_declaration_letter,
+              })
             }
           >
             <Image source={images.forwardArrow} style={styles.arrow} />
@@ -208,7 +208,7 @@ const UserInfo = (props: any) => {
         </View>
       </View>
     </ScrollView>
-  )
-}
+  );
+};
 
 export default UserInfo;

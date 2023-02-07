@@ -44,7 +44,7 @@ const ProfileView = (props: any) => {
   );
 
   const FirstRoute = () => (
-    <UserInfo allDetails={allDetails} />
+    <UserInfo allDetails={allDetails} onpresContent={onpresContent}/>
   );
   const SecondRoute = () => (
     <UserBankInfo allDetails={allDetails} onpresContent={onpresContent}/>
