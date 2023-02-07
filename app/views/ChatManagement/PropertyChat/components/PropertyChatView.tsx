@@ -16,14 +16,18 @@ const PropertyChatView = (props: any) => {
   const { handleDrawerPress, propertyChatList } = props;
   const navigation: any = useNavigation();
   const [filteredData, setFilteredData] = useState([]);
+  const [searchVal, setSearchVal] = useState('');
   useEffect(() => {
     setFilteredData(propertyChatList);
-    console.log('propertyChatList: ', propertyChatList);
+    setSearchVal("")
   }, [propertyChatList]);
   const handleChatPress = (item: any) => {
     navigation.navigate("UserChatListView", item);
   };
   const renderPropertyList = (item: any, index: any) => {
+    const propertyImage = item?.property_document?.find((el: any) => {
+      return el.document_type === "image";
+    });
     return (
       <TouchableOpacity
         onPress={() => handleChatPress(item)}
@@ -31,7 +35,7 @@ const PropertyChatView = (props: any) => {
       >
         <View style={styles.straight}>
           <FastImages
-            source={{ uri: item.profile }}
+            source={{ uri: item.base_url + propertyImage.document }}
             style={styles.profileImage}
           />
           <Text style={styles.userText}>{item?.property_title}</Text>
@@ -41,6 +45,7 @@ const PropertyChatView = (props: any) => {
     );
   };
   const handleChangeText = (val: any) => {
+    setSearchVal(val)
     const final = filteredData?.filter(function (el: any) {
       const name = `${el.property_title}`;
       return name?.toLowerCase().indexOf(val.toLowerCase()) > -1;
@@ -67,6 +72,7 @@ const PropertyChatView = (props: any) => {
       <SearchBar
         placeholderText={strings.searchProperty}
         onChangeText={handleChangeText}
+        value={searchVal}
         onSubmit={onSubmit}
       />
       <FlatList

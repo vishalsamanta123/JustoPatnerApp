@@ -113,8 +113,10 @@ const ChatScreen = ({ navigation, route }: any) => {
             message_array.filter((i: any) => i?.["delete-" + senderID] == false)
           );
           const finalChatArray = msgArray.map((items: any) => {
+          console.log('items: ', items);
             if (
               items?.text !== "" ||
+              typeof items?.text != 'undefined' ||
               items?.image !== "" ||
               items?.video !== ""
             ) {
@@ -128,10 +130,12 @@ const ChatScreen = ({ navigation, route }: any) => {
                 createdAt: new Date(),
                 user: {
                   _id: items?._id,
-                  name: "React Native",
-                  avatar: item.base_url + item.profile_picture,
+                  // name: "React Native",
+                  avatar: item.base_url + '/' + items.profile_picture,
                 },
               };
+            } else {
+              return
             }
           });
           setMessages(finalChatArray);
@@ -154,6 +158,7 @@ const ChatScreen = ({ navigation, route }: any) => {
       isDelete: false,
       ["delete-" + senderID]: false,
       ["delete-" + item?.firebase_id]: false,
+      profile_picture: item.profile_picture
     };
 
     if (msg.trim() !== "") {
@@ -399,6 +404,7 @@ const ChatScreen = ({ navigation, route }: any) => {
       </View>
     );
   };
+  console.log('messages: ', messages);
 
   return (
     <View style={styles.mainContainer}>

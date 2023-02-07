@@ -134,6 +134,7 @@ const AgentBankInfo = ({ navigation, route }: any) => {
             valueshow={
               agentInfoData?.rera_certificate_no?.toString()
             }
+            maxLength={20}
             headingText={"RERA Certificate No."}
           />
         </View>
@@ -216,6 +217,7 @@ const AgentBankInfo = ({ navigation, route }: any) => {
           <InputField
             placeholderText={"IFSC Code"}
             handleInputBtnPress={() => {}}
+            maxLength={11}
             onChangeText={() => {}}
             headingText={"IFSC Code"}
           />
