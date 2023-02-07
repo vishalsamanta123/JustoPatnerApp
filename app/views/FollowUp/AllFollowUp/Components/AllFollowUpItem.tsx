@@ -3,6 +3,7 @@ import React from 'react'
 import styles from './Styles'
 import { DATE_TIME_FORMAT, WHITE_COLOR } from '../../../../components/utilities/constant'
 import moment from 'moment'
+import strings from 'app/components/utilities/Localization'
 
 const AllFollowUpItem = (props: any) => {
     return (
@@ -44,7 +45,7 @@ const AllFollowUpItem = (props: any) => {
                 </View>
                 <View><Text>:</Text></View>
                 <View style={styles.nameContainer}>
-                    <Text style={styles.nameTxt}>{props.items.remark}</Text>
+                    <Text style={styles.nameTxt}>{props.items.remark ? props.items.remark : strings.notfount}</Text>
                 </View>
             </View>
         </View>

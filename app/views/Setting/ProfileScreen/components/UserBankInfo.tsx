@@ -48,19 +48,19 @@ const UserBankInfo = (props: any) => {
           </Text>
         </View>
       </View>
-      <View style={styles.fieldView}>
+      {/* <View style={styles.fieldView}>
         <View style={styles.keyView}>
           <Text style={styles.keyText}>Pancard</Text>
         </View>
         <View style={styles.ImageSliderContainer}>
           <Image
-            source={{ uri: allDetails?.agencies?.pancard }}
+            source={{ uri: allDetails?.base_url + allDetails?.agencies?.pancard }}
             style={styles.imageSlider}
           />
           <TouchableOpacity
             style={styles.shadowView}
             onPress={() =>
-              props.onpresContent("ImageContent", allDetails?.rera_certificate)
+              props.onpresContent("ImageContent", {array : allDetails?.base_url + allDetails?.agencies?.pancard})
             }
           >
             <Image source={images.forwardArrow} style={styles.arrow} />
@@ -73,19 +73,19 @@ const UserBankInfo = (props: any) => {
         </View>
         <View style={styles.ImageSliderContainer}>
           <Image
-            source={{ uri: allDetails?.agencies?.declaration_letter_of_company }}
+            source={{ uri: allDetails?.base_url + allDetails?.agencies?.declaration_letter_of_company }}
             style={styles.imageSlider}
           />
           <TouchableOpacity
             style={styles.shadowView}
             onPress={() =>
-              props.onpresContent("ImageContent", allDetails?.rera_certificate)
+              props.onpresContent("ImageContent", {array : allDetails?.base_url + allDetails?.agencies?.declaration_letter_of_company})
             }
           >
             <Image source={images.forwardArrow} style={styles.arrow} />
           </TouchableOpacity>
         </View>
-      </View>
+      </View> */}
       <View style={styles.subHeadVw}>
         <Text style={styles.subHeadTxt}>Bank Info</Text>
       </View>

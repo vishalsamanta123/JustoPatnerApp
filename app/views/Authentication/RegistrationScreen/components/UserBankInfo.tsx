@@ -283,6 +283,7 @@ const UserBankInfo = ({ navigation }: any) => {
               placeholderText={"Account No."}
               handleInputBtnPress={() => { }}
               headingText={"Account No."}
+              maxLength={18}
               keyboardtype={'number-pad'}
               valueshow={formData?.account_no}
               onChangeText={(val: any) => {
