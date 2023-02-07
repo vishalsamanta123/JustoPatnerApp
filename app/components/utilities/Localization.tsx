@@ -202,6 +202,17 @@ const strings = new LocalizedStrings({
 
     notfount: 'Not Found',
     inprocess: 'In Process',
+
+     // Raise Ticket (Support)
+     addticket: 'Add Ticket',
+     editticket: 'Edit Ticket',
+     supportrequest: 'Support Request',
+     myticket: 'My Ticket',
+     escalate: 'Escalate',
+     ticketDetails: 'Ticket Details',
+     ticketReply: 'Ticket Reply',
+     showreply: 'Show Reply',
+     ticketStatusUpdate: 'Status Update'
   },
 });
 

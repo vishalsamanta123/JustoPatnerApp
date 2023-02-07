@@ -59,7 +59,8 @@ import ReportScreen from 'app/views/Report';
 import LeaderBoardScreen from 'app/views/LeaderBoard/LeaderBoardScreen';
 import SupportForumScreen from 'app/views/SupportForumScreen/SupportForum';
 import DataFlowScreen from 'app/views/DataFlow';
-import SupportScreen from 'app/views/Support';
+// import SupportScreen from 'app/views/Support';
+import SupportScreen from 'app/views/SupportScreen/Support';
 import axios from 'axios';
 import Notification from 'app/views/Setting/Notification';
 import SupportForumDetail from 'app/views/SupportForumScreen/SupportForumDtl';
@@ -72,7 +73,10 @@ import { updateFirebase } from 'app/Redux/Actions/FirebaseActions';
 import UserAppointmentDetails from 'app/views/Appointment/UserAppointmentDetails';
 import ImageUpload from 'app/views/LeadManagement/LeadManagementScreen/Components/ImageUpload';
 import CSVUpload from 'app/views/LeadManagement/LeadManagementScreen/Components/CSVUpload';
-
+import SupportScreenDetails from 'app/views/SupportScreen/SupportDetails';
+import AddTicketScreen from 'app/views/SupportScreen/AddTicket';
+import ShowReply from 'app/views/SupportScreen/SupportDetails/Components/ShowReply';
+import TicketStatusUpdate from 'app/views/SupportScreen/Support/components/TicketStatusUpdate';
 
 
 const Stack = createNativeStackNavigator();
@@ -184,6 +188,11 @@ const AppComponent = () => {
       <AppStack.Screen name="UserChatListView" component={ChatViewScreen} />
       <AppStack.Screen name="ChatScreen" component={ChatScreen} />
 
+      {/* Raise Ticket (Support) */}
+      <AppStack.Screen name="SupportScreenDetails" component={SupportScreenDetails} />
+      <AppStack.Screen name="AddTicket" component={AddTicketScreen} />
+      <AppStack.Screen name="ShowReply" component={ShowReply} />
+      <AppStack.Screen name="TicketStatusUpdate" component={TicketStatusUpdate} />
     </AppStack.Navigator>
   )
 }
@@ -238,17 +247,17 @@ const AuthLoadingComponent = () => {
     try {
       // const { data } = await apiCall("get", apiEndPoints.JWTTOKEN, {});
       const options = {
-        headers: {"content-type": "application/json"}
+        headers: { "content-type": "application/json" }
       }
       const data = await axios.get(`${GLOBAL_URL}/api/token/jwtToken`, options)
-      .then(res => {
-        console.log('res', res.data)
-        return res.data
+        .then(res => {
+          console.log('res', res.data)
+          return res.data
 
-      }).catch(e => {
-        console.log('e', e)
+        }).catch(e => {
+          console.log('e', e)
 
-      })
+        })
       if (data) {
         await AsyncStorage.setItem("token", data.token);
         await setDefaultHeader("token", data.token);
