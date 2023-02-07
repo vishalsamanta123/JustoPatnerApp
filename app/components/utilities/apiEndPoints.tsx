@@ -114,4 +114,11 @@ export default {
   
   //Permission
   PERMISSION_MODULE: "/userManage/getUsermodels",
+
+  // Raise Ticket (Support)
+  ADD_TICKET: '/support/addSupport',
+  EDIT_TICKET: '/support/updateSupport',
+  TICKET_LIST: '/support/getSupportList',
+  TICKET_DETAILS: '/support/getTicketDetail',
+  TICKET_STATUS_UPDATE: '/support/replySupportTicket',
 };

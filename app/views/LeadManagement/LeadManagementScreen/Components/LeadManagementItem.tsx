@@ -142,7 +142,7 @@ const LeadManagementItem = (props: any) => {
               : props.items.lead_status === 2
                 ? "Follow-up"
                 : props.items.lead_status === 3
-                  ? "Site Visit/Appointment"
+                  ? "Appointment"
                   : props.items.lead_status === 4
                     ? "Booking"
                     : props.items.lead_status === 5

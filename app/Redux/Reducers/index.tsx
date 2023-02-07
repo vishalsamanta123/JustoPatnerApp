@@ -2,7 +2,7 @@ import { authStore, changePasswordReducer, forgotReducer, loadingReducer, otpVer
 import { propertyReducer, propertyDetailReducer, removeStatusReducer } from "./propertyReducers";
 import { createChannlePartnerReducer, emailAndMobileReducer, registerDataReducer, registrationFormReducer } from "./ReggistrationReducer";
 import { agentReducer, addAgentReducer, addAgentFormReducer, editAgentReducer } from './AgentReducer';
-import { addVisitorReducer, editVisitorReducer, uploadImageReducer, uploadCSVFileEReducer ,visitorListReducer, visitorReducer } from "./LeadsReducer";
+import { addVisitorReducer, editVisitorReducer, uploadImageReducer, uploadCSVFileEReducer, visitorListReducer, visitorReducer } from "./LeadsReducer";
 import { masterDataReducer } from "./MasterReducer";
 import { editAddFollowupReducer, followUpReducer } from "./FollowUpReducer";
 import { editUserReducer, settingReducer } from "./SettingReducer";
@@ -15,6 +15,7 @@ import { allUserChatListReducer, propertyChatReducer, updateChatStatus } from ".
 import { firebaseReducer } from "./FirebaseReducer";
 import { userAppointmentReducer, userUpdateAppointmentReducer } from "./AppointmentWithUserReducer";
 import permissionReducer from "./permissionReducer";
+import { SupportAddReducer, SupportReducer } from "./SupportReducer";
 
 export default {
     loadingReducer: loadingReducer,
@@ -73,7 +74,7 @@ export default {
 
     //ledearboard
     leaderBoard: leaderBoardReducer,
-    
+
     // chat management
     propertyChatData: propertyChatReducer,
     chatStatusData: updateChatStatus,
@@ -81,4 +82,8 @@ export default {
 
     // Permissions
     permissions: permissionReducer,
+
+    // Raise Ticket (Support)
+    SupportAdd: SupportAddReducer,
+    SupportData: SupportReducer,
 }
