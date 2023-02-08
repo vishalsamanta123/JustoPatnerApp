@@ -32,7 +32,6 @@ import usePermission from "app/components/utilities/UserPermissions";
 
 const AddNewVisitorForm = (props: any) => {
   const [PropertyStatus, setPropertyStatus] = useState(false)
-  console.log('PropertyStatus: ', props.type);
   const { response = {}, detail = "" } = useSelector(
     (state: any) => state.visitorData
   );

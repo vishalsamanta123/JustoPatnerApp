@@ -7,8 +7,6 @@ import strings from "../../../../components/utilities/Localization";
 import Video from "react-native-video";
 
 const Videoplay = (props: any) => {
-    console.log('props.itemDetail: ', props.itemDetail);
-
     return (
         <View>
             <Modal isVisible={props.Visible}>

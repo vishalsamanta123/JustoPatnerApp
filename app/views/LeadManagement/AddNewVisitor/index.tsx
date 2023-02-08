@@ -176,9 +176,6 @@ const AddNewVisitorScreen = ({ navigation, route }: any) => {
           : formData?.max_budget_type === "Cr"
             ? (tempMaxVal = formData?.max_budget * 10000000)
             : null;
-      console.log("tempMaxVal:", tempMaxVal);
-      console.log("tempMinVal: ", tempMinVal);
-
       if (tempMinVal >= tempMaxVal) {
         isError = false;
         errorMessage = "Maximum budget should more than minumum budget";
@@ -202,9 +199,6 @@ const AddNewVisitorScreen = ({ navigation, route }: any) => {
           : formData?.max_emi_budget_type === "Cr"
             ? (tempMaxVal = formData?.max_emi_budget * 10000000)
             : null;
-      console.log("tempMaxVal:", tempMaxVal);
-      console.log("tempMinVal: ", tempMinVal);
-
       if (tempMinVal >= tempMaxVal) {
         isError = false;
         errorMessage = "Maximum Emi should more than minumum Emi";
@@ -255,7 +249,6 @@ const AddNewVisitorScreen = ({ navigation, route }: any) => {
     }
   }, [editData, addData]);
   const OnpressCreateEdit = () => {
-    console.log('calllede+=+===')
     if (validation()) {
       if (type === "edit") {
         const edit_params = {
