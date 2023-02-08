@@ -19,7 +19,7 @@ const SearchBar = (props: any) => {
         placeholder={props.placeholderText}
         placeholderTextColor={GRAY_COLOR}
         autoCapitalize={"none"}
-        // value={props.value}
+        value={props.value}
       ></TextInput>
       {/* <TouchableOpacity style={styles.searchIconTouch} onPress={props.onSubmit}>
         <Image source={images.search} style={styles.searchIconImg} />

@@ -26,7 +26,7 @@ const strings = new LocalizedStrings({
     searchSupportForum: 'Search Support Forum',
     settingHeader: 'Setting',
     logout: 'Logout',
-    versionText: 'version',
+    versionText: 'Version',
     forgotPassword: 'Forgot Password?',
     newUserText: 'New User?',
     signUp: 'Sign Up',

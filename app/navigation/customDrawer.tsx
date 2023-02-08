@@ -231,7 +231,7 @@ const customDrawer = ({ navigation }: any) => {
         <View style={styles.drawerTouch}>
           <Text style={styles.drawerText}>
             {strings.versionText}
-            {' 1.00.00'}
+            {' 1.0'}
           </Text>
         </View>
       </View>
