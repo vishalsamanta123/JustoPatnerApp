@@ -79,7 +79,7 @@ const SupportView = (props: any) => {
             }}
             onEndReached={() => {
                 if (props.ticketList?.length < props.totalData) {
-                    props.TicketList(props.ticketList?.length > 2 ? props.offSET + 1 : 0, { type: 1 });
+                    props.TicketList(props.ticketList?.length > 2 ? props.offSET + 1 : 0, { type: 2 });
                 }
             }}
             refreshing={false}
