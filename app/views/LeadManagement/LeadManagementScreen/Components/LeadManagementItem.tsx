@@ -114,18 +114,6 @@ const LeadManagementItem = (props: any) => {
       </View>
       <View style={styles.Txtview}>
         <View style={styles.projectContainer}>
-          <Text style={styles.projectTxt}>Created Date :</Text>
-        </View>
-        <View style={styles.nameContainer}>
-          <Text style={styles.nameTxt}>{
-            props.items.createdDate ?
-              moment(props.items.createdDate).format(DATE_TIME_FORMAT) :
-              strings.notfount
-          }</Text>
-        </View>
-      </View>
-      <View style={styles.Txtview}>
-        <View style={styles.projectContainer}>
           <Text style={styles.projectTxt}>Status :</Text>
         </View>
         <View style={styles.nameContainer}>

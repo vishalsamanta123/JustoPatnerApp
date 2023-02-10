@@ -2,6 +2,9 @@ import { apiCall } from "app/components/utilities/httpClient";
 import { PERMISSION_MODULES, PERMISSION_MODULES_ERROR } from "../types";
 import apiEndPoints from "app/components/utilities/apiEndPoints";
 import { MENUITEMS } from "../PermissionType";
+import { GLOBAL_URL } from "app/components/utilities/constant";
+import axios from "axios";
+import AsyncStorage from "@react-native-async-storage/async-storage";
 
 const checkPermission = (data: any, isAdmin: any) => {
   const sideBarList = [
@@ -42,18 +45,35 @@ const checkPermission = (data: any, isAdmin: any) => {
 
 export const getPermission = (item: any) => async (dispatch: any) => {
   try {
-    const res = await apiCall("get", apiEndPoints.PERMISSION_MODULE, item);
-    console.log("res IN PERMISSION_MODULE: ", res.data);
-    if (res.data.status === 200) {
-      let payload = {
-        data: await checkPermission(res.data.data, item.isAdmin),
-        isAdmin: item.isAdmin,
-      };
-      dispatch({
-        type: PERMISSION_MODULES,
-        payload: payload,
+    // const res = await apiCall("get", apiEndPoints.PERMISSION_MODULE, item);
+    const generatedToken = await AsyncStorage.getItem("AuthToken");
+    const options: any = {
+      headers: {
+        "Content-Type": "application/json",
+        "access-control-allow-origin": "*",
+        token: generatedToken,
+      },
+    };
+    const res = await axios
+      .get(`${GLOBAL_URL}/api/userManage/getUsermodels`, options)
+      .then(async (res: any) => {
+        // console.log("res", res.data);
+        // return res;
+        if (res.data.status === 200) {
+          let payload = {
+            data: await checkPermission(res.data.data, item.isAdmin),
+            isAdmin: item.isAdmin,
+          };
+          dispatch({
+            type: PERMISSION_MODULES,
+            payload: payload,
+          });
+        }
+      })
+      .catch((e) => {
+        console.log("e in permission", e);
       });
-    }
+    // console.log("res IN PERMISSION_MODULE: ", res);
   } catch (e) {
     dispatch({
       type: PERMISSION_MODULES_ERROR,
@@ -61,3 +81,25 @@ export const getPermission = (item: any) => async (dispatch: any) => {
     });
   }
 };
+
+// export const getPermission = (item: any) => async (dispatch: any) => {
+//   try {
+//     const res = await apiCall("get", apiEndPoints.PERMISSION_MODULE, item);
+//     console.log("res IN PERMISSION_MODULE: ", res.data);
+//     if (res.data.status === 200) {
+//       let payload = {
+//         data: await checkPermission(res.data.data, item.isAdmin),
+//         isAdmin: item.isAdmin,
+//       };
+//       dispatch({
+//         type: PERMISSION_MODULES,
+//         payload: payload,
+//       });
+//     }
+//   } catch (e) {
+//     dispatch({
+//       type: PERMISSION_MODULES_ERROR,
+//       payload: [],
+//     });
+//   }
+// };

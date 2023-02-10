@@ -25,9 +25,6 @@ const ImageUpload = ({ navigation }: any) => {
   const { response = {}, list = "" } =
     useSelector((state: any) => state.uploadVisitorDetailImageData) || {};
   const propertyData = useSelector((state: any) => state.propertyData) || {};
-
-  console.log("response: uploadVisitorDetailImageData", response);
-
   const dispatch: any = useDispatch();
 
   const [isPickerVisible, setIsPickerVisible] = useState(false);
@@ -206,7 +203,6 @@ const ImageUpload = ({ navigation }: any) => {
         Visible={isPickerVisible}
         setVisible={setIsPickerVisible}
         imageData={(data: any) => {
-          console.log("data: ", data);
           setImageData(data?.uri);
           setFormData({
             ...formData,

@@ -29,7 +29,6 @@ const customDrawer = ({ navigation }: any) => {
   const insets = useSafeAreaInsets();
   const { response = {} } = useSelector((state: any) => state.profileData)
   const permissionResponse = useSelector((state: any) => state.permissions);
-  console.log('permissionResponse: ', permissionResponse);
   const [userData, setUserData] = useState<any>({})
   const toggleDrawer = () => {
     navigation.toggleDrawer();

@@ -23,9 +23,6 @@ const VideoContent = ({navigation,route}: any) => {
     setItemDetail(item)
     setPlayerVisible(true)
   };
-  console.log('array: ', array);
-  console.log('base_url: ', base_url);
-
 
   return (
     <View style={styles.mainContainer}>
