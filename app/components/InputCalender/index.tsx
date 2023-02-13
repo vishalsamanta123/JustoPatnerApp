@@ -8,7 +8,7 @@ import DatePicker from "react-native-date-picker";
 import moment from "moment";
 
 const InputCalender = (props: any) => {
-  const minDate: any = moment().subtract(18, "years");
+  const minDate: any = moment().subtract(18, "years")
   const onConfirmDate = (date: any) => {
     setOpen(false);
     props.setDateshow(date);
@@ -90,12 +90,11 @@ const InputCalender = (props: any) => {
           }}
           minimumDate={props?.minimumDate ? props?.minimumDate : ""}
           maximumDate={
-            props.headingText === "Date of Birth" ||
-            props.placeholderText === "Date of Birth"
-              ? moment()?.subtract(18, "years")
-              : props.maximumDate
-              ? props.maximumDate
-              : ""
+            props.headingText === 'Date of Birth' ||
+            props.placeholderText === 'Date of Birth'
+            ?
+            new Date(moment(minDate).format()) :
+            props.maximumDate ? props.maximumDate : ''
           }
           date={
             props.headingText === "Date of Birth" ||
