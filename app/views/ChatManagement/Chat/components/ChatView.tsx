@@ -14,9 +14,10 @@ import { useSelector } from "react-redux";
 
 const ChatViewView = (props: any) => {
   const [filteredData, setFilteredData] = useState([]);
+  const [searchVal, setSearchVal] = useState("");
   useEffect(() => {
     setFilteredData(props.chatlist);
-    console.log("props.chatlist: ", props.chatlist);
+    setSearchVal("");
   }, [props.chatlist]);
   const navigation: any = useNavigation();
   const handleChatPress = (item: any) => {
@@ -26,6 +27,7 @@ const ChatViewView = (props: any) => {
     });
   };
   const handleChangeText = (val: any) => {
+    setSearchVal(val);
     const final = props?.chatlist?.filter(function (el: any) {
       const name = `${el.user_name}`;
       return name?.toLowerCase().indexOf(val.toLowerCase()) > -1;
@@ -35,15 +37,29 @@ const ChatViewView = (props: any) => {
   const onSubmit = (val: any) => {};
   const renderChatList = (item: any) => {
     const role =
-      item?.roles === "Sourcing TL"
+      item?.roles_slug === "sourcing_tl"
         ? "TL"
-        : item?.roles === "Sourcing Manager"
+        : item?.roles_slug === "sourcing_manager"
         ? "SM"
-        : item?.roles === "Closing Manager"
-        ? "CM" 
-        : item?.roles === "Closing TL"
+        : item?.roles_slug === "closing_manager"
+        ? "CM"
+        : item?.roles_slug === "closing_tl"
         ? "CTL"
-        : "Agent";
+        : item?.roles_slug === "channel_partner"
+        ? "CP"
+        : item?.roles_slug === "receptionist"
+        ? "Recp"
+        : item?.roles_slug === "cp_agent"
+        ? "Agent"
+        : item?.roles_slug === "post_sales"
+        ? "PS"
+        : item?.roles_slug === "site_head"
+        ? "SHD"
+        : item?.roles_slug === "cluster_head"
+        ? "CH"
+        : item?.roles_slug === "call_center"
+        ? "CC"
+        : "";
     return (
       <TouchableOpacity
         onPress={() => handleChatPress(item)}
@@ -51,7 +67,7 @@ const ChatViewView = (props: any) => {
       >
         <View style={styles.straight}>
           <FastImages
-            source={{ uri: item.base_url + '/' + item.profile_picture }}
+            source={{ uri: item.base_url + "/" + item.profile_picture }}
             style={styles.profileImage}
           />
           <Text
@@ -83,6 +99,7 @@ const ChatViewView = (props: any) => {
       <SearchBar
         placeholderText={strings.searchInChat}
         onChangeText={handleChangeText}
+        value={searchVal}
         onSubmit={onSubmit}
       />
       <FlatList

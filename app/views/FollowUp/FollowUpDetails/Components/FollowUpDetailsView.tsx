@@ -16,7 +16,6 @@ const FollowUpDetailsView = (props: any) => {
   const insets = useSafeAreaInsets();
   const navigation: any = useNavigation()
   const { response = {} } = useSelector((state: any) => state.followUp)
-  console.log('response: ', response?.data);
   const onpressSchedule = () => {
     navigation.navigate('AddAppointmentScreen', { data: {}, type: 'add' })
   }

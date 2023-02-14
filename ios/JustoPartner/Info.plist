@@ -35,10 +35,20 @@
 			</dict>
 		</dict>
 	</dict>
-	<key>NSLocationWhenInUseUsageDescription</key>
-	<string></string>
+	<key>NSAppleMusicUsageDescription</key>
+	<string>Justo partner uses your media for library and media</string>
+	<key>NSCalendarsUsageDescription</key>
+	<string>Justo partner uses your calender for date and time</string>
+	<key>NSCameraUsageDescription</key>
+	<string>Justo partner uses access to your camera to let you take and share photos, record videos and more.</string>
+	<key>NSLocationAlwaysAndWhenInUseUsageDescription</key>
+	<string>Justo partner uses your location to help you find nearby places and more.</string>
 	<key>NSLocationUsageDescription</key>
 	<string></string>
+	<key>NSLocationWhenInUseUsageDescription</key>
+	<string>Justo partner uses your location to help you find nearby places and more.</string>
+	<key>NSPhotoLibraryUsageDescription</key>
+	<string>Justo partner uses access to your photos to do things like suggest photos and videos to share.</string>
 	<key>UIAppFonts</key>
 	<array>
 		<string>Nunito-Black.ttf</string>
@@ -82,8 +92,6 @@
 	<key>UISupportedInterfaceOrientations</key>
 	<array>
 		<string>UIInterfaceOrientationPortrait</string>
-		<string>UIInterfaceOrientationLandscapeLeft</string>
-		<string>UIInterfaceOrientationLandscapeRight</string>
 	</array>
 	<key>UIViewControllerBasedStatusBarAppearance</key>
 	<false/>

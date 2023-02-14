@@ -10,7 +10,7 @@ export const userLogin = (loginDetail: any) => async (dispatch: any) => {
     try {
         const res = await apiCall("post", apiEndPoints.LOGIN, loginDetail);
         if (res.data.status === 200) {
-            // await AsyncStorage.setItem("AuthToken", res?.data?.token);
+            await AsyncStorage.setItem("AuthToken", res?.data?.token);
             dispatch({
                 type: USER_LOGIN,
                 payload: res.data

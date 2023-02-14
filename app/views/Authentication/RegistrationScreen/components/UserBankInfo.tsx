@@ -180,6 +180,7 @@ const UserBankInfo = ({ navigation }: any) => {
               require={true}
               placeholderText={"RERA Certificate No."}
               handleInputBtnPress={() => { }}
+              maxLength={20}
               headingText={"RERA Certificate No."}
               valueshow={formData?.rera_certificate_no}
               onChangeText={(val: any) => {

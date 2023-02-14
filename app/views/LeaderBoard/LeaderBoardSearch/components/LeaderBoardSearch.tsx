@@ -23,7 +23,7 @@ const LeaderBoardSearchView = (props: any) => {
                 rightSecondImageScr={images.notification}
                 RightSecondIconStyle={{ tintColor: WHITE_COLOR }}
                 leftImageIconStyle={{ tintColor: WHITE_COLOR }}
-                handleOnLeftIconPress={props.onPressBack}
+                handleOnLeftIconPress={props?.onPressBack}
                 barStyle={'light-content'}
                 statusBarColor={PRIMARY_THEME_COLOR}
             />

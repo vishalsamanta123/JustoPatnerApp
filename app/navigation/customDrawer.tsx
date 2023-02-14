@@ -29,7 +29,6 @@ const customDrawer = ({ navigation }: any) => {
   const insets = useSafeAreaInsets();
   const { response = {} } = useSelector((state: any) => state.profileData)
   const permissionResponse = useSelector((state: any) => state.permissions);
-  console.log('permissionResponse: ', permissionResponse);
   const [userData, setUserData] = useState<any>({})
   const toggleDrawer = () => {
     navigation.toggleDrawer();
@@ -232,7 +231,7 @@ const customDrawer = ({ navigation }: any) => {
         <View style={styles.drawerTouch}>
           <Text style={styles.drawerText}>
             {strings.versionText}
-            {' 1.00.00'}
+            {' 1.0'}
           </Text>
         </View>
       </View>

@@ -266,7 +266,7 @@ const AuthLoadingComponent = () => {
       // console.log(error);
     }
   }
-  useEffect(() => {
+  useEffect(() =>  {
     if (response === null || response?.status == 201 ||
       response?.status == 401 || response?.status == 400) {
       tokenGenrate()

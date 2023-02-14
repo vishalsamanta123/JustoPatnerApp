@@ -115,6 +115,7 @@ const EditBankDetails = ({ navigation }: any) => {
             <InputField
               valueshow={editData?.rera_certificate_no}
               handleInputBtnPress={() => { }}
+              maxLength={20}
               headingText={"RERA Certificate No."}
               onChangeText={(val: any) => {
                 setEditData({
