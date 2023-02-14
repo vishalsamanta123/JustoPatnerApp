@@ -108,7 +108,7 @@ const DashboardView = (props: any) => {
               </View>
               <View style={styles.numberView}>
                 <Text style={styles.numberText}>
-                  {achieveTargetData?.achieve_visit_target}/{targetData?.registration_target}
+                  {achieveTargetData?.achieve_visit_target}/{targetData?.visit_target}
                 </Text>
               </View>
             </View>

@@ -14,8 +14,7 @@ const DashboardScreen = ({ navigation }: any) => {
   const statusData = useSelector((state: any) => state.statusUpdate) || {}
   const qrCodeResponse = useSelector((state: any) => state.qrCodeData) || {}
   const activepropertyData = useSelector((state: any) => state.propertyChatData);
-
-  const [dashBoardData, setDashBoardData] = useState<any>()
+  const [dashBoardData, setDashBoardData] = useState<any>({})
   const [isEnabled, setIsEnabled] = useState<any>();
 
   useEffect(() => {
@@ -55,7 +54,7 @@ const DashboardScreen = ({ navigation }: any) => {
       setDashBoardData(response?.data)
       setIsEnabled(response?.data?.online_status)
     }
-  }, [response])
+  }, [response, qrCodeResponse])
   useEffect(() => {
     if (dashBoardData?.qr_code === "") {
       dispatch(generateQrCode({}))
