@@ -99,7 +99,7 @@ const AgentBasicInfoView = (props: any) => {
           </View>
           <View style={styles.inputWrap}>
             <InputField
-              require={true}
+              // require={true}
               placeholderText={"Ex:- 3675 9834 6012"} //can edit
               handleInputBtnPress={() => {}}
               onChangeText={(data: any) => {
@@ -117,7 +117,7 @@ const AgentBasicInfoView = (props: any) => {
           </View>
           <View style={styles.inputWrap}>
             <InputField
-              require={true}
+              // require={true}
               placeholderText={"BNZAA2318JM"} //can edit
               handleInputBtnPress={() => {}}
               onChangeText={(data: any) => {

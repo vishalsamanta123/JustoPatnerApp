@@ -105,13 +105,13 @@ export default {
   UPDATE_SUPPORTFORUM: '/supportForum/statusUpdateSupportForum',
 
   //LeaderBoard
-  GET_LEADERBOARD:'/leaderboard/getActivePropertyListForLeaderboard',
-  GET_LEADERBOARD_DETAIL:'/leaderboard/getPropertyLeaderboardDetails',
+  GET_LEADERBOARD: '/leaderboard/getActivePropertyListForLeaderboard',
+  GET_LEADERBOARD_DETAIL: '/leaderboard/getPropertyLeaderboardDetails',
   // Chat management
   GET_PROPERTY_LIST_FOR_CHAT: '/chat/getCpActivePropertyList',
   GET_ALL_CHAT_IN_PROPERTY: '/chat/getPropertyUserListForChat',
   UPDATE_CHAT_STATUS: '/chat/userChatStatusUpdate',
-  
+
   //Permission
   PERMISSION_MODULE: "/userManage/getUsermodels",
 
@@ -121,4 +121,8 @@ export default {
   TICKET_LIST: '/support/getSupportList',
   TICKET_DETAILS: '/support/getTicketDetail',
   TICKET_STATUS_UPDATE: '/support/replySupportTicket',
+
+  //Deal Flow
+  GET_DEAL_FLOW_LIST: '/dealFlow/getActivePropertyListForDealFlow',
+  GET_DEAL_FLOW_DETAIL: '/dealFlow/getPropertyDealFlowDetails',
 };
