@@ -16,7 +16,9 @@ const UserInfo = (props: any) => {
         </View>
         <Text style={styles.colon}>:</Text>
         <View style={styles.valueView}>
-          <Text style={styles.valueText}>{allDetails?.agent_name?.toUpperCase()}</Text>
+          <Text style={styles.valueText}>
+            {allDetails?.agent_name?.toUpperCase()}
+          </Text>
         </View>
       </View>
       <View style={styles.fieldView}>
@@ -43,7 +45,9 @@ const UserInfo = (props: any) => {
         </View>
         <Text style={styles.colon}>:</Text>
         <View style={styles.valueView}>
-          <Text style={styles.valueText}>{allDetails?.gender === 1 ? strings.male : strings.female}</Text>
+          <Text style={styles.valueText}>
+            {allDetails?.gender === 1 ? strings.male : strings.female}
+          </Text>
         </View>
       </View>
       <View style={styles.fieldView}>
@@ -52,7 +56,9 @@ const UserInfo = (props: any) => {
         </View>
         <Text style={styles.colon}>:</Text>
         <View style={styles.valueView}>
-          <Text style={styles.valueText}>{moment(allDetails?.date_of_birth).format('DD/MM/YYYY')}</Text>
+          <Text style={styles.valueText}>
+            {moment(allDetails?.date_of_birth).format("DD/MM/YYYY")}
+          </Text>
         </View>
       </View>
       <View style={styles.fieldView}>
@@ -78,12 +84,19 @@ const UserInfo = (props: any) => {
           <Text style={styles.keyText}>Email</Text>
         </View>
         <Text style={styles.colon}>:</Text>
-        <View style={[styles.valueView,]}>
-          <Text style={[styles.valueText, {
-            width: '100%',
-            fontSize: normalize(14),
-            paddingLeft: normalizeSpacing(15)
-          }]}>{allDetails?.email}</Text>
+        <View style={[styles.valueView]}>
+          <Text
+            style={[
+              styles.valueText,
+              {
+                width: "100%",
+                fontSize: normalize(14),
+                paddingLeft: normalizeSpacing(15),
+              },
+            ]}
+          >
+            {allDetails?.email}
+          </Text>
         </View>
       </View>
       <View style={styles.fieldView}>
@@ -92,11 +105,18 @@ const UserInfo = (props: any) => {
         </View>
         <Text style={styles.colon}>:</Text>
         <View style={styles.valueView}>
-          <Text style={styles.valueText}>
-            {allDetails?.sourcing_manager_name !== ""
-              ? allDetails?.sourcing_manager_name?.toUpperCase()
-              : strings.notfount}
-          </Text>
+          {allDetails?.sourcing_managers?.length > 0 ? (
+            allDetails?.sourcing_managers?.map((el: any, index: any) => {
+              return (
+                <Text style={styles.valueText}>
+                  {el?.user_name}
+                  {index < allDetails?.sourcing_managers?.length - 1 && ","}
+                </Text>
+              );
+            })
+          ) : (
+            <Text style={styles.valueText}>{strings.notfount}</Text>
+          )}
         </View>
       </View>
       <View style={styles.subHeadVw}>

@@ -33,6 +33,7 @@ import Video from "react-native-video";
 import RNFetchBlob from "rn-fetch-blob";
 import { chatStatusUpdate } from "app/Redux/Actions/ChatActions";
 import { useDispatch, useSelector } from "react-redux";
+import { START_LOADING, STOP_LOADING } from "app/Redux/types";
 
 const ChatScreen = ({ navigation, route }: any) => {
   const item = route.params || {};
@@ -49,7 +50,6 @@ const ChatScreen = ({ navigation, route }: any) => {
 
   useEffect(() => {
     getMsgList();
-    console.log('USEEFFECT CALLEF')
     dispatch(chatStatusUpdate({
       property_id: item?.property_id,
       receiver_id: item?._id,
@@ -234,8 +234,11 @@ const ChatScreen = ({ navigation, route }: any) => {
   };
 
   const handleAttachPress = async () => {
+    dispatch({ type: START_LOADING });
     const result: any = await DocumentPicker.pick({
       type: [DocumentPicker.types.allFiles],
+    }).catch((e) => {
+      dispatch({ type: STOP_LOADING });
     });
 
     let imageRef: any;
@@ -302,7 +305,11 @@ const ChatScreen = ({ navigation, route }: any) => {
         )
         .push()
         .set(params)
-        .then((ref: any) => {});
+        .then((ref: any) => {
+          dispatch({ type: STOP_LOADING });
+        }).catch(() => {
+          dispatch({ type: STOP_LOADING });
+        });
     }
   };
   const renderComposer = (props: any) => {
