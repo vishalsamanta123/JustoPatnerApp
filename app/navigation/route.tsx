@@ -58,7 +58,7 @@ import { GLOBAL_URL, RED_COLOR } from 'app/components/utilities/constant';
 import ReportScreen from 'app/views/Report';
 import LeaderBoardScreen from 'app/views/LeaderBoard/LeaderBoardScreen';
 import SupportForumScreen from 'app/views/SupportForumScreen/SupportForum';
-import DataFlowScreen from 'app/views/DataFlow';
+import DealFlowScreen from 'app/views/DealFlowScreens/DealFlow';
 // import SupportScreen from 'app/views/Support';
 import SupportScreen from 'app/views/SupportScreen/Support';
 import axios from 'axios';
@@ -77,6 +77,7 @@ import SupportScreenDetails from 'app/views/SupportScreen/SupportDetails';
 import AddTicketScreen from 'app/views/SupportScreen/AddTicket';
 import ShowReply from 'app/views/SupportScreen/SupportDetails/Components/ShowReply';
 import TicketStatusUpdate from 'app/views/SupportScreen/Support/components/TicketStatusUpdate';
+import DealFlowDetailScreen from 'app/views/DealFlowScreens/DealFlowDetail';
 
 
 const Stack = createNativeStackNavigator();
@@ -102,7 +103,7 @@ const DrawerComponent = () => {
       <Drawer.Screen name="Report" component={ReportScreen} />
       <Drawer.Screen name="LeaderBoard" component={LeaderBoardScreen} />
       <Drawer.Screen name="SupportForum" component={SupportForumScreen} />
-      <Drawer.Screen name="DataFlow" component={DataFlowScreen} />
+      <Drawer.Screen name="DealFlow" component={DealFlowScreen} />
       <Drawer.Screen name="Support" component={SupportScreen} />
       <Drawer.Screen name="PropertyChatView" component={PropertyChat} />
 
@@ -193,6 +194,9 @@ const AppComponent = () => {
       <AppStack.Screen name="AddTicket" component={AddTicketScreen} />
       <AppStack.Screen name="ShowReply" component={ShowReply} />
       <AppStack.Screen name="TicketStatusUpdate" component={TicketStatusUpdate} />
+
+      {/* Deal Flow */}
+      <AppStack.Screen name="DealFlowDetail" component={DealFlowDetailScreen} />
     </AppStack.Navigator>
   )
 }
@@ -266,7 +270,7 @@ const AuthLoadingComponent = () => {
       // console.log(error);
     }
   }
-  useEffect(() =>  {
+  useEffect(() => {
     if (response === null || response?.status == 201 ||
       response?.status == 401 || response?.status == 400) {
       tokenGenrate()

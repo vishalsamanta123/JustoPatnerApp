@@ -66,9 +66,9 @@ export const MENUITEMS = [
         slug: 'leader_Board',
     },
     {
-        title: strings.dataflowHeader,
+        title: strings.dealflowHeader,
         icon: images.report,
-        path: "DataFlow",
+        path: "DealFlow",
         permission: true,
         deploy: true,
         slug: 'data_flow',

@@ -175,7 +175,7 @@ const DashboardView = (props: any) => {
                 <Text style={styles.thirdPortionCardText}>Active Agent</Text>
               </View>
               <View style={styles.numberView}>
-                <Text style={styles.thirdPortionNumberText}>{props?.dashBoardData?.active_agent}</Text>
+                <Text style={styles.thirdPortionNumberText}>{props?.dashBoardData?.total_agent}</Text>
               </View>
             </TouchableOpacity>
             {/* <TouchableOpacity style={styles.thirdPortioncardView}>

@@ -75,30 +75,31 @@ const RegistrationScreen = ({ navigation }: any) => {
       if (registerForm.owner_name == undefined || registerForm.owner_name == "") {
         isError = false;
         errorMessage = "Owner Name is require. Please enter Owner Name";
-      } else if (
-        registerForm.adhar_no == undefined || registerForm.adhar_no == ""
-      ) {
-        isError = false;
-        errorMessage = "Aadhaar No. is require. Please enter Aadhaar No.";
-      } 
-      else if (
-        Regexs.AadharRegex.test(registerForm.adhar_no) === false
-      ) {
-        isError = false;
-        errorMessage = "Please enter the valid Aadhaar number";
       }
-      else if (
-        registerForm.pancard_no == undefined || registerForm.pancard_no == ""
-      ) {
-        isError = false;
-        errorMessage = "Pancard No. is require. Please enter Pancard No.";
-      } 
-      else if (
-        Regexs.panRegex.test(registerForm.pancard_no) === false
-      ) {
-        isError = false;
-        errorMessage = "Please enter the valid Pancard number";
-      }
+      //  else if (
+      //   registerForm.adhar_no == undefined || registerForm.adhar_no == ""
+      // ) {
+      //   isError = false;
+      //   errorMessage = "Aadhaar No. is require. Please enter Aadhaar No.";
+      // } 
+      // else if (
+      //   Regexs.AadharRegex.test(registerForm.adhar_no) === false
+      // ) {
+      //   isError = false;
+      //   errorMessage = "Please enter the valid Aadhaar number";
+      // }
+      // else if (
+      //   registerForm.pancard_no == undefined || registerForm.pancard_no == ""
+      // ) {
+      //   isError = false;
+      //   errorMessage = "Pancard No. is require. Please enter Pancard No.";
+      // } 
+      // else if (
+      //   Regexs.panRegex.test(registerForm.pancard_no) === false
+      // ) {
+      //   isError = false;
+      //   errorMessage = "Please enter the valid Pancard number";
+      // }
       else if (
         registerForm.gender == undefined || registerForm.gender == "") {
         isError = false;

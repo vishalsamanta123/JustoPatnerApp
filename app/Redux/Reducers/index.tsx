@@ -16,6 +16,7 @@ import { firebaseReducer } from "./FirebaseReducer";
 import { userAppointmentReducer, userUpdateAppointmentReducer } from "./AppointmentWithUserReducer";
 import permissionReducer from "./permissionReducer";
 import { SupportAddReducer, SupportReducer } from "./SupportReducer";
+import { dealFlowReducer } from "./DealFlowReducer";
 
 export default {
     loadingReducer: loadingReducer,
@@ -86,4 +87,7 @@ export default {
     // Raise Ticket (Support)
     SupportAdd: SupportAddReducer,
     SupportData: SupportReducer,
+
+    //deal Flow
+    dealFlow: dealFlowReducer,
 }

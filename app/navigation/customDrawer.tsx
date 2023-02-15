@@ -184,9 +184,9 @@ const customDrawer = ({ navigation }: any) => {
         />
         <DrawerTabSection
           iconSource={images.report}
-          tabTitle={strings.dataflowHeader}
+          tabTitle={strings.dealflowHeader}
           handleDrawerNavigation={() => {
-            navigation.navigate('DataFlow');
+            navigation.navigate('DealFlow');
           }}
         />
         <DrawerTabSection

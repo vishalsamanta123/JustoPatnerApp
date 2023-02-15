@@ -18,7 +18,7 @@ const strings = new LocalizedStrings({
     appointmentForVisitHeader: 'Appointments',
     reportHeader: 'Report',
     leaderHeader: 'Leaderboard',
-    dataflowHeader: 'Data Flow',
+    dealflowHeader: 'Deal Flow',
     chatHeader: 'Chat',
     supportHeader: 'Raise Ticket',
     supportforumHeader: 'Support Forum',
@@ -212,7 +212,10 @@ const strings = new LocalizedStrings({
      ticketDetails: 'Ticket Details',
      ticketReply: 'Ticket Reply',
      showreply: 'Show Reply',
-     ticketStatusUpdate: 'Status Update'
+     ticketStatusUpdate: 'Status Update',
+
+     //deal flow
+     searchDealflow:'Search Deal Flow'
   },
 });
 
