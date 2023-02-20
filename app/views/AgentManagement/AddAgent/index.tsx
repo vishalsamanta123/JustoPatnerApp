@@ -51,27 +51,26 @@ const AgentBasicInfo = ({ navigation, route }: any) => {
     } else if (agent_name === '' || agent_name === undefined) {
       isError = false;
       errorMessage = "Please fill agent name"
-    } 
-    // else if (adhar_no === '' || adhar_no === undefined) {
-    //   isError = false;
-    //   errorMessage = "Please fill aadhar number"
-    // } 
-    // else if (
-    //   Regexs.AadharRegex.test(adhar_no) === false
-    // ) {
-    //   isError = false;
-    //   errorMessage = "Please enter the valid Aadhaar number";
-    // }
-    // else if (pancard_no === '' || pancard_no === undefined) {
-    //   isError = false;
-    //   errorMessage = "Please fill pancard number"
-    // } 
-    // else if (
-    //   Regexs.panRegex.test(pancard_no) === false
-    // ) {
-    //   isError = false;
-    //   errorMessage = "Please enter the valid Pancard number";
-    // }
+    } else if (adhar_no === '' || adhar_no === undefined) {
+      isError = false;
+      errorMessage = "Please fill aadhar number"
+    }
+    else if (
+      Regexs.AadharRegex.test(adhar_no) === false
+    ) {
+      isError = false;
+      errorMessage = "Please enter the valid Aadhaar number";
+    }
+    else if (pancard_no === '' || pancard_no === undefined) {
+      isError = false;
+      errorMessage = "Please fill pancard number"
+    }
+    else if (
+      Regexs.panRegex.test(pancard_no) === false
+    ) {
+      isError = false;
+      errorMessage = "Please enter the valid Pancard number";
+    }
     else if (gender === '' || gender === undefined) {
       isError = false;
       errorMessage = "Please select gender"
