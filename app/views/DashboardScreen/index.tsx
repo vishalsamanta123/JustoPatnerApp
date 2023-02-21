@@ -54,15 +54,18 @@ const DashboardScreen = ({ navigation }: any) => {
       setDashBoardData(response?.data)
       setIsEnabled(response?.data?.online_status)
     }
-  }, [response, qrCodeResponse])
+  }, [response])
   useEffect(() => {
-    if (dashBoardData?.qr_code === "") {
-      dispatch(generateQrCode({}))
-    } else {
-      // dispatch(generateQrCode({}))
+    if (response?.data?.qr_code === "" || response?.data?.qr_code === undefined ||
+      response?.data?.qr_code === null) {
+      getQrCode()
+      getDashboard()
     }
-  }, [response, dashBoardData])
+  }, [response, qrCodeResponse])
 
+  const getQrCode = () => {
+    dispatch(generateQrCode({}))
+  }
   const getDashboard = () => {
     dispatch(dashboardData({}))
   }

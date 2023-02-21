@@ -35,6 +35,8 @@ const AddAppointmentScreen = ({ navigation, route }: any) => {
     pickup_latitude: '',
     pickup_longitude: '',
   })
+  console.log("addAppointmentForm", addAppointmentForm);
+
   useFocusEffect(
     React.useCallback(() => {
       if (type === strings.edit) {
@@ -141,8 +143,8 @@ const AddAppointmentScreen = ({ navigation, route }: any) => {
       errorMessage = "Lead is require. Please Select the lead Status"
     }
     else if (
-      addAppointmentForm?.property_id === "" &&
-      addAppointmentForm?.property_type_title === ""
+      addAppointmentForm?.property_id === "" || addAppointmentForm?.property_id === undefined
+      || addAppointmentForm?.property_id === null 
     ) {
       isError = false;
       errorMessage = "Please select property name";
