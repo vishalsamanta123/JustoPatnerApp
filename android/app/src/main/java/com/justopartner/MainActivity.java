@@ -1,4 +1,4 @@
-package com.justopartner;
+package com.Justoversepartner.in;
 
 import com.facebook.react.ReactActivity;
 import com.facebook.react.ReactActivityDelegate;

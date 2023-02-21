@@ -8,9 +8,9 @@
   "client": [
     {
       "client_info": {
-        "mobilesdk_app_id": "1:810445659968:android:d6792c222b3c53f69124a5",
+        "mobilesdk_app_id": "1:810445659968:android:07703044784031449124a5",
         "android_client_info": {
-          "package_name": "com.justo"
+          "package_name": "com.Justo.kreate.co.in"
         }
       },
       "oauth_client": [
@@ -30,6 +30,13 @@
             {
               "client_id": "810445659968-3frm93i6kj56tkvdfm94h9cvcppg6pi2.apps.googleusercontent.com",
               "client_type": 3
+            },
+            {
+              "client_id": "810445659968-2hon6ci5naumj69uv9v3l08mdkboigko.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "com.justo.partner"
+              }
             }
           ]
         }
@@ -37,9 +44,9 @@
     },
     {
       "client_info": {
-        "mobilesdk_app_id": "1:810445659968:android:fdd4ba1d4439deb19124a5",
+        "mobilesdk_app_id": "1:810445659968:android:076ee63cdb394e269124a5",
         "android_client_info": {
-          "package_name": "com.justopartner"
+          "package_name": "com.Justoversepartner.in"
         }
       },
       "oauth_client": [
@@ -59,6 +66,13 @@
             {
               "client_id": "810445659968-3frm93i6kj56tkvdfm94h9cvcppg6pi2.apps.googleusercontent.com",
               "client_type": 3
+            },
+            {
+              "client_id": "810445659968-2hon6ci5naumj69uv9v3l08mdkboigko.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "com.justo.partner"
+              }
             }
           ]
         }
