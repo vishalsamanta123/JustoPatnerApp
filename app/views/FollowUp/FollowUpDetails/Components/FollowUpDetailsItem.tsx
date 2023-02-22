@@ -34,10 +34,10 @@ const FollowUpDetailsItem = (props: any) => {
                 </View>
                 <View><Text>:</Text></View>
                 <View style={styles.nameContainer}>
-                    <Text style={styles.nameTxt}>{data?.property?.property_title === '' ||
-                        data?.property?.property_title === undefined ||
-                        data?.property?.property_title === null ? strings.notfount
-                        : data?.property?.property_title}</Text>
+                    <Text style={styles.nameTxt}>{data?.property_title === '' ||
+                        data?.property_title === undefined ||
+                        data?.property_title === null ? strings.notfount
+                        : data?.property_title}</Text>
                 </View>
             </View>
             <View style={styles.Txtview}>

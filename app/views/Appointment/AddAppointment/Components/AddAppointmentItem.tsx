@@ -19,6 +19,7 @@ import InputCalender from "app/components/InputCalender";
 import moment from "moment";
 
 const AddAppointmentItem = (props: any) => {
+  console.log('props: ', props);
 
   return (
     <ScrollView keyboardShouldPersistTaps={"handled"}>
@@ -68,7 +69,9 @@ const AddAppointmentItem = (props: any) => {
           <DropdownInput
             require={true}
             headingText={"Property"}
-            placeholder={"Property"}
+            placeholder={props?.addAppointmentForm?.property_title != "" ?
+              props?.addAppointmentForm?.property_title :
+              strings.selectproperty}
             data={props?.allProperty}
             // disable={
             //   props?.addAppointmentForm?.property_id !== "" && props?.addAppointmentForm?.property_id !== null ? true : false}
@@ -77,7 +80,7 @@ const AddAppointmentItem = (props: any) => {
             paddingLeft={16}
             maxHeight={300}
             labelField="property_title"
-            valueField={"_id"}
+            valueField={"property_id"}
             value={props?.addAppointmentForm?.property_id}
             onChange={(item: any) => {
               props.setAddAppointmentForm({

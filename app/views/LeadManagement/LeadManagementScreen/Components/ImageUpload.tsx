@@ -68,10 +68,11 @@ const ImageUpload = ({ navigation }: any) => {
   const validation = () => {
     let isError = true;
     let errorMessage: any = "";
-    if (formData?.property_id === "" && formData?.property_type_title === "") {
-      isError = false;
-      errorMessage = "Please select property name";
-    } else if (formData?.document === "" || formData?.document === null) {
+    // if (formData?.property_id === "" && formData?.property_type_title === "") {
+    //   isError = false;
+    //   errorMessage = "Please select property name";
+    // } else
+     if (formData?.document === "" || formData?.document === null) {
       isError = false;
       errorMessage = "Please select Image";
     }
@@ -115,7 +116,7 @@ const ImageUpload = ({ navigation }: any) => {
       </TouchableOpacity> */}
       <View style={[styles.inputWrap]}>
         <DropdownInput
-          require={true}
+          // require={true}
           headingText={"Property"}
           placeholder={
             formData?.property_title ? formData?.property_title : "Property"
