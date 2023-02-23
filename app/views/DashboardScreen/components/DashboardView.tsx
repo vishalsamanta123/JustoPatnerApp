@@ -102,7 +102,7 @@ const DashboardView = (props: any) => {
             </View>
           </View>
           <View style={styles.secondPortion}>
-            <View style={styles.firstCardView}>
+            {/* <View style={styles.firstCardView}>
               <View style={styles.cardTextView}>
                 <Text style={styles.cardText}>Visit Target</Text>
               </View>
@@ -121,7 +121,7 @@ const DashboardView = (props: any) => {
                   {achieveTargetData?.achieve_site_visit_target}/{targetData?.site_visit_target}
                 </Text>
               </View>
-            </View>
+            </View> */}
             {/* <View style={styles.thirdCardView}>
               <View style={styles.cardTextView}>
                 <Text style={styles.cardText}>Closing Target</Text>

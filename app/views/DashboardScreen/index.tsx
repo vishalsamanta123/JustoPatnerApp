@@ -88,7 +88,7 @@ const DashboardScreen = ({ navigation }: any) => {
     navigation.toggleDrawer();
   };
   const onPressView = (items: any) => {
-    navigation.navigate('PropertyDetails', items)
+    navigation.navigate('PropertyDetails', { ...items, property_id: items._id })
   }
   const onPressMore = () => {
     navigation.navigate('PropertyScreenView')

@@ -323,7 +323,7 @@ const AddNewVisitorForm = (props: any) => {
           </Text>
           <View style={[styles.inputWrap]}>
             <DropdownInput
-              require={true}
+              // require={true}
               headingText={"Property"}
               placeholder={
                 props?.formData?.property_title
