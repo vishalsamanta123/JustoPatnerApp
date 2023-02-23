@@ -12,6 +12,7 @@ import { getAllAlloctaeProperty } from 'app/Redux/Actions/propertyActions'
 
 const AddAppointmentScreen = ({ navigation, route }: any) => {
   const { data = {}, type = "" } = route?.params || {}
+  console.log('data: ', data);
   const dispatch: any = useDispatch()
   const { response = {}, list = "" } = useSelector((state: any) => state.visitorDataList)
   const addAppointmentData = useSelector((state: any) => state.appointment)
@@ -24,6 +25,7 @@ const AddAppointmentScreen = ({ navigation, route }: any) => {
   const [addAppointmentForm, setAddAppointmentForm] = useState<any>({
     lead_id: '',
     property_id: '',
+    property_title: '',
     appointment_date: '',
     appointment_time: '',
     type: 1,
@@ -35,6 +37,7 @@ const AddAppointmentScreen = ({ navigation, route }: any) => {
     pickup_latitude: '',
     pickup_longitude: '',
   })
+
   useFocusEffect(
     React.useCallback(() => {
       if (type === strings.edit) {
@@ -47,7 +50,8 @@ const AddAppointmentScreen = ({ navigation, route }: any) => {
           lead_id: data?._id,
           lead_name: data?.customer_first_name ? data?.customer_first_name : data?.customer_detail?.first_name,
           pickup: data?.pickup,
-          property_id: data?.property_id
+          property_id: data?.property_id,
+          property_title: data?.property_title
         })
       }
       dispatch(
@@ -68,6 +72,8 @@ const AddAppointmentScreen = ({ navigation, route }: any) => {
       else {
         setPropertyStatus(false)
       }
+    } else {
+      setPropertyStatus(false)
     }
   }
 
@@ -141,8 +147,8 @@ const AddAppointmentScreen = ({ navigation, route }: any) => {
       errorMessage = "Lead is require. Please Select the lead Status"
     }
     else if (
-      addAppointmentForm?.property_id === "" &&
-      addAppointmentForm?.property_type_title === ""
+      addAppointmentForm?.property_id === "" || addAppointmentForm?.property_id === undefined
+      || addAppointmentForm?.property_id === null
     ) {
       isError = false;
       errorMessage = "Please select property name";

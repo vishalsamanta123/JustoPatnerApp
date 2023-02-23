@@ -1,4 +1,4 @@
-package com.justopartner.newarchitecture;
+package com.Justoversepartner.in.newarchitecture;
 
 import android.app.Application;
 import androidx.annotation.NonNull;
@@ -19,9 +19,9 @@ import com.facebook.react.fabric.CoreComponentsRegistry;
 import com.facebook.react.fabric.FabricJSIModuleProvider;
 import com.facebook.react.fabric.ReactNativeConfig;
 import com.facebook.react.uimanager.ViewManagerRegistry;
-import com.justopartner.BuildConfig;
-import com.justopartner.newarchitecture.components.MainComponentsRegistry;
-import com.justopartner.newarchitecture.modules.MainApplicationTurboModuleManagerDelegate;
+import com.Justoversepartner.in.BuildConfig;
+import com.Justoversepartner.in.newarchitecture.components.MainComponentsRegistry;
+import com.Justoversepartner.in.newarchitecture.modules.MainApplicationTurboModuleManagerDelegate;
 import java.util.ArrayList;
 import java.util.List;
 

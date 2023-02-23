@@ -16,8 +16,16 @@ const FollowUpDetailsView = (props: any) => {
   const insets = useSafeAreaInsets();
   const navigation: any = useNavigation()
   const { response = {} } = useSelector((state: any) => state.followUp)
+  const FolowUpData = response?.data?.length > 0 ? response?.data[0] : []
+  console.log('response: ', response);
   const onpressSchedule = () => {
-    navigation.navigate('AddAppointmentScreen', { data: {}, type: 'add' })
+    navigation.navigate('AddAppointmentScreen', { data: {
+      _id: FolowUpData?.lead_id,
+      customer_first_name: FolowUpData?.customer?.first_name,
+      property_id: FolowUpData?.property_id,
+      property_title: FolowUpData?.property_title,
+      pickup: ''
+    }, type: 'Add' })
   }
   const { create, status } = usePermission({
     create: 'add_appointment',

@@ -112,7 +112,7 @@ const VisitorAppointment = (props: any) => {
                 color:
                   item?.status === 1 ||
                     item?.status === 4 ||
-                    item?.status === 5
+                    item?.status === 5 || item?.status === 6
                     ? RED_COLOR
                     : item?.status === 2
                       ? YELLOW_COLOR
@@ -130,7 +130,10 @@ const VisitorAppointment = (props: any) => {
                   ? "Completed"
                   : item?.status === 4
                     ? "Canceled"
-                    : item?.status === 5 && "Canceled"}
+                    : item?.status === 5 ? "Canceled"
+                    : item?.status === 6 && "Customer Lost"
+                    
+                  }
           </Text>
         </View>
       </View>

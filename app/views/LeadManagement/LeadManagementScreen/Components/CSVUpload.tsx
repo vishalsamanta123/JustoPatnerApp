@@ -93,10 +93,11 @@ const CSVUpload = ({ navigation }: any) => {
   const validation = () => {
     let isError = true;
     let errorMessage: any = "";
-    if (formData?.property_id === "" && formData?.property_type_title === "") {
-      isError = false;
-      errorMessage = "Please select property name";
-    } else if (formData?.uri === "" || formData?.uri === null) {
+    // if (formData?.property_id === "" && formData?.property_type_title === "") {
+    //   isError = false;
+    //   errorMessage = "Please select property name";
+    // } else
+     if (formData?.uri === "" || formData?.uri === null) {
       isError = false;
       errorMessage = "Please select CSV file";
     }
@@ -122,7 +123,7 @@ const CSVUpload = ({ navigation }: any) => {
       />
       <View style={[styles.inputWrap]}>
         <DropdownInput
-          require={true}
+          // require={true}
           headingText={"Property"}
           placeholder={
             formData?.property_title ? formData?.property_title : "Property"

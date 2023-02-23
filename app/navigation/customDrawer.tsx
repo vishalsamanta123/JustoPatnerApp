@@ -22,6 +22,7 @@ import AsyncStorage from '@react-native-async-storage/async-storage';
 import { getAgentDetail } from 'app/Redux/Actions/AgentActions';
 import auth from '@react-native-firebase/auth';
 import { getPermission } from 'app/Redux/Actions/permissionAction';
+import DeviceInfo from 'react-native-device-info';
 
 const customDrawer = ({ navigation }: any) => {
   const dispatch: any = useDispatch()
@@ -231,7 +232,7 @@ const customDrawer = ({ navigation }: any) => {
         <View style={styles.drawerTouch}>
           <Text style={styles.drawerText}>
             {strings.versionText}
-            {' 1.0'}
+            {DeviceInfo.getVersion()}
           </Text>
         </View>
       </View>
