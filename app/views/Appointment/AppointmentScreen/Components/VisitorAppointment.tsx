@@ -131,10 +131,24 @@ const VisitorAppointment = (props: any) => {
                   : item?.status === 4
                     ? "Canceled"
                     : item?.status === 5 ? "Canceled"
-                    : item?.status === 6 && "Customer Lost"
-                    
-                  }
+                      : item?.status === 6 && "Customer Lost"
+
+            }
           </Text>
+        </View>
+      </View>
+      <View style={styles.Txtview}>
+        <View style={styles.projectContainer}>
+          <Text style={styles.projectTxt}>Visit Status</Text>
+        </View>
+        <View><Text>:</Text></View>
+        <View style={styles.nameContainer}>
+          <Text style={[styles.nameTxt,
+          {
+            color: item?.visit_status === strings.hot ? GREEN_COLOR
+              : item?.visit_status === strings.warm ? YELLOW_COLOR
+                : item?.visit_status === strings.warm ? RED_COLOR : BLACK_COLOR
+          }]}>{item?.visit_status ? item?.visit_status : strings.notfount}</Text>
         </View>
       </View>
       <View style={styles.Txtview}>

@@ -12,6 +12,7 @@ import Styles from "../../../../components/DropDown/styles";
 import FollupListItem from './FollowupListItem'
 import InputCalender from "app/components/InputCalender";
 import moment from "moment";
+import { leadTypes } from "app/components/utilities/DemoData";
 
 const FollowUpAddView = (props: any) => {
     return (
@@ -53,6 +54,32 @@ const FollowUpAddView = (props: any) => {
                                         <Text style={Styles.textItem}>{item.title}</Text>
                                     </View>
                                 </>
+                            );
+                        }}
+                    />
+                </View>
+                <View style={styles.inputWrap}>
+                    <DropdownInput
+                        headingText={strings.leadType}
+                        placeholder={strings.leadType}
+                        data={leadTypes}
+                        inputWidth={'100%'}
+                        paddingLeft={16}
+                        maxHeight={300}
+                        labelField="label"
+                        valueField={'value'}
+                        value={props?.formData?.visit_status}
+                        onChange={(item: any) => {
+                            props.setFormData({
+                                ...props.formData,
+                                visit_status: item.value,
+                            })
+                        }}
+                        newRenderItem={(item: any) => {
+                            return (
+                                <View style={Styles.item}>
+                                    <Text style={Styles.textItem}>{item.label}</Text>
+                                </View>
                             );
                         }}
                     />

@@ -9,6 +9,8 @@ import {
   PRIMARY_THEME_COLOR_DARK,
   PRIMARY_THEME_COLOR,
   DATE_TIME_FORMAT,
+  GREEN_COLOR,
+  RED_COLOR,
 } from "../../../../components/utilities/constant";
 import strings from "../../../../components/utilities/Localization";
 import moment from "moment";
@@ -86,6 +88,20 @@ const FollowUpItem = (props: any) => {
           <Text style={styles.nameTxt}>
             {item.configuration ? item.configuration : strings.notfount}
           </Text>
+        </View>
+      </View>
+      <View style={styles.Txtview}>
+        <View style={styles.projectContainer}>
+          <Text style={styles.projectTxt}>Visit Status</Text>
+        </View>
+        <View><Text>:</Text></View>
+        <View style={styles.nameContainer}>
+          <Text style={[styles.nameTxt,
+          {
+            color: item?.visit_status === strings.hot ? GREEN_COLOR
+              : item?.visit_status === strings.warm ? YELLOW_COLOR
+                : item?.visit_status === strings.warm ? RED_COLOR : BLACK_COLOR
+          }]}>{item?.visit_status ? item?.visit_status : strings.notfount}</Text>
         </View>
       </View>
       <View style={styles.Txtview}>

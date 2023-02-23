@@ -50,6 +50,7 @@ const AppointmentView = (props: any) => {
     { key: "second", title: strings.SMAppointment },
   ]);
   const [appointmentList, setAppointmentList] = useState<any>([]);
+  console.log('appointmentList: ', appointmentList);
   const [userAppointmentList, setUserAppointmentList] = useState<any>([]);
   const [offSET, setOffset] = useState(0);
   const dispatch: any = useDispatch();

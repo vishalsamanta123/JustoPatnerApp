@@ -215,7 +215,14 @@ const strings = new LocalizedStrings({
      ticketStatusUpdate: 'Status Update',
 
      //deal flow
-     searchDealflow:'Search Deal Flow'
+     searchDealflow:'Search Deal Flow',
+
+    // status
+
+    hot: "Hot",
+    cold: "Cold",
+    warm: "warm",
+    leadType: 'Lead type'
   },
 });
 

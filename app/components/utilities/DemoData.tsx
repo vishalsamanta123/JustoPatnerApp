@@ -1,4 +1,11 @@
 import images from "../../assets/images";
+import strings from "./Localization";
+
+export const leadTypes: any = [
+  {label: `${strings.hot}`, value: `${strings.hot}`},
+  {label: `${strings.warm}`, value: `${strings.warm}`},
+  {label: `${strings.cold}`, value: `${strings.cold}`},
+]
 
 export const DATA: any = [
   { image: images.buildings },

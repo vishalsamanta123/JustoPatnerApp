@@ -15,6 +15,7 @@ import styles from "./styles";
 import Styles from "../../../../components/DropDown/styles";
 import InputCalender from "app/components/InputCalender";
 import moment from "moment";
+import { leadTypes } from "app/components/utilities/DemoData";
 
 const AppointmentAddView = (props: any) => {
   return (
@@ -62,6 +63,32 @@ const AppointmentAddView = (props: any) => {
             }}
           />
         </View>
+        <View style={styles.inputWrap}>
+          <DropdownInput
+            headingText={strings.leadType}
+            placeholder={strings.leadType}
+            data={leadTypes}
+            inputWidth={'100%'}
+            paddingLeft={16}
+            maxHeight={300}
+            labelField="label"
+            valueField={'value'}
+            value={props?.formData?.visit_status}
+            onChange={(item: any) => {
+              props.setFormData({
+                ...props.formData,
+                visit_status: item.value,
+              })
+            }}
+            newRenderItem={(item: any) => {
+              return (
+                <View style={Styles.item}>
+                  <Text style={Styles.textItem}>{item.label}</Text>
+                </View>
+              );
+            }}
+          />
+        </View>
         {props?.formData?.status === "1" ? (
           <>
             <View style={styles.inputWrap}>
@@ -87,11 +114,11 @@ const AppointmentAddView = (props: any) => {
                 }}
                 value={
                   props?.formData?.appointment_date === "" ||
-                  props?.formData?.appointment_date === null
+                    props?.formData?.appointment_date === null
                     ? ""
                     : moment(props?.formData?.appointment_date).format(
-                        DATE_FORMAT
-                      )
+                      DATE_FORMAT
+                    )
                 }
               />
             </View>
@@ -124,7 +151,7 @@ const AppointmentAddView = (props: any) => {
           <InputField
             headingText={"Description"}
             placeholderText={"Description"}
-            handleInputBtnPress={() => {}}
+            handleInputBtnPress={() => { }}
             onChangeText={(val: any) => {
               props.setFormData({
                 ...props.formData,
