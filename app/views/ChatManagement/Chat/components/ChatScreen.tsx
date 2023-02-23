@@ -39,7 +39,10 @@ const ChatScreen = ({ navigation, route }: any) => {
   const item = route.params || {};
   const dispatch: any = useDispatch();
   const { response = {} } = useSelector((state: any) => state.chatStatusData);
+  const profileData = useSelector((state: any) => state.profileData)
+  console.log('profileData: ', profileData);
   const [keys, setkeys] = useState([]);
+  const [userData, setUserData] = useState<any>({})
   const [messages, setMessages] = useState<any>([]);
   const [senderID, setSenderID] = useState<any>("");
   const [attachments, setAttachments] = useState({
@@ -47,6 +50,12 @@ const ChatScreen = ({ navigation, route }: any) => {
     url: "",
   });
   const { dirs } = RNFetchBlob.fs;
+
+  useEffect(() => {
+    if (profileData?.response?.status === 200) {
+      setUserData(profileData?.response?.data[0])
+    }
+  }, [profileData])
 
   useEffect(() => {
     getMsgList();
@@ -113,7 +122,6 @@ const ChatScreen = ({ navigation, route }: any) => {
             message_array.filter((i: any) => i?.["delete-" + senderID] == false)
           );
           const finalChatArray = msgArray.map((items: any) => {
-          console.log('items: ', items);
             if (
               items?.text !== "" ||
               typeof items?.text != 'undefined' ||
@@ -131,7 +139,7 @@ const ChatScreen = ({ navigation, route }: any) => {
                 user: {
                   _id: items?._id,
                   // name: "React Native",
-                  avatar: item.base_url + '/' + items.profile_picture,
+                  avatar: items.profile_picture,
                 },
               };
             } else {
@@ -158,7 +166,7 @@ const ChatScreen = ({ navigation, route }: any) => {
       isDelete: false,
       ["delete-" + senderID]: false,
       ["delete-" + item?.firebase_id]: false,
-      profile_picture: item.profile_picture
+      profile_picture: userData.profile_base_url + userData?.profile_picture
     };
 
     if (msg.trim() !== "") {
