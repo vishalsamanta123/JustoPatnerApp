@@ -31,6 +31,7 @@ const customDrawer = ({ navigation }: any) => {
   const { response = {} } = useSelector((state: any) => state.profileData)
   const permissionResponse = useSelector((state: any) => state.permissions);
   const [userData, setUserData] = useState<any>({})
+  console.log('userData: ', userData);
   const toggleDrawer = () => {
     navigation.toggleDrawer();
   };
@@ -62,8 +63,8 @@ const customDrawer = ({ navigation }: any) => {
           <View style={styles.NameContainer}>
             <Image
               style={styles.UserImge}
-              source={userData?.profile_picture ?
-                { uri: userData?.profile_picture }
+              source={userData?.profile_base_url && userData?.profile_picture ?
+                { uri: userData?.profile_base_url + userData?.profile_picture }
                 : images.dummyUser
               }
             />

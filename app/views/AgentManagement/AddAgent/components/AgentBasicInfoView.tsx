@@ -57,7 +57,8 @@ const AgentBasicInfoView = (props: any) => {
             style={styles.imageCircle}
           >
             {props?.agentInfoData?.profile_picture === undefined ||
-            props?.agentInfoData?.profile_picture === "" ? (
+              props?.agentInfoData?.profile_picture === "" ||
+              props?.agentInfoData?.profile_picture === null ? (
               <Image
                 style={styles.DummyloginBanner}
                 source={images.user}
@@ -68,7 +69,7 @@ const AgentBasicInfoView = (props: any) => {
                 source={{
                   uri: props?.agentInfoData?.profile_picture?.uri
                     ? props?.agentInfoData?.profile_picture?.uri
-                    : props?.agentInfoData?.profile_picture,
+                    : props?.agentInfoData?.profile_base_url + props?.agentInfoData?.profile_picture,
                 }}
                 resizeMode={"contain"}
                 style={styles.imageVw}
@@ -86,7 +87,7 @@ const AgentBasicInfoView = (props: any) => {
             <InputField
               require={true}
               placeholderText={"Name"} //can edit
-              handleInputBtnPress={() => {}}
+              handleInputBtnPress={() => { }}
               onChangeText={(data: any) => {
                 props.setAgentInfoData({
                   ...props.agentInfoData,
@@ -101,7 +102,7 @@ const AgentBasicInfoView = (props: any) => {
             <InputField
               require={true}
               placeholderText={"Ex:- 3675 9834 6012"} //can edit
-              handleInputBtnPress={() => {}}
+              handleInputBtnPress={() => { }}
               onChangeText={(data: any) => {
                 props.setAgentInfoData({
                   ...props.agentInfoData,
@@ -119,7 +120,7 @@ const AgentBasicInfoView = (props: any) => {
             <InputField
               require={true}
               placeholderText={"BNZAA2318JM"} //can edit
-              handleInputBtnPress={() => {}}
+              handleInputBtnPress={() => { }}
               onChangeText={(data: any) => {
                 props.setAgentInfoData({
                   ...props.agentInfoData,
@@ -213,11 +214,11 @@ const AgentBasicInfoView = (props: any) => {
               }}
               value={
                 props?.agentInfoData?.date_of_birth === "" ||
-                props?.agentInfoData?.date_of_birth === undefined
+                  props?.agentInfoData?.date_of_birth === undefined
                   ? ""
                   : moment(props?.agentInfoData?.date_of_birth).format(
-                      DATE_FORMAT
-                    )
+                    DATE_FORMAT
+                  )
               }
             />
           </View>
@@ -226,7 +227,7 @@ const AgentBasicInfoView = (props: any) => {
               require={true}
               placeholderText={"Mobile No."}
               editable={props.type === "add" ? true : false}
-              handleInputBtnPress={() => {}}
+              handleInputBtnPress={() => { }}
               onChangeText={(data: any) => {
                 props.setAgentInfoData({
                   ...props.agentInfoData,
@@ -243,7 +244,7 @@ const AgentBasicInfoView = (props: any) => {
             <InputField
               require={true}
               placeholderText={"WhatsApp No."} //can edit
-              handleInputBtnPress={() => {}}
+              handleInputBtnPress={() => { }}
               onChangeText={(data: any) => {
                 props.setAgentInfoData({
                   ...props.agentInfoData,
@@ -261,7 +262,7 @@ const AgentBasicInfoView = (props: any) => {
               require={true}
               placeholderText={"Email Address"}
               editable={props.type === "add" ? true : false}
-              handleInputBtnPress={() => {}}
+              handleInputBtnPress={() => { }}
               onChangeText={(data: any) => {
                 props.setAgentInfoData({
                   ...props.agentInfoData,
@@ -337,7 +338,7 @@ const AgentBasicInfoView = (props: any) => {
                           borderBottomWidth:
                             props?.agentInfoData?.working_location?.length -
                               1 ===
-                            index
+                              index
                               ? 0
                               : 0.6,
                         },

@@ -47,7 +47,7 @@ const EditProfileView = (props: any) => {
                 source={{
                   uri: props.editData?.local_profile_picture?.uri
                     ? props.editData?.local_profile_picture?.uri
-                    : props.editData?.profile_picture,
+                    : props.editData?.profile_base_url + props.editData?.profile_picture,
                 }}
               />
               :

@@ -12,10 +12,10 @@ import UserInfo from './UserInfo'
 import UserBankInfo from './UserBankInfo'
 
 const ProfileView = (props: any) => {
-  const {data, HandleBackPress, handleEditProfilePress, onpresContent} = props || {};
+  const { data, HandleBackPress, handleEditProfilePress, onpresContent } = props || {};
   const layout = useWindowDimensions();
 
-  const [allDetails , setAllDetails] = useState<any>({})
+  const [allDetails, setAllDetails] = useState<any>({})
   const [index, setIndex] = useState(0);
   const [routes] = useState([
     { key: 'first', title: 'User Info' },
@@ -24,15 +24,15 @@ const ProfileView = (props: any) => {
 
   const allDetailsall = useSelector((state: any) => state.agentData);
 
-  useEffect(() =>{
+  useEffect(() => {
     checkprofile()
-  },[allDetailsall])
+  }, [allDetailsall])
 
   const checkprofile = () => {
-    if(allDetailsall?.response?.status === 200){
+    if (allDetailsall?.response?.status === 200) {
       setAllDetails(allDetailsall?.response?.data[0])
     }
-  } 
+  }
 
   const renderTabBar = (props: any) => (
     <TabBar
@@ -44,16 +44,16 @@ const ProfileView = (props: any) => {
   );
 
   const FirstRoute = () => (
-    <UserInfo allDetails={allDetails} onpresContent={onpresContent}/>
+    <UserInfo allDetails={allDetails} onpresContent={onpresContent} />
   );
   const SecondRoute = () => (
-    <UserBankInfo allDetails={allDetails} onpresContent={onpresContent}/>
+    <UserBankInfo allDetails={allDetails} onpresContent={onpresContent} />
   );
   const renderScene = SceneMap({
     first: FirstRoute,
     second: SecondRoute,
   });
-  
+
   return (
     <View style={styles.mainContainer}>
       <Header
@@ -72,11 +72,14 @@ const ProfileView = (props: any) => {
         </View>
         <View style={styles.userCardView}>
           <View style={styles.usernameWrap}>
-            <Image style={styles.userImage} source={{uri: allDetails?.profile_picture}}  />
+            <Image style={styles.userImage} source={
+              allDetails?.profile_base_url && allDetails?.profile_picture ?
+                { uri: allDetails?.profile_base_url + allDetails?.profile_picture } :
+                images.dummyUser} />
             <Text style={styles.userNameText}>{allDetails?.agent_name}</Text>
           </View>
           <TouchableOpacity style={styles.editImageWrap} onPress={handleEditProfilePress}>
-            <Image style={styles.editIconImage} source={images.editIcon}/>
+            <Image style={styles.editIconImage} source={images.editIcon} />
           </TouchableOpacity>
         </View>
         <View style={styles.userInfoTabView}>
