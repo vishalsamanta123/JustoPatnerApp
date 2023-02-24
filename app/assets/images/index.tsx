@@ -40,6 +40,7 @@ const images = {
   shareIcon: require('./share.png'),
   locationIcon: require('./location.png'),
   playbuttonIcon: require('./playbutton.png'),
+  pause: require('./pause.png'),
   addCircle: require('./addCircle.png'),
   send: require('./send.png'),
   attach: require('./attach.png'),

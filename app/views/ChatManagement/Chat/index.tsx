@@ -13,7 +13,7 @@ const ChatViewScreen = ({ navigation, route }: any) => {
 
   const dispatch: any = useDispatch();
 
-  useEffect(() => {
+  const handleGetChatList = () => {
     dispatch(
       getAllChatInProperty({
         property_id: property_id,
@@ -21,6 +21,10 @@ const ChatViewScreen = ({ navigation, route }: any) => {
         offset: 0,
       })
     );
+  }
+
+  useEffect(() => {
+    handleGetChatList()
   }, [navigation, isFocused]);
 
   const handleBackPress = () => {
@@ -32,6 +36,7 @@ const ChatViewScreen = ({ navigation, route }: any) => {
         chatlist={response?.data}
         property_id={property_id}
         handleBackPress={handleBackPress}
+        handleGetChatList={handleGetChatList}
       />
     </>
   );

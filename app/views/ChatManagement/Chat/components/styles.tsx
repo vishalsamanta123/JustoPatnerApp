@@ -8,7 +8,9 @@ import {
   BLACK_COLOR,
   BORDER_COLOR,
   CALL_COLOR,
+  FONT_FAMILY_EXTRABOLD,
   FONT_FAMILY_SEMIBOLD,
+  GRAY_COLOR,
   PRIMARY_THEME_COLOR,
   WHITE_COLOR,
 } from "app/components/utilities/constant";
@@ -18,6 +20,7 @@ const styles = StyleSheet.create({
   mainContainer: {
     flex: 1,
     marginBottom: 20,
+    justifyContent: 'center',
   },
   headerStyle: {
     backgroundColor: PRIMARY_THEME_COLOR,
@@ -152,5 +155,41 @@ const styles = StyleSheet.create({
     justifyContent: "center",
     alignItems: "center",
   },
+  topContainer: {
+    flexDirection: "row",
+    marginVertical: normalizeSpacing(10),
+    justifyContent: "space-between",
+    marginHorizontal: normalizeSpacing(10),
+    color: PRIMARY_THEME_COLOR
+  },
+  topTxt: {
+    color: BLACK_COLOR,
+    fontSize: normalize(18),
+    fontFamily: FONT_FAMILY_EXTRABOLD,
+  },
+  closeIcon: {
+    tintColor: WHITE_COLOR,
+    width: normalizeWidth(25),
+    height: normalizeHeight(25),
+  },
+  playicon: {
+    tintColor: BLACK_COLOR,
+    width: normalizeWidth(35),
+    height: normalizeHeight(35),
+    padding: 10
+  },
+  borderView: {
+    borderBottomColor: GRAY_COLOR,
+    borderBottomWidth: 1,
+  },
+  playbutton:{
+    position: 'relative',
+    bottom: normalizeSpacing(260),
+    backgroundColor: WHITE_COLOR,
+    borderRadius: normalizeSpacing(25)
+  },
+  playButtonWrap: {
+    alignItems: 'center'
+  }
 });
 export default styles;

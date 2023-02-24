@@ -13,6 +13,7 @@ import ComingSoonScreen from "app/components/CommonScreen/ComingSoon";
 import { useSelector } from "react-redux";
 
 const ChatViewView = (props: any) => {
+  const loadingref = false;
   const [filteredData, setFilteredData] = useState([]);
   const [searchVal, setSearchVal] = useState("");
   useEffect(() => {
@@ -107,6 +108,8 @@ const ChatViewView = (props: any) => {
         renderItem={(item) => renderChatList(item.item)}
         ListEmptyComponent={<EmptyListScreen message={strings.chat} />}
         keyboardShouldPersistTaps
+        refreshing={loadingref}
+        onRefresh={() => props.handleGetChatList()}
       />
     </View>
   );

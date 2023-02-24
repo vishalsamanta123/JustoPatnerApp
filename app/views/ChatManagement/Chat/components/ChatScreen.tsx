@@ -24,25 +24,35 @@ import storage from "@react-native-firebase/storage";
 import AsyncStorage from "@react-native-async-storage/async-storage";
 import { firebase } from "@react-native-firebase/database";
 import apiEndPoints from "app/components/utilities/apiEndPoints";
-import { useIsFocused } from "@react-navigation/native";
+import { useFocusEffect, useIsFocused } from "@react-navigation/native";
 import moment from "moment";
 import ImagePicker from "react-native-image-crop-picker";
 import DocumentPicker from "react-native-document-picker";
-import { normalizeSpacing } from "app/components/scaleFontSize";
+import {
+  normalizeHeight,
+  normalizeSpacing,
+} from "app/components/scaleFontSize";
 import Video from "react-native-video";
 import RNFetchBlob from "rn-fetch-blob";
 import { chatStatusUpdate } from "app/Redux/Actions/ChatActions";
 import { useDispatch, useSelector } from "react-redux";
 import { START_LOADING, STOP_LOADING } from "app/Redux/types";
+import Modal from "react-native-modal";
+import FastImages from "app/components/FastImage";
+import VideoPlayer from "./VideoPlayer";
 
 const ChatScreen = ({ navigation, route }: any) => {
   const item = route.params || {};
   const dispatch: any = useDispatch();
   const { response = {} } = useSelector((state: any) => state.chatStatusData);
-  const profileData = useSelector((state: any) => state.profileData)
-  console.log('profileData: ', profileData);
+  const profileData = useSelector((state: any) => state.profileData);
+  const [isVisible, setIsVisible] = useState(false);
+  const [isVideoVisible, setIsVideoVisible] = useState(false);
+  const [paused, setPaused] = useState(false);
+  const [onPressData, setOnPressData] = useState("");
+  const [videoUrl, setVideoUrl] = useState("");
   const [keys, setkeys] = useState([]);
-  const [userData, setUserData] = useState<any>({})
+  const [userData, setUserData] = useState<any>({});
   const [messages, setMessages] = useState<any>([]);
   const [senderID, setSenderID] = useState<any>("");
   const [attachments, setAttachments] = useState({
@@ -51,19 +61,24 @@ const ChatScreen = ({ navigation, route }: any) => {
   });
   const { dirs } = RNFetchBlob.fs;
 
-  useEffect(() => {
-    if (profileData?.response?.status === 200) {
-      setUserData(profileData?.response?.data[0])
-    }
-  }, [profileData])
+  useFocusEffect(
+    React.useCallback(() => {
+      if (profileData?.response?.status === 200) {
+        setUserData(profileData?.response?.data[0]);
+      }
+      return () => {};
+    }, [navigation, profileData])
+  );
 
   useEffect(() => {
     getMsgList();
-    dispatch(chatStatusUpdate({
-      property_id: item?.property_id,
-      receiver_id: item?._id,
-      msg_status: 2,
-    }))
+    dispatch(
+      chatStatusUpdate({
+        property_id: item?.property_id,
+        receiver_id: item?._id,
+        msg_status: 2,
+      })
+    );
   }, []);
 
   const handleBackPress = () => {
@@ -124,7 +139,7 @@ const ChatScreen = ({ navigation, route }: any) => {
           const finalChatArray = msgArray.map((items: any) => {
             if (
               items?.text !== "" ||
-              typeof items?.text != 'undefined' ||
+              typeof items?.text != "undefined" ||
               items?.image !== "" ||
               items?.video !== ""
             ) {
@@ -143,7 +158,7 @@ const ChatScreen = ({ navigation, route }: any) => {
                 },
               };
             } else {
-              return
+              return;
             }
           });
           setMessages(finalChatArray);
@@ -151,9 +166,11 @@ const ChatScreen = ({ navigation, route }: any) => {
       });
   };
 
+  console.log("userData: ", userData);
   const _handleChatSend = async (msg: any) => {
     const asyncSenderID: any = await AsyncStorage.getItem("firebase_id");
     const senderID: any = JSON.parse(asyncSenderID);
+
     setSenderID(senderID);
     const params = {
       createdAt: new Date().toISOString(),
@@ -166,7 +183,9 @@ const ChatScreen = ({ navigation, route }: any) => {
       isDelete: false,
       ["delete-" + senderID]: false,
       ["delete-" + item?.firebase_id]: false,
-      profile_picture: userData.profile_base_url + userData?.profile_picture
+      profile_picture:
+        userData?.profile_base_url.toString() +
+        userData?.profile_picture.toString(),
     };
 
     if (msg.trim() !== "") {
@@ -315,7 +334,8 @@ const ChatScreen = ({ navigation, route }: any) => {
         .set(params)
         .then((ref: any) => {
           dispatch({ type: STOP_LOADING });
-        }).catch(() => {
+        })
+        .catch(() => {
           dispatch({ type: STOP_LOADING });
         });
     }
@@ -353,7 +373,16 @@ const ChatScreen = ({ navigation, route }: any) => {
 
   const renderImageMessage = (data: any) => {
     return (
-      <View>
+      <TouchableOpacity
+        onPress={() => {
+          setIsVisible(true);
+          setOnPressData(
+            data.currentMessage.image
+              ? data.currentMessage.image
+              : messages.image
+          );
+        }}
+      >
         {data?.currentMessage?.type !== "doc" ? (
           <Image
             source={{
@@ -388,13 +417,22 @@ const ChatScreen = ({ navigation, route }: any) => {
             </TouchableOpacity>
           </View>
         )}
-      </View>
+      </TouchableOpacity>
     );
   };
 
   const renderVideoMessage = (data: any) => {
     return (
-      <View>
+      <TouchableOpacity
+        onPress={() => {
+          setIsVideoVisible(true);
+          setVideoUrl(
+            data.currentMessage.video
+              ? data.currentMessage.video
+              : messages.video
+          );
+        }}
+      >
         <Video
           source={{
             uri: data.currentMessage.video
@@ -406,6 +444,7 @@ const ChatScreen = ({ navigation, route }: any) => {
           }} // Store reference
           // onBuffer={this.onBuffer} // Callback when remote video is buffering
           // onError={this.videoError} // Callback when video cannot be loaded
+          muted
           style={{
             height: 200,
             width: 200,
@@ -416,10 +455,12 @@ const ChatScreen = ({ navigation, route }: any) => {
           }}
           resizeMode={"cover"}
         />
-      </View>
+      </TouchableOpacity>
     );
   };
-  console.log('messages: ', messages);
+  const handlePlayPause = () => {
+    setPaused(!paused);
+  };
 
   return (
     <View style={styles.mainContainer}>
@@ -459,6 +500,37 @@ const ChatScreen = ({ navigation, route }: any) => {
         }}
         renderSend={renderSend}
         renderComposer={renderComposer}
+      />
+      <Modal
+        isVisible={isVisible}
+        onBackdropPress={() => {
+          setIsVisible(false);
+          setOnPressData("");
+        }}
+        onBackButtonPress={() => {
+          setIsVisible(false);
+          setOnPressData("");
+        }}
+      >
+        <View>
+          <FastImages
+            source={{ uri: onPressData }}
+            style={{
+              width: "100%",
+              height: normalizeHeight(300),
+              alignItems: "center",
+              justifyContent: "center",
+            }}
+          />
+        </View>
+      </Modal>
+      <VideoPlayer
+        Visible={isVideoVisible}
+        setIsVisible={setIsVideoVisible}
+        videoUrl={videoUrl}
+        paused={paused}
+        setIsPlay={setPaused}
+        handlePlayPause={handlePlayPause}
       />
     </View>
   );
