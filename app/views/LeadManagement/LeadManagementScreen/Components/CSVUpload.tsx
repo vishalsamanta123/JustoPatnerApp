@@ -5,70 +5,81 @@ import strings from "app/components/utilities/Localization";
 import styles from "./Styles";
 import Header from "app/components/Header";
 import Button from "app/components/Button";
-import { normalize, normalizeHeight} from "app/components/scaleFontSize";
+import { normalize, normalizeHeight, normalizeSpacing } from "app/components/scaleFontSize";
 import DocumentPicker from "react-native-document-picker";
 import { BLACK_COLOR, FONT_FAMILY_REGULAR, GREEN_COLOR, PRIMARY_THEME_COLOR, RED_COLOR } from "app/components/utilities/constant";
 import DropdownInput from "app/components/DropDown";
 import { useDispatch, useSelector } from "react-redux";
 import { getAllAlloctaeProperty } from "app/Redux/Actions/propertyActions";
-import Styles from "../../../../components/Modals/styles"
+import Styles from "../../../../components/Modals/styles";
 import { useFocusEffect } from "@react-navigation/native";
+import ErrorMessage from "app/components/ErrorMessage";
 import FileViewer from "react-native-file-viewer";
 import RNFS from "react-native-fs";
-import ErrorMessage from "app/components/ErrorMessage";
-import { UploadCSVFileRemove, uploadCSVFile } from "app/Redux/Actions/LeadsActions";
+import { UploadCSVFileRemove, uploadCSVFile, getBulkCSVfile } from "app/Redux/Actions/LeadsActions";
 
 const CSVUpload = ({ navigation }: any) => {
   const { response = {}, list = "" } =
     useSelector((state: any) => state.uploadVisitorDetailCSVFileData) || {};
   const propertyData = useSelector((state: any) => state.propertyData) || {};
-  
-    const dispatch: any = useDispatch();
-
-    const [allProperty, setAllProperty] = useState<any>([]);
-    const [formData, setFormData] = useState<any>({
-      property_id: "",
-      property_type_title: "",
-      property_title: "",
-      uri: "",
-      name: "",
-      type: ""
-    });
-    const [csvData, setCsvData] = useState<any>({});
-    useEffect(() => {
-      if (propertyData?.response?.status === 200) {
-        setAllProperty(propertyData?.response?.data);
-      }
-    }, [navigation]);
-    useFocusEffect(
-      React.useCallback(() => {
+  const bulkvisitorData = useSelector((state: any) => state.visitorData) || {};
+  const [csvFileData, setCSVfileData] = useState<any>("")
+  const dispatch: any = useDispatch();
+  const [allProperty, setAllProperty] = useState<any>([]);
+  const [formData, setFormData] = useState<any>({
+    property_id: "",
+    property_type_title: "",
+    property_title: "",
+    uri: "",
+    name: "",
+    type: "",
+  });
+  const [csvData, setCsvData] = useState<any>({});
+  useEffect(() => {
+    if (propertyData?.response?.status === 200) {
+      setAllProperty(propertyData?.response?.data);
+    } else {
+      setAllProperty([]);
+    }
+  }, [navigation, propertyData]);
+  useFocusEffect(
+    React.useCallback(() => {
       dispatch(
         getAllAlloctaeProperty({
           offset: 0,
         })
       );
+      dispatch(getBulkCSVfile({}));
     }, [navigation]));
 
-    useEffect(() => {
-      if (response?.status === 200) {
-        dispatch(
-          UploadCSVFileRemove()
-        );
-        ErrorMessage({
-          msg: response?.message,
-          backgroundColor: GREEN_COLOR,
-        });
-        navigation.goBack()
-      }
-    }, [response]);
-  
+  useEffect(() => {
+    if (bulkvisitorData?.response?.status === 200) {
+      setCSVfileData(bulkvisitorData?.response?.data?.base_url +
+        bulkvisitorData?.response?.data?.file)
+    } else {
+      setCSVfileData("")
+    }
+  }, [bulkvisitorData])
+  useEffect(() => {
+    if (response?.status === 200) {
+      dispatch(
+        UploadCSVFileRemove()
+      );
+      ErrorMessage({
+        msg: response?.message,
+        backgroundColor: GREEN_COLOR,
+      });
+      navigation.goBack()
+    }
+  }, [response]);
+
   const handleBackPress = () => {
     navigation.goBack();
   };
 
-  const handleBrowsePress =async ()=>{
+  const handleBrowsePress = async () => {
     const result: any = await DocumentPicker.pick({
-      type: [DocumentPicker.types.csv],
+      type: [DocumentPicker.types.csv, DocumentPicker.types.pdf],
     });
     setCsvData({
       uri: result[0]?.uri,
@@ -79,7 +90,8 @@ const CSVUpload = ({ navigation }: any) => {
       ...formData,
       uri: result[0]?.uri,
       name: result[0]?.name,
-      type: result[0]?.type, })
+      type: result[0]?.type,
+    })
   }
   const handleUploadPress = () => {
     if (validation()) {
@@ -89,7 +101,35 @@ const CSVUpload = ({ navigation }: any) => {
       dispatch(uploadCSVFile(paramFormData));
     }
   };
-
+  const onPressCSV = () => {
+    // if (csvFileData) {
+    //   function getUrlExtension(url: any) {
+    //     return csvFileData.split(/[#?]/)[0].split(".").pop().trim();
+    //   }
+    //   const extension = getUrlExtension(csvFileData);
+    //   console.log('extension: ', extension);
+    //   const localFile = `${RNFS.DocumentDirectoryPath}/temporaryfile.${extension}`;
+    //   console.log('localFile: ', localFile);
+    //   const options = {
+    //     fromUrl: csvFileData,
+    //     toFile: localFile,
+    //   };
+    //   console.log('options: ', options);
+    //   RNFS.downloadFile(options)
+    //     .promise.then(() => FileViewer.open(localFile))
+    //     .then(() => {
+    //       // success
+    //     })
+    //     .catch((error) => {
+    //       console.log("error", error);
+    //       // error
+    //       ErrorMessage({
+    //         msg: error?.message,
+    //         backgroundColor: RED_COLOR
+    //       })
+    //     });
+    // }
+  }
   const validation = () => {
     let isError = true;
     let errorMessage: any = "";
@@ -97,7 +137,7 @@ const CSVUpload = ({ navigation }: any) => {
     //   isError = false;
     //   errorMessage = "Please select property name";
     // } else
-     if (formData?.uri === "" || formData?.uri === null) {
+    if (formData?.uri === "" || formData?.uri === null) {
       isError = false;
       errorMessage = "Please select CSV file";
     }
@@ -154,7 +194,7 @@ const CSVUpload = ({ navigation }: any) => {
           }}
         />
       </View>
-          <View style={styles.browseView}>
+      <View style={styles.browseView}>
         <View
           style={[
             styles.AttachViewWrap,
@@ -185,32 +225,35 @@ const CSVUpload = ({ navigation }: any) => {
                 {strings.browse}
               </Text>
             </TouchableOpacity>
-            
+
           </View>
         </View>
       </View>
       {csvData.name ? (
         <View style={styles.uploadImage}>
-        <Image source={images.pdfIcone} style={styles.image} />
-      </View>
+          <Image source={images.pdfIcone} style={styles.image} />
+        </View>
       ) : (
         <View style={styles.notFoundView}>
           <Text style={styles.notFoundText}>{strings.browseToUploadCsv}</Text>
         </View>
       )}
-        <View style={[styles.uploadButton , {justifyContent:'flex-end' , alignItems:'center'}]}>
-        <TouchableOpacity style={{ marginVertical: normalizeHeight(25) }} >
-          <Text style={[styles.uploadTxt , {color: BLACK_COLOR , fontFamily: FONT_FAMILY_REGULAR}]}>{strings.dowloadCSV}</Text>
+      <View style={[styles.uploadButton, { justifyContent: 'flex-end', alignItems: 'center' }]}>
+        <TouchableOpacity onPress={() => onPressCSV()}
+          style={{ marginVertical: normalizeHeight(25) }} >
+          <Text style={[styles.uploadTxt, { color: BLACK_COLOR, fontFamily: FONT_FAMILY_REGULAR }]}>{strings.dowloadCSV}</Text>
         </TouchableOpacity>
+        <View style={{ marginVertical: normalizeSpacing(20) }}>
           <Button
             buttonText={"Upload"}
             width={200}
             height={50}
             btnTxtsize={20}
-            handleBtnPress={() => {handleUploadPress()}}
+            handleBtnPress={() => { handleUploadPress() }}
           />
         </View>
       </View>
+    </View>
   );
 };
 

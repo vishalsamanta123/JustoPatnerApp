@@ -99,8 +99,10 @@ const AddNewVisitorScreen = ({ navigation, route }: any) => {
       propertyData?.type === "ALLOCATE"
     ) {
       setAllProperty(propertyData?.response?.data);
+    } else {
+      setAllProperty([]);
     }
-  }, [navigation]);
+  }, [navigation, propertyData]);
   useEffect(() => {
     dispatch(
       getAllAlloctaeProperty({

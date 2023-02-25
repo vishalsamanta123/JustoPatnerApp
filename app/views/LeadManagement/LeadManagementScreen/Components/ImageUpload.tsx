@@ -39,8 +39,10 @@ const ImageUpload = ({ navigation }: any) => {
   useEffect(() => {
     if (propertyData?.response?.status === 200) {
       setAllProperty(propertyData?.response?.data);
+    } else {
+      setAllProperty([]);
     }
-  }, [navigation]);
+  }, [navigation, propertyData]);
   useEffect(() => {
     if (response?.status === 200) {
       dispatch(
@@ -61,7 +63,7 @@ const ImageUpload = ({ navigation }: any) => {
           offset: 0,
         })
       );
-      return () => {};
+      return () => { };
     }, [navigation])
   );
 
@@ -72,7 +74,7 @@ const ImageUpload = ({ navigation }: any) => {
     //   isError = false;
     //   errorMessage = "Please select property name";
     // } else
-     if (formData?.document === "" || formData?.document === null) {
+    if (formData?.document === "" || formData?.document === null) {
       isError = false;
       errorMessage = "Please select Image";
     }
@@ -109,7 +111,7 @@ const ImageUpload = ({ navigation }: any) => {
         headerText={strings.uploadimage}
         headerStyle={styles.headerStyle}
         RightFirstIconStyle={styles.RightFirstIconStyle}
-        //   handleOnRightFirstIconPress={() => setFilterisVisible(true)}
+      //   handleOnRightFirstIconPress={() => setFilterisVisible(true)}
       />
       {/* <TouchableOpacity style={styles.browseView} onPress={() => {}}>
         <Text style={styles.uploadTxt}>{strings.uploadimage}</Text>
@@ -178,7 +180,7 @@ const ImageUpload = ({ navigation }: any) => {
                 {strings.browse}
               </Text>
             </TouchableOpacity>
-            
+
           </View>
         </View>
       </View>

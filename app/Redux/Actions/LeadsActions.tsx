@@ -1,7 +1,7 @@
 import { handleApiError } from "app/components/ErrorMessage/HandleApiErrors";
 import apiEndPoints from "app/components/utilities/apiEndPoints";
 import { apiCall } from "app/components/utilities/httpClient";
-import { GET_VISITOR_DETAIL, VISITOR_ERROR, VISITOR_LIST, VISITOR_STATUSUPDATE, ADD_VISITOR, ADD_VISITOR_FORM, EDIT_VISITOR, REMOVE_VISITOR, START_LOADING, STOP_LOADING, UPLOAD_IMAGE, UPLOAD_IMAGE_ERROR, UPLOAD_IMAGE_REMOVE, UPLOAD_CSV_FILE, UPLOAD_CSV_FILE_ERROR, UPLOAD_CSV_FILE_REMOVE, ADD_VISITOR_WITHOUT_PROPERTY } from "../types";
+import { GET_VISITOR_DETAIL, VISITOR_ERROR, VISITOR_LIST, VISITOR_STATUSUPDATE, ADD_VISITOR, ADD_VISITOR_FORM, EDIT_VISITOR, REMOVE_VISITOR, START_LOADING, STOP_LOADING, UPLOAD_IMAGE, UPLOAD_IMAGE_ERROR, UPLOAD_IMAGE_REMOVE, UPLOAD_CSV_FILE, UPLOAD_CSV_FILE_ERROR, UPLOAD_CSV_FILE_REMOVE, ADD_VISITOR_WITHOUT_PROPERTY, GET_BULK_CSV, GET_BULK_CSV_ERROR } from "../types";
 
 export const getAllLeadsList = (params: any) => async (dispatch: any) => {
     dispatch({ type: START_LOADING })
@@ -163,13 +163,36 @@ export const getVisitorDetail = (params: any) => async (dispatch: any) => {
         dispatch({ type: STOP_LOADING })
     }
 };
+export const getBulkCSVfile = (params: any) => async (dispatch: any) => {
+    dispatch({ type: START_LOADING })
+    try {
+        const res = await apiCall("post", apiEndPoints.GET_BULK_CSVFILE, params);
+        if (res.data.status === 200) {
+            dispatch({
+                type: GET_BULK_CSV,
+                payload: res.data,
+            });
+        } else {
+            handleApiError(res.data)
+            return [];
+        }
+    } catch (e) {
+        dispatch({
+            type: GET_BULK_CSV_ERROR,
+            payload: console.log(e),
+        });
+    }
+    finally {
+        dispatch({ type: STOP_LOADING })
+    }
+};
 export const uploadImage = (params: any) => async (dispatch: any) => {
     dispatch({ type: START_LOADING })
     try {
         const header = {
             "Content-Type": "multipart/form-data",
             "access-control-allow-origin": "*",
-          };
+        };
         const res = await apiCall("post", apiEndPoints.UPLOAD_IMAGE, params, header);
         if (res.data.status === 200) {
             dispatch({
@@ -196,7 +219,7 @@ export const uploadCSVFile = (params: any) => async (dispatch: any) => {
         const header = {
             "Content-Type": "multipart/form-data",
             "access-control-allow-origin": "*",
-          };
+        };
         const res = await apiCall("post", apiEndPoints.UPLOAD_CSVFile, params, header);
         if (res.data.status === 200) {
             dispatch({
