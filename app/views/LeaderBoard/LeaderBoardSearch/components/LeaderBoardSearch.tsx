@@ -19,8 +19,8 @@ const LeaderBoardSearchView = (props: any) => {
                 headerText={strings.leaderHeader}
                 headerStyle={styles.headerStyle}
                 headerTextStyle={styles.headerTextStyle}
-                leftImageSrc={images.backArrow}
-                rightSecondImageScr={images.notification}
+                leftImageSrc={images?.backArrow}
+                rightSecondImageScr={images?.notification}
                 RightSecondIconStyle={{ tintColor: WHITE_COLOR }}
                 leftImageIconStyle={{ tintColor: WHITE_COLOR }}
                 handleOnLeftIconPress={props?.onPressBack}

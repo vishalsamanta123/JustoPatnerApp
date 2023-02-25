@@ -107,7 +107,7 @@ const ChatViewView = (props: any) => {
         data={filteredData}
         renderItem={(item) => renderChatList(item.item)}
         ListEmptyComponent={<EmptyListScreen message={strings.chat} />}
-        keyboardShouldPersistTaps
+        keyboardShouldPersistTaps={"handled"}
         refreshing={loadingref}
         onRefresh={() => props.handleGetChatList()}
       />

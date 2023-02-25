@@ -62,7 +62,9 @@
 		232C6B083B24402FA51CA52A /* Nunito-ExtraLightItalic.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = "Nunito-ExtraLightItalic.ttf"; path = "../app/assets/fonts/Nunito-ExtraLightItalic.ttf"; sourceTree = "<group>"; };
 		48EFF0582222F7C857673BE3 /* libPods-JustoPartner.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-JustoPartner.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		584738E2365C8EE4469B9C13 /* Pods-JustoPartner.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-JustoPartner.debug.xcconfig"; path = "Target Support Files/Pods-JustoPartner/Pods-JustoPartner.debug.xcconfig"; sourceTree = "<group>"; };
+		5F8B4A3C29A75E51009A798F /* JustoPartnerDebug.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; name = JustoPartnerDebug.entitlements; path = JustoPartner/JustoPartnerDebug.entitlements; sourceTree = "<group>"; };
 		5F8D05E82994B81F00A16A37 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
+		5FEA4E7129A77ACA00FDAD71 /* JustoPartnerRelease.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; name = JustoPartnerRelease.entitlements; path = JustoPartner/JustoPartnerRelease.entitlements; sourceTree = "<group>"; };
 		67CC06F1BE3DD2BBFE518788 /* Pods-JustoPartner.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-JustoPartner.release.xcconfig"; path = "Target Support Files/Pods-JustoPartner/Pods-JustoPartner.release.xcconfig"; sourceTree = "<group>"; };
 		6813C1F4B6AD4162B48298C9 /* Nunito-LightItalic.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = "Nunito-LightItalic.ttf"; path = "../app/assets/fonts/Nunito-LightItalic.ttf"; sourceTree = "<group>"; };
 		718F3F011F53460BBC118811 /* Nunito-BlackItalic.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = "Nunito-BlackItalic.ttf"; path = "../app/assets/fonts/Nunito-BlackItalic.ttf"; sourceTree = "<group>"; };
@@ -120,6 +122,8 @@
 		13B07FAE1A68108700A75B9A /* JustoPartner */ = {
 			isa = PBXGroup;
 			children = (
+				5FEA4E7129A77ACA00FDAD71 /* JustoPartnerRelease.entitlements */,
+				5F8B4A3C29A75E51009A798F /* JustoPartnerDebug.entitlements */,
 				13B07FAF1A68108700A75B9A /* AppDelegate.h */,
 				13B07FB01A68108700A75B9A /* AppDelegate.mm */,
 				13B07FB51A68108700A75B9A /* Images.xcassets */,
@@ -575,8 +579,11 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
-				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_TEAM = D4T6V32GUP;
+				CODE_SIGN_ENTITLEMENTS = JustoPartner/JustoPartnerDebug.entitlements;
+				CODE_SIGN_IDENTITY = "iPhone Distribution";
+				CODE_SIGN_STYLE = Manual;
+				CURRENT_PROJECT_VERSION = 2;
+				DEVELOPMENT_TEAM = L6K53HTKSQ;
 				ENABLE_BITCODE = NO;
 				INFOPLIST_FILE = JustoPartner/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
@@ -588,8 +595,9 @@
 					"-ObjC",
 					"-lc++",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = com.justo.partner;
+				PRODUCT_BUNDLE_IDENTIFIER = com.Justoversepartner.in;
 				PRODUCT_NAME = JustoPartner;
+				PROVISIONING_PROFILE_SPECIFIER = "Justoversepartner(Distribution)";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_VERSION = 5.0;
 				VERSIONING_SYSTEM = "apple-generic";
@@ -602,7 +610,10 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
-				CURRENT_PROJECT_VERSION = 1;
+				CODE_SIGN_ENTITLEMENTS = JustoPartner/JustoPartnerRelease.entitlements;
+				CODE_SIGN_IDENTITY = "iPhone Distribution";
+				CURRENT_PROJECT_VERSION = 2;
+				DEVELOPMENT_TEAM = L6K53HTKSQ;
 				INFOPLIST_FILE = JustoPartner/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
@@ -613,8 +624,9 @@
 					"-ObjC",
 					"-lc++",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = com.justo.partner;
+				PRODUCT_BUNDLE_IDENTIFIER = com.Justoversepartner.in;
 				PRODUCT_NAME = JustoPartner;
+				PROVISIONING_PROFILE_SPECIFIER = "Justoversepartner(Distribution)";
 				SWIFT_VERSION = 5.0;
 				VERSIONING_SYSTEM = "apple-generic";
 			};

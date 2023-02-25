@@ -7,6 +7,8 @@ import images from "app/assets/images";
 
 const UserBankInfo = (props: any) => {
   const { allDetails } = props;
+  console.log('allDetails: ', allDetails);
+
   return (
     <ScrollView style={styles.InformationView}>
       <View style={styles.fieldView}>
@@ -96,10 +98,10 @@ const UserBankInfo = (props: any) => {
         <Text style={styles.colon}>:</Text>
         <View style={styles.valueView}>
           <Text style={styles.valueText}>
-            {allDetails?.agencies?.agency_bank_detail?.bank_name === "" ||
-              allDetails?.agencies?.agency_bank_detail?.bank_name === null
+            {allDetails?.cp_bank_detail?.bank_name === "" ||
+              allDetails?.cp_bank_detail?.bank_name === null
               ? strings.notfount
-              : allDetails?.agencies?.agency_bank_detail?.bank_name
+              : allDetails?.cp_bank_detail?.bank_name
             }
           </Text>
         </View>
@@ -111,10 +113,10 @@ const UserBankInfo = (props: any) => {
         <Text style={styles.colon}>:</Text>
         <View style={styles.valueView}>
           <Text style={styles.valueText}>
-            {allDetails?.agencies?.agency_bank_detail?.branch_name === "" ||
-              allDetails?.agencies?.agency_bank_detail?.branch_name === null
+            {allDetails?.cp_bank_detail?.branch_name === "" ||
+              allDetails?.cp_bank_detail?.branch_name === null
               ? strings.notfount
-              : allDetails?.agencies?.agency_bank_detail?.branch_name
+              : allDetails?.cp_bank_detail?.branch_name
             }
           </Text>
         </View>
@@ -126,10 +128,10 @@ const UserBankInfo = (props: any) => {
         <Text style={styles.colon}>:</Text>
         <View style={styles.valueView}>
           <Text style={styles.valueText}>
-            {allDetails?.agencies?.agency_bank_detail?.account_no === "" ||
-              allDetails?.agencies?.agency_bank_detail?.account_no === null
+            {allDetails?.cp_bank_detail?.account_no === "" ||
+              allDetails?.cp_bank_detail?.account_no === null
               ? strings.notfount
-              : allDetails?.agencies?.agency_bank_detail?.account_no
+              : allDetails?.cp_bank_detail?.account_no
             }
           </Text>
         </View>
@@ -141,10 +143,10 @@ const UserBankInfo = (props: any) => {
         <Text style={styles.colon}>:</Text>
         <View style={styles.valueView}>
           <Text style={styles.valueText}>
-            {allDetails?.agencies?.agency_bank_detail?.ifsc_code === "" ||
-              allDetails?.agencies?.agency_bank_detail?.ifsc_code === null
+            {allDetails?.cp_bank_detail?.ifsc_code === "" ||
+              allDetails?.cp_bank_detail?.ifsc_code === null
               ? strings.notfount
-              : allDetails?.agencies?.agency_bank_detail?.ifsc_code}
+              : allDetails?.cp_bank_detail?.ifsc_code}
           </Text>
         </View>
       </View>

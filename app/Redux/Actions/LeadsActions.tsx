@@ -187,6 +187,7 @@ export const getBulkCSVfile = (params: any) => async (dispatch: any) => {
     }
 };
 export const uploadImage = (params: any) => async (dispatch: any) => {
+console.log('params: ', params);
     dispatch({ type: START_LOADING })
     try {
         const header = {
@@ -214,6 +215,7 @@ export const uploadImage = (params: any) => async (dispatch: any) => {
     }
 };
 export const uploadCSVFile = (params: any) => async (dispatch: any) => {
+console.log('params: uploadCSVFile', params);
     dispatch({ type: START_LOADING })
     try {
         const header = {

@@ -79,11 +79,11 @@ const styles = StyleSheet.create({
     color: WHITE_COLOR,
   },
   qrCodeView: {
-    padding: normalizeSpacing(10),
+    // padding: normalizeSpacing(10),
     backgroundColor: WHITE_COLOR,
     alignItems: 'center',
     justifyContent: 'center',
-    borderRadius: 15,
+    // borderRadius: 15,
   },
   qrCodeImage: {
     height: normalizeHeight(100),

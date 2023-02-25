@@ -221,7 +221,7 @@ const strings = new LocalizedStrings({
 
     hot: "Hot",
     cold: "Cold",
-    warm: "warm",
+    warm: "Warm",
     leadType: 'Lead type'
   },
 });

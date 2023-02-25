@@ -128,6 +128,7 @@ const AppointmentView = (props: any) => {
     navigation.navigate("AppointmentDetails", data);
   };
   const hanndleUserDetailPress = (data: any) => {
+  console.log('data: hanndleUserDetailPress ', data);
     navigation.navigate("UserAppointmentDetails", data);
   };
   const onPressEdit = (data: any) => {

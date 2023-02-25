@@ -16,8 +16,8 @@ const LeaderBoardItems = (props: any) => {
   return (
     <View style={styles.IteamView}>
       <Image
-        source={{ uri: item?.base_url + item?.property_image }}
-        resizeMode={"contain"}
+        source={{ uri: `${item?.base_url}${item?.property_image}` }}
+        resizeMode={'contain'}
         style={{ width: normalizeWidth(100), height: normalizeHeight(100) }}
       />
       <View style={styles.Txtview}>
