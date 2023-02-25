@@ -67,7 +67,7 @@ const ChatScreen = ({ navigation, route }: any) => {
         setUserData(profileData?.response?.data[0]);
       }
       return () => {};
-    }, [navigation, profileData])
+    }, [navigation, profileData, response])
   );
 
   useEffect(() => {
@@ -166,7 +166,6 @@ const ChatScreen = ({ navigation, route }: any) => {
       });
   };
 
-  console.log("userData: ", userData);
   const _handleChatSend = async (msg: any) => {
     const asyncSenderID: any = await AsyncStorage.getItem("firebase_id");
     const senderID: any = JSON.parse(asyncSenderID);
@@ -183,9 +182,7 @@ const ChatScreen = ({ navigation, route }: any) => {
       isDelete: false,
       ["delete-" + senderID]: false,
       ["delete-" + item?.firebase_id]: false,
-      profile_picture:
-        userData?.profile_base_url.toString() +
-        userData?.profile_picture.toString(),
+      profile_picture: `${profileData?.response?.data[0]?.profile_base_url?.toString()}${profileData?.response?.data[0]?.profile_picture?.toString()}`,
     };
 
     if (msg.trim() !== "") {
