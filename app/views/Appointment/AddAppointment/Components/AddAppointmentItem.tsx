@@ -269,6 +269,7 @@ const AddAppointmentItem = (props: any) => {
                   require={true}
                   placeholderText={strings.noofguest}
                   handleInputBtnPress={() => { }}
+                  maxLength={2}
                   headingText={strings.noofguest}
                   valueshow={props.addAppointmentForm?.number_of_guest?.toString()}
                   onChangeText={(val: any) => {

@@ -89,7 +89,7 @@ const DashboardView = (props: any) => {
                 <Text style={styles.welcomeNameText}>{props?.dashBoardData?.user_name}</Text>
               </View>
             </View>
-            <View style={styles.qrCodeView}>
+            {/* <View style={styles.qrCodeView}> */}
               {props?.dashBoardData?.qr_code != "" ?
                 <Image source={{ uri: props?.dashBoardData?.qr_code }}
                   style={styles.qrCodeImage} />
@@ -99,7 +99,7 @@ const DashboardView = (props: any) => {
               {/* <TouchableOpacity style={styles.linkImageView}>
                 <Image source={images.link} style={styles.linkImage} />
               </TouchableOpacity> */}
-            </View>
+            {/* </View> */}
           </View>
           <View style={styles.secondPortion}>
             {/* <View style={styles.firstCardView}>

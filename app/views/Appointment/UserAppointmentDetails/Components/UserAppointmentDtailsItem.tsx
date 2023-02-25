@@ -1,10 +1,32 @@
 import { View, Text, ScrollView, Image } from 'react-native'
-import React from 'react'
+import React, { useState } from 'react'
 import styles from './Styles'
 import moment from 'moment'
+import { RED_COLOR, YELLOW_COLOR, GREEN_COLOR, BLACK_COLOR, MAP_KEY } from 'app/components/utilities/constant'
+import strings from 'app/components/utilities/Localization'
+import Geocoder from 'react-native-geocoding'
 
 const UserAppointmentDtailsItem = (props : any) => {
   const appdetail = props?.status || {}
+  const [location, setLocation] = useState("");
+  Geocoder.init(MAP_KEY);
+  if (
+    appdetail?.latitude !== undefined &&
+    appdetail?.longitude !== undefined &&
+    appdetail?.latitude !== "" &&
+    appdetail?.longitude !== "" &&
+    appdetail?.latitude !== null &&
+    appdetail?.longitude !== null
+  ) {
+    Geocoder.from(appdetail?.latitude, appdetail?.longitude)
+      .then((json: any) => {
+        var addressComponent = json.results[0].formatted_address;
+        setLocation(addressComponent);
+      })
+      .catch((error: any) => console.warn(error));
+  } else {
+  }
+
   return (
     <ScrollView>
       <View style={styles.Txtview}>
@@ -49,16 +71,37 @@ const UserAppointmentDtailsItem = (props : any) => {
         </View>
         <View><Text>:</Text></View>
         <View style={styles.nameContainer}>
-        <Text style={styles.nameTxt}>{
-            appdetail.appointment_status == 1 ? 'Pending' :
-              appdetail.appointment_status == 2 ? 'Confirm' :
-                appdetail.appointment_status == 3 ? 'Complete' : 'Appointment cancel'
-          }</Text>
+        <Text
+            style={[
+              styles.nameTxt,
+              {
+                color:
+                  appdetail.appointment_status == 1 ||
+                  appdetail.appointment_status == 4
+                    ? RED_COLOR
+                    : appdetail.appointment_status == 2
+                    ? YELLOW_COLOR
+                    : appdetail.appointment_status == 3
+                    ? GREEN_COLOR
+                    : BLACK_COLOR,
+              },
+            ]}
+          >
+            {appdetail.appointment_status == 1
+              ? "Pending"
+              : appdetail.appointment_status == 2
+              ? "Confirm"
+              : appdetail.appointment_status == 3
+              ? "Complete"
+              : appdetail.appointment_status == 4
+              ? "Appointment cancel"
+              : strings.notfount}
+          </Text>
         </View>
       </View>
-      { appdetail.appointment_status === 'Complete' ? <>
+      { (appdetail.appointment_status === 3 || appdetail.appointment_status === 4) ? <>
       <View style={styles.bottomView}>
-        <Text style={styles.topTxt}>SH update information</Text>
+        <Text style={styles.topTxt}>Update information</Text>
       </View>
       <View style={styles.Txtview}>
         <View style={styles.projectContainer}>
@@ -66,16 +109,16 @@ const UserAppointmentDtailsItem = (props : any) => {
         </View>
         <View><Text>:</Text></View>
         <View style={styles.nameContainer}>
-          <Text style={styles.nameTxt}>Ei-Tara powai mumbai maharashtra 452012</Text>
+          <Text style={styles.nameTxt}>{location ? location : strings.notfount}</Text>
         </View>
       </View>
       <View style={styles.Txtview}>
         <View style={styles.projectContainer}>
-          <Text style={styles.projectTxt}>SM Note</Text>
+          <Text style={styles.projectTxt}>Remark</Text>
         </View>
         <View><Text>:</Text></View>
         <View style={styles.nameContainer}>
-          <Text style={styles.nameTxt}>It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout. The point of using Lorem Ipsum is that it has a more-or-less normal distribution of letters, as opposed to using 'Content here, content here', making it look like readable English</Text>
+          <Text style={styles.nameTxt}>{appdetail.remark ? appdetail.remark : strings.notfount}</Text>
         </View>
       </View>
      </> : null }
