@@ -135,12 +135,14 @@ const EditFollowUp = ({ navigation, route }: any) => {
                                     dateData={(data: any) => {
                                         setFormData({
                                             ...formData,
+                                            followup_time: '',
                                             followup_date: moment(data).format(DATE_FORMAT)
                                         })
                                     }}
                                     setDateshow={(data: any) => {
                                         setFormData({
                                             ...formData,
+                                            followup_time: '',
                                             followup_date: moment(data).format(DATE_FORMAT)
                                         })
                                     }}
@@ -154,7 +156,8 @@ const EditFollowUp = ({ navigation, route }: any) => {
                             <View style={styles.inputWarp}>
                                 <InputCalender
                                     headingText={'Time'}
-                                    mode={'time'}
+                                    mode={"time"}
+                                    dateValue={formData?.next_followup_date}
                                     leftIcon={images.timer}
                                     placeholderText={"Time"}//can edit
                                     editable={false}
@@ -162,13 +165,13 @@ const EditFollowUp = ({ navigation, route }: any) => {
                                     dateData={(data: any) => {
                                         setFormData({
                                             ...formData,
-                                            followup_time: moment(data).format(TIME_FORMAT)
+                                            followup_time: data,
                                         })
                                     }}
                                     setDateshow={(data: any) => {
                                         setFormData({
                                             ...formData,
-                                            followup_time: moment(data).format(TIME_FORMAT)
+                                            followup_time: data,
                                         })
                                     }}
                                     value={formData?.followup_time}
