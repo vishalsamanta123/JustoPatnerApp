@@ -1,11 +1,13 @@
 import { View, TextInput, Image, TouchableOpacity, Text } from "react-native";
 import React, { useState } from "react";
 import styles from "../InputField/styles";
-import { BLACK_COLOR } from "../utilities/constant";
+import { BLACK_COLOR, DATE_FORMAT, RED_COLOR, TIME_FORMAT } from "../utilities/constant";
 import images from "../../assets/images";
 import { normalizeHeight, normalizeSpacing, normalizeWidth } from "../scaleFontSize";
 import DatePicker from "react-native-date-picker";
 import moment from "moment";
+import ErrorMessage from "../ErrorMessage";
+import strings from "../utilities/Localization";
 
 const InputCalender = (props: any) => {
   const minDate: any = moment().subtract(18, "years")
@@ -25,7 +27,58 @@ const InputCalender = (props: any) => {
   const onSubmit = (e: any) => {
     const { text } = e;
   };
-
+  const timeSelectValidation = (date: any) => {
+    var currentTime = new Date();
+    var minTime = new Date();
+    minTime.setHours(10);
+    minTime.setMinutes(0);
+    var maxTime = new Date();
+    maxTime.setHours(19);
+    maxTime.setMinutes(0);
+    if (props.dateValue === "" || props.dateValue === undefined || props.dateValue === null) {
+      if (moment(moment(date).format(TIME_FORMAT), 'hh:mm A').format('HH:mm') <= moment(moment(currentTime).format(TIME_FORMAT), 'hh:mm A').format('HH:mm')) {
+        ErrorMessage({
+          msg: strings.choosecurrentCorrect,
+          backgroundColor: RED_COLOR
+        })
+        return false
+      } else if (
+        moment(moment(date).format(TIME_FORMAT), 'hh:mm A').format('HH:mm') < moment(moment(minTime).format(TIME_FORMAT), 'hh:mm A').format('HH:mm') ||
+        moment(moment(date).format(TIME_FORMAT), 'hh:mm A').format('HH:mm') > moment(moment(maxTime).format(TIME_FORMAT), 'hh:mm A').format('HH:mm')
+      ) {
+        ErrorMessage({
+          msg: strings.choosetimeCorrect,
+          backgroundColor: RED_COLOR
+        })
+        return false
+      }
+    } else {
+      if (moment(date).format(DATE_FORMAT) > moment(props.dateValue).format(DATE_FORMAT)) {
+        ErrorMessage({
+          msg: strings.chooseTimeToDateCorrectly,
+          backgroundColor: RED_COLOR
+        })
+        return false
+      } else if (moment(date).format(DATE_FORMAT) === moment(props.dateValue).format(DATE_FORMAT) &&
+        moment(moment(date).format(TIME_FORMAT), 'hh:mm A').format('HH:mm') <= moment(moment(currentTime).format(TIME_FORMAT), 'hh:mm A').format('HH:mm')) {
+        ErrorMessage({
+          msg: strings.choosecurrentCorrect,
+          backgroundColor: RED_COLOR
+        })
+        return false
+      } else if (
+        moment(moment(date).format(TIME_FORMAT), 'hh:mm A').format('HH:mm') < moment(moment(minTime).format(TIME_FORMAT), 'hh:mm A').format('HH:mm') ||
+        moment(moment(date).format(TIME_FORMAT), 'hh:mm A').format('HH:mm') > moment(moment(maxTime).format(TIME_FORMAT), 'hh:mm A').format('HH:mm')
+      ) {
+        ErrorMessage({
+          msg: strings.choosetimeCorrect,
+          backgroundColor: RED_COLOR
+        })
+        return false
+      }
+    }
+    return true;
+  }
   const OpenCalender = () => {
     setOpen(true);
   };
@@ -61,7 +114,7 @@ const InputCalender = (props: any) => {
           onSubmitEditing={onSubmit}
           // placeholder={props.placeholderText}
           placeholder={props.placeholderText === 'Date of Birth' ? "" :
-          props.placeholderText}
+            props.placeholderText}
           placeholderTextColor={BLACK_COLOR}
           secureTextEntry={props.isSecureText}
           autoCapitalize={"none"}
@@ -71,7 +124,7 @@ const InputCalender = (props: any) => {
         />
         <TouchableOpacity
           onPress={() => OpenCalender()}
-          //disabled={!props.handleInputBtnPress}
+        //disabled={!props.handleInputBtnPress}
         >
           <Image style={styles.rightImage} source={props.leftIcon} />
         </TouchableOpacity>
@@ -91,14 +144,14 @@ const InputCalender = (props: any) => {
           minimumDate={props?.minimumDate ? props?.minimumDate : ""}
           maximumDate={
             props.headingText === 'Date of Birth' ||
-            props.placeholderText === 'Date of Birth'
-            ?
-            new Date(moment(minDate).format()) :
-            props.maximumDate ? props.maximumDate : ''
+              props.placeholderText === 'Date of Birth'
+              ?
+              new Date(moment(minDate).format()) :
+              props.maximumDate ? props.maximumDate : ''
           }
           date={
             props.headingText === "Date of Birth" ||
-            props.placeholderText === "Date of Birth"
+              props.placeholderText === "Date of Birth"
               ? new Date(moment(minDate).format())
               : new Date()
           }
@@ -110,10 +163,20 @@ const InputCalender = (props: any) => {
           open={open}
           date={new Date()}
           onDateChange={(date) => {
-            props.setDateshow(date);
+            setOpen(false)
+            if (timeSelectValidation(date)) {
+              props.setDateshow(moment(date).format(TIME_FORMAT))
+            } else {
+              props.setDateshow("")
+            }
           }}
           onConfirm={(date) => {
-            onConfirmDate(date);
+            setOpen(false)
+            if (timeSelectValidation(date)) {
+              props.setDateshow(moment(date).format(TIME_FORMAT))
+            } else {
+              props.setDateshow("")
+            }
           }}
           onCancel={() => {
             setOpen(false);

@@ -103,12 +103,14 @@ const AppointmentAddView = (props: any) => {
                 dateData={(data: any) => {
                   props.setFormData({
                     ...props.formData,
+                    appointment_time: '',
                     appointment_date: moment(data).format(DATE_FORMAT),
                   });
                 }}
                 setDateshow={(data: any) => {
                   props.setFormData({
                     ...props.formData,
+                    appointment_time: '',
                     appointment_date: moment(data).format(DATE_FORMAT),
                   });
                 }}
@@ -127,19 +129,20 @@ const AppointmentAddView = (props: any) => {
                 headingText={"Time"}
                 mode={"time"}
                 leftIcon={images.timer}
+                dateValue={props?.formData?.appointment_date}
                 placeholderText={"Time"} //can edit
                 editable={false}
                 // onChangeText={() => { }}
                 dateData={(data: any) => {
                   props.setFormData({
                     ...props.formData,
-                    appointment_time: moment(data).format(TIME_FORMAT),
+                    appointment_time: data,
                   });
                 }}
                 setDateshow={(data: any) => {
                   props.setFormData({
                     ...props.formData,
-                    appointment_time: moment(data).format(TIME_FORMAT),
+                    appointment_time: data,
                   });
                 }}
                 value={props?.formData?.appointment_time}

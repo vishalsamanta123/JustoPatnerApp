@@ -115,12 +115,14 @@ const AddAppointmentItem = (props: any) => {
             dateData={(data: any) => {
               props.setAddAppointmentForm({
                 ...props.addAppointmentForm,
+                appointment_time: '',
                 appointment_date: moment(data).format(DATE_FORMAT),
               });
             }}
             setDateshow={(data: any) => {
               props.setAddAppointmentForm({
                 ...props.addAppointmentForm,
+                appointment_time: '',
                 appointment_date: moment(data).format(DATE_FORMAT),
               });
             }}
@@ -137,6 +139,7 @@ const AddAppointmentItem = (props: any) => {
           <InputCalender
             require={true}
             mode={"time"}
+            dateValue={props?.addAppointmentForm?.appointment_date}
             leftIcon={images.timer}
             placeholderText={strings.appointmentTime}
             headingText={strings.appointmentTime}
@@ -145,13 +148,13 @@ const AddAppointmentItem = (props: any) => {
             dateData={(data: any) => {
               props.setAddAppointmentForm({
                 ...props.addAppointmentForm,
-                appointment_time: moment(data).format(TIME_FORMAT),
+                appointment_time: data,
               });
             }}
             setDateshow={(data: any) => {
               props.setAddAppointmentForm({
                 ...props.addAppointmentForm,
-                appointment_time: moment(data).format(TIME_FORMAT),
+                appointment_time: data,
               });
             }}
             value={props.addAppointmentForm?.appointment_time}
