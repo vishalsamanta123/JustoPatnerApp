@@ -6,6 +6,7 @@ import {
   Image,
   FlatList,
   TouchableOpacity,
+  RefreshControl,
 } from 'react-native';
 import { Switch } from 'react-native-switch';
 import { useSafeAreaInsets } from 'react-native-safe-area-context';
@@ -23,6 +24,14 @@ import {
 } from '../../../components/utilities/constant';
 
 const DashboardView = (props: any) => {
+  const [refreshing, setRefreshing] = React.useState(false);
+  const onRefresh = () => {
+    setRefreshing(true);
+    props.getDashboard()
+    setTimeout(() => {
+      setRefreshing(false);
+    }, 2000);
+  }
   const targetData = props?.dashBoardData?.target || {}
   const achieveTargetData = props?.dashBoardData?.achievetargetdata || {}
   const renderItem = ({ item }: any) => {
@@ -47,7 +56,12 @@ const DashboardView = (props: any) => {
           headerStyle={styles.headerStyle}
           rightSecondImageScr={images.bell}
         />
-        <ScrollView contentContainerStyle={styles.dashboardScroll}
+        <ScrollView
+          showsVerticalScrollIndicator={false}
+          refreshControl={
+            <RefreshControl refreshing={refreshing} onRefresh={onRefresh} />
+          }
+          contentContainerStyle={styles.dashboardScroll}
           bounces={false}>
           <View style={styles.dashboardWrap}>
             <View style={styles.nameView}>
@@ -90,13 +104,13 @@ const DashboardView = (props: any) => {
               </View>
             </View>
             {/* <View style={styles.qrCodeView}> */}
-              {props?.dashBoardData?.qr_code != "" ?
-                <Image source={{ uri: props?.dashBoardData?.qr_code }}
-                  style={styles.qrCodeImage} />
-                :
-                <Image source={images.qrCode} style={styles.qrCodeImage} />
-              }
-              {/* <TouchableOpacity style={styles.linkImageView}>
+            {props?.dashBoardData?.qr_code != "" ?
+              <Image source={{ uri: props?.dashBoardData?.qr_code }}
+                style={styles.qrCodeImage} />
+              :
+              <Image source={images.qrCode} style={styles.qrCodeImage} />
+            }
+            {/* <TouchableOpacity style={styles.linkImageView}>
                 <Image source={images.link} style={styles.linkImage} />
               </TouchableOpacity> */}
             {/* </View> */}
