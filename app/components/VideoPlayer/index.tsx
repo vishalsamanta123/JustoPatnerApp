@@ -8,47 +8,35 @@ import Video from "react-native-video";
 import Button from "../Button";
 import strings from "../utilities/Localization";
 import styles from "./styles";
+import VideoPlayer from 'react-native-media-console';
 
-const VideoPlayer = (props: any) => {
+
+const CustomVideoPlayer = (props: any) => {
   const [playPause, setPlayPause] = useState(false)
   const [onLoad, setOnLoad] = useState(false)
   const { source, style, resizeMode = "contain" } = props;
   return (
-    <View style={{ width: '100%', }}>
-      {onLoad ? <Loader /> : null}
-      <Video
-        source={source}
-        style={styles.videoStyle}
+    <View style={{
+      width: '100%',
+      height: '100%',
+    }}>
+      <VideoPlayer
+        source={{ uri: props?.url + props?.content }}
+        navigator={props.navigator}
         repeat={true}
-        paused={playPause}
-        onLoadStart={() => setOnLoad(true)}
-        onReadyForDisplay={() => setOnLoad(false)}
-        resizeMode={resizeMode}
-        selectedVideoTrack={{
-          type: 'resolution',
-          value: '480'
+        disableVolume={true}
+        disableBack={true}
+        fullscreenOrientation='landscape'
+        fullscreenAutorotate={true}
+        isFullscreen={true}
+        toggleResizeModeOnFullscreen={true}
+        style={{
+          height: '100%',
+          width: '100%',
         }}
-        // isLooping
-        // onBuffer={() => setOnLoad(true)}
-        // bufferConfig={{
-          //   minBufferMs: 15000,
-          //   maxBufferMs: 50000,
-          //   bufferForPlaybackMs: 2500,
-          //   bufferForPlaybackAfterRebufferMs: 5000
-          // }}
-          // poster={props?.url + props?.contentData?.video_thumbnail}
-          // shouldPlay={false}
-          // posterResizeMode={"contain"}
       />
-      <View style={styles.playbtntch}>
-        <Button width={60}
-          handleBtnPress={() => setPlayPause(!playPause)}
-          buttonText={playPause ?
-            strings.playVideo : strings.pauseVideo}
-        />
-      </View>
     </View>
   );
 };
 
-export default VideoPlayer;
+export default CustomVideoPlayer;

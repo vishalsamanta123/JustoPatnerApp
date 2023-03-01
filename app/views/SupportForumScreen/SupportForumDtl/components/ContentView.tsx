@@ -10,6 +10,7 @@ import Video from "react-native-video";
 import Button from 'app/components/Button'
 import Loader from 'app/components/CommonScreen/Loader'
 import VideoPlayer from 'app/components/VideoPlayer'
+import CustomVideoPlayer from 'app/components/VideoPlayer'
 const ContentView = (props: any) => {
     return (
         <>
@@ -31,8 +32,10 @@ const ContentView = (props: any) => {
                     <View style={{ alignItems: 'center', justifyContent: 'center' }}>
                         {props?.contentData?.video_thumbnail &&
                             props?.contentData?.content_type === 'video' ?
-                            <VideoPlayer
-                                source={{ uri: props?.url + props?.contentData?.content }}
+                            <CustomVideoPlayer
+                            url={props?.url}
+                            content={props?.contentData?.content}
+                                // source={{ uri: props?.url + props?.contentData?.content }}
                             />
                             :
                             <FastImages
