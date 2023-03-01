@@ -10,6 +10,7 @@ import {
   RED_COLOR,
   YELLOW_COLOR,
   GREEN_COLOR,
+  DATE_TIME_FORMAT,
 } from "../../../../components/utilities/constant";
 import moment from "moment";
 import usePermission from "app/components/utilities/UserPermissions";
@@ -20,6 +21,8 @@ const VisitorAppointment = (props: any) => {
     view: 'view_appointment',
   })
   const item = props?.items || {};
+  console.log('item: ', item);
+
   return (
     <View style={styles.IteamView}>
       <View style={styles.Txtview}>
@@ -32,7 +35,7 @@ const VisitorAppointment = (props: any) => {
         <View style={styles.nameContainer}>
           <Text style={styles.nameTxt}>{`${moment(
             item?.appointment_date
-          ).format("DD-MM-YYYY")},${item?.appointment_time}`}</Text>
+          ).format("DD-MM-YYYY")}, ${item?.appointment_time}`}</Text>
         </View>
       </View>
       <View style={styles.Txtview}>
@@ -46,8 +49,7 @@ const VisitorAppointment = (props: any) => {
           <Text style={styles.nameTxt}>
             {item?.createdDate === "" || !item?.createdDate
               ? strings.notfount
-              : `${moment(item?.createdDate).format("DD-MM-YYYY")},${item?.appointment_time
-              }`}
+              : `${moment(item?.createdDate).format(DATE_TIME_FORMAT)}`}
           </Text>
         </View>
       </View>
