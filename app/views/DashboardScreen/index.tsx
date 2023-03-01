@@ -115,6 +115,7 @@ const DashboardScreen = ({ navigation }: any) => {
     onPressView={onPressView}
     onpressButton={onpressButton}
     onPressMore={onPressMore}
+    getDashboard={getDashboard}
   />;
 };
 
