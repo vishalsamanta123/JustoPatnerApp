@@ -7447,6 +7447,11 @@ react-native-localization@^2.3.1:
   dependencies:
     react-localization "^1.0.17"
 
+react-native-media-console@^2.0.6:
+  version "2.0.6"
+  resolved "https://registry.yarnpkg.com/react-native-media-console/-/react-native-media-console-2.0.6.tgz#3498f28a0997450e354fe1adbf1f8c144895088c"
+  integrity sha512-ZBLWPhRfnnP7lpRXu6QZXa1hGjImHV7zOnhZZozFEOCK8FQCLVfXulTcokDYPoBpK5qT1uOYGW8v6BO5K5MMSA==
+
 react-native-modal@^13.0.1:
   version "13.0.1"
   resolved "https://registry.yarnpkg.com/react-native-modal/-/react-native-modal-13.0.1.tgz#691f1e646abb96fa82c1788bf18a16d585da37cd"

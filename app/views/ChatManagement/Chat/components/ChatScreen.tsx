@@ -331,6 +331,13 @@ const ChatScreen = ({ navigation, route }: any) => {
         .set(params)
         .then((ref: any) => {
           dispatch({ type: STOP_LOADING });
+          dispatch(
+            chatStatusUpdate({
+              property_id: item?.property_id,
+              receiver_id: item?._id,
+              msg_status: 1,
+            })
+          );
         })
         .catch(() => {
           dispatch({ type: STOP_LOADING });
