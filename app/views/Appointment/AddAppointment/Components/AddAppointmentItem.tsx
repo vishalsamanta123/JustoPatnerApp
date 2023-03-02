@@ -19,8 +19,6 @@ import InputCalender from "app/components/InputCalender";
 import moment from "moment";
 
 const AddAppointmentItem = (props: any) => {
-  console.log('props: ', props);
-
   return (
     <ScrollView keyboardShouldPersistTaps={"handled"}>
       <View style={styles.wrap}>
@@ -247,7 +245,7 @@ const AddAppointmentItem = (props: any) => {
                   onChangeText={(data: any) => {
                     props.setAddAppointmentForm({
                       ...props.addAppointmentForm,
-                      pickup_location: data?.description,
+                      pickup_location: data ? data : props?.addAppointmentForm?.pickup_location,
                     });
                   }}
                 />

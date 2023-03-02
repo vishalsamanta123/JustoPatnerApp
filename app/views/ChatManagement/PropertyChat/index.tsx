@@ -6,7 +6,6 @@ import { useIsFocused } from "@react-navigation/native";
 
 const PropertyChat = ({ navigation, route }: any) => {
   const { response = {},  } = useSelector((state: any) => state.propertyChatData);
-  console.log('response: ', response);
   const isFocused = useIsFocused();
 
   const dispatch: any = useDispatch();

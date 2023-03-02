@@ -13,7 +13,6 @@ const DealFlowDetailScreen = ({ navigation, route }: any) => {
   const detailData = route?.params || {}
   const dispatch: any = useDispatch()
   const { response = {}, data = false } = useSelector((state: any) => state.dealFlow) || {}
-  console.log('response: ', response);
   const [dealFlowDetail, setDealFlowDetail] = useState<any>({})
 
   useLayoutEffect(() => {

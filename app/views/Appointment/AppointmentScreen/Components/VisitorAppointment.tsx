@@ -21,8 +21,6 @@ const VisitorAppointment = (props: any) => {
     view: 'view_appointment',
   })
   const item = props?.items || {};
-  console.log('item: ', item);
-
   return (
     <View style={styles.IteamView}>
       <View style={styles.Txtview}>

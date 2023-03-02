@@ -37,8 +37,6 @@ const CatalogueContent = ({ navigation, route }: any) => {
         // success
       })
       .catch((error) => {
-        console.log("error", error);
-        // error
         ErrorMessage({
           msg: error?.message,
           backgroundColor: RED_COLOR

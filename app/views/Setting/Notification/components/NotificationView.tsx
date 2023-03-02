@@ -45,7 +45,7 @@ const NotificationView = (props: any) => {
     const { subject, message } = data.item;
     return (
       <TouchableHighlight
-        onPress={() => console.log("You touched me")}
+        // onPress={() => console.log("You touched me")}
         style={styles.rowFront}
         underlayColor={WHITE_COLOR}
       >

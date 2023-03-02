@@ -175,7 +175,7 @@ PODS:
     - RNPermissions
   - Permission-PhotoLibrary (3.6.1):
     - RNPermissions
-  - PromisesObjC (2.1.1)
+  - PromisesObjC (2.2.0)
   - RCT-Folly (2021.07.22.00):
     - boost
     - DoubleConversion
@@ -913,7 +913,7 @@ SPEC CHECKSUMS:
   Permission-LocationWhenInUse: 3ba99e45c852763f730eabecec2870c2382b7bd4
   Permission-MediaLibrary: a994236bae41b3597a376ff08298fb1c6d84729b
   Permission-PhotoLibrary: 5b34ca67279f7201ae109cef36f9806a6596002d
-  PromisesObjC: ab77feca74fa2823e7af4249b8326368e61014cb
+  PromisesObjC: 09985d6d70fbe7878040aa746d78236e6946d2ef
   RCT-Folly: 0080d0a6ebf2577475bda044aa59e2ca1f909cda
   RCTRequired: d4033a367d0bfd1f23f67b501f8cdabf9afe617e
   RCTTypeSafety: b112b2ccc59309a65284280c0a53baf1ce4b5860

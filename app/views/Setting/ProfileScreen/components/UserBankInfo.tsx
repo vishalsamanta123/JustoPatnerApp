@@ -7,8 +7,6 @@ import images from "app/assets/images";
 
 const UserBankInfo = (props: any) => {
   const { allDetails } = props;
-  console.log('allDetails: ', allDetails);
-
   return (
     <ScrollView style={styles.InformationView}>
       <View style={styles.fieldView}>

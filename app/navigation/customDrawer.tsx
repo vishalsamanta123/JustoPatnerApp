@@ -31,7 +31,6 @@ const customDrawer = ({ navigation }: any) => {
   const { response = {} } = useSelector((state: any) => state.profileData)
   const permissionResponse = useSelector((state: any) => state.permissions);
   const [userData, setUserData] = useState<any>({})
-  console.log('userData: ', userData);
   const toggleDrawer = () => {
     navigation.toggleDrawer();
   };
