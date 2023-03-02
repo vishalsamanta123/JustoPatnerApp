@@ -12,7 +12,6 @@ import { getAllAlloctaeProperty } from 'app/Redux/Actions/propertyActions'
 
 const AddAppointmentScreen = ({ navigation, route }: any) => {
   const { data = {}, type = "" } = route?.params || {}
-  console.log('data: ', data);
   const dispatch: any = useDispatch()
   const { response = {}, list = "" } = useSelector((state: any) => state.visitorDataList)
   const addAppointmentData = useSelector((state: any) => state.appointment)
@@ -88,14 +87,8 @@ const AddAppointmentScreen = ({ navigation, route }: any) => {
 
 
   useEffect(() => {
-    console.log('addAppointmentData?.response?.data[0]: ', addAppointmentData?.response?.data[0]);
     if (type === strings.edit) {
       if (addAppointmentData?.response?.status === 200) {
-        if (addAppointmentData?.response?.data[0]?.property_id !== '' && addAppointmentData?.response?.data[0]?.property_id !== null) {
-          setPropertyStatus(true)
-        } else {
-          setPropertyStatus(false)
-        }
         setAddAppointmentForm({
           lead_id: addAppointmentData?.response?.data[0]?.lead_id ?
             addAppointmentData?.response?.data[0]?.lead_id : '',
@@ -120,12 +113,17 @@ const AddAppointmentScreen = ({ navigation, route }: any) => {
             addAppointmentData?.response?.data[0]?.pickup_latitude : '',
           pickup_longitude: addAppointmentData?.response?.data[0]?.pickup_longitude ?
             addAppointmentData?.response?.data[0]?.pickup_longitude : '',
-          appointment_id :  addAppointmentData?.response?.data[0]?._id ?
+          appointment_id: addAppointmentData?.response?.data[0]?._id ?
             addAppointmentData?.response?.data[0]?._id : '',
         })
+        if (addAppointmentData?.response?.data[0]?.property_id !== '' && addAppointmentData?.response?.data[0]?.property_id !== null) {
+          setPropertyStatus(true)
+        } else {
+          setPropertyStatus(false)
+        }
       }
     }
-  }, [addAppointmentData])
+  }, [addAppointmentData, type])
   useEffect(() => {
     if (response?.status === 200) {
       setVisiitorList(response?.data)
@@ -186,7 +184,6 @@ const AddAppointmentScreen = ({ navigation, route }: any) => {
   const handleBtnPress = () => {
     if (validation()) {
       if (type === strings.edit) {
-        console.log('addAppointmentForm: ', addAppointmentForm);
         dispatch(editAppointment(addAppointmentForm))
       } else {
         dispatch(addAppointment(addAppointmentForm))

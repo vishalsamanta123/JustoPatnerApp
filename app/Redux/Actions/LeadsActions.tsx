@@ -83,7 +83,6 @@ export const addVisitorWithoutProperty = (params: any) => async (dispatch: any) 
     dispatch({ type: START_LOADING })
     try {
         const res = await apiCall("post", apiEndPoints.CREATE_VISIT_WITHOUT_PROPERTY, params);
-        console.log('res IN addVisitorWithoutProperty: ', res);
         if (res.data.status == 200) {
             dispatch({
                 type: ADD_VISITOR_WITHOUT_PROPERTY,
@@ -187,7 +186,6 @@ export const getBulkCSVfile = (params: any) => async (dispatch: any) => {
     }
 };
 export const uploadImage = (params: any) => async (dispatch: any) => {
-console.log('params: ', params);
     dispatch({ type: START_LOADING })
     try {
         const header = {
@@ -215,7 +213,6 @@ console.log('params: ', params);
     }
 };
 export const uploadCSVFile = (params: any) => async (dispatch: any) => {
-console.log('params: uploadCSVFile', params);
     dispatch({ type: START_LOADING })
     try {
         const header = {

@@ -6,7 +6,6 @@ export const getChatListForProperty = (params: any) => async (dispatch: any) => 
     dispatch({ type: START_LOADING })
     try {
         const res = await apiCall("post", apiEndPoints.GET_PROPERTY_LIST_FOR_CHAT, params);
-        // console.log('res: ', res);
         if (res.data.status === 200) {
             // await AsyncStorage.setItem("AuthToken", res?.data?.token);
             dispatch({
@@ -58,11 +57,9 @@ export const getAllChatInProperty = (params: any) => async (dispatch: any) => {
 }
 
 export const chatStatusUpdate = (params: any) => async (dispatch: any) => {
-console.log('params: chatStatusUpdate', params);
     dispatch({ type: START_LOADING });
     try {
       const res = await apiCall("post", apiEndPoints.UPDATE_CHAT_STATUS, params);
-      console.log('res: chatStatusUpdate', res);
       if (res.data.status === 200) {
         dispatch({
           type: UPDATE_CHAT_STATUS,

@@ -17,7 +17,6 @@ const FollowUpDetailsView = (props: any) => {
   const navigation: any = useNavigation()
   const { response = {} } = useSelector((state: any) => state.followUp)
   const FolowUpData = response?.data?.length > 0 ? response?.data[0] : []
-  console.log('response: ', response);
   const onpressSchedule = () => {
     navigation.navigate('AddAppointmentScreen', { data: {
       _id: FolowUpData?.lead_id,
