@@ -78,6 +78,7 @@ import AddTicketScreen from 'app/views/SupportScreen/AddTicket';
 import ShowReply from 'app/views/SupportScreen/SupportDetails/Components/ShowReply';
 import TicketStatusUpdate from 'app/views/SupportScreen/Support/components/TicketStatusUpdate';
 import DealFlowDetailScreen from 'app/views/DealFlowScreens/DealFlowDetail';
+import EscalateScreen from 'app/views/SupportScreen/Escalate';
 
 
 const Stack = createNativeStackNavigator();
@@ -194,6 +195,7 @@ const AppComponent = () => {
       <AppStack.Screen name="AddTicket" component={AddTicketScreen} />
       <AppStack.Screen name="ShowReply" component={ShowReply} />
       <AppStack.Screen name="TicketStatusUpdate" component={TicketStatusUpdate} />
+      <AppStack.Screen name="Escalate" component={EscalateScreen} />
 
       {/* Deal Flow */}
       <AppStack.Screen name="DealFlowDetail" component={DealFlowDetailScreen} />

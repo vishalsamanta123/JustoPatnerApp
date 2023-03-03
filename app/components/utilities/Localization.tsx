@@ -213,6 +213,8 @@ const strings = new LocalizedStrings({
      ticketReply: 'Ticket Reply',
      showreply: 'Show Reply',
      ticketStatusUpdate: 'Status Update',
+    escalatetonew: 'Escalate to New user',
+    nouserselected: 'No user selected',
 
      //deal flow
      searchDealflow:'Search Deal Flow',

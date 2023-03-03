@@ -26,7 +26,7 @@ const SupportDetailsView = (props: any) => {
         <SupportDetailsItem item={props.ticketDetailsData} />
       </View>
       <View style={styles.btnContainer}>
-        {props.type === 0 ?
+        {props.type === 0 && props?.ticketDetailsData?.status === 1 ?
           (
             <>
               <Button
@@ -34,7 +34,7 @@ const SupportDetailsView = (props: any) => {
                 height={50}
                 buttonText={strings.escalate}
                 btnTxtsize={15}
-              // handleBtnPress={() => onPressAddNew()}
+              handleBtnPress={() => props.onPressEscalate(props.ticketDetailsData)}
               />
               <Button
                 width={160}

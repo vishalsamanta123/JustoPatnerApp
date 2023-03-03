@@ -1,5 +1,5 @@
 import { apiCall } from "app/components/utilities/httpClient";
-import { ADD_NEW_TICKET, ADD_NEW_TICKET_ERROR, EDIT_TICKET, EDIT_TICKET_ERROR, REMOVE_TICKET, START_LOADING, STOP_LOADING, TICKET_DEATILS, TICKET_DEATILS_ERROR, TICKET_LIST, TICKET_LIST_ERROR, UPDATE_TICKET_STATUS, UPDATE_TICKET_STATUS_ERROR } from "../types"
+import { ADD_NEW_TICKET, ADD_NEW_TICKET_ERROR, ASSIGN_ESCALATE_TICKET, ASSIGN_ESCALATE_TICKET_ERROR, EDIT_TICKET, EDIT_TICKET_ERROR, ESCALATE_USER_LIST, REMOVE_TICKET, START_LOADING, STOP_LOADING, TICKET_DEATILS, TICKET_DEATILS_ERROR, TICKET_LIST, TICKET_LIST_ERROR, UPDATE_TICKET_STATUS, UPDATE_TICKET_STATUS_ERROR } from "../types"
 import apiEndPoints from "app/components/utilities/apiEndPoints";
 import { handleApiError } from "app/components/ErrorMessage/HandleApiErrors";
 
@@ -139,6 +139,61 @@ export const updateTicketStatus = (params: any) => async (dispatch: any) => {
     catch (e) {
         dispatch({
             type: UPDATE_TICKET_STATUS_ERROR,
+            payload: console.log(e),
+        })
+    }
+    finally {
+        dispatch({ type: STOP_LOADING })
+    }
+}
+
+export const getEscalateUsersList = (params: any) => async (dispatch: any) => {
+    dispatch({ type: START_LOADING })
+    try {
+        const res = await apiCall("post", apiEndPoints.GET_SUPPORT_USER_LIST, params);
+        if (res?.data?.status === 200) {
+            dispatch({
+                type: ESCALATE_USER_LIST,
+                payload: res.data
+            })
+        } else {
+            handleApiError(res?.data)
+            dispatch({
+                type: TICKET_LIST_ERROR,
+                payload: [],
+            })
+        }
+    }
+    catch (e) {
+        dispatch({
+            type: TICKET_LIST_ERROR,
+            payload: console.log(e),
+        })
+    }
+    finally {
+        dispatch({ type: STOP_LOADING })
+    }
+}
+export const escalateReqTicket = (params: any) => async (dispatch: any) => {
+    dispatch({ type: START_LOADING })
+    try {
+        const res = await apiCall("post", apiEndPoints.ESCALATE_REQ_TICKET, params);
+        if (res?.data?.status === 200) {
+            dispatch({
+                type: ASSIGN_ESCALATE_TICKET,
+                payload: res.data
+            })
+        } else {
+            handleApiError(res?.data)
+            dispatch({
+                type: ASSIGN_ESCALATE_TICKET_ERROR,
+                payload: [],
+            })
+        }
+    }
+    catch (e) {
+        dispatch({
+            type: ASSIGN_ESCALATE_TICKET_ERROR,
             payload: console.log(e),
         })
     }

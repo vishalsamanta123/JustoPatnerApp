@@ -122,6 +122,8 @@ export default {
   TICKET_LIST: '/support/getSupportList',
   TICKET_DETAILS: '/support/getTicketDetail',
   TICKET_STATUS_UPDATE: '/support/replySupportTicket',
+  GET_SUPPORT_USER_LIST: '/support/getSupportUserList',
+  ESCALATE_REQ_TICKET: '/support/escalateRequestTicket',
 
   //Deal Flow
   GET_DEAL_FLOW_LIST: '/dealFlow/getActivePropertyListForDealFlow',

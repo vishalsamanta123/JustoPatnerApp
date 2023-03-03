@@ -1,4 +1,4 @@
-import { ADD_NEW_TICKET, ADD_NEW_TICKET_ERROR, EDIT_TICKET, EDIT_TICKET_ERROR, REMOVE_TICKET, TICKET_DEATILS, TICKET_DEATILS_ERROR, TICKET_LIST, TICKET_LIST_ERROR, UPDATE_TICKET_STATUS, UPDATE_TICKET_STATUS_ERROR } from "../types";
+import { ADD_NEW_TICKET, ADD_NEW_TICKET_ERROR, ASSIGN_ESCALATE_TICKET, EDIT_TICKET, EDIT_TICKET_ERROR, ESCALATE_USER_LIST, REMOVE_TICKET, TICKET_DEATILS, TICKET_DEATILS_ERROR, TICKET_LIST, TICKET_LIST_ERROR, UPDATE_TICKET_STATUS, UPDATE_TICKET_STATUS_ERROR } from "../types";
 
 const initialStateADD = {
     response: null,
@@ -43,6 +43,11 @@ export function SupportAddReducer(state = initialStateADD, action: any) {
                 ...state,
                 response: action.payload
             }
+        case ASSIGN_ESCALATE_TICKET:
+            return {
+                ...state,
+                response: action.payload
+            }
         case REMOVE_TICKET:
             return {
                 ...state,
@@ -81,6 +86,13 @@ export function SupportReducer(state = initialState, action: any) {
                 response: action.payload,
                 list: false,
                 detail: true
+            }
+        case ESCALATE_USER_LIST:
+            return {
+                ...state,
+                response: action.payload,
+                list: true,
+                detail: false
             }
 
         default: return state
