@@ -93,6 +93,7 @@ const FollowUpAddView = (props: any) => {
                                 mode={'date'}
                                 leftIcon={images.event}
                                 placeholderText={"Date"}//can edit
+                                minimumDate={new Date()}
                                 editable={false}
                                 // onChangeText={() => { }}
                                 dateData={(data: any) => {

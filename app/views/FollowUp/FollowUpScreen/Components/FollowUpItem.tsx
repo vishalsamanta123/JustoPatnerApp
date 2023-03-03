@@ -11,6 +11,7 @@ import {
   DATE_TIME_FORMAT,
   GREEN_COLOR,
   RED_COLOR,
+  DATE_FORMAT,
 } from "../../../../components/utilities/constant";
 import strings from "../../../../components/utilities/Localization";
 import moment from "moment";
@@ -68,7 +69,7 @@ const FollowUpItem = (props: any) => {
           <Text style={styles.nameTxt}>
             {item.next_followup_date === "" || !item.next_followup_date
               ? strings.notfount
-              : moment(item.next_followup_date).format(DATE_TIME_FORMAT)}
+              : `${moment(item.next_followup_date).format(DATE_FORMAT)}, ${item.followup_time}`}
           </Text>
         </View>
       </View>

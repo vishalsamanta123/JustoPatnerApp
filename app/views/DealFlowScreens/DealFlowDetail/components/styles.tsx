@@ -46,7 +46,6 @@ const styles = StyleSheet.create({
     width: normalizeWidth(360),
     height: normalizeHeight(170),
     borderRadius: normalize(12),
-    resizeMode: 'contain',
   },
   txtCont: {
     flex: 1,

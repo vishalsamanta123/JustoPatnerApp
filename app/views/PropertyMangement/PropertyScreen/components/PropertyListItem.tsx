@@ -2,7 +2,7 @@ import { View, Text, TouchableOpacity, Image } from 'react-native';
 import React from 'react';
 import styles from './styles';
 import strings from '../../../../components/utilities/Localization';
-import { BLACK_COLOR, YELLOW_COLOR, GOLDEN_COLOR, GREEN_COLOR, RED_COLOR } from '../../../../components/utilities/constant';
+import { BLACK_COLOR, YELLOW_COLOR, GOLDEN_COLOR, GREEN_COLOR, RED_COLOR, DATE_TIME_FORMAT } from '../../../../components/utilities/constant';
 import images from '../../../../assets/images';
 import moment from 'moment';
 import { useDispatch } from 'react-redux';
@@ -100,7 +100,7 @@ const PropertyListItem = (props: any) => {
           <Text style={styles.projectTxt}>Create Date :</Text>
         </View>
         <View style={styles.nameContainer}>
-          <Text style={styles.nameTxt}>{moment(props.items.createdDate).format('MM/DD/YYYY')}</Text>
+          <Text style={styles.nameTxt}>{moment(props.items.createdDate).format(DATE_TIME_FORMAT)}</Text>
         </View>
       </View>
       <View style={styles.buttonContainer}>
