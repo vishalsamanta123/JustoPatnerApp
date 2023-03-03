@@ -58,6 +58,9 @@ const SupportScreen = ({ navigation }: any) => {
     const onPressStatusUpdate = (data: any) => {
         navigation.navigate('TicketStatusUpdate', data)
     }
+    const onPressEscalate = (data: any) => {
+        navigation.navigate('Escalate', data)
+    }
     return (
         <>
             <SupportView
@@ -73,6 +76,7 @@ const SupportScreen = ({ navigation }: any) => {
                 handleEditTicket={handleEditTicket}
                 totalData={totalData}
                 onPressStatusUpdate={onPressStatusUpdate}
+                onPressEscalate={onPressEscalate}
             />
         </>
     )

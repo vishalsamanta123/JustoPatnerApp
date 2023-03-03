@@ -69,7 +69,8 @@ const SupportItem = (props: any) => {
         </View>
       </View>
       <View style={styles.buttonContainer}>
-        {props.index === 0 ? (
+        {
+        props.index === 0 && props.items.status === 1 ? (
           <>
             <Button
               width={120}
@@ -81,7 +82,7 @@ const SupportItem = (props: any) => {
               buttonText={strings.updatestatus}
               btnTxtsize={14}
               border={10}
-            handleBtnPress={() => {props.onPressStatusUpdate(props.items)}}
+              handleBtnPress={() => { props.onPressStatusUpdate(props.items) }}
             />
             <Button
               width={120}
@@ -93,11 +94,12 @@ const SupportItem = (props: any) => {
               buttonText={strings.escalate}
               btnTxtsize={14}
               border={10}
-            // handleBtnPress={() => {}}
+              handleBtnPress={() => { props.onPressEscalate(props.items) }}
             />
           </>
         )
           :
+          props.items.status === 1 ?
           (
             <Button
               width={120}
@@ -114,6 +116,7 @@ const SupportItem = (props: any) => {
               }}
             />
           )
+          : <View />
         }
         <TouchableOpacity style={styles.Viewbutton}
           onPress={() => props.onPressView(props.items)}

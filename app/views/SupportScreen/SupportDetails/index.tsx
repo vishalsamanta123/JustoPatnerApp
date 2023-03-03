@@ -37,6 +37,9 @@ const SupportScreenDetails = ({ navigation, route }: any) => {
     const onPressStatusUpdate = () => {
         navigation.navigate('TicketStatusUpdate', ticketDetailsData)
     }
+    const onPressEscalate = (data: any) => {
+        navigation.navigate('Escalate', data)
+    }
     return (
         <SupportDetailsView
             handleBackPress={handleBackPress}
@@ -44,6 +47,7 @@ const SupportScreenDetails = ({ navigation, route }: any) => {
             type={type}
             onPressReply={onPressReply}
             onPressStatusUpdate={onPressStatusUpdate}
+            onPressEscalate={onPressEscalate}
         />
     )
 }

@@ -63,6 +63,7 @@ const SupportView = (props: any) => {
                     index={index}
                     onPressView={onPressView}
                     onPressStatusUpdate={props.onPressStatusUpdate}
+                    onPressEscalate={props.onPressEscalate}
                 />
             )}
             ListEmptyComponent={
