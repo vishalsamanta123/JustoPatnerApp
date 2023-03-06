@@ -43,6 +43,7 @@ const ProfileView = (props: any) => {
       style={{ backgroundColor: PRIMARY_THEME_COLOR_DARK }} />
   );
 
+  console.log('allDetails: ', allDetails);
   const FirstRoute = () => (
     <UserInfo allDetails={allDetails} onpresContent={onpresContent} />
   );

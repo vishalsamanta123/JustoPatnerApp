@@ -56,6 +56,11 @@ const AddNewVisitorScreen = ({ navigation, route }: any) => {
     max_emi_budget_type: "L",
     areain_sqlft: "",
     coumpany_name: "",
+    marital_status:"",
+    no_of_family_member:"",
+    current_stay:"",
+    property_type:"",
+    preferred_bank:"",
   });
   const [masterDatas, setMasterDatas] = useState<any>([]);
   const [NavigationType, setNavigationType] = useState(0);
@@ -251,6 +256,8 @@ const AddNewVisitorScreen = ({ navigation, route }: any) => {
     }
   }, [editData, addData]);
   const OnpressCreateEdit = () => {
+    console.log('formData: ', formData);
+
     if (validation()) {
       if (type === "edit") {
         const edit_params = {
@@ -304,6 +311,11 @@ const AddNewVisitorScreen = ({ navigation, route }: any) => {
             ? formData?.max_emi_budget_type
             : "",
           locality: formData?.locality,
+          marital_status: formData?.marital_status,
+          no_of_family_member: formData?.no_of_family_member,
+          current_stay: formData?.current_stay,
+          property_type: formData?.property_type,
+          preferred_bank: formData?.preferred_bank
         };
         dispatch(editVisitor(edit_params));
       } else {
@@ -353,6 +365,11 @@ const AddNewVisitorScreen = ({ navigation, route }: any) => {
             ? formData?.max_emi_budget_type
             : "",
           locality: formData?.locality,
+          marital_status: formData?.marital_status,
+          no_of_family_member: formData?.no_of_family_member,
+          current_stay: formData?.current_stay,
+          property_type: formData?.property_type,
+          preferred_bank: formData?.preferred_bank
         };
         if (formData?.property_id !== '') {
           dispatch(addVisitor(add_params));

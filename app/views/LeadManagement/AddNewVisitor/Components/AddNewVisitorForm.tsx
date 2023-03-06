@@ -31,7 +31,7 @@ import { useSelector } from "react-redux";
 import usePermission from "app/components/utilities/UserPermissions";
 
 const AddNewVisitorForm = (props: any) => {
-  const [PropertyStatus, setPropertyStatus] = useState(false)
+  const [PropertyStatus, setPropertyStatus] = useState(false);
   const { response = {}, detail = "" } = useSelector(
     (state: any) => state.visitorData
   );
@@ -64,10 +64,13 @@ const AddNewVisitorForm = (props: any) => {
           max_emi_budget_type: response?.data[0]?.max_emi_budget_type,
         });
       }
-      if (response?.data[0]?.property_id !== "" && response?.data[0]?.property_id !== null) {
-        setPropertyStatus(true)
+      if (
+        response?.data[0]?.property_id !== "" &&
+        response?.data[0]?.property_id !== null
+      ) {
+        setPropertyStatus(true);
       } else {
-        setPropertyStatus(false)
+        setPropertyStatus(false);
       }
     } else {
       if (props.type === "propertySelect") {
@@ -78,20 +81,22 @@ const AddNewVisitorForm = (props: any) => {
           property_title: props?.data?.property_title,
         });
       }
-      setPropertyStatus(true)
+      setPropertyStatus(true);
     }
     if (props.type === "add") {
-      setPropertyStatus(false)
+      setPropertyStatus(false);
     }
     // if (props?.formData?.property_id !== "" && props?.formData?.property_id !== null) {
     // } else {
     // }
   }, [response]);
   const { edit, create, status } = usePermission({
-    edit: 'edit_visitor',
-    create: 'add_visitor',
-    status: 'add_appointment'
-  })
+    edit: "edit_visitor",
+    create: "add_visitor",
+    status: "add_appointment",
+  });
+  console.log("props?.formData: ", props?.formData);
+
   return (
     <View style={styles.mainContainer}>
       <Header
@@ -110,7 +115,7 @@ const AddNewVisitorForm = (props: any) => {
             <InputField
               require={true}
               placeholderText={"Visitor Name"}
-              handleInputBtnPress={() => { }}
+              handleInputBtnPress={() => {}}
               onChangeText={(data: any) => {
                 props.setFormData({
                   ...props.formData,
@@ -125,7 +130,7 @@ const AddNewVisitorForm = (props: any) => {
             <InputField
               require={true}
               placeholderText={"Mobile No."}
-              handleInputBtnPress={() => { }}
+              handleInputBtnPress={() => {}}
               onChangeText={(data: any) => {
                 props.setFormData({
                   ...props.formData,
@@ -141,7 +146,7 @@ const AddNewVisitorForm = (props: any) => {
           <View style={styles.inputWrap}>
             <InputField
               placeholderText={"Ex:- 3675 9834 6012"}
-              handleInputBtnPress={() => { }}
+              handleInputBtnPress={() => {}}
               onChangeText={(data: any) => {
                 props.setFormData({
                   ...props.formData,
@@ -150,7 +155,7 @@ const AddNewVisitorForm = (props: any) => {
               }}
               valueshow={props?.formData?.adhar_no?.toString()}
               headingText={"Aadhaar No."}
-              inputType={'aadhaar'}
+              inputType={"aadhaar"}
               maxLength={14}
               keyboardtype={"number-pad"}
             />
@@ -158,7 +163,7 @@ const AddNewVisitorForm = (props: any) => {
           <View style={styles.inputWrap}>
             <InputField
               placeholderText={"BNZAA2318JM"}
-              handleInputBtnPress={() => { }}
+              handleInputBtnPress={() => {}}
               onChangeText={(data: any) => {
                 props.setFormData({
                   ...props.formData,
@@ -246,8 +251,8 @@ const AddNewVisitorForm = (props: any) => {
               }}
               value={
                 props?.formData?.birth_date === "" ||
-                  props?.formData?.birth_date === undefined ||
-                  props?.formData?.birth_date === null
+                props?.formData?.birth_date === undefined ||
+                props?.formData?.birth_date === null
                   ? ""
                   : moment(props?.formData?.birth_date).format(DATE_FORMAT)
               }
@@ -257,7 +262,7 @@ const AddNewVisitorForm = (props: any) => {
           <View style={styles.inputWrap}>
             <InputField
               placeholderText={"WhatsApp No."}
-              handleInputBtnPress={() => { }}
+              handleInputBtnPress={() => {}}
               onChangeText={(data: any) => {
                 props.setFormData({
                   ...props.formData,
@@ -273,7 +278,7 @@ const AddNewVisitorForm = (props: any) => {
           <View style={styles.inputWrap}>
             <InputField
               placeholderText={"Email Address"}
-              handleInputBtnPress={() => { }}
+              handleInputBtnPress={() => {}}
               onChangeText={(data: any) => {
                 props.setFormData({
                   ...props.formData,
@@ -307,7 +312,7 @@ const AddNewVisitorForm = (props: any) => {
           <View style={styles.inputWrap}>
             <InputField
               placeholderText={"Locality"}
-              handleInputBtnPress={() => { }}
+              handleInputBtnPress={() => {}}
               onChangeText={(data: any) => {
                 props.setFormData({
                   ...props.formData,
@@ -317,6 +322,206 @@ const AddNewVisitorForm = (props: any) => {
               valueshow={props?.formData?.locality}
               headingText={"Locality"}
             />
+          </View>
+          <View style={[styles.inputWrap]}>
+            <DropdownInput
+              headingText={"Marital Status"}
+              placeholder={
+                props.formData?.marital_status
+                  ? props.formData?.marital_status
+                  : "Marital Status"
+              }
+              data={[
+                { label: strings.Married, value: 2 },
+                { label: strings.Unmarried, value: 1 },
+              ]}
+              inputWidth={"100%"}
+              paddingLeft={16}
+              maxHeight={300}
+              labelField={"label"}
+              valueField={"value"}
+              value={props?.formData?.marital_status}
+              onChange={(item: any) => {
+                props.setFormData({
+                  ...props.formData,
+                  marital_status: item.value,
+                });
+              }}
+              newRenderItem={(item: any) => {
+                return (
+                  <View style={Styles.item}>
+                    <Text style={Styles.textItem}>{item.label}</Text>
+                  </View>
+                );
+              }}
+            />
+          </View>
+          <View
+            style={[
+              styles.inputWrap,
+              {
+                flexDirection: "row",
+                alignItems: "center",
+                justifyContent: "space-around",
+              },
+            ]}
+          >
+            <Text
+              style={[
+                styles.headingsTxt,
+                { width: "40%", textAlign: "center" },
+              ]}
+            >
+              No. of family member
+            </Text>
+            <TextInput
+              value={props?.formData?.no_of_family_member?.toString()}
+              maxLength={2}
+              onChangeText={(data: any) => {
+                props.setFormData({
+                  ...props.formData,
+                  no_of_family_member: data,
+                });
+              }}
+              keyboardType={"number-pad"}
+              placeholder="No. of family member"
+              style={styles.budgetInput}
+            />
+          </View>
+
+          <View style={[styles.inputWrap]}>
+            <DropdownInput
+              headingText={"Current Stay"}
+              placeholder={
+                props.formData?.current_stay
+                  ? props.formData?.current_stay
+                  : "Current Stay"
+              }
+              data={[
+                { label: strings.Rented, value: strings.Rented },
+                { label: strings.Owned, value: strings.Owned },
+              ]}
+              inputWidth={"100%"}
+              paddingLeft={16}
+              maxHeight={300}
+              labelField={"label"}
+              valueField={"value"}
+              value={props?.formData?.current_stay}
+              onChange={(item: any) => {
+                props.setFormData({
+                  ...props.formData,
+                  current_stay: item.value,
+                });
+              }}
+              newRenderItem={(item: any) => {
+                return (
+                  <View style={Styles.item}>
+                    <Text style={Styles.textItem}>{item.label}</Text>
+                  </View>
+                );
+              }}
+            />
+          </View>
+          <View style={[styles.inputWrap]}>
+            <DropdownInput
+              headingText={"Property Type"}
+              placeholder={
+                props.formData?.property_type
+                  ? props.formData?.property_type
+                  : "Property Type"
+              }
+              data={[
+                { label: strings.MoveIn, value: strings.MoveIn },
+                {
+                  label: strings.Underonstruction,
+                  value: strings.Underonstruction,
+                },
+              ]}
+              inputWidth={"100%"}
+              paddingLeft={16}
+              maxHeight={300}
+              labelField={"label"}
+              valueField={"value"}
+              value={props?.formData?.property_type}
+              onChange={(item: any) => {
+                props.setFormData({
+                  ...props.formData,
+                  property_type: item.value,
+                });
+              }}
+              newRenderItem={(item: any) => {
+                return (
+                  <View style={Styles.item}>
+                    <Text style={Styles.textItem}>{item.label}</Text>
+                  </View>
+                );
+              }}
+            />
+          </View>
+          <View style={styles.radioBtnView}>
+            <Text style={styles.headingsTxt}>Preferred Bank</Text>
+            <View style={{ flexDirection: "row" }}>
+              <View style={styles.radioView}>
+                <RadioButton.Android
+                  value={strings.yes}
+                  status={
+                    props?.formData?.preferred_bank === strings.yes
+                      ? "checked"
+                      : "unchecked"
+                  }
+                  onPress={() =>
+                    props.setFormData({
+                      ...props.formData,
+                      preferred_bank: strings.yes,
+                    })
+                  }
+                  color={PRIMARY_THEME_COLOR}
+                />
+                <Text
+                  style={[
+                    styles.radioTxt,
+                    {
+                      color:
+                        props?.formData?.preferred_bank === strings.yes
+                          ? PRIMARY_THEME_COLOR
+                          : BLACK_COLOR,
+                    },
+                  ]}
+                >
+                  {strings.yes}
+                </Text>
+              </View>
+              <View style={styles.radioView}>
+                <RadioButton.Android
+                  value={strings.no}
+                  status={
+                    props?.formData?.preferred_bank === strings.no
+                      ? "checked"
+                      : "unchecked"
+                  }
+                  onPress={() =>
+                    props.setFormData({
+                      ...props.formData,
+                      preferred_bank: strings.no,
+                    })
+                  }
+                  color={PRIMARY_THEME_COLOR}
+                />
+                <Text
+                  style={[
+                    styles.radioTxt,
+                    {
+                      color:
+                        props?.formData?.preferred_bank === strings.no
+                          ? PRIMARY_THEME_COLOR
+                          : BLACK_COLOR,
+                    },
+                  ]}
+                >
+                  {strings.no}
+                </Text>
+              </View>
+            </View>
           </View>
           <Text style={[styles.headingText, { marginTop: 20 }]}>
             {strings.propertyrequire}
@@ -413,19 +618,19 @@ const AddNewVisitorForm = (props: any) => {
               }}
               value={
                 props?.formData?.expected_possession_date === "" ||
-                  props?.formData?.expected_possession_date === undefined ||
-                  props?.formData?.expected_possession_date === null
+                props?.formData?.expected_possession_date === undefined ||
+                props?.formData?.expected_possession_date === null
                   ? ""
                   : moment(props?.formData?.expected_possession_date).format(
-                    DATE_FORMAT
-                  )
+                      DATE_FORMAT
+                    )
               }
             />
           </View>
           <View style={styles.inputWrap}>
             <InputField
               placeholderText={"Area(Sq ft.)"}
-              handleInputBtnPress={() => { }}
+              handleInputBtnPress={() => {}}
               onChangeText={(data: any) => {
                 props.setFormData({
                   ...props.formData,
@@ -435,7 +640,7 @@ const AddNewVisitorForm = (props: any) => {
               valueshow={props?.formData?.areain_sqlft}
               headingText={"Area(Sq ft.)"}
               keyboardtype={"number-pad"}
-            // keyboardtype={'phone-pad'}
+              // keyboardtype={'phone-pad'}
             />
           </View>
 
@@ -451,6 +656,7 @@ const AddNewVisitorForm = (props: any) => {
             <View style={styles.smallContVw}>
               <TextInput
                 value={props?.formData?.min_budget?.toString()}
+                maxLength={4}
                 onChangeText={(data: any) => {
                   props.setFormData({
                     ...props.formData,
@@ -493,6 +699,7 @@ const AddNewVisitorForm = (props: any) => {
             <View style={[styles.smallContVw, { justifyContent: "flex-end" }]}>
               <TextInput
                 value={props?.formData?.max_budget}
+                maxLength={4}
                 onChangeText={(data: any) => {
                   props.setFormData({
                     ...props.formData,
@@ -641,6 +848,7 @@ const AddNewVisitorForm = (props: any) => {
             <View style={styles.smallContVw}>
               <TextInput
                 value={props?.formData?.min_emi_budget?.toString()}
+                maxLength={4}
                 onChangeText={(data: any) => {
                   props.setFormData({
                     ...props.formData,
@@ -683,6 +891,7 @@ const AddNewVisitorForm = (props: any) => {
             <View style={[styles.smallContVw, { justifyContent: "flex-end" }]}>
               <TextInput
                 value={props?.formData?.max_emi_budget}
+                maxLength={4}
                 onChangeText={(data: any) => {
                   props.setFormData({
                     ...props.formData,
@@ -887,7 +1096,7 @@ const AddNewVisitorForm = (props: any) => {
           <View style={styles.inputWrap}>
             <InputField
               placeholderText={"Company Name"}
-              handleInputBtnPress={() => { }}
+              handleInputBtnPress={() => {}}
               onChangeText={(data: any) => {
                 props.setFormData({
                   ...props.formData,
@@ -901,7 +1110,7 @@ const AddNewVisitorForm = (props: any) => {
           <View style={styles.inputWrap}>
             <InputField
               placeholderText={"Designation"}
-              handleInputBtnPress={() => { }}
+              handleInputBtnPress={() => {}}
               onChangeText={(data: any) => {
                 props.setFormData({
                   ...props.formData,
@@ -915,7 +1124,7 @@ const AddNewVisitorForm = (props: any) => {
           <View style={styles.inputWrap}>
             <InputField
               placeholderText={"Office Address"}
-              handleInputBtnPress={() => { }}
+              handleInputBtnPress={() => {}}
               onChangeText={(data: any) => {
                 props.setFormData({
                   ...props.formData,
@@ -940,8 +1149,8 @@ const AddNewVisitorForm = (props: any) => {
               />
             ) : (
               <>
-                {create &&
-                  (<Button
+                {create && (
+                  <Button
                     width={150}
                     handleBtnPress={() => {
                       props.setNavigationType(1);
@@ -950,10 +1159,10 @@ const AddNewVisitorForm = (props: any) => {
                     height={45}
                     buttonText={strings.createVisitor}
                     btnTxtsize={16}
-                  />)
-                }
-                {create && status ?
-                  (<Button
+                  />
+                )}
+                {create && status ? (
+                  <Button
                     width={150}
                     handleBtnPress={() => {
                       props.setNavigationType(2);
@@ -962,8 +1171,8 @@ const AddNewVisitorForm = (props: any) => {
                     height={45}
                     buttonText={strings.createandschedule}
                     btnTxtsize={14}
-                  />) : null
-                }
+                  />
+                ) : null}
               </>
             )}
           </View>

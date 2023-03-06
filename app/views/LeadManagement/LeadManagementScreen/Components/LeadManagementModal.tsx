@@ -12,6 +12,8 @@ import moment from "moment";
 import { useDispatch, useSelector } from "react-redux";
 import { getAllMaster } from "app/Redux/Actions/MasterActions";
 import { DATE_FORMAT } from "app/components/utilities/constant";
+import DropdownInput from "app/components/DropDown";
+import { leadTypes } from "app/components/utilities/DemoData";
 const FilterModal = (props: any) => {
   const dispatch: any = useDispatch()
   useEffect(() => {
@@ -32,6 +34,7 @@ const FilterModal = (props: any) => {
       search_by_visisor_name: '',
       search_configuration: '',
       visit_score: '',
+      visit_status: ''
     })
     props.setIsVisible(false)
     props.onRefresh()
@@ -165,6 +168,32 @@ const FilterModal = (props: any) => {
                 renderItem={visitorRender}
               />
             </View>
+            <View style={styles.inputWrap}>
+              <DropdownInput
+                headingText={strings.leadType}
+                placeholder={strings.leadType}
+                data={leadTypes}
+                inputWidth={'100%'}
+                paddingLeft={16}
+                maxHeight={300}
+                labelField="label"
+                valueField={'value'}
+                value={props?.filterData?.visit_status}
+                onChange={(item: any) => {
+                  props.setFilterData({
+                    ...props.filterData,
+                    visit_status: item.value,
+                  })
+                }}
+                newRenderItem={(item: any) => {
+                  return (
+                    <View style={styles.item}>
+                      <Text style={styles.textItem}>{item.label}</Text>
+                    </View>
+                  );
+                }}
+              />
+          </View>
           </View>
           <View style={{ marginVertical: 20 }}>
             <View style={{ flexDirection: 'row', justifyContent: 'center' }}>

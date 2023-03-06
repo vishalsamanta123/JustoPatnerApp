@@ -10,11 +10,11 @@ import { handlePermission, openPermissionSetting, } from "../utilities/GlobalFun
 const PicturePickerModal = (props: any) => {
     const handleCameraPress = () => {
         ImagePicker.openCamera({
-            width: 100,
-            height: 100,
+            // width: 100,
+            // height: 100,
             cropping: true,
             multiple: props.multiple ? props.multiple : false,
-            compressImageQuality: 0.8,
+            compressImageQuality: 1,
         }).then((image: any) => {
             props.setVisible(false);
             props.imageData(
@@ -30,11 +30,11 @@ const PicturePickerModal = (props: any) => {
     }
     const handleGalleryPress = () => {
         ImagePicker.openPicker({
-            width: 100,
-            height: 100,
+            // width: 100,
+            // height: 100,
             cropping: true,
             multiple: props.multiple ? props.multiple : false,
-            compressImageQuality: 0.8,
+            compressImageQuality: 1,
         }).then((image: any) => {
             props.setVisible(false);
             props.imageData(

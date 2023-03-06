@@ -70,10 +70,10 @@ const ImageUpload = ({ navigation }: any) => {
   const validation = () => {
     let isError = true;
     let errorMessage: any = "";
-    // if (formData?.property_id === "" && formData?.property_type_title === "") {
-    //   isError = false;
-    //   errorMessage = "Please select property name";
-    // } else
+    if (formData?.property_id === "" && formData?.property_type_title === "") {
+      isError = false;
+      errorMessage = "Please select property name";
+    } else
     if (formData?.document === "" || formData?.document === null) {
       isError = false;
       errorMessage = "Please select Image";
@@ -125,6 +125,7 @@ const ImageUpload = ({ navigation }: any) => {
           }
           data={allProperty}
           inputWidth={"100%"}
+          require={true}
           paddingLeft={16}
           maxHeight={300}
           labelField="property_title"

@@ -78,6 +78,7 @@ const strings = new LocalizedStrings({
     visitor: 'Visitor',
     bulkupload: 'Bulk Upload',
     uploadCSV: 'Upload CSV',
+    downloadSuccessCsv : 'File Downloaded successfully',
     browser: 'Browse',
     dowloadCSV: 'Download Sample CSV',
     uploadimage: 'Upload Image',
@@ -228,6 +229,14 @@ const strings = new LocalizedStrings({
     chooseTimeToDateCorrectly: "Choose time from today's date only",
     choosecurrentCorrect: 'Choose time beyond current time to 7:00 PM',
     choosetimeCorrect: 'Choose time between 10:00AM - 7:00 PM',
+
+     // lead Create
+     Married: 'Married',
+     Unmarried: 'Unmarried',
+     Rented: 'Rented',
+     Owned: 'Owned',
+     MoveIn: 'Move In',
+     Underonstruction: 'Under Construction',
   },
 });
 

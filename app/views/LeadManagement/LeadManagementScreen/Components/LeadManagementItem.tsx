@@ -7,6 +7,8 @@ import {
   BLACK_COLOR,
   YELLOW_COLOR,
   DATE_TIME_FORMAT,
+  GREEN_COLOR,
+  RED_COLOR,
 } from "../../../../components/utilities/constant";
 import images from "../../../../assets/images";
 import strings from "../../../../components/utilities/Localization";
@@ -18,6 +20,8 @@ const LeadManagementItem = (props: any) => {
     edit: 'edit_visitor',
     view: 'view_visitor',
   })
+  console.log('props?.items: ', props?.items);
+
   return (
     <View style={styles.IteamView}>
       {props?.items.property_title !== '' ?
@@ -141,6 +145,23 @@ const LeadManagementItem = (props: any) => {
                           ? "Ready To Book"
                           : strings.notfount}
           </Text>
+        </View>
+      </View>
+      <View style={styles.Txtview}>
+        <View style={styles.projectContainer}>
+          <Text style={styles.projectTxt}>visit status :</Text>
+        </View>
+        <View style={styles.nameContainer}>
+          <Text style={[styles.nameTxt, {
+            color:
+              props.items.visit_status === strings.hot ? GREEN_COLOR
+                : props.items.visit_status === strings.warm ? YELLOW_COLOR
+                  : props.items.visit_status === strings.cold ? RED_COLOR : BLACK_COLOR
+          }]}>{
+              props.items.visit_status ?
+                props.items.visit_status
+                : strings.notfount
+            }</Text>
         </View>
       </View>
       <View style={styles.Txtview}>

@@ -102,41 +102,50 @@ const CSVUpload = ({ navigation }: any) => {
     }
   };
   const onPressCSV = () => {
-    // if (csvFileData) {
-    //   function getUrlExtension(url: any) {
-    //     return csvFileData.split(/[#?]/)[0].split(".").pop().trim();
-    //   }
-    //   const extension = getUrlExtension(csvFileData);
-    //   console.log('extension: ', extension);
-    //   const localFile = `${RNFS.DocumentDirectoryPath}/temporaryfile.${extension}`;
-    //   console.log('localFile: ', localFile);
-    //   const options = {
-    //     fromUrl: csvFileData,
-    //     toFile: localFile,
-    //   };
-    //   console.log('options: ', options);
-    //   RNFS.downloadFile(options)
-    //     .promise.then(() => FileViewer.open(localFile))
-    //     .then(() => {
-    //       // success
-    //     })
-    //     .catch((error) => {
-    //       console.log("error", error);
-    //       // error
-    //       ErrorMessage({
-    //         msg: error?.message,
-    //         backgroundColor: RED_COLOR
-    //       })
-    //     });
-    // }
+    if (csvFileData) {
+      function getUrlExtension(url: any) {
+        return csvFileData.split(/[#?]/)[0].split(".").pop().trim();
+      }
+      const extension = getUrlExtension(csvFileData);
+      console.log('extension: ', extension);
+      const localFile = `${RNFS.DocumentDirectoryPath}/temporaryfile.${extension}`;
+      console.log('localFile: ', localFile);
+      const options = {
+        fromUrl: csvFileData,
+        toFile: localFile,
+      };
+      console.log('options: ', options);
+      RNFS.downloadFile(options)
+        .promise.then((res :any) => {
+          console.log('res: ', res);
+          if(res?.statusCode === 200) {
+            ErrorMessage({
+              msg: strings.downloadSuccessCsv,
+              backgroundColor: GREEN_COLOR
+            })
+            FileViewer.open(localFile)
+          }
+        })
+        .then(() => {
+          // success
+        })
+        .catch((error) => {
+          console.log("error", error);
+          // error
+          ErrorMessage({
+            msg: error?.message,
+            backgroundColor: RED_COLOR
+          })
+        });
+    }
   }
   const validation = () => {
     let isError = true;
     let errorMessage: any = "";
-    // if (formData?.property_id === "" && formData?.property_type_title === "") {
-    //   isError = false;
-    //   errorMessage = "Please select property name";
-    // } else
+    if (formData?.property_id === "" && formData?.property_type_title === "") {
+      isError = false;
+      errorMessage = "Please select property name";
+    } else
     if (formData?.uri === "" || formData?.uri === null) {
       isError = false;
       errorMessage = "Please select CSV file";
@@ -163,7 +172,7 @@ const CSVUpload = ({ navigation }: any) => {
       />
       <View style={[styles.inputWrap]}>
         <DropdownInput
-          // require={true}
+          require={true}
           headingText={"Property"}
           placeholder={
             formData?.property_title ? formData?.property_title : "Property"

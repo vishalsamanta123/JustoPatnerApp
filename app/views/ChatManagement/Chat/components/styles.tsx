@@ -97,6 +97,7 @@ const styles = StyleSheet.create({
     borderWidth: 0,
     width: "80%",
     justifyContent: "center",
+    borderRadius: normalize(10),
     // backgroundColor: "red",
   },
   imageMessageView: {
