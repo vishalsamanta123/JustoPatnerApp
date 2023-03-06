@@ -14,13 +14,14 @@ import UserBankInfo from './UserBankInfo'
 const ProfileView = (props: any) => {
   const { data, HandleBackPress, handleEditProfilePress, onpresContent } = props || {};
   const layout = useWindowDimensions();
-
   const [allDetails, setAllDetails] = useState<any>({})
-  const [index, setIndex] = useState(0);
-  const [routes] = useState([
-    { key: 'first', title: 'User Info' },
-    { key: 'second', title: 'Co. Info' },
-  ]);
+  const [indexData, setIndexData] = useState({
+    index: 0,
+    routes: [
+      { key: 'first', title: 'User Info' },
+      { key: 'second', title: 'Co. Info' },
+    ],
+  });
 
   const allDetailsall = useSelector((state: any) => state.agentData);
 
@@ -42,19 +43,29 @@ const ProfileView = (props: any) => {
       indicatorStyle={{ borderWidth: 2, borderColor: TABBAR_COLOR }}
       style={{ backgroundColor: PRIMARY_THEME_COLOR_DARK }} />
   );
-
-  console.log('allDetails: ', allDetails);
+  const handleIndexChange = (index: any) => {
+    setIndexData({
+      index: index,
+      routes: [
+        { key: 'first', title: 'User Info' },
+        { key: 'second', title: 'Co. Info' },
+      ],
+    })
+  }
   const FirstRoute = () => (
     <UserInfo allDetails={allDetails} onpresContent={onpresContent} />
   );
   const SecondRoute = () => (
     <UserBankInfo allDetails={allDetails} onpresContent={onpresContent} />
   );
-  const renderScene = SceneMap({
-    first: FirstRoute,
-    second: SecondRoute,
-  });
-
+  const renderScene = ({ index, route, }: any) => {
+    switch (route.key) {
+      case 'first':
+        return <FirstRoute />;
+      case 'second':
+        return <SecondRoute />;
+    }
+  };
   return (
     <View style={styles.mainContainer}>
       <Header
@@ -86,9 +97,9 @@ const ProfileView = (props: any) => {
         <View style={styles.userInfoTabView}>
           <TabView
             renderTabBar={renderTabBar}
-            navigationState={{ index, routes }}
-            renderScene={renderScene}
-            onIndexChange={setIndex}
+            navigationState={indexData}
+            onIndexChange={handleIndexChange}
+            renderScene={({ index, route }: any) => renderScene({ index, route })}
             initialLayout={{ width: layout.width }}
           />
         </View>

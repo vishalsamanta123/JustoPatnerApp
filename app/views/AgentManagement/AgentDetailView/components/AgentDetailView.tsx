@@ -15,11 +15,13 @@ import moment from 'moment'
 const agentDetailView = (props: any) => {
   const insets = useSafeAreaInsets();
   const layout = useWindowDimensions();
-  const [index, setIndex] = useState(0);
-  const [routes] = useState([
-    { key: 'first', title: 'Information' },
-    { key: 'second', title: 'Stats' },
-  ]);
+  const [indexData, setIndexData] = useState({
+    index: 0,
+    routes: [
+      { key: 'first', title: 'Information' },
+      { key: 'second', title: 'Stats' },
+    ],
+  });
 
   const DATAINFO: any =
   {
@@ -51,18 +53,28 @@ const agentDetailView = (props: any) => {
     lastclosevisit: props?.allDetails?.agent_stats?.last_closing_lead ?
       moment(props?.allDetails?.agent_stats?.last_closing_lead).format('llll') : '',
   };
-
+  const handleIndexChange = (index: any) => {
+    setIndexData({
+      index: index, routes: [
+        { key: 'first', title: 'Information' },
+        { key: 'second', title: 'Stats' },
+      ],
+    })
+  }
   const FirstRoute = () => (
     <AgentDetailInfo items={DATAINFO} />
   );
   const SecondRoute = () => (
     <AgentDetailStats items={DATASTATS} />
   );
-  const renderScene = SceneMap({
-    first: FirstRoute,
-    second: SecondRoute,
-  });
-
+  const renderScene = ({ index, route, }: any) => {
+    switch (route.key) {
+      case 'first':
+        return <FirstRoute />;
+      case 'second':
+        return <SecondRoute />;
+    }
+  };
 
   /*   const renderTabBar = props => {
       return (
@@ -115,9 +127,9 @@ const agentDetailView = (props: any) => {
       <View style={styles.propertyListView}>
         <TabView
           renderTabBar={renderTabBar}
-          navigationState={{ index, routes }}
-          renderScene={renderScene}
-          onIndexChange={setIndex}
+          navigationState={indexData}
+          renderScene={({ index, route }: any) => renderScene({ index, route })}
+          onIndexChange={handleIndexChange}
           initialLayout={{ width: layout.width }}
         />
       </View>

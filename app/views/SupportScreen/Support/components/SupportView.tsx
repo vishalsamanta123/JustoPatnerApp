@@ -11,38 +11,34 @@ import { SceneMap, TabBar, TabView } from 'react-native-tab-view'
 import EmptyListScreen from 'app/components/CommonScreen/EmptyListScreen'
 import SupportItem from './SupportItem'
 import { useFocusEffect, useNavigation } from '@react-navigation/native'
+import RoutingScreen from './RoutingScreen'
 
 const SupportView = (props: any) => {
-    const [index, setIndex] = useState(0);
     const layout = useWindowDimensions();
     const navigation: any = useNavigation()
-
-    const routes = [
-        { key: "first", title: strings.supportrequest },
-        { key: "second", title: strings.myticket },
-    ];
+    const [indexData, setIndexData] = useState({
+        index: 0,
+        routes: [
+            { key: "first", title: strings.supportrequest },
+            { key: "second", title: strings.myticket },
+        ],
+    });
     useFocusEffect(
         React.useCallback(() => {
-            setIndex(0)
-            props.setTicketList([])
-            props.TicketList(props.offSET, { type: 2 });
+            if (indexData?.index === 0) {
+                props.setTicketList([])
+                props.TicketList(0, { type: 2 });
+            } else {
+                props.setTicketList([])
+                props.TicketList(0, { type: 1 });
+            }
             return () => { };
-        }, [navigation])
+        }, [navigation, indexData])
     );
-
-    useEffect(() => {
-        if (index === 0) {
-            props.setTicketList([])
-            props.TicketList(0, { type: 2 });
-        } else {
-            props.setTicketList([])
-            props.TicketList(0, { type: 1 });
-        }
-    }, [index])
 
 
     const onPressView = (data: any) => {
-        navigation.navigate('SupportScreenDetails', { ticketid: data, type: index })
+        navigation.navigate('SupportScreenDetails', { ticketid: data, type: indexData?.index })
     }
 
     const renderTabBar = (props: any) => (
@@ -54,77 +50,45 @@ const SupportView = (props: any) => {
             style={{ backgroundColor: PRIMARY_THEME_COLOR_DARK }}
         />
     );
-    const FirstRoute = () => (
-        <FlatList
-            data={Array.isArray(props.ticketList) ? props.ticketList : []}
-            renderItem={({ item }) => (
-                <SupportItem
-                    items={item}
-                    index={index}
+    const handleIndexChange = (index: any) => {
+        setIndexData({
+            index: index, routes: [
+                { key: "first", title: strings.supportrequest },
+                { key: "second", title: strings.myticket },
+            ],
+        })
+        props.setOffset(0)
+        props.setTicketList([])
+    }
+    const renderScene = ({ index, route, }: any) => {
+        switch (route.key) {
+            case 'first':
+                return <RoutingScreen
+                    ticketList={props.ticketList}
+                    index={indexData?.index}
                     onPressView={onPressView}
                     onPressStatusUpdate={props.onPressStatusUpdate}
                     onPressEscalate={props.onPressEscalate}
-                />
-            )}
-            ListEmptyComponent={
-                <EmptyListScreen message={strings.supportrequest} />
-            }
-            onRefresh={() => {
-                props.setFilterData({
-                    start_date: "",
-                    end_date: "",
-                    customer_name: "",
-                    status: "",
-                });
-                props.TicketList(0, { type: 2 });
-            }}
-            onEndReached={() => {
-                if (props.ticketList?.length < props.totalData) {
-                    props.TicketList(props.ticketList?.length > 2 ? props.offSET + 1 : 0, { type: 2 });
-                }
-            }}
-            refreshing={false}
-        />
-    );
-
-    const SecondRoute = () => (
-        <FlatList
-            data={Array.isArray(props.ticketList) ? props.ticketList : []}
-            renderItem={({ item }) => (
-                <SupportItem
-                    items={item} index={index}
+                    setFilterData={props.setFilterData}
+                    TicketList={props.TicketList}
+                    totalData={props.totalData}
+                    offSET={props.offSET}
+                    keyType={route.key}
+                />;
+            case 'second':
+                return <RoutingScreen
+                    ticketList={props.ticketList}
+                    index={indexData?.index}
                     onPressView={onPressView}
                     handleEditTicket={props.handleEditTicket}
-                />
-            )}
-            ListEmptyComponent={
-                <EmptyListScreen message={strings.myticket} />
-            }
-            onRefresh={() => {
-                props.setFilterData({
-                    start_date: "",
-                    end_date: "",
-                    customer_name: "",
-                    status: "",
-                });
-                props.TicketList(0, { type: 1 });
-            }}
-            onEndReached={() => {
-                if (props.ticketList?.length < props.totalData) {
-                    props.TicketList(
-                        props.ticketList?.length > 2 ? props.offSET + 1 : 0,
-                        { type: 1 }
-                    );
-                }
-            }}
-            refreshing={false}
-        />
-    );
-
-    const renderScene = SceneMap({
-        first: FirstRoute,
-        second: SecondRoute,
-    });
+                    setFilterData={props.setFilterData}
+                    TicketList={props.TicketList}
+                    totalData={props.totalData}
+                    offSET={props.offSET}
+                    keyType={route.key}
+                />;
+        }
+    };
     return (
         <View style={styles.mainContainer}>
             <Header
@@ -150,9 +114,9 @@ const SupportView = (props: any) => {
             <View style={{ flex: 1 }}>
                 <TabView
                     renderTabBar={renderTabBar}
-                    navigationState={{ index, routes }}
-                    renderScene={renderScene}
-                    onIndexChange={setIndex}
+                    navigationState={indexData}
+                    renderScene={({ index, route }: any) => renderScene({ index, route })}
+                    onIndexChange={handleIndexChange}
                     initialLayout={{ width: layout.width }}
                 />
             </View>

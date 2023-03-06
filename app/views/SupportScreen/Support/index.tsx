@@ -15,13 +15,6 @@ const SupportScreen = ({ navigation }: any) => {
         startdate: "",
         enddate: "",
     });
-    useFocusEffect(
-        React.useCallback(() => {
-            setTicketList([])
-            TicketList(offSET, { type: 2 });
-            return () => { };
-        }, [navigation, list])
-    );
     useEffect(() => {
         if (response?.status === 200) {
             if (offSET === 0 || offSET === undefined) {

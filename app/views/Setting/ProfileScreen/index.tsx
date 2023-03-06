@@ -40,8 +40,6 @@ const ProfileScreen = ({ navigation, route }: any) => {
     }
   };
 
-
-
   const onpresContent = (name: any, items: any) => {
     navigation.navigate(name, items);
   };
@@ -49,9 +47,11 @@ const ProfileScreen = ({ navigation, route }: any) => {
   const HandleBackPress = () => {
     navigation.goBack();
   };
+
   const handleEditProfilePress = () => {
     navigation.navigate("EditProfileScreen", { allDetails: allDetails });
   };
+  
   return (
     <>
       <ProfileView
