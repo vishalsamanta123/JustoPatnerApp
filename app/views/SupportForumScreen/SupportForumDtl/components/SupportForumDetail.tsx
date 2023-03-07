@@ -75,7 +75,7 @@ const SupportForumDetail = (props: any) => {
                                     <>{itm?.content_type === 'video' ?
                                         <View style={{ marginVertical: normalizeSpacing(20) }}>
                                             <Image
-                                                source={{ uri: props?.supportForumDtl?.base_url + itm?.video_thumbnail }}
+                                                source={{ uri: `${props?.supportForumDtl?.base_url}${itm?.video_thumbnail}` }}
                                                 style={styles.Img}
                                             />
                                             <TouchableOpacity
@@ -101,6 +101,13 @@ const SupportForumDetail = (props: any) => {
                     }
                 </View>
             </ScrollView>
+            <View style={{marginBottom:10}}>
+                <Button
+                    width={135}
+                    buttonText={strings.shareFiles}
+                    handleBtnPress={() => props.handleSharePress()}
+                />
+            </View>
             <ContentView
                 Visible={contentViewModal}
                 setIsVisible={setContentViewModal}

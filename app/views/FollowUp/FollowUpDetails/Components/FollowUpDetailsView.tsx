@@ -11,6 +11,7 @@ import FollowUpDetailsItem from './FollowUpDetailsItem'
 import { useNavigation } from '@react-navigation/native'
 import { useSelector } from 'react-redux'
 import usePermission from 'app/components/utilities/UserPermissions'
+import { normalizeSpacing } from 'app/components/scaleFontSize'
 
 const FollowUpDetailsView = (props: any) => {
   const insets = useSafeAreaInsets();
@@ -43,11 +44,11 @@ const FollowUpDetailsView = (props: any) => {
       <View style={styles.leadDetailsItemView}>
         <FollowUpDetailsItem data={response?.data?.length > 0 ? response?.data[0] : {}} />
       </View>
-      <View style={styles.btnContainer}>
+      <View style={[styles.btnContainer , !Isios && {marginHorizontal: normalizeSpacing(10)}]}>
         {create &&
           (<Button
             buttonText={strings.ScheduleSitevisite}
-            width={Isios ? 200 : 150}
+            width={Isios ? 180 : 150}
             height={45}
             bgcolor={PRIMARY_THEME_COLOR_DARK}
             btnTxtcolor={WHITE_COLOR}

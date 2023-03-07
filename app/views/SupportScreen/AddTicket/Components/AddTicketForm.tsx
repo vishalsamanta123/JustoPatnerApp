@@ -1,10 +1,10 @@
-import { View, Text, TouchableOpacity } from 'react-native'
+import { View, Text, TouchableOpacity, ScrollView } from 'react-native'
 import React, { useState } from 'react'
 import styles from './styles'
 import Header from 'app/components/Header'
 import images from 'app/assets/images'
 import strings from 'app/components/utilities/Localization'
-import { BLACK_COLOR, PRIMARY_THEME_COLOR, WHITE_COLOR } from 'app/components/utilities/constant'
+import { BLACK_COLOR, Isios, PRIMARY_THEME_COLOR, WHITE_COLOR } from 'app/components/utilities/constant'
 import InputField from 'app/components/InputField'
 import DropdownInput from 'app/components/DropDown'
 import Button from 'app/components/Button'
@@ -26,6 +26,10 @@ const AddTicketForm = (props: any) => {
                 statusBarColor={PRIMARY_THEME_COLOR}
                 barStyle={'light-content'}
             />
+            <ScrollView 
+            keyboardShouldPersistTaps={"handled"}
+            automaticallyAdjustKeyboardInsets={Isios ? true : false}
+            contentContainerStyle={{ flexGrow: 1 }}>
             <View style={styles.topItemsVw}>
                 <View style={styles.inputWrap}>
                     <DropdownInput
@@ -108,6 +112,7 @@ const AddTicketForm = (props: any) => {
                     handleBtnPress={() => { props.onPressAddTicket() }}
                 />
             </View>
+            </ScrollView> 
             <PicturePickerModal
                 Visible={visible}
                 setVisible={setVisible}

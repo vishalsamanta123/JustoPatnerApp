@@ -17,7 +17,7 @@ const DealFlowView = (props: any) => {
             <View style={styles.mainCont}>
                 <View>
                     <Image
-                        source={{ uri: item.base_url + item.property_image }}
+                        source={{ uri: `${item.base_url}${item.property_image}` }}
                         style={styles.projectImgVw}
                     />
                     <View style={styles.textVws}>

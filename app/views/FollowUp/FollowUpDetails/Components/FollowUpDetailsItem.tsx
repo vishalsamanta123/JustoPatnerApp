@@ -7,6 +7,7 @@ import { DATE_FORMAT, DATE_TIME_FORMAT } from 'app/components/utilities/constant
 
 const FollowUpDetailsItem = (props: any) => {
     const data = props?.data || {}
+    console.log('data: ', data);
     return (
         <ScrollView showsVerticalScrollIndicator={false}>
             <View style={styles.topDetailsView}>
@@ -58,10 +59,10 @@ const FollowUpDetailsItem = (props: any) => {
                 </View>
                 <View><Text>:</Text></View>
                 <View style={styles.nameContainer}>
-                    <Text style={styles.nameTxt}>{data?.lead_source === '' ||
-                        data?.lead_source === undefined ||
-                        data?.lead_source === null ? strings.notfount
-                        : data?.lead_source}</Text>
+                    <Text style={styles.nameTxt}>{data?.created_name === '' ||
+                        data?.created_name === undefined ||
+                        data?.created_name === null ? strings.notfount
+                        : data?.created_name}</Text>
                 </View>
             </View>
             <View style={styles.Txtview}>

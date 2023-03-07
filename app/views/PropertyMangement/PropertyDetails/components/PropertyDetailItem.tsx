@@ -274,7 +274,7 @@ const PropertyDetailItem = (props: any) => {
                     <Image
                       key={index}
                       source={{
-                        uri: props.items.base_url + imagearray.document,
+                        uri: `${props.items.base_url}${imagearray.document}`,
                       }}
                       style={styles.imageSlider}
                     />

@@ -18,6 +18,7 @@ import strings from '../../../components/utilities/Localization';
 import {
   GRAY_COLOR,
   GREEN_COLOR,
+  Isios,
   PRIMARY_THEME_COLOR,
   PRIMARY_THEME_COLOR_DARK,
   WHITE_COLOR,
@@ -26,6 +27,7 @@ import {
 const DashboardView = (props: any) => {
   const [refreshing, setRefreshing] = React.useState(false);
   const onRefresh = () => {
+    console.log('refreshing', refreshing)
     setRefreshing(true);
     props.getDashboard()
     setTimeout(() => {
@@ -62,7 +64,7 @@ const DashboardView = (props: any) => {
             <RefreshControl refreshing={refreshing} onRefresh={onRefresh} />
           }
           contentContainerStyle={styles.dashboardScroll}
-          bounces={false}>
+          bounces={Isios ? true : false}>
           <View style={styles.dashboardWrap}>
             <View style={styles.nameView}>
               <View style={styles.statusView}>
@@ -105,7 +107,7 @@ const DashboardView = (props: any) => {
             </View>
             {/* <View style={styles.qrCodeView}> */}
             {props?.dashBoardData?.qr_code != "" ?
-              <Image source={{ uri: props?.dashBoardData?.qr_code }}
+              <Image source={{ uri: `${props?.dashBoardData?.qr_code}` }}
                 style={styles.qrCodeImage} />
               :
               <Image source={images.qrCode} style={styles.qrCodeImage} />

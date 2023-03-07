@@ -7,7 +7,7 @@ import Button from "../../../../components/Button";
 import strings from "../../../../components/utilities/Localization";
 import Logoview from "../../Logoview"
 import { useSafeAreaInsets } from "react-native-safe-area-context";
-import { PRIMARY_THEME_COLOR, WHITE_COLOR } from "../../../../components/utilities/constant";
+import { Isios, PRIMARY_THEME_COLOR, WHITE_COLOR } from "../../../../components/utilities/constant";
 
 const LoginView = (props: any) => {
   const insets = useSafeAreaInsets();
@@ -16,7 +16,8 @@ const LoginView = (props: any) => {
     setIsVisiblePassword(!isVisiblePassword);
   };
   return (
-    <ScrollView style={styles.mainContainer} keyboardShouldPersistTaps="always">
+    <ScrollView style={styles.mainContainer} keyboardShouldPersistTaps='handled'
+    keyboardDismissMode={Isios? 'on-drag' : 'none'}>
       {/* <View style={styles.logoView}>
         <View style={styles.loginBannerView}>
           <Image style={styles.loginBanner} source={images.loginBanner} />

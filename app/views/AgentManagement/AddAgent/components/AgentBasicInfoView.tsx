@@ -14,6 +14,7 @@ import styles from "./styles";
 import {
   BLACK_COLOR,
   DATE_FORMAT,
+  Isios,
   PRIMARY_THEME_COLOR,
   WHITE_COLOR,
 } from "../../../../components/utilities/constant";
@@ -47,8 +48,10 @@ const AgentBasicInfoView = (props: any) => {
         leftImageSrc={images.backArrow}
         leftImageIconStyle={styles.RightFirstIconStyle}
         handleOnLeftIconPress={props.onPressBack}
-      />
-      <ScrollView keyboardShouldPersistTaps={"handled"}>
+        />
+      <ScrollView keyboardShouldPersistTaps={"handled"}
+      automaticallyAdjustKeyboardInsets={Isios ? true : false}
+      >
         <View style={styles.wrap}>
           {/*  <Text style={styles.headingText}>{strings.basicInfoText}</Text> */}
           {/* <View style={styles.underlineStyle} /> */}
@@ -67,9 +70,9 @@ const AgentBasicInfoView = (props: any) => {
             ) : (
               <Image
                 source={{
-                  uri: props?.agentInfoData?.profile_picture?.uri
-                    ? props?.agentInfoData?.profile_picture?.uri
-                    : props?.agentInfoData?.profile_base_url + props?.agentInfoData?.profile_picture,
+                  uri: props?.agentInfoData?.profile_picture?.uri == undefined || props?.agentInfoData?.profile_picture?.uri === "" || props?.agentInfoData?.profile_picture?.uri === null
+                    ? `${props?.agentInfoData?.profile_base_url + props?.agentInfoData?.profile_picture}`
+                    :   props?.agentInfoData?.profile_picture?.uri
                 }}
                 resizeMode={"contain"}
                 style={styles.imageVw}

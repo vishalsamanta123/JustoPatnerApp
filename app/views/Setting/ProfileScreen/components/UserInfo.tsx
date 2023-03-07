@@ -191,7 +191,7 @@ const UserInfo = (props: any) => {
         </View>
         <View style={styles.ImageSliderContainer}>
           <Image
-            source={{ uri: allDetails?.rera_certificate }}
+            source={{ uri: `${allDetails?.rera_certificate}` }}
             style={styles.imageSlider}
           />
           <TouchableOpacity
@@ -212,7 +212,7 @@ const UserInfo = (props: any) => {
         </View>
         <View style={styles.ImageSliderContainer}>
           <Image
-            source={{ uri: allDetails?.propidership_declaration_letter }}
+            source={{ uri: `${allDetails?.propidership_declaration_letter}` }}
             style={styles.imageSlider}
           />
           <TouchableOpacity

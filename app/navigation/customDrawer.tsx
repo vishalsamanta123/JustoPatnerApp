@@ -63,7 +63,7 @@ const customDrawer = ({ navigation }: any) => {
             <Image
               style={styles.UserImge}
               source={userData?.profile_base_url && userData?.profile_picture ?
-                { uri: userData?.profile_base_url + userData?.profile_picture }
+                { uri: `${userData?.profile_base_url}${userData?.profile_picture}` }
                 : images.dummyUser
               }
             />

@@ -86,7 +86,7 @@ const ProfileView = (props: any) => {
           <View style={styles.usernameWrap}>
             <Image style={styles.userImage} source={
               allDetails?.profile_base_url && allDetails?.profile_picture ?
-                { uri: allDetails?.profile_base_url + allDetails?.profile_picture } :
+                { uri: `${allDetails?.profile_base_url}${allDetails?.profile_picture}` } :
                 images.dummyUser} />
             <Text style={styles.userNameText}>{allDetails?.agent_name}</Text>
           </View>

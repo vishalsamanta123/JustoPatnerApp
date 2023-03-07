@@ -391,7 +391,7 @@ const ChatScreen = ({ navigation, route }: any) => {
           <Image
             source={{
               uri: data.currentMessage.image
-                ? data.currentMessage.image
+                ? `${data.currentMessage.image}`
                 : messages.image,
             }}
             style={styles.imageMessageView}

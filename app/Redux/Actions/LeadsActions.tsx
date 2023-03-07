@@ -220,10 +220,10 @@ export const uploadCSVFile = (params: any) => async (dispatch: any) => {
             "access-control-allow-origin": "*",
         };
         const res = await apiCall("post", apiEndPoints.UPLOAD_CSVFile, params, header);
-        if (res.data.status === 200) {
+        if (res?.data?.status === 200) {
             dispatch({
                 type: UPLOAD_CSV_FILE,
-                payload: res.data,
+                payload: res?.data,
             });
         } else {
             handleApiError(res.data)

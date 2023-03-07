@@ -31,7 +31,7 @@ const DealFlowDetailView = (props: any) => {
     return item?.document_type === 'image' && (
       <View style={styles.topImgCont}>
         <Image
-          source={{ uri: props?.dealFlowDetail?.base_url + item?.document }}
+          source={{ uri: `${props?.dealFlowDetail?.base_url}${item?.document}` }}
           style={styles.topImgStyl}
         />
       </View>

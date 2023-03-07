@@ -108,7 +108,9 @@ const AddNewVisitorForm = (props: any) => {
         leftImageIconStyle={styles.RightFirstIconStyle}
         handleOnLeftIconPress={props.handleBackPress}
       />
-      <ScrollView keyboardShouldPersistTaps={"handled"}>
+      <ScrollView keyboardShouldPersistTaps={"handled"}
+      automaticallyAdjustKeyboardInsets={Isios ? true : false}
+      >
         <View style={styles.wrap}>
           <Text style={styles.headingText}>{strings.visitordetails}</Text>
           <View style={styles.inputWrap}>

@@ -11,7 +11,7 @@ import {
 import React, { useEffect, useState } from "react";
 import images from "../../../../assets/images";
 import InputField from "../../../../components/InputField";
-import { BLACK_COLOR, GRAY_LIGHT_COLOR, PRIMARY_THEME_COLOR, RED_COLOR, WHITE_COLOR } from "../../../../components/utilities/constant";
+import { BLACK_COLOR, GRAY_LIGHT_COLOR, Isios, PRIMARY_THEME_COLOR, RED_COLOR, WHITE_COLOR } from "../../../../components/utilities/constant";
 import strings from "../../../../components/utilities/Localization";
 import styles from "./styles";
 import Styles from "../../../../components/DropDown/styles";
@@ -134,7 +134,9 @@ const UserBankInfo = ({ navigation }: any) => {
           handleOnLeftIconPress={onPressBack}
           leftImageIconStyle={{ tintColor: WHITE_COLOR }}
         />
-        <ScrollView contentContainerStyle={styles.wrap}>
+        <ScrollView contentContainerStyle={styles.wrap}
+        automaticallyAdjustKeyboardInsets={Isios ? true : false}
+        >
           <View style={styles.inputWrap}>
             {/* <DropdownInput
               headingText={"Sourcing Manager"}
