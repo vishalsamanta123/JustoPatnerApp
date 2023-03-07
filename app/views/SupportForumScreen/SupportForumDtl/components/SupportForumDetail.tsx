@@ -101,6 +101,13 @@ const SupportForumDetail = (props: any) => {
                     }
                 </View>
             </ScrollView>
+            <View style={{marginBottom:10}}>
+                <Button
+                    width={135}
+                    buttonText={strings.shareFiles}
+                    handleBtnPress={() => props.handleSharePress()}
+                />
+            </View>
             <ContentView
                 Visible={contentViewModal}
                 setIsVisible={setContentViewModal}
