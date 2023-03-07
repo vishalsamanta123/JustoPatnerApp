@@ -48,7 +48,7 @@ const AgentListing = ({ navigation }: any) => {
       user_type: 2,
       search_by_name: filterData?.search_by_name ? filterData?.search_by_name : '',
       search_by_location: filterData?.search_by_location ? filterData?.search_by_location : '',
-      status: filterData?.status ? filterData?.status : '',
+      status: filterData?.status || filterData?.status === false ? filterData?.status : '',
     }))
   }
 

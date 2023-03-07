@@ -45,10 +45,11 @@ const AgentBasicInfo = ({ navigation, route }: any) => {
     const { agent_name, whatsapp_number, adhar_no, pancard_no, gender,
       date_of_birth, profile_picture, primary_mobile, email, location, working_location
     } = agentInfoData
-    if (profile_picture === '' || profile_picture === undefined) {
-      isError = false;
-      errorMessage = "Please select profile image"
-    } else if (agent_name === '' || agent_name === undefined) {
+    // if (profile_picture === '' || profile_picture === undefined) {
+    //   isError = false;
+    //   errorMessage = "Please select profile image"
+    // } else
+     if (agent_name === '' || agent_name === undefined) {
       isError = false;
       errorMessage = "Please fill agent name"
     } else if (adhar_no === '' || adhar_no === undefined) {
