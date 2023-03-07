@@ -1,7 +1,7 @@
 import { View, Text, StatusBar, TouchableOpacity, ScrollView } from "react-native";
 import React from "react";
 import styles from "./styles";
-import { WHITE_COLOR } from "../../../../components/utilities/constant";
+import { Isios, WHITE_COLOR } from "../../../../components/utilities/constant";
 import { useSafeAreaInsets } from "react-native-safe-area-context";
 import Header from "../../../../components/Header";
 import strings from "../../../../components/utilities/Localization";
@@ -18,7 +18,9 @@ const CompanyDetails = ({ navigation }: any) => {
     navigation.navigate('OtpVerificationScreenView')
   }
   return (
-    <ScrollView style={styles.mainContainer}>
+    <ScrollView style={styles.mainContainer}
+    automaticallyAdjustKeyboardInsets={Isios ? true : false}
+    >
       <Header
         headerText={strings.companyDetails}
         headerStyle={styles.headerStyle}

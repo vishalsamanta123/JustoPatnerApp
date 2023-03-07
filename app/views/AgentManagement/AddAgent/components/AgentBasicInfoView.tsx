@@ -14,6 +14,7 @@ import styles from "./styles";
 import {
   BLACK_COLOR,
   DATE_FORMAT,
+  Isios,
   PRIMARY_THEME_COLOR,
   WHITE_COLOR,
 } from "../../../../components/utilities/constant";
@@ -48,7 +49,9 @@ const AgentBasicInfoView = (props: any) => {
         leftImageIconStyle={styles.RightFirstIconStyle}
         handleOnLeftIconPress={props.onPressBack}
       />
-      <ScrollView keyboardShouldPersistTaps={"handled"}>
+      <ScrollView keyboardShouldPersistTaps={"handled"}
+      automaticallyAdjustKeyboardInsets={Isios ? true : false}
+      >
         <View style={styles.wrap}>
           {/*  <Text style={styles.headingText}>{strings.basicInfoText}</Text> */}
           {/* <View style={styles.underlineStyle} /> */}

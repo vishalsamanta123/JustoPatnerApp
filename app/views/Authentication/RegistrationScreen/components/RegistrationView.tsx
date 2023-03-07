@@ -15,6 +15,7 @@ import {
   BLACK_COLOR,
   DATE_FORMAT,
   GRAY_COLOR,
+  Isios,
   PRIMARY_THEME_COLOR,
   WHITE_COLOR,
 } from "../../../../components/utilities/constant";
@@ -65,6 +66,7 @@ const RegistrationView = (props: any) => {
       />
       <ScrollView
         keyboardShouldPersistTaps={"handled"}
+        automaticallyAdjustKeyboardInsets={Isios ? true : false}
         contentContainerStyle={styles.wrap}
       >
         {/*  <Text style={styles.headingText}>{strings.basicInfoText}</Text> */}

@@ -6,6 +6,7 @@ import strings from "../../../../components/utilities/Localization";
 import styles from "./styles";
 import {
   BLACK_COLOR,
+  Isios,
   PRIMARY_THEME_COLOR,
 } from "../../../../components/utilities/constant";
 import { useSafeAreaInsets } from "react-native-safe-area-context";
@@ -33,7 +34,9 @@ const EditProfileView = (props: any) => {
         barStyle={"light-content"}
         statusBarColor={PRIMARY_THEME_COLOR}
       />
-      <ScrollView keyboardShouldPersistTaps={'handled'}>
+      <ScrollView 
+      automaticallyAdjustKeyboardInsets={Isios ? true : false}
+      keyboardShouldPersistTaps={'handled'}>
         <View style={styles.wrap}>
           {/*  <Text style={styles.headingText}>{strings.basicInfoText}</Text> */}
           {/* <View style={styles.nderlineStyle} /> */}

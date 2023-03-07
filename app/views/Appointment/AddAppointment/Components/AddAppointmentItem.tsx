@@ -13,6 +13,7 @@ import {
   DATE_FORMAT,
   TIME_FORMAT,
   ONE_MONTH_DATES,
+  Isios,
 } from "../../../../components/utilities/constant";
 import Button from "../../../../components/Button";
 import InputCalender from "app/components/InputCalender";
@@ -20,7 +21,9 @@ import moment from "moment";
 
 const AddAppointmentItem = (props: any) => {
   return (
-    <ScrollView keyboardShouldPersistTaps={"handled"}>
+    <ScrollView keyboardShouldPersistTaps={"handled"}
+    automaticallyAdjustKeyboardInsets={Isios ? true : false}
+    >
       <View style={styles.wrap}>
         <View style={styles.inputWrap}>
           <DropdownInput

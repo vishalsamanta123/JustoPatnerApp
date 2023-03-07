@@ -264,7 +264,7 @@
 		83CBB9F71A601CBA00E9B192 /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
-				LastUpgradeCheck = 1210;
+				LastUpgradeCheck = 1340;
 				TargetAttributes = {
 					00E356ED1AD99517003FC87E = {
 						CreatedOnToolsVersion = 6.2;
@@ -526,6 +526,7 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = A0F3DF302107D30270112956 /* Pods-JustoPartner-JustoPartnerTests.debug.xcconfig */;
 			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				GCC_PREPROCESSOR_DEFINITIONS = (
 					"DEBUG=1",
@@ -543,7 +544,7 @@
 					"-lc++",
 					"$(inherited)",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = "org.reactjs.native.example.$(PRODUCT_NAME:rfc1034identifier)";
+				PRODUCT_BUNDLE_IDENTIFIER = com.justovers.partner.in;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/JustoPartner.app/JustoPartner";
 			};
@@ -553,8 +554,13 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 1CC8134BD2884542A73AC4C3 /* Pods-JustoPartner-JustoPartnerTests.release.xcconfig */;
 			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_IDENTITY = "Apple Development";
+				"CODE_SIGN_IDENTITY[sdk=macosx*]" = "Apple Development";
+				CODE_SIGN_STYLE = Automatic;
 				COPY_PHASE_STRIP = NO;
+				DEVELOPMENT_TEAM = "";
 				INFOPLIST_FILE = JustoPartnerTests/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 12.4;
 				LD_RUNPATH_SEARCH_PATHS = (
@@ -567,8 +573,10 @@
 					"-lc++",
 					"$(inherited)",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = "org.reactjs.native.example.$(PRODUCT_NAME:rfc1034identifier)";
+				PRODUCT_BUNDLE_IDENTIFIER = com.justovers.partner.in;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE_SPECIFIER = "";
+				"PROVISIONING_PROFILE_SPECIFIER[sdk=macosx*]" = "";
 				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/JustoPartner.app/JustoPartner";
 			};
 			name = Release;
@@ -580,10 +588,10 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_ENTITLEMENTS = JustoPartner/JustoPartnerDebug.entitlements;
-				CODE_SIGN_IDENTITY = "iPhone Distribution";
+				CODE_SIGN_IDENTITY = "iPhone Developer";
 				CODE_SIGN_STYLE = Manual;
-				CURRENT_PROJECT_VERSION = 2;
-				DEVELOPMENT_TEAM = L6K53HTKSQ;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = 448MWS74YV;
 				ENABLE_BITCODE = NO;
 				INFOPLIST_FILE = JustoPartner/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
@@ -595,9 +603,9 @@
 					"-ObjC",
 					"-lc++",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = com.Justoversepartner.in;
+				PRODUCT_BUNDLE_IDENTIFIER = com.justoverse.partner.in;
 				PRODUCT_NAME = JustoPartner;
-				PROVISIONING_PROFILE_SPECIFIER = "Justoversepartner(Distribution)";
+				PROVISIONING_PROFILE_SPECIFIER = justoversepartner_developemnt;
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_VERSION = 5.0;
 				VERSIONING_SYSTEM = "apple-generic";
@@ -611,9 +619,10 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_ENTITLEMENTS = JustoPartner/JustoPartnerRelease.entitlements;
-				CODE_SIGN_IDENTITY = "iPhone Distribution";
-				CURRENT_PROJECT_VERSION = 2;
-				DEVELOPMENT_TEAM = L6K53HTKSQ;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				CODE_SIGN_STYLE = Manual;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = 448MWS74YV;
 				INFOPLIST_FILE = JustoPartner/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
@@ -624,9 +633,9 @@
 					"-ObjC",
 					"-lc++",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = com.Justoversepartner.in;
+				PRODUCT_BUNDLE_IDENTIFIER = com.justoverse.partner.in;
 				PRODUCT_NAME = JustoPartner;
-				PROVISIONING_PROFILE_SPECIFIER = "Justoversepartner(Distribution)";
+				PROVISIONING_PROFILE_SPECIFIER = justoversepartner_developemnt;
 				SWIFT_VERSION = 5.0;
 				VERSIONING_SYSTEM = "apple-generic";
 			};
