@@ -1,7 +1,10 @@
 import { useFocusEffect } from '@react-navigation/native';
 import { supportForumListData } from 'app/Redux/Actions/SupportForumAction';
+import { START_LOADING, STOP_LOADING } from 'app/Redux/types';
 import React, { useEffect, useState } from 'react'
+import Share from "react-native-share";
 import { useDispatch, useSelector } from 'react-redux';
+import RNFetchBlob from 'rn-fetch-blob';
 import SupportForumView from './components/SupportForumView'
 
 const SupportForumScreen = ({ navigation }: any) => {
@@ -10,6 +13,7 @@ const SupportForumScreen = ({ navigation }: any) => {
     const moreData = response?.total_data || 0
     const [supportForumList, setSupportForumList] = useState<any>([])
     const [offSET, setOffset] = useState(0)
+    const [mediaArr, setMediaArr] = useState<any>([]);
     const [filterData, setFilterData] = useState({
         search_title: '',
         start_date: '',
@@ -46,6 +50,54 @@ const SupportForumScreen = ({ navigation }: any) => {
     const onPressView = (data: any) => {
         navigation.navigate('SupportForumDetail', data);
     };
+    const onPressShare = async (data: any) => {
+        dispatch({ type: START_LOADING });
+    
+        const fs = RNFetchBlob.fs;
+        const mediaUrls = data?.document.map((item: any) => {
+          return `${data?.base_url}${item?.content}`;
+        });
+        let newArr: any = [];
+    
+        const finalUrls = mediaUrls.map((url: any) => {
+          let imagePath: any = null;
+          RNFetchBlob.config({
+            fileCache: true,
+          })
+            .fetch("GET", url)
+            // the image is now dowloaded to device's storage
+            .then((resp) => {
+              // the image path you can use it directly with Image component
+              imagePath = resp.path();
+              return resp.readFile("base64");
+            })
+            .then(async (base64Data) => {
+              // here's base64 encoded image
+              // console.log(`data:image/png;base64,${base64Data}`);
+              // mediaArr.push();
+              // return JSON.stringify(base64Data);
+              // remove the file from storage
+              await newArr.push(`data:image/png;base64,${base64Data}`);
+              setMediaArr(newArr);
+              // console.log("newArr: ", newArr);
+              // return fs.unlink(imagePath);
+              if (data?.document?.length === newArr.length) {
+                const options = {
+                  title: `${data?.title}`,
+                  urls: newArr,
+                };
+                // console.log("mediaArr: ", mediaArr);
+                const shareResponse = await Share.open(options).then((res: any) => {
+                  // console.log("ressd", res);
+                });
+                setMediaArr(null)
+                dispatch({ type: STOP_LOADING });
+              }
+            }).catch( () => dispatch({ type: STOP_LOADING })
+            );
+        });
+        
+      };
     return (
         <SupportForumView
             handleDrawerPress={handleDrawerPress}
@@ -56,6 +108,8 @@ const SupportForumScreen = ({ navigation }: any) => {
             onPressView={onPressView}
             offSET={offSET}
             moreData={moreData}
+            onPressShare={onPressShare}
+            setMediaArr={setMediaArr}
         />
     )
 }

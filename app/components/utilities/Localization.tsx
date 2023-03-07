@@ -230,6 +230,9 @@ const strings = new LocalizedStrings({
     choosecurrentCorrect: 'Choose time beyond current time to 7:00 PM',
     choosetimeCorrect: 'Choose time between 10:00AM - 7:00 PM',
 
+    shareFiles: 'Share Files',
+
+
      // lead Create
      Married: 'Married',
      Unmarried: 'Unmarried',

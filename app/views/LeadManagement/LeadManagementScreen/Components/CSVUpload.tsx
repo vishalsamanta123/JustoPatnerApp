@@ -79,7 +79,7 @@ const CSVUpload = ({ navigation }: any) => {
 
   const handleBrowsePress = async () => {
     const result: any = await DocumentPicker.pick({
-      type: [DocumentPicker.types.csv, DocumentPicker.types.pdf],
+      type: [DocumentPicker.types.allFiles, DocumentPicker.types.pdf],
     });
     setCsvData({
       uri: result[0]?.uri,
@@ -97,6 +97,7 @@ const CSVUpload = ({ navigation }: any) => {
     if (validation()) {
       const paramFormData = new FormData();
       paramFormData.append("document", formData?.document);
+      paramFormData.append("property_id", formData?.property_id);
       paramFormData.append("visitorFile", csvData);
       dispatch(uploadCSVFile(paramFormData));
     }
@@ -185,6 +186,7 @@ const CSVUpload = ({ navigation }: any) => {
           valueField={"_id"}
           value={formData?.property_id}
           onChange={(item: any) => {
+          console.log('item: ', item);
             setFormData({
               ...formData,
               property_id: item.property_id,
