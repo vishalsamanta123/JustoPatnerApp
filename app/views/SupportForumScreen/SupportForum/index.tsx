@@ -86,7 +86,6 @@ const SupportForumScreen = ({ navigation }: any) => {
                   title: `${data?.title}`,
                   urls: newArr,
                 };
-                // console.log("mediaArr: ", mediaArr);
                 const shareResponse = await Share.open(options).then((res: any) => {
                   // console.log("ressd", res);
                 });
