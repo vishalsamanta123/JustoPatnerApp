@@ -1,7 +1,7 @@
 import { View, Text, StatusBar, TouchableOpacity, ScrollView, BackHandler, Image } from "react-native";
 import React, { useEffect, useState } from "react";
 import styles from "./styles";
-import { BLACK_COLOR, GREEN_COLOR, PRIMARY_THEME_COLOR, RED_COLOR, WHITE_COLOR } from "../../../../components/utilities/constant";
+import { BLACK_COLOR, GREEN_COLOR, Isios, PRIMARY_THEME_COLOR, RED_COLOR, WHITE_COLOR } from "../../../../components/utilities/constant";
 import { useSafeAreaInsets } from "react-native-safe-area-context";
 import Header from "../../../../components/Header";
 import strings from "../../../../components/utilities/Localization";
@@ -165,6 +165,7 @@ const CompanyDetails = ({ navigation }: any) => {
         leftImageIconStyle={{ tintColor: WHITE_COLOR }}
       />
       <ScrollView keyboardShouldPersistTaps={'handled'}
+      automaticallyAdjustKeyboardInsets={Isios ? true : false}
         contentContainerStyle={styles.wrap}>
         <View style={styles.inputWrap}>
           <InputField

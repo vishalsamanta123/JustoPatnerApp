@@ -14,6 +14,7 @@ import {
   PRIMARY_THEME_COLOR,
   WHITE_COLOR,
   PURPLE_COLOR,
+  Isios,
 } from "../../../../components/utilities/constant";
 
 const styles = StyleSheet.create({
@@ -147,8 +148,8 @@ const styles = StyleSheet.create({
     borderRadius: 20,
   },
   image: {
-    height: normalizeHeight(250),
-    width: normalizeWidth(250),
+    height: Isios ?  normalizeHeight(200) :  normalizeHeight(250),
+    width: Isios ?  normalizeHeight(200) :  normalizeHeight(250),
     borderRadius: 20,
   },
   uploadButton: {
