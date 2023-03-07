@@ -10,12 +10,13 @@ import InputCalender from "app/components/InputCalender";
 import { Dropdown } from "react-native-element-dropdown";
 import moment from "moment";
 import { useDispatch } from 'react-redux';
-import { DATE_FORMAT } from "app/components/utilities/constant";
+import { DATE_FORMAT, Isios } from "app/components/utilities/constant";
 
 const dealFlowFilter = (props: any) => {
     return (
         <Modal isVisible={props.Visible}>
             <ScrollView keyboardShouldPersistTaps={'handled'}
+            automaticallyAdjustKeyboardInsets={Isios ? true : false}
                 contentContainerStyle={{ flexGrow: 1, justifyContent: 'center', }}
             >
                 <View style={styles.mainContainer}>

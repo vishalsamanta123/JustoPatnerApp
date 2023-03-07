@@ -5,7 +5,7 @@ import Button from "../../../../components/Button";
 import Header from "../../../../components/Header";
 import InputField from "../../../../components/InputField";
 import { normalize } from "../../../../components/scaleFontSize";
-import { PRIMARY_THEME_COLOR } from "../../../../components/utilities/constant";
+import { Isios, PRIMARY_THEME_COLOR } from "../../../../components/utilities/constant";
 import strings from "../../../../components/utilities/Localization";
 import styles from "./styles";
 import LeaderBoardItems from './LeaderBoardItems';
@@ -36,7 +36,7 @@ const LeaderBoardView = (props: any) => {
                 <InputField
                     placeholderText={'Search Project Name'}
                     handleInputBtnPress={() => { }}
-                    inputheight={45}
+                    inputheight={Isios ? 30 : 45}
                     onChangeText={(data: any) => {
                         props.setFilterData({
                             ...props.filterData,

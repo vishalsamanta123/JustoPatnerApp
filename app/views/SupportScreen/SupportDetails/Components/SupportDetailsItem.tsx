@@ -74,7 +74,7 @@ const SupportDetailsItem = (props: any) => {
                     <View><Text>:</Text></View>
                     <View style={[styles.nameContainer, { marginLeft: 10 }]}>
                         <Image
-                            source={{ uri: props.item.base_url + props.item.image }}
+                            source={{ uri: `${props.item.base_url}${props.item.image}` }}
                             resizeMode={'contain'}
                             style={styles.Img}
                         />

@@ -1,5 +1,5 @@
 import React from "react";
-import { View, Text, Image, FlatList } from "react-native";
+import { View, Text, Image, FlatList, ScrollView } from "react-native";
 import images from "../../../../assets/images";
 import Button from "../../../../components/Button";
 import DropdownInput from "../../../../components/DropDown";
@@ -7,6 +7,7 @@ import Header from "../../../../components/Header";
 import InputField from "../../../../components/InputField";
 import {
   DATE_FORMAT,
+  Isios,
   PRIMARY_THEME_COLOR,
   TIME_FORMAT,
 } from "../../../../components/utilities/constant";
@@ -31,6 +32,13 @@ const AppointmentAddView = (props: any) => {
         barStyle={"light-content"}
         statusBarColor={PRIMARY_THEME_COLOR}
       />
+      <ScrollView
+        keyboardShouldPersistTaps={"handled"}
+        automaticallyAdjustKeyboardInsets={Isios ? true : false}
+        contentContainerStyle={{
+          flexGrow: 1,
+        }}
+      >
       <View style={styles.topItemsVw}>
         <View style={styles.inputWrap}>
           <DropdownInput
@@ -182,6 +190,7 @@ const AppointmentAddView = (props: any) => {
           />
         </View>
       </View>
+      </ScrollView>
     </View>
   );
 };

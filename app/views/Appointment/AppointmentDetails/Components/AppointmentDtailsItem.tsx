@@ -20,7 +20,7 @@ const AppointmentDtailsItem = (props: any) => {
           <Text style={styles.topTxt}>Visitor Score </Text>
           <Text style={styles.topTxt}>{props?.item?.lead_score}</Text>
         </View>
-        <Image source={{ uri: props?.item?.qr_code }} style={styles.qrImg} />
+        <Image source={{ uri: `${props?.item?.qr_code}` }} style={styles.qrImg} />
       </View>
       <View style={styles.Txtview}>
         <View style={styles.projectContainer}>

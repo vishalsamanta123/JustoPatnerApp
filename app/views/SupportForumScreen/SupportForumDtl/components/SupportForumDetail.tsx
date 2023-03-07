@@ -75,7 +75,7 @@ const SupportForumDetail = (props: any) => {
                                     <>{itm?.content_type === 'video' ?
                                         <View style={{ marginVertical: normalizeSpacing(20) }}>
                                             <Image
-                                                source={{ uri: props?.supportForumDtl?.base_url + itm?.video_thumbnail }}
+                                                source={{ uri: `${props?.supportForumDtl?.base_url}${itm?.video_thumbnail}` }}
                                                 style={styles.Img}
                                             />
                                             <TouchableOpacity

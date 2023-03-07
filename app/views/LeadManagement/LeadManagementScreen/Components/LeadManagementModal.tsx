@@ -11,7 +11,7 @@ import InputCalender from "../../../../components/InputCalender";
 import moment from "moment";
 import { useDispatch, useSelector } from "react-redux";
 import { getAllMaster } from "app/Redux/Actions/MasterActions";
-import { DATE_FORMAT } from "app/components/utilities/constant";
+import { DATE_FORMAT, Isios } from "app/components/utilities/constant";
 import DropdownInput from "app/components/DropDown";
 import { leadTypes } from "app/components/utilities/DemoData";
 const FilterModal = (props: any) => {
@@ -57,7 +57,10 @@ const FilterModal = (props: any) => {
   };
   return (
     <Modal isVisible={props.Visible}>
-      <ScrollView contentContainerStyle={{ flexGrow: 1, justifyContent: 'center' }}>
+      <ScrollView 
+      keyboardShouldPersistTaps={"handled"}
+      automaticallyAdjustKeyboardInsets={Isios ? true : false}
+      contentContainerStyle={{ flexGrow: 1, justifyContent: 'center' }}>
         <View style={styles.mainContainer}>
           <View style={styles.topContainer}>
             <Text style={styles.topTxt}>{strings.searchvisitor}</Text>

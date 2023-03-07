@@ -15,12 +15,6 @@ const PrivacyPolicyView = (props: any) => {
   const insets = useSafeAreaInsets();
   return (
     <View style={styles.mainContainer}>
-    <View
-    style={{
-      backgroundColor: PRIMARY_THEME_COLOR,
-      height: insets.top,
-    }}
-  />
    <StatusBar barStyle={"light-content"} backgroundColor={PRIMARY_THEME_COLOR} />
   <Header
     headerText={props.contentShow}

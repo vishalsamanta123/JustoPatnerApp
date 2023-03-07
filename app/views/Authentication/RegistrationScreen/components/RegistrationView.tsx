@@ -46,12 +46,6 @@ const RegistrationView = (props: any) => {
   };
   return (
     <View style={styles.mainContainer}>
-      <View
-        style={{
-          backgroundColor: PRIMARY_THEME_COLOR,
-          height: insets.top,
-        }}
-      />
       <StatusBar
         barStyle={"light-content"}
         backgroundColor={PRIMARY_THEME_COLOR}
@@ -86,7 +80,7 @@ const RegistrationView = (props: any) => {
             <View style={styles.imageCircle}>
               <Image
                 style={styles.loginBanner}
-                source={{ uri: props.registerForm?.profile_picture?.uri }}
+                source={{ uri: `${props.registerForm?.profile_picture?.uri}` }}
                 resizeMode="contain"
               />
             </View>

@@ -79,7 +79,7 @@ const styles = StyleSheet.create({
   btnContainer: {
     flexDirection: 'row',
     justifyContent: 'space-between',
-    marginHorizontal: normalizeSpacing(10),
+    // marginHorizontal: normalizeSpacing(10),
     marginVertical: normalizeSpacing(10)
   }
 })

@@ -1,7 +1,7 @@
 import { View, Text, StatusBar, TextInput, ScrollView } from 'react-native'
 import React, { useEffect, useState } from 'react'
 import styles from './Styles'
-import { DATE_FORMAT, GREEN_COLOR, PRIMARY_THEME_COLOR_DARK, TIME_FORMAT, WHITE_COLOR } from '../../../../components/utilities/constant';
+import { DATE_FORMAT, GREEN_COLOR, Isios, PRIMARY_THEME_COLOR_DARK, TIME_FORMAT, WHITE_COLOR } from '../../../../components/utilities/constant';
 import Header from '../../../../components/Header';
 import images from '../../../../assets/images';
 import strings from '../../../../components/utilities/Localization';
@@ -87,7 +87,10 @@ const EditFollowUp = ({ navigation, route }: any) => {
                 headerStyle={styles.headerStyle}
                 RightFirstIconStyle={styles.RightFirstIconStyle}
             />
-            <ScrollView contentContainerStyle={{ flexGrow: 1 }}>
+            <ScrollView 
+            keyboardShouldPersistTaps={"handled"}
+            automaticallyAdjustKeyboardInsets={Isios ? true : false}
+            contentContainerStyle={{ flexGrow: 1 }}>
                 <View style={styles.editInputView}>
                     <View style={styles.inputWarp}>
                         <DropdownInput

@@ -48,7 +48,7 @@ const VideoContent = ({navigation,route}: any) => {
            
           
             <Image
-              source={{uri: base_url + item?.video_thumbnail}}
+              source={{uri: `${base_url}${item?.video_thumbnail}`}}
               style={{
                 width: '100%',
                 height: normalizeHeight(300),

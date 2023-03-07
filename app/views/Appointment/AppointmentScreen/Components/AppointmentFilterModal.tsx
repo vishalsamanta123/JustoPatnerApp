@@ -1,4 +1,4 @@
-import { View, Text, Image, TouchableOpacity } from "react-native";
+import { View, Text, Image, TouchableOpacity, ScrollView } from "react-native";
 import React, { useEffect, useState } from "react";
 import Modal from "react-native-modal";
 import styles from "../../../../components/Modals/styles";
@@ -12,6 +12,7 @@ import moment from "moment";
 import {
   DATE_FORMAT,
   GRAY_LIGHT_COLOR,
+  Isios,
 } from "app/components/utilities/constant";
 import { Dropdown } from "react-native-element-dropdown";
 
@@ -27,6 +28,13 @@ const AppointmentFilterModal = (props: any) => {
     <View>
       <Modal isVisible={props.Visible}>
         <View style={styles.mainContainer}>
+          <ScrollView
+          keyboardShouldPersistTaps={"handled"}
+          automaticallyAdjustKeyboardInsets={Isios ? true : false}
+          contentContainerStyle={{
+            flexGrow: 1,
+          }}
+          >
           <View style={styles.topContainer}>
             <Text style={styles.topTxt}>Search Appointment</Text>
             <View>
@@ -145,6 +153,7 @@ const AppointmentFilterModal = (props: any) => {
               width={150}
             />
           </View>
+          </ScrollView>
         </View>
       </Modal>
     </View>

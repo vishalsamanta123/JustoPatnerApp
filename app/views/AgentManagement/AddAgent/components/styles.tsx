@@ -88,7 +88,7 @@ const styles = StyleSheet.create({
   imageVw: {
     width: normalizeWidth(100),
     height: normalizeHeight(100),
-    borderRadius: 50
+    borderRadius: 50,
   },
   inputWrap: {
     marginTop: normalizeSpacing(30),

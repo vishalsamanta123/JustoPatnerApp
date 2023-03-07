@@ -9,15 +9,16 @@ import InputField from "app/components/InputField";
 import { Dropdown } from "react-native-element-dropdown";
 import InputCalender from "app/components/InputCalender";
 import moment from "moment";
-import { DATE_FORMAT } from "app/components/utilities/constant";
+import { DATE_FORMAT, Isios } from "app/components/utilities/constant";
 
 
 const SuportForumFilter = (props: any) => {
   return (
     <Modal isVisible={props.Visible}>
-      {/* <ScrollView keyboardShouldPersistTaps={'handled'}
+      <ScrollView keyboardShouldPersistTaps={'handled'}
+      automaticallyAdjustKeyboardInsets={Isios ? true : false}
         contentContainerStyle={{ flexGrow: 1, justifyContent: 'center', }}
-      > */}
+      >
         <View style={styles.mainContainer}>
           <View style={styles.topContainer}>
             <Text style={styles.topTxt}>{strings.searchSupportForum}</Text>
@@ -106,6 +107,7 @@ const SuportForumFilter = (props: any) => {
             </View>
           </View>
         </View>
+        </ScrollView>
     </Modal>
   );
 };
