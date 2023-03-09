@@ -1,7 +1,6 @@
 import {
   View,
   Text,
-  StatusBar,
   ScrollView,
   Image,
   FlatList,
@@ -9,8 +8,7 @@ import {
   RefreshControl,
 } from 'react-native';
 import { Switch } from 'react-native-switch';
-import { useSafeAreaInsets } from 'react-native-safe-area-context';
-import React, { useState } from 'react';
+import React from 'react';
 import Header from '../../../components/Header';
 import images from '../../../assets/images';
 import styles from './styles';
@@ -19,15 +17,12 @@ import {
   GRAY_COLOR,
   GREEN_COLOR,
   Isios,
-  PRIMARY_THEME_COLOR,
-  PRIMARY_THEME_COLOR_DARK,
   WHITE_COLOR,
 } from '../../../components/utilities/constant';
 
 const DashboardView = (props: any) => {
   const [refreshing, setRefreshing] = React.useState(false);
   const onRefresh = () => {
-    console.log('refreshing', refreshing)
     setRefreshing(true);
     props.getDashboard()
     setTimeout(() => {
@@ -203,25 +198,27 @@ const DashboardView = (props: any) => {
               </View>
             </TouchableOpacity> */}
           </View>
-          <View style={styles.bottomSection}>
-            <View style={styles.headingView}>
-              <Text style={styles.headingText}>ACTIVE PROPERTY</Text>
-              {/* <Text style={styles.headingText}>VISITOR</Text>
+          {props?.activepropertyData?.length > 0 &&
+            <View style={styles.bottomSection}>
+              <View style={styles.headingView}>
+                <Text style={styles.headingText}>ACTIVE PROPERTY</Text>
+                {/* <Text style={styles.headingText}>VISITOR</Text>
               <Text style={styles.headingText}>SITE VISIT</Text>
               <Text style={styles.headingText}>CLOSE LEAD</Text> */}
+              </View>
+              <FlatList data={props.activepropertyData} renderItem={renderItem} />
+              {props.activepropertyData?.length > 4 ?
+                (<TouchableOpacity
+                  onPress={() => props.onPressMore()}
+                  style={styles.headingView}>
+                  <Text style={[styles.headingText, styles.knowMoreText]}>
+                    Know More
+                  </Text>
+                </TouchableOpacity>)
+                : null
+              }
             </View>
-            <FlatList data={props.activepropertyData} renderItem={renderItem} />
-            {props.activepropertyData?.length > 4 ?
-              (<TouchableOpacity
-                onPress={() => props.onPressMore()}
-                style={styles.headingView}>
-                <Text style={[styles.headingText, styles.knowMoreText]}>
-                  Know More
-                </Text>
-              </TouchableOpacity>)
-              : null
-            }
-          </View>
+          }
         </ScrollView>
       </View>
     </>
