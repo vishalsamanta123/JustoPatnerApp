@@ -107,9 +107,10 @@ const CSVUpload = ({ navigation }: any) => {
       function getUrlExtension(url: any) {
         return csvFileData.split(/[#?]/)[0].split(".").pop().trim();
       }
+      const fileName = csvFileData.split(/[#?]/)[0].split("/").pop().trim();
       const extension = getUrlExtension(csvFileData);
       console.log('extension: ', extension);
-      const localFile = `${RNFS.DocumentDirectoryPath}/temporaryfile.${extension}`;
+      const localFile = `${RNFS.DownloadDirectoryPath}/${fileName}`;
       console.log('localFile: ', localFile);
       const options = {
         fromUrl: csvFileData,
@@ -124,7 +125,7 @@ const CSVUpload = ({ navigation }: any) => {
               msg: strings.downloadSuccessCsv,
               backgroundColor: GREEN_COLOR
             })
-            FileViewer.open(localFile)
+            // FileViewer.open(localFile)
           }
         })
         .then(() => {

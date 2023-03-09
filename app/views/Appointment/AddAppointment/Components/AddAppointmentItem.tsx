@@ -292,7 +292,7 @@ const AddAppointmentItem = (props: any) => {
             handleBtnPress={() => props.handleBtnPress()}
             buttonText={
               props.type == strings.edit
-                ? strings.editNewappointment
+                ? strings.update
                 : strings.addNewappointment
             }
           />
