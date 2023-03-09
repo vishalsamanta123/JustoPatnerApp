@@ -50,55 +50,6 @@ const CatalogueContent = ({ navigation, route }: any) => {
         })
       });
   };
-  const handleSharePress = async (data: any) => {
-    console.log('data: ', data);
-    // dispatch({ type: START_LOADING });
-
-    const fs = RNFetchBlob.fs;
-    const mediaUrls = data?.map((item: any) => {
-      return `${base_url}${item?.document}`;
-    });
-    let newArr: any = [];
-    console.log('mediaUrls: ', mediaUrls);
-
-    const finalUrls = mediaUrls.map((url: any) => {
-      let imagePath: any = null;
-      RNFetchBlob.config({
-        fileCache: true,
-      })
-        .fetch("GET", url)
-        // the image is now dowloaded to device's storage
-        .then((resp) => {
-          // the image path you can use it directly with Image component
-          imagePath = resp.path();
-          return resp.readFile("base64");
-        })
-        .then(async (base64Data) => {
-          // here's base64 encoded image
-          // console.log(`data:image/png;base64,${base64Data}`);
-          // mediaArr.push();
-          // return JSON.stringify(base64Data);
-          // remove the file from storage
-          await newArr.push(`data:application/pdf;base64,${base64Data}`);
-          setMediaArr(newArr);
-          // console.log("newArr: ", newArr);
-          // return fs.unlink(imagePath);
-          if (data?.length === newArr.length) {
-            const options = {
-              title: `${data?.title}`,
-              urls: newArr,
-            };
-            const shareResponse = await Share.open(options).then((res: any) => {
-              // console.log("ressd", res);
-            });
-            setMediaArr(null)
-            dispatch({ type: STOP_LOADING });
-          }
-        }).catch( () => dispatch({ type: STOP_LOADING })
-        );
-    });
-    
-  };
   return (
     <View style={styles.mainContainer}>
       <Header
@@ -141,13 +92,13 @@ const CatalogueContent = ({ navigation, route }: any) => {
           )}
         />
       </View>
-      <View style={{ marginBottom: 10 }}>
+      {/* <View style={{ marginBottom: 10 }}>
         <Button
           width={135}
           buttonText={strings.shareFiles}
           handleBtnPress={() => handleSharePress(array)}
         />
-      </View>
+      </View> */}
     </View>
   )
 }
