@@ -10,6 +10,7 @@ import {
   BLUE_COLOR,
   FONT_FAMILY_EXTRABOLD,
   FONT_FAMILY_SEMIBOLD,
+  Isios,
   PRIMARY_THEME_COLOR,
   PRIMARY_THEME_COLOR_DARK,
   PURPLE_COLOR,
@@ -172,7 +173,7 @@ const styles = StyleSheet.create({
   },
   thirdPortionCardTextView: {
     margin: normalizeSpacing(10),
-    width: '70%',
+    width: Isios ? '75%' : '70%',
   },
   thirdPortionNumberText: {
     color: PRIMARY_THEME_COLOR,
