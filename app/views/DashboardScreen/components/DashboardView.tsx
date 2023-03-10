@@ -36,9 +36,9 @@ const DashboardView = (props: any) => {
   }
   const targetData = props?.dashBoardData?.target || {}
   const achieveTargetData = props?.dashBoardData?.achievetargetdata || {}
-  const renderItem = ({ item }: any) => {
+  const renderItem = ({ item , index }: any) => {
     return (
-      <TouchableOpacity style={styles.headingView} onPress={() => props.onPressView(item)}>
+      <TouchableOpacity key={index} style={styles.headingView} onPress={() => props.onPressView(item)}>
         <Text style={styles.itemText}>{item.property_title}</Text>
         {/* <Text style={styles.itemText}>{item.visitor}</Text>
         <Text style={styles.itemText}>{item.siteVisit}</Text>
