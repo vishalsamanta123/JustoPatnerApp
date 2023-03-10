@@ -246,6 +246,8 @@ const AppointmentView = (props: any) => {
           ]);
         }
       }
+    } else {
+      setUserAppointmentList([])
     }
   }, [getUserListResponse]);
   const getAppointmentList = (offset: any, data: any) => {
