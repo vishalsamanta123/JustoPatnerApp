@@ -34,9 +34,9 @@ const EditProfileView = (props: any) => {
         barStyle={"light-content"}
         statusBarColor={PRIMARY_THEME_COLOR}
       />
-      <ScrollView 
-      automaticallyAdjustKeyboardInsets={Isios ? true : false}
-      keyboardShouldPersistTaps={'handled'}>
+      <ScrollView
+        automaticallyAdjustKeyboardInsets={Isios ? true : false}
+        keyboardShouldPersistTaps={'handled'}>
         <View style={styles.wrap}>
           {/*  <Text style={styles.headingText}>{strings.basicInfoText}</Text> */}
           {/* <View style={styles.nderlineStyle} /> */}
@@ -106,6 +106,7 @@ const EditProfileView = (props: any) => {
                   pancard_no: e,
                 });
               }}
+              maxLength={10}
               headingText={"Pancard No."}
             />
           </View>

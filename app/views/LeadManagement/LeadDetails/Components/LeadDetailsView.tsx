@@ -19,7 +19,7 @@ import usePermission from "app/components/utilities/UserPermissions";
 const LeadDetailsView = (props: any) => {
   const insets = useSafeAreaInsets();
   const navigation: any = useNavigation();
-  const [userDetails, setuserDetails] = useState({});
+  const [userDetails, setuserDetails] = useState<any>({});
   const getleaddata = useSelector((state: any) => state.visitorData);
   useEffect(() => {
     if (getleaddata?.response?.status === 200) {
@@ -52,16 +52,23 @@ const LeadDetailsView = (props: any) => {
         </View>
         <View style={styles.btnContainer}>
           {create &&
-            (<Button
-              handleBtnPress={() => OnpressseheduleVisit()}
-              buttonText={strings.ScheduleSitevisite}
-              width={150}
-              height={45}
-              bgcolor={PRIMARY_THEME_COLOR_DARK}
-              btnTxtcolor={WHITE_COLOR}
-              btnTxtsize={11}
-              textTransform={"uppercase"}
-            />)
+            <>
+              {(userDetails?.lead_status !== 3 ||
+                (userDetails?.appointment_status === 4 ||
+                  userDetails?.appointment_status === 5 ||
+                  userDetails?.appointment_status === 6) ?
+                (<Button
+                  handleBtnPress={() => OnpressseheduleVisit()}
+                  buttonText={strings.ScheduleSitevisite}
+                  width={150}
+                  height={45}
+                  bgcolor={PRIMARY_THEME_COLOR_DARK}
+                  btnTxtcolor={WHITE_COLOR}
+                  btnTxtsize={11}
+                  textTransform={"uppercase"}
+                />) : null)
+              }
+            </>
           }
           {status &&
             (<Button
