@@ -13,6 +13,7 @@ import Header from "app/components/Header";
 import images from "app/assets/images";
 import {
   PRIMARY_THEME_COLOR,
+  RED_COLOR,
   WHITE_COLOR,
   WHITE_COLOR_LIGHT,
 } from "app/components/utilities/constant";
@@ -40,6 +41,7 @@ import { START_LOADING, STOP_LOADING } from "app/Redux/types";
 import Modal from "react-native-modal";
 import FastImages from "app/components/FastImage";
 import VideoPlayer from "./VideoPlayer";
+import ErrorMessage from "app/components/ErrorMessage";
 
 const ChatScreen = ({ navigation, route }: any) => {
   const item = route.params || {};
@@ -264,84 +266,91 @@ const ChatScreen = ({ navigation, route }: any) => {
     }).catch((e) => {
       dispatch({ type: STOP_LOADING });
     });
-
-    let imageRef: any;
-    let mediaObject: any = {
-      url: "",
-      type: "",
-    };
-    if (result[0].type === "image/jpeg") {
-      imageRef = storage().ref(`images/${result[0].name}`);
+    if (result[0]?.size <= 10000000) {
+      let imageRef: any;
+      let mediaObject: any = {
+        url: "",
+        type: "",
+      };
+      if (result[0].type === "image/jpeg") {
+        imageRef = storage().ref(`images/${result[0].name}`);
+        mediaObject = {
+          ...mediaObject,
+          type: "image",
+        };
+      } else if (result[0].type === "application/pdf") {
+        imageRef = storage().ref(`docFiles/${result[0].name}`);
+        mediaObject = {
+          ...mediaObject,
+          type: "doc",
+        };
+      } else if (result[0].type === "video/mp4") {
+        imageRef = storage().ref(`videos/${result[0].name}`);
+        mediaObject = {
+          ...mediaObject,
+          type: "video",
+        };
+      }
+      let fileuri = result[0].uri;
+      let filename = result[0].name;
+      const response = await fetch(fileuri);
+      const blob = await response.blob();
+      await imageRef.put(blob);
+      var dwnload = await imageRef.getDownloadURL();
       mediaObject = {
         ...mediaObject,
-        type: "image",
+        url: dwnload,
       };
-    } else if (result[0].type === "application/pdf") {
-      imageRef = storage().ref(`docFiles/${result[0].name}`);
-      mediaObject = {
-        ...mediaObject,
-        type: "doc",
-      };
-    } else if (result[0].type === "video/mp4") {
-      imageRef = storage().ref(`videos/${result[0].name}`);
-      mediaObject = {
-        ...mediaObject,
-        type: "video",
-      };
-    }
-    let fileuri = result[0].uri;
-    let filename = result[0].name;
-    const response = await fetch(fileuri);
-    const blob = await response.blob();
-    await imageRef.put(blob);
-    var dwnload = await imageRef.getDownloadURL();
-    mediaObject = {
-      ...mediaObject,
-      url: dwnload,
-    };
-    const asyncSenderID: any = await AsyncStorage.getItem("firebase_id");
-    const senderID: any = JSON.parse(asyncSenderID);
-    setSenderID(senderID);
+      const asyncSenderID: any = await AsyncStorage.getItem("firebase_id");
+      const senderID: any = JSON.parse(asyncSenderID);
+      setSenderID(senderID);
 
-    if (mediaObject.url !== "") {
-      const params = {
-        createdAt: new Date().toISOString(),
-        [mediaObject.type === "doc" ? "image" : mediaObject.type]: dwnload,
-        type: mediaObject.type,
-        filename: filename,
-        senderUserId: senderID,
-        recevierID: item?.firebase_id,
-        _id: senderID,
-        ["isRead-" + senderID]: true,
-        ["isRead-" + item?.firebase_id]: false,
-        isDelete: false,
-        ["delete-" + senderID]: false,
-        ["delete-" + item?.firebase_id]: false,
-      };
+      if (mediaObject.url !== "") {
+        const params = {
+          createdAt: new Date().toISOString(),
+          [mediaObject.type === "doc" ? "image" : mediaObject.type]: dwnload,
+          type: mediaObject.type,
+          filename: filename,
+          senderUserId: senderID,
+          recevierID: item?.firebase_id,
+          _id: senderID,
+          ["isRead-" + senderID]: true,
+          ["isRead-" + item?.firebase_id]: false,
+          isDelete: false,
+          ["delete-" + senderID]: false,
+          ["delete-" + item?.firebase_id]: false,
+        };
 
-      await firebase
-        .app()
-        .database(apiEndPoints.FIREBASE_DATABASE_URL)
-        .ref(
-          senderID > item?.firebase_id
-            ? senderID + "-" + item?.firebase_id
-            : item?.firebase_id + "-" + senderID
-        )
-        .push()
-        .set(params)
-        .then((ref: any) => {
-          dispatch({ type: STOP_LOADING });
-          dispatch(
-            chatStatusUpdate({
-              property_id: item?.property_id,
-              receiver_id: item?._id,
-              msg_status: 1,
-            })
-          );
-        })
-        .catch(() => {
-          dispatch({ type: STOP_LOADING });
-        });
+        await firebase
+          .app()
+          .database(apiEndPoints.FIREBASE_DATABASE_URL)
+          .ref(
+            senderID > item?.firebase_id
+              ? senderID + "-" + item?.firebase_id
+              : item?.firebase_id + "-" + senderID
+          )
+          .push()
+          .set(params)
+          .then((ref: any) => {
+            dispatch({ type: STOP_LOADING });
+            dispatch(
+              chatStatusUpdate({
+                property_id: item?.property_id,
+                receiver_id: item?._id,
+                msg_status: 1,
+              })
+            );
+          })
+          .catch(() => {
+            dispatch({ type: STOP_LOADING });
+          });
+      }
+    } else {
+      dispatch({ type: STOP_LOADING });
+      ErrorMessage({
+        msg: "Please select media less than 10 mb",
+        backgroundColor: RED_COLOR,
+      });
     }
   };
   const renderComposer = (props: any) => {
