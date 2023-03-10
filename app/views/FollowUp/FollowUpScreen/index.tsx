@@ -13,7 +13,8 @@ const FollowUpScreen = ({ navigation }: any) => {
     const [filterData, setFilterData] = useState({
         start_date: '',
         end_date: '',
-        followup_for: ''
+        followup_for: '',
+        lead_id: ''
     })
     const handleDrawerPress = () => {
         navigation.toggleDrawer();
@@ -42,6 +43,7 @@ const FollowUpScreen = ({ navigation }: any) => {
             start_date: filterData?.start_date ? filterData?.start_date : '',
             end_date: filterData?.end_date ? filterData?.end_date : '',
             followup_for: filterData?.followup_for ? filterData?.followup_for : '',
+            lead_id: filterData?.lead_id ? filterData?.lead_id : '',
         }))
     }
 
@@ -49,7 +51,8 @@ const FollowUpScreen = ({ navigation }: any) => {
         setFilterData({
             start_date: '',
             end_date: '',
-            followup_for: ''
+            followup_for: '',
+            lead_id: '',
         })
         getFollowupList(0, {})
         setFollowUpList([])
