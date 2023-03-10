@@ -41,7 +41,7 @@ const LeadManagementScreen = ({ navigation }: any) => {
     setOffset(offset)
     dispatch(getAllLeadsList({
       offset: offset,
-      limit: 3,
+      limit: 10,
       start_date: filterData?.startdate ? filterData?.startdate : '',
       end_date: filterData?.enddate ? filterData?.enddate : '',
       search_by_visisor_name: filterData?.search_by_visisor_name ? filterData?.search_by_visisor_name : '',

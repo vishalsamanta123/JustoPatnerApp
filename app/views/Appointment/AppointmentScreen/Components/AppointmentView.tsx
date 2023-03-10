@@ -253,7 +253,7 @@ const AppointmentView = (props: any) => {
     dispatch(
       getAllAppointmentList({
         offset: offset,
-        limit: 3,
+        limit: 10,
         start_date: data?.start_date ? data?.start_date : '',
         end_date: data?.end_date ? data?.end_date : '',
         customer_name: data?.customer_name ? data?.customer_name : '',

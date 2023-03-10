@@ -117,12 +117,12 @@ const FollowUpItem = (props: any) => {
                 ? "Site visit"
                 : item.followup_for == 3
                   ? "Booking"
-                  : "Registration"}
+                  : item.followup_for == 4 ? "Registration" : strings.notfount}
           </Text>
         </View>
       </View>
       <View style={styles.buttonContainer}>
-        {edit &&
+        {edit && item.followup_for !== 4 &&
           (<TouchableOpacity
             style={[styles.button, { borderColor: PURPLE_COLOR }]}
             onPress={() => props.onPressEdit(item)}
