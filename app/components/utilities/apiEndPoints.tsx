@@ -68,10 +68,11 @@ export default {
   EDIT_AGENT_: "/channelPartner/editAgent",
 
 
-  //Agent Management
+  //Lead Management
   VISITORLIST: "/visit/getVisiterList",
   GET_VISITOR_DETAIL_: "/visit/getVisitDetails",
   VISITOR_STATUS_UPDATE: "/visit/updateVisitStatus",
+  GET_USERVISTLIST: '/visit/getUserVisitList',
   ADD_VISITOR_: "/visit/addVisit",
   EDIT_VISITOR_: "/visit/editVisit",
   UPLOAD_IMAGE: "/visit/bulkVisitImageUpload",
