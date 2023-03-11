@@ -168,6 +168,16 @@ const AppointmentDtailsItem = (props: any) => {
           </Text>
         </View>
       </View>
+      {props?.item?.checkin_status &&
+        (<View style={styles.Txtview}>
+          <View style={styles.projectContainer}>
+            <Text style={styles.projectTxt}>Status</Text>
+          </View>
+          <View><Text>:</Text></View>
+          <View style={styles.nameContainer}>
+            <Text style={[styles.nameTxt,{color: props?.item?.checkin_status ? GREEN_COLOR : BLACK_COLOR}]}>{props?.item?.checkin_status ? 'Checked In' : strings.notfount}</Text>
+          </View>
+        </View>)}
       <View style={styles.Txtview}>
         <View style={styles.projectContainer}>
           <Text style={styles.projectTxt}>Appointment Create by</Text>

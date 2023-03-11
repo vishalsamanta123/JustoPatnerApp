@@ -172,7 +172,9 @@ const LeadManagementItem = (props: any) => {
           <Text style={[styles.nameTxt,]}>
             {/*  1- By User 2 - By Self acquisition_source */}
             {props.items.acquisition_source === 1 ? "By User" :
-              props.items.acquisition_source === 2 ? "By Self" : strings.notfount
+              props.items.acquisition_source === 2 ? "By Self" :
+              props.items.acquisition_source === 3 ? strings.bulkupload :
+               strings.notfount
             }
           </Text>
         </View>
