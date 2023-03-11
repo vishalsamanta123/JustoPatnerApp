@@ -32,6 +32,7 @@ export const checkSpecialChar = /[ `!@#$%^&*()_+\-=\[\]{};':"\\|,.<>\/?~]/;
 
 export const Isios = Platform.OS === 'ios'
 export const DATE_FORMAT = 'YYYY-MM-DD'
+export const DATE_FORMAT_SLASH = 'YYYY/MM/DD'
 export const TIME_FORMAT = 'LT'
 export const DATE_TIME_FORMAT = 'YYYY-MM-DD, h:mm a'
 export const AMOUNT_TYPE = [{ value: "Cr" }, { value: "L" }, { value: "K" }]

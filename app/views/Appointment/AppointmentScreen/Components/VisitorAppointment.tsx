@@ -11,6 +11,7 @@ import {
   YELLOW_COLOR,
   GREEN_COLOR,
   DATE_TIME_FORMAT,
+  DATE_FORMAT,
 } from "../../../../components/utilities/constant";
 import moment from "moment";
 import usePermission from "app/components/utilities/UserPermissions";
@@ -33,7 +34,7 @@ const VisitorAppointment = (props: any) => {
         <View style={styles.nameContainer}>
           <Text style={styles.nameTxt}>{`${moment(
             item?.appointment_date
-          ).format("DD-MM-YYYY")}, ${item?.appointment_time}`}</Text>
+          ).format(DATE_FORMAT)}, ${item?.appointment_time}`}</Text>
         </View>
       </View>
       <View style={styles.Txtview}>
