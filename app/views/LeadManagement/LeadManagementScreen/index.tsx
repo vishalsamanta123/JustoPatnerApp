@@ -15,7 +15,8 @@ const LeadManagementScreen = ({ navigation }: any) => {
     search_by_visisor_name: '',
     search_configuration: '',
     visit_score: '',
-    visit_status: ''
+    visit_status: '',
+    lead_status: ''
   })
   const [visitorList, setVisiitorList] = useState<any>([])
   const [offSET, setOffset] = useState(0)
@@ -47,7 +48,8 @@ const LeadManagementScreen = ({ navigation }: any) => {
       search_by_visisor_name: filterData?.search_by_visisor_name ? filterData?.search_by_visisor_name : '',
       search_configuration: filterData?.search_configuration ? filterData?.search_configuration : '',
       visit_score: filterData?.visit_score ? filterData?.visit_score : '',
-      visit_status: filterData?.visit_status ? filterData?.visit_status : ''
+      visit_status: filterData?.visit_status ? filterData?.visit_status : '',
+      lead_status: filterData?.lead_status ? filterData?.lead_status : ''
     }))
   }
   const handleDrawerPress = () => {

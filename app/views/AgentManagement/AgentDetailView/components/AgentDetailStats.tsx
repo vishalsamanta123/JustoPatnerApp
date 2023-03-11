@@ -51,10 +51,10 @@ const agentDetailItem = (props: any) => {
         </View>
         <View><Text>:</Text></View>
         <View style={styles.nameContainer}>
-          <Text style={styles.nameTxt}>{props.items.closeVisit === '' ||
-            props.items.closeVisit === undefined || props.items.closeVisit === "undefined" ?
+          <Text style={styles.nameTxt}>{props.items.total_closing_lead === '' ||
+            props.items.total_closing_lead === undefined || props.items.total_closing_lead === "undefined" ?
             strings.notfount :
-            props.items.closeVisit}</Text>
+            props.items.total_closing_lead}</Text>
         </View>
       </View>
       <View style={styles.Txtview}>

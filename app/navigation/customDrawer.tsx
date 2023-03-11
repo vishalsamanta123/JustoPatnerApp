@@ -76,6 +76,9 @@ const customDrawer = ({ navigation }: any) => {
               <Text numberOfLines={2} style={[styles.UserAddress, { width: 140 }]}>
                 {userData?.location ?? ''}
               </Text>
+              <Text numberOfLines={2} style={[styles.UserAddress, { width: 140 }]}>
+                {userData?.role_title ?? ""}
+              </Text>
             </View>
             <TouchableOpacity
               style={styles.closeDrawerView}

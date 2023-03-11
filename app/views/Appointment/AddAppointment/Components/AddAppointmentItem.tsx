@@ -20,9 +20,10 @@ import InputCalender from "app/components/InputCalender";
 import moment from "moment";
 
 const AddAppointmentItem = (props: any) => {
+console.log('props: ', props.pickup);
   return (
     <ScrollView keyboardShouldPersistTaps={"handled"}
-    automaticallyAdjustKeyboardInsets={Isios ? true : false}
+      automaticallyAdjustKeyboardInsets={Isios ? true : false}
     >
       <View style={styles.wrap}>
         <View style={styles.inputWrap}>
@@ -162,71 +163,75 @@ const AddAppointmentItem = (props: any) => {
           />
         </View>
         <>
-          <View style={styles.inputWrap}>
-            <Text style={styles.genderTxt}>{strings.pickupAppointment}</Text>
-          </View>
-          <View style={styles.genderView}>
-            <View style={styles.radioView}>
-              <RadioButton.Android
-                value={strings.yes}
-                status={
-                  props.addAppointmentForm?.pickup === strings.yes
-                    ? "checked"
-                    : "unchecked"
-                }
-                onPress={() => {
-                  props.setAddAppointmentForm({
-                    ...props.addAppointmentForm,
-                    pickup: strings.yes,
-                  });
-                }}
-                color={PRIMARY_THEME_COLOR}
-              />
-              <Text
-                style={[
-                  styles.radioTxt,
-                  {
-                    color:
+          {props?.addAppointmentForm?.pickup === 'Yes' ? (
+            <>
+              <View style={styles.inputWrap}>
+                <Text style={styles.genderTxt}>{strings.pickupAppointment}</Text>
+              </View>
+              <View style={styles.genderView}>
+                <View style={styles.radioView}>
+                  <RadioButton.Android
+                    value={strings.yes}
+                    status={
                       props.addAppointmentForm?.pickup === strings.yes
-                        ? PRIMARY_THEME_COLOR
-                        : BLACK_COLOR,
-                  },
-                ]}
-              >
-                {strings.yes}
-              </Text>
-            </View>
-            <View style={styles.radioView}>
-              <RadioButton.Android
-                value={strings.no}
-                status={
-                  props.addAppointmentForm?.pickup === strings.no
-                    ? "checked"
-                    : "unchecked"
-                }
-                onPress={() => {
-                  props.setAddAppointmentForm({
-                    ...props.addAppointmentForm,
-                    pickup: strings.no,
-                  });
-                }}
-                color={PRIMARY_THEME_COLOR}
-              />
-              <Text
-                style={[
-                  styles.radioTxt,
-                  {
-                    color:
+                        ? "checked"
+                        : "unchecked"
+                    }
+                    onPress={() => {
+                      props.setAddAppointmentForm({
+                        ...props.addAppointmentForm,
+                        pickup: strings.yes,
+                      });
+                    }}
+                    color={PRIMARY_THEME_COLOR}
+                  />
+                  <Text
+                    style={[
+                      styles.radioTxt,
+                      {
+                        color:
+                          props.addAppointmentForm?.pickup === strings.yes
+                            ? PRIMARY_THEME_COLOR
+                            : BLACK_COLOR,
+                      },
+                    ]}
+                  >
+                    {strings.yes}
+                  </Text>
+                </View>
+                <View style={styles.radioView}>
+                  <RadioButton.Android
+                    value={strings.no}
+                    status={
                       props.addAppointmentForm?.pickup === strings.no
-                        ? PRIMARY_THEME_COLOR
-                        : BLACK_COLOR,
-                  },
-                ]}
-              >
-                {strings.no}
-              </Text>
-            </View>
-          </View>
+                        ? "checked"
+                        : "unchecked"
+                    }
+                    onPress={() => {
+                      props.setAddAppointmentForm({
+                        ...props.addAppointmentForm,
+                        pickup: strings.no,
+                      });
+                    }}
+                    color={PRIMARY_THEME_COLOR}
+                  />
+                  <Text
+                    style={[
+                      styles.radioTxt,
+                      {
+                        color:
+                          props.addAppointmentForm?.pickup === strings.no
+                            ? PRIMARY_THEME_COLOR
+                            : BLACK_COLOR,
+                      },
+                    ]}
+                  >
+                    {strings.no}
+                  </Text>
+                </View>
+              </View>
+            </>
+          ) : null}
           {props.addAppointmentForm?.pickup == strings.yes ? (
             <>
               <View style={styles.inputWrap}>

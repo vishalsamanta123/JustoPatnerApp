@@ -71,7 +71,7 @@ const AppointmentAddView = (props: any) => {
             }}
           />
         </View>
-        <View style={styles.inputWrap}>
+        {/* <View style={styles.inputWrap}>
           <DropdownInput
             headingText={strings.leadType}
             placeholder={strings.leadType}
@@ -96,7 +96,7 @@ const AppointmentAddView = (props: any) => {
               );
             }}
           />
-        </View>
+        </View> */}
         {props?.formData?.status === "1" ? (
           <>
             <View style={styles.inputWrap}>

@@ -121,7 +121,7 @@ const AppointmentFilterModal = (props: any) => {
                 data={[
                   // 1= Pending, 2 = Confirm, 3= Compleat
                   { label: 'Upcoming', value: 1 },
-                  { label: 'Confirm', value: 2 },
+                  // { label: 'Confirm', value: 2 },
                   { label: 'Complete', value: 3 },
                   { label: 'Appointment cancel', value: 5 },
                   { label: 'Close', value: 6 },

@@ -78,7 +78,7 @@ const strings = new LocalizedStrings({
     visitor: 'Visitor',
     bulkupload: 'Bulk Upload',
     uploadCSV: 'Upload CSV',
-    downloadSuccessCsv : 'File Downloaded successfully',
+    downloadSuccessCsv: 'File Downloaded successfully',
     browser: 'Browse',
     dowloadCSV: 'Download Sample CSV',
     uploadimage: 'Upload Image',
@@ -119,7 +119,7 @@ const strings = new LocalizedStrings({
     searchYourlocation: 'Search your location here',
     comingSoon: 'Coming Soon',
     share: 'Share',
-    search:'Search',
+    search: 'Search',
     propertyForchat: 'Property for chat',
     chat: 'Chat',
     cancel: 'Cancel',
@@ -204,21 +204,21 @@ const strings = new LocalizedStrings({
     notfount: 'Not Found',
     inprocess: 'In Process',
 
-     // Raise Ticket (Support)
-     addticket: 'Add Ticket',
-     editticket: 'Edit Ticket',
-     supportrequest: 'Support Request',
-     myticket: 'My Ticket',
-     escalate: 'Escalate',
-     ticketDetails: 'Ticket Details',
-     ticketReply: 'Ticket Reply',
-     showreply: 'Show Reply',
-     ticketStatusUpdate: 'Status Update',
+    // Raise Ticket (Support)
+    addticket: 'Add Ticket',
+    editticket: 'Edit Ticket',
+    supportrequest: 'Support Request',
+    myticket: 'My Ticket',
+    escalate: 'Escalate',
+    ticketDetails: 'Ticket Details',
+    ticketReply: 'Ticket Reply',
+    showreply: 'Show Reply',
+    ticketStatusUpdate: 'Status Update',
     escalatetonew: 'Escalate to New user',
     nouserselected: 'No user selected',
 
-     //deal flow
-     searchDealflow:'Search Deal Flow',
+    //deal flow
+    searchDealflow: 'Search Deal Flow',
 
     // status
 
@@ -233,13 +233,19 @@ const strings = new LocalizedStrings({
     shareFiles: 'Share Files',
 
 
-     // lead Create
-     Married: 'Married',
-     Unmarried: 'Unmarried',
-     Rented: 'Rented',
-     Owned: 'Owned',
-     MoveIn: 'Move In',
-     Underonstruction: 'Under Construction',
+    // lead Create
+    Married: 'Married',
+    Unmarried: 'Unmarried',
+    Rented: 'Rented',
+    Owned: 'Owned',
+    MoveIn: 'Move In',
+    Underonstruction: 'Under Construction',
+    // Visit status
+    createLead: 'Create Lead',
+    booking: 'Booking',
+    close: 'Close',
+    readytoBookHeader: 'Ready to Book',
+
   },
 });
 

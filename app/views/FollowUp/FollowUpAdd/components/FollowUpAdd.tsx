@@ -63,7 +63,7 @@ const FollowUpAddView = (props: any) => {
                         }}
                     />
                 </View>
-                <View style={styles.inputWrap}>
+                {/* <View style={styles.inputWrap}>
                     <DropdownInput
                         headingText={strings.leadType}
                         placeholder={strings.leadType}
@@ -88,7 +88,7 @@ const FollowUpAddView = (props: any) => {
                             );
                         }}
                     />
-                </View>
+                </View> */}
                 {props?.formData?.followup_status === '6360c6d52ca46e9d3636fbf4' ? (
                     <>
                         <View style={styles.inputWrap}>

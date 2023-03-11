@@ -7,6 +7,7 @@ import { GREEN_COLOR } from 'app/components/utilities/constant';
 import { useFocusEffect } from '@react-navigation/native';
 import { getChatListForProperty } from 'app/Redux/Actions/ChatActions';
 import { Alert, BackHandler } from 'react-native';
+import { getPermission } from 'app/Redux/Actions/permissionAction';
 
 const DashboardScreen = ({ navigation }: any) => {
   const dispatch: any = useDispatch()
@@ -41,6 +42,12 @@ const DashboardScreen = ({ navigation }: any) => {
       return () => { };
     }, [navigation, isEnabled])
   );
+  useFocusEffect(
+    React.useCallback(() => {
+      dispatch(getPermission({}))
+      return () => { };
+    }, [navigation])
+  )
   useEffect(() => {
     dispatch(
       getChatListForProperty({

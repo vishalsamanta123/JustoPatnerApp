@@ -6,6 +6,14 @@ export const leadTypes: any = [
   {label: `${strings.warm}`, value: `${strings.warm}`},
   {label: `${strings.cold}`, value: `${strings.cold}`},
 ]
+export const VisitStatus: any = [
+  { label: `${strings.createLead}`, value: 1 },
+  { label: `${strings.appointmnet}`, value: 3 },
+  { label: `${strings.booking}`, value: 4 },
+  { label: `${strings.registration}`, value: 5 },
+  { label: `${strings.close}`, value: 6 },
+  { label: `${strings.readytoBookHeader}`, value: 7 },
+]
 
 export const DATA: any = [
   { image: images.buildings },

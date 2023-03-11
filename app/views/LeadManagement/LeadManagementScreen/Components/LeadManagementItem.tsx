@@ -147,7 +147,7 @@ const LeadManagementItem = (props: any) => {
           </Text>
         </View>
       </View>
-      <View style={styles.Txtview}>
+      {/* <View style={styles.Txtview}>
         <View style={styles.projectContainer}>
           <Text style={styles.projectTxt}>visit status :</Text>
         </View>
@@ -163,7 +163,7 @@ const LeadManagementItem = (props: any) => {
                 : strings.notfount
             }</Text>
         </View>
-      </View>
+      </View> */}
       <View style={styles.Txtview}>
         <View style={styles.projectContainer}>
           <Text style={styles.projectTxt}>Acquisition Source :</Text>

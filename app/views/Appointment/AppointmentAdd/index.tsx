@@ -6,6 +6,7 @@ import { getAllMaster } from "app/Redux/Actions/MasterActions";
 import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import AppointmentAddView from "./components/AppointmentAdd";
+import strings from "app/components/utilities/Localization";
 
 const AppointmentAddScreen = ({ navigation, route }: any) => {
     const appointmentId = route?.params || {}
@@ -17,7 +18,8 @@ const AppointmentAddScreen = ({ navigation, route }: any) => {
         status: '',
         appointment_date: appointmentId?.appointment_date ? appointmentId?.appointment_date : '',
         appointment_time: appointmentId?.appointment_time ? appointmentId?.appointment_time :  '',
-        remark: ''
+        remark: '',
+        visit_status: strings.warm
     })
     const dispatch: any = useDispatch()
 

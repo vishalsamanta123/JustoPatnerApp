@@ -8,6 +8,7 @@ import { getAllMaster } from "app/Redux/Actions/MasterActions";
 import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import FollowUpAddView from "./components/FollowUpAdd";
+import strings from "app/components/utilities/Localization";
 
 const FollowUpAddScreen = ({ navigation, route }: any) => {
   const followUpId = route?.params || "";
@@ -22,6 +23,7 @@ const FollowUpAddScreen = ({ navigation, route }: any) => {
     next_followup_date: "",
     remark: "",
     followup_time: "",
+    visit_status: strings.warm
   });
   const dispatch: any = useDispatch();
   const masterData = useSelector((state: any) => state.masterData) || {};

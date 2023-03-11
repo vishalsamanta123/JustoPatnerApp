@@ -12,6 +12,7 @@ import { getAllAlloctaeProperty } from 'app/Redux/Actions/propertyActions'
 
 const AddAppointmentScreen = ({ navigation, route }: any) => {
   const { data = {}, type = "" } = route?.params || {}
+  console.log('data: ', data);
   const dispatch: any = useDispatch()
   const { response = {}, list = "" } = useSelector((state: any) => state.visitorDataList)
   const addAppointmentData = useSelector((state: any) => state.appointment)
@@ -217,6 +218,7 @@ const AddAppointmentScreen = ({ navigation, route }: any) => {
       allProperty={allProperty}
       PropertyStatus={PropertyStatus}
       setPropertyStatus={setPropertyStatus}
+      pickup={data?.pickup}
     />
   )
 }

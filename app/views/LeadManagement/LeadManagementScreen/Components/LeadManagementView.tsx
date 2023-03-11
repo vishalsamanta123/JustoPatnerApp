@@ -35,7 +35,8 @@ const LeadManagementView = (props: any) => {
       enddate: '',
       search_by_name: '',
       search_by_location: '',
-      status: ''
+      status: '',
+      lead_status: ''
     })
     props.getVisitorsList(0, {})
     props.setVisiitorList([])

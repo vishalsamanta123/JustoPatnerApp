@@ -138,7 +138,7 @@ const VisitorAppointment = (props: any) => {
           </Text>
         </View>
       </View>
-      <View style={styles.Txtview}>
+      {/* <View style={styles.Txtview}>
         <View style={styles.projectContainer}>
           <Text style={styles.projectTxt}>Visit Status</Text>
         </View>
@@ -151,7 +151,7 @@ const VisitorAppointment = (props: any) => {
                 : item?.visit_status === strings.warm ? RED_COLOR : BLACK_COLOR
           }]}>{item?.visit_status ? item?.visit_status : strings.notfount}</Text>
         </View>
-      </View>
+      </View> */}
       <View style={styles.Txtview}>
         <View style={styles.projectContainer}>
           <Text style={styles.projectTxt}>Visiting Score</Text>

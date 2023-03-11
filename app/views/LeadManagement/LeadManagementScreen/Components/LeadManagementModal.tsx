@@ -13,14 +13,14 @@ import { useDispatch, useSelector } from "react-redux";
 import { getAllMaster } from "app/Redux/Actions/MasterActions";
 import { DATE_FORMAT, Isios } from "app/components/utilities/constant";
 import DropdownInput from "app/components/DropDown";
-import { leadTypes } from "app/components/utilities/DemoData";
+import { VisitStatus, leadTypes } from "app/components/utilities/DemoData";
 const FilterModal = (props: any) => {
   const dispatch: any = useDispatch()
-  useEffect(() => {
-    dispatch(getAllMaster({
-      type: 2
-    }))
-  }, [])
+  // useEffect(() => {
+  //   dispatch(getAllMaster({
+  //     type: 2
+  //   }))
+  // }, [])
   const { response = { data: [] } } = useSelector((state: any) => state.masterData) || {}
   const datavisitingscore = [
     { label: "High to low", value: 2 },
@@ -57,10 +57,10 @@ const FilterModal = (props: any) => {
   };
   return (
     <Modal isVisible={props.Visible}>
-      <ScrollView 
-      keyboardShouldPersistTaps={"handled"}
-      automaticallyAdjustKeyboardInsets={Isios ? true : false}
-      contentContainerStyle={{ flexGrow: 1, justifyContent: 'center' }}>
+      <ScrollView
+        keyboardShouldPersistTaps={"handled"}
+        automaticallyAdjustKeyboardInsets={Isios ? true : false}
+        contentContainerStyle={{ flexGrow: 1, justifyContent: 'center' }}>
         <View style={styles.mainContainer}>
           <View style={styles.topContainer}>
             <Text style={styles.topTxt}>{strings.searchvisitor}</Text>
@@ -128,7 +128,7 @@ const FilterModal = (props: any) => {
                 valueshow={props.filterData.search_by_visisor_name}
               />
             </View>
-            <View style={styles.inputWrap}>
+            {/* <View style={styles.inputWrap}>
               <Dropdown
                 style={styles.dropdown}
                 placeholderStyle={styles.placeholderStyle}
@@ -149,7 +149,7 @@ const FilterModal = (props: any) => {
                 }}
                 renderItem={configRender}
               />
-            </View>
+            </View> */}
             <View style={styles.inputWrap}>
               <Dropdown
                 style={styles.dropdown}
@@ -171,7 +171,7 @@ const FilterModal = (props: any) => {
                 renderItem={visitorRender}
               />
             </View>
-            <View style={styles.inputWrap}>
+            {/* <View style={styles.inputWrap}>
               <DropdownInput
                 headingText={strings.leadType}
                 placeholder={strings.leadType}
@@ -196,7 +196,33 @@ const FilterModal = (props: any) => {
                   );
                 }}
               />
-          </View>
+            </View> */}
+            <View style={styles.inputWrap}>
+              <DropdownInput
+                headingText={'Search by status'}
+                placeholder={'Search by status'}
+                data={VisitStatus}
+                inputWidth={'100%'}
+                paddingLeft={16}
+                maxHeight={300}
+                labelField="label"
+                valueField={'value'}
+                value={props?.filterData?.lead_status}
+                onChange={(item: any) => {
+                  props.setFilterData({
+                    ...props.filterData,
+                    lead_status: item.value,
+                  })
+                }}
+                newRenderItem={(item: any) => {
+                  return (
+                    <View style={styles.item}>
+                      <Text style={styles.textItem}>{item.label}</Text>
+                    </View>
+                  );
+                }}
+              />
+            </View>
           </View>
           <View style={{ marginVertical: 20 }}>
             <View style={{ flexDirection: 'row', justifyContent: 'center' }}>
