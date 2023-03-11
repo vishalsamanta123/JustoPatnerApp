@@ -4,6 +4,7 @@ import {
   ScrollView,
   StatusBar,
   TouchableOpacity,
+  Linking,
 } from "react-native";
 import React, { useState, useEffect } from "react";
 import images from "../../../../assets/images";
@@ -21,6 +22,7 @@ import ErrorMessage from "app/components/ErrorMessage";
 import { normalize } from "app/components/scaleFontSize";
 import auth from "@react-native-firebase/auth";
 import { RequiredStart } from "app/components/utilities/GlobalFuncations";
+import CheckBox from "@react-native-community/checkbox";
 
 
 const AgentBankInfo = ({ navigation, route }: any) => {
@@ -252,7 +254,7 @@ const AgentBankInfo = ({ navigation, route }: any) => {
           />
         </View>
        */}
-        <View style={{ marginTop: 20 }}>
+        <View style={{ marginTop: 0 }}>
           <Button
             handleBtnPress={() => onPressCreateAgent(route?.params?.type)}
             buttonText={route?.params?.type === 'edit' ? strings.editAgent :
@@ -261,6 +263,22 @@ const AgentBankInfo = ({ navigation, route }: any) => {
           />
         </View>
       </View>
+      <View style={[styles.bottomView, {alignItems: 'center'}]}>
+          <CheckBox
+            value={true}
+            tintColors={{true: PRIMARY_THEME_COLOR}}
+            // onValueChange={(newValue) => setToggleCheckBox(newValue)}
+          />
+          <Text style={styles.bottomText}>{strings.iAknowledge}</Text>
+          <TouchableOpacity onPress={() => Linking.openURL('https://justoverse.com/termandcondition')} style={styles.spanTouch}>
+            <Text style={styles.spanText}> {strings.termsAndCondition} </Text>
+          </TouchableOpacity>
+          <Text style={styles.bottomText}> {strings.applicable} </Text>
+          {/* <TouchableOpacity style={styles.spanTouch}>
+            <Text style={styles.spanText}> {strings.privacyPolicy} </Text>
+          </TouchableOpacity> */}
+        </View>
+      
       <PicturePickerModal
         Visible={refraCrtf}
         setVisible={setRefraCrtf}

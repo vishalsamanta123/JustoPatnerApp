@@ -5,6 +5,7 @@ import {
   TouchableOpacity,
   ScrollView,
   StatusBar,
+  Linking,
 } from "react-native";
 import OTPInputView from "@twotalltotems/react-native-otp-input";
 import React from "react";
@@ -14,6 +15,7 @@ import strings from "../../../../components/utilities/Localization";
 import Button from "../../../../components/Button";
 import { PRIMARY_THEME_COLOR, WHITE_COLOR } from "../../../../components/utilities/constant";
 import LogoView from "../../Logoview";
+import CheckBox from "@react-native-community/checkbox";
 
 const OtpVerificationView = (props: any) => {
   const { otp, setOtp, handleOtpChange } = props;
@@ -82,7 +84,7 @@ const OtpVerificationView = (props: any) => {
 
       </View>
 
-      <View style={styles.bottomView}>
+      {/* <View style={styles.bottomView}>
 
         <Text style={styles.bottomText}>{strings.byCreating}</Text>
         <TouchableOpacity style={styles.spanTouch}>
@@ -94,6 +96,21 @@ const OtpVerificationView = (props: any) => {
         </TouchableOpacity>
 
 
+      </View> */}
+      <View style={styles.bottomView}>
+        <CheckBox
+          value={true}
+          tintColors={{true: PRIMARY_THEME_COLOR}}
+          // onValueChange={(newValue) => setToggleCheckBox(newValue)}
+        />
+        <Text style={styles.bottomText}>{strings.iAknowledge}</Text>
+        <TouchableOpacity onPress={() => Linking.openURL('https://justoverse.com/termandcondition')} style={styles.spanTouch}>
+          <Text style={styles.spanText}> {strings.termsAndCondition} </Text>
+        </TouchableOpacity>
+        <Text style={styles.bottomText}> {strings.applicable} </Text>
+        {/* <TouchableOpacity style={styles.spanTouch}>
+          <Text style={styles.spanText}> {strings.privacyPolicy} </Text>
+        </TouchableOpacity> */}
       </View>
     </ScrollView>
   );

@@ -1,4 +1,4 @@
-import { View, Text, ScrollView } from "react-native";
+import { View, Text, ScrollView, TouchableOpacity, Linking } from "react-native";
 import React, { useEffect, useState } from "react";
 import styles from "./Styles";
 import Styles from "../../../../components/DropDown/styles";
@@ -18,6 +18,7 @@ import {
 import Button from "../../../../components/Button";
 import InputCalender from "app/components/InputCalender";
 import moment from "moment";
+import CheckBox from "@react-native-community/checkbox";
 
 const AddAppointmentItem = (props: any) => {
 console.log('props: ', props.pickup);
@@ -292,6 +293,21 @@ console.log('props: ', props.pickup);
             </>
           ) : null}
         </>
+        <View style={styles.bottomView}>
+        <CheckBox
+          value={true}
+          tintColors={{true: PRIMARY_THEME_COLOR}}
+          // onValueChange={(newValue) => setToggleCheckBox(newValue)}
+        />
+        <Text style={styles.bottomText}>{strings.iAknowledge}</Text>
+        <TouchableOpacity onPress={() => Linking.openURL('https://justoverse.com/termandcondition')} style={styles.spanTouch}>
+          <Text style={styles.spanText}> {strings.termsAndCondition} </Text>
+        </TouchableOpacity>
+        <Text style={styles.bottomText}> {strings.applicable} </Text>
+        {/* <TouchableOpacity style={styles.spanTouch}>
+          <Text style={styles.spanText}> {strings.privacyPolicy} </Text>
+        </TouchableOpacity> */}
+      </View>
         <View style={styles.btnView}>
           <Button
             handleBtnPress={() => props.handleBtnPress()}

@@ -5,6 +5,7 @@ import {
   StatusBar,
   TouchableOpacity,
   TextInput,
+  Linking,
 } from "react-native";
 import React, { useEffect, useState } from "react";
 import { RadioButton } from "react-native-paper";
@@ -29,6 +30,7 @@ import InputCalender from "app/components/InputCalender";
 import DropdownInput from "app/components/DropDown";
 import { useSelector } from "react-redux";
 import usePermission from "app/components/utilities/UserPermissions";
+import CheckBox from "@react-native-community/checkbox";
 
 const AddNewVisitorForm = (props: any) => {
   const [PropertyStatus, setPropertyStatus] = useState(false);
@@ -1136,6 +1138,21 @@ const AddNewVisitorForm = (props: any) => {
               valueshow={props?.formData?.office_address}
               headingText={"Office Address"}
             />
+          </View>
+          <View style={styles.bottomView}>
+            <CheckBox
+              value={true}
+              tintColors={{true: PRIMARY_THEME_COLOR}}
+              // onValueChange={(newValue) => setToggleCheckBox(newValue)}
+            />
+            <Text style={styles.bottomText}>{strings.iAknowledge}</Text>
+            <TouchableOpacity onPress={() => Linking.openURL('https://justoverse.com/termandcondition')} style={styles.spanTouch}>
+              <Text style={styles.spanText}> {strings.termsAndCondition} </Text>
+            </TouchableOpacity>
+            <Text style={styles.bottomText}> {strings.applicable} </Text>
+            {/* <TouchableOpacity style={styles.spanTouch}>
+              <Text style={styles.spanText}> {strings.privacyPolicy} </Text>
+            </TouchableOpacity> */}
           </View>
           <View style={styles.btnView}>
             {edit && props.type == "edit" ? (
