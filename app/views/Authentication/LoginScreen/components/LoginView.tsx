@@ -1,4 +1,4 @@
-import { View, Text, Image, TouchableOpacity, ScrollView, StatusBar } from "react-native";
+import { View, Text, Image, TouchableOpacity, ScrollView, StatusBar, Linking } from "react-native";
 import React, { useState } from "react";
 import styles from "./styles";
 import images from "../../../../assets/images";
@@ -8,6 +8,7 @@ import strings from "../../../../components/utilities/Localization";
 import Logoview from "../../Logoview"
 import { useSafeAreaInsets } from "react-native-safe-area-context";
 import { Isios, PRIMARY_THEME_COLOR, WHITE_COLOR } from "../../../../components/utilities/constant";
+import CheckBox from "@react-native-community/checkbox";
 
 const LoginView = (props: any) => {
   const insets = useSafeAreaInsets();
@@ -99,7 +100,7 @@ const LoginView = (props: any) => {
           </TouchableOpacity>
         </View>
       </View>
-      <View style={styles.bottomView}>
+      {/* <View style={styles.bottomView}>
         <Text style={styles.bottomText}>{strings.byCreating}</Text>
         <TouchableOpacity style={styles.spanTouch} onPress={() => props.handlePrivacy(strings.termsAndCondition)}>
           <Text style={styles.spanText}> {strings.termsAndCondition} </Text>
@@ -108,6 +109,21 @@ const LoginView = (props: any) => {
         <TouchableOpacity style={styles.spanTouch} onPress={() => props.handlePrivacy(strings.privacyPolicy)}>
           <Text style={styles.spanText}> {strings.privacyPolicy} </Text>
         </TouchableOpacity>
+      </View> */}
+      <View style={styles.bottomView}>
+        <CheckBox
+          value={true}
+          tintColors={{true: PRIMARY_THEME_COLOR}}
+          // onValueChange={(newValue) => setToggleCheckBox(newValue)}
+        />
+        <Text style={styles.bottomText}>{strings.iAknowledge}</Text>
+        <TouchableOpacity onPress={() => Linking.openURL('https://justoverse.com/termandcondition')} style={styles.spanTouch}>
+          <Text style={styles.spanText}> {strings.termsAndCondition} </Text>
+        </TouchableOpacity>
+        <Text style={styles.bottomText}> {strings.applicable} </Text>
+        {/* <TouchableOpacity style={styles.spanTouch}>
+          <Text style={styles.spanText}> {strings.privacyPolicy} </Text>
+        </TouchableOpacity> */}
       </View>
     </ScrollView>
   );

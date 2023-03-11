@@ -187,6 +187,37 @@ const styles = StyleSheet.create({
   },
   btnView: {
     marginBottom: normalizeSpacing(20),
+  },
+  bottomView: {
+    flex: 2,
+    // width: '80%',
+    alignContent: 'flex-end',
+    flexDirection: 'row',
+    flexWrap: 'wrap',
+    justifyContent: 'center',
+    marginVertical: normalizeSpacing(10),
+  },
+  spanTouch: {
+    flexDirection: 'row'
+  }, 
+  spanText: {
+    textAlign: 'center',
+    fontSize: normalize(14),
+    // lineHeight: normalizeHeight(10),
+    color: PRIMARY_THEME_COLOR,
+    fontFamily: FONT_FAMILY_SEMIBOLD,
+    
+  },
+  bottomText: {
+    textAlign: 'center',
+    fontSize: normalize(14),
+    lineHeight: normalizeHeight(25),
+    fontFamily: FONT_FAMILY_SEMIBOLD,
+    color: GRAY_LIGHT_COLOR
+  },
+  bottomContentView:{
+    flexDirection: 'row',
+    // width: '80%',
   }
 });
 
