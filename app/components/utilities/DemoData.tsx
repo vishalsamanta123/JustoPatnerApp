@@ -8,7 +8,7 @@ export const leadTypes: any = [
 ]
 export const VisitStatus: any = [
   { label: `${strings.createLead}`, value: 1 },
-  { label: `${strings.appointmnet}`, value: 3 },
+  { label: `${strings.readytoVisit}`, value: 3 },
   { label: `${strings.booking}`, value: 4 },
   { label: `${strings.registration}`, value: 5 },
   { label: `${strings.close}`, value: 6 },

@@ -13,6 +13,7 @@ import { TabView, SceneMap, TabBar } from 'react-native-tab-view';
 import moment from 'moment'
 
 const agentDetailView = (props: any) => {
+console.log('props: ', props.allDetails);
   const insets = useSafeAreaInsets();
   const layout = useWindowDimensions();
   const [indexData, setIndexData] = useState({
@@ -36,6 +37,8 @@ const agentDetailView = (props: any) => {
     location: props?.allDetails?.location ? props?.allDetails?.location : '',
     workingfrom: props?.allDetails?.createdDate ? moment(props?.allDetails?.createdDate).format('MMM Do YYYY') : '',
     workinglocation: props?.allDetails?.working_location ? props?.allDetails?.working_location : '',
+    rera_certificate: props?.allDetails?.rera_certificate ? props?.allDetails?.rera_certificate : '',
+    propidership_declaration_letter: props?.allDetails?.propidership_declaration_letter ? props?.allDetails?.propidership_declaration_letter : '',
   };
   const DATASTATS: any =
   {

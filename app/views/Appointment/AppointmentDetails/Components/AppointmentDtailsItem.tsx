@@ -161,9 +161,9 @@ const AppointmentDtailsItem = (props: any) => {
               : props?.item?.status === 3
               ? "Completed"
               : props?.item?.status === 4
-              ? "Canceled"
-              : props?.item?.status === 5 ? "Canceled"
-              : props?.item?.status === 6 && "Customer Lost"
+              ? "Visit Cancelled"
+              : props?.item?.status === 5 ? "Visit Cancelled"
+              : props?.item?.status === 6 && "Not Fit for Sale"
             }
           </Text>
         </View>

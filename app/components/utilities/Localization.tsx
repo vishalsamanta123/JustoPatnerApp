@@ -243,7 +243,8 @@ const strings = new LocalizedStrings({
     MoveIn: 'Move In',
     Underonstruction: 'Under Construction',
     // Visit status
-    createLead: 'Create Lead',
+    createLead: 'New Lead',
+    readytoVisit: 'Ready to Visit',
     booking: 'Booking',
     close: 'Close',
     readytoBookHeader: 'Ready to Book',

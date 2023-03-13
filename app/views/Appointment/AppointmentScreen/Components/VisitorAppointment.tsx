@@ -130,9 +130,9 @@ const VisitorAppointment = (props: any) => {
                 : item?.status === 3
                   ? "Completed"
                   : item?.status === 4
-                    ? "Canceled"
-                    : item?.status === 5 ? "Canceled"
-                      : item?.status === 6 && "Customer Lost"
+                    ? "Visit Cancelled"
+                    : item?.status === 5 ? "Visit Cancelled"
+                      : item?.status === 6 && "Not Fit for Sale"
 
             }
           </Text>

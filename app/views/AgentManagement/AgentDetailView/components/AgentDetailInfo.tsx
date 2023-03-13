@@ -1,12 +1,19 @@
-import { View, Text, Image } from "react-native";
-import React from "react";
+import { View, Text, Image, TouchableOpacity } from "react-native";
+import React, { useState } from "react";
 import styles from "./styles";
-import { GRAY_COLOR } from "../../../../components/utilities/constant";
-import { normalizeSpacing } from "../../../../components/scaleFontSize";
+import { BLACK_COLOR, GRAY_COLOR } from "../../../../components/utilities/constant";
+import { normalize, normalizeHeight, normalizeSpacing, normalizeWidth } from "../../../../components/scaleFontSize";
 import { ScrollView } from "react-native-gesture-handler";
 import strings from "app/components/utilities/Localization";
+import FastImages from "app/components/FastImage";
+import Modal from "react-native-modal";
+
 
 const agentDetailItem = (props: any) => {
+  const [isVisible, setIsVisible] = useState(false);
+
+  const [onPressData, setOnPressData] = useState<any>('');
+
   return (
     <ScrollView>
       <View style={styles.Txtview}>
@@ -151,6 +158,74 @@ const agentDetailItem = (props: any) => {
           }
         </View>
       </View>
+      <View style={styles.Txtview}>
+        <View style={styles.projectContainer}>
+          <Text style={styles.projectTxt}>Rera Certificate</Text>
+        </View>
+        <View><Text>:</Text></View>
+        <View style={[styles.nameContainer, { alignItems: 'center' }]}>
+          <TouchableOpacity
+            onPress={() => {
+              setIsVisible(true)
+              setOnPressData(props.items.rera_certificate)
+            }}
+          >
+            <FastImages
+              source={{ uri: props.items.rera_certificate }}
+              style={{
+                width: normalizeWidth(80),
+                height: normalizeHeight(80),
+                alignItems: "center",
+                justifyContent: "center",
+                borderRadius: normalize(10)
+              }}
+            />
+          </TouchableOpacity>
+        </View>
+      </View>
+      <View style={styles.Txtview}>
+        <View style={styles.projectContainer}>
+          <Text style={styles.projectTxt}>Proprietorship declaration letter</Text>
+        </View>
+        <View><Text>:</Text></View>
+        <View style={[styles.nameContainer, { alignItems: 'center' }]}>
+          <TouchableOpacity
+            onPress={() => {
+              setIsVisible(true)
+              setOnPressData(props.items.rera_certificate)
+            }}
+          >
+            <FastImages
+              source={{ uri: props.items.propidership_declaration_letter }}
+              style={{
+                width: normalizeWidth(80),
+                height: normalizeHeight(80),
+                alignItems: "center",
+                justifyContent: "center",
+                borderRadius: normalize(10)
+              }}
+            />
+          </TouchableOpacity>
+        </View>
+      </View>
+
+      <Modal
+        isVisible={isVisible}
+        onBackdropPress={() => setIsVisible(false)}
+        onBackButtonPress={() => setIsVisible(false)}
+      >
+        <View>
+          <FastImages
+            source={{ uri: onPressData }}
+            style={{
+              width: "100%",
+              height: normalizeHeight(300),
+              alignItems: "center",
+              justifyContent: "center",
+            }}
+          />
+        </View>
+      </Modal>
 
     </ScrollView>
   );

@@ -128,11 +128,11 @@ const LeadManagementItem = (props: any) => {
             ]}
           >
             {props.items.lead_status === 1
-              ? "Create Lead"
+              ? "New Lead"
               : props.items.lead_status === 2
-                ? "Follow-up"
+                ? "In Follow up"
                 : props.items.lead_status === 3
-                  ? "Appointment"
+                  ? "Ready to Visit"
                   : props.items.lead_status === 4
                     ? "Booking"
                     : props.items.lead_status === 5

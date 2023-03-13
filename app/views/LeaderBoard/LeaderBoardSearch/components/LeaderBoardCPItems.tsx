@@ -22,7 +22,7 @@ const LeaderBoardCPItems = (props: any) => {
                 marginLeft: normalize(30),
                 fontFamily: props?.userDataResp?._id?.toString() === item?.user_id?.toString() ?
                     FONT_FAMILY_EXTRABOLD : FONT_FAMILY_REGULAR
-            }]}>{item?.rank}</Text>
+            }]}>{index}</Text>
             <Text style={[styles.txtStyle, {
                 flex: 1,
                 textAlign: 'right',
