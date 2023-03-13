@@ -101,9 +101,9 @@ const LeadDetailsIteam = (props: any) => {
                             },
                         ]}
                     >
-                        {props.items.lead_status === 1 ? "Create Lead" :
-                            props.items.lead_status === 2 ? "Follow-up" :
-                                props.items.lead_status === 3 ? "Appointment" :
+                        {props.items.lead_status === 1 ? "New Lead" :
+                            props.items.lead_status === 2 ? "In Follow up" :
+                                props.items.lead_status === 3 ? "Ready to Visit" :
                                     props.items.lead_status === 4 ? "Booking" :
                                         props.items.lead_status === 5 ? "Registration" :
                                             props.items.lead_status === 6 ? "Close" :
