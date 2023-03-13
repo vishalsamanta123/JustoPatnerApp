@@ -8,6 +8,8 @@ import images from "app/assets/images";
 
 const UserInfo = (props: any) => {
   const { allDetails } = props;
+  console.log('allDetails: ', allDetails);
+
   return (
     <ScrollView style={styles.InformationView}>
       <View style={styles.fieldView}>
@@ -220,6 +222,27 @@ const UserInfo = (props: any) => {
             onPress={() =>
               props.onpresContent("ImageContent", {
                 array: allDetails?.propidership_declaration_letter,
+              })
+            }
+          >
+            <Image source={images.forwardArrow} style={styles.arrow} />
+          </TouchableOpacity>
+        </View>
+      </View>
+      <View style={styles.fieldView}>
+        <View style={styles.keyView}>
+          <Text style={styles.keyText}>Property declaration Letter</Text>
+        </View>
+        <View style={styles.ImageSliderContainer}>
+          <Image
+            source={{ uri: `${allDetails?.base_url}${allDetails?.cp_bank_detail?.cancel_cheaque}` }}
+            style={styles.imageSlider}
+          />
+          <TouchableOpacity
+            style={styles.shadowView}
+            onPress={() =>
+              props.onpresContent("ImageContent", {
+                array: allDetails?.base_url + allDetails?.cp_bank_detail?.cancel_cheaque,
               })
             }
           >

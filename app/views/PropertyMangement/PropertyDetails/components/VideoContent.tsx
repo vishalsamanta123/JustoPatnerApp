@@ -37,7 +37,7 @@ const VideoContent = ({ navigation, route }: any) => {
   
   const handleSharePress = async (data: any) => {
     console.log('data: ', data);
-    // dispatch({ type: START_LOADING });
+    dispatch({ type: START_LOADING });
 
     const fs = RNFetchBlob.fs;
     const mediaUrls = data?.map((item: any) => {

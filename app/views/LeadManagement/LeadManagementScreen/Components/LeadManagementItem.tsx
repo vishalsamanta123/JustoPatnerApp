@@ -20,8 +20,6 @@ const LeadManagementItem = (props: any) => {
     edit: 'edit_visitor',
     view: 'view_visitor',
   })
-  console.log('props?.items: ', props?.items);
-
   return (
     <View style={styles.IteamView}>
       {props?.items.property_title !== '' ?

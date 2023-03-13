@@ -15,6 +15,7 @@ const PropertyDetailItem = (props: any) => {
     const videos = el.document_type == "video";
     return videos;
   });
+  console.log('videoarray: ', videoarray);
   const documentarray = props.propertydocument?.filter((el: any) => {
     const count = el.document_type == "document" || el.document_type == "";
     return count;
@@ -299,10 +300,12 @@ const PropertyDetailItem = (props: any) => {
                 {videoarray.map((videos: any, index: any) =>
                   index <= 2 ? (
                     <Image
-                      key={index}
-                      source={images.buildings}
-                      style={styles.imageSlider}
-                    />
+                    key={index}
+                    source={{
+                      uri: `${props.items.base_url}${videos.video_thumbnail}`,
+                    }}
+                    style={styles.imageSlider}
+                  />
                   ) : null
                 )}
                 <TouchableOpacity

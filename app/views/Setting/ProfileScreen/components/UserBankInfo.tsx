@@ -48,7 +48,7 @@ const UserBankInfo = (props: any) => {
           </Text>
         </View>
       </View>
-      {/* <View style={styles.fieldView}>
+      <View style={styles.fieldView}>
         <View style={styles.keyView}>
           <Text style={styles.keyText}>Pancard</Text>
         </View>
@@ -85,7 +85,7 @@ const UserBankInfo = (props: any) => {
             <Image source={images.forwardArrow} style={styles.arrow} />
           </TouchableOpacity>
         </View>
-      </View> */}
+      </View>
       <View style={styles.subHeadVw}>
         <Text style={styles.subHeadTxt}>Bank Info</Text>
       </View>
