@@ -175,7 +175,7 @@ const AppointmentDtailsItem = (props: any) => {
           </View>
           <View><Text>:</Text></View>
           <View style={styles.nameContainer}>
-            <Text style={[styles.nameTxt,{color: props?.item?.checkin_status ? GREEN_COLOR : BLACK_COLOR}]}>{props?.item?.checkin_status ? 'Checked In' : strings.notfount}</Text>
+            <Text style={[styles.nameTxt,{color: props?.item?.checkin_status ? GREEN_COLOR : BLACK_COLOR}]}>{props?.item?.checkin_status ? 'Visited' : strings.notfount}</Text>
           </View>
         </View>)}
       <View style={styles.Txtview}>
