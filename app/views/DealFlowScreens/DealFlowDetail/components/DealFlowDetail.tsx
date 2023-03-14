@@ -59,9 +59,9 @@ const DealFlowDetailView = (props: any) => {
       <View style={styles.txtCont}>
         <View style={styles.straightRowVw}>
           <Text style={styles.headTxt}>{props?.dealFlowDetail?.property_title}</Text>
-          <Text style={[styles.smallTxt, {
+          {/* <Text style={[styles.smallTxt, {
             color: BLACK_COLOR
-          }]}>CP Rank : {props?.dealFlowDetail?.cp_rank}</Text>
+          }]}>CP Rank : {props?.dealFlowDetail?.cp_rank}</Text> */}
         </View>
         <View style={styles.straightRowVw}>
           <View style={[styles.boxesVw, {
