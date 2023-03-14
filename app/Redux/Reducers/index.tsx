@@ -8,7 +8,7 @@ import { editAddFollowupReducer, followUpReducer } from "./FollowUpReducer";
 import { editUserReducer, settingReducer } from "./SettingReducer";
 import { appointmentReducer, editAddAppointmentReducer } from "./AppointmentReducer";
 import { dashboardReducer, generateQrCode, statusUpdateReducer } from "./DashboardReducer";
-import { notificationListReducer } from "./NotificationReducer";
+import { deleteNotificationReducer, notificationListReducer } from "./NotificationReducer";
 import { supportForumReducer, supportForumUpdateReducer } from "./SupportForumReducer";
 import { leaderBoardReducer } from "./LearderBoardReducer";
 import { allUserChatListReducer, propertyChatReducer, updateChatStatus } from "./ChatReducer";
@@ -32,6 +32,7 @@ export default {
     registerData: registerDataReducer,
     emailAndMobileData: emailAndMobileReducer,
     notificationData: notificationListReducer,
+    deleteNotificationData: deleteNotificationReducer,
     firebaseData: firebaseReducer,
 
     //dashbaoard
