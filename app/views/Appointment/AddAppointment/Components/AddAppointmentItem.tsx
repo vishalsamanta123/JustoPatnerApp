@@ -21,7 +21,7 @@ import moment from "moment";
 import CheckBox from "@react-native-community/checkbox";
 
 const AddAppointmentItem = (props: any) => {
-console.log('props: ', props.pickup);
+  console.log('props: ', props.pickup);
   return (
     <ScrollView keyboardShouldPersistTaps={"handled"}
       automaticallyAdjustKeyboardInsets={Isios ? true : false}
@@ -253,10 +253,17 @@ console.log('props: ', props.pickup);
                     });
                   }}
                   onChangeText={(data: any) => {
-                    props.setAddAppointmentForm({
-                      ...props.addAppointmentForm,
-                      pickup_location: data ? data : props?.addAppointmentForm?.pickup_location,
-                    });
+                    if (data === "") {
+                      props.setAddAppointmentForm({
+                        ...props.addAppointmentForm,
+                        pickup_location: "",
+                      });
+                    } else {
+                      props.setAddAppointmentForm({
+                        ...props.addAppointmentForm,
+                        pickup_location: data ? data : props?.addAppointmentForm?.pickup_location,
+                      });
+                    }
                   }}
                 />
               </View>
@@ -295,20 +302,20 @@ console.log('props: ', props.pickup);
           ) : null}
         </>
         <View style={styles.bottomView}>
-        <CheckBox
-          value={true}
-          tintColors={{true: PRIMARY_THEME_COLOR}}
+          <CheckBox
+            value={true}
+            tintColors={{ true: PRIMARY_THEME_COLOR }}
           // onValueChange={(newValue) => setToggleCheckBox(newValue)}
-        />
-        <Text style={styles.bottomText}>{strings.iAknowledge}</Text>
-        <TouchableOpacity onPress={() => Linking.openURL('https://justoverse.com/termandcondition')} style={styles.spanTouch}>
-          <Text style={styles.spanText}> {strings.termsAndCondition} </Text>
-        </TouchableOpacity>
-        <Text style={styles.bottomText}> {strings.applicable} </Text>
-        {/* <TouchableOpacity style={styles.spanTouch}>
+          />
+          <Text style={styles.bottomText}>{strings.iAknowledge}</Text>
+          <TouchableOpacity onPress={() => Linking.openURL('https://justoverse.com/termandcondition')} style={styles.spanTouch}>
+            <Text style={styles.spanText}> {strings.termsAndCondition} </Text>
+          </TouchableOpacity>
+          <Text style={styles.bottomText}> {strings.applicable} </Text>
+          {/* <TouchableOpacity style={styles.spanTouch}>
           <Text style={styles.spanText}> {strings.privacyPolicy} </Text>
         </TouchableOpacity> */}
-      </View>
+        </View>
         <View style={styles.btnView}>
           <Button
             handleBtnPress={() => props.handleBtnPress()}
