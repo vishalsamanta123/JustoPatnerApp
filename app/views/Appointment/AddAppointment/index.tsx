@@ -49,7 +49,7 @@ const AddAppointmentScreen = ({ navigation, route }: any) => {
           ...addAppointmentForm,
           lead_id: data?._id,
           lead_name: data?.customer_first_name ? data?.customer_first_name : data?.customer_detail?.first_name,
-          pickup: data?.pickup,
+          pickup: data?.pickup ? data?.pickup : addAppointmentForm?.pickup,
           property_id: data?.property_id,
           property_title: data?.property_title
         })
