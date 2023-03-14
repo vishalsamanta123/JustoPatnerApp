@@ -17,6 +17,8 @@ import moment from "moment";
 import usePermission from "app/components/utilities/UserPermissions";
 
 const VisitorAppointment = (props: any) => {
+  const currentDate = `${moment(new Date).format(DATE_FORMAT)}, ${new Date().getHours()}:${new Date().getMinutes()}`
+  const appointmentdateTime = `${moment(props?.items?.appointment_date).format(DATE_FORMAT)}, ${moment(props?.items?.appointment_time.toString(), 'hh:mm A').format('HH:mm')}` || ""
   const { edit, view } = usePermission({
     edit: 'edit_appointment',
     view: 'view_appointment',
@@ -124,9 +126,9 @@ const VisitorAppointment = (props: any) => {
             ]}
           >
             {item?.status === 1
-              ? "Upcoming"
+              ? currentDate >= appointmentdateTime ? 'Not Visted' : "Upcoming"
               : item?.status === 2
-                ? "Upcoming"
+                ? currentDate >= appointmentdateTime ? 'Not Visted' : "Upcoming"
                 : item?.status === 3
                   ? "Completed"
                   : item?.status === 4

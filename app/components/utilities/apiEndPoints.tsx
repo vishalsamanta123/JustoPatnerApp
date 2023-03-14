@@ -100,6 +100,7 @@ export default {
   //Settings
   UPDATECHANNELPARTNER: "/channelPartner/updateChannelPartner",
   NOTIFICATION_LIST: "/notification/getNotificationList",
+  DELETE_NOTIFICATION: "/notification/statusUpdateNotification",
 
   //Support Forum
   GET_SUPPORT_FORUM_LIST: '/supportForum/supportForumList',

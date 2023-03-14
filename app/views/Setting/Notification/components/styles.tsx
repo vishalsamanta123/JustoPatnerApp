@@ -1,8 +1,13 @@
-import { normalize, normalizeSpacing } from "app/components/scaleFontSize";
+import { normalize, normalizeHeight, normalizeSpacing, normalizeWidth } from "app/components/scaleFontSize";
 import {
+  BG_MAIN_COLOUR,
+  BLACK_COLOR,
+  BORDER_COLOR,
   FONT_FAMILY_EXTRABOLD,
   FONT_FAMILY_SEMIBOLD,
+  GRAY_COLOR,
   PRIMARY_THEME_COLOR,
+  RED_COLOR,
   WHITE_COLOR,
 } from "app/components/utilities/constant";
 import { StyleSheet } from "react-native";
@@ -25,57 +30,59 @@ const styles = StyleSheet.create({
     color: "#FFF",
   },
   rowFront: {
-    // alignItems: 'center',
     backgroundColor: WHITE_COLOR,
     borderBottomColor: "black",
-    // borderBottomWidth: 1,
     justifyContent: "center",
-    // height: 50,
-    // margin: normalizeSpacing(20),
     marginHorizontal: normalizeSpacing(20),
-    marginVertical: normalizeSpacing(10),
     borderRadius: normalizeSpacing(10),
-    padding :normalizeSpacing(10)
-},
-rowBack: {
-    backgroundColor: WHITE_COLOR,
+    minHeight: normalizeHeight(82),
     flex: 1,
-    flexDirection: "row",
-    paddingLeft: 15,
+    padding: normalizeSpacing(10),
     marginVertical: normalizeSpacing(10),
-    marginHorizontal: normalizeSpacing(20),
-    borderRadius: normalizeSpacing(10),
-    padding :normalizeSpacing(10)
-
+  },
+  rowBack: {
+    flexDirection: "row",
+    justifyContent: 'flex-end',
+    minHeight: 0,
+    flex: 1,
+    paddingBottom: 14,
+    marginTop: normalizeHeight(10)
   },
   backRightBtn: {
-    alignItems: "center",
-    bottom: 0,
     justifyContent: "center",
-    position: "absolute",
+    width: normalizeWidth(40),
+    height: normalizeHeight(35),
+    borderTopRightRadius: normalizeSpacing(10),
+    position: 'absolute',
+    right: 0,
+    alignItems: 'center',
     top: 0,
-    width: 75,
+  },
+  timeShwVw: {
+    marginLeft: normalizeSpacing(6),
+  },
+  trashIconVw: {
+    width: normalizeWidth(22),
+    height: normalizeHeight(22),
+    tintColor: PRIMARY_THEME_COLOR
   },
   backRightBtnLeft: {
     backgroundColor: "blue",
     right: 75,
   },
-  backRightBtnRight: {
-    backgroundColor: "red",
-    right: 0,
-    // borderRadius: normalizeSpacing(10),
-    borderTopRightRadius: normalizeSpacing(10),
-    borderBottomRightRadius: normalizeSpacing(10),
-
-
-  },
   subjectText: {
     fontSize: normalize(16),
     fontFamily: FONT_FAMILY_EXTRABOLD,
     padding: normalizeSpacing(5),
+    width: '94%',
   },
   messageText: {
     fontSize: normalize(14),
+    fontFamily: FONT_FAMILY_SEMIBOLD,
+    padding: normalizeSpacing(5),
+  },
+  timeText: {
+    fontSize: normalize(12),
     fontFamily: FONT_FAMILY_SEMIBOLD,
     padding: normalizeSpacing(5),
   },
