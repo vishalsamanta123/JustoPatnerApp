@@ -67,6 +67,7 @@ const AddNewVisitorScreen = ({ navigation, route }: any) => {
   const [allProperty, setAllProperty] = useState<any>([]);
   const masterData = useSelector((state: any) => state.masterData) || {};
   const propertyData = useSelector((state: any) => state.propertyData) || {};
+  console.log('propertyData: ', propertyData);
   const editData = useSelector((state: any) => state.editVisitorData) || {};
   const addData = useSelector((state: any) => state.addVisitorData) || {};
 
@@ -165,7 +166,7 @@ const AddNewVisitorScreen = ({ navigation, route }: any) => {
         errorMessage = "Please enter valid Email id";
       }
     }
-    if (formData?.min_budget && formData.max_budget) {
+    if (formData?.min_budget || formData.max_budget) {
       let tempMinVal: any;
       formData?.min_budget_type === "K"
         ? (tempMinVal = formData?.min_budget * 1000)
@@ -188,7 +189,7 @@ const AddNewVisitorScreen = ({ navigation, route }: any) => {
         errorMessage = "Maximum budget should more than minumum budget";
       }
     }
-    if (formData?.min_emi_budget && formData.max_emi_budget) {
+    if (formData?.min_emi_budget || formData.max_emi_budget) {
       let tempMinVal: any;
       formData?.min_emi_budget_type === "K"
         ? (tempMinVal = formData?.min_emi_budget * 1000)
@@ -241,7 +242,7 @@ const AddNewVisitorScreen = ({ navigation, route }: any) => {
               ? addData?.response?.data?.property_id
               : "",
             property_title: data?.property_title ? data?.property_title : "",
-            pickup: data?.pickup,
+            pickup: data?.pickup ? data?.pickup : formData?.pickup,
           },
         });
       }

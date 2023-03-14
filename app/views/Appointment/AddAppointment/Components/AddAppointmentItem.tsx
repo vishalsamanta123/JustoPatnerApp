@@ -91,6 +91,7 @@ console.log('props: ', props.pickup);
                 property_id: item.property_id,
                 property_type_title: item.property_type,
                 property_title: item.property_title,
+                pickup: item.pickup,
               });
             }}
             newRenderItem={(item: any) => {
