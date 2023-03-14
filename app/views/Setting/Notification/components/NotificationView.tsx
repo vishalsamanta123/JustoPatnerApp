@@ -1,20 +1,15 @@
-import { FlatList, Image, Text, TouchableHighlight, TouchableOpacity, View } from "react-native";
+import { FlatList, Image, Text, TouchableOpacity, View } from "react-native";
 import React, { useEffect, useState } from "react";
 import Header from "app/components/Header";
 import styles from "./styles";
 import strings from "app/components/utilities/Localization";
 import images from "app/assets/images";
 import {
-  DATE_FORMAT,
-  DATE_TIME_FORMAT,
-  GREEN_COLOR,
-  PRIMARY_THEME_COLOR,
-  WHITE_COLOR,
+  DATE_TIME_FORMAT, PRIMARY_THEME_COLOR,
 } from "app/components/utilities/constant";
 import { useDispatch, useSelector } from "react-redux";
 import { SwipeListView } from "react-native-swipe-list-view";
 import EmptyListScreen from "app/components/CommonScreen/EmptyListScreen";
-import { normalizeSpacing } from "app/components/scaleFontSize";
 import { notificationRemove } from "app/Redux/Actions/NotificationAction";
 import ErrorMessage from "app/components/ErrorMessage";
 import moment from "moment";
@@ -36,13 +31,13 @@ const NotificationView = (props: any) => {
   useEffect(() => {
     if (deleteNotificationData?.response?.status === 200) {
       dispatch(notificationRemove())
-      ErrorMessage({
-        msg: deleteNotificationData?.response?.message,
-        backgroundColor: GREEN_COLOR
-      })
+      // ErrorMessage({
+      //   msg: deleteNotificationData?.response?.message,
+      //   backgroundColor: GREEN_COLOR
+      // })
       if (deleteNotificationData?.response?.data?.length > 0) {
         setListData(deleteNotificationData?.response?.data);
-      } if (deleteNotificationData?.response?.data?.length == 0) {
+      } if (deleteNotificationData?.response?.data?.length === 0) {
         setListData([])
       }
     }
@@ -70,7 +65,6 @@ const NotificationView = (props: any) => {
         <View>
           <Text style={styles.subjectText}>{subject}</Text>
           <Text style={styles.messageText}>{message}</Text>
-          <Text style={styles.timeText}>{moment(createdDate).format(DATE_TIME_FORMAT)}</Text>
         </View>
         <TouchableOpacity
           style={styles.backRightBtn}
@@ -81,7 +75,9 @@ const NotificationView = (props: any) => {
             resizeMode={'contain'}
           />
         </TouchableOpacity>
-
+        <View style={styles.timeShwVw}>
+          <Text style={styles.timeText}>{moment(createdDate).calendar()}</Text>
+        </View>
       </View>
     );
   };
@@ -107,10 +103,11 @@ const NotificationView = (props: any) => {
           ListEmptyComponent={<EmptyListScreen message={strings.notificationHeader} />}
         /> */}
       <FlatList
-        data={listData}
+        data={Array.isArray(listData) ? listData : []}
         renderItem={renderItem}
         onRefresh={props.getNotification}
         refreshing={false}
+        ListEmptyComponent={<EmptyListScreen message={strings.notificationHeader} />}
       />
     </View>
   );

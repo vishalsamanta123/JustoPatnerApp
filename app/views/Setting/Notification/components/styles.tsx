@@ -60,6 +60,10 @@ const styles = StyleSheet.create({
   },
   timeShwVw: {
     marginLeft: normalizeSpacing(6),
+    position: 'absolute',
+    bottom: 0,
+    right: 0,
+    marginTop: normalizeSpacing(20),
   },
   trashIconVw: {
     width: normalizeWidth(22),
@@ -79,12 +83,14 @@ const styles = StyleSheet.create({
   messageText: {
     fontSize: normalize(14),
     fontFamily: FONT_FAMILY_SEMIBOLD,
-    padding: normalizeSpacing(5),
+    paddingHorizontal: normalizeSpacing(5),
+    marginBottom: normalizeSpacing(20),
   },
   timeText: {
     fontSize: normalize(12),
     fontFamily: FONT_FAMILY_SEMIBOLD,
-    padding: normalizeSpacing(5),
+    paddingRight: normalizeSpacing(5),
+    paddingBottom: normalizeSpacing(5),
   },
 });
 
