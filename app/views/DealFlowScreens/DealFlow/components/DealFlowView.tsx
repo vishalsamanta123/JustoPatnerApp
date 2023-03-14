@@ -31,7 +31,7 @@ const DealFlowView = (props: any) => {
                 <View style={styles.straightVw}>
                     <View style={styles.textArea}>
                         <Text style={styles.commonTxt}>{item.property_title}</Text>
-                        <Text style={styles.subHeadTxt}>CP Rank : {item.cp_rank}</Text>
+                        {/* <Text style={styles.subHeadTxt}>CP Rank : {item.cp_rank}</Text> */}
                     </View>
                     <View style={styles.textArea}>
                         <View style={styles.textVws}>

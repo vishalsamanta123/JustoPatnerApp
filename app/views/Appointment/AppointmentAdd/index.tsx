@@ -1,6 +1,6 @@
 import ErrorMessage from "app/components/ErrorMessage";
 import { GREEN_COLOR, RED_COLOR } from "app/components/utilities/constant";
-import { addEditAppointmntRemove, editAppointment } from "app/Redux/Actions/AppointmentActions";
+import { addAppointment, addEditAppointmntRemove, editAppointment } from "app/Redux/Actions/AppointmentActions";
 import { addFollowUp } from "app/Redux/Actions/FollowUpActions";
 import { getAllMaster } from "app/Redux/Actions/MasterActions";
 import React, { useEffect, useState } from "react";
@@ -10,6 +10,7 @@ import strings from "app/components/utilities/Localization";
 
 const AppointmentAddScreen = ({ navigation, route }: any) => {
     const appointmentId = route?.params || {}
+    console.log('appointmentId: ', appointmentId);
     const [value, setValue] = useState(null)
     const [isloading, setIsloading] = useState(false)
     const editAddAppointmentData = useSelector((state: any) => state.editAddAppointment)
@@ -19,7 +20,9 @@ const AppointmentAddScreen = ({ navigation, route }: any) => {
         appointment_date: appointmentId?.appointment_date ? appointmentId?.appointment_date : '',
         appointment_time: appointmentId?.appointment_time ? appointmentId?.appointment_time :  '',
         remark: '',
-        visit_status: strings.warm
+        visit_status: strings.warm,
+        lead_id: appointmentId?.lead_id ? appointmentId?.lead_id : '',
+        property_id: appointmentId?.property_id ? appointmentId?.property_id : ''
     })
     const dispatch: any = useDispatch()
 
@@ -54,7 +57,7 @@ const AppointmentAddScreen = ({ navigation, route }: any) => {
     }
     useEffect(() => {
         if (editAddAppointmentData?.response?.status === 200) {
-            navigation.goBack(null)
+            navigation.navigate('AppointmentScreen')
             dispatch(addEditAppointmntRemove())
             ErrorMessage({
                 msg: editAddAppointmentData?.response?.message,
@@ -64,7 +67,15 @@ const AppointmentAddScreen = ({ navigation, route }: any) => {
     }, [editAddAppointmentData])
     const handleUpdateStatus = () => {
         if (validation()) {
-            dispatch(editAppointment(formData))
+            if(formData?.status === '1'){
+                const params = {
+                    ...formData,
+                    update_type: 2,
+                }
+                dispatch(addAppointment(params))
+            } else {
+                dispatch(editAppointment(formData))
+            }
         }
     }
     const handleAllFollowUp = () => {

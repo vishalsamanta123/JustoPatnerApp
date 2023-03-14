@@ -47,9 +47,10 @@ const LoginScreen = ({ navigation }: any) => {
     }
     return isError;
   }
-  const handleLoginPress = () => {
+  const handleLoginPress = async () => {
+    const localFCM = await AsyncStorage.getItem('fcm');
     if (validation()) {
-      dispatch(userLogin(loginData))
+      dispatch(userLogin({...loginData, device_id: localFCM}))
     }
 
   };
