@@ -56,11 +56,11 @@ const AddNewVisitorScreen = ({ navigation, route }: any) => {
     max_emi_budget_type: "L",
     areain_sqlft: "",
     coumpany_name: "",
-    marital_status:"",
-    no_of_family_member:"",
-    current_stay:"",
-    property_type:"",
-    preferred_bank:"",
+    marital_status: "",
+    no_of_family_member: "",
+    current_stay: "",
+    property_type: "",
+    preferred_bank: "",
   });
   const [masterDatas, setMasterDatas] = useState<any>([]);
   const [NavigationType, setNavigationType] = useState(0);
@@ -257,8 +257,6 @@ const AddNewVisitorScreen = ({ navigation, route }: any) => {
     }
   }, [editData, addData]);
   const OnpressCreateEdit = () => {
-    console.log('formData: ', formData);
-
     if (validation()) {
       if (type === "edit") {
         const edit_params = {

@@ -13,6 +13,8 @@ import {
 } from "app/components/utilities/constant";
 
 const AppointmentDtailsItem = (props: any) => {
+  const currentDate = `${moment(new Date).format(DATE_FORMAT)}, ${new Date().getHours()}:${new Date().getMinutes()}`
+  const appointmentdateTime = `${moment(props?.item?.appointment_date).format(DATE_FORMAT)}, ${moment(props?.item?.appointment_time?.toString(), 'hh:mm A').format('HH:mm')}` || ""
   return (
     <ScrollView>
       <View style={styles.topDetailsView}>
@@ -32,8 +34,8 @@ const AppointmentDtailsItem = (props: any) => {
         <View style={styles.nameContainer}>
           <Text style={styles.nameTxt}>
             {props?.item?.customer_first_name === "" ||
-            props?.item?.customer_first_name === undefined ||
-            props?.item?.customer_first_name === null
+              props?.item?.customer_first_name === undefined ||
+              props?.item?.customer_first_name === null
               ? strings.notfount
               : props?.item?.customer_first_name}
           </Text>
@@ -85,8 +87,8 @@ const AppointmentDtailsItem = (props: any) => {
         <View style={styles.nameContainer}>
           <Text style={styles.nameTxt}>
             {props?.item?.configuration === "" ||
-            props?.item?.configuration === undefined ||
-            props?.item?.configuration === null
+              props?.item?.configuration === undefined ||
+              props?.item?.configuration === null
               ? strings.notfount
               : props?.item?.configuration}
           </Text>
@@ -102,12 +104,11 @@ const AppointmentDtailsItem = (props: any) => {
         <View style={styles.nameContainer}>
           <Text style={styles.nameTxt}>
             {props?.item?.appointment_date === "" ||
-            props?.item?.appointment_date === undefined ||
-            props?.item?.appointment_date === null
+              props?.item?.appointment_date === undefined ||
+              props?.item?.appointment_date === null
               ? strings.notfount
-              : `${moment(props?.item?.appointment_date).format(DATE_FORMAT)} ${
-                  props?.item?.appointment_time
-                }`}
+              : `${moment(props?.item?.appointment_date).format(DATE_FORMAT)} ${props?.item?.appointment_time
+              }`}
           </Text>
         </View>
       </View>
@@ -121,8 +122,8 @@ const AppointmentDtailsItem = (props: any) => {
         <View style={styles.nameContainer}>
           <Text style={styles.nameTxt}>
             {props?.item?.property_title === "" ||
-            props?.item?.property_title === undefined ||
-            props?.item?.property_title === null
+              props?.item?.property_title === undefined ||
+              props?.item?.property_title === null
               ? strings.notfount
               : props?.item?.property_title}
           </Text>
@@ -142,28 +143,28 @@ const AppointmentDtailsItem = (props: any) => {
               {
                 color:
                   props?.item?.status === 1 ||
-                  props?.item?.status === 4 ||
-                  props?.item?.status === 5 || 
-                  props?.item?.status === 6
+                    props?.item?.status === 4 ||
+                    props?.item?.status === 5 ||
+                    props?.item?.status === 6
                     ? RED_COLOR
                     : props?.item?.status === 2
-                    ? YELLOW_COLOR
-                    : props?.item?.status === 3
-                    ? GREEN_COLOR
-                    : BLACK_COLOR
+                      ? YELLOW_COLOR
+                      : props?.item?.status === 3
+                        ? GREEN_COLOR
+                        : BLACK_COLOR
               },
             ]}
           >
             {props?.item?.status === 1
-              ? "Upcoming"
+              ? currentDate >= appointmentdateTime ? 'Not Visited' : "Upcoming"
               : props?.item?.status === 2
-              ? "Upcoming"
-              : props?.item?.status === 3
-              ? "Completed"
-              : props?.item?.status === 4
-              ? "Visit Cancelled"
-              : props?.item?.status === 5 ? "Visit Cancelled"
-              : props?.item?.status === 6 && "Not Fit for Sale"
+                ? currentDate >= appointmentdateTime ? 'Not Visited' : "Upcoming"
+                : props?.item?.status === 3
+                  ? "Completed"
+                  : props?.item?.status === 4
+                    ? "Visit Cancelled"
+                    : props?.item?.status === 5 ? "Visit Cancelled"
+                      : props?.item?.status === 6 && "Not Fit for Sale"
             }
           </Text>
         </View>
@@ -175,10 +176,10 @@ const AppointmentDtailsItem = (props: any) => {
           </View>
           <View><Text>:</Text></View>
           <View style={styles.nameContainer}>
-            <Text style={[styles.nameTxt,{color: props?.item?.checkin_status ? GREEN_COLOR : BLACK_COLOR}]}>{props?.item?.checkin_status ? 'Visited' : strings.notfount}</Text>
+            <Text style={[styles.nameTxt, { color: props?.item?.checkin_status ? GREEN_COLOR : BLACK_COLOR }]}>{props?.item?.checkin_status ? 'Visited' : strings.notfount}</Text>
           </View>
         </View>)}
-        {props?.item?.resion &&
+      {props?.item?.resion &&
         (<View style={styles.Txtview}>
           <View style={styles.projectContainer}>
             <Text style={styles.projectTxt}>Resion</Text>
@@ -188,7 +189,7 @@ const AppointmentDtailsItem = (props: any) => {
             <Text style={styles.nameTxt}>{props?.item?.resion ? props?.item?.resion : strings.notfount}</Text>
           </View>
         </View>)}
-        {props?.item?.remark &&
+      {props?.item?.remark &&
         (<View style={styles.Txtview}>
           <View style={styles.projectContainer}>
             <Text style={styles.projectTxt}>Remark</Text>
@@ -208,8 +209,8 @@ const AppointmentDtailsItem = (props: any) => {
         <View style={styles.nameContainer}>
           <Text style={styles.nameTxt}>
             {props?.item?.create_by === "" ||
-            props?.item?.create_by === undefined ||
-            props?.item?.create_by === null
+              props?.item?.create_by === undefined ||
+              props?.item?.create_by === null
               ? strings.notfount
               : props?.item?.create_by}
           </Text>
@@ -225,8 +226,8 @@ const AppointmentDtailsItem = (props: any) => {
         <View style={styles.nameContainer}>
           <Text style={styles.nameTxt}>
             {props?.item?.pickup === "" ||
-            props?.item?.pickup === undefined ||
-            props?.item?.pickup === null
+              props?.item?.pickup === undefined ||
+              props?.item?.pickup === null
               ? strings.notfount
               : props?.item?.pickup}
           </Text>
@@ -242,8 +243,8 @@ const AppointmentDtailsItem = (props: any) => {
         <View style={styles.nameContainer}>
           <Text style={styles.nameTxt}>
             {props?.item?.pickup_location === "" ||
-            props?.item?.pickup_location === undefined ||
-            props?.item?.pickup_location === null
+              props?.item?.pickup_location === undefined ||
+              props?.item?.pickup_location === null
               ? strings.notfount
               : props?.item?.pickup_location}
           </Text>
@@ -259,8 +260,8 @@ const AppointmentDtailsItem = (props: any) => {
         <View style={styles.nameContainer}>
           <Text style={styles.nameTxt}>
             {props?.item?.drop_off_location === "" ||
-            props?.item?.drop_off_location === undefined ||
-            props?.item?.drop_off_location === null
+              props?.item?.drop_off_location === undefined ||
+              props?.item?.drop_off_location === null
               ? strings.notfount
               : props?.item?.drop_off_location}
           </Text>
@@ -276,8 +277,8 @@ const AppointmentDtailsItem = (props: any) => {
         <View style={styles.nameContainer}>
           <Text style={styles.nameTxt}>
             {props?.item?.number_of_guest === "" ||
-            props?.item?.number_of_guest === undefined ||
-            props?.item?.number_of_guest === null
+              props?.item?.number_of_guest === undefined ||
+              props?.item?.number_of_guest === null
               ? strings.notfount
               : props?.item?.number_of_guest}
           </Text>

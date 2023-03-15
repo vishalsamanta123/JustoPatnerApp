@@ -74,6 +74,7 @@ export default {
   VISITOR_STATUS_UPDATE: "/visit/updateVisitStatus",
   GET_USERVISTLIST: '/visit/getUserVisitList',
   ADD_VISITOR_: "/visit/addVisit",
+  CHECK_VISIT_MOBILE: "/visit/customerCheckForMobile",
   EDIT_VISITOR_: "/visit/editVisit",
   UPLOAD_IMAGE: "/visit/bulkVisitImageUpload",
   UPLOAD_CSVFile: "/visit/bulkVisitCsvUpload",

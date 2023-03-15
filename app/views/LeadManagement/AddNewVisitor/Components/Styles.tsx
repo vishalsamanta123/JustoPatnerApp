@@ -171,14 +171,14 @@ const styles = StyleSheet.create({
   },
   spanTouch: {
     flexDirection: 'row'
-  }, 
+  },
   spanText: {
     textAlign: 'center',
     fontSize: normalize(14),
     // lineHeight: normalizeHeight(10),
     color: PRIMARY_THEME_COLOR,
     fontFamily: FONT_FAMILY_SEMIBOLD,
-    
+
   },
   bottomText: {
     textAlign: 'center',
@@ -187,10 +187,55 @@ const styles = StyleSheet.create({
     fontFamily: FONT_FAMILY_SEMIBOLD,
     color: GRAY_LIGHT_COLOR
   },
-  bottomContentView:{
+  bottomContentView: {
     flexDirection: 'row',
     // width: '80%',
-  }
+  },
+  tickImgVw: {
+    backgroundColor: PRIMARY_THEME_COLOR,
+    borderRadius: normalize(50),
+    marginRight: normalize(15),
+    padding: normalize(2)
+  },
+  tickImg: {
+    height: normalizeHeight(18),
+    width: normalizeWidth(18),
+    tintColor: WHITE_COLOR
+  },
+  borderView: {
+    borderBottomColor: GRAY_COLOR,
+    borderBottomWidth: 1,
+  },
+  topContainer: {
+    flexDirection: "row",
+    marginVertical: normalizeSpacing(10),
+    justifyContent: "space-between",
+    marginHorizontal: normalizeSpacing(10),
+    color: PRIMARY_THEME_COLOR
+  },
+  conteconfirm: {
+    flexDirection: "column",
+
+  },
+  topTxt: {
+    color: BLACK_COLOR,
+    fontSize: normalize(18),
+    fontFamily: FONT_FAMILY_EXTRABOLD,
+  },
+  bottomTxt: {
+    color: BLACK_COLOR,
+    fontSize: normalize(18),
+    fontFamily: FONT_FAMILY_SEMIBOLD,
+    textAlign: "center",
+  },
+  MiddleContainer: {
+    marginVertical: normalizeSpacing(25),
+    marginHorizontal: normalizeSpacing(30),
+  },
+  btnview: {
+    width: '50%',
+    height: normalizeHeight(50),
+  },
 });
 
 export default styles;
