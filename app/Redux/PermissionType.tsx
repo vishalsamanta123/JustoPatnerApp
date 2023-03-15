@@ -50,6 +50,14 @@ export const MENUITEMS = [
         slug: 'appointment_management',
     },
     {
+        title: strings.appointmentWIthSMHeader,
+        icon: images.event,
+        path: "appointmentWithSM",
+        permission: true,
+        deploy: true,
+        slug: 'appointment_with_sm',
+    },
+    {
         title: strings.reportHeader,
         icon: images.report,
         path: "Report",

@@ -79,6 +79,7 @@ import ShowReply from 'app/views/SupportScreen/SupportDetails/Components/ShowRep
 import TicketStatusUpdate from 'app/views/SupportScreen/Support/components/TicketStatusUpdate';
 import DealFlowDetailScreen from 'app/views/DealFlowScreens/DealFlowDetail';
 import EscalateScreen from 'app/views/SupportScreen/Escalate';
+import AppointmentWithSM from 'app/views/AppointmentWithSM';
 
 
 const Stack = createNativeStackNavigator();
@@ -107,6 +108,7 @@ const DrawerComponent = () => {
       <Drawer.Screen name="DealFlow" component={DealFlowScreen} />
       <Drawer.Screen name="Support" component={SupportScreen} />
       <Drawer.Screen name="PropertyChatView" component={PropertyChat} />
+      <Drawer.Screen name="appointmentWithSM" component={AppointmentWithSM} />
 
       {/* <Stack.Screen component={PropertyScreen} name="PropertyScreenView" /> */}
     </Drawer.Navigator>

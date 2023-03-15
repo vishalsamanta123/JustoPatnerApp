@@ -3,6 +3,7 @@ import { apiCall } from "app/components/utilities/httpClient";
 import { GET_USER_APPOINTMENT_LIST, GET_USER_APPOINTMENT_LIST_ERROR, START_LOADING, STOP_LOADING, UPDATE_USERAPPOINTMENT_STATUS, UPDATE_USERAPPOINTMENT_STATUS_ERROR } from "../types";
 
 export const getUserAppointmentList = (params: any) => async (dispatch: any) => {
+console.log('params: ', params);
     dispatch({ type: START_LOADING })
     try {
         const res = await apiCall("post", apiEndPoints.GET_USER_APPOINTMENT_LIST, params);

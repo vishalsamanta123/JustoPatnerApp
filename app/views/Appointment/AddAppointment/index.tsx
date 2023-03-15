@@ -16,6 +16,7 @@ const AddAppointmentScreen = ({ navigation, route }: any) => {
   const dispatch: any = useDispatch()
   const { response = {}, list = "" } = useSelector((state: any) => state.visitorDataList)
   const addAppointmentData = useSelector((state: any) => state.appointment)
+  console.log('addAppointmentData: ', addAppointmentData);
   const editAddAppointmentData = useSelector((state: any) => state.editAddAppointment)
   const propertyData = useSelector((state: any) => state.propertyData) || {};
   const [visitorList, setVisiitorList] = useState<any>([])
@@ -100,8 +101,8 @@ const AddAppointmentScreen = ({ navigation, route }: any) => {
           appointment_time: addAppointmentData?.response?.data[0]?.appointment_time ?
             addAppointmentData?.response?.data[0]?.appointment_time : '',
           type: 1,
-          pickup: addAppointmentData?.response?.data[0]?.pickup ?
-            addAppointmentData?.response?.data[0]?.pickup : '',
+          pickup: addAppointmentData?.response?.data[0]?.property_pickup ?
+            addAppointmentData?.response?.data[0]?.property_pickup : '',
           pickup_location: addAppointmentData?.response?.data[0]?.pickup_location ?
             addAppointmentData?.response?.data[0]?.pickup_location : '',
           number_of_guest: addAppointmentData?.response?.data[0]?.number_of_guest ?

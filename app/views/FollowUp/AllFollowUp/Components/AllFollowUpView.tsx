@@ -39,7 +39,7 @@ const AllFollowUpView = (props: any) => {
           onEndReached={() => {
             if (props?.allFollowUpList?.length < response?.total_data) {
               props.getFollowupList(
-                props?.allFollowUpList?.length > 4 ? props.offSET + 1 : 0,
+                props?.allFollowUpList?.length > 9 ? props.offSET + 1 : 0,
                 props?.allFollowUpList
               );
             }

@@ -16,7 +16,8 @@ import moment from "moment";
 import usePermission from "app/components/utilities/UserPermissions";
 
 const SmAppointment = (props: any) => {
-  const { status, approve } = usePermission({
+  const { status, approve, view } = usePermission({
+    view: 'view_appointment_with_sm',
     status: "cancel_status_for_sm_appointment",
     approve: "confirm_status_for_sm_appointment",
   });
@@ -84,25 +85,25 @@ const SmAppointment = (props: any) => {
               {
                 color:
                   props.items.appointment_status == 1 ||
-                  props.items.appointment_status == 4
+                    props.items.appointment_status == 4
                     ? RED_COLOR
                     : props.items.appointment_status == 2
-                    ? YELLOW_COLOR
-                    : props.items.appointment_status == 3
-                    ? GREEN_COLOR
-                    : BLACK_COLOR,
+                      ? YELLOW_COLOR
+                      : props.items.appointment_status == 3
+                        ? GREEN_COLOR
+                        : BLACK_COLOR,
               },
             ]}
           >
             {props.items.appointment_status == 1
               ? "Pending"
               : props.items.appointment_status == 2
-              ? "Confirm"
-              : props.items.appointment_status == 3
-              ? "Complete"
-              : props.items.appointment_status == 4
-              ? "Appointment cancel"
-              : strings.notfount}
+                ? "Confirm"
+                : props.items.appointment_status == 3
+                  ? "Complete"
+                  : props.items.appointment_status == 4
+                    ? "Appointment cancel"
+                    : strings.notfount}
           </Text>
         </View>
       </View>
@@ -112,7 +113,7 @@ const SmAppointment = (props: any) => {
           {
             justifyContent:
               props.items.appointment_status === 3 ||
-              props.items.appointment_status === 4
+                props.items.appointment_status === 4
                 ? "flex-end"
                 : "space-between",
           },
@@ -120,7 +121,7 @@ const SmAppointment = (props: any) => {
       >
         {status &&
           (props.items?.appointment_status === 3 ||
-          props.items?.appointment_status === 4 ? null : (
+            props.items?.appointment_status === 4 ? null : (
             <TouchableOpacity
               style={[styles.button, { borderColor: RED_COLOR }]}
               onPress={() => props.handleOptionPress(props.items._id, 4)}
@@ -144,12 +145,13 @@ const SmAppointment = (props: any) => {
         ) : (
           <View />
         )}
-        <TouchableOpacity
-          style={styles.Viewbutton}
-          onPress={() => props.hanndleUserDetailPress(props.items)}
-        >
-          <Image source={images.forwardArrow} style={styles.arrow} />
-        </TouchableOpacity>
+        {view &&
+          (<TouchableOpacity
+            style={styles.Viewbutton}
+            onPress={() => props.hanndleUserDetailPress(props.items)}
+          >
+            <Image source={images.forwardArrow} style={styles.arrow} />
+          </TouchableOpacity>)}
       </View>
     </View>
   );

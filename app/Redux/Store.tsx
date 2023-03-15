@@ -52,9 +52,22 @@ const config = {
 
 const middleware = [thunk];
 const reducers = persistCombineReducers(config, rootReducers);
+
+const rootReducer = (state: any, action: any) => {
+  if (action.type === 'USER_LOGOUT') {
+    
+      // for all keys defined in your persistConfig(s)
+      config.storage.removeItem('persist:root')
+      // storage.removeItem('persist:otherKey')
+
+      return reducers(undefined, action);
+  }
+  return reducers(state, action);
+};
+
 const enhancers = [applyMiddleware(...middleware)];
 const persistConfig: any = { enhancers };
-const store = createStore(reducers, undefined, compose(...enhancers));
+const store = createStore(rootReducer, undefined, compose(...enhancers));
 store.subscribe(() => saveToLocalStorage(store.getState()));
 const persistor = persistStore(store, persistConfig, () => {
 });

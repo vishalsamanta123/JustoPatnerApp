@@ -7,6 +7,7 @@ import {
 } from "react-native";
 import React, { useEffect, useState } from "react";
 import {
+  DATE_FORMAT,
   PRIMARY_THEME_COLOR_DARK,
   RED_COLOR,
   TABBAR_COLOR,
@@ -38,6 +39,7 @@ import AppointmentModal from "./AppointmentModal";
 import AppointmentFilterModal from "./AppointmentFilterModal";
 import usePermission from "app/components/utilities/UserPermissions";
 import RoutingScreen from "./RoutingScreen";
+import moment from "moment";
 
 const AppointmentView = (props: any) => {
   const loadingref = false;
@@ -71,16 +73,23 @@ const AppointmentView = (props: any) => {
     appointment_status: "",
     remark: "",
   });
+  const todayAppointment = {
+    start_date: moment(new Date).format(DATE_FORMAT),
+    end_date: moment(new Date).format(DATE_FORMAT)
+
+  }
   const [indexData, setIndexData] = useState({
     index: 0,
     routes: [
-      { key: "first", title: strings.VisitorAppointment },
-      { key: "second", title: strings.SMAppointment },
+      { key: "first", title: strings.todayAppointment },
+      { key: "second", title: strings.allappointment },
     ],
   });
   useEffect(() => {
-    if (indexData?.index == 1) {
-      handleUserAppointmentList(1);
+    if (indexData?.index === 0) {
+    console.log('indexData?.index: ', indexData?.index);
+      // handleUserAppointmentList(1);
+      getAppointmentList(offSET, todayAppointment);
     } else {
       getAppointmentList(offSET, {});
     }
@@ -152,8 +161,8 @@ const AppointmentView = (props: any) => {
   const handleIndexChange = (index: any) => {
     setIndexData({
       index: index, routes: [
-        { key: "first", title: strings.VisitorAppointment },
-        { key: "second", title: strings.SMAppointment },
+        { key: "first", title: strings.todayAppointment },
+        { key: "second", title: strings.allappointment },
       ],
     })
     setOffset(0)
@@ -219,7 +228,7 @@ const AppointmentView = (props: any) => {
   );
   useFocusEffect(
     React.useCallback(() => {
-      getAppointmentList(offSET, {});
+      getAppointmentList(offSET, todayAppointment);
       return () => { };
     }, [navigation, list])
   );
@@ -233,24 +242,28 @@ const AppointmentView = (props: any) => {
         }
       }
     }
-  }, [response]);
-  useEffect(() => {
-    if (getUserListResponse?.status === 200) {
-      if (getUserListResponse?.data?.length > 0) {
-        if (offSET == 0) {
-          setUserAppointmentList(getUserListResponse?.data);
-        } else {
-          setUserAppointmentList([
-            ...userAppointmentList,
-            ...getUserListResponse?.data,
-          ]);
-        }
-      }
-    } else {
-      setUserAppointmentList([])
+    else {
+      setAppointmentList([])
     }
-  }, [getUserListResponse]);
+  }, [response]);
+  // useEffect(() => {
+  //   if (getUserListResponse?.status === 200) {
+  //     if (getUserListResponse?.data?.length > 0) {
+  //       if (offSET == 0) {
+  //         setUserAppointmentList(getUserListResponse?.data);
+  //       } else {
+  //         setUserAppointmentList([
+  //           ...userAppointmentList,
+  //           ...getUserListResponse?.data,
+  //         ]);
+  //       }
+  //     }
+  //   } else {
+  //     setUserAppointmentList([])
+  //   }
+  // }, [getUserListResponse]);
   const getAppointmentList = (offset: any, data: any) => {
+  console.log('data: ', data);
     setOffset(offset);
     dispatch(
       getAllAppointmentList({
@@ -280,19 +293,22 @@ const AppointmentView = (props: any) => {
           filterData={filterData}
           offSET={offSET}
           keyType={route.key}
+          todayAppointment={todayAppointment}
         />;
       case 'second':
         return <RoutingScreen
-          userAppointmentList={userAppointmentList}
-          hanndleUserDetailPress={hanndleUserDetailPress}
-          handleOptionPress={handleOptionPress}
+          appointmentList={appointmentList}
+          onPressView={onPressView}
+          onPressEdit={onPressEdit}
           setFilterData={setFilterData}
           getAppointmentList={getAppointmentList}
           loadingref={loadingref}
-          handleUserAppointmentList={handleUserAppointmentList}
-          setUserAppointmentList={setUserAppointmentList}
           setAppointmentList={setAppointmentList}
+          response={response}
+          filterData={filterData}
+          offSET={offSET}
           keyType={route.key}
+          todayAppointment={todayAppointment}
         />;
     }
   };
@@ -303,7 +319,7 @@ const AppointmentView = (props: any) => {
     <View style={styles.mainContainer}>
       <Header
         leftImageSrc={images.menu}
-        rightFirstImageScr={indexData?.index === 0 ? images.filter : null}
+        rightFirstImageScr={indexData?.index === 1 ? images.filter : null}
         rightSecondImageScr={images.notification}
         headerText={strings.appointmnet}
         handleOnLeftIconPress={props.handleDrawerPress}
@@ -330,35 +346,6 @@ const AppointmentView = (props: any) => {
           onIndexChange={handleIndexChange}
           initialLayout={{ width: layout.width }}
         />
-        {/* <FlatList
-          data={Array.isArray(appointmentList) ? appointmentList : []}
-          renderItem={({ item }) => (
-            <VisitorAppointment
-              items={item}
-              onPressView={onPressView}
-              onPressEdit={onPressEdit}
-            />
-          )}
-          ListEmptyComponent={
-            <EmptyListScreen message={strings.VisitorAppointment} />
-          }
-          onRefresh={() => {
-            setFilterData({
-              start_date: "",
-              end_date: "",
-              customer_name: "",
-              status: "",
-            });
-            getAppointmentList(0);
-            setAppointmentList([]);
-          }}
-          refreshing={loadingref}
-          onEndReached={() => {
-            if (appointmentList?.length < response?.total_data) {
-              getAppointmentList(appointmentList?.length > 2 ? offSET + 1 : 0);
-            }
-          }}
-        /> */}
       </View>
       <AppointmentModal
         Visible={isVisible}

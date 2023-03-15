@@ -34,13 +34,13 @@ export const Isios = Platform.OS === 'ios'
 export const DATE_FORMAT = 'YYYY-MM-DD'
 export const DATE_FORMAT_SLASH = 'YYYY/MM/DD'
 export const TIME_FORMAT = 'LT'
-export const DATE_TIME_FORMAT = 'YYYY-MM-DD, h:mm a'
+export const DATE_TIME_FORMAT = 'DD-MM-YYYY, h:mm a'
 export const AMOUNT_TYPE = [{ value: "Cr" }, { value: "L" }, { value: "K" }]
 export const ONE_MONTH_DATES = new Date(new Date().setDate(new Date().getDate() + 31));
 
 // export const GLOBAL_URL = 'http://192.168.1.27:3000'
-// export const GLOBAL_URL = 'https://api.justoverse.com:3000' 
-export const GLOBAL_URL = 'https://prodapi.justoverse.com:3002' // prod
+export const GLOBAL_URL = 'https://api.justoverse.com:3000' 
+// export const GLOBAL_URL = 'https://prodapi.justoverse.com:3002' // prod
 // export const GLOBAL_URL = 'https://itinformatix.org:3044'
 // export const  MAP_KEY = 'AIzaSyDdLk5tb75SiJvRk9F2B4almu-sBAi1-EM'
 export const MAP_KEY = 'AIzaSyCbDx7Lk4eTMzptrQKXZvOPYgEMggrq8o4'

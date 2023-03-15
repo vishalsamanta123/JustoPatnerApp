@@ -33,6 +33,8 @@ const FollowUpScreen = ({ navigation }: any) => {
             } else {
                 setFollowUpList([...followUpList, ...response?.data])
             }
+        } else {
+            setFollowUpList([])
         }
     }, [response])
     const getFollowupList = (offset: any, filterData: any) => {

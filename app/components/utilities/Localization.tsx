@@ -249,6 +249,12 @@ const strings = new LocalizedStrings({
     close: 'Close',
     readytoBookHeader: 'Ready to Book',
 
+
+    // Appointment With SM
+    appointmentWIthSMHeader: 'Appointment With SM',
+    todayAppointment: 'Today Appointment',
+    allappointment: 'All Appointment'
+
   },
 });
 

@@ -91,7 +91,7 @@ const LeadManagementView = (props: any) => {
           }
           onEndReached={() => {
             if (props?.visitorList?.length < props?.moreData) {
-              props.getVisitorsList(props?.visitorList?.length > 2 ?
+              props.getVisitorsList(props?.visitorList?.length > 9 ?
                 props.offSET + 1 : 0, props.filterData)
             }
           }}

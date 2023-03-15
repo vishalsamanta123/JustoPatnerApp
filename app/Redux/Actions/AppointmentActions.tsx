@@ -4,6 +4,7 @@ import { apiCall } from "app/components/utilities/httpClient";
 import { ADD_APPOINTMENT, ADD_APPOINTMENT_ERROR, EDIT_APPOINTMENT, EDIT_APPOINTMENT_ERROR, GET_APPOINTMENT_DETAILS, GET_APPOINTMENT_DETAILS_ERROR, GET_APPOINTMENT_LIST, GET_APPOINTMENT_LIST_ERROR, REMOVE_APPOINTMENT_EDITADD, START_LOADING, STOP_LOADING } from "../types";
 
 export const getAllAppointmentList = (params: any) => async (dispatch: any) => {
+console.log('params: ', params);
     dispatch({ type: START_LOADING })
     try {
         const res = await apiCall("post", apiEndPoints.GET_APPOINTMENT_LIST, params);

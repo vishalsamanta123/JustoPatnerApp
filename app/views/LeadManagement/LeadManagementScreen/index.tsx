@@ -35,6 +35,8 @@ const LeadManagementScreen = ({ navigation }: any) => {
       } else {
         setVisiitorList([...visitorList, ...response?.data])
       }
+    } else {
+      setVisiitorList([])
     }
   }, [response])
 

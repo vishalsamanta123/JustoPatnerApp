@@ -36,7 +36,7 @@ const VisitorAppointment = (props: any) => {
         <View style={styles.nameContainer}>
           <Text style={styles.nameTxt}>{`${moment(
             item?.appointment_date
-          ).format(DATE_FORMAT)}, ${item?.appointment_time}`}</Text>
+          ).format('DD-MM-YYYY')}, ${item?.appointment_time}`}</Text>
         </View>
       </View>
       <View style={styles.Txtview}>
@@ -86,7 +86,7 @@ const VisitorAppointment = (props: any) => {
           <Text>:</Text>
         </View>
         <View style={styles.nameContainer}>
-          <Text style={styles.nameTxt}>{item?.lead_no}</Text>
+          <Text style={styles.nameTxt}>{item?.lead_no ? item?.lead_no : strings.notfount}</Text>
         </View>
       </View>
       <View style={styles.Txtview}>
@@ -97,7 +97,7 @@ const VisitorAppointment = (props: any) => {
           <Text>:</Text>
         </View>
         <View style={styles.nameContainer}>
-          <Text style={styles.nameTxt}>{item?.pickup}</Text>
+          <Text style={styles.nameTxt}>{item?.pickup ? item?.pickup : strings.notfount}</Text>
         </View>
       </View>
       <View style={styles.Txtview}>
@@ -126,9 +126,9 @@ const VisitorAppointment = (props: any) => {
             ]}
           >
             {item?.status === 1
-              ? currentDate >= appointmentdateTime ? 'Not Visted' : "Upcoming"
+              ? currentDate >= appointmentdateTime ? 'Not Visited' : "Upcoming"
               : item?.status === 2
-                ? currentDate >= appointmentdateTime ? 'Not Visted' : "Upcoming"
+                ? currentDate >= appointmentdateTime ? 'Not Visited' : "Upcoming"
                 : item?.status === 3
                   ? "Completed"
                   : item?.status === 4

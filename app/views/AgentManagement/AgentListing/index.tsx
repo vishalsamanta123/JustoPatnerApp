@@ -35,6 +35,9 @@ const AgentListing = ({ navigation }: any) => {
         setAgentList([...agentList, ...response?.data])
       }
     }
+    else {
+      setAgentList([])
+    }
   }, [response])
 
   const getAgentList = (offset: any, filterData: any) => {
