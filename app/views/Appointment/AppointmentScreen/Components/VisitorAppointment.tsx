@@ -18,7 +18,7 @@ import usePermission from "app/components/utilities/UserPermissions";
 
 const VisitorAppointment = (props: any) => {
   const currentDate = `${moment(new Date).format(DATE_FORMAT)}, ${new Date().getHours()}:${new Date().getMinutes()}`
-  const appointmentdateTime = `${moment(props?.items?.appointment_date).format(DATE_FORMAT)}, ${moment(props?.items?.appointment_time.toString(), 'hh:mm A').format('HH:mm')}` || ""
+  const appointmentdateTime = `${moment(props?.items?.appointment_date).format(DATE_FORMAT)}, ${moment(props?.items?.appointment_time?.toString(), 'hh:mm A').format('HH:mm')}` || ""
   const { edit, view } = usePermission({
     edit: 'edit_appointment',
     view: 'view_appointment',
