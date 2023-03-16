@@ -353,6 +353,7 @@ const UserBankInfo = ({ navigation }: any) => {
       </View>
       <PicturePickerModal
         Visible={visible}
+        docType={'all'}
         setVisible={setVisible}
         imageData={(data: any) => {
           if (reravisible) {

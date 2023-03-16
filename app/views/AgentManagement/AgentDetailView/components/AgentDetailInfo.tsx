@@ -1,18 +1,54 @@
 import { View, Text, Image, TouchableOpacity } from "react-native";
 import React, { useState } from "react";
 import styles from "./styles";
-import { BLACK_COLOR, GRAY_COLOR } from "../../../../components/utilities/constant";
+import { BLACK_COLOR, GRAY_COLOR, RED_COLOR } from "../../../../components/utilities/constant";
 import { normalize, normalizeHeight, normalizeSpacing, normalizeWidth } from "../../../../components/scaleFontSize";
 import { ScrollView } from "react-native-gesture-handler";
 import strings from "app/components/utilities/Localization";
 import FastImages from "app/components/FastImage";
 import Modal from "react-native-modal";
+import images from "app/assets/images";
+import FileViewer from "react-native-file-viewer";
+import RNFS from "react-native-fs";
+import ErrorMessage from "app/components/ErrorMessage";
 
 
 const agentDetailItem = (props: any) => {
   const [isVisible, setIsVisible] = useState(false);
 
   const [onPressData, setOnPressData] = useState<any>('');
+
+  const reraType = props.items.rera_certificate?.substring(
+    props.items.rera_certificate?.lastIndexOf(".") + 1
+  )
+  const latterType = props.items.propidership_declaration_letter?.substring(
+    props.items.propidership_declaration_letter?.lastIndexOf(".") + 1
+  )
+
+  const OpenDoc = async (url: any) => {
+    function getUrlExtension(url: any) {
+      return url.split(/[#?]/)[0].split(".").pop().trim();
+    }
+    const extension = getUrlExtension(url);
+
+    const localFile = `${RNFS.DocumentDirectoryPath}/temporaryfile.${extension}`;
+
+    const options = {
+      fromUrl: url,
+      toFile: localFile,
+    };
+    RNFS.downloadFile(options)
+      .promise.then(() => FileViewer.open(localFile))
+      .then(() => {
+        // success
+      })
+      .catch((error) => {
+        ErrorMessage({
+          msg: error?.message,
+          backgroundColor: RED_COLOR
+        })
+      });
+  };
 
   return (
     <ScrollView>
@@ -166,20 +202,36 @@ const agentDetailItem = (props: any) => {
         <View style={[styles.nameContainer, { alignItems: 'center' }]}>
           <TouchableOpacity
             onPress={() => {
-              setIsVisible(true)
-              setOnPressData(props.items.rera_certificate)
+              if (reraType === 'pdf') {
+                OpenDoc(props.items.rera_certificate)
+              } else {
+                setIsVisible(true)
+                setOnPressData(props.items.rera_certificate)
+              }
             }}
           >
-            <FastImages
-              source={{ uri: props.items.rera_certificate }}
-              style={{
-                width: normalizeWidth(80),
-                height: normalizeHeight(80),
-                alignItems: "center",
-                justifyContent: "center",
-                borderRadius: normalize(10)
-              }}
-            />
+            {reraType === 'pdf' ?
+              <Image
+                source={images.pdfIcone}
+                style={{
+                  width: normalizeWidth(80),
+                  height: normalizeHeight(80),
+                  alignItems: "center",
+                  justifyContent: "center",
+                  borderRadius: normalize(10)
+                }}
+              />
+              :
+              (<FastImages
+                source={{ uri: props.items.rera_certificate }}
+                style={{
+                  width: normalizeWidth(80),
+                  height: normalizeHeight(80),
+                  alignItems: "center",
+                  justifyContent: "center",
+                  borderRadius: normalize(10)
+                }}
+              />)}
           </TouchableOpacity>
         </View>
       </View>
@@ -191,20 +243,36 @@ const agentDetailItem = (props: any) => {
         <View style={[styles.nameContainer, { alignItems: 'center' }]}>
           <TouchableOpacity
             onPress={() => {
-              setIsVisible(true)
-              setOnPressData(props.items.rera_certificate)
+              if (latterType === 'pdf') {
+                OpenDoc(props.items.propidership_declaration_letter)
+              } else {
+                setIsVisible(true)
+                setOnPressData(props.items.propidership_declaration_letter)
+              }
             }}
           >
-            <FastImages
-              source={{ uri: props.items.propidership_declaration_letter }}
-              style={{
-                width: normalizeWidth(80),
-                height: normalizeHeight(80),
-                alignItems: "center",
-                justifyContent: "center",
-                borderRadius: normalize(10)
-              }}
-            />
+            {latterType === 'pdf' ?
+              <Image
+                source={images.pdfIcone}
+                style={{
+                  width: normalizeWidth(80),
+                  height: normalizeHeight(80),
+                  alignItems: "center",
+                  justifyContent: "center",
+                  borderRadius: normalize(10)
+                }}
+              />
+              :
+              (<FastImages
+                source={{ uri: props.items.propidership_declaration_letter }}
+                style={{
+                  width: normalizeWidth(80),
+                  height: normalizeHeight(80),
+                  alignItems: "center",
+                  justifyContent: "center",
+                  borderRadius: normalize(10)
+                }}
+              />)}
           </TouchableOpacity>
         </View>
       </View>

@@ -23,6 +23,7 @@ const CompanyDetails = ({ navigation }: any) => {
 
   const [isError, setisError] = useState(false)
   const [visible, setVisible] = useState(false)
+  const [docType, setDocType] = useState('')
   const [panvisible, setpanVisible] = useState(false)
   const [lettervisible, setletterVisible] = useState(false)
   const insets = useSafeAreaInsets();
@@ -230,6 +231,7 @@ const CompanyDetails = ({ navigation }: any) => {
               onPress={() => {
                 setpanVisible(true)
                 setVisible(true)
+                setDocType('')
               }}
             >
               <Text style={{ color: formData?.pancard ? BLACK_COLOR : PRIMARY_THEME_COLOR, fontSize: normalize(15) }}>{strings.browse}</Text>
@@ -258,6 +260,7 @@ const CompanyDetails = ({ navigation }: any) => {
               onPress={() => {
                 setletterVisible(true)
                 setVisible(true)
+                setDocType('all')
               }}
             >
               <Text style={{ color: formData?.declaration_letter_of_company ? BLACK_COLOR : PRIMARY_THEME_COLOR, fontSize: normalize(15) }}>{strings.browse}</Text>
@@ -335,6 +338,7 @@ const CompanyDetails = ({ navigation }: any) => {
       </ScrollView>
       <PicturePickerModal
         Visible={visible}
+        docType={docType}
         setVisible={setVisible}
         imageData={(data: any) => {
           if (panvisible) {
