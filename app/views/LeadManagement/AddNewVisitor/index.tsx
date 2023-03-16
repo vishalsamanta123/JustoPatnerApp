@@ -179,7 +179,7 @@ const AddNewVisitorScreen = ({ navigation, route }: any) => {
       } else if (formData?.mobile?.length < 10) {
         isError = false;
         errorMessage = "Please fill 10 digit mobile number";
-      } else if (type === "add" && formData?.visit_confirmation_status === "") {
+      } else if (type === "add" || type === "propertySelect" && formData?.visit_confirmation_status === "") {
         isError = false;
         errorMessage = "Please check entered mobile number";
       } else if (formData?.adhar_no) {

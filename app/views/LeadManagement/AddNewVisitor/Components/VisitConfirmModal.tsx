@@ -19,6 +19,7 @@ const VisitConfirmModal = (props: any) => {
             } else {
                 setResponseData({})
             }
+            props.setFormData({ ...props.formData })
         }
     }, [response])
     const onPressLeftButton = () => {
@@ -53,8 +54,6 @@ const VisitConfirmModal = (props: any) => {
                 occupation: responseData?.data[0]?.occupation ? responseData?.data[0]?.occupation : '',
                 office_address: responseData?.data[0]?.office_address ? responseData?.data[0]?.office_address : '',
                 pancard_no: responseData?.data[0]?.pancard_no ? responseData?.data[0]?.pancard_no : '',
-                preferred_bank: responseData?.data[0]?.preferred_bank ? responseData?.data[0]?.preferred_bank : '',
-                property_type: responseData?.data[0]?.property_type ? responseData?.data[0]?.property_type : '',
                 visit_type: responseData?.data[0]?.visit_type ? responseData?.data[0]?.visit_type : '',
                 whatsapp_no: responseData?.data[0]?.whatsapp_no ? responseData?.data[0]?.whatsapp_no : '',
                 birth_date: responseData?.data[0]?.birth_date ?
