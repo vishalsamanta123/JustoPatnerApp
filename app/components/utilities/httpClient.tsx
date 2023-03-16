@@ -40,6 +40,9 @@ export async function apiCall(
     if (response.status === 201) {
       return response;
     }
+    if (response.status === 202) {
+      return response;
+    }
   } catch (error: any) {
     // console.log('errordsfdfdfs: ', error);
     if (error.response) {

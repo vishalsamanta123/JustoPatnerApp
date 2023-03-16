@@ -208,14 +208,21 @@ const styles = StyleSheet.create({
   },
   topContainer: {
     flexDirection: "row",
-    marginVertical: normalizeSpacing(10),
+    marginBottom: normalizeSpacing(5),
     justifyContent: "space-between",
     marginHorizontal: normalizeSpacing(10),
     color: PRIMARY_THEME_COLOR
   },
+  closeIcon: {
+    tintColor: "red",
+    width: normalizeWidth(25),
+    height: normalizeHeight(25),
+  },
   conteconfirm: {
     flexDirection: "column",
-
+    backgroundColor: WHITE_COLOR,
+    paddingVertical: normalizeSpacing(12),
+    borderRadius: normalize(10)
   },
   topTxt: {
     color: BLACK_COLOR,

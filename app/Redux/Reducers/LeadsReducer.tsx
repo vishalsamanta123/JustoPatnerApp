@@ -1,4 +1,4 @@
-import { ADD_VISITOR, ADD_VISITOR_FORM, ADD_VISITOR_WITHOUT_PROPERTY, EDIT_VISITOR, GET_BULK_CSV, GET_USERVISIT_LIST, GET_USERVISIT_LIST_ERROR, GET_VISITOR_DETAIL, REMOVE_VISITOR, UPLOAD_CSV_FILE, UPLOAD_CSV_FILE_ERROR, UPLOAD_CSV_FILE_REMOVE, UPLOAD_IMAGE, UPLOAD_IMAGE_ERROR, UPLOAD_IMAGE_REMOVE, VISITOR_LIST, VISITOR_STATUSUPDATE } from "../types";
+import { ADD_VISITOR, ADD_VISITOR_FORM, ADD_VISITOR_WITHOUT_PROPERTY, CHECKVISITMOBILE, EDIT_VISITOR, GET_BULK_CSV, GET_USERVISIT_LIST, GET_USERVISIT_LIST_ERROR, GET_VISITOR_DETAIL, REMOVE_CHECKVISITMOBILE, REMOVE_VISITOR, UPLOAD_CSV_FILE, UPLOAD_CSV_FILE_ERROR, UPLOAD_CSV_FILE_REMOVE, UPLOAD_IMAGE, UPLOAD_IMAGE_ERROR, UPLOAD_IMAGE_REMOVE, VISITOR_LIST, VISITOR_STATUSUPDATE } from "../types";
 
 const initialState = {
   response: null,
@@ -163,6 +163,23 @@ export function editVisitorReducer(state = initialEditState, action: any) {
       return {
         ...state,
         update: false,
+        response: action.payload,
+      };
+    default:
+      return state;
+  }
+}
+export function checkVisitorReducer(state = initialEditState, action: any) {
+  switch (action.type) {
+    case CHECKVISITMOBILE:
+      return {
+        ...state,
+        response: action.payload,
+        check_type: action.check_type,
+      };
+    case REMOVE_CHECKVISITMOBILE:
+      return {
+        ...state,
         response: action.payload,
       };
     default:

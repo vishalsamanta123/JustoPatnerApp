@@ -1,7 +1,7 @@
 import { handleApiError } from "app/components/ErrorMessage/HandleApiErrors";
 import apiEndPoints from "app/components/utilities/apiEndPoints";
 import { apiCall } from "app/components/utilities/httpClient";
-import { GET_VISITOR_DETAIL, VISITOR_ERROR, VISITOR_LIST, VISITOR_STATUSUPDATE, ADD_VISITOR, ADD_VISITOR_FORM, EDIT_VISITOR, REMOVE_VISITOR, START_LOADING, STOP_LOADING, UPLOAD_IMAGE, UPLOAD_IMAGE_ERROR, UPLOAD_IMAGE_REMOVE, UPLOAD_CSV_FILE, UPLOAD_CSV_FILE_ERROR, UPLOAD_CSV_FILE_REMOVE, ADD_VISITOR_WITHOUT_PROPERTY, GET_BULK_CSV, GET_BULK_CSV_ERROR, GET_USERVISIT_LIST_ERROR, GET_USERVISIT_LIST } from "../types";
+import { GET_VISITOR_DETAIL, VISITOR_ERROR, VISITOR_LIST, VISITOR_STATUSUPDATE, ADD_VISITOR, ADD_VISITOR_FORM, EDIT_VISITOR, REMOVE_VISITOR, START_LOADING, STOP_LOADING, UPLOAD_IMAGE, UPLOAD_IMAGE_ERROR, UPLOAD_IMAGE_REMOVE, UPLOAD_CSV_FILE, UPLOAD_CSV_FILE_ERROR, UPLOAD_CSV_FILE_REMOVE, ADD_VISITOR_WITHOUT_PROPERTY, GET_BULK_CSV, GET_BULK_CSV_ERROR, GET_USERVISIT_LIST_ERROR, GET_USERVISIT_LIST, CHECKVISITMOBILE, CHECKVISITMOBILE_ERROR, REMOVE_CHECKVISITMOBILE } from "../types";
 
 export const getAllLeadsList = (params: any) => async (dispatch: any) => {
     dispatch({ type: START_LOADING })
@@ -54,6 +54,41 @@ export const statusUpdate = (params: any) => async (dispatch: any) => {
     }
     finally {
         dispatch({ type: STOP_LOADING })
+    }
+};
+export const checkVisitAvailble = (params: any) => async (dispatch: any) => {
+    dispatch({ type: START_LOADING })
+    try {
+        const res = await apiCall("post", apiEndPoints.CHECK_VISIT_AVAILABLE, params);
+        if (res?.data?.status === 200 || res?.data?.status === 201 ||
+            res?.data?.status === 202) {
+            dispatch({
+                type: CHECKVISITMOBILE,
+                payload: res.data,
+                check_type: params.mobile ? "mobile" : params.email ? "email" : "",
+            });
+        }
+    } catch (e) {
+        dispatch({
+            type: CHECKVISITMOBILE_ERROR,
+            payload: console.log(e),
+        });
+    }
+    finally {
+        dispatch({ type: STOP_LOADING })
+    }
+};
+export const CheckVisitAvailRemove = () => async (dispatch: any) => {
+    try {
+        dispatch({
+            type: REMOVE_CHECKVISITMOBILE,
+            payload: null,
+        });
+    } catch (e) {
+        dispatch({
+            type: CHECKVISITMOBILE_ERROR,
+            payload: console.log(e),
+        });
     }
 };
 export const addVisitor = (params: any) => async (dispatch: any) => {

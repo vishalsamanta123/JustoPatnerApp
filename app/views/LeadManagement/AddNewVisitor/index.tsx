@@ -5,6 +5,8 @@ import {
   addVisitor,
   addVisitorRemove,
   addVisitorWithoutProperty,
+  checkVisitAvailble,
+  CheckVisitAvailRemove,
   editVisitor,
   getVisitorDetail,
 } from "app/Redux/Actions/LeadsActions";
@@ -20,9 +22,7 @@ import { getAllAlloctaeProperty } from "app/Redux/Actions/propertyActions";
 const AddNewVisitorScreen = ({ navigation, route }: any) => {
   const { type, data } = route?.params || {};
   const dispatch: any = useDispatch();
-  const { response = {}, detail = "" } = useSelector(
-    (state: any) => state.visitorData
-  );
+  const { response = {}, detail = "" } = useSelector((state: any) => state.visitorData);
   const [formData, setFormData] = useState<any>({
     first_name: "",
     adhar_no: "",
@@ -61,15 +61,21 @@ const AddNewVisitorScreen = ({ navigation, route }: any) => {
     current_stay: "",
     property_type: "",
     preferred_bank: "",
+    visit_confirmation_status: ""
   });
+
   const [masterDatas, setMasterDatas] = useState<any>([]);
   const [NavigationType, setNavigationType] = useState(0);
   const [allProperty, setAllProperty] = useState<any>([]);
+  const [visitCheckModal, setVisitCheckModal] = useState<any>(false);
+  const [emailMobvalidation, setEmailMobValidation] = useState({
+    mobile: null,
+  });
   const masterData = useSelector((state: any) => state.masterData) || {};
   const propertyData = useSelector((state: any) => state.propertyData) || {};
-  console.log('propertyData: ', propertyData);
   const editData = useSelector((state: any) => state.editVisitorData) || {};
   const addData = useSelector((state: any) => state.addVisitorData) || {};
+  const visitAVailableData = useSelector((state: any) => state.checkVisitorData) || {};
 
   useLayoutEffect(() => {
     if (type === "edit") {
@@ -128,7 +134,6 @@ const AddNewVisitorScreen = ({ navigation, route }: any) => {
   };
 
   const validation = () => {
-
     let isError = true;
     let errorMessage: any = "";
     // if (
@@ -148,6 +153,10 @@ const AddNewVisitorScreen = ({ navigation, route }: any) => {
     } else if (formData?.mobile === "" || formData?.mobile === undefined) {
       isError = false;
       errorMessage = "Please fill mobile number";
+    } else if (formData?.visit_confirmation_status === "" ||
+      formData?.visit_confirmation_status === undefined) {
+      isError = false;
+      errorMessage = "Please check entered mobile number";
     } else if (formData?.adhar_no) {
       if (Regexs.AadharRegex.test(formData?.adhar_no) === false) {
         isError = false;
@@ -166,7 +175,10 @@ const AddNewVisitorScreen = ({ navigation, route }: any) => {
         errorMessage = "Please enter valid Email id";
       }
     }
-    if (formData?.min_budget || formData.max_budget) {
+    if (formData?.min_budget === "" && formData?.max_budget !== "") {
+      isError = false;
+      errorMessage = "Please enter minimum budget also";
+    } else if (formData?.min_budget || formData.max_budget) {
       let tempMinVal: any;
       formData?.min_budget_type === "K"
         ? (tempMinVal = formData?.min_budget * 1000)
@@ -188,8 +200,10 @@ const AddNewVisitorScreen = ({ navigation, route }: any) => {
         isError = false;
         errorMessage = "Maximum budget should more than minimum budget";
       }
-    }
-    if (formData?.min_emi_budget || formData.max_emi_budget) {
+    } if (formData?.min_emi_budget === "" && formData?.max_emi_budget !== "") {
+      isError = false;
+      errorMessage = "Please enter minimum emi also";
+    } else if (formData?.min_emi_budget || formData.max_emi_budget) {
       let tempMinVal: any;
       formData?.min_emi_budget_type === "K"
         ? (tempMinVal = formData?.min_emi_budget * 1000)
@@ -256,6 +270,33 @@ const AddNewVisitorScreen = ({ navigation, route }: any) => {
       });
     }
   }, [editData, addData]);
+  useEffect(() => {
+    if (visitAVailableData?.response?.status === 200 ||
+      visitAVailableData?.response?.status === 201 ||
+      visitAVailableData?.response?.status === 202) {
+      dispatch(CheckVisitAvailRemove());
+      if (visitAVailableData?.response?.status === 200) {
+        switch (visitAVailableData?.check_type) {
+          case 'mobile':
+            setEmailMobValidation({
+              ...emailMobvalidation,
+              mobile: visitAVailableData?.check_type,
+            })
+            setFormData({
+              ...formData,
+              visit_confirmation_status: 1,
+            })
+            break;
+        }
+      } else {
+        setVisitCheckModal(true)
+      }
+    }
+  }, [visitAVailableData]);
+  const handleCheckEmailMobile = () => {
+    const params = { mobile: formData?.mobile }
+    dispatch(checkVisitAvailble(params));
+  };
   const OnpressCreateEdit = () => {
     if (validation()) {
       if (type === "edit") {
@@ -314,7 +355,8 @@ const AddNewVisitorScreen = ({ navigation, route }: any) => {
           no_of_family_member: formData?.no_of_family_member,
           current_stay: formData?.current_stay,
           property_type: formData?.property_type,
-          preferred_bank: formData?.preferred_bank
+          preferred_bank: formData?.preferred_bank,
+          // visit_confirmation_status: formData?.visit_confirmation_status,
         };
         dispatch(editVisitor(edit_params));
       } else {
@@ -368,7 +410,8 @@ const AddNewVisitorScreen = ({ navigation, route }: any) => {
           no_of_family_member: formData?.no_of_family_member,
           current_stay: formData?.current_stay,
           property_type: formData?.property_type,
-          preferred_bank: formData?.preferred_bank
+          preferred_bank: formData?.preferred_bank,
+          visit_confirmation_status: formData?.visit_confirmation_status
         };
         if (formData?.property_id !== '') {
           dispatch(addVisitor(add_params));
@@ -393,6 +436,11 @@ const AddNewVisitorScreen = ({ navigation, route }: any) => {
       // handleProperty={handleProperty}
       allProperty={allProperty}
       setNavigationType={setNavigationType}
+      handleCheckEmailMobile={handleCheckEmailMobile}
+      emailMobvalidation={emailMobvalidation}
+      setEmailMobValidation={setEmailMobValidation}
+      visitCheckModal={visitCheckModal}
+      setVisitCheckModal={setVisitCheckModal}
     />
   );
 };
