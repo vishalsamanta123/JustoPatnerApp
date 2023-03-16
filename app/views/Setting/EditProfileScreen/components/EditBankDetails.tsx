@@ -227,6 +227,7 @@ const EditBankDetails = ({ navigation }: any) => {
       <PicturePickerModal
         Visible={reraVisible}
         setVisible={setReraVisible}
+        docType={'all'}
         imageData={(data: any) => {
           setEditData({
             ...editData,
@@ -237,6 +238,7 @@ const EditBankDetails = ({ navigation }: any) => {
       <PicturePickerModal
         Visible={letterVisible}
         setVisible={setLetterVisible}
+        docType={'all'}
         imageData={(data: any) => {
           setEditData({
             ...editData,
