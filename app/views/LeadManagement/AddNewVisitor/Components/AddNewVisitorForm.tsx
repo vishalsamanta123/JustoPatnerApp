@@ -31,6 +31,7 @@ import DropdownInput from "app/components/DropDown";
 import { useSelector } from "react-redux";
 import usePermission from "app/components/utilities/UserPermissions";
 import CheckBox from "@react-native-community/checkbox";
+import VisitConfirmModal from "./VisitConfirmModal";
 
 const AddNewVisitorForm = (props: any) => {
   const [PropertyStatus, setPropertyStatus] = useState(false);
@@ -97,8 +98,6 @@ const AddNewVisitorForm = (props: any) => {
     create: "add_visitor",
     status: "add_appointment",
   });
-  console.log("props?.formData: ", props?.formData);
-
   return (
     <View style={styles.mainContainer}>
       <Header
@@ -111,7 +110,7 @@ const AddNewVisitorForm = (props: any) => {
         handleOnLeftIconPress={props.handleBackPress}
       />
       <ScrollView keyboardShouldPersistTaps={"handled"}
-      automaticallyAdjustKeyboardInsets={Isios ? true : false}
+        automaticallyAdjustKeyboardInsets={Isios ? true : false}
       >
         <View style={styles.wrap}>
           <Text style={styles.headingText}>{strings.visitordetails}</Text>
@@ -119,7 +118,7 @@ const AddNewVisitorForm = (props: any) => {
             <InputField
               require={true}
               placeholderText={"Visitor Name"}
-              handleInputBtnPress={() => {}}
+              handleInputBtnPress={() => { }}
               onChangeText={(data: any) => {
                 props.setFormData({
                   ...props.formData,
@@ -134,7 +133,7 @@ const AddNewVisitorForm = (props: any) => {
             <InputField
               require={true}
               placeholderText={"Mobile No."}
-              handleInputBtnPress={() => {}}
+              handleInputBtnPress={() => { }}
               onChangeText={(data: any) => {
                 props.setFormData({
                   ...props.formData,
@@ -145,12 +144,29 @@ const AddNewVisitorForm = (props: any) => {
               headingText={"Mobile No."}
               keyboardtype={"number-pad"}
               maxLength={10}
+              rightImageVw={styles.tickImgVw}
+              rightImageSty={styles.tickImg}
+              rightImgSrc={props?.emailMobvalidation?.mobile === 'mobile' ? images.check : null}
+              onFocus={() => {
+                props.type == "edit" ? {} :
+                  props.setEmailMobValidation({
+                    ...props.emailMobvalidation,
+                    mobile: null,
+                  })
+              }}
+              onBlur={(val: any) => {
+                if (props.type == "edit") {
+                  { }
+                } else {
+                  props.handleCheckEmailMobile(1);
+                }
+              }}
             />
           </View>
           <View style={styles.inputWrap}>
             <InputField
               placeholderText={"Ex:- 3675 9834 6012"}
-              handleInputBtnPress={() => {}}
+              handleInputBtnPress={() => { }}
               onChangeText={(data: any) => {
                 props.setFormData({
                   ...props.formData,
@@ -167,7 +183,7 @@ const AddNewVisitorForm = (props: any) => {
           <View style={styles.inputWrap}>
             <InputField
               placeholderText={"BNZAA2318JM"}
-              handleInputBtnPress={() => {}}
+              handleInputBtnPress={() => { }}
               onChangeText={(data: any) => {
                 props.setFormData({
                   ...props.formData,
@@ -255,8 +271,8 @@ const AddNewVisitorForm = (props: any) => {
               }}
               value={
                 props?.formData?.birth_date === "" ||
-                props?.formData?.birth_date === undefined ||
-                props?.formData?.birth_date === null
+                  props?.formData?.birth_date === undefined ||
+                  props?.formData?.birth_date === null
                   ? ""
                   : moment(props?.formData?.birth_date).format(DATE_FORMAT)
               }
@@ -266,7 +282,7 @@ const AddNewVisitorForm = (props: any) => {
           <View style={styles.inputWrap}>
             <InputField
               placeholderText={"WhatsApp No."}
-              handleInputBtnPress={() => {}}
+              handleInputBtnPress={() => { }}
               onChangeText={(data: any) => {
                 props.setFormData({
                   ...props.formData,
@@ -282,7 +298,7 @@ const AddNewVisitorForm = (props: any) => {
           <View style={styles.inputWrap}>
             <InputField
               placeholderText={"Email Address"}
-              handleInputBtnPress={() => {}}
+              handleInputBtnPress={() => { }}
               onChangeText={(data: any) => {
                 props.setFormData({
                   ...props.formData,
@@ -316,7 +332,7 @@ const AddNewVisitorForm = (props: any) => {
           <View style={styles.inputWrap}>
             <InputField
               placeholderText={"Locality"}
-              handleInputBtnPress={() => {}}
+              handleInputBtnPress={() => { }}
               onChangeText={(data: any) => {
                 props.setFormData({
                   ...props.formData,
@@ -623,19 +639,19 @@ const AddNewVisitorForm = (props: any) => {
               }}
               value={
                 props?.formData?.expected_possession_date === "" ||
-                props?.formData?.expected_possession_date === undefined ||
-                props?.formData?.expected_possession_date === null
+                  props?.formData?.expected_possession_date === undefined ||
+                  props?.formData?.expected_possession_date === null
                   ? ""
                   : moment(props?.formData?.expected_possession_date).format(
-                      DATE_FORMAT
-                    )
+                    DATE_FORMAT
+                  )
               }
             />
           </View>
           <View style={styles.inputWrap}>
             <InputField
               placeholderText={"Area(Sq ft.)"}
-              handleInputBtnPress={() => {}}
+              handleInputBtnPress={() => { }}
               onChangeText={(data: any) => {
                 props.setFormData({
                   ...props.formData,
@@ -645,7 +661,7 @@ const AddNewVisitorForm = (props: any) => {
               valueshow={props?.formData?.areain_sqlft}
               headingText={"Area(Sq ft.)"}
               keyboardtype={"number-pad"}
-              // keyboardtype={'phone-pad'}
+            // keyboardtype={'phone-pad'}
             />
           </View>
 
@@ -1101,7 +1117,7 @@ const AddNewVisitorForm = (props: any) => {
           <View style={styles.inputWrap}>
             <InputField
               placeholderText={"Company Name"}
-              handleInputBtnPress={() => {}}
+              handleInputBtnPress={() => { }}
               onChangeText={(data: any) => {
                 props.setFormData({
                   ...props.formData,
@@ -1115,7 +1131,7 @@ const AddNewVisitorForm = (props: any) => {
           <View style={styles.inputWrap}>
             <InputField
               placeholderText={"Designation"}
-              handleInputBtnPress={() => {}}
+              handleInputBtnPress={() => { }}
               onChangeText={(data: any) => {
                 props.setFormData({
                   ...props.formData,
@@ -1129,7 +1145,7 @@ const AddNewVisitorForm = (props: any) => {
           <View style={styles.inputWrap}>
             <InputField
               placeholderText={"Office Address"}
-              handleInputBtnPress={() => {}}
+              handleInputBtnPress={() => { }}
               onChangeText={(data: any) => {
                 props.setFormData({
                   ...props.formData,
@@ -1143,8 +1159,8 @@ const AddNewVisitorForm = (props: any) => {
           <View style={styles.bottomView}>
             <CheckBox
               value={true}
-              tintColors={{true: PRIMARY_THEME_COLOR}}
-              // onValueChange={(newValue) => setToggleCheckBox(newValue)}
+              tintColors={{ true: PRIMARY_THEME_COLOR }}
+            // onValueChange={(newValue) => setToggleCheckBox(newValue)}
             />
             <Text style={styles.bottomText}>{strings.iAknowledge}</Text>
             <TouchableOpacity onPress={() => Linking.openURL('https://justoverse.com/termandcondition')} style={styles.spanTouch}>
@@ -1197,6 +1213,12 @@ const AddNewVisitorForm = (props: any) => {
             )}
           </View>
         </View>
+        <VisitConfirmModal
+          Visible={props.visitCheckModal}
+          setIsVisible={props.setVisitCheckModal}
+          setFormData={props?.setFormData}
+          formData={props?.formData}
+        />
       </ScrollView>
     </View>
   );

@@ -254,9 +254,8 @@ const strings = new LocalizedStrings({
     appointmentWIthSMHeader: 'Appointment With SM',
     todayAppointment: 'Today Appointment',
     allappointment: 'All Appointment',
-
-    onVisitStatus202: "You have already use this no. are you sure you want to use old detail or you want to create new customer",
-    onVisitStatus201: "This mobile no is already register with justo are you sure you want to create new lead with same no"
+    useOldData: "Use Old Data",
+    createNew: "Create New",
   },
 });
 
