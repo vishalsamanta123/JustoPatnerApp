@@ -186,7 +186,7 @@ const AddNewVisitorScreen = ({ navigation, route }: any) => {
             : null;
       if (tempMinVal >= tempMaxVal) {
         isError = false;
-        errorMessage = "Maximum budget should more than minumum budget";
+        errorMessage = "Maximum budget should more than minimum budget";
       }
     }
     if (formData?.min_emi_budget || formData.max_emi_budget) {
@@ -209,7 +209,7 @@ const AddNewVisitorScreen = ({ navigation, route }: any) => {
             : null;
       if (tempMinVal >= tempMaxVal) {
         isError = false;
-        errorMessage = "Maximum Emi should more than minumum Emi";
+        errorMessage = "Maximum Emi should more than minimum Emi";
       }
     }
     if (errorMessage !== "") {

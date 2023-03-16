@@ -6,10 +6,13 @@ import {
   openSettings,
   check,
 } from 'react-native-permissions';
-import { Isios } from './constant';
+import { Isios, RED_COLOR } from './constant';
 import strings from './Localization';
 import images from 'app/assets/images';
 import { normalizeWidth, normalizeHeight, normalizeSpacing } from '../scaleFontSize';
+import FileViewer from "react-native-file-viewer";
+import RNFS from "react-native-fs";
+import ErrorMessage from '../ErrorMessage';
 
 export const handlePermission = async (
   permission: any,
@@ -250,3 +253,28 @@ export function handleDetailResponse(result: any) {
   }
   return data;
 }
+
+export const OpenDoc = async (url: any) => {
+  function getUrlExtension(url: any) {
+    return url.split(/[#?]/)[0].split(".").pop().trim();
+  }
+  const extension = getUrlExtension(url);
+
+  const localFile = `${RNFS.DocumentDirectoryPath}/temporaryfile.${extension}`;
+
+  const options = {
+    fromUrl: url,
+    toFile: localFile,
+  };
+  RNFS.downloadFile(options)
+    .promise.then(() => FileViewer.open(localFile))
+    .then(() => {
+      // success
+    })
+    .catch((error) => {
+      ErrorMessage({
+        msg: error?.message,
+        backgroundColor: RED_COLOR
+      })
+    });
+};

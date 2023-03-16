@@ -5,10 +5,19 @@ import strings from "app/components/utilities/Localization";
 import moment from "moment";
 import { normalize, normalizeSpacing } from "app/components/scaleFontSize";
 import images from "app/assets/images";
+import { OpenDoc } from "app/components/utilities/GlobalFuncations";
 
 const UserInfo = (props: any) => {
   const { allDetails } = props;
-  console.log('allDetails: ', allDetails);
+  const reraType = allDetails?.rera_certificate?.substring(
+    allDetails?.rera_certificate?.lastIndexOf(".") + 1
+  )
+  const latterType = allDetails?.propidership_declaration_letter?.substring(
+    allDetails?.propidership_declaration_letter?.lastIndexOf(".") + 1
+  )
+  const chequeType = allDetails?.cp_bank_detail?.cancel_cheaque?.substring(
+    allDetails?.cp_bank_detail?.cancel_cheaque?.lastIndexOf(".") + 1
+  )
 
   return (
     <ScrollView style={styles.InformationView}>
@@ -192,17 +201,29 @@ const UserInfo = (props: any) => {
           <Text style={styles.keyText}>Rera Certificate</Text>
         </View>
         <View style={styles.ImageSliderContainer}>
-          <Image
-            source={{ uri: `${allDetails?.rera_certificate}` }}
-            style={styles.imageSlider}
-          />
+          {reraType === 'pdf' ?
+            <Image
+              source={images.pdfIcone}
+              style={styles.imageSlider}
+            />
+            :
+            (
+              <Image
+                source={{ uri: `${allDetails?.rera_certificate}` }}
+                style={styles.imageSlider}
+              />
+            )}
           <TouchableOpacity
             style={styles.shadowView}
-            onPress={() =>
-              props.onpresContent("ImageContent", {
-                array: allDetails?.rera_certificate,
-              })
-            }
+            onPress={() => {
+              if (reraType === 'pdf') {
+                OpenDoc(allDetails?.rera_certificate)
+              } else {
+                props.onpresContent("ImageContent", {
+                  array: allDetails?.rera_certificate,
+                })
+              }
+            }}
           >
             <Image source={images.forwardArrow} style={styles.arrow} />
           </TouchableOpacity>
@@ -213,17 +234,29 @@ const UserInfo = (props: any) => {
           <Text style={styles.keyText}>Property declaration Letter</Text>
         </View>
         <View style={styles.ImageSliderContainer}>
-          <Image
-            source={{ uri: `${allDetails?.propidership_declaration_letter}` }}
-            style={styles.imageSlider}
-          />
+          {latterType === 'pdf' ?
+            <Image
+              source={images.pdfIcone}
+              style={styles.imageSlider}
+            />
+            :
+            (
+              <Image
+                source={{ uri: `${allDetails?.propidership_declaration_letter}` }}
+                style={styles.imageSlider}
+              />
+            )}
           <TouchableOpacity
             style={styles.shadowView}
-            onPress={() =>
-              props.onpresContent("ImageContent", {
-                array: allDetails?.propidership_declaration_letter,
-              })
-            }
+            onPress={() => {
+              if (latterType === 'pdf') {
+                OpenDoc(allDetails?.propidership_declaration_letter)
+              } else {
+                props.onpresContent("ImageContent", {
+                  array: allDetails?.propidership_declaration_letter,
+                })
+              }
+            }}
           >
             <Image source={images.forwardArrow} style={styles.arrow} />
           </TouchableOpacity>
@@ -231,20 +264,30 @@ const UserInfo = (props: any) => {
       </View>
       <View style={styles.fieldView}>
         <View style={styles.keyView}>
-          <Text style={styles.keyText}>Property declaration Letter</Text>
+          <Text style={styles.keyText}>Cancel Cheque</Text>
         </View>
         <View style={styles.ImageSliderContainer}>
-          <Image
-            source={{ uri: `${allDetails?.base_url}${allDetails?.cp_bank_detail?.cancel_cheaque}` }}
-            style={styles.imageSlider}
-          />
+          {chequeType === 'pdf' ?
+            <Image
+              source={images.pdfIcone}
+              style={styles.imageSlider}
+            />
+            :
+            (<Image
+              source={{ uri: `${allDetails?.base_url}${allDetails?.cp_bank_detail?.cancel_cheaque}` }}
+              style={styles.imageSlider}
+            />)}
           <TouchableOpacity
             style={styles.shadowView}
-            onPress={() =>
-              props.onpresContent("ImageContent", {
-                array: allDetails?.base_url + allDetails?.cp_bank_detail?.cancel_cheaque,
-              })
-            }
+            onPress={() => {
+              if (chequeType === 'pdf') {
+                OpenDoc(allDetails?.base_url + allDetails?.cp_bank_detail?.cancel_cheaque)
+              } else {
+                props.onpresContent("ImageContent", {
+                  array: allDetails?.base_url + allDetails?.cp_bank_detail?.cancel_cheaque,
+                })
+              }
+            }}
           >
             <Image source={images.forwardArrow} style={styles.arrow} />
           </TouchableOpacity>

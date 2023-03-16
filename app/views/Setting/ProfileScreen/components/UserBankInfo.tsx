@@ -4,9 +4,14 @@ import styles from "./styles";
 import strings from "app/components/utilities/Localization";
 import moment from "moment";
 import images from "app/assets/images";
+import { OpenDoc } from "app/components/utilities/GlobalFuncations";
 
 const UserBankInfo = (props: any) => {
   const { allDetails } = props;
+
+  const declarationType = allDetails?.agencies?.declaration_letter_of_company?.substring(
+    allDetails?.agencies?.declaration_letter_of_company?.lastIndexOf(".") + 1
+  )
   return (
     <ScrollView style={styles.InformationView}>
       <View style={styles.fieldView}>
@@ -60,7 +65,7 @@ const UserBankInfo = (props: any) => {
           <TouchableOpacity
             style={styles.shadowView}
             onPress={() =>
-              props.onpresContent("ImageContent", {array : allDetails?.base_url + allDetails?.agencies?.pancard})
+              props.onpresContent("ImageContent", { array: allDetails?.base_url + allDetails?.agencies?.pancard })
             }
           >
             <Image source={images.forwardArrow} style={styles.arrow} />
@@ -72,15 +77,25 @@ const UserBankInfo = (props: any) => {
           <Text style={styles.keyText}>Decalaration Letter Of Company</Text>
         </View>
         <View style={styles.ImageSliderContainer}>
-          <Image
-            source={{ uri: allDetails?.base_url + allDetails?.agencies?.declaration_letter_of_company }}
-            style={styles.imageSlider}
-          />
+          {declarationType === 'pdf' ?
+            <Image
+              source={images.pdfIcone}
+              style={styles.imageSlider}
+            />
+            :
+            (<Image
+              source={{ uri: allDetails?.base_url + allDetails?.agencies?.declaration_letter_of_company }}
+              style={styles.imageSlider}
+            />)}
           <TouchableOpacity
             style={styles.shadowView}
-            onPress={() =>
-              props.onpresContent("ImageContent", {array : allDetails?.base_url + allDetails?.agencies?.declaration_letter_of_company})
-            }
+            onPress={() => {
+              if (declarationType === 'pdf') {
+                OpenDoc(allDetails?.base_url + allDetails?.agencies?.declaration_letter_of_company)
+              } else {
+                props.onpresContent("ImageContent", { array: allDetails?.base_url + allDetails?.agencies?.declaration_letter_of_company })
+              }
+            }}
           >
             <Image source={images.forwardArrow} style={styles.arrow} />
           </TouchableOpacity>

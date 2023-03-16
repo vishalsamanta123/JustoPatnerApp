@@ -6,6 +6,7 @@ import images from "../../assets/images";
 import strings from "../../components/utilities/Localization";
 import ImagePicker from 'react-native-image-crop-picker';
 import { handlePermission, openPermissionSetting, } from "../utilities/GlobalFuncations";
+import DocumentPicker from "react-native-document-picker";
 
 const PicturePickerModal = (props: any) => {
     const handleCameraPress = () => {
@@ -15,6 +16,7 @@ const PicturePickerModal = (props: any) => {
             cropping: true,
             multiple: props.multiple ? props.multiple : false,
             compressImageQuality: 1,
+            freeStyleCropEnabled: true
         }).then((image: any) => {
             props.setVisible(false);
             props.imageData(
@@ -35,6 +37,7 @@ const PicturePickerModal = (props: any) => {
             cropping: true,
             multiple: props.multiple ? props.multiple : false,
             compressImageQuality: 1,
+            freeStyleCropEnabled: true
         }).then((image: any) => {
             props.setVisible(false);
             props.imageData(
@@ -47,6 +50,22 @@ const PicturePickerModal = (props: any) => {
                 }
             )
         });
+    }
+    const handleBrowsePress = async () => {
+        const result: any = await DocumentPicker.pick({
+            type: [DocumentPicker.types.pdf],
+        });
+        console.log('result: ', result);
+        if (result?.length > 0) {
+            props.setVisible(false);
+            props.imageData(
+                {
+                    uri: result[0]?.uri,
+                    type: result[0]?.type,
+                    name: result[0]?.name
+                }
+            )
+        }
     }
 
     return (
@@ -77,7 +96,11 @@ const PicturePickerModal = (props: any) => {
                                         strings.txt_setting_description_media,
                                     );
                                 } else if (res) {
-                                    handleGalleryPress()
+                                    if (props.docType === 'all') {
+                                        handleBrowsePress()
+                                    } else {
+                                        handleGalleryPress()
+                                    }
                                 }
                             }}
                             style={styles.componentsVw}>

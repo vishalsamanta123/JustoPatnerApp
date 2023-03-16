@@ -281,6 +281,7 @@ const AgentBankInfo = ({ navigation, route }: any) => {
       
       <PicturePickerModal
         Visible={refraCrtf}
+        docType={'all'}
         setVisible={setRefraCrtf}
         imageData={(data: any) => {
           setAgentInfoData({
@@ -291,6 +292,7 @@ const AgentBankInfo = ({ navigation, route }: any) => {
       />
       <PicturePickerModal
         Visible={propiderLettr}
+        docType={'all'}
         setVisible={setPropiderLettr}
         imageData={(data: any) => {
           setAgentInfoData({
