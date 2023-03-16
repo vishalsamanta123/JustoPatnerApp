@@ -6,6 +6,8 @@ import strings from "../../../../components/utilities/Localization";
 import Button from "app/components/Button";
 import { useSelector } from "react-redux";
 import images from "app/assets/images";
+import moment from "moment";
+import { DATE_FORMAT } from "app/components/utilities/constant";
 
 const VisitConfirmModal = (props: any) => {
     const { response = {}, check_type = "" } = useSelector((state: any) => state.checkVisitorData);
@@ -25,11 +27,39 @@ const VisitConfirmModal = (props: any) => {
             props.setFormData({
                 ...props.formData,
                 visit_confirmation_status: "",
+                mobile: '',
             })
         } if (responseData?.status === 202) {
             props.setFormData({
                 ...props.formData,
-                visit_confirmation_status: 2
+                address: responseData?.data[0]?.address ? responseData?.data[0]?.address : '',
+                adhar_no: responseData?.data[0]?.adhar_no ? responseData?.data[0]?.adhar_no : '',
+                age: responseData?.data[0]?.age ? responseData?.data[0]?.age : '',
+                agent_code: responseData?.data[0]?.agent_code ? responseData?.data[0]?.agent_code : '',
+                area: responseData?.data[0]?.area ? responseData?.data[0]?.area : '',
+                city: responseData?.data[0]?.city ? responseData?.data[0]?.city : '',
+                coumpany_name: responseData?.data[0]?.coumpany_name ? responseData?.data[0]?.coumpany_name : '',
+                current_stay: responseData?.data[0]?.current_stay ? responseData?.data[0]?.current_stay : '',
+                desigantion: responseData?.data[0]?.desigantion ? responseData?.data[0]?.desigantion : '',
+                email: responseData?.data[0]?.email ? responseData?.data[0]?.email : '',
+                first_name: responseData?.data[0]?.first_name ? responseData?.data[0]?.first_name : '',
+                funding_emi_type: responseData?.data[0]?.funding_emi_type ? responseData?.data[0]?.funding_emi_type : '',
+                gender: responseData?.data[0]?.gender ? responseData?.data[0]?.gender : '',
+                locality: responseData?.data[0]?.locality ? responseData?.data[0]?.locality : '',
+                location: responseData?.data[0]?.location ? responseData?.data[0]?.location : '',
+                marital_status: responseData?.data[0]?.marital_status ? responseData?.data[0]?.marital_status : '',
+                mobile: responseData?.data[0]?.mobile ? responseData?.data[0]?.mobile : '',
+                no_of_family_member: responseData?.data[0]?.no_of_family_member ? responseData?.data[0]?.no_of_family_member : '',
+                occupation: responseData?.data[0]?.occupation ? responseData?.data[0]?.occupation : '',
+                office_address: responseData?.data[0]?.office_address ? responseData?.data[0]?.office_address : '',
+                pancard_no: responseData?.data[0]?.pancard_no ? responseData?.data[0]?.pancard_no : '',
+                preferred_bank: responseData?.data[0]?.preferred_bank ? responseData?.data[0]?.preferred_bank : '',
+                property_type: responseData?.data[0]?.property_type ? responseData?.data[0]?.property_type : '',
+                visit_type: responseData?.data[0]?.visit_type ? responseData?.data[0]?.visit_type : '',
+                whatsapp_no: responseData?.data[0]?.whatsapp_no ? responseData?.data[0]?.whatsapp_no : '',
+                birth_date: responseData?.data[0]?.birth_date ?
+                    moment(responseData?.data[0]?.birth_date).format(DATE_FORMAT) : '',
+                visit_confirmation_status: 2,
             })
         }
     }
@@ -77,7 +107,7 @@ const VisitConfirmModal = (props: any) => {
                         <Button
                             buttonText={responseData?.status === 201 ?
                                 strings.no : responseData?.status === 202 ? strings.useOldData : strings.notfount}
-                            width={140} height={40}
+                            width={130} height={40}
                             handleBtnPress={() => onPressLeftButton()}
                         />
                     </View>
@@ -85,7 +115,7 @@ const VisitConfirmModal = (props: any) => {
                         <Button
                             buttonText={responseData?.status === 201 ?
                                 strings.yes : responseData?.status === 202 ? strings.createNew : strings.notfount}
-                            width={140} height={40}
+                            width={130} height={40}
                             handleBtnPress={() => onPressRightButton()} />
                     </View>
                 </View>

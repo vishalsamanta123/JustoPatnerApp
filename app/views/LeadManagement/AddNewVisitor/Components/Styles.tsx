@@ -240,7 +240,7 @@ const styles = StyleSheet.create({
     marginHorizontal: normalizeSpacing(30),
   },
   btnview: {
-    width: '50%',
+    width: '49%',
     height: normalizeHeight(50),
   },
 });

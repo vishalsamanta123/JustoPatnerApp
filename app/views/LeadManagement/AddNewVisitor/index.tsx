@@ -18,6 +18,7 @@ import {
 } from "app/components/utilities/constant";
 import { getAllMaster } from "app/Redux/Actions/MasterActions";
 import { getAllAlloctaeProperty } from "app/Redux/Actions/propertyActions";
+import { Keyboard } from "react-native";
 
 const AddNewVisitorScreen = ({ navigation, route }: any) => {
   const { type, data } = route?.params || {};
@@ -76,6 +77,26 @@ const AddNewVisitorScreen = ({ navigation, route }: any) => {
   const editData = useSelector((state: any) => state.editVisitorData) || {};
   const addData = useSelector((state: any) => state.addVisitorData) || {};
   const visitAVailableData = useSelector((state: any) => state.checkVisitorData) || {};
+  const [isKeyboardVisible, setKeyboardVisible] = useState(false);
+  useEffect(() => {
+    const keyboardDidShowListener = Keyboard.addListener(
+      'keyboardDidShow',
+      () => {
+        setKeyboardVisible(true); // or some other action
+      }
+    );
+    const keyboardDidHideListener = Keyboard.addListener(
+      'keyboardDidHide',
+      () => {
+        setKeyboardVisible(false); // or some other action
+      }
+    );
+
+    return () => {
+      keyboardDidHideListener.remove();
+      keyboardDidShowListener.remove();
+    };
+  }, []);
 
   useLayoutEffect(() => {
     if (type === "edit") {
@@ -134,105 +155,110 @@ const AddNewVisitorScreen = ({ navigation, route }: any) => {
   };
 
   const validation = () => {
-    let isError = true;
-    let errorMessage: any = "";
-    // if (
-    //   type != "edit" &&
-    //   formData?.property_id === "" &&
-    //   formData?.property_type_title === ""
-    // ) {
-    //   isError = false;
-    //   errorMessage = "Please select property name";
-    // } else
-    if (
-      formData?.first_name === "" ||
-      formData?.first_name === undefined
-    ) {
-      isError = false;
-      errorMessage = "Please fill visitor name";
-    } else if (formData?.mobile === "" || formData?.mobile === undefined) {
-      isError = false;
-      errorMessage = "Please fill mobile number";
-    } else if (formData?.visit_confirmation_status === "" ||
-      formData?.visit_confirmation_status === undefined) {
-      isError = false;
-      errorMessage = "Please check entered mobile number";
-    } else if (formData?.adhar_no) {
-      if (Regexs.AadharRegex.test(formData?.adhar_no) === false) {
+    Keyboard.dismiss()
+    if (!isKeyboardVisible) {
+      let isError = true;
+      let errorMessage: any = "";
+      // if (
+      //   type != "edit" &&
+      //   formData?.property_id === "" &&
+      //   formData?.property_type_title === ""
+      // ) {
+      //   isError = false;
+      //   errorMessage = "Please select property name";
+      // } else
+      if (
+        formData?.first_name === "" ||
+        formData?.first_name === undefined
+      ) {
         isError = false;
-        errorMessage = "Please enter valid Aadhaar number";
-      }
-    }
-    if (formData?.pancard_no) {
-      if (Regexs.panRegex.test(formData?.pancard_no) === false) {
+        errorMessage = "Please fill visitor name";
+      } else if (formData?.mobile === "" || formData?.mobile === undefined) {
         isError = false;
-        errorMessage = "Please enter valid Pancard number";
-      }
-    }
-    if (formData?.email) {
-      if (Regexs.emailRegex.test(formData?.email) === false) {
+        errorMessage = "Please fill mobile number";
+      } else if (formData?.mobile?.length < 10) {
         isError = false;
-        errorMessage = "Please enter valid Email id";
+        errorMessage = "Please fill 10 digit mobile number";
+      } else if (type === "add" && formData?.visit_confirmation_status === "") {
+        isError = false;
+        errorMessage = "Please check entered mobile number";
+      } else if (formData?.adhar_no) {
+        if (Regexs.AadharRegex.test(formData?.adhar_no) === false) {
+          isError = false;
+          errorMessage = "Please enter valid Aadhaar number";
+        }
       }
-    }
-    if (formData?.min_budget === "" && formData?.max_budget !== "") {
-      isError = false;
-      errorMessage = "Please enter minimum budget also";
-    } else if (formData?.min_budget || formData.max_budget) {
-      let tempMinVal: any;
-      formData?.min_budget_type === "K"
-        ? (tempMinVal = formData?.min_budget * 1000)
-        : formData?.min_budget_type === "L"
-          ? (tempMinVal = formData?.min_budget * 100000)
-          : formData?.min_budget_type === "Cr"
-            ? (tempMinVal = formData?.min_budget * 10000000)
-            : null;
+      if (formData?.pancard_no) {
+        if (Regexs.panRegex.test(formData?.pancard_no) === false) {
+          isError = false;
+          errorMessage = "Please enter valid Pancard number";
+        }
+      }
+      if (formData?.email) {
+        if (Regexs.emailRegex.test(formData?.email) === false) {
+          isError = false;
+          errorMessage = "Please enter valid Email id";
+        }
+      }
+      if (formData?.min_budget === "" && formData?.max_budget !== "") {
+        isError = false;
+        errorMessage = "Please enter minimum budget also";
+      } else if (formData?.min_budget || formData.max_budget) {
+        let tempMinVal: any;
+        formData?.min_budget_type === "K"
+          ? (tempMinVal = formData?.min_budget * 1000)
+          : formData?.min_budget_type === "L"
+            ? (tempMinVal = formData?.min_budget * 100000)
+            : formData?.min_budget_type === "Cr"
+              ? (tempMinVal = formData?.min_budget * 10000000)
+              : null;
 
-      let tempMaxVal: any;
-      formData?.max_budget_type === "K"
-        ? (tempMaxVal = formData?.max_budget * 1000)
-        : formData?.max_budget_type === "L"
-          ? (tempMaxVal = formData?.max_budget * 100000)
-          : formData?.max_budget_type === "Cr"
-            ? (tempMaxVal = formData?.max_budget * 10000000)
-            : null;
-      if (tempMinVal >= tempMaxVal) {
+        let tempMaxVal: any;
+        formData?.max_budget_type === "K"
+          ? (tempMaxVal = formData?.max_budget * 1000)
+          : formData?.max_budget_type === "L"
+            ? (tempMaxVal = formData?.max_budget * 100000)
+            : formData?.max_budget_type === "Cr"
+              ? (tempMaxVal = formData?.max_budget * 10000000)
+              : null;
+        if (tempMinVal >= tempMaxVal) {
+          isError = false;
+          errorMessage = "Maximum budget should more than minumum budget";
+        }
+      } if (formData?.min_emi_budget === "" && formData?.max_emi_budget !== "") {
         isError = false;
-        errorMessage = "Maximum budget should more than minumum budget";
-      }
-    } if (formData?.min_emi_budget === "" && formData?.max_emi_budget !== "") {
-      isError = false;
-      errorMessage = "Please enter minimum emi also";
-    } else if (formData?.min_emi_budget || formData.max_emi_budget) {
-      let tempMinVal: any;
-      formData?.min_emi_budget_type === "K"
-        ? (tempMinVal = formData?.min_emi_budget * 1000)
-        : formData?.min_emi_budget_type === "L"
-          ? (tempMinVal = formData?.min_emi_budget * 100000)
-          : formData?.min_emi_budget_type === "Cr"
-            ? (tempMinVal = formData?.min_emi_budget * 10000000)
-            : null;
+        errorMessage = "Please enter minimum emi also";
+      } else if (formData?.min_emi_budget || formData.max_emi_budget) {
+        let tempMinVal: any;
+        formData?.min_emi_budget_type === "K"
+          ? (tempMinVal = formData?.min_emi_budget * 1000)
+          : formData?.min_emi_budget_type === "L"
+            ? (tempMinVal = formData?.min_emi_budget * 100000)
+            : formData?.min_emi_budget_type === "Cr"
+              ? (tempMinVal = formData?.min_emi_budget * 10000000)
+              : null;
 
-      let tempMaxVal: any;
-      formData?.max_emi_budget_type === "K"
-        ? (tempMaxVal = formData?.max_emi_budget * 1000)
-        : formData?.max_emi_budget_type === "L"
-          ? (tempMaxVal = formData?.max_emi_budget * 100000)
-          : formData?.max_emi_budget_type === "Cr"
-            ? (tempMaxVal = formData?.max_emi_budget * 10000000)
-            : null;
-      if (tempMinVal >= tempMaxVal) {
-        isError = false;
-        errorMessage = "Maximum Emi should more than minumum Emi";
+        let tempMaxVal: any;
+        formData?.max_emi_budget_type === "K"
+          ? (tempMaxVal = formData?.max_emi_budget * 1000)
+          : formData?.max_emi_budget_type === "L"
+            ? (tempMaxVal = formData?.max_emi_budget * 100000)
+            : formData?.max_emi_budget_type === "Cr"
+              ? (tempMaxVal = formData?.max_emi_budget * 10000000)
+              : null;
+        if (tempMinVal >= tempMaxVal) {
+          isError = false;
+          errorMessage = "Maximum Emi should more than minumum Emi";
+        }
       }
+      if (errorMessage !== "") {
+        ErrorMessage({
+          msg: errorMessage,
+          backgroundColor: RED_COLOR,
+        });
+      }
+      return isError;
     }
-    if (errorMessage !== "") {
-      ErrorMessage({
-        msg: errorMessage,
-        backgroundColor: RED_COLOR,
-      });
-    }
-    return isError;
   };
 
   useEffect(() => {
@@ -298,6 +324,8 @@ const AddNewVisitorScreen = ({ navigation, route }: any) => {
     dispatch(checkVisitAvailble(params));
   };
   const OnpressCreateEdit = () => {
+    Keyboard.dismiss()
+
     if (validation()) {
       if (type === "edit") {
         const edit_params = {

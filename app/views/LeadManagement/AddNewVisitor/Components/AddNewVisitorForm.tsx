@@ -158,7 +158,9 @@ const AddNewVisitorForm = (props: any) => {
                 if (props.type == "edit") {
                   { }
                 } else {
-                  props.handleCheckEmailMobile(1);
+                  if (props?.formData?.mobile?.length === 10) {
+                    props.handleCheckEmailMobile(1);
+                  }
                 }
               }}
             />
