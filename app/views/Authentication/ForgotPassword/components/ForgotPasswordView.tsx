@@ -36,6 +36,7 @@ const ForgotPasswordView = (props: any) => {
         <View style={styles.btnView}>
           <Button
             buttonText={strings.sendotp}
+            capitalize={true}
             handleBtnPress={props.handleOtp}
           />
         </View>
