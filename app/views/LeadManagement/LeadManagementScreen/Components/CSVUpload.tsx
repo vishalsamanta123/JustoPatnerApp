@@ -110,7 +110,7 @@ const CSVUpload = ({ navigation }: any) => {
       const fileName = csvFileData.split(/[#?]/)[0].split("/").pop().trim();
       const extension = getUrlExtension(csvFileData);
       console.log('extension: ', extension);
-      const localFile = `${RNFS.DownloadDirectoryPath}/${fileName}`;
+      const localFile = `${RNFS.DocumentDirectoryPath}/${fileName}`;
       console.log('localFile: ', localFile);
       const options = {
         fromUrl: csvFileData,
