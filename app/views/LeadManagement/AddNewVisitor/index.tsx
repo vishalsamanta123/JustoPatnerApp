@@ -18,7 +18,7 @@ import {
 } from "app/components/utilities/constant";
 import { getAllMaster } from "app/Redux/Actions/MasterActions";
 import { getAllAlloctaeProperty } from "app/Redux/Actions/propertyActions";
-import { Keyboard } from "react-native";
+import { Alert, Keyboard } from "react-native";
 
 const AddNewVisitorScreen = ({ navigation, route }: any) => {
   const { type, data } = route?.params || {};
@@ -72,32 +72,12 @@ const AddNewVisitorScreen = ({ navigation, route }: any) => {
   const [emailMobvalidation, setEmailMobValidation] = useState({
     mobile: null,
   });
+  console.log('emailMobvalidation: ', emailMobvalidation.mobile);
   const masterData = useSelector((state: any) => state.masterData) || {};
   const propertyData = useSelector((state: any) => state.propertyData) || {};
   const editData = useSelector((state: any) => state.editVisitorData) || {};
   const addData = useSelector((state: any) => state.addVisitorData) || {};
   const visitAVailableData = useSelector((state: any) => state.checkVisitorData) || {};
-  const [isKeyboardVisible, setKeyboardVisible] = useState(false);
-  useEffect(() => {
-    const keyboardDidShowListener = Keyboard.addListener(
-      'keyboardDidShow',
-      () => {
-        setKeyboardVisible(true); // or some other action
-      }
-    );
-    const keyboardDidHideListener = Keyboard.addListener(
-      'keyboardDidHide',
-      () => {
-        setKeyboardVisible(false); // or some other action
-      }
-    );
-
-    return () => {
-      keyboardDidHideListener.remove();
-      keyboardDidShowListener.remove();
-    };
-  }, []);
-
   useLayoutEffect(() => {
     if (type === "edit") {
       if (data?._id) {
@@ -155,8 +135,9 @@ const AddNewVisitorScreen = ({ navigation, route }: any) => {
   };
 
   const validation = () => {
-    Keyboard.dismiss()
-    if (!isKeyboardVisible) {
+    if (emailMobvalidation?.mobile === "start") {
+      Keyboard.dismiss()
+    } else {
       let isError = true;
       let errorMessage: any = "";
       // if (
@@ -179,7 +160,7 @@ const AddNewVisitorScreen = ({ navigation, route }: any) => {
       } else if (formData?.mobile?.length < 10) {
         isError = false;
         errorMessage = "Please fill 10 digit mobile number";
-      } else if (type === "add" || type === "propertySelect" && formData?.visit_confirmation_status === "") {
+      } else if (formData?.visit_confirmation_status === "No") {
         isError = false;
         errorMessage = "Please check entered mobile number";
       } else if (formData?.adhar_no) {
@@ -315,6 +296,10 @@ const AddNewVisitorScreen = ({ navigation, route }: any) => {
             break;
         }
       } else {
+        setEmailMobValidation({
+          ...emailMobvalidation,
+          mobile: null,
+        })
         setVisitCheckModal(true)
       }
     }
@@ -324,8 +309,6 @@ const AddNewVisitorScreen = ({ navigation, route }: any) => {
     dispatch(checkVisitAvailble(params));
   };
   const OnpressCreateEdit = () => {
-    Keyboard.dismiss()
-
     if (validation()) {
       if (type === "edit") {
         const edit_params = {

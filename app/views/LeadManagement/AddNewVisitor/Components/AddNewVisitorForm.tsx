@@ -138,7 +138,19 @@ const AddNewVisitorForm = (props: any) => {
                 props.setFormData({
                   ...props.formData,
                   mobile: data,
-                });
+                })
+                if (data?.length === 10 &&
+                  props.type === "add" || props.type === "propertySelect") {
+                  props.setEmailMobValidation({
+                    ...props.emailMobvalidation,
+                    mobile: 'start',
+                  })
+                } else {
+                  props.setEmailMobValidation({
+                    ...props.emailMobvalidation,
+                    mobile: null,
+                  })
+                }
               }}
               valueshow={props?.formData?.mobile}
               headingText={"Mobile No."}

@@ -12,6 +12,7 @@ import { DATE_FORMAT } from "app/components/utilities/constant";
 const VisitConfirmModal = (props: any) => {
     const { response = {}, check_type = "" } = useSelector((state: any) => state.checkVisitorData);
     const [responseData, setResponseData] = useState<any>({})
+    console.log('responseData: ', responseData);
     useEffect(() => {
         if (response?.status === 201 || response?.status === 202) {
             if (response?.status) {
@@ -27,7 +28,7 @@ const VisitConfirmModal = (props: any) => {
         if (responseData?.status === 201) {
             props.setFormData({
                 ...props.formData,
-                visit_confirmation_status: "",
+                visit_confirmation_status: "No",
                 mobile: '',
             })
         } if (responseData?.status === 202) {
@@ -87,7 +88,7 @@ const VisitConfirmModal = (props: any) => {
                             props.setIsVisible(false)
                             props.setFormData({
                                 ...props.formData,
-                                visit_confirmation_status: "",
+                                visit_confirmation_status: "No",
                             })
                         }}>
                             <Image source={images.close} style={styles.closeIcon} />
