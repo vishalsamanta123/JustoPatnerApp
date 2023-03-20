@@ -97,7 +97,7 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
     justifyContent: 'space-between',
     marginHorizontal: normalizeSpacing(10),
-    marginVertical: normalizeSpacing(10)
+    marginVertical: normalizeSpacing(10),
   }
 })
 

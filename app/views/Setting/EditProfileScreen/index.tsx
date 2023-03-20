@@ -9,9 +9,7 @@ import { RED_COLOR, Regexs } from "app/components/utilities/constant";
 import ErrorMessage from "app/components/ErrorMessage";
 
 const EditProfileScreen = ({ navigation, route }: any) => {
-  const { response = {}, detail = "" } = useSelector(
-    (state: any) => state.agentData
-  );
+  const { response = {}, detail = "" } = useSelector((state: any) => state.agentData);
   const dispatch: any = useDispatch();
   const [editData, setEditData] = useState<any>({});
 

@@ -50,7 +50,14 @@ const LeadDetailsView = (props: any) => {
         <View style={styles.leadDetailsItemView}>
           <LeadDetailsIteam items={userDetails} />
         </View>
-        <View style={styles.btnContainer}>
+        <View style={[styles.btnContainer, {
+          justifyContent: create &&
+            userDetails?.lead_status !== 3 ||
+            userDetails?.appointment_status === 4 ||
+            userDetails?.appointment_status === 5 ||
+            userDetails?.appointment_status === 6 ? 'space-between' :
+            'center'
+        }]}>
           {create &&
             <>
               {(userDetails?.lead_status !== 3 ||

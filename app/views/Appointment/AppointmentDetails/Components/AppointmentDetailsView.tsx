@@ -12,7 +12,6 @@ import { useSelector } from "react-redux";
 import usePermission from "app/components/utilities/UserPermissions";
 
 const AppointmentDetailsView = (props: any) => {
-
   const insets = useSafeAreaInsets();
   const { response = {}, detail = "" } = useSelector(
     (state: any) => state.appointment
@@ -33,14 +32,16 @@ const AppointmentDetailsView = (props: any) => {
       <View style={styles.propertyListView}>
         <AppointmentDtailsItem item={props?.detailsData} />
       </View>
-      {status ? props?.detailsData?.status === 1 || props?.detailsData?.status === 2 ? (
-        <View style={styles.bntView}>
-          <Button
-            handleBtnPress={() => props.handleStatusUpdate(props?.detailsData)}
-            buttonText={strings.updatestatus}
-          />
-        </View>
-      ) : null : null}
+      {status ?
+        (props?.detailsData?.status === 1 || props?.detailsData?.status === 2)
+          && props?.detailsData?.checkin_status === false ? (
+          <View style={styles.bntView}>
+            <Button
+              handleBtnPress={() => props.handleStatusUpdate(props?.detailsData)}
+              buttonText={strings.updatestatus}
+            />
+          </View>
+        ) : null : null}
     </View>
   );
 };

@@ -80,6 +80,7 @@ import TicketStatusUpdate from 'app/views/SupportScreen/Support/components/Ticke
 import DealFlowDetailScreen from 'app/views/DealFlowScreens/DealFlowDetail';
 import EscalateScreen from 'app/views/SupportScreen/Escalate';
 import AppointmentWithSM from 'app/views/AppointmentWithSM';
+import EditCompanyDetails from 'app/views/Setting/EditProfileScreen/components/EditCompanyDetail';
 
 
 const Stack = createNativeStackNavigator();
@@ -147,6 +148,7 @@ const AppComponent = () => {
     <AppStack.Navigator screenOptions={screenOptions}>
       <AppStack.Screen component={DrawerComponent} name="DashboardScreenView" />
       <AppStack.Screen component={EditBankDetails} name="EditBankDetails" />
+      <AppStack.Screen component={EditCompanyDetails} name="EditCompanyDetail" />
 
       {/* Property Management Screens */}
       <AppStack.Screen component={PropertyDetails} name="PropertyDetails" />

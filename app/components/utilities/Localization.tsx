@@ -230,7 +230,7 @@ const strings = new LocalizedStrings({
     leadType: 'Lead type',
     chooseTimeToDateCorrectly: "Choose time from today's date only",
     choosecurrentCorrect: 'Choose time beyond current time to 7:00 PM',
-    choosetimeCorrect: 'Choose time between 10:00AM - 7:00 PM',
+    choosetimeCorrect: 'Choose time between 10:00 AM - 7:00 PM',
 
     shareFiles: 'Share Files',
 

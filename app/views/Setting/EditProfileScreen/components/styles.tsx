@@ -33,6 +33,16 @@ const styles = StyleSheet.create({
     marginTop: normalizeSpacing(30),
     alignItems: 'center'
   },
+  starightVw: {
+    flexDirection: "row",
+    alignItems: 'center',
+    justifyContent: 'space-between'
+  },
+  textVw: {
+    flex: 1,
+    flexDirection: 'row',
+    alignItems: 'center'
+  },
   genderView: {
     flexDirection: 'row',
     alignItems: 'center',
@@ -64,7 +74,7 @@ const styles = StyleSheet.create({
     width: normalizeWidth(100),
     borderRadius: normalizeSpacing(80)
   },
-  browseVw:  {
+  browseVw: {
     width: normalizeWidth(120),
     height: normalizeHeight(50),
     backgroundColor: WHITE_COLOR,
