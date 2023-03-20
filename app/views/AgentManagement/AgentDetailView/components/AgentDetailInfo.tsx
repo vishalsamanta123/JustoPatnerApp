@@ -24,6 +24,9 @@ const agentDetailItem = (props: any) => {
   const latterType = props.items.propidership_declaration_letter?.substring(
     props.items.propidership_declaration_letter?.lastIndexOf(".") + 1
   )
+  const cancelType = props.items.cancel_cheaque?.substring(
+    props.items.cancel_cheaque?.lastIndexOf(".") + 1
+  )
 
   const OpenDoc = async (url: any) => {
     function getUrlExtension(url: any) {
@@ -276,7 +279,98 @@ const agentDetailItem = (props: any) => {
           </TouchableOpacity>
         </View>
       </View>
-
+      <View style={styles.headingView}>
+        <Text style={styles.headingTxt}>Bank Details</Text>
+      </View>
+      <View style={styles.Txtview}>
+        <View style={styles.projectContainer}>
+          <Text style={styles.projectTxt}>Bank Name</Text>
+        </View>
+        <View><Text>:</Text></View>
+        <View style={styles.nameContainer}>
+          <Text style={styles.nameTxt}>{props.items.bank_name === '' ||
+            props.items.bank_name === undefined || props.items.bank_name === "undefined" ?
+            strings.notfount :
+            props.items.bank_name}</Text>
+        </View>
+      </View>
+      <View style={styles.Txtview}>
+        <View style={styles.projectContainer}>
+          <Text style={styles.projectTxt}>Account No.</Text>
+        </View>
+        <View><Text>:</Text></View>
+        <View style={styles.nameContainer}>
+          <Text style={styles.nameTxt}>{props.items.account_no === '' ||
+            props.items.account_no === undefined || props.items.account_no === "undefined" ?
+            strings.notfount :
+            props.items.account_no}</Text>
+        </View>
+      </View>
+      <View style={styles.Txtview}>
+        <View style={styles.projectContainer}>
+          <Text style={styles.projectTxt}>Branch Name</Text>
+        </View>
+        <View><Text>:</Text></View>
+        <View style={styles.nameContainer}>
+          <Text style={styles.nameTxt}>{props.items.branch_name === '' ||
+            props.items.branch_name === undefined || props.items.branch_name === "undefined" ?
+            strings.notfount :
+            props.items.branch_name}</Text>
+        </View>
+      </View>
+      <View style={styles.Txtview}>
+        <View style={styles.projectContainer}>
+          <Text style={styles.projectTxt}>IFSC Code</Text>
+        </View>
+        <View><Text>:</Text></View>
+        <View style={styles.nameContainer}>
+          <Text style={styles.nameTxt}>{props.items.ifsc_code === '' ||
+            props.items.ifsc_code === undefined || props.items.ifsc_code === "undefined" ?
+            strings.notfount :
+            props.items.ifsc_code}</Text>
+        </View>
+      </View>
+      <View style={styles.Txtview}>
+        <View style={styles.projectContainer}>
+          <Text style={styles.projectTxt}>Cancel Cheque</Text>
+        </View>
+        <View><Text>:</Text></View>
+        <View style={[styles.nameContainer, { alignItems: 'center' }]}>
+          <TouchableOpacity
+            onPress={() => {
+              if (cancelType === 'pdf') {
+                OpenDoc(props.items.base_url + props.items.cancel_cheaque)
+              } else {
+                setIsVisible(true)
+                setOnPressData(props.items.base_url + props.items.cancel_cheaque)
+              }
+            }}
+          >
+            {cancelType === 'pdf' ?
+              <Image
+                source={images.pdfIcone}
+                style={{
+                  width: normalizeWidth(80),
+                  height: normalizeHeight(80),
+                  alignItems: "center",
+                  justifyContent: "center",
+                  borderRadius: normalize(10)
+                }}
+              />
+              :
+              (<FastImages
+                source={{ uri: props.items.base_url + props.items.cancel_cheaque }}
+                style={{
+                  width: normalizeWidth(80),
+                  height: normalizeHeight(80),
+                  alignItems: "center",
+                  justifyContent: "center",
+                  borderRadius: normalize(10)
+                }}
+              />)}
+          </TouchableOpacity>
+        </View>
+      </View>
       <Modal
         isVisible={isVisible}
         onBackdropPress={() => setIsVisible(false)}

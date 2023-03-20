@@ -39,6 +39,13 @@ console.log('props: ', props.allDetails);
     workinglocation: props?.allDetails?.working_location ? props?.allDetails?.working_location : '',
     rera_certificate: props?.allDetails?.rera_certificate ? props?.allDetails?.rera_certificate : '',
     propidership_declaration_letter: props?.allDetails?.propidership_declaration_letter ? props?.allDetails?.propidership_declaration_letter : '',
+    base_url: props?.allDetails?.base_url ? props?.allDetails?.base_url : '',
+
+    account_no: props?.allDetails?.cp_bank_detail?.account_no ? props?.allDetails?.cp_bank_detail?.account_no : '',
+    bank_name: props?.allDetails?.cp_bank_detail?.bank_name ? props?.allDetails?.cp_bank_detail?.bank_name : '',
+    branch_name: props?.allDetails?.cp_bank_detail?.branch_name ? props?.allDetails?.cp_bank_detail?.branch_name : '',
+    ifsc_code: props?.allDetails?.cp_bank_detail?.ifsc_code ? props?.allDetails?.cp_bank_detail?.ifsc_code : '',
+    cancel_cheaque: props?.allDetails?.cp_bank_detail?.cancel_cheaque ? props?.allDetails?.cp_bank_detail?.cancel_cheaque : '',
   };
   const DATASTATS: any =
   {
