@@ -20,6 +20,14 @@ const styles = StyleSheet.create({
   mainContainer: {
     flex: 1,
   },
+  headingView: {
+    padding: normalizeSpacing(10),
+    alignItems: 'center'
+  },
+  headingTxt: {
+    fontSize: normalize(20),
+    fontFamily: FONT_FAMILY_SEMIBOLD,
+  },
   propertyListView: {
     flex: 1,
     marginTop: normalizeSpacing(2),

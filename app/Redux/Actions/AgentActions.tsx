@@ -78,6 +78,7 @@ export const addAgent = (params: any) => async (dispatch: any) => {
     }
 };
 export const editAgent = (params: any) => async (dispatch: any) => {
+console.log('params: editAgent', params);
     dispatch({ type: START_LOADING })
     try {
         const header = { "Content-Type": "multipart/form-data", "access-control-allow-origin": "*" }
