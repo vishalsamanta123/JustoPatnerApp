@@ -1,5 +1,5 @@
 import { View, Text, Image, TouchableOpacity } from "react-native";
-import React from "react";
+import React, { useEffect } from "react";
 import styles from "./Styles";
 import images from "../../../../assets/images";
 import strings from "../../../../components/utilities/Localization";
@@ -11,11 +11,27 @@ import {
   GREEN_COLOR,
   YELLOW_COLOR,
   BLACK_COLOR,
+  TIME_FORMAT,
+  DATE_TIME_FORMAT,
 } from "../../../../components/utilities/constant";
 import moment from "moment";
 import usePermission from "app/components/utilities/UserPermissions";
 
 const SmAppointment = (props: any) => {
+  const getConfirmButton = () => {
+    const appointmentdateTime = `${moment(props?.items?.appointment_date).format(DATE_FORMAT)}, ${moment(props?.items?.appointment_time?.toString(), 'hh:mm A').format('HH:mm')}` || ""
+    const currentDate = `${moment(new Date).format(DATE_FORMAT)}`
+    const getAheadTime = new Date(Date.now() + (3600 * 2000 * 25))
+    const getCorrectTime = `${currentDate}, ${moment(getAheadTime).format("HH:mm")}`
+    let response = false
+    if (appointmentdateTime > getCorrectTime) {
+      response = true
+    }
+    return response
+  }
+  useEffect(() => {
+    getConfirmButton()
+  }, [props?.items])
   const { status, approve, view } = usePermission({
     view: 'view_appointment_with_sm',
     status: "cancel_status_for_sm_appointment",
@@ -132,16 +148,17 @@ const SmAppointment = (props: any) => {
             </TouchableOpacity>
           ))}
         {approve ? (
-          props.items?.appointment_status === 1 ? (
-            <TouchableOpacity
-              style={[styles.button, { borderColor: GREEN_COLOR }]}
-              onPress={() => props.handleOptionPress(props.items._id, 2)}
-            >
-              <Text style={[styles.buttonTxt, { color: GREEN_COLOR }]}>
-                {strings.confirm}
-              </Text>
-            </TouchableOpacity>
-          ) : null
+          props.items?.appointment_status === 1 && getConfirmButton()
+            ? (
+              <TouchableOpacity
+                style={[styles.button, { borderColor: GREEN_COLOR }]}
+                onPress={() => props.handleOptionPress(props.items._id, 2)}
+              >
+                <Text style={[styles.buttonTxt, { color: GREEN_COLOR }]}>
+                  {strings.confirm}
+                </Text>
+              </TouchableOpacity>
+            ) : null
         ) : (
           <View />
         )}

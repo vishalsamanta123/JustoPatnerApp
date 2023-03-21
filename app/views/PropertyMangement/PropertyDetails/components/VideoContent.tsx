@@ -1,4 +1,11 @@
-import { View, Text, StatusBar, FlatList, Image } from "react-native";
+import {
+  View,
+  Text,
+  StatusBar,
+  FlatList,
+  Image,
+  TouchableOpacity,
+} from "react-native";
 import React, { useState } from "react";
 import { useSafeAreaInsets } from "react-native-safe-area-context";
 import styles from "./styles";
@@ -20,7 +27,7 @@ import { useDispatch } from "react-redux";
 import Share from "react-native-share";
 
 const VideoContent = ({ navigation, route }: any) => {
-  const dispatch: any = useDispatch()
+  const dispatch: any = useDispatch();
 
   const [playerVisible, setPlayerVisible] = useState(false);
   const [itemDetail, setItemDetail] = useState({});
@@ -34,17 +41,18 @@ const VideoContent = ({ navigation, route }: any) => {
     setItemDetail(item);
     setPlayerVisible(true);
   };
-  
+
   const handleSharePress = async (data: any) => {
-    console.log('data: ', data);
+    console.log("data: ", data);
     dispatch({ type: START_LOADING });
 
     const fs = RNFetchBlob.fs;
-    const mediaUrls = data?.map((item: any) => {
-      return `${base_url}${item?.document}`;
-    });
+    // const mediaUrls = data?.map((item: any) => {
+    //   return `${base_url}${item?.document}`;
+    // });
+    const mediaUrls = [`${base_url}${data?.document}`];
     let newArr: any = [];
-    console.log('mediaUrls: ', mediaUrls);
+    console.log("mediaUrls: ", mediaUrls);
 
     const finalUrls = mediaUrls.map((url: any) => {
       let imagePath: any = null;
@@ -68,21 +76,20 @@ const VideoContent = ({ navigation, route }: any) => {
           setMediaArr(newArr);
           // console.log("newArr: ", newArr);
           // return fs.unlink(imagePath);
-          if (data?.length === newArr.length) {
-            const options = {
-              title: `${data?.title}`,
-              urls: newArr,
-            };
-            const shareResponse = await Share.open(options).then((res: any) => {
-              // console.log("ressd", res);
-            });
-            setMediaArr(null)
-            dispatch({ type: STOP_LOADING });
-          }
-        }).catch( () => dispatch({ type: STOP_LOADING })
-        );
+          // if (data?.length === newArr.length) {
+          const options = {
+            title: `${data?.title}`,
+            urls: newArr,
+          };
+          const shareResponse = await Share.open(options).then((res: any) => {
+            // console.log("ressd", res);
+          });
+          setMediaArr(null);
+          dispatch({ type: STOP_LOADING });
+          // }
+        })
+        .catch(() => dispatch({ type: STOP_LOADING }));
     });
-    
   };
 
   return (
@@ -96,7 +103,7 @@ const VideoContent = ({ navigation, route }: any) => {
         leftImageIconStyle={styles.leftImageIconStyle}
         handleOnLeftIconPress={handleBackPress}
       />
-      <View style={{flex: 1}}>
+      <View style={{ flex: 1 }}>
         <FlatList
           data={array}
           numColumns={1}
@@ -125,6 +132,18 @@ const VideoContent = ({ navigation, route }: any) => {
                   buttonText={strings.playVideo}
                 />
               </View>
+              <TouchableOpacity
+                onPress={() => {
+                  handleSharePress(item);
+                }}
+                style={styles.shareIconTouch}
+              >
+                <Image
+                  source={images.shareIcon}
+                  resizeMode={"contain"}
+                  style={styles.shareImg}
+                />
+              </TouchableOpacity>
             </View>
           )}
           ListFooterComponent={() => (
@@ -132,20 +151,19 @@ const VideoContent = ({ navigation, route }: any) => {
           )}
         />
       </View>
-      <View style={{ marginBottom: 10 }}>
+      {/* <View style={{ marginBottom: 10 }}>
         <Button
           width={135}
           buttonText={strings.shareFiles}
           handleBtnPress={() => handleSharePress(array)}
         />
-      </View>
+      </View> */}
       <Videoplay
         Visible={playerVisible}
         setIsVisible={setPlayerVisible}
         itemDetail={itemDetail}
         base_url={base_url}
       />
-      
     </View>
   );
 };
