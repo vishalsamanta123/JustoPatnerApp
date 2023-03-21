@@ -127,6 +127,19 @@ const styles = StyleSheet.create({
     width: 30,
     height: 32,
   },
+  shareImg: {
+    width: normalizeWidth(30),
+    height: normalizeHeight(30),
+    // marginLeft: normalizeSpacing(10),
+  },
+  shareIconTouch:{
+    position: 'absolute',
+    bottom: normalizeSpacing(20),
+    right: normalizeSpacing(20),
+    backgroundColor: WHITE_COLOR,
+    padding: normalizeSpacing(2),
+    borderRadius: 10,
+  }
 });
 
 export default styles;

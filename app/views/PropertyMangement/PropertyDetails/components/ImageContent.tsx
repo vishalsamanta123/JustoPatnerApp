@@ -8,7 +8,6 @@ import {
 } from "react-native";
 import React, { useState } from "react";
 import styles from "./styles";
-import { PRIMARY_THEME_COLOR_DARK } from "../../../../components/utilities/constant";
 import images from "../../../../assets/images";
 import strings from "../../../../components/utilities/Localization";
 import Header from "../../../../components/Header";
@@ -40,9 +39,60 @@ const ImageContent = ({ navigation, route }: any) => {
     dispatch({ type: START_LOADING });
 
     const fs = RNFetchBlob.fs;
+    // const mediaUrls = data?.map((item: any) => {
+    //   return `${base_url}${item?.document}`;
+    // });
+    const mediaUrls = [`${base_url}${data?.document}`];
+    let newArr: any = [];
+    console.log('mediaUrls: ', mediaUrls);
+
+    const finalUrls = mediaUrls.map((url: any) => {
+      let imagePath: any = null;
+      RNFetchBlob.config({
+        fileCache: true,
+      })
+        .fetch("GET", url)
+        // the image is now dowloaded to device's storage
+        .then((resp) => {
+          // the image path you can use it directly with Image component
+          imagePath = resp.path();
+          return resp.readFile("base64");
+        })
+        .then(async (base64Data) => {
+          // here's base64 encoded image
+          // console.log(`data:image/png;base64,${base64Data}`);
+          // mediaArr.push();
+          // return JSON.stringify(base64Data);
+          // remove the file from storage
+          await newArr.push(`data:image/png;base64,${base64Data}`);
+          setMediaArr(newArr);
+          // console.log("newArr: ", newArr);
+          // return fs.unlink(imagePath);
+          // if (data?.length === newArr.length) {
+            const options = {
+              title: `${data?.title}`,
+              urls: newArr,
+            };
+            const shareResponse = await Share.open(options).then((res: any) => {
+              // console.log("ressd", res);
+            });
+            setMediaArr(null)
+            dispatch({ type: STOP_LOADING });
+          // }
+        }).catch( () => dispatch({ type: STOP_LOADING })
+        );
+    });
+    
+  };
+  const handleSharePressAll = async (data: any) => {
+    console.log('data: ', data);
+    dispatch({ type: START_LOADING });
+
+    const fs = RNFetchBlob.fs;
     const mediaUrls = data?.map((item: any) => {
       return `${base_url}${item?.document}`;
     });
+    // const mediaUrls = [`${base_url}${data?.document}`];
     let newArr: any = [];
     console.log('mediaUrls: ', mediaUrls);
 
@@ -131,6 +181,18 @@ const ImageContent = ({ navigation, route }: any) => {
                     justifyContent: "center",
                   }}
                 />
+                 <TouchableOpacity
+                    onPress={() => {
+                      handleSharePress(item)
+                    }}
+                    style={styles.shareIconTouch}
+                  >
+                    <Image
+                      source={images.shareIcon}
+                      resizeMode={"contain"}
+                      style={styles.shareImg}
+                    />
+                  </TouchableOpacity>
               </TouchableOpacity>
             )}
             ListFooterComponent={() => (
@@ -143,13 +205,14 @@ const ImageContent = ({ navigation, route }: any) => {
         <Button
           width={135}
           buttonText={strings.shareFiles}
-          handleBtnPress={() => handleSharePress(array)}
+          handleBtnPress={() => handleSharePressAll(array)}
         />
       </View>
       <Modal 
       isVisible={isVisible}
       onBackdropPress={() => setIsVisible(false)}
       onBackButtonPress={() => setIsVisible(false)}
+      backdropOpacity={0.9}
       >
         <View>
           <FastImages
