@@ -63,6 +63,7 @@ const LoginView = (props: any) => {
           <InputField
             placeholderText={"Password"}
             headingText={'Password'}
+            maxLength={20}
             rightImgSrc={
               isVisiblePassword ? images.hiddenPassword : images.showPassword
             }
