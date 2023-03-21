@@ -1,5 +1,5 @@
 import { apiCall } from "app/components/utilities/httpClient";
-import { PERMISSION_MODULES, PERMISSION_MODULES_ERROR } from "../types";
+import { NOTIFICATION_STATUS, PERMISSION_MODULES, PERMISSION_MODULES_ERROR } from "../types";
 import apiEndPoints from "app/components/utilities/apiEndPoints";
 import { MENUITEMS } from "../PermissionType";
 import { GLOBAL_URL } from "app/components/utilities/constant";
@@ -31,7 +31,7 @@ const checkPermission = (data: any, isAdmin: any) => {
     return item;
   });
   // console.log('finalList: ', finalList);
-  return finalList.sort((a: any, b: any)=>a.sort - b.sort)
+  return finalList.sort((a: any, b: any) => a.sort - b.sort)
   // return finalList.sort(function (a: any, b: any) {
   //   if (a.title) {
   //     var _a = a.title === "Property management" ? "0" : a.title === "Dashboard" ? "1" : "2";
@@ -67,6 +67,10 @@ export const getPermission = (item: any) => async (dispatch: any) => {
           dispatch({
             type: PERMISSION_MODULES,
             payload: payload,
+          });
+          dispatch({
+            type: NOTIFICATION_STATUS,
+            payload: res.data,
           });
         }
       })

@@ -4,10 +4,15 @@ import styles from "./styles";
 import { useSafeAreaInsets } from "react-native-safe-area-context";
 import { PRIMARY_THEME_COLOR } from "../utilities/constant";
 import { useNavigation } from "@react-navigation/native";
+import { useSelector } from "react-redux";
+import { normalize } from "../scaleFontSize";
+import { Badge } from "@rneui/base";
 
 const Header = (props: any) => {
   const insets = useSafeAreaInsets();
   const navigation: any = useNavigation()
+  const { response = {} } = useSelector((state: any) => state.notificationCount)
+  const notificationCount = response?.notification_count !== 0 ? response?.notification_count : 0
   return (
     <>
       <View
@@ -42,10 +47,19 @@ const Header = (props: any) => {
             props.handleOnRightSecondIconPress ? props.handleOnRightSecondIconPress() :
               navigation.navigate('notification')
           }}>
-            <Image
-              source={props.rightSecondImageScr}
-              style={[styles.imageStyle, props.RightSecondIconStyle]}
-            />
+            <View>
+              <Image
+                source={props.rightSecondImageScr}
+                style={[styles.imageStyle, props.RightSecondIconStyle]}
+              />
+              <Badge
+                status="error"
+                containerStyle={{ position: 'absolute', top: -8, right: -3 }}
+                badgeStyle={styles.badget}
+                value={notificationCount}
+                textStyle={{ fontSize: normalize(10) }}
+              />
+            </View>
           </TouchableOpacity>
         </View>
       </View>
