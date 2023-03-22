@@ -6,8 +6,11 @@ import { normalize } from '../../../../components/scaleFontSize'
 import strings from '../../../../components/utilities/Localization'
 import moment from 'moment'
 import { BLACK_COLOR, DATE_TIME_FORMAT } from 'app/components/utilities/constant'
+import { useSelector } from 'react-redux'
 
 const LeadDetailsIteam = (props: any) => {
+    // const { response = {} } = useSelector((state: any) => state.userData)
+    // const userId = response?.data ? response?.data : {}
     return (
         <ScrollView showsVerticalScrollIndicator={false}>
             <View style={styles.topDetailsView}>
@@ -15,38 +18,44 @@ const LeadDetailsIteam = (props: any) => {
                     <Text style={styles.topTxt}>Visitor Score </Text>
                     <Text style={styles.topTxt}>{props?.items?.lead_score}</Text>
                 </View>
-                <View style={styles.topBtnView}>
-                    <TouchableOpacity
-                        style={styles.button}
-                        onPress={() => {
-                            Linking?.openURL(
-                                `tel:${props?.items?.customer_detail?.mobile}`
-                            )
-                        }}
-                    >
-                        <Text style={styles.buttonTxt}>Call</Text>
-                    </TouchableOpacity>
-                    <TouchableOpacity
-                        style={styles.button}
-                        onPress={() => {
-                            Linking?.openURL(
-                                `sms:${props?.items?.customer_detail?.mobile}`
-                            )
-                        }}
-                    >
-                        <Text style={styles.buttonTxt}>SMS</Text>
-                    </TouchableOpacity>
-                    <TouchableOpacity
-                        style={styles.button}
-                        onPress={() => {
-                            Linking?.openURL(
-                                `https:wa.me/${props?.items?.customer_detail?.whatsapp_no}`
-                            )
-                        }}
-                    >
-                        <Text style={[styles.buttonTxt, { fontSize: normalize(10) }]}>WhatsApp</Text>
-                    </TouchableOpacity>
-                </View>
+
+                {/* {props?.items?.create_by === userId?._id ?
+                    ( */}
+                    <View style={styles.topBtnView}>
+                        <TouchableOpacity
+                            style={styles.button}
+                            onPress={() => {
+                                Linking?.openURL(
+                                    `tel:${props?.items?.customer_detail?.mobile}`
+                                )
+                            }}
+                        >
+                            <Text style={styles.buttonTxt}>Call</Text>
+                        </TouchableOpacity>
+                        <TouchableOpacity
+                            style={styles.button}
+                            onPress={() => {
+                                Linking?.openURL(
+                                    `sms:${props?.items?.customer_detail?.mobile}`
+                                )
+                            }}
+                        >
+                            <Text style={styles.buttonTxt}>SMS</Text>
+                        </TouchableOpacity>
+                        <TouchableOpacity
+                            style={styles.button}
+                            onPress={() => {
+                                Linking?.openURL(
+                                    `https:wa.me/${props?.items?.customer_detail?.whatsapp_no}`
+                                )
+                            }}
+                        >
+                            <Text style={[styles.buttonTxt, { fontSize: normalize(10) }]}>WhatsApp</Text>
+                        </TouchableOpacity>
+                    </View>
+                    {/* )
+                    : null
+                } */}
             </View>
             {props?.items?.property_title !== '' ?
                 (<View style={styles.Txtview}>

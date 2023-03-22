@@ -65,7 +65,7 @@ const styles = StyleSheet.create({
   },
   inputHeadinView: {
     position: 'absolute',
-    top: normalizeSpacing(-10),
+    top: normalizeSpacing(-11),
     left: normalizeSpacing(20),
     zIndex: 1,
     flexDirection: 'row',

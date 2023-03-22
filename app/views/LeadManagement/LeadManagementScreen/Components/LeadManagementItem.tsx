@@ -14,12 +14,17 @@ import images from "../../../../assets/images";
 import strings from "../../../../components/utilities/Localization";
 import moment from "moment";
 import usePermission from "app/components/utilities/UserPermissions";
+import { useSelector } from "react-redux";
 
 const LeadManagementItem = (props: any) => {
   const { edit, view } = usePermission({
     edit: 'edit_visitor',
     view: 'view_visitor',
   })
+
+  // const { response = {} } = useSelector((state: any) => state.userData)
+  // const userId = response?.data ? response?.data : {}
+
   return (
     <View style={styles.IteamView}>
       {props?.items.property_title !== '' ?
@@ -171,8 +176,8 @@ const LeadManagementItem = (props: any) => {
             {/*  1- By User 2 - By Self acquisition_source */}
             {props.items.acquisition_source === 1 ? "By User" :
               props.items.acquisition_source === 2 ? "By Self" :
-              props.items.acquisition_source === 3 ? strings.bulkupload :
-               strings.notfount
+                props.items.acquisition_source === 3 ? strings.bulkupload :
+                  strings.notfount
             }
           </Text>
         </View>
@@ -188,16 +193,19 @@ const LeadManagementItem = (props: any) => {
             </Text>
           </TouchableOpacity>)
         }
-        <TouchableOpacity
-          style={[styles.button, { borderColor: CALL_COLOR }]}
-          onPress={() => {
-            Linking?.openURL(`tel:${props?.items?.mobile}`);
-          }}
-        >
-          <Text style={[styles.buttonTxt, { color: CALL_COLOR }]}>
-            {strings.call}
-          </Text>
-        </TouchableOpacity>
+        {/* {props?.items?.create_by === userId?._id &&
+          ( */}
+          <TouchableOpacity
+            style={[styles.button, { borderColor: CALL_COLOR }]}
+            onPress={() => {
+              Linking?.openURL(`tel:${props?.items?.mobile}`);
+            }}
+          >
+            <Text style={[styles.buttonTxt, { color: CALL_COLOR }]}>
+              {strings.call}
+            </Text>
+          </TouchableOpacity>
+          {/* )} */}
         {view &&
           (<TouchableOpacity
             style={styles.Viewbutton}

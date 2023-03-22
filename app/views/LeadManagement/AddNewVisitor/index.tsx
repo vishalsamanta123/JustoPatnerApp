@@ -72,7 +72,6 @@ const AddNewVisitorScreen = ({ navigation, route }: any) => {
   const [emailMobvalidation, setEmailMobValidation] = useState({
     mobile: null,
   });
-  console.log('emailMobvalidation: ', emailMobvalidation.mobile);
   const masterData = useSelector((state: any) => state.masterData) || {};
   const propertyData = useSelector((state: any) => state.propertyData) || {};
   const editData = useSelector((state: any) => state.editVisitorData) || {};

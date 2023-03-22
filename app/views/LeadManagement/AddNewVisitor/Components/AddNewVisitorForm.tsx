@@ -38,6 +38,12 @@ const AddNewVisitorForm = (props: any) => {
   const { response = {}, detail = "" } = useSelector(
     (state: any) => state.visitorData
   );
+  const userData = useSelector((state: any) => state.userData)
+  const userId = userData?.response?.data ? userData?.response?.data : {}
+  console.log('userId: ', userId);
+  console.log('props?.formData?.create_by: ', props?.formData?.create_by );
+  console.log(' userId.role_id: ',  userId.role_id);
+
   useEffect(() => {
     if (props.type == "edit") {
       if (response?.status === 200) {
@@ -65,6 +71,7 @@ const AddNewVisitorForm = (props: any) => {
           min_emi_budget_type: response?.data[0]?.min_emi_budget_type,
           max_emi_budget: response?.data[0]?.max_emi_budget,
           max_emi_budget_type: response?.data[0]?.max_emi_budget_type,
+          create_by: response?.data[0]?.create_by,
         });
       }
       if (
@@ -134,6 +141,8 @@ const AddNewVisitorForm = (props: any) => {
               require={true}
               placeholderText={"Mobile No."}
               handleInputBtnPress={() => { }}
+              editable={props.type === 'edit' ?
+                props?.formData?.create_by === userId._id ? true : false : true}
               onChangeText={(data: any) => {
                 props.setFormData({
                   ...props.formData,
@@ -152,7 +161,10 @@ const AddNewVisitorForm = (props: any) => {
                   })
                 }
               }}
-              valueshow={props?.formData?.mobile}
+              valueshow={
+                props.type === 'edit' ?
+                  props?.formData?.create_by === userId._id ? props?.formData?.mobile : `${props?.formData?.mobile?.slice(0, 2)}******${props?.formData?.mobile?.slice(-2)}` :
+                  props?.formData?.mobile}
               headingText={"Mobile No."}
               keyboardtype={"number-pad"}
               maxLength={10}

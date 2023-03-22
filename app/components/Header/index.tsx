@@ -47,7 +47,8 @@ const Header = (props: any) => {
             props.handleOnRightSecondIconPress ? props.handleOnRightSecondIconPress() :
               navigation.navigate('notification')
           }}>
-            <View>
+            {props.rightSecondImageScr ?
+            (<View>
               <Image
                 source={props.rightSecondImageScr}
                 style={[styles.imageStyle, props.RightSecondIconStyle]}
@@ -59,7 +60,9 @@ const Header = (props: any) => {
                 value={notificationCount}
                 textStyle={{ fontSize: normalize(10) }}
               />
-            </View>
+            </View>)
+            : <View></View>
+            }
           </TouchableOpacity>
         </View>
       </View>

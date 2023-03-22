@@ -118,7 +118,7 @@ const VisitorAppointment = (props: any) => {
                     item?.status === 5 || item?.status === 6
                     ? RED_COLOR
                     : item?.status === 2
-                      ? YELLOW_COLOR
+                      ? GREEN_COLOR
                       : item?.status === 3
                         ? GREEN_COLOR
                         : BLACK_COLOR
@@ -128,7 +128,7 @@ const VisitorAppointment = (props: any) => {
             {item?.status === 1
               ? currentDate >= appointmentdateTime ? 'Not Visited' : "Upcoming"
               : item?.status === 2
-                ? currentDate >= appointmentdateTime ? 'Not Visited' : "Upcoming"
+                ? "Completed"
                 : item?.status === 3
                   ? "Completed"
                   : item?.status === 4
