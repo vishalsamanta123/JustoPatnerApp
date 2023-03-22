@@ -10,7 +10,8 @@ import { BLACK_COLOR } from 'app/components/utilities/constant';
 import notifee, { AndroidImportance, EventType } from "@notifee/react-native";
 import messaging from "@react-native-firebase/messaging";
 import AsyncStorage from '@react-native-async-storage/async-storage';
-
+import VersionCheck from "react-native-version-check";
+import { Alert, BackHandler, Linking } from 'react-native';
 // Display The Push notification
 export async function onDisplayNotification(title: any, body: any, data: any) {
   await notifee.requestPermission();
@@ -54,6 +55,28 @@ const App = () => {
       unsubscribe();
     };
   }, []);
+  const checkUpdateNeeded = async () => {
+    let updateNeeded = await VersionCheck.needUpdate();
+    console.log("updateNeeded: ", updateNeeded);
+    if (updateNeeded.isNeeded) {
+      //Alert the user and direct to the app url
+      Alert.alert(
+        "New Update is here",
+        "Please update to the latest version",
+        [{
+          text: "Update",
+          onPress: () => {
+            BackHandler.exitApp();
+            Linking.openURL(updateNeeded.storeUrl)
+          }
+        }]
+      )
+    }
+  };
+  useEffect(() => {
+    checkUpdateNeeded();
+  }, []);
+
 
   useEffect(() => {
     requestUserPermission();

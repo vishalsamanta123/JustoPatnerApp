@@ -14,7 +14,7 @@ import { leaderBoardReducer } from "./LearderBoardReducer";
 import { allUserChatListReducer, propertyChatReducer, updateChatStatus } from "./ChatReducer";
 import { firebaseReducer } from "./FirebaseReducer";
 import { userAppointmentReducer, userUpdateAppointmentReducer } from "./AppointmentWithUserReducer";
-import permissionReducer from "./permissionReducer";
+import permissionReducer, { notificationCountReducer } from "./permissionReducer";
 import { SupportAddReducer, SupportReducer } from "./SupportReducer";
 import { dealFlowReducer } from "./DealFlowReducer";
 
@@ -92,4 +92,5 @@ export default {
 
     //deal Flow
     dealFlow: dealFlowReducer,
+    notificationCount: notificationCountReducer
 }
