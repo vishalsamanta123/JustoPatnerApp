@@ -53,8 +53,8 @@ const CompanyDetails = ({ navigation }: any) => {
           <InputField
             require={true}
             maxLength={20}
-            placeholderText={"RERA Registration"}
-            headingText={"RERA Registration"}
+            placeholderText={"Rera Registration"}
+            headingText={"Rera Registration"}
             handleInputBtnPress={() => { }}
             onChangeText={() => { }}
           />

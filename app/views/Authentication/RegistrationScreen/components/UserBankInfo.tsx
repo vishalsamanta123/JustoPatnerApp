@@ -180,10 +180,10 @@ const UserBankInfo = ({ navigation }: any) => {
           <View style={styles.inputWrap}>
             <InputField
               require={true}
-              placeholderText={"RERA Certificate No."}
+              placeholderText={"Rera Certificate No."}
               handleInputBtnPress={() => { }}
               maxLength={20}
-              headingText={"RERA Certificate No."}
+              headingText={"Rera Certificate No."}
               valueshow={formData?.rera_certificate_no}
               onChangeText={(val: any) => {
                 setFormData({
@@ -194,7 +194,7 @@ const UserBankInfo = ({ navigation }: any) => {
           </View>
           <View style={[styles.inputWrap, { flexDirection: "row", alignItems: 'center', justifyContent: 'space-between' }]}>
             <View style={{ flex: 1, flexDirection: 'row', alignItems: 'center' }}>
-              <Text style={styles.headingText}>RERA Certificate</Text>
+              <Text style={styles.headingText}>Rera Certificate</Text>
               <Image
                 source={images.star}
                 style={{
@@ -218,7 +218,7 @@ const UserBankInfo = ({ navigation }: any) => {
             </View>
           </View>
           {typeof formData?.rera_certificate === 'object' ?
-            <Text style={styles.addedTxt}>{"RERA Certificate Added"}</Text> : null
+            <Text style={styles.addedTxt}>{"Rera Certificate Added"}</Text> : null
           }
           <View style={[styles.inputWrap, { flexDirection: "row", alignItems: 'center' }]}>
             <View style={{ flex: 1, flexDirection: 'row', alignItems: 'center' }}>

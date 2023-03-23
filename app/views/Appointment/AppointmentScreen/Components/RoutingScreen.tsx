@@ -30,6 +30,7 @@ console.log('props?.response?.total_data: ', props?.response?.total_data);
                 props.keyType === 'first' ?
                 props?.getAppointmentList(0, props.todayAppointment) :  props?.getAppointmentList(0, {})
                 props?.setAppointmentList([]);
+                props.settype('')
             }}
             refreshing={props?.loadingref}
             onEndReached={() => {

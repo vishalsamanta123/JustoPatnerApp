@@ -57,8 +57,8 @@ const AgentBankInfo = ({ navigation, route }: any) => {
         msg: editData?.update
           ? editData?.response?.message
           : addData?.create
-          ? addData?.response?.message
-          : "",
+            ? addData?.response?.message
+            : "",
         backgroundColor: GREEN_COLOR,
       });
     }
@@ -196,8 +196,8 @@ const AgentBankInfo = ({ navigation, route }: any) => {
           <View style={styles.inputWrap}>
             <InputField
               require={true}
-              placeholderText={"RERA Certificate No."} //can edit
-              handleInputBtnPress={() => {}}
+              placeholderText={"Rera Certificate No."} //can edit
+              handleInputBtnPress={() => { }}
               onChangeText={(data: any) => {
                 setAgentInfoData({
                   ...agentInfoData,
@@ -206,7 +206,7 @@ const AgentBankInfo = ({ navigation, route }: any) => {
               }}
               valueshow={agentInfoData?.rera_certificate_no?.toString()}
               maxLength={20}
-              headingText={"RERA Certificate No."}
+              headingText={"Rera Certificate No."}
             />
           </View>
           <View style={[styles.inputWrap, { flexDirection: "row" }]}>
@@ -219,7 +219,7 @@ const AgentBankInfo = ({ navigation, route }: any) => {
               }}
             >
               <Text style={[styles.headingText, { fontSize: normalize(17) }]}>
-                RERA Certificate
+                Rera Certificate
               </Text>
               <RequiredStart />
             </View>
@@ -240,9 +240,9 @@ const AgentBankInfo = ({ navigation, route }: any) => {
                 </Text>
               </TouchableOpacity>
               {agentInfoData?.rera_certificate === null ||
-              agentInfoData?.rera_certificate === "" ||
-              agentInfoData?.rera_certificate === undefined ? null : (
-                <Text style={styles.addedTxt}>{"RERA Certificate Added"}</Text>
+                agentInfoData?.rera_certificate === "" ||
+                agentInfoData?.rera_certificate === undefined ? null : (
+                <Text style={styles.addedTxt}>{"Rera Certificate Added"}</Text>
               )}
             </View>
           </View>
@@ -277,8 +277,8 @@ const AgentBankInfo = ({ navigation, route }: any) => {
                 </Text>
               </TouchableOpacity>
               {agentInfoData?.propidership_declaration_letter === null ||
-              agentInfoData?.propidership_declaration_letter === "" ||
-              agentInfoData?.propidership_declaration_letter ===
+                agentInfoData?.propidership_declaration_letter === "" ||
+                agentInfoData?.propidership_declaration_letter ===
                 undefined ? null : (
                 <Text style={styles.addedTxt}>
                   {"Proprietorship Declaration Letter Added"}
@@ -295,7 +295,7 @@ const AgentBankInfo = ({ navigation, route }: any) => {
             <InputField
               require={true}
               placeholderText={"Bank Name"}
-              handleInputBtnPress={() => {}}
+              handleInputBtnPress={() => { }}
               onChangeText={(data: any) => {
                 setAgentInfoData({
                   ...agentInfoData,
@@ -310,7 +310,7 @@ const AgentBankInfo = ({ navigation, route }: any) => {
             <InputField
               require={true}
               placeholderText={"Branch Name"}
-              handleInputBtnPress={() => {}}
+              handleInputBtnPress={() => { }}
               onChangeText={(data: any) => {
                 setAgentInfoData({
                   ...agentInfoData,
@@ -325,7 +325,7 @@ const AgentBankInfo = ({ navigation, route }: any) => {
             <InputField
               require={true}
               placeholderText={"Account No."}
-              handleInputBtnPress={() => {}}
+              handleInputBtnPress={() => { }}
               maxLength={18}
               keyboardtype={"number-pad"}
               onChangeText={(data: any) => {
@@ -342,7 +342,7 @@ const AgentBankInfo = ({ navigation, route }: any) => {
             <InputField
               require={true}
               placeholderText={"IFSC Code"}
-              handleInputBtnPress={() => {}}
+              handleInputBtnPress={() => { }}
               maxLength={11}
               onChangeText={(data: any) => {
                 setAgentInfoData({
@@ -385,8 +385,8 @@ const AgentBankInfo = ({ navigation, route }: any) => {
                 </Text>
               </TouchableOpacity>
               {agentInfoData?.cancel_cheaque === null ||
-              agentInfoData?.cancel_cheaque === "" ||
-              agentInfoData?.cancel_cheaque === undefined ? null : (
+                agentInfoData?.cancel_cheaque === "" ||
+                agentInfoData?.cancel_cheaque === undefined ? null : (
                 <Text style={styles.addedTxt}>{"Cancel Cheque Added"}</Text>
               )}
             </View>
@@ -415,7 +415,7 @@ const AgentBankInfo = ({ navigation, route }: any) => {
           <CheckBox
             value={true}
             tintColors={{ true: PRIMARY_THEME_COLOR }}
-            // onValueChange={(newValue) => setToggleCheckBox(newValue)}
+          // onValueChange={(newValue) => setToggleCheckBox(newValue)}
           />
           <Text style={styles.bottomText}>{strings.iAknowledge}</Text>
           <TouchableOpacity

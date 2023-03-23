@@ -60,7 +60,7 @@ const EditBankDetails = ({ navigation }: any) => {
             valueshow={editData?.rera_certificate_no}
             handleInputBtnPress={() => { }}
             maxLength={20}
-            headingText={"RERA Certificate No."}
+            headingText={"Rera Certificate No."}
             onChangeText={(val: any) => {
               setEditData({
                 ...editData, rera_certificate_no: val
@@ -70,7 +70,7 @@ const EditBankDetails = ({ navigation }: any) => {
         </View>
         <View style={[styles.inputWrap, { flexDirection: "row", }]}>
           <View style={{ flex: 1, justifyContent: 'center' }}>
-            <Text style={styles.headingText}>RERA Certificate</Text>
+            <Text style={styles.headingText}>Rera Certificate</Text>
           </View>
           <View style={{ flex: 0.6, }}>
             <TouchableOpacity
@@ -83,7 +83,7 @@ const EditBankDetails = ({ navigation }: any) => {
               editData?.rera_certificate === "" ||
               editData?.rera_certificate === undefined ?
               null :
-              <Text style={styles.addedTxt}>{"RERA Certificate Added"}</Text>
+              <Text style={styles.addedTxt}>{"Rera Certificate Added"}</Text>
             }
           </View>
         </View>

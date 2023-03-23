@@ -53,6 +53,7 @@ const strings = new LocalizedStrings({
     pauseVideo: 'Pause',
     apply: 'APPLY',
     reset: 'RESET',
+    resetToday: 'Reset',
     resend: 'Resend',
     notRecived: `Didn't receive the code?`,
     codeSent: 'A verification code has been sent to',
@@ -129,6 +130,8 @@ const strings = new LocalizedStrings({
     updateStatus: 'Update Status',
     browseToUploadMsg: 'Browse to Upload Image',
     browseToUploadCsv: 'Browse to Upload CSV File',
+    subscribed: 'Subscribed Property',
+    allProperty: 'All Property',
 
     //Auth 
 
@@ -160,7 +163,7 @@ const strings = new LocalizedStrings({
     VisitorAppointment: 'Visitor Appointment',
     SMAppointment: 'SM Appointment',
 
-    rerainfo: 'RERA Information',
+    rerainfo: 'Rera Information',
     setting: "Setting",
     userRole: "USER ROLE",
     channelPartner: 'CHANNEL PARTNER',
