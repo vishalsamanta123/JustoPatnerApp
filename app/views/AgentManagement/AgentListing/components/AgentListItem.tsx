@@ -30,7 +30,7 @@ const AgentListItem = (props: any) => {
       </View>
       <View style={styles.Txtview} >
         <View style={styles.projectContainer}>
-          <Text style={styles.projectTxt}>RERA No.</Text>
+          <Text style={styles.projectTxt}>Rera No.</Text>
         </View>
         <View><Text>:</Text></View>
         <View style={styles.nameContainer}>
@@ -42,7 +42,7 @@ const AgentListItem = (props: any) => {
       </View>
       <View style={styles.Txtview} >
         <View style={styles.projectContainer}>
-          <Text style={styles.projectTxt}>No. of Visit</Text>
+          <Text style={styles.projectTxt}>Total Visit</Text>
         </View>
         <View><Text>:</Text></View>
         <View style={styles.nameContainer}>
@@ -60,7 +60,7 @@ const AgentListItem = (props: any) => {
       </View>
       <View style={styles.Txtview} >
         <View style={styles.projectContainer}>
-          <Text style={styles.projectTxt}>No. of Closer Visit</Text>
+          <Text style={styles.projectTxt}>Total Closer Visit</Text>
         </View>
         <View><Text>:</Text></View>
         <View style={styles.nameContainer}>

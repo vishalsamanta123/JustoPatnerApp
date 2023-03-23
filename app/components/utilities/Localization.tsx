@@ -160,7 +160,7 @@ const strings = new LocalizedStrings({
     VisitorAppointment: 'Visitor Appointment',
     SMAppointment: 'SM Appointment',
 
-    rerainfo: 'RERA Information',
+    rerainfo: 'Rera Information',
     setting: "Setting",
     userRole: "USER ROLE",
     channelPartner: 'CHANNEL PARTNER',

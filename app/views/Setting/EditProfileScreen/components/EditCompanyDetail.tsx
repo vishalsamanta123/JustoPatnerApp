@@ -142,9 +142,9 @@ const EditCompanyDetails = ({ navigation }: any) => {
                 <View style={styles.inputWrap}>
                     <InputField
                         // require={true}
-                        placeholderText={"RERA Registration"}
+                        placeholderText={"Rera Registration"}
                         maxLength={20}
-                        headingText={"RERA Registration"}
+                        headingText={"Rera Registration"}
                         handleInputBtnPress={() => { }}
                         valueshow={editData?.rera_registration}
                         onChangeText={(val: any) => {
