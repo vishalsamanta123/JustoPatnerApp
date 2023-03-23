@@ -53,7 +53,7 @@ const PicturePickerModal = (props: any) => {
     }
     const handleBrowsePress = async () => {
         const result: any = await DocumentPicker.pick({
-            type: [DocumentPicker.types.pdf],
+            type: [DocumentPicker.types.pdf, DocumentPicker.types.images],
         });
         console.log('result: ', result);
         if (result?.length > 0) {

@@ -4,8 +4,10 @@ import LeadManagementView from './Components/LeadManagementView'
 import { getAllLeadsList } from 'app/Redux/Actions/LeadsActions'
 import { useDispatch, useSelector } from 'react-redux'
 import { useFocusEffect } from '@react-navigation/native'
+import moment from 'moment'
+import { DATE_FORMAT } from 'app/components/utilities/constant'
 
-const LeadManagementScreen = ({ navigation }: any) => {
+const LeadManagementScreen = ({ navigation, route }: any) => {
   const dispatch: any = useDispatch()
   const { response = {}, list = "" } = useSelector((state: any) => state.visitorDataList)
   const moreData = response?.total_data || 0
@@ -21,9 +23,19 @@ const LeadManagementScreen = ({ navigation }: any) => {
   const [visitorList, setVisiitorList] = useState<any>([])
   const [offSET, setOffset] = useState(0)
 
+  const todayDate = {
+    startdate: moment(new Date()).format(DATE_FORMAT),
+    enddate: moment(new Date()).format(DATE_FORMAT),
+  }
+
   useFocusEffect(
     React.useCallback(() => {
-      getVisitorsList(0, {})
+      console.log('Route', route.params)
+      if(route.params === 'today') {
+        getVisitorsList(0, todayDate)
+      } else {
+        getVisitorsList(0, {})
+      }
       return () => { };
     }, [navigation])
   );

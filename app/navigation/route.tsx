@@ -81,6 +81,7 @@ import DealFlowDetailScreen from 'app/views/DealFlowScreens/DealFlowDetail';
 import EscalateScreen from 'app/views/SupportScreen/Escalate';
 import AppointmentWithSM from 'app/views/AppointmentWithSM';
 import EditCompanyDetails from 'app/views/Setting/EditProfileScreen/components/EditCompanyDetail';
+import { navigationRef } from 'app/components/utilities/GlobalFuncations';
 
 
 const Stack = createNativeStackNavigator();
@@ -296,7 +297,7 @@ const AuthLoadingComponent = () => {
 }
 const Route = () => {
   return (
-    <NavigationContainer>
+    <NavigationContainer ref={navigationRef}>
       <Stack.Navigator screenOptions={screenOptions}>
         <Stack.Screen name="SplashScreen" component={SplashScreen} />
         <Stack.Screen name="AuthLoading" component={AuthLoadingComponent} />

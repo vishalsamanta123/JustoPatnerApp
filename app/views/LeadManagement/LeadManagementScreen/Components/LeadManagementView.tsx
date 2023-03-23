@@ -59,6 +59,7 @@ const LeadManagementView = (props: any) => {
       />
       <View style={[styles.TopBtnView, {
         justifyContent: create && status ? "center" : 'flex-end',
+        flexWrap: 'wrap'
       }]}>
         {status &&
           (<Button
@@ -78,6 +79,15 @@ const LeadManagementView = (props: any) => {
             handleBtnPress={props.handleAddNewPress}
           />)
         }
+        <View style={{marginTop: 10}}>
+          <Button
+              buttonText={"Reset Filter"}
+              width={150}
+              height={30}
+              btnTxtsize={15}
+              handleBtnPress={onRefresh}
+            />
+        </View>
       </View>
       <View style={styles.propertyListView}>
         <FlatList

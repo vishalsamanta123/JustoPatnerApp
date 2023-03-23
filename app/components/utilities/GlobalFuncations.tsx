@@ -13,6 +13,7 @@ import { normalizeWidth, normalizeHeight, normalizeSpacing } from '../scaleFontS
 import FileViewer from "react-native-file-viewer";
 import RNFS from "react-native-fs";
 import ErrorMessage from '../ErrorMessage';
+import { createNavigationContainerRef } from '@react-navigation/native';
 
 export const handlePermission = async (
   permission: any,
@@ -278,3 +279,12 @@ export const OpenDoc = async (url: any) => {
       })
     });
 };
+
+
+export const navigationRef: any = createNavigationContainerRef()
+
+export function navigate(name: any, params: any) {
+  if (navigationRef.isReady()) {
+    navigationRef.navigate(name, params);
+  }
+}

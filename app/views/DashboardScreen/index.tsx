@@ -9,7 +9,7 @@ import { getChatListForProperty } from 'app/Redux/Actions/ChatActions';
 import { Alert, BackHandler } from 'react-native';
 import { getPermission } from 'app/Redux/Actions/permissionAction';
 
-const DashboardScreen = ({ navigation }: any) => {
+const DashboardScreen = ({ navigation, route }: any) => {
   const dispatch: any = useDispatch()
   const { response = {}, data = false } = useSelector((state: any) => state.dashboardData) || {}
   const statusData = useSelector((state: any) => state.statusUpdate) || {}
@@ -103,9 +103,9 @@ const DashboardScreen = ({ navigation }: any) => {
 
   const onpressButton = (type: any) => {
     if (type === 'visit') {
-      navigation.navigate('LeadManagement')
+      navigation.navigate('LeadManagement', 'today')
     } else if (type === 'appointment') {
-      navigation.navigate('AppointmentScreen')
+      navigation.navigate('AppointmentScreen', 'today')
     } else {
       navigation.navigate('AgentListing')
     }

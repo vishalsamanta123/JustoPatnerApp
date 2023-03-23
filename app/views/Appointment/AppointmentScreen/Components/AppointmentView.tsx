@@ -74,10 +74,9 @@ const AppointmentView = (props: any) => {
     remark: "",
   });
   const todayAppointment = {
-    start_date: moment(new Date).format(DATE_FORMAT),
-    end_date: moment(new Date).format(DATE_FORMAT)
-
-  }
+    start_date: moment(new Date()).format(DATE_FORMAT),
+    end_date: moment(new Date()).format(DATE_FORMAT),
+  };
   const [indexData, setIndexData] = useState({
     index: 0,
     routes: [
@@ -87,13 +86,20 @@ const AppointmentView = (props: any) => {
   });
   useEffect(() => {
     if (indexData?.index === 0) {
-    console.log('indexData?.index: ', indexData?.index);
+      console.log("indexData?.index: ", indexData?.index);
       // handleUserAppointmentList(1);
       getAppointmentList(offSET, todayAppointment);
     } else {
       getAppointmentList(offSET, {});
     }
-  }, [indexData, updateUserStatusResponse]);
+  }, [indexData, updateUserStatusResponse, props.params]);
+
+  useEffect(() => {
+    console.log("props.params: ", props.params);
+    if (props.params === "today") {
+      handleIndexChange(0)
+    }
+  }, [props.params, updateUserStatusResponse]);
 
   const handleUserAppointmentList = (type: any) => {
     dispatch(
@@ -113,9 +119,7 @@ const AppointmentView = (props: any) => {
   };
 
   const handleOnPressYesInModal = () => {
-    dispatch(
-      updateUserAppointmentStatus(params)
-    );
+    dispatch(updateUserAppointmentStatus(params));
     setIsVisible(false);
   };
 
@@ -157,18 +161,19 @@ const AppointmentView = (props: any) => {
     });
     getAppointmentList(0, {});
     setFilterisVisible(false);
-  }
+  };
   const handleIndexChange = (index: any) => {
     setIndexData({
-      index: index, routes: [
+      index: index,
+      routes: [
         { key: "first", title: strings.todayAppointment },
         { key: "second", title: strings.allappointment },
       ],
-    })
-    setOffset(0)
-    setAppointmentList([])
-    setUserAppointmentList([])
-  }
+    });
+    setOffset(0);
+    setAppointmentList([]);
+    setUserAppointmentList([]);
+  };
   const FirstRoute = () => (
     <FlatList
       data={Array.isArray(appointmentList) ? appointmentList : []}
@@ -195,7 +200,10 @@ const AppointmentView = (props: any) => {
       refreshing={loadingref}
       onEndReached={() => {
         if (appointmentList?.length < response?.total_data) {
-          getAppointmentList(appointmentList?.length > 2 ? offSET + 1 : 0, filterData);
+          getAppointmentList(
+            appointmentList?.length > 2 ? offSET + 1 : 0,
+            filterData
+          );
         }
       }}
     />
@@ -229,7 +237,7 @@ const AppointmentView = (props: any) => {
   useFocusEffect(
     React.useCallback(() => {
       getAppointmentList(offSET, todayAppointment);
-      return () => { };
+      return () => {};
     }, [navigation, list])
   );
   useEffect(() => {
@@ -241,9 +249,8 @@ const AppointmentView = (props: any) => {
           setAppointmentList([...appointmentList, ...response?.data]);
         }
       }
-    }
-    else {
-      setAppointmentList([])
+    } else {
+      setAppointmentList([]);
     }
   }, [response]);
   // useEffect(() => {
@@ -263,58 +270,62 @@ const AppointmentView = (props: any) => {
   //   }
   // }, [getUserListResponse]);
   const getAppointmentList = (offset: any, data: any) => {
-  console.log('data: ', data);
+    console.log("data: ", data);
     setOffset(offset);
     dispatch(
       getAllAppointmentList({
         offset: offset,
         limit: 10,
-        start_date: data?.start_date ? data?.start_date : '',
-        end_date: data?.end_date ? data?.end_date : '',
-        customer_name: data?.customer_name ? data?.customer_name : '',
-        status: data?.status ? data?.status : '',
+        start_date: data?.start_date ? data?.start_date : "",
+        end_date: data?.end_date ? data?.end_date : "",
+        customer_name: data?.customer_name ? data?.customer_name : "",
+        status: data?.status ? data?.status : "",
       })
     );
     // toGetDatas(array)
   };
 
-  const renderScene = ({ index, route, }: any) => {
+  const renderScene = ({ index, route }: any) => {
     switch (route.key) {
-      case 'first':
-        return <RoutingScreen
-          appointmentList={appointmentList}
-          onPressView={onPressView}
-          onPressEdit={onPressEdit}
-          setFilterData={setFilterData}
-          getAppointmentList={getAppointmentList}
-          loadingref={loadingref}
-          setAppointmentList={setAppointmentList}
-          response={response}
-          filterData={filterData}
-          offSET={offSET}
-          keyType={route.key}
-          todayAppointment={todayAppointment}
-        />;
-      case 'second':
-        return <RoutingScreen
-          appointmentList={appointmentList}
-          onPressView={onPressView}
-          onPressEdit={onPressEdit}
-          setFilterData={setFilterData}
-          getAppointmentList={getAppointmentList}
-          loadingref={loadingref}
-          setAppointmentList={setAppointmentList}
-          response={response}
-          filterData={filterData}
-          offSET={offSET}
-          keyType={route.key}
-          todayAppointment={todayAppointment}
-        />;
+      case "first":
+        return (
+          <RoutingScreen
+            appointmentList={appointmentList}
+            onPressView={onPressView}
+            onPressEdit={onPressEdit}
+            setFilterData={setFilterData}
+            getAppointmentList={getAppointmentList}
+            loadingref={loadingref}
+            setAppointmentList={setAppointmentList}
+            response={response}
+            filterData={filterData}
+            offSET={offSET}
+            keyType={route.key}
+            todayAppointment={todayAppointment}
+          />
+        );
+      case "second":
+        return (
+          <RoutingScreen
+            appointmentList={appointmentList}
+            onPressView={onPressView}
+            onPressEdit={onPressEdit}
+            setFilterData={setFilterData}
+            getAppointmentList={getAppointmentList}
+            loadingref={loadingref}
+            setAppointmentList={setAppointmentList}
+            response={response}
+            filterData={filterData}
+            offSET={offSET}
+            keyType={route.key}
+            todayAppointment={todayAppointment}
+          />
+        );
     }
   };
   const { create } = usePermission({
-    create: 'add_appointment',
-  })
+    create: "add_appointment",
+  });
   return (
     <View style={styles.mainContainer}>
       <Header
@@ -327,8 +338,8 @@ const AppointmentView = (props: any) => {
         RightFirstIconStyle={styles.RightFirstIconStyle}
         handleOnRightFirstIconPress={() => setFilterisVisible(true)}
       />
-      {create &&
-        (<View style={{ marginVertical: 10, alignItems: "flex-end" }}>
+      {create && (
+        <View style={{ marginVertical: 10, alignItems: "flex-end" }}>
           <Button
             width={200}
             height={30}
@@ -336,8 +347,8 @@ const AppointmentView = (props: any) => {
             btnTxtsize={14}
             handleBtnPress={() => onPressAddNew()}
           />
-        </View>)
-      }
+        </View>
+      )}
       <View style={styles.propertyListView}>
         <TabView
           renderTabBar={renderTabBar}
