@@ -129,6 +129,8 @@ const strings = new LocalizedStrings({
     updateStatus: 'Update Status',
     browseToUploadMsg: 'Browse to Upload Image',
     browseToUploadCsv: 'Browse to Upload CSV File',
+    subscribed: 'Subscribed Property',
+    allProperty: 'All Property',
 
     //Auth 
 
