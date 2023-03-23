@@ -113,30 +113,31 @@ const App = () => {
     console.log("data: IN handleNotification", data);
     console.log("notificationType: ", notificationType);
     switch (notificationType) {
+      case 'lead':
+        navigate('LeadManagementScreen', {})
+        break;
+      case 'appoinment':
+        navigate('Appointments', {})
+        break;
+      case 'booking':
+        navigate('BookingList', {type: 'request',})
+        break;
+      case 'followUp':
+        navigate('FollowUpScreen', {})
+        break;
       case 'property':
+        navigate('PropertyScreenView', {})
         break;
-      case 'followUp':
+      case 'registration':
+        navigate('BookingList', {type: 'register'})
+        break;
+      case 'support':
+        navigate('Support', {})
+        break;
+      case 'user appointment':
         navigate('FollowUpScreen', {})
         break;
-      case 'followUp':
-        navigate('lead', {})
-        break;
-      case 'followUp':
-        navigate('FollowUpScreen', {})
-        break;
-      case 'followUp':
-        navigate('FollowUpScreen', {})
-        break;
-      case 'followUp':
-        navigate('FollowUpScreen', {})
-        break;
-      case 'followUp':
-        navigate('FollowUpScreen', {})
-        break;
-      case 'followUp':
-        navigate('FollowUpScreen', {})
-        break;
-      case 'followUp':
+      case 'assign':
         navigate('FollowUpScreen', {})
         break;
       case notificationType:

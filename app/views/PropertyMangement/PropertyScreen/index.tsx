@@ -13,21 +13,21 @@ const PropertyScreen = ({ navigation }: any) => {
   const propertyData = useSelector((state: any) => state.propertydetailData) || []
   const { response, loading, updateStatus } = propertyData;
 
-  useFocusEffect(
-    React.useCallback(() => {
-      getallproperty(0, {})
-      return () => { };
-    }, [navigation])
-  );
-  useEffect(() => {
-    getallproperty(0, {})
-  }, [])
+  // useFocusEffect(
+  //   React.useCallback(() => {
+  //     getallproperty(0, {})
+  //     return () => { };
+  //   }, [navigation])
+  // );
+  // useEffect(() => {
+  //   getallproperty(0, {})
+  // }, [])
 
-  useEffect(() => {
-    if (response && response?.status === 200 && updateStatus) {
-      getallproperty(0, {})
-    }
-  }, [propertyData])
+  // useEffect(() => {
+  //   if (response && response?.status === 200 && updateStatus) {
+  //     getallproperty(0, {})
+  //   }
+  // }, [propertyData])
 
   const handleStatusChange = () => {
     dispatch(statusUpdate({
@@ -48,6 +48,7 @@ const PropertyScreen = ({ navigation }: any) => {
       location: data?.location ? data?.location : '',
       property_name: data?.property_name ? data?.property_name : '',
       property_type: data?.property_type ? data?.property_type : '',
+      active_property: data?.active_property ? data?.active_property : '' 
     }))
   }
   const handleDrawerPress = () => {
