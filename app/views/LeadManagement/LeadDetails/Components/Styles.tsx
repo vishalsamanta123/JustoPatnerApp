@@ -26,11 +26,10 @@ const styles = StyleSheet.create({
     justifyContent: 'space-between',
     marginHorizontal: normalizeSpacing(10),
     marginBottom: normalizeSpacing(10),
-    marginTop:normalizeSpacing(10),
+    marginTop:normalizeSpacing(3),
   },
   topTxtView: {
-    flexDirection: 'row',
-    alignItems: 'center'
+    alignItems: 'center',
   },
   topBtnView: {
     flexDirection: 'row',

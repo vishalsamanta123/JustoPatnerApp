@@ -167,7 +167,7 @@ const styles = StyleSheet.create({
   },
   thirdPortionCardText: {
     color: BLACK_COLOR,
-    fontSize: normalize(16),
+    fontSize: normalize(15.5),
     fontFamily: FONT_FAMILY_SEMIBOLD,
     textAlign: 'center',
   },

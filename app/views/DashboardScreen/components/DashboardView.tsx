@@ -17,6 +17,7 @@ import {
   GRAY_COLOR,
   GREEN_COLOR,
   Isios,
+  PRIMARY_THEME_COLOR_DARK,
   WHITE_COLOR,
 } from '../../../components/utilities/constant';
 
@@ -31,7 +32,7 @@ const DashboardView = (props: any) => {
   }
   const targetData = props?.dashBoardData?.target || {}
   const achieveTargetData = props?.dashBoardData?.achievetargetdata || {}
-  const renderItem = ({ item , index }: any) => {
+  const renderItem = ({ item, index }: any) => {
     return (
       <TouchableOpacity key={index} style={styles.headingView} onPress={() => props.onPressView(item)}>
         <Text style={styles.itemText}>{item.property_title}</Text>
@@ -149,7 +150,7 @@ const DashboardView = (props: any) => {
               onPress={() => props.onpressButton('visit')}
               style={styles.thirdPortioncardView}>
               <View style={styles.thirdPortionCardTextView}>
-                <Text style={styles.thirdPortionCardText}>Today Visit</Text>
+                <Text style={styles.thirdPortionCardText}>Today Leads</Text>
               </View>
               <View style={styles.numberView}>
                 <Text style={styles.thirdPortionNumberText}>{props?.dashBoardData?.total_visit}</Text>
@@ -172,7 +173,7 @@ const DashboardView = (props: any) => {
               style={styles.thirdPortioncardView}>
               <View style={styles.thirdPortionCardTextView}>
                 <Text style={styles.thirdPortionCardText}>
-                  Today Closed Visit
+                  Today Complete Visits
                 </Text>
               </View>
               <View style={styles.numberView}>
@@ -183,7 +184,7 @@ const DashboardView = (props: any) => {
               onPress={() => props.onpressButton()}
               style={styles.thirdPortioncardView}>
               <View style={styles.thirdPortionCardTextView}>
-                <Text style={styles.thirdPortionCardText}>Active Agent</Text>
+                <Text style={styles.thirdPortionCardText}>Active Agents</Text>
               </View>
               <View style={styles.numberView}>
                 <Text style={styles.thirdPortionNumberText}>{props?.dashBoardData?.total_agent}</Text>
@@ -200,8 +201,12 @@ const DashboardView = (props: any) => {
           </View>
           {props?.activepropertyData?.length > 0 &&
             <View style={styles.bottomSection}>
-              <View style={styles.headingView}>
-                <Text style={styles.headingText}>ACTIVE PROPERTY</Text>
+              <View style={[styles.headingView, {
+                backgroundColor: PRIMARY_THEME_COLOR_DARK
+              }]}>
+                <Text style={[styles.headingText, {
+                  color: WHITE_COLOR,
+                }]}>Active Properties</Text>
                 {/* <Text style={styles.headingText}>VISITOR</Text>
               <Text style={styles.headingText}>SITE VISIT</Text>
               <Text style={styles.headingText}>CLOSE LEAD</Text> */}

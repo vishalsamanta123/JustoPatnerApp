@@ -159,7 +159,7 @@ const agentDetailItem = (props: any) => {
       </View>
       <View style={styles.Txtview}>
         <View style={styles.projectContainer}>
-          <Text style={styles.projectTxt}>Working from</Text>
+          <Text style={styles.projectTxt}>Joining Now</Text>
         </View>
         <View><Text>:</Text></View>
         <View style={styles.nameContainer}>

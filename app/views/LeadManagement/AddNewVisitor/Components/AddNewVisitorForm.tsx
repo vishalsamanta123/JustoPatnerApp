@@ -612,11 +612,11 @@ const AddNewVisitorForm = (props: any) => {
           </View>
           <View style={[styles.inputWrap]}>
             <DropdownInput
-              headingText={"Configuration"}
+              headingText={"Configurations"}
               placeholder={
                 props.formData?.configuration
                   ? props.formData?.configuration
-                  : "Configuration"
+                  : "Configurations"
               }
               data={props?.masterDatas}
               inputWidth={"100%"}

@@ -35,7 +35,7 @@ const agentDetailItem = (props: any) => {
       </View>
       <View style={styles.Txtview}>
         <View style={styles.projectContainer}>
-          <Text style={styles.projectTxt}>No. of site visit</Text>
+          <Text style={styles.projectTxt}>Total Site Visit</Text>
         </View>
         <View><Text>:</Text></View>
         <View style={styles.nameContainer}>
@@ -47,7 +47,7 @@ const agentDetailItem = (props: any) => {
       </View>
       <View style={styles.Txtview}>
         <View style={styles.projectContainer}>
-          <Text style={styles.projectTxt}>No. of Close visit</Text>
+          <Text style={styles.projectTxt}>No. of </Text>
         </View>
         <View><Text>:</Text></View>
         <View style={styles.nameContainer}>
@@ -95,7 +95,7 @@ const agentDetailItem = (props: any) => {
       </View>
       <View style={styles.Txtview}>
         <View style={styles.projectContainer}>
-          <Text style={styles.projectTxt}>Last close visit</Text>
+          <Text style={styles.projectTxt}>Last </Text>
         </View>
         <View><Text>:</Text></View>
         <View style={styles.nameContainer}>

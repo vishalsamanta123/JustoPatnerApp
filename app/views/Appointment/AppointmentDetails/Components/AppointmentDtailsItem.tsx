@@ -79,7 +79,7 @@ const AppointmentDtailsItem = (props: any) => {
       </View> */}
       <View style={styles.Txtview}>
         <View style={styles.projectContainer}>
-          <Text style={styles.projectTxt}>Configuration</Text>
+          <Text style={styles.projectTxt}>Configurations</Text>
         </View>
         <View>
           <Text>:</Text>
@@ -201,7 +201,7 @@ const AppointmentDtailsItem = (props: any) => {
         </View>)}
       <View style={styles.Txtview}>
         <View style={styles.projectContainer}>
-          <Text style={styles.projectTxt}>Appointment Create by</Text>
+          <Text style={styles.projectTxt}>Create By</Text>
         </View>
         <View>
           <Text>:</Text>

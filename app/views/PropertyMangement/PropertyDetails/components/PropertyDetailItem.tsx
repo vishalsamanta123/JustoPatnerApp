@@ -59,7 +59,7 @@ const PropertyDetailItem = (props: any) => {
       </View>
       <View style={styles.Txtview}>
         <View style={styles.projectContainer}>
-          <Text style={styles.projectTxt}>No. of visitor </Text>
+          <Text style={styles.projectTxt}>Total Visitor </Text>
         </View>
         <View>
           <Text>:</Text>
@@ -70,7 +70,7 @@ const PropertyDetailItem = (props: any) => {
       </View>
       <View style={styles.Txtview}>
         <View style={styles.projectContainer}>
-          <Text style={styles.projectTxt}>No. of site visit </Text>
+          <Text style={styles.projectTxt}>Total Site Visitor </Text>
         </View>
         <View>
           <Text>:</Text>
@@ -81,7 +81,7 @@ const PropertyDetailItem = (props: any) => {
       </View>
       <View style={styles.Txtview}>
         <View style={styles.projectContainer}>
-          <Text style={styles.projectTxt}>Close visit </Text>
+          <Text style={styles.projectTxt}>Closer Visit </Text>
         </View>
         <View>
           <Text>:</Text>
@@ -156,7 +156,7 @@ const PropertyDetailItem = (props: any) => {
       </View> */}
       <View style={styles.Txtview}>
         <View style={styles.projectContainer}>
-          <Text style={styles.projectTxt}>Configuration </Text>
+          <Text style={styles.projectTxt}>Configurations </Text>
         </View>
         <View>
           <Text>:</Text>
@@ -208,7 +208,7 @@ const PropertyDetailItem = (props: any) => {
       </View>
       <View style={styles.Txtview}>
         <View style={styles.projectContainer}>
-          <Text style={styles.projectTxt}>Amenity </Text>
+          <Text style={styles.projectTxt}>Amenities </Text>
         </View>
         <View>
           <Text>:</Text>
@@ -259,7 +259,7 @@ const PropertyDetailItem = (props: any) => {
       </View>
       <View style={styles.Txtview}>
         <View style={styles.projectContainer}>
-          <Text style={styles.projectTxt}>Content </Text>
+          <Text style={styles.projectTxt}>Contents </Text>
         </View>
         <View>
           <Text>:</Text>
@@ -349,7 +349,7 @@ const PropertyDetailItem = (props: any) => {
       </View>
       <View style={[styles.Txtview, { borderBottomWidth: 0 }]}>
         <View style={styles.projectContainer}>
-          <Text style={styles.projectTxt}>Pickup Allowed </Text>
+          <Text style={styles.projectTxt}>Pickup Facilities </Text>
         </View>
         <View>
           <Text>:</Text>
