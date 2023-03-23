@@ -61,7 +61,7 @@ const LeadManagementItem = (props: any) => {
       </View>
       <View style={styles.Txtview}>
         <View style={styles.projectContainer}>
-          <Text style={styles.projectTxt}>Configuration :</Text>
+          <Text style={styles.projectTxt}>Configurations :</Text>
         </View>
         <View style={styles.nameContainer}>
           <Text style={styles.nameTxt}>

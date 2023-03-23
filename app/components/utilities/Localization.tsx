@@ -43,7 +43,7 @@ const strings = new LocalizedStrings({
     view: 'View',
     unsubscribe: 'Unsubscribe',
     subscribe: 'Subscribe',
-    propertyDetailHeader: 'Property Detail',
+    propertyDetailHeader: 'Property Details',
     confirmation: 'Confirmation',
     ConfirmationModalTxt: 'Select the reason for\r\nunsubscribe this property.',
     Confirm: 'Confirm',
@@ -203,7 +203,7 @@ const strings = new LocalizedStrings({
     txt_setting_Location:
       'Justo does not have access to your Location. To enable access, tap on Settings and turn on Location.',
 
-    notfount: 'Not Found',
+    notfount: 'NA',
     inprocess: 'In Process',
 
     // Raise Ticket (Support)

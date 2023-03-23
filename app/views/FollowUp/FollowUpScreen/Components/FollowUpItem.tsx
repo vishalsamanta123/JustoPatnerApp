@@ -3,14 +3,9 @@ import React from "react";
 import styles from "./Styles";
 import images from "../../../../assets/images";
 import {
-  BLACK_COLOR,
-  YELLOW_COLOR,
   PURPLE_COLOR,
-  PRIMARY_THEME_COLOR_DARK,
   PRIMARY_THEME_COLOR,
   DATE_TIME_FORMAT,
-  GREEN_COLOR,
-  RED_COLOR,
   DATE_FORMAT,
 } from "../../../../components/utilities/constant";
 import strings from "../../../../components/utilities/Localization";
@@ -83,7 +78,7 @@ const FollowUpItem = (props: any) => {
       </View>
       <View style={styles.Txtview}>
         <View style={styles.projectContainer}>
-          <Text style={styles.projectTxt}>Configuration :</Text>
+          <Text style={styles.projectTxt}>Configurations :</Text>
         </View>
         <View style={styles.nameContainer}>
           <Text style={styles.nameTxt}>
