@@ -101,11 +101,11 @@ const DashboardScreen = ({ navigation, route }: any) => {
     navigation.navigate('PropertyScreenView')
   }
 
-  const onpressButton = (type: any) => {
+  const onpressButton = (type: any, onPressType: any) => {
     if (type === 'visit') {
       navigation.navigate('LeadManagement', 'today')
     } else if (type === 'appointment') {
-      navigation.navigate('AppointmentScreen', 'today')
+      navigation.navigate('AppointmentScreen',  onPressType)
     } else {
       navigation.navigate('AgentListing')
     }

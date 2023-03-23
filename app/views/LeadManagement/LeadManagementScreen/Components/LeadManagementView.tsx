@@ -81,7 +81,7 @@ const LeadManagementView = (props: any) => {
         }
         <View style={{marginTop: 10}}>
           <Button
-              buttonText={"Reset Filter"}
+              buttonText={strings.resetToday}
               width={150}
               height={30}
               btnTxtsize={15}

@@ -109,56 +109,56 @@ const App = () => {
     return unsubscribe;
   }, []);
 
-  const handleNotification = (notificationType: any, data: any) => {
-    console.log("data: IN handleNotification", data);
-    console.log("notificationType: ", notificationType);
-    switch (notificationType) {
-      case 'lead':
-        navigate('LeadManagementScreen', {})
-        break;
-      case 'appoinment':
-        navigate('Appointments', {})
-        break;
-      case 'booking':
-        navigate('BookingList', {type: 'request',})
-        break;
-      case 'followUp':
-        navigate('FollowUpScreen', {})
-        break;
-      case 'property':
-        navigate('PropertyScreenView', {})
-        break;
-      case 'registration':
-        navigate('BookingList', {type: 'register'})
-        break;
-      case 'support':
-        navigate('Support', {})
-        break;
-      case 'user appointment':
-        navigate('FollowUpScreen', {})
-        break;
-      case 'assign':
-        navigate('FollowUpScreen', {})
-        break;
-      case notificationType:
-        break;
-    }
-  };
-  useEffect(() => {
-    return notifee.onForegroundEvent(({ type, detail }: any) => {
-    console.log('detail: ', detail);
-    console.log('type: ', type);
-      switch (type) {
-        case EventType.DISMISSED:
-          console.log("User dismissed notification", detail.notification);
-          break;
-        case EventType.PRESS:
-          console.log("User pressed notification", detail.notification);
-          handleNotification(detail?.notification?.data?.type, detail?.notification?.data)
-          break;
-      }
-    });
-  }, []);
+  // const handleNotification = (notificationType: any, data: any) => {
+  //   console.log("data: IN handleNotification", data);
+  //   console.log("notificationType: ", notificationType);
+  //   switch (notificationType) {
+  //     case 'lead':
+  //       navigate('LeadManagementScreen', {})
+  //       break;
+  //     case 'appoinment':
+  //       navigate('Appointments', {})
+  //       break;
+  //     case 'booking':
+  //       navigate('BookingList', {type: 'request',})
+  //       break;
+  //     case 'followUp':
+  //       navigate('FollowUpScreen', {})
+  //       break;
+  //     case 'property':
+  //       navigate('PropertyScreenView', {})
+  //       break;
+  //     case 'registration':
+  //       navigate('BookingList', {type: 'register'})
+  //       break;
+  //     case 'support':
+  //       navigate('Support', {})
+  //       break;
+  //     case 'user appointment':
+  //       navigate('FollowUpScreen', {})
+  //       break;
+  //     case 'assign':
+  //       navigate('FollowUpScreen', {})
+  //       break;
+  //     case notificationType:
+  //       break;
+  //   }
+  // };
+  // useEffect(() => {
+  //   return notifee.onForegroundEvent(({ type, detail }: any) => {
+  //   console.log('detail: ', detail);
+  //   console.log('type: ', type);
+  //     switch (type) {
+  //       case EventType.DISMISSED:
+  //         console.log("User dismissed notification", detail.notification);
+  //         break;
+  //       case EventType.PRESS:
+  //         console.log("User pressed notification", detail.notification);
+  //         handleNotification(detail?.notification?.data?.type, detail?.notification?.data)
+  //         break;
+  //     }
+  //   });
+  // }, []);
 
   // Get the FCM Token From Firebase
   const getFcmToken = async () => {

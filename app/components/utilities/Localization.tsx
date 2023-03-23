@@ -53,6 +53,7 @@ const strings = new LocalizedStrings({
     pauseVideo: 'Pause',
     apply: 'APPLY',
     reset: 'RESET',
+    resetToday: 'Reset',
     resend: 'Resend',
     notRecived: `Didn't receive the code?`,
     codeSent: 'A verification code has been sent to',

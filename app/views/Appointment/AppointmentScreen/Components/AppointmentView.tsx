@@ -51,6 +51,7 @@ const AppointmentView = (props: any) => {
   const [userAppointmentList, setUserAppointmentList] = useState<any>([]);
   const [offSET, setOffset] = useState(0);
   const dispatch: any = useDispatch();
+  const [type, settype] = useState('')
   const { response = {}, list = "" } = useSelector(
     (state: any) => state.appointment
   );
@@ -84,8 +85,19 @@ const AppointmentView = (props: any) => {
       { key: "second", title: strings.allappointment },
     ],
   });
+  useFocusEffect(
+    React.useCallback(() => {
+      settype(props?.params)
+      return () => { };
+    }, [navigation, list, props?.params])
+  );
   useEffect(() => {
-    if (indexData?.index === 0) {
+    console.log('props.params: ', props.params);
+    if (type === "today") {
+      getAppointmentList(0, todayAppointment);
+    } else if(type === "todayComplete") {
+      getAppointmentList(0, {...todayAppointment, status: 3});
+    } else if (indexData?.index === 0) {
       console.log("indexData?.index: ", indexData?.index);
       // handleUserAppointmentList(1);
       getAppointmentList(offSET, todayAppointment);
@@ -94,13 +106,23 @@ const AppointmentView = (props: any) => {
     }
   }, [indexData, updateUserStatusResponse, props.params]);
 
-  useEffect(() => {
-    console.log("props.params: ", props.params);
-    if (props.params === "today") {
-      handleIndexChange(0)
-    }
-  }, [props.params, updateUserStatusResponse]);
+  // useEffect(() => {
+  //   console.log("props.params: ", props.params);
+  //   if (props.params === "today") {
+  //     handleIndexChange(0);
+  //   }
+  // }, [props.params, updateUserStatusResponse]);
 
+  const handleReset = () => {
+    settype('')
+    if (indexData?.index === 0) {
+      console.log("indexData?.index: ", indexData?.index);
+      // handleUserAppointmentList(1);
+      getAppointmentList(offSET, todayAppointment);
+    } else {
+      getAppointmentList(offSET, {});
+    }
+  }
   const handleUserAppointmentList = (type: any) => {
     dispatch(
       getUserAppointmentList({
@@ -302,6 +324,7 @@ const AppointmentView = (props: any) => {
             offSET={offSET}
             keyType={route.key}
             todayAppointment={todayAppointment}
+            settype={settype}
           />
         );
       case "second":
@@ -319,6 +342,7 @@ const AppointmentView = (props: any) => {
             offSET={offSET}
             keyType={route.key}
             todayAppointment={todayAppointment}
+            settype={settype}
           />
         );
     }
@@ -338,8 +362,15 @@ const AppointmentView = (props: any) => {
         RightFirstIconStyle={styles.RightFirstIconStyle}
         handleOnRightFirstIconPress={() => setFilterisVisible(true)}
       />
-      {create && (
-        <View style={{ marginVertical: 10, alignItems: "flex-end" }}>
+      <View style={{flexDirection: 'row', marginVertical: 10, alignItems: "flex-end" }}>
+        <Button
+          width={150}
+          height={30}
+          buttonText={strings.resetToday}
+          btnTxtsize={14}
+          handleBtnPress={() => handleReset()}
+        />
+        {create && (
           <Button
             width={200}
             height={30}
@@ -347,8 +378,8 @@ const AppointmentView = (props: any) => {
             btnTxtsize={14}
             handleBtnPress={() => onPressAddNew()}
           />
-        </View>
-      )}
+        )}
+      </View>
       <View style={styles.propertyListView}>
         <TabView
           renderTabBar={renderTabBar}

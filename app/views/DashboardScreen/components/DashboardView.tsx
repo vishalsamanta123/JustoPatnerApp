@@ -157,7 +157,7 @@ const DashboardView = (props: any) => {
               </View>
             </TouchableOpacity>
             <TouchableOpacity
-              onPress={() => props.onpressButton('appointment')}
+              onPress={() => props.onpressButton('appointment', 'today')}
               style={styles.thirdPortioncardView}>
               <View style={styles.thirdPortionCardTextView}>
                 <Text style={styles.thirdPortionCardText} numberOfLines={2}>
@@ -169,7 +169,7 @@ const DashboardView = (props: any) => {
               </View>
             </TouchableOpacity>
             <TouchableOpacity
-              onPress={() => props.onpressButton('appointment')}
+              onPress={() => props.onpressButton('appointment', 'todayComplete')}
               style={styles.thirdPortioncardView}>
               <View style={styles.thirdPortionCardTextView}>
                 <Text style={styles.thirdPortionCardText}>
