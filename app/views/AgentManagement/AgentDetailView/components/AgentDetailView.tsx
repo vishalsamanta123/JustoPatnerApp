@@ -13,14 +13,14 @@ import { TabView, SceneMap, TabBar } from 'react-native-tab-view';
 import moment from 'moment'
 
 const agentDetailView = (props: any) => {
-console.log('props: ', props.allDetails);
+  console.log('props: ', props.allDetails);
   const insets = useSafeAreaInsets();
   const layout = useWindowDimensions();
   const [indexData, setIndexData] = useState({
     index: 0,
     routes: [
-      { key: 'first', title: 'Information' },
-      { key: 'second', title: 'Stats' },
+      { key: 'first', title: strings.information },
+      { key: 'second', title: strings.stats },
     ],
   });
 
@@ -66,8 +66,8 @@ console.log('props: ', props.allDetails);
   const handleIndexChange = (index: any) => {
     setIndexData({
       index: index, routes: [
-        { key: 'first', title: 'Information' },
-        { key: 'second', title: 'Stats' },
+        { key: 'first', title: strings.information },
+        { key: 'second', title: strings.stats },
       ],
     })
   }

@@ -160,7 +160,7 @@ const FilterModal = (props: any) => {
                 maxHeight={300}
                 labelField="label"
                 valueField="value"
-                placeholder="By Visitor Score"
+                placeholder={strings.byvisitorscore}
                 value={props.filterData.visit_score}
                 onChange={(item) => {
                   props.setFilterData({

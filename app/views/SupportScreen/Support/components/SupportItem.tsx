@@ -22,7 +22,7 @@ const SupportItem = (props: any) => {
       </View>
       <View style={styles.Txtview}>
         <View style={styles.projectContainer}>
-          <Text style={styles.projectTxt}>Create By :</Text>
+          <Text style={styles.projectTxt}>{strings.createBy} :</Text>
         </View>
         <View style={styles.nameContainer}>
           <Text style={styles.nameTxt}>

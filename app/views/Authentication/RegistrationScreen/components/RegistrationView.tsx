@@ -17,6 +17,7 @@ import {
   GRAY_COLOR,
   Isios,
   PRIMARY_THEME_COLOR,
+  validateEmail,
   WHITE_COLOR,
 } from "../../../../components/utilities/constant";
 import { useSafeAreaInsets } from "react-native-safe-area-context";
@@ -241,19 +242,40 @@ const RegistrationView = (props: any) => {
             rightImageSty={styles.tickImg}
             valueshow={props.registerForm?.primary_mobile}
             rightImgSrc={props?.emailMobvalidation?.primary_mobile === 'mobile' ? images.check : null}
-            onFocus={() => props.setEmailMobValidation({
-              ...props.emailMobvalidation,
-              primary_mobile: null,
-            })}
+            onFocus={() => {
+              if (props.registerForm?.primary_mobile !== props.registerForm?.primary_mobile) {
+                props.setEmailMobValidation({
+                  ...props.emailMobvalidation,
+                  primary_mobile: null,
+                })
+              }
+            }}
             onChangeText={(val: any) => {
               props.setRegisterForm({
                 ...props.registerForm,
                 primary_mobile: val,
               });
+              if (val?.length === 10) {
+                props.setEmailMobValidation({
+                  ...props.emailMobvalidation,
+                  primary_mobile: 'mobileStart',
+                })
+              } else {
+                props.setEmailMobValidation({
+                  ...props.emailMobvalidation,
+                  primary_mobile: null,
+                })
+              }
             }}
             maxLength={10}
             onBlur={(val: any) => {
-              props.handleCheckEmailMobile(1);
+              if (props.registerForm?.primary_mobile?.length === 10) {
+                props.handleCheckEmailMobile(1);
+                props.setEmailMobValidation({
+                  ...props.emailMobvalidation,
+                  primary_mobile: null,
+                })
+              }
             }}
           />
         </View>
@@ -286,16 +308,37 @@ const RegistrationView = (props: any) => {
                 ...props.registerForm,
                 email: val,
               });
+              if (validateEmail.test(val)) {
+                props.setEmailMobValidation({
+                  ...props.emailMobvalidation,
+                  email: 'emailStart',
+                })
+              } else {
+                props.setEmailMobValidation({
+                  ...props.emailMobvalidation,
+                  email: null,
+                })
+              }
             }}
-            onFocus={() => props.setEmailMobValidation({
-              ...props.emailMobvalidation,
-              email: null,
-            })}
+            onFocus={() => {
+              if (props.registerForm?.email !== props.registerForm?.email) {
+                props.setEmailMobValidation({
+                  ...props.emailMobvalidation,
+                  email: null,
+                })
+              }
+            }}
             rightImgSrc={props?.emailMobvalidation?.email === 'email' ? images.check : null}
             rightImageVw={styles.tickImgVw}
             rightImageSty={styles.tickImg}
             onBlur={(val: any) => {
-              props.handleCheckEmailMobile();
+              if (validateEmail.test(props.registerForm.email)) {
+                props.handleCheckEmailMobile();
+                props.setEmailMobValidation({
+                  ...props.emailMobvalidation,
+                  email: null,
+                })
+              }
             }}
           />
         </View>

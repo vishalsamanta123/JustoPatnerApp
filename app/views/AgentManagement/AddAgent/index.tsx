@@ -4,6 +4,7 @@ import {
   Regexs,
   validateEmail,
 } from "app/components/utilities/constant";
+import strings from "app/components/utilities/Localization";
 import { addAgentForm, getAgentDetail } from "app/Redux/Actions/AgentActions";
 import React, { useEffect, useState, useLayoutEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
@@ -34,6 +35,7 @@ const AgentBasicInfo = ({ navigation, route }: any) => {
     branch_name: "",
     account_no: "",
     ifsc_code: "",
+    norera_register: null,
   });
   const dispatch: any = useDispatch();
   const [visible, setVisible] = useState(false);
@@ -51,6 +53,7 @@ const AgentBasicInfo = ({ navigation, route }: any) => {
           branch_name: bankdata?.branch_name,
           account_no: bankdata?.account_no,
           ifsc_code: bankdata?.ifsc_code,
+          norera_register: null,
         });
       }
     }
@@ -93,43 +96,43 @@ const AgentBasicInfo = ({ navigation, route }: any) => {
     // } else
     if (agent_name === "" || agent_name === undefined) {
       isError = false;
-      errorMessage = "Please fill agent name";
+      errorMessage = strings.agentNameReqVal;
     } else if (adhar_no === "" || adhar_no === undefined) {
       isError = false;
-      errorMessage = "Please fill aadhar number";
+      errorMessage = strings.aadharReqVal;
     } else if (Regexs.AadharRegex.test(adhar_no) === false) {
       isError = false;
-      errorMessage = "Please enter the valid Aadhaar number";
+      errorMessage = strings.aadharValidVal;
     } else if (pancard_no === "" || pancard_no === undefined) {
       isError = false;
-      errorMessage = "Please fill pancard number";
+      errorMessage = strings.pancardReqVal;
     } else if (Regexs.panRegex.test(pancard_no) === false) {
       isError = false;
-      errorMessage = "Please enter the valid Pancard number";
+      errorMessage = strings.pancardValidVal;
     } else if (gender === "" || gender === undefined) {
       isError = false;
-      errorMessage = "Please select gender";
+      errorMessage = strings.genderReqVal;
     } else if (date_of_birth === "" || date_of_birth === undefined) {
       isError = false;
-      errorMessage = "Please select date of birth";
+      errorMessage = strings.dateOfBirthReqVal;
     } else if (primary_mobile === "" || primary_mobile === undefined) {
       isError = false;
-      errorMessage = "Please fill mobile number";
+      errorMessage = strings.mobileNoReqVal;
     } else if (whatsapp_number === "" || whatsapp_number === undefined) {
       isError = false;
-      errorMessage = "Please fill whatsapp number";
+      errorMessage = strings.whatsappNoReqVal;
     } else if (email === "" || email === undefined) {
       isError = false;
-      errorMessage = "Please fill email";
+      errorMessage = strings.emailReqVal;
     } else if (type != "edit" && validateEmail.test(email) === false) {
       isError = false;
-      errorMessage = "Please fill corect email";
+      errorMessage = strings.correctEmailReqVal;
     } else if (location === "" || location === undefined) {
       isError = false;
-      errorMessage = "Please select address";
+      errorMessage = strings.addressReqVal;
     } else if (working_location.length === 0) {
       isError = false;
-      errorMessage = "Please select working location";
+      errorMessage = strings.workingLocationReqVal;
     }
     if (errorMessage !== "") {
       ErrorMessage({
@@ -140,10 +143,10 @@ const AgentBasicInfo = ({ navigation, route }: any) => {
     return isError;
   };
   const onPressNext = () => {
-    if (validation()) {
-      dispatch(addAgentForm(agentInfoData));
-      navigation.navigate("AgentBankInfo", { type: route?.params?.type });
-    }
+    // if (validation()) {
+    dispatch(addAgentForm(agentInfoData));
+    navigation.navigate("AgentBankInfo", { type: route?.params?.type });
+    // }
   };
   return (
     <AgentBasicInfoView
