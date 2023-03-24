@@ -13,7 +13,7 @@ import styles from "./style";
 import images from "../../../../assets/images";
 import strings from "../../../../components/utilities/Localization";
 import Button from "../../../../components/Button";
-import { PRIMARY_THEME_COLOR, WHITE_COLOR } from "../../../../components/utilities/constant";
+import { Isios, PRIMARY_THEME_COLOR, WHITE_COLOR } from "../../../../components/utilities/constant";
 import LogoView from "../../Logoview";
 import CheckBox from "@react-native-community/checkbox";
 
@@ -100,7 +100,9 @@ const OtpVerificationView = (props: any) => {
       <View style={styles.bottomView}>
         <CheckBox
           value={true}
-          tintColors={{true: PRIMARY_THEME_COLOR}}
+          disabled={true}
+          tintColors={{ true: PRIMARY_THEME_COLOR }}
+          style={{ transform: Isios ? [{ scaleX: 0.8 }, { scaleY: 0.8 }]  : [{ scaleX: 0.10 }, { scaleY: 0.10 }]}}
           // onValueChange={(newValue) => setToggleCheckBox(newValue)}
         />
         <Text style={styles.bottomText}>{strings.iAknowledge}</Text>

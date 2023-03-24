@@ -1,4 +1,4 @@
-import { View, Text, Image, TouchableOpacity, ScrollView } from "react-native";
+import { View, Text, Image, TouchableOpacity, ScrollView, Keyboard } from "react-native";
 import React, { useState } from "react";
 import Modal from "react-native-modal";
 import styles from "../../../../components/Modals/styles";
@@ -10,11 +10,12 @@ import InputCalender from "../../../../components/InputCalender";
 import { Dropdown } from "react-native-element-dropdown";
 import moment from "moment";
 import { useDispatch } from 'react-redux';
-import { DATE_FORMAT } from "app/components/utilities/constant";
+import { DATE_FORMAT, Isios } from "app/components/utilities/constant";
 
 const FilterModal = (props: any) => {
   const dispatch: any = useDispatch()
   const resetFilter = () => {
+    Keyboard.dismiss()
     props.setFilterData({
       startdate: '',
       enddate: '',
@@ -26,6 +27,7 @@ const FilterModal = (props: any) => {
     props.setIsVisible(false)
   }
   const handleFilter = () => {
+    Keyboard.dismiss()
     props.setIsVisible(false)
     props.getAgentList(0, props.filterData)
     props.setAgentList([])
@@ -45,6 +47,7 @@ const FilterModal = (props: any) => {
   return (
     <Modal isVisible={props.Visible}>
       <ScrollView keyboardShouldPersistTaps={'handled'}
+      automaticallyAdjustKeyboardInsets={Isios ? true : false}
         contentContainerStyle={{ flexGrow: 1, justifyContent: 'center', }}
       >
         <View style={styles.mainContainer}>

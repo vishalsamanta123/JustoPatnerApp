@@ -6,6 +6,7 @@ import {
 } from "app/components/utilities/constant";
 import { addAgentForm, getAgentDetail } from "app/Redux/Actions/AgentActions";
 import React, { useEffect, useState, useLayoutEffect } from "react";
+import { Keyboard } from "react-native";
 import { useDispatch, useSelector } from "react-redux";
 import AgentBasicInfoView from "./components/AgentBasicInfoView";
 
@@ -140,6 +141,7 @@ const AgentBasicInfo = ({ navigation, route }: any) => {
     return isError;
   };
   const onPressNext = () => {
+    Keyboard.dismiss()
     if (validation()) {
       dispatch(addAgentForm(agentInfoData));
       navigation.navigate("AgentBankInfo", { type: route?.params?.type });

@@ -125,9 +125,10 @@ const styles = StyleSheet.create({
     alignItems: "center",
     justifyContent: "center",
     marginLeft: normalize(10),
+    marginBottom: normalize(10),
     borderRadius: normalize(10),
     paddingVertical: normalize(12),
-    top: normalize(8)
+    top: normalize(8),
   },
   addBtn: {
     backgroundColor: PRIMARY_THEME_COLOR,
