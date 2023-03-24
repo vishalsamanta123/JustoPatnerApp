@@ -9,7 +9,7 @@ const ErrorMessage = ({
     onPressAction = () => { }
 }) => Snackbar.show({
     text: msg,
-    // duration: Snackbar.LENGTH_LONG,
+    duration: Snackbar.LENGTH_LONG,
     backgroundColor: backgroundColor,
     fontFamily: FONT_FAMILY_SEMIBOLD,
     textColor: WHITE_COLOR,

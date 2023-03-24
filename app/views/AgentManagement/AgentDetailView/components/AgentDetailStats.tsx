@@ -10,7 +10,7 @@ const agentDetailItem = (props: any) => {
     <View>
       <View style={styles.Txtview}>
         <View style={styles.projectContainer}>
-          <Text style={styles.projectTxt}>Closing Percentage</Text>
+          <Text style={styles.projectTxt}>{strings.closingPrcntg}</Text>
         </View>
         <View><Text>:</Text></View>
         <View style={styles.nameContainer}>
@@ -23,7 +23,7 @@ const agentDetailItem = (props: any) => {
 
       <View style={styles.Txtview}>
         <View style={styles.projectContainer}>
-          <Text style={styles.projectTxt}>Total Visit</Text>
+          <Text style={styles.projectTxt}>{strings.totalVisitor}</Text>
         </View>
         <View><Text>:</Text></View>
         <View style={styles.nameContainer}>
@@ -35,7 +35,7 @@ const agentDetailItem = (props: any) => {
       </View>
       <View style={styles.Txtview}>
         <View style={styles.projectContainer}>
-          <Text style={styles.projectTxt}>Total Site Visit</Text>
+          <Text style={styles.projectTxt}>{strings.totalSiteVisit}</Text>
         </View>
         <View><Text>:</Text></View>
         <View style={styles.nameContainer}>
@@ -47,7 +47,7 @@ const agentDetailItem = (props: any) => {
       </View>
       <View style={styles.Txtview}>
         <View style={styles.projectContainer}>
-          <Text style={styles.projectTxt}>Total Closer Visit</Text>
+          <Text style={styles.projectTxt}>{strings.totalCloserVisit}</Text>
         </View>
         <View><Text>:</Text></View>
         <View style={styles.nameContainer}>
@@ -59,7 +59,7 @@ const agentDetailItem = (props: any) => {
       </View>
       <View style={styles.Txtview}>
         <View style={styles.projectContainer}>
-          <Text style={styles.projectTxt}>Last Login</Text>
+          <Text style={styles.projectTxt}>{strings.lastLogin}</Text>
         </View>
         <View><Text>:</Text></View>
         <View style={styles.nameContainer}>
@@ -71,7 +71,7 @@ const agentDetailItem = (props: any) => {
       </View>
       <View style={styles.Txtview}>
         <View style={styles.projectContainer}>
-          <Text style={styles.projectTxt}>Last Lead Create</Text>
+          <Text style={styles.projectTxt}>{strings.last + " " + strings.leadCreate}</Text>
         </View>
         <View><Text>:</Text></View>
         <View style={styles.nameContainer}>
@@ -83,7 +83,7 @@ const agentDetailItem = (props: any) => {
       </View>
       <View style={styles.Txtview}>
         <View style={styles.projectContainer}>
-          <Text style={styles.projectTxt}>Last Site Visit</Text>
+          <Text style={styles.projectTxt}>{strings.last + " " + strings.siteVisit}</Text>
         </View>
         <View><Text>:</Text></View>
         <View style={styles.nameContainer}>
@@ -95,7 +95,7 @@ const agentDetailItem = (props: any) => {
       </View>
       <View style={styles.Txtview}>
         <View style={styles.projectContainer}>
-          <Text style={styles.projectTxt}>Last Close Visit</Text>
+          <Text style={styles.projectTxt}>{strings.last + " " + strings.closeVisit}</Text>
         </View>
         <View><Text>:</Text></View>
         <View style={styles.nameContainer}>

@@ -42,7 +42,7 @@ const UserBankInfo = (props: any) => {
       </View>
       <View style={styles.fieldView}>
         <View style={styles.keyView}>
-          <Text style={styles.keyText}>Rera REGISTRATION No.</Text>
+          <Text style={styles.keyText}>RERA REGISTRATION No.</Text>
         </View>
         <Text style={styles.colon}>:</Text>
         <View style={styles.valueView}>

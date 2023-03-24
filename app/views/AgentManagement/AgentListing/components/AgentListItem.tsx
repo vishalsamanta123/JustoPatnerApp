@@ -10,7 +10,7 @@ const AgentListItem = (props: any) => {
     <View style={styles.IteamView}>
       <View style={styles.Txtview} >
         <View style={styles.projectContainer}>
-          <Text style={styles.projectTxt}>Agent Name</Text>
+          <Text style={styles.projectTxt}>{strings.agent + " " + strings.name}</Text>
         </View>
         <View><Text>:</Text></View>
         <View style={styles.nameContainer}>
@@ -19,7 +19,7 @@ const AgentListItem = (props: any) => {
       </View>
       <View style={styles.Txtview} >
         <View style={styles.projectContainer}>
-          <Text style={styles.projectTxt}>Location</Text>
+          <Text style={styles.projectTxt}>{strings.location}</Text>
         </View>
         <View><Text>:</Text></View>
         <View style={styles.nameContainer}>
@@ -30,7 +30,7 @@ const AgentListItem = (props: any) => {
       </View>
       <View style={styles.Txtview} >
         <View style={styles.projectContainer}>
-          <Text style={styles.projectTxt}>Rera No.</Text>
+          <Text style={styles.projectTxt}>{strings.RERA + " " + strings.shortNum}</Text>
         </View>
         <View><Text>:</Text></View>
         <View style={styles.nameContainer}>
@@ -42,7 +42,7 @@ const AgentListItem = (props: any) => {
       </View>
       <View style={styles.Txtview} >
         <View style={styles.projectContainer}>
-          <Text style={styles.projectTxt}>Total Visit</Text>
+          <Text style={styles.projectTxt}>{strings.totalVisitor}</Text>
         </View>
         <View><Text>:</Text></View>
         <View style={styles.nameContainer}>
@@ -51,7 +51,7 @@ const AgentListItem = (props: any) => {
       </View>
       <View style={styles.Txtview}>
         <View style={styles.projectContainer}>
-          <Text style={styles.projectTxt}>Total Site Visit</Text>
+          <Text style={styles.projectTxt}>{strings.totalSiteVisit}</Text>
         </View>
         <View><Text>:</Text></View>
         <View style={styles.nameContainer}>
@@ -60,7 +60,7 @@ const AgentListItem = (props: any) => {
       </View>
       <View style={styles.Txtview} >
         <View style={styles.projectContainer}>
-          <Text style={styles.projectTxt}>Total Closer Visit</Text>
+          <Text style={styles.projectTxt}>{strings.totalCloserVisit}</Text>
         </View>
         <View><Text>:</Text></View>
         <View style={styles.nameContainer}>
@@ -69,7 +69,7 @@ const AgentListItem = (props: any) => {
       </View>
       <View style={styles.Txtview} >
         <View style={styles.projectContainer}>
-          <Text style={styles.projectTxt}>Status</Text>
+          <Text style={styles.projectTxt}>{strings.status}</Text>
         </View>
         <View><Text>:</Text></View>
         <View style={styles.nameContainer}>

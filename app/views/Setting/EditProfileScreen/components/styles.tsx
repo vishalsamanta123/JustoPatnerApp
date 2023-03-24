@@ -101,6 +101,12 @@ const styles = StyleSheet.create({
     backgroundColor: GRAY_COLOR,
     borderRadius: 100,
   },
+  straightVw: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    marginHorizontal: normalizeSpacing(16),
+    marginTop: normalizeSpacing(6),
+  },
 });
 
 export default styles;

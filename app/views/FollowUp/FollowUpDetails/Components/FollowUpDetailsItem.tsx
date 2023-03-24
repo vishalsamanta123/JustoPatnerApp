@@ -21,7 +21,7 @@ const FollowUpDetailsItem = (props: any) => {
             </View>
             <View style={styles.topDetailsView}>
                 <View style={styles.topTxtView}>
-                    <Text style={styles.topTxt}>Visitor Score </Text>
+                    <Text style={styles.topTxt}>{strings.visitorScore} </Text>
                     <Text style={styles.topTxt}>{data?.lead_score === '' ||
                         data?.lead_score === undefined ||
                         data?.lead_score === null ? strings.notfount

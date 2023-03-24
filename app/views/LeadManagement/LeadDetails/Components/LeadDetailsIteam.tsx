@@ -18,7 +18,7 @@ const LeadDetailsIteam = (props: any) => {
                     <Text style={styles.topTxt}>{props?.items?.lead_score}</Text>
                     <Text style={[styles.topTxt, {
                         fontSize: normalize(16)
-                    }]}>Visitor Score </Text>
+                    }]}>{strings.visitorScore} </Text>
                 </View>
                 {/* {props?.items?.create_by === userId?._id ?
                     ( */}

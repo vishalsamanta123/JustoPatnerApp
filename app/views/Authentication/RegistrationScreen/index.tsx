@@ -57,19 +57,23 @@ const RegistrationScreen = ({ navigation }: any) => {
     location: '',
     latitude: '',
     longitude: '',
+    norera_register: null,
   });
   useEffect(() => {
-    if (typeof registrationData?.response === 'object') {
+    if (typeof registrationData?.response === 'object' && registrationData?.response?.emailMobvalidation) {
       setRegisterForm({
         ...registrationData?.response,
         working_location: registrationData?.response?.working_location ?? []
       });
+      setEmailMobValidation(registrationData?.response?.emailMobvalidation)
     }
   }, [registrationData, navigation]);
 
   const validation = () => {
-    Keyboard.dismiss()
-    if (!isKeyboardVisible) {
+    if (emailMobvalidation.primary_mobile === "mobileStart" ||
+      emailMobvalidation.email === "emailStart") {
+      Keyboard.dismiss()
+    } else {
       let isError = true;
       let errorMessage: any = "";
       if (registerForm.owner_name == undefined || registerForm.owner_name == "") {
@@ -113,6 +117,9 @@ const RegistrationScreen = ({ navigation }: any) => {
       ) {
         isError = false;
         errorMessage = "Mobile No. is require. Please enter Mobile No.";
+      } else if (registerForm.primary_mobile?.length < 10) {
+        isError = false;
+        errorMessage = "Mobile No. should be 10 digits. Please enter correct Mobile No.";
       } else if (emailMobvalidation.primary_mobile == null) {
         isError = false;
         errorMessage = "Mobile No. is already registered. Please enter other Mobile No.";
@@ -156,7 +163,7 @@ const RegistrationScreen = ({ navigation }: any) => {
 
   const onPressNext = () => {
     if (validation()) {
-      dispatch(RegistrationForm(registerForm));
+      dispatch(RegistrationForm({ ...registerForm, emailMobvalidation: emailMobvalidation }));
       navigation.navigate("UserBankInfo");
     }
   };

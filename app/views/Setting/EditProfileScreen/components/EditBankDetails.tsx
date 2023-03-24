@@ -8,7 +8,7 @@ import {
 import React, { useEffect, useState } from "react";
 import images from "../../../../assets/images";
 import InputField from "../../../../components/InputField";
-import { GRAY_LIGHT_COLOR, GREEN_COLOR, PRIMARY_THEME_COLOR, WHITE_COLOR } from "../../../../components/utilities/constant";
+import { BLACK_COLOR, GRAY_LIGHT_COLOR, GREEN_COLOR, PRIMARY_THEME_COLOR, WHITE_COLOR } from "../../../../components/utilities/constant";
 import strings from "../../../../components/utilities/Localization";
 import styles from "./styles";
 import { useSafeAreaInsets } from "react-native-safe-area-context";
@@ -22,6 +22,7 @@ import moment from "moment";
 import { removeUpdateData, updateUserSettingData } from "app/Redux/Actions/SettingActions";
 import ErrorMessage from "app/components/ErrorMessage";
 import { addAgentForm } from "app/Redux/Actions/AgentActions";
+import { RadioButton } from "react-native-paper";
 
 const EditBankDetails = ({ navigation }: any) => {
   const dispatch: any = useDispatch()
@@ -60,17 +61,18 @@ const EditBankDetails = ({ navigation }: any) => {
             valueshow={editData?.rera_certificate_no}
             handleInputBtnPress={() => { }}
             maxLength={20}
-            headingText={"Rera Certificate No."}
+            headingText={"RERA Certificate No."}
             onChangeText={(val: any) => {
               setEditData({
-                ...editData, rera_certificate_no: val
+                ...editData, rera_certificate_no: val,
+                norera_register: val === "" ? null : ""
               })
             }}
           />
         </View>
         <View style={[styles.inputWrap, { flexDirection: "row", }]}>
           <View style={{ flex: 1, justifyContent: 'center' }}>
-            <Text style={styles.headingText}>Rera Certificate</Text>
+            <Text style={styles.headingText}>RERA Certificate</Text>
           </View>
           <View style={{ flex: 0.6, }}>
             <TouchableOpacity
@@ -83,7 +85,7 @@ const EditBankDetails = ({ navigation }: any) => {
               editData?.rera_certificate === "" ||
               editData?.rera_certificate === undefined ?
               null :
-              <Text style={styles.addedTxt}>{"Rera Certificate Added"}</Text>
+              <Text style={styles.addedTxt}>{"RERA Certificate Added"}</Text>
             }
           </View>
         </View>
@@ -105,6 +107,34 @@ const EditBankDetails = ({ navigation }: any) => {
               <Text style={styles.addedTxt}>{"Proprietorship Declaration Letter Added"}</Text>
             }
           </View>
+        </View>
+        <View style={styles.straightVw}>
+          <RadioButton.Android
+            value={editData?.norera_register}
+            status={editData?.norera_register === 1 ? "checked" : "unchecked"}
+            onPress={() => {
+              setEditData({
+                ...editData,
+                norera_register: 1,
+                rera_certificate: '',
+                rera_certificate_no: '',
+              });
+            }}
+            color={PRIMARY_THEME_COLOR}
+          />
+          <Text
+            style={[
+              styles.radioTxt,
+              {
+                color:
+                  editData?.norera_register === 1
+                    ? PRIMARY_THEME_COLOR
+                    : BLACK_COLOR,
+              },
+            ]}
+          >
+            {strings.noReraRegistr}
+          </Text>
         </View>
         <View style={styles.inputWrap}>
           <Text style={styles.headingText}>Bank details</Text>
@@ -176,7 +206,8 @@ const EditBankDetails = ({ navigation }: any) => {
         imageData={(data: any) => {
           setEditData({
             ...editData,
-            rera_certificate: data
+            rera_certificate: data,
+            norera_register: ''
           })
         }}
       />

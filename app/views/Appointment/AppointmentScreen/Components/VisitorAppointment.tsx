@@ -167,7 +167,7 @@ const VisitorAppointment = (props: any) => {
       </View> */}
       <View style={styles.Txtview}>
         <View style={styles.projectContainer}>
-          <Text style={styles.projectTxt}>Visitor Score</Text>
+          <Text style={styles.projectTxt}>{strings.visitorScore}</Text>
         </View>
         <View>
           <Text>:</Text>

@@ -150,7 +150,7 @@ const DashboardView = (props: any) => {
               onPress={() => props.onpressButton('visit')}
               style={styles.thirdPortioncardView}>
               <View style={styles.thirdPortionCardTextView}>
-                <Text style={styles.thirdPortionCardText}>Today Leads</Text>
+                <Text style={styles.thirdPortionCardText}>{strings.todayLead}</Text>
               </View>
               <View style={styles.numberView}>
                 <Text style={styles.thirdPortionNumberText}>{props?.dashBoardData?.total_visit}</Text>
@@ -173,7 +173,7 @@ const DashboardView = (props: any) => {
               style={styles.thirdPortioncardView}>
               <View style={styles.thirdPortionCardTextView}>
                 <Text style={styles.thirdPortionCardText}>
-                  Today Complete Visits
+                  {strings.todayCompVisit}
                 </Text>
               </View>
               <View style={styles.numberView}>

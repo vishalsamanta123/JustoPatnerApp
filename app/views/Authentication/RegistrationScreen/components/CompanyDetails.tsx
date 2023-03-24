@@ -62,7 +62,7 @@ const CompanyDetails = ({ navigation }: any) => {
     }
     else if (formData.rera_registration == '' || formData.rera_registration == undefined) {
       isError = false;
-      errorMessage = "Rera Registration is require. Please enter Rera Registration"
+      errorMessage = "RERA Registration is require. Please enter RERA Registration"
     }
     else if (formData.company_bank_name == '' || formData.company_bank_name == undefined) {
       isError = false;
