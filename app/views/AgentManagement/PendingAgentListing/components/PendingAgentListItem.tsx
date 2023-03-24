@@ -28,7 +28,7 @@ const PendingAgentListing = (props: any) => {
       </View>
       <View style={styles.Txtview} >
         <View style={styles.projectContainer}>
-          <Text style={styles.projectTxt}>Rera No.</Text>
+          <Text style={styles.projectTxt}>{strings.RERA + " " + strings.shortNum}</Text>
         </View>
         <View><Text>:</Text></View>
         <View style={styles.nameContainer}>

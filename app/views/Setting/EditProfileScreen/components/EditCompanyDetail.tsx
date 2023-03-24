@@ -69,7 +69,7 @@ const EditCompanyDetails = ({ navigation }: any) => {
         editFormData.append("longitude", editData?.longitude);
         //2nd 
         editFormData.append("rera_certificate_no", editData?.rera_certificate_no);
-        editData?.rera_certificate?.uri &&
+        editData?.rera_certificate &&
             editFormData.append("rera_certificate", editData?.rera_certificate);
         editData?.propidership_declaration_letter?.uri &&
             editFormData.append("propidership_declaration_letter", editData?.propidership_declaration_letter);
@@ -142,9 +142,9 @@ const EditCompanyDetails = ({ navigation }: any) => {
                 <View style={styles.inputWrap}>
                     <InputField
                         // require={true}
-                        placeholderText={"Rera Registration"}
+                        placeholderText={"RERA Registration"}
                         maxLength={20}
-                        headingText={"Rera Registration"}
+                        headingText={"RERA Registration"}
                         handleInputBtnPress={() => { }}
                         valueshow={editData?.rera_registration}
                         onChangeText={(val: any) => {

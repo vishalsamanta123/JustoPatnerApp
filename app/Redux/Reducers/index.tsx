@@ -93,5 +93,4 @@ export default {
 
     //deal Flow
     dealFlow: dealFlowReducer,
-    notificationCount: notificationCountReducer
 }

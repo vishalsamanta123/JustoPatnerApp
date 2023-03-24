@@ -200,14 +200,14 @@ const styles = StyleSheet.create({
   },
   spanTouch: {
     flexDirection: 'row'
-  }, 
+  },
   spanText: {
     textAlign: 'center',
     fontSize: normalize(14),
     // lineHeight: normalizeHeight(10),
     color: PRIMARY_THEME_COLOR,
     fontFamily: FONT_FAMILY_SEMIBOLD,
-    
+
   },
   bottomText: {
     textAlign: 'center',
@@ -216,10 +216,16 @@ const styles = StyleSheet.create({
     fontFamily: FONT_FAMILY_SEMIBOLD,
     color: GRAY_LIGHT_COLOR
   },
-  bottomContentView:{
+  bottomContentView: {
     flexDirection: 'row',
     // width: '80%',
-  }
+  },
+  straightVw: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    marginHorizontal: normalizeSpacing(30),
+    marginTop: normalizeSpacing(6),
+  },
 });
 
 export default styles;

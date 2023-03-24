@@ -33,8 +33,8 @@ const FilterModal = (props: any) => {
     props.setAgentList([])
   }
   const data = [
-    { label: "Active", value: true },
-    { label: "InActive", value: false },
+    { label: strings.active, value: true },
+    { label: strings.inActive, value: false },
 
   ];
   const renderItem = (item: any) => {
@@ -65,7 +65,7 @@ const FilterModal = (props: any) => {
               <InputCalender
                 mode={'date'}
                 leftIcon={images.event}
-                placeholderText={"Start Date"}
+                placeholderText={strings.startDate}
                 editable={false}
                 dateData={(data: any) => {
                   props.setFilterData({
@@ -86,7 +86,7 @@ const FilterModal = (props: any) => {
               <InputCalender
                 mode={'date'}
                 leftIcon={images.event}
-                placeholderText={"End Date"}
+                placeholderText={strings.endDate}
                 editable={false}
                 value={props?.filterData?.enddate}
                 dateData={(data: any) => {
@@ -105,8 +105,8 @@ const FilterModal = (props: any) => {
             </View>
             <View style={styles.inputWrap}>
               <InputField
-                placeholderText={"Search by Name"}
-                headingText={"Search by Name"}
+                placeholderText={strings.searchBy + " " + strings.name}
+                headingText={strings.searchBy + " " + strings.name}
                 onChangeText={(data: any) => {
                   props.setFilterData({
                     ...props.filterData,
@@ -145,7 +145,7 @@ const FilterModal = (props: any) => {
                 maxHeight={300}
                 labelField="label"
                 valueField="value"
-                placeholder="Select Status"
+                placeholder={strings.selectStatus}
                 value={props?.filterData?.status}
                 onChange={(item) => {
                   props.setFilterData({

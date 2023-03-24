@@ -149,7 +149,7 @@ const styles = StyleSheet.create({
     color: BLACK_COLOR,
     width: "90%",
   },
-  browseVw:  {
+  browseVw: {
     width: normalizeWidth(120),
     height: normalizeHeight(50),
     backgroundColor: WHITE_COLOR,
@@ -207,6 +207,12 @@ const styles = StyleSheet.create({
     height: normalizeHeight(20),
     backgroundColor: GRAY_COLOR,
     borderRadius: 100,
+  },
+  straightVw: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    // marginHorizontal: normalizeSpacing(2),
+    marginTop: normalizeSpacing(20),
   },
 });
 

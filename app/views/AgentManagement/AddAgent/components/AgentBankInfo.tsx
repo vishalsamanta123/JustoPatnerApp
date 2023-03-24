@@ -35,6 +35,7 @@ import { normalize } from "app/components/scaleFontSize";
 import auth from "@react-native-firebase/auth";
 import { RequiredStart } from "app/components/utilities/GlobalFuncations";
 import CheckBox from "@react-native-community/checkbox";
+import { RadioButton } from "react-native-paper";
 
 const AgentBankInfo = ({ navigation, route }: any) => {
   const dispatch: any = useDispatch();
@@ -42,7 +43,6 @@ const AgentBankInfo = ({ navigation, route }: any) => {
   const [agentInfoData, setAgentInfoData] = useState({ ...response });
   const editData = useSelector((state: any) => state.editAgentData) || {};
   const addData = useSelector((state: any) => state.addAgentData) || {};
-  console.log("agentInfoData: ", agentInfoData);
 
   useEffect(() => {
     if (editData?.update || addData?.create) {
@@ -83,36 +83,41 @@ const AgentBankInfo = ({ navigation, route }: any) => {
       account_no,
       ifsc_code,
       cancel_cheaque,
+      norera_register,
     } = agentInfoData;
-    if (rera_certificate_no === "" || rera_certificate_no === undefined) {
-      isError = false;
-      errorMessage = "Please fill rera certificate number";
-    } else if (rera_certificate === "" || rera_certificate === undefined) {
-      isError = false;
-      errorMessage = "Please select rera certificate image";
-    } else if (
+    // if (rera_certificate_no === "" || rera_certificate_no === undefined) {
+    //   isError = false;
+    //   errorMessage = strings.reraCertNoReqVal;
+    // } else if (rera_certificate === "" || rera_certificate === undefined) {
+    //   isError = false;
+    //   errorMessage = strings.reraCertImgReqVal;
+    // } else
+    if (
       propidership_declaration_letter === "" ||
-      propidership_declaration_letter === undefined
+      propidership_declaration_letter === undefined ||
+      propidership_declaration_letter === ""
     ) {
       isError = false;
-      errorMessage = "Please select Proprietorship declaration letter";
+      errorMessage = strings.propDeclrLttrImgReqVal;
+    } else if (norera_register === null) {
+      isError = false;
+      errorMessage = strings.noReraRegReqVal;
     } else if (bank_name === "" || bank_name === undefined) {
       isError = false;
-      errorMessage = "Please enter Bank Name";
+      errorMessage = strings.bankNameReqVal;
     } else if (branch_name === "" || branch_name === undefined) {
       isError = false;
-      errorMessage = "Please enter Branch Name";
+      errorMessage = strings.branchNameReqVal;
     } else if (account_no === "" || account_no === undefined) {
       isError = false;
-      errorMessage = "Please enter Account No.";
+      errorMessage = strings.accountNoReqVal;
     } else if (ifsc_code === "" || ifsc_code === undefined) {
       isError = false;
-      errorMessage = "Please enter Bank Ifsc Code";
+      errorMessage = strings.ifscReqVal;
     } else if (cancel_cheaque === "" || cancel_cheaque === undefined) {
       isError = false;
-      errorMessage = "Please select Cancel cheque image";
+      errorMessage = strings.cancelChqImgReqVal;
     }
-
     if (errorMessage !== "") {
       ErrorMessage({
         msg: errorMessage,
@@ -153,14 +158,10 @@ const AgentBankInfo = ({ navigation, route }: any) => {
         "working_location",
         JSON.stringify(agentInfoData?.working_location)
       );
-      formData.append(
-        "rera_certificate_no",
-        agentInfoData?.rera_certificate_no
-      );
+      formData.append("rera_certificate_no", agentInfoData?.rera_certificate_no);
       agentInfoData?.profile_picture?.uri &&
         formData.append("profile_picture", agentInfoData?.profile_picture);
-      agentInfoData?.rera_certificate?.uri &&
-        formData.append("rera_certificate", agentInfoData?.rera_certificate);
+      formData.append("rera_certificate", agentInfoData?.rera_certificate)
       agentInfoData?.cancel_cheaque?.uri &&
         console.log(
           "agentInfoData?.cancel_cheaque: ",
@@ -196,18 +197,19 @@ const AgentBankInfo = ({ navigation, route }: any) => {
         <View style={styles.wraptop}>
           <View style={styles.inputWrap}>
             <InputField
-              require={true}
-              placeholderText={"Rera Certificate No."} //can edit
+              // require={true}
+              placeholderText={strings.reraCertificate + " " + strings.shortNum} //can edit
               handleInputBtnPress={() => { }}
               onChangeText={(data: any) => {
                 setAgentInfoData({
                   ...agentInfoData,
                   rera_certificate_no: data,
+                  norera_register: data === "" ? null : ""
                 });
               }}
               valueshow={agentInfoData?.rera_certificate_no?.toString()}
               maxLength={20}
-              headingText={"Rera Certificate No."}
+              headingText={strings.reraCertificate + " " + strings.shortNum}
             />
           </View>
           <View style={[styles.inputWrap, { flexDirection: "row" }]}>
@@ -220,9 +222,9 @@ const AgentBankInfo = ({ navigation, route }: any) => {
               }}
             >
               <Text style={[styles.headingText, { fontSize: normalize(17) }]}>
-                Rera Certificate
+                {strings.reraCertificate}
               </Text>
-              <RequiredStart />
+              {/* <RequiredStart /> */}
             </View>
             <View style={{ flex: 0.5 }}>
               <TouchableOpacity
@@ -243,7 +245,7 @@ const AgentBankInfo = ({ navigation, route }: any) => {
               {agentInfoData?.rera_certificate === null ||
                 agentInfoData?.rera_certificate === "" ||
                 agentInfoData?.rera_certificate === undefined ? null : (
-                <Text style={styles.addedTxt}>{"Rera Certificate Added"}</Text>
+                <Text style={styles.addedTxt}>{strings.reraCertificate + " " + strings.added}</Text>
               )}
             </View>
           </View>
@@ -257,7 +259,7 @@ const AgentBankInfo = ({ navigation, route }: any) => {
               }}
             >
               <Text style={[styles.headingText, { fontSize: normalize(17) }]}>
-                Proprietorship Declaration Letter
+                {strings.proprietorDeclarLttr}
               </Text>
               <RequiredStart />
             </View>
@@ -282,20 +284,48 @@ const AgentBankInfo = ({ navigation, route }: any) => {
                 agentInfoData?.propidership_declaration_letter ===
                 undefined ? null : (
                 <Text style={styles.addedTxt}>
-                  {"Proprietorship Declaration Letter Added"}
+                  {strings.proprietorDeclarLttr + " " + strings.added}
                 </Text>
               )}
             </View>
           </View>
         </View>
+        <View style={styles.straightVw}>
+          <RadioButton.Android
+            value={agentInfoData?.norera_register}
+            status={agentInfoData.norera_register === 1 ? "checked" : "unchecked"}
+            onPress={() => {
+              setAgentInfoData({
+                ...agentInfoData,
+                norera_register: 1,
+                rera_certificate: '',
+                rera_certificate_no: '',
+              });
+            }}
+            color={PRIMARY_THEME_COLOR}
+          />
+          <Text
+            style={[
+              styles.radioTxt,
+              {
+                color:
+                  agentInfoData.norera_register === 1
+                    ? PRIMARY_THEME_COLOR
+                    : BLACK_COLOR,
+              },
+            ]}
+          >
+            {strings.noReraRegistr}
+          </Text>
+        </View>
         <View style={styles.wrapbottum}>
           <View style={styles.inputWrap}>
-            <Text style={styles.headingText}>Bank details</Text>
+            <Text style={styles.headingText}>{strings.bankDetail}</Text>
           </View>
           <View style={styles.inputWrap}>
             <InputField
               require={true}
-              placeholderText={"Bank Name"}
+              placeholderText={strings.bankName}
               handleInputBtnPress={() => { }}
               onChangeText={(data: any) => {
                 setAgentInfoData({
@@ -304,13 +334,13 @@ const AgentBankInfo = ({ navigation, route }: any) => {
                 });
               }}
               valueshow={agentInfoData?.bank_name?.toString()}
-              headingText={"Bank Name"}
+              headingText={strings.bankName}
             />
           </View>
           <View style={styles.inputWrap}>
             <InputField
               require={true}
-              placeholderText={"Branch Name"}
+              placeholderText={strings.branchName}
               handleInputBtnPress={() => { }}
               onChangeText={(data: any) => {
                 setAgentInfoData({
@@ -319,13 +349,13 @@ const AgentBankInfo = ({ navigation, route }: any) => {
                 });
               }}
               valueshow={agentInfoData?.branch_name?.toString()}
-              headingText={"Branch Name"}
+              headingText={strings.branchName}
             />
           </View>
           <View style={styles.inputWrap}>
             <InputField
               require={true}
-              placeholderText={"Account No."}
+              placeholderText={strings.accountNo}
               handleInputBtnPress={() => { }}
               maxLength={18}
               keyboardtype={"number-pad"}
@@ -336,13 +366,13 @@ const AgentBankInfo = ({ navigation, route }: any) => {
                 });
               }}
               valueshow={agentInfoData?.account_no?.toString()}
-              headingText={"Account No."}
+              headingText={strings.accountNo}
             />
           </View>
           <View style={styles.inputWrap}>
             <InputField
               require={true}
-              placeholderText={"IFSC Code"}
+              placeholderText={strings.ifscCode}
               handleInputBtnPress={() => { }}
               maxLength={11}
               onChangeText={(data: any) => {
@@ -352,7 +382,7 @@ const AgentBankInfo = ({ navigation, route }: any) => {
                 });
               }}
               valueshow={agentInfoData?.ifsc_code?.toString()}
-              headingText={"IFSC Code"}
+              headingText={strings.ifscCode}
             />
           </View>
           <View style={[styles.inputWrap, { flexDirection: "row" }]}>
@@ -365,7 +395,7 @@ const AgentBankInfo = ({ navigation, route }: any) => {
               }}
             >
               <Text style={[styles.headingText, { fontSize: normalize(17) }]}>
-                Cancel Cheque
+                {strings.cancelCheque}
               </Text>
               <RequiredStart />
             </View>
@@ -388,7 +418,7 @@ const AgentBankInfo = ({ navigation, route }: any) => {
               {agentInfoData?.cancel_cheaque === null ||
                 agentInfoData?.cancel_cheaque === "" ||
                 agentInfoData?.cancel_cheaque === undefined ? null : (
-                <Text style={styles.addedTxt}>{"Cancel Cheque Added"}</Text>
+                <Text style={styles.addedTxt}>{strings.cancelCheque + " " + strings.added}</Text>
               )}
             </View>
           </View>
@@ -446,6 +476,7 @@ const AgentBankInfo = ({ navigation, route }: any) => {
             setAgentInfoData({
               ...agentInfoData,
               rera_certificate: data,
+              norera_register: ''
             });
           }}
         />

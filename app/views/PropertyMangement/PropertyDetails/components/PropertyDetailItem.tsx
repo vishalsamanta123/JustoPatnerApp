@@ -59,7 +59,7 @@ const PropertyDetailItem = (props: any) => {
       </View>
       <View style={styles.Txtview}>
         <View style={styles.projectContainer}>
-          <Text style={styles.projectTxt}>Total Visitor </Text>
+          <Text style={styles.projectTxt}>{strings.totalVisitor} </Text>
         </View>
         <View>
           <Text>:</Text>
