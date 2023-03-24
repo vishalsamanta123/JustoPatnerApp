@@ -162,6 +162,7 @@ const strings = new LocalizedStrings({
     pickupAppointment: 'PickUp(if add property time set yes)',
     VisitorAppointment: 'Visitor Appointment',
     SMAppointment: 'SM Appointment',
+    checkinstatus: 'Check in status',
 
     rerainfo: 'Rera Information',
     setting: "Setting",

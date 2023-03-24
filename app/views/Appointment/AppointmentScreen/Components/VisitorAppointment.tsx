@@ -24,6 +24,7 @@ const VisitorAppointment = (props: any) => {
     view: 'view_appointment',
   })
   const item = props?.items || {};
+  const checkinStaus = props?.items?.checkin_status?.length > 0 ? props?.items?.checkin_status[0] : ''
   return (
     <View style={styles.IteamView}>
       <View style={styles.Txtview}>
@@ -140,6 +141,16 @@ const VisitorAppointment = (props: any) => {
           </Text>
         </View>
       </View>
+      {checkinStaus === true &&
+        (<View style={styles.Txtview}>
+          <View style={styles.projectContainer}>
+            <Text style={styles.projectTxt}>{strings.checkinstatus}</Text>
+          </View>
+          <View><Text>:</Text></View>
+          <View style={styles.nameContainer}>
+            <Text style={[styles.nameTxt, { color: checkinStaus === true ? GREEN_COLOR : BLACK_COLOR }]}>{checkinStaus === true ? 'Visited' : strings.notfount}</Text>
+          </View>
+        </View>)}
       {/* <View style={styles.Txtview}>
         <View style={styles.projectContainer}>
           <Text style={styles.projectTxt}>Visit Status</Text>
