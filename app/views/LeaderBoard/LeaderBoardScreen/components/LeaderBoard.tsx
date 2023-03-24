@@ -1,5 +1,5 @@
 import React from "react";
-import { View, FlatList } from 'react-native';
+import { View, FlatList, Keyboard } from 'react-native';
 import images from "../../../../assets/images";
 import Button from "../../../../components/Button";
 import Header from "../../../../components/Header";
@@ -65,6 +65,7 @@ const LeaderBoardView = (props: any) => {
                     props?.leaderBoardList : []}
                 scrollEnabled={true}
                 showsVerticalScrollIndicator={false}
+                keyboardShouldPersistTaps={'handled'}
                 ListEmptyComponent={
                     <EmptyListScreen
                         styled={{ alignItems: 'center', marginTop: normalize(60) }}
@@ -76,7 +77,9 @@ const LeaderBoardView = (props: any) => {
                     }
                 }}
                 refreshing={false}
-                onRefresh={() => onRefresh()}
+                onRefresh={() => {
+                    Keyboard.dismiss()
+                    onRefresh()}}
                 renderItem={({ item }) => {
                     return (
                         <LeaderBoardItems

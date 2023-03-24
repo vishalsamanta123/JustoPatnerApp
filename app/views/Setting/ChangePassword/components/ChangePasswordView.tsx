@@ -1,7 +1,7 @@
-import { View, Text } from 'react-native'
+import { View, Text, ScrollView } from 'react-native'
 import React from 'react'
 import images from '../../../../assets/images'
-import { PRIMARY_THEME_COLOR, WHITE_COLOR } from '../../../../components/utilities/constant'
+import { Isios, PRIMARY_THEME_COLOR, WHITE_COLOR } from '../../../../components/utilities/constant'
 import strings from '../../../../components/utilities/Localization'
 import styles from './styles'
 import Header from '../../../../components/Header'
@@ -32,6 +32,9 @@ const ChangePasswordView = (props: any) => {
         barStyle={'light-content'}
         statusBarColor={PRIMARY_THEME_COLOR}
       />
+      <ScrollView
+        keyboardShouldPersistTaps={"handled"}
+      >
       <View style={styles.wrap}>
         <View style={styles.inputWrap}>
             <InputField
@@ -82,6 +85,7 @@ const ChangePasswordView = (props: any) => {
             <Button handleBtnPress={handleChangePress} width={300} btnTxtsize={15} buttonText={strings.changePassword} textTransform={"uppercase"} />
         </View>
       </View>
+        </ScrollView>
     </View>
   )
 }

@@ -1,4 +1,4 @@
-import { View, Text } from "react-native";
+import { View, Text, Keyboard } from "react-native";
 import React, { useEffect, useState } from "react";
 import ChangePasswordView from "./components/ChangePasswordView";
 import strings from "app/components/utilities/Localization";
@@ -84,6 +84,7 @@ const ChangePasswordScreen = ({ navigation, route }: any) => {
   };
 
   const handleChangePress = () => {
+    Keyboard.dismiss()
     if (validation()) {
 
       const params = {
