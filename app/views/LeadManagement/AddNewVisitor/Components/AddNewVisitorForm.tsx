@@ -6,6 +6,7 @@ import {
   TouchableOpacity,
   TextInput,
   Linking,
+  Keyboard,
 } from "react-native";
 import React, { useEffect, useState } from "react";
 import { RadioButton } from "react-native-paper";
@@ -1185,7 +1186,9 @@ const AddNewVisitorForm = (props: any) => {
           <View style={styles.bottomView}>
             <CheckBox
               value={true}
+              disabled={true}
               tintColors={{ true: PRIMARY_THEME_COLOR }}
+              style={{ transform: Isios ? [{ scaleX: 0.8 }, { scaleY: 0.8 }]  : [{ scaleX: 0.10 }, { scaleY: 0.10 }]}}
             // onValueChange={(newValue) => setToggleCheckBox(newValue)}
             />
             <Text style={styles.bottomText}>{strings.iAknowledge}</Text>
@@ -1205,6 +1208,7 @@ const AddNewVisitorForm = (props: any) => {
                 buttonText={strings.editVisitor}
                 btnTxtsize={16}
                 handleBtnPress={() => {
+                  Keyboard.dismiss()
                   props.setNavigationType(1);
                   props.OnpressCreateEdit();
                 }}
@@ -1215,6 +1219,7 @@ const AddNewVisitorForm = (props: any) => {
                   <Button
                     width={150}
                     handleBtnPress={() => {
+                      Keyboard.dismiss()
                       props.setNavigationType(1);
                       props.OnpressCreateEdit();
                     }}
@@ -1227,6 +1232,7 @@ const AddNewVisitorForm = (props: any) => {
                   <Button
                     width={150}
                     handleBtnPress={() => {
+                      Keyboard.dismiss()
                       props.setNavigationType(2);
                       props.OnpressseheduleVisit();
                     }}

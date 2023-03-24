@@ -5,6 +5,7 @@ import {
   StatusBar,
   TouchableOpacity,
   Linking,
+  Keyboard,
 } from "react-native";
 import React, { useState, useEffect } from "react";
 import images from "../../../../assets/images";
@@ -431,7 +432,9 @@ const AgentBankInfo = ({ navigation, route }: any) => {
 
           <View style={{ marginTop: 10 }}>
             <Button
-              handleBtnPress={() => onPressCreateAgent(route?.params?.type)}
+              handleBtnPress={() => {
+                Keyboard.dismiss()
+                onPressCreateAgent(route?.params?.type)}}
               buttonText={
                 route?.params?.type === "edit"
                   ? strings.editAgent
@@ -444,7 +447,9 @@ const AgentBankInfo = ({ navigation, route }: any) => {
         <View style={[styles.bottomView, { alignItems: "center" }]}>
           <CheckBox
             value={true}
+            disabled={true}
             tintColors={{ true: PRIMARY_THEME_COLOR }}
+            style={{ transform: Isios ? [{ scaleX: 0.8 }, { scaleY: 0.8 }]  : [{ scaleX: 0.10 }, { scaleY: 0.10 }]}}
           // onValueChange={(newValue) => setToggleCheckBox(newValue)}
           />
           <Text style={styles.bottomText}>{strings.iAknowledge}</Text>
@@ -467,6 +472,7 @@ const AgentBankInfo = ({ navigation, route }: any) => {
           docType={"all"}
           setVisible={setRefraCrtf}
           imageData={(data: any) => {
+            Keyboard.dismiss()
             setAgentInfoData({
               ...agentInfoData,
               rera_certificate: data,
@@ -479,6 +485,7 @@ const AgentBankInfo = ({ navigation, route }: any) => {
           docType={"all"}
           setVisible={setPropiderLettr}
           imageData={(data: any) => {
+            Keyboard.dismiss()
             setAgentInfoData({
               ...agentInfoData,
               propidership_declaration_letter: data,
@@ -490,6 +497,7 @@ const AgentBankInfo = ({ navigation, route }: any) => {
           docType={"all"}
           setVisible={setCancelcheque}
           imageData={(data: any) => {
+            Keyboard.dismiss()
             console.log("data: ", data);
             setAgentInfoData({
               ...agentInfoData,
