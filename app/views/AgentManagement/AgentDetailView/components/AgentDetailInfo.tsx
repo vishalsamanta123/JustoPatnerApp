@@ -12,7 +12,6 @@ import FileViewer from "react-native-file-viewer";
 import RNFS from "react-native-fs";
 import ErrorMessage from "app/components/ErrorMessage";
 
-
 const agentDetailItem = (props: any) => {
   const [isVisible, setIsVisible] = useState(false);
 
@@ -57,7 +56,7 @@ const agentDetailItem = (props: any) => {
     <ScrollView>
       <View style={styles.Txtview}>
         <View style={styles.projectContainer}>
-          <Text style={styles.projectTxt}>Status</Text>
+          <Text style={styles.projectTxt}>{strings.status}</Text>
         </View>
         <View><Text>:</Text></View>
         <View style={styles.nameContainer}>
@@ -66,7 +65,7 @@ const agentDetailItem = (props: any) => {
       </View>
       <View style={styles.Txtview}>
         <View style={styles.projectContainer}>
-          <Text style={styles.projectTxt}>Name</Text>
+          <Text style={styles.projectTxt}>{strings.name}</Text>
         </View>
         <View><Text>:</Text></View>
         <View style={styles.nameContainer}>
@@ -75,7 +74,7 @@ const agentDetailItem = (props: any) => {
       </View>
       <View style={styles.Txtview}>
         <View style={styles.projectContainer}>
-          <Text style={styles.projectTxt}>Mobile no</Text>
+          <Text style={styles.projectTxt}>{strings.mobileNo}</Text>
         </View>
         <View><Text>:</Text></View>
         <View style={styles.nameContainer}>
@@ -87,7 +86,7 @@ const agentDetailItem = (props: any) => {
       </View>
       <View style={styles.Txtview}>
         <View style={styles.projectContainer}>
-          <Text style={styles.projectTxt}>Email</Text>
+          <Text style={styles.projectTxt}>{strings.email}</Text>
         </View>
         <View><Text>:</Text></View>
         <View style={styles.nameContainer}>
@@ -99,7 +98,7 @@ const agentDetailItem = (props: any) => {
       </View>
       <View style={styles.Txtview}>
         <View style={styles.projectContainer}>
-          <Text style={styles.projectTxt}>Whatsapp no.</Text>
+          <Text style={styles.projectTxt}>{strings.whatsappNo}</Text>
         </View>
         <View><Text>:</Text></View>
         <View style={styles.nameContainer}>
@@ -111,7 +110,7 @@ const agentDetailItem = (props: any) => {
       </View>
       <View style={styles.Txtview}>
         <View style={styles.projectContainer}>
-          <Text style={styles.projectTxt}>Rera No.</Text>
+          <Text style={styles.projectTxt}>{strings.RERA + " " + strings.shortNum}</Text>
         </View>
         <View><Text>:</Text></View>
         <View style={styles.nameContainer}>
@@ -123,7 +122,7 @@ const agentDetailItem = (props: any) => {
       </View>
       <View style={styles.Txtview}>
         <View style={styles.projectContainer}>
-          <Text style={styles.projectTxt}>Aadhaar no.</Text>
+          <Text style={styles.projectTxt}>{strings.aadhar + " " + strings.shortNum}</Text>
         </View>
         <View><Text>:</Text></View>
         <View style={styles.nameContainer}>
@@ -135,7 +134,7 @@ const agentDetailItem = (props: any) => {
       </View>
       <View style={styles.Txtview}>
         <View style={styles.projectContainer}>
-          <Text style={styles.projectTxt}>Pancard no.</Text>
+          <Text style={styles.projectTxt}>{strings.pancard + " " + strings.shortNum}</Text>
         </View>
         <View><Text>:</Text></View>
         <View style={styles.nameContainer}>
@@ -147,7 +146,7 @@ const agentDetailItem = (props: any) => {
       </View>
       <View style={styles.Txtview}>
         <View style={styles.projectContainer}>
-          <Text style={styles.projectTxt}>Location</Text>
+          <Text style={styles.projectTxt}>{strings.location}</Text>
         </View>
         <View><Text>:</Text></View>
         <View style={styles.nameContainer}>
@@ -159,7 +158,7 @@ const agentDetailItem = (props: any) => {
       </View>
       <View style={styles.Txtview}>
         <View style={styles.projectContainer}>
-          <Text style={styles.projectTxt}>Joining Now</Text>
+          <Text style={styles.projectTxt}>{strings.joinNow}</Text>
         </View>
         <View><Text>:</Text></View>
         <View style={styles.nameContainer}>
@@ -171,7 +170,7 @@ const agentDetailItem = (props: any) => {
       </View>
       <View style={[styles.Txtview, { alignItems: 'flex-start' }]}>
         <View style={styles.projectContainer}>
-          <Text style={styles.projectTxt}>Working Location</Text>
+          <Text style={styles.projectTxt}>{strings.workingLocation}</Text>
         </View>
         <View><Text>:</Text></View>
         <View style={styles.nameContainer}>
@@ -199,7 +198,7 @@ const agentDetailItem = (props: any) => {
       </View>
       <View style={styles.Txtview}>
         <View style={styles.projectContainer}>
-          <Text style={styles.projectTxt}>Rera Certificate</Text>
+          <Text style={styles.projectTxt}>{strings.reraCertificate}</Text>
         </View>
         <View><Text>:</Text></View>
         <View style={[styles.nameContainer, { alignItems: 'center' }]}>
@@ -240,7 +239,7 @@ const agentDetailItem = (props: any) => {
       </View>
       <View style={styles.Txtview}>
         <View style={styles.projectContainer}>
-          <Text style={styles.projectTxt}>Proprietorship declaration letter</Text>
+          <Text style={styles.projectTxt}>{strings.proprietorDeclarLttr}</Text>
         </View>
         <View><Text>:</Text></View>
         <View style={[styles.nameContainer, { alignItems: 'center' }]}>
@@ -280,11 +279,11 @@ const agentDetailItem = (props: any) => {
         </View>
       </View>
       <View style={styles.headingView}>
-        <Text style={styles.headingTxt}>Bank Details</Text>
+        <Text style={styles.headingTxt}>{strings.bankDetail}</Text>
       </View>
       <View style={styles.Txtview}>
         <View style={styles.projectContainer}>
-          <Text style={styles.projectTxt}>Bank Name</Text>
+          <Text style={styles.projectTxt}>{strings.bankName}</Text>
         </View>
         <View><Text>:</Text></View>
         <View style={styles.nameContainer}>
@@ -296,7 +295,7 @@ const agentDetailItem = (props: any) => {
       </View>
       <View style={styles.Txtview}>
         <View style={styles.projectContainer}>
-          <Text style={styles.projectTxt}>Account No.</Text>
+          <Text style={styles.projectTxt}>{strings.accountNo}</Text>
         </View>
         <View><Text>:</Text></View>
         <View style={styles.nameContainer}>
@@ -308,7 +307,7 @@ const agentDetailItem = (props: any) => {
       </View>
       <View style={styles.Txtview}>
         <View style={styles.projectContainer}>
-          <Text style={styles.projectTxt}>Branch Name</Text>
+          <Text style={styles.projectTxt}>{strings.branchName}</Text>
         </View>
         <View><Text>:</Text></View>
         <View style={styles.nameContainer}>
@@ -320,7 +319,7 @@ const agentDetailItem = (props: any) => {
       </View>
       <View style={styles.Txtview}>
         <View style={styles.projectContainer}>
-          <Text style={styles.projectTxt}>IFSC Code</Text>
+          <Text style={styles.projectTxt}>{strings.ifscCode}</Text>
         </View>
         <View><Text>:</Text></View>
         <View style={styles.nameContainer}>
@@ -332,7 +331,7 @@ const agentDetailItem = (props: any) => {
       </View>
       <View style={styles.Txtview}>
         <View style={styles.projectContainer}>
-          <Text style={styles.projectTxt}>Cancel Cheque</Text>
+          <Text style={styles.projectTxt}>{strings.cancelCheque}</Text>
         </View>
         <View><Text>:</Text></View>
         <View style={[styles.nameContainer, { alignItems: 'center' }]}>

@@ -20,7 +20,7 @@ const CompanyDetails = ({ navigation }: any) => {
   }
   return (
     <ScrollView style={styles.mainContainer}
-    automaticallyAdjustKeyboardInsets={Isios ? true : false}
+      automaticallyAdjustKeyboardInsets={Isios ? true : false}
     >
       <Header
         headerText={strings.companyDetails}
@@ -33,18 +33,18 @@ const CompanyDetails = ({ navigation }: any) => {
         <View style={styles.inputWrap}>
           <InputField
             require={true}
-            placeholderText={"Agency Name"}
+            placeholderText={strings.agency + " " + strings.name}
             handleInputBtnPress={() => { }}
             onChangeText={() => { }}
-            headingText={"RealeEstate Company"}
+            headingText={strings.realEstateCom}
           />
         </View>
         <View style={styles.inputWrap}>
           <InputField
             require={true}
-            placeholderText={"GST"}
+            placeholderText={strings.gst}
             maxLength={20}
-            headingText={"GST"}
+            headingText={strings.gst}
             handleInputBtnPress={() => { }}
             onChangeText={() => { }}
           />
@@ -53,8 +53,8 @@ const CompanyDetails = ({ navigation }: any) => {
           <InputField
             require={true}
             maxLength={20}
-            placeholderText={"Rera Registration"}
-            headingText={"Rera Registration"}
+            placeholderText={strings.RERA + " " + strings.registration}
+            headingText={strings.RERA + " " + strings.registration}
             handleInputBtnPress={() => { }}
             onChangeText={() => { }}
           />
@@ -68,7 +68,7 @@ const CompanyDetails = ({ navigation }: any) => {
             handleInputBtnPress={() => { }}
             onChangeText={() => { }}
             headingText={"Pancard"}
-          />
+          /> 
           <TouchableOpacity
             style={{
               width: "25%",

@@ -30,7 +30,7 @@ const FollowUpItem = (props: any) => {
       </View>
       <View style={styles.Txtview}>
         <View style={styles.projectContainer}>
-          <Text style={styles.projectTxt}>Visitor Score :</Text>
+          <Text style={styles.projectTxt}>{strings.visitorScore} :</Text>
         </View>
         <View style={styles.nameContainer}>
           <Text style={styles.nameTxt}>{item.visit_score}</Text>

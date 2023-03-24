@@ -187,7 +187,7 @@ const UserInfo = (props: any) => {
       </View>
       <View style={styles.fieldView}>
         <View style={styles.keyView}>
-          <Text style={styles.keyText}>Rera Certificate No.</Text>
+          <Text style={styles.keyText}>RERA Certificate No.</Text>
         </View>
         <Text style={styles.colon}>:</Text>
         <View style={styles.valueView}>
@@ -198,7 +198,7 @@ const UserInfo = (props: any) => {
       </View>
       <View style={styles.fieldView}>
         <View style={styles.keyView}>
-          <Text style={styles.keyText}>Rera Certificate</Text>
+          <Text style={styles.keyText}>RERA Certificate</Text>
         </View>
         <View style={styles.ImageSliderContainer}>
           {reraType === 'pdf' ?

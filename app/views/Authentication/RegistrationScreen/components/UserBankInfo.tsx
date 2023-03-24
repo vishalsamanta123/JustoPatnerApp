@@ -25,6 +25,7 @@ import { normalize, normalizeHeight, normalizeSpacing, normalizeWidth } from "ap
 import ErrorMessage from "app/components/ErrorMessage";
 import { RegistrationForm } from "app/Redux/Actions/ReggistrationAction";
 import { getAllMaster, getAllSourcingManager } from "app/Redux/Actions/MasterActions";
+import { RadioButton } from "react-native-paper";
 
 const UserBankInfo = ({ navigation }: any) => {
   useEffect(() => {
@@ -66,19 +67,21 @@ const UserBankInfo = ({ navigation }: any) => {
   const validation = () => {
     let isError = true;
     let errorMessage: any = ''
-    if (formData.rera_certificate_no == '' || formData.rera_certificate_no == undefined) {
-      isError = false;
-      errorMessage = "Rera Certificate No. is require. Please enter Rera Certificate No."
-    }
-    else if (formData.rera_certificate == '' || formData.rera_certificate == undefined) {
-      isError = false;
-      errorMessage = "Rera Certificate Image is require. Please Choose Rera Certificate Image"
-    }
-    else if (formData.propidership_declaration_letter == '' || formData.propidership_declaration_letter == undefined) {
+    // if (formData.rera_certificate_no == '' || formData.rera_certificate_no == undefined) {
+    //   isError = false;
+    //   errorMessage = "RERA Certificate No. is require. Please enter RERA Certificate No."
+    // }
+    // else if (formData.rera_certificate == '' || formData.rera_certificate == undefined) {
+    //   isError = false;
+    //   errorMessage = "RERA Certificate Image is require. Please Choose RERA Certificate Image"
+    // }
+    if (formData.propidership_declaration_letter == '' || formData.propidership_declaration_letter == undefined) {
       isError = false;
       errorMessage = "Proprietorship Declaration Letter Image is require. Please Choose Proprietorship Declaration Letter Image"
-    }
-    else if (formData.cancel_cheaque == '' || formData.cancel_cheaque == undefined) {
+    } else if (formData.norera_register === null) {
+      isError = false;
+      errorMessage = strings.noReraRegReqVal;
+    } else if (formData.cancel_cheaque == '' || formData.cancel_cheaque == undefined) {
       isError = false;
       errorMessage = "Cancel Cheaque Image is require. Please Choose Cancel Cheaque Image"
     }
@@ -135,7 +138,8 @@ const UserBankInfo = ({ navigation }: any) => {
           leftImageIconStyle={{ tintColor: WHITE_COLOR }}
         />
         <ScrollView contentContainerStyle={styles.wrap}
-        automaticallyAdjustKeyboardInsets={Isios ? true : false}
+          automaticallyAdjustKeyboardInsets={Isios ? true : false}
+          keyboardShouldPersistTaps={'handled'}
         >
           <View style={styles.inputWrap}>
             {/* <DropdownInput
@@ -179,23 +183,25 @@ const UserBankInfo = ({ navigation }: any) => {
           </View>
           <View style={styles.inputWrap}>
             <InputField
-              require={true}
-              placeholderText={"Rera Certificate No."}
+              // require={true}
+              placeholderText={"RERA Certificate No."}
               handleInputBtnPress={() => { }}
               maxLength={20}
-              headingText={"Rera Certificate No."}
+              headingText={"RERA Certificate No."}
               valueshow={formData?.rera_certificate_no}
               onChangeText={(val: any) => {
                 setFormData({
-                  ...formData, rera_certificate_no: val
+                  ...formData,
+                  rera_certificate_no: val,
+                  norera_register: val === "" ? null : ""
                 })
               }}
             />
           </View>
           <View style={[styles.inputWrap, { flexDirection: "row", alignItems: 'center', justifyContent: 'space-between' }]}>
             <View style={{ flex: 1, flexDirection: 'row', alignItems: 'center' }}>
-              <Text style={styles.headingText}>Rera Certificate</Text>
-              <Image
+              <Text style={styles.headingText}>RERA Certificate</Text>
+              {/* <Image
                 source={images.star}
                 style={{
                   width: normalizeWidth(8),
@@ -203,7 +209,7 @@ const UserBankInfo = ({ navigation }: any) => {
                   marginLeft: normalizeSpacing(5),
                   marginBottom: normalizeSpacing(5),
                 }}
-              />
+              /> */}
             </View>
             <View>
               <TouchableOpacity
@@ -218,7 +224,7 @@ const UserBankInfo = ({ navigation }: any) => {
             </View>
           </View>
           {typeof formData?.rera_certificate === 'object' ?
-            <Text style={styles.addedTxt}>{"Rera Certificate Added"}</Text> : null
+            <Text style={styles.addedTxt}>{"RERA Certificate Added"}</Text> : null
           }
           <View style={[styles.inputWrap, { flexDirection: "row", alignItems: 'center' }]}>
             <View style={{ flex: 1, flexDirection: 'row', alignItems: 'center' }}>
@@ -249,6 +255,34 @@ const UserBankInfo = ({ navigation }: any) => {
             <Text style={styles.addedTxt}>{"Proprietorship Declaration Letter Added"}</Text>
             : null
           }
+          <View style={styles.straightVw}>
+            <RadioButton.Android
+              value={formData?.norera_register}
+              status={formData.norera_register === 1 ? "checked" : "unchecked"}
+              onPress={() => {
+                setFormData({
+                  ...formData,
+                  norera_register: 1,
+                  rera_certificate: '',
+                  rera_certificate_no: '',
+                });
+              }}
+              color={PRIMARY_THEME_COLOR}
+            />
+            <Text
+              style={[
+                styles.radioTxt,
+                {
+                  color:
+                    formData.norera_register === 1
+                      ? PRIMARY_THEME_COLOR
+                      : BLACK_COLOR,
+                },
+              ]}
+            >
+              {strings.noReraRegistr}
+            </Text>
+          </View>
           <View style={styles.inputWrap}>
             <Text style={styles.headingText}>Bank Details</Text>
           </View>
@@ -358,7 +392,8 @@ const UserBankInfo = ({ navigation }: any) => {
         imageData={(data: any) => {
           if (reravisible) {
             setFormData({
-              ...formData, rera_certificate: data
+              ...formData, rera_certificate: data,
+              norera_register: "",
             })
             setreraVisible(false)
           }

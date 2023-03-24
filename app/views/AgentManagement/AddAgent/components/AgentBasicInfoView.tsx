@@ -48,9 +48,9 @@ const AgentBasicInfoView = (props: any) => {
         leftImageSrc={images.backArrow}
         leftImageIconStyle={styles.RightFirstIconStyle}
         handleOnLeftIconPress={props.onPressBack}
-        />
+      />
       <ScrollView keyboardShouldPersistTaps={"handled"}
-      automaticallyAdjustKeyboardInsets={Isios ? true : false}
+        automaticallyAdjustKeyboardInsets={Isios ? true : false}
       >
         <View style={styles.wrap}>
           {/*  <Text style={styles.headingText}>{strings.basicInfoText}</Text> */}
@@ -72,7 +72,7 @@ const AgentBasicInfoView = (props: any) => {
                 source={{
                   uri: props?.agentInfoData?.profile_picture?.uri == undefined || props?.agentInfoData?.profile_picture?.uri === "" || props?.agentInfoData?.profile_picture?.uri === null
                     ? `${props?.agentInfoData?.profile_base_url + props?.agentInfoData?.profile_picture}`
-                    :   props?.agentInfoData?.profile_picture?.uri
+                    : props?.agentInfoData?.profile_picture?.uri
                 }}
                 resizeMode={"contain"}
                 style={styles.imageVw}
@@ -89,7 +89,7 @@ const AgentBasicInfoView = (props: any) => {
           <View style={styles.inputWrap}>
             <InputField
               require={true}
-              placeholderText={"Name"} //can edit
+              placeholderText={strings.agent + " " + strings.name} //can edit
               handleInputBtnPress={() => { }}
               onChangeText={(data: any) => {
                 props.setAgentInfoData({
@@ -98,7 +98,7 @@ const AgentBasicInfoView = (props: any) => {
                 });
               }}
               valueshow={props?.agentInfoData?.agent_name}
-              headingText={" Name"}
+              headingText={strings.agent + " " + strings.name}
             />
           </View>
           <View style={styles.inputWrap}>
@@ -114,7 +114,7 @@ const AgentBasicInfoView = (props: any) => {
               }}
               inputType={'aadhaar'}
               valueshow={props?.agentInfoData?.adhar_no?.toString()}
-              headingText={"Aadhaar No."}
+              headingText={strings.aadhaar}
               keyboardtype={"number-pad"}
               maxLength={14}
             />
@@ -131,7 +131,7 @@ const AgentBasicInfoView = (props: any) => {
                 });
               }}
               valueshow={props?.agentInfoData?.pancard_no?.toString()}
-              headingText={"Pancard No."}
+              headingText={strings.pancard + " " + strings.shortNum}
               maxLength={10}
             />
           </View>
@@ -200,8 +200,8 @@ const AgentBasicInfoView = (props: any) => {
               require={true}
               mode={"date"}
               leftIcon={images.event}
-              placeholderText={"Date of Birth"} //can edit
-              headingText={"Date of Birth"} //can edit
+              placeholderText={strings.dateOfBirth} //can edit
+              headingText={strings.dateOfBirth} //can edit
               editable={false}
               dateData={(data: any) => {
                 props.setAgentInfoData({
@@ -228,7 +228,7 @@ const AgentBasicInfoView = (props: any) => {
           <View style={styles.inputWrap}>
             <InputField
               require={true}
-              placeholderText={"Mobile No."}
+              placeholderText={strings.mobileNo}
               editable={props.type === "add" ? true : false}
               handleInputBtnPress={() => { }}
               onChangeText={(data: any) => {
@@ -238,7 +238,7 @@ const AgentBasicInfoView = (props: any) => {
                 });
               }}
               valueshow={props?.agentInfoData?.primary_mobile?.toString()}
-              headingText={"Mobile No."}
+              headingText={strings.mobileNo}
               maxLength={10}
               keyboardtype={"number-pad"}
             />
@@ -246,7 +246,7 @@ const AgentBasicInfoView = (props: any) => {
           <View style={styles.inputWrap}>
             <InputField
               require={true}
-              placeholderText={"WhatsApp No."} //can edit
+              placeholderText={strings.whatsappNo} //can edit
               handleInputBtnPress={() => { }}
               onChangeText={(data: any) => {
                 props.setAgentInfoData({
@@ -255,7 +255,7 @@ const AgentBasicInfoView = (props: any) => {
                 });
               }}
               valueshow={props?.agentInfoData?.whatsapp_number?.toString()}
-              headingText={"WhatsApp No."}
+              headingText={strings.whatsappNo}
               maxLength={10}
               keyboardtype={"number-pad"}
             />
@@ -263,7 +263,7 @@ const AgentBasicInfoView = (props: any) => {
           <View style={styles.inputWrap}>
             <InputField
               require={true}
-              placeholderText={"Email Address"}
+              placeholderText={strings.email + " " + strings.address}
               editable={props.type === "add" ? true : false}
               handleInputBtnPress={() => { }}
               onChangeText={(data: any) => {
@@ -273,13 +273,13 @@ const AgentBasicInfoView = (props: any) => {
                 });
               }}
               valueshow={props?.agentInfoData?.email}
-              headingText={"Email Address"}
+              headingText={strings.email + " " + strings.address}
             />
           </View>
           <View style={[styles.inputWrap, {}]}>
             <InputField
               require={true}
-              placeholderText={"Address"}
+              placeholderText={strings.address}
               onChangeText={(data: any) => {
                 props.setAgentInfoData({
                   ...props.agentInfoData,
@@ -287,7 +287,7 @@ const AgentBasicInfoView = (props: any) => {
                 });
               }}
               valueshow={props?.agentInfoData?.location}
-              headingText={"Address"}
+              headingText={strings.address}
               inputType={"location"}
               onPressSelect={(data: any, detail: any) => {
                 props.setAgentInfoData({
@@ -316,7 +316,7 @@ const AgentBasicInfoView = (props: any) => {
                 alignItems: "center",
               }}
             >
-              <Text style={styles.workTxt}>Working Location</Text>
+              <Text style={styles.workTxt}>{strings.workingLocation}</Text>
               <RequiredStart />
             </View>
             <TouchableOpacity
@@ -326,7 +326,7 @@ const AgentBasicInfoView = (props: any) => {
               // onPress={() => { props.type === 'add' ? props.setLocationModel(true) : null }}
               style={styles.addBtn}
             >
-              <Text style={styles.addTxt}>+ Add location</Text>
+              <Text style={styles.addTxt}>+ {strings.addLocation}</Text>
             </TouchableOpacity>
           </View>
           {props.agentInfoData?.working_location?.length > 0 ? (

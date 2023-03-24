@@ -1,4 +1,4 @@
-import { View, Text, Image, TouchableOpacity, ScrollView } from "react-native";
+import { View, Text, Image, TouchableOpacity, ScrollView, Keyboard } from "react-native";
 import React, { useState } from "react";
 import Modal from "react-native-modal";
 import styles from "../../../../components/Modals/styles";
@@ -10,11 +10,12 @@ import InputCalender from "../../../../components/InputCalender";
 import { Dropdown } from "react-native-element-dropdown";
 import moment from "moment";
 import { useDispatch } from 'react-redux';
-import { DATE_FORMAT } from "app/components/utilities/constant";
+import { DATE_FORMAT, Isios } from "app/components/utilities/constant";
 
 const FilterModal = (props: any) => {
   const dispatch: any = useDispatch()
   const resetFilter = () => {
+    Keyboard.dismiss()
     props.setFilterData({
       startdate: '',
       enddate: '',
@@ -26,13 +27,14 @@ const FilterModal = (props: any) => {
     props.setIsVisible(false)
   }
   const handleFilter = () => {
+    Keyboard.dismiss()
     props.setIsVisible(false)
     props.getAgentList(0, props.filterData)
     props.setAgentList([])
   }
   const data = [
-    { label: "Active", value: true },
-    { label: "InActive", value: false },
+    { label: strings.active, value: true },
+    { label: strings.inActive, value: false },
 
   ];
   const renderItem = (item: any) => {
@@ -45,6 +47,7 @@ const FilterModal = (props: any) => {
   return (
     <Modal isVisible={props.Visible}>
       <ScrollView keyboardShouldPersistTaps={'handled'}
+      automaticallyAdjustKeyboardInsets={Isios ? true : false}
         contentContainerStyle={{ flexGrow: 1, justifyContent: 'center', }}
       >
         <View style={styles.mainContainer}>
@@ -62,7 +65,7 @@ const FilterModal = (props: any) => {
               <InputCalender
                 mode={'date'}
                 leftIcon={images.event}
-                placeholderText={"Start Date"}
+                placeholderText={strings.startDate}
                 editable={false}
                 dateData={(data: any) => {
                   props.setFilterData({
@@ -83,7 +86,7 @@ const FilterModal = (props: any) => {
               <InputCalender
                 mode={'date'}
                 leftIcon={images.event}
-                placeholderText={"End Date"}
+                placeholderText={strings.endDate}
                 editable={false}
                 value={props?.filterData?.enddate}
                 dateData={(data: any) => {
@@ -102,8 +105,8 @@ const FilterModal = (props: any) => {
             </View>
             <View style={styles.inputWrap}>
               <InputField
-                placeholderText={"Search by Name"}
-                headingText={"Search by Name"}
+                placeholderText={strings.searchBy + " " + strings.name}
+                headingText={strings.searchBy + " " + strings.name}
                 onChangeText={(data: any) => {
                   props.setFilterData({
                     ...props.filterData,
@@ -142,7 +145,7 @@ const FilterModal = (props: any) => {
                 maxHeight={300}
                 labelField="label"
                 valueField="value"
-                placeholder="Select Status"
+                placeholder={strings.selectStatus}
                 value={props?.filterData?.status}
                 onChange={(item) => {
                   props.setFilterData({

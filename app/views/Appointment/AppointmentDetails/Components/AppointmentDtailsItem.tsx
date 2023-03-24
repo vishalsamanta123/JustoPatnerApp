@@ -19,7 +19,7 @@ const AppointmentDtailsItem = (props: any) => {
     <ScrollView>
       <View style={styles.topDetailsView}>
         <View style={styles.topTxtView}>
-          <Text style={styles.topTxt}>Visitor Score </Text>
+          <Text style={styles.topTxt}>{strings.visitorScore} </Text>
           <Text style={styles.topTxt}>{props?.item?.lead_score}</Text>
         </View>
         <Image source={{ uri: `${props?.item?.qr_code}` }} style={styles.qrImg} />
@@ -201,7 +201,7 @@ const AppointmentDtailsItem = (props: any) => {
         </View>)}
       <View style={styles.Txtview}>
         <View style={styles.projectContainer}>
-          <Text style={styles.projectTxt}>Create By</Text>
+          <Text style={styles.projectTxt}>{strings.createBy}</Text>
         </View>
         <View>
           <Text>:</Text>
