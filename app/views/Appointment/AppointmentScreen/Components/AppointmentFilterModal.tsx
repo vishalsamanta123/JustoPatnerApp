@@ -100,8 +100,8 @@ const AppointmentFilterModal = (props: any) => {
               </View>
               <View style={styles.inputWrap}>
                 <InputField
-                  placeholderText={"By Customer Name"}
-                  headingText={"By Customer Name"}
+                  placeholderText={"Search By Name"}
+                  headingText={"Search By Name"}
                   handleInputBtnPress={() => { }}
                   valueshow={props?.params?.customer_name}
                   onChangeText={(val: any) => {
