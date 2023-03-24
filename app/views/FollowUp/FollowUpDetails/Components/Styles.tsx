@@ -78,7 +78,7 @@ const styles = StyleSheet.create({
   },
   btnContainer: {
     flexDirection: 'row',
-    justifyContent: 'space-between',
+    justifyContent: 'center',
     // marginHorizontal: normalizeSpacing(10),
     marginVertical: normalizeSpacing(10)
   }

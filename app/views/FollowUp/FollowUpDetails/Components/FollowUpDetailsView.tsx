@@ -44,8 +44,9 @@ const FollowUpDetailsView = (props: any) => {
       <View style={styles.leadDetailsItemView}>
         <FollowUpDetailsItem data={response?.data?.length > 0 ? response?.data[0] : {}} />
       </View>
-      <View style={[styles.btnContainer , !Isios && {marginHorizontal: normalizeSpacing(10)}]}>
-        {create &&
+      {FolowUpData?.lead_status !== 5 || FolowUpData?.lead_status !== 6 ?
+      (<View style={[styles.btnContainer , !Isios && {marginHorizontal: normalizeSpacing(10)}]}>
+        {create && (FolowUpData?.lead_status === 1 || FolowUpData?.lead_status === 2) ?
           (<Button
             buttonText={strings.ScheduleSitevisite}
             width={Isios ? 180 : 150}
@@ -55,7 +56,7 @@ const FollowUpDetailsView = (props: any) => {
             btnTxtsize={12}
             textTransform={"uppercase"}
             handleBtnPress={() => onpressSchedule()}
-          />)
+          />) : null
         }
         {status &&
           (<Button
@@ -69,7 +70,7 @@ const FollowUpDetailsView = (props: any) => {
             handleBtnPress={() => props.handleStatusUpdate()}
           />)
         }
-      </View>
+      </View>) : null}
     </View>
   )
 }
