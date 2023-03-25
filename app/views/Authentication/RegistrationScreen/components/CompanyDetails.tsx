@@ -204,7 +204,7 @@ const CompanyDetails = ({ navigation }: any) => {
             maxLength={20}
             headingText={"RERA Registration"}
             handleInputBtnPress={() => { }}
-            valueshow={formData?.rera_certificate}
+            valueshow={formData?.rera_registration}
             onChangeText={(val: any) => {
               setFormData({
                 ...formData, rera_registration: val
