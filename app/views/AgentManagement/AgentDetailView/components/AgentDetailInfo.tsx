@@ -207,8 +207,9 @@ const agentDetailItem = (props: any) => {
               if (reraType === 'pdf') {
                 OpenDoc(props.items.rera_certificate)
               } else {
-                setIsVisible(true)
-                setOnPressData(props.items.rera_certificate)
+                // setIsVisible(true)
+                // setOnPressData(props.items.rera_certificate)
+                OpenDoc(props.items.rera_certificate)
               }
             }}
           >
@@ -248,8 +249,9 @@ const agentDetailItem = (props: any) => {
               if (latterType === 'pdf') {
                 OpenDoc(props.items.propidership_declaration_letter)
               } else {
-                setIsVisible(true)
-                setOnPressData(props.items.propidership_declaration_letter)
+                // setIsVisible(true)
+                // setOnPressData(props.items.propidership_declaration_letter)
+                OpenDoc(props.items.propidership_declaration_letter)
               }
             }}
           >
@@ -340,8 +342,9 @@ const agentDetailItem = (props: any) => {
               if (cancelType === 'pdf') {
                 OpenDoc(props.items.base_url + props.items.cancel_cheaque)
               } else {
-                setIsVisible(true)
-                setOnPressData(props.items.base_url + props.items.cancel_cheaque)
+                // setIsVisible(true)
+                // setOnPressData(props.items.base_url + props.items.cancel_cheaque)
+                OpenDoc(props.items.base_url + props.items.cancel_cheaque)
               }
             }}
           >

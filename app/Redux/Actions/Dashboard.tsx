@@ -77,7 +77,7 @@ export const generateQrCode = (params: any) => async (dispatch: any) => {
                 payload: res.data,
             });
         } else {
-            handleApiError(res?.data)
+            // handleApiError(res?.data)
             dispatch({
                 type: DASHBOARD_QR_ERROR,
                 payload: res.data,
