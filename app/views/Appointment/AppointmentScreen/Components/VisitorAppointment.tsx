@@ -25,6 +25,7 @@ const VisitorAppointment = (props: any) => {
   })
   const item = props?.items || {};
   const checkinStaus = props?.items?.checkin_status?.length > 0 ? props?.items?.checkin_status[0] : ''
+  const bookingStatus = props?.items?.booking_status?.length > 0 ? props?.items?.booking_status[0] : ''
   return (
     <View style={styles.IteamView}>
       <View style={styles.Txtview}>
@@ -129,13 +130,14 @@ const VisitorAppointment = (props: any) => {
             {item?.status === 1
               ? currentDate >= appointmentdateTime ? 'Not Visited' : "Upcoming"
               : item?.status === 2
-                ? "Completed"
-                : item?.status === 3
-                  ? "Completed"
-                  : item?.status === 4
-                    ? "Visit Cancelled"
-                    : item?.status === 5 ? "Visit Cancelled"
-                      : item?.status === 6 && "Not Fit for Sale"
+                ? "Revisit"
+                : item?.status === 4
+                  ? "Visit Cancelled"
+                  : item?.status === 5 ? "Reschedule"
+                    : item?.status === 6 ? "Not Fit for Sale" :
+                      item?.status === 3 ?
+                        bookingStatus === 1 ? 'Ready to Book' : 'Booking' :
+                        "Completed"
 
             }
           </Text>
