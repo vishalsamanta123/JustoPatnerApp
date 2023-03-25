@@ -69,37 +69,37 @@ const UserBankInfo = ({ navigation }: any) => {
     let errorMessage: any = ''
     // if (formData.rera_certificate_no == '' || formData.rera_certificate_no == undefined) {
     //   isError = false;
-    //   errorMessage = "RERA Certificate No. is require. Please enter RERA Certificate No."
+    //   errorMessage = strings.reraCertNoReqVal
     // }
     // else if (formData.rera_certificate == '' || formData.rera_certificate == undefined) {
     //   isError = false;
-    //   errorMessage = "RERA Certificate Image is require. Please Choose RERA Certificate Image"
+    //   errorMessage = strings.reraCertImgReqVal
     // }
     if (formData.propidership_declaration_letter == '' || formData.propidership_declaration_letter == undefined) {
       isError = false;
-      errorMessage = "Proprietorship Declaration Letter Image is require. Please Choose Proprietorship Declaration Letter Image"
+      errorMessage = strings.propDeclrLttrImgReqVal
     } else if (formData.norera_register === null) {
       isError = false;
       errorMessage = strings.noReraRegReqVal;
     } else if (formData.cancel_cheaque == '' || formData.cancel_cheaque == undefined) {
       isError = false;
-      errorMessage = "Cancel Cheaque Image is require. Please Choose Cancel Cheaque Image"
+      errorMessage = strings.cancelChqImgReqVal
     }
     else if (formData.bank_name == '' || formData.bank_name == undefined) {
       isError = false;
-      errorMessage = "Bank Name is require. Please enter Bank Name"
+      errorMessage = strings.bankNameReqVal
     }
     else if (formData.branch_name == '' || formData.branch_name == undefined) {
       isError = false;
-      errorMessage = "Branch Name is require. Please enter Branch Name"
+      errorMessage = strings.branchNameReqVal
     }
     else if (formData.account_no == '' || formData.account_no == undefined) {
       isError = false;
-      errorMessage = "Account No. is require. Please enter Account No."
+      errorMessage = strings.accountNoReqVal
     }
     else if (formData.ifsc_code == '' || formData.ifsc_code == undefined) {
       isError = false;
-      errorMessage = "IFSC Code is require. Please enter IFSC Code"
+      errorMessage = strings.ifscReqVal
     }
     if (errorMessage !== '') {
       ErrorMessage({
