@@ -1,4 +1,4 @@
-import { View, Text } from 'react-native'
+import { View, Text, BackHandler } from 'react-native'
 import React, { useEffect, useState } from 'react'
 import AppointmentDetailsView from './Components/AppointmentDetailsView'
 import { useFocusEffect } from '@react-navigation/native'
@@ -26,6 +26,20 @@ const AppointmentDetails = ({ navigation, route }: any) => {
       }
     }
   }, [response])
+
+  useEffect(() => {
+    const backAction = () => {
+      navigation.goBack()
+      return true;
+    };
+
+    const backHandler = BackHandler.addEventListener(
+      'hardwareBackPress',
+      backAction,
+    );
+
+    return () => backHandler.remove();
+  }, []);
 
   const handleBackPress = () => {
     navigation.goBack()

@@ -124,11 +124,12 @@ const AppointmentFilterModal = (props: any) => {
                       :
                       [
                         // 1= Pending, 2 = Confirm, 3= Compleat
-                        { label: strings.STSUpComing, value: 1 },
-                        // { label: strings.STSConfirm, value: 2 },
-                        { label: strings.STSComplete, value: 3 },
-                        { label: strings.STSAppointMentCancl, value: 5 },
-                        { label: strings.STSClose, value: 6 },
+                        { label: 'Upcoming', value: 1 },
+                        { label: 'Revisit', value: 2 },
+                        { label: 'Complete', value: 3 },
+                        { label: 'Visit Cancelled', value: 4 },
+                        { label: 'Reschedule', value: 5 },
+                        { label: 'Not Fit for Sale', value: 6 },
                       ]}
                   maxHeight={300}
                   labelField="label"

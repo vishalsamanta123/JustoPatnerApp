@@ -15,6 +15,7 @@ import {
 const AppointmentDtailsItem = (props: any) => {
   const currentDate = `${moment(new Date).format(DATE_FORMAT)}, ${new Date().getHours()}:${new Date().getMinutes()}`
   const appointmentdateTime = `${moment(props?.item?.appointment_date).format(DATE_FORMAT)}, ${moment(props?.item?.appointment_time?.toString(), 'hh:mm A').format('HH:mm')}` || ""
+  const bookingStatus = props?.item?.booking_status?.length > 0 ? props?.item?.booking_status[0] : ''
   return (
     <ScrollView>
       <View style={styles.topDetailsView}>
@@ -158,13 +159,14 @@ const AppointmentDtailsItem = (props: any) => {
             {props?.item?.status === 1
               ? currentDate >= appointmentdateTime ? strings.STSNotVisited : strings.STSUpComing
               : props?.item?.status === 2
-                ? strings.STSCompleted
-                : props?.item?.status === 3
-                  ? strings.STSCompleted
-                  : props?.item?.status === 4
-                    ? strings.STSVisitCancelled
-                    : props?.item?.status === 5 ? strings.STSVisitCancelled
-                      : props?.item?.status === 6 && strings.STSNotFitForSale
+                ? "Revisit"
+                : props?.item?.status === 4
+                  ? "Visit Cancelled"
+                  : props?.item?.status === 5 ? "Reschedule"
+                    : props?.item?.status === 6 ? "Not Fit for Sale" :
+                      props?.item?.status === 3 ?
+                        bookingStatus === 1 ? 'Ready to Book' : 'Booking' :
+                        "Completed"
             }
           </Text>
         </View>
