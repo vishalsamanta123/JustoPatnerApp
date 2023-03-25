@@ -150,7 +150,7 @@ const strings = new LocalizedStrings({
     branchNameReqVal: 'Branch Name is require. Please enter Branch Name',
     accountNoReqVal: 'Account No. is require. Please enter Account No.',
     ifscReqVal: 'IFSC Code is require. Please enter IFSC Code',
-    agencyNameReqVal: 'RealEstate Company is require. Please enter Company Name',
+    agencyNameReqVal: 'Real Estate Company is require. Please enter Company Name',
     gstReqVal: 'GST No. is require. Please enter GST No.',
     comPanCardImgReqVal: 'Company pancard Image is require. Please Choose Company pancard',
     declLttrComImgReqVal: 'Declaration letter of company is require. Please Choose Declaration letter of company',

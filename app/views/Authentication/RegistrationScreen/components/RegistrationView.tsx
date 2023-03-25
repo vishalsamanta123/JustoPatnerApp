@@ -97,7 +97,7 @@ const RegistrationView = (props: any) => {
 
         <View style={styles.inputWrap}>
           <InputField
-            placeholderText={"Name"}
+            placeholderText={"Owner Name"}
             require={true}
             handleInputBtnPress={() => { }}
             headingText={"Owner Name"}
