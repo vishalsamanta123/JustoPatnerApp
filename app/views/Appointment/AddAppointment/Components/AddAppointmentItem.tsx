@@ -287,6 +287,7 @@ const AddAppointmentItem = (props: any) => {
                   placeholderText={strings.noofguest}
                   handleInputBtnPress={() => { }}
                   maxLength={2}
+                  keyboardtype={'number-pad'}
                   headingText={strings.noofguest}
                   valueshow={props.addAppointmentForm?.number_of_guest?.toString()}
                   onChangeText={(val: any) => {
