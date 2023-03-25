@@ -46,39 +46,39 @@ const CompanyDetails = ({ navigation }: any) => {
     let errorMessage: any = ''
     if (formData.agency_name == '' || formData.agency_name == undefined) {
       isError = false;
-      errorMessage = "RealEstate Company is require. Please enter Company Name"
+      errorMessage = strings.agencyNameReqVal
     }
     else if (formData.gst == '' || formData.gst == undefined) {
       isError = false;
-      errorMessage = "GST No. is require. Please enter GST No."
+      errorMessage = strings.gstReqVal
     }
     else if (formData.pancard == '' || formData.pancard == undefined) {
       isError = false;
-      errorMessage = "Company pancard Image is require. Please Choose Company pancard"
+      errorMessage = strings.comPanCardImgReqVal
     }
     else if (formData.declaration_letter_of_company == '' || formData.declaration_letter_of_company == undefined) {
       isError = false;
-      errorMessage = "Declaration letter of company Image is require. Please Choose Declaration letter of company"
+      errorMessage = strings.declLttrComImgReqVal
     }
     else if (formData.rera_registration == '' || formData.rera_registration == undefined) {
       isError = false;
-      errorMessage = "RERA Registration is require. Please enter RERA Registration"
+      errorMessage = strings.reraRegstrReqVal
     }
     else if (formData.company_bank_name == '' || formData.company_bank_name == undefined) {
       isError = false;
-      errorMessage = "Bank Name is require. Please enter Bank Name"
+      errorMessage = strings.bankNameReqVal
     }
     else if (formData.company_branch_name == '' || formData.company_branch_name == undefined) {
       isError = false;
-      errorMessage = "Branch Name is require. Please enter Branch Name"
+      errorMessage = strings.branchNameReqVal
     }
     else if (formData.company_account_no == '' || formData.company_account_no == undefined) {
       isError = false;
-      errorMessage = "Account No. is require. Please enter Account No."
+      errorMessage = strings.accountNoReqVal
     }
     else if (formData.company_ifsc_code == '' || formData.company_ifsc_code == undefined) {
       isError = false;
-      errorMessage = "IFSC Code is require. Please enter IFSC Code"
+      errorMessage = strings.ifscReqVal
     }
     if (errorMessage !== '') {
       ErrorMessage({
@@ -166,7 +166,7 @@ const CompanyDetails = ({ navigation }: any) => {
         leftImageIconStyle={{ tintColor: WHITE_COLOR }}
       />
       <ScrollView keyboardShouldPersistTaps={'handled'}
-      automaticallyAdjustKeyboardInsets={Isios ? true : false}
+        automaticallyAdjustKeyboardInsets={Isios ? true : false}
         contentContainerStyle={styles.wrap}>
         <View style={styles.inputWrap}>
           <InputField
