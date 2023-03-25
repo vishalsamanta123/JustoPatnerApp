@@ -145,32 +145,29 @@ const AddAppointmentScreen = ({ navigation, route }: any) => {
     let errorMessage: any = ''
     if (addAppointmentForm.lead_id == undefined || addAppointmentForm.lead_id == '') {
       isError = false;
-      errorMessage = "Lead is require. Please Select the lead Status"
-    }
-    else if (
+      errorMessage = strings.leadReqVal
+    } else if (
       addAppointmentForm?.property_id === "" || addAppointmentForm?.property_id === undefined
       || addAppointmentForm?.property_id === null
     ) {
       isError = false;
-      errorMessage = "Please select property name";
-    }
-    else if (addAppointmentForm.appointment_date == undefined || addAppointmentForm.appointment_date == '') {
+      errorMessage = strings.propertyReqVal;
+    } else if (addAppointmentForm.appointment_date == undefined || addAppointmentForm.appointment_date == '') {
       isError = false;
-      errorMessage = "Appointment Date is require. Please Select the Appointment Date Status"
-    }
-    else if (addAppointmentForm.appointment_time == undefined || addAppointmentForm.appointment_time == '') {
+      errorMessage = strings.appointMentDateReqVal
+    } else if (addAppointmentForm.appointment_time == undefined || addAppointmentForm.appointment_time == '') {
       isError = false;
-      errorMessage = "Appointment Time is require. Please Select the Appointment Time Status"
+      errorMessage = strings.appointMentTimeReqVal
     } else if (addAppointmentForm.pickup === strings.yes) {
       if (addAppointmentForm.pickup_location === '' || addAppointmentForm.pickup_location === undefined) {
         isError = false;
-        errorMessage = "Pickup Location is require. Please Select the Pickup Location"
+        errorMessage = strings.pickupLocationReqVal
       } else if (addAppointmentForm.pickup_address === '' || addAppointmentForm.pickup_address === undefined) {
         isError = false;
-        errorMessage = "Pickup Area is require. Please Select the Pickup Area"
+        errorMessage = strings.pickupAreaReqVal
       } else if (addAppointmentForm.number_of_guest === '' || addAppointmentForm.number_of_guest === undefined) {
         isError = false;
-        errorMessage = "Number Of Guest is require. Please Enter the Number Of Guest"
+        errorMessage = strings.noOfGuestReqVal
       }
     }
     if (errorMessage !== '') {

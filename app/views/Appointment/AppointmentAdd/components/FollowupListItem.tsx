@@ -9,7 +9,7 @@ const FollowUpListItem = (props: any) => {
         <View style={styles.IteamView}>
             <View style={styles.Txtview} >
                 <View style={styles.projectContainer}>
-                    <Text style={styles.projectTxt}>Follow-up By :</Text>
+                    <Text style={styles.projectTxt}>{strings.followUpBy} :</Text>
                 </View>
                 <View style={styles.nameContainer}>
                     <Text style={styles.nameTxt}>{props.items.followupBy}</Text>
@@ -17,7 +17,7 @@ const FollowUpListItem = (props: any) => {
             </View>
             <View style={styles.Txtview} >
                 <View style={styles.projectContainer}>
-                    <Text style={styles.projectTxt}>Status :</Text>
+                    <Text style={styles.projectTxt}>{strings.status} :</Text>
                 </View>
                 <View style={styles.nameContainer}>
                     <Text style={styles.nameTxt}>{props.items.status}</Text>
@@ -25,7 +25,7 @@ const FollowUpListItem = (props: any) => {
             </View>
             <View style={styles.Txtview} >
                 <View style={styles.projectContainer}>
-                    <Text style={styles.projectTxt}>Date & Time :</Text>
+                    <Text style={styles.projectTxt}>{strings.dateTime} :</Text>
                 </View>
                 <View style={styles.nameContainer}>
                     <Text style={styles.nameTxt}>{props.items.date}</Text>
@@ -33,7 +33,7 @@ const FollowUpListItem = (props: any) => {
             </View>
             <View style={[styles.Txtview, { borderBottomWidth: 0 }]} >
                 <View style={styles.projectContainer}>
-                    <Text style={styles.projectTxt}>Description :</Text>
+                    <Text style={styles.projectTxt}>{strings.description} :</Text>
                 </View>
                 <View style={styles.nameContainer}>
                     <Text style={styles.nameTxt}>{props.items.description}</Text>

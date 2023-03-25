@@ -41,7 +41,7 @@ const SmAppointment = (props: any) => {
     <View style={styles.IteamView}>
       <View style={styles.Txtview}>
         <View style={styles.projectContainer}>
-          <Text style={styles.projectTxt}>Date</Text>
+          <Text style={styles.projectTxt}>{strings.date}</Text>
         </View>
         <View>
           <Text>:</Text>
@@ -54,7 +54,7 @@ const SmAppointment = (props: any) => {
       </View>
       <View style={styles.Txtview}>
         <View style={styles.projectContainer}>
-          <Text style={styles.projectTxt}>Appointment Type</Text>
+          <Text style={styles.projectTxt}>{strings.appointmentType}</Text>
         </View>
         <View>
           <Text>:</Text>
@@ -67,7 +67,7 @@ const SmAppointment = (props: any) => {
       </View>
       <View style={styles.Txtview}>
         <View style={styles.projectContainer}>
-          <Text style={styles.projectTxt}>Time</Text>
+          <Text style={styles.projectTxt}>{strings.time}</Text>
         </View>
         <View>
           <Text>:</Text>
@@ -78,7 +78,7 @@ const SmAppointment = (props: any) => {
       </View>
       <View style={styles.Txtview}>
         <View style={styles.projectContainer}>
-          <Text style={styles.projectTxt}>Appointment With</Text>
+          <Text style={styles.projectTxt}>{strings.appointmentWith}</Text>
         </View>
         <View>
           <Text>:</Text>
@@ -89,7 +89,7 @@ const SmAppointment = (props: any) => {
       </View>
       <View style={styles.Txtview}>
         <View style={styles.projectContainer}>
-          <Text style={styles.projectTxt}>Status</Text>
+          <Text style={styles.projectTxt}>{strings.status}</Text>
         </View>
         <View>
           <Text>:</Text>
@@ -112,13 +112,13 @@ const SmAppointment = (props: any) => {
             ]}
           >
             {props.items.appointment_status == 1
-              ? "Pending"
+              ? strings.STSPending
               : props.items.appointment_status == 2
-                ? "Confirm"
+                ? strings.STSConfirm
                 : props.items.appointment_status == 3
-                  ? "Complete"
+                  ? strings.STSComplete
                   : props.items.appointment_status == 4
-                    ? "Appointment cancel"
+                    ? strings.STSAppointMentCancl
                     : strings.notfount}
           </Text>
         </View>

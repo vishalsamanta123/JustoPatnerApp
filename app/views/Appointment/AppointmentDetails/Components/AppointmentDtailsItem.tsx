@@ -15,6 +15,7 @@ import {
 const AppointmentDtailsItem = (props: any) => {
   const currentDate = `${moment(new Date).format(DATE_FORMAT)}, ${new Date().getHours()}:${new Date().getMinutes()}`
   const appointmentdateTime = `${moment(props?.item?.appointment_date).format(DATE_FORMAT)}, ${moment(props?.item?.appointment_time?.toString(), 'hh:mm A').format('HH:mm')}` || ""
+  const bookingStatus = props?.item?.booking_status?.length > 0 ? props?.item?.booking_status[0] : ''
   return (
     <ScrollView>
       <View style={styles.topDetailsView}>
@@ -26,7 +27,7 @@ const AppointmentDtailsItem = (props: any) => {
       </View>
       <View style={styles.Txtview}>
         <View style={styles.projectContainer}>
-          <Text style={styles.projectTxt}>Visitor Name</Text>
+          <Text style={styles.projectTxt}>{strings.visitor + " " + strings.name}</Text>
         </View>
         <View>
           <Text>:</Text>
@@ -43,7 +44,7 @@ const AppointmentDtailsItem = (props: any) => {
       </View>
       <View style={styles.Txtview}>
         <View style={styles.projectContainer}>
-          <Text style={styles.projectTxt}>Budget</Text>
+          <Text style={styles.projectTxt}>{strings.budget}</Text>
         </View>
         <View>
           <Text>:</Text>
@@ -79,7 +80,7 @@ const AppointmentDtailsItem = (props: any) => {
       </View> */}
       <View style={styles.Txtview}>
         <View style={styles.projectContainer}>
-          <Text style={styles.projectTxt}>Configurations</Text>
+          <Text style={styles.projectTxt}>{strings.configurations}</Text>
         </View>
         <View>
           <Text>:</Text>
@@ -96,7 +97,7 @@ const AppointmentDtailsItem = (props: any) => {
       </View>
       <View style={styles.Txtview}>
         <View style={styles.projectContainer}>
-          <Text style={styles.projectTxt}>Site Visit Date Time</Text>
+          <Text style={styles.projectTxt}>{strings.siteVisit + " " + strings.dateTime}</Text>
         </View>
         <View>
           <Text>:</Text>
@@ -114,7 +115,7 @@ const AppointmentDtailsItem = (props: any) => {
       </View>
       <View style={styles.Txtview}>
         <View style={styles.projectContainer}>
-          <Text style={styles.projectTxt}>Property</Text>
+          <Text style={styles.projectTxt}>{strings.propertyHeader}</Text>
         </View>
         <View>
           <Text>:</Text>
@@ -131,7 +132,7 @@ const AppointmentDtailsItem = (props: any) => {
       </View>
       <View style={styles.Txtview}>
         <View style={styles.projectContainer}>
-          <Text style={styles.projectTxt}>Status</Text>
+          <Text style={styles.projectTxt}>{strings.status}</Text>
         </View>
         <View>
           <Text>:</Text>
@@ -156,15 +157,16 @@ const AppointmentDtailsItem = (props: any) => {
             ]}
           >
             {props?.item?.status === 1
-              ? currentDate >= appointmentdateTime ? 'Not Visited' : "Upcoming"
+              ? currentDate >= appointmentdateTime ? strings.STSNotVisited : strings.STSUpComing
               : props?.item?.status === 2
-                ? "Completed"
-                : props?.item?.status === 3
-                  ? "Completed"
-                  : props?.item?.status === 4
-                    ? "Visit Cancelled"
-                    : props?.item?.status === 5 ? "Visit Cancelled"
-                      : props?.item?.status === 6 && "Not Fit for Sale"
+                ? "Revisit"
+                : props?.item?.status === 4
+                  ? "Visit Cancelled"
+                  : props?.item?.status === 5 ? "Reschedule"
+                    : props?.item?.status === 6 ? "Not Fit for Sale" :
+                      props?.item?.status === 3 ?
+                        bookingStatus === 1 ? 'Ready to Book' : 'Booking' :
+                        "Completed"
             }
           </Text>
         </View>
@@ -172,7 +174,7 @@ const AppointmentDtailsItem = (props: any) => {
       {props?.item?.checkin_status &&
         (<View style={styles.Txtview}>
           <View style={styles.projectContainer}>
-            <Text style={styles.projectTxt}>Status</Text>
+            <Text style={styles.projectTxt}>{strings.status}</Text>
           </View>
           <View><Text>:</Text></View>
           <View style={styles.nameContainer}>
@@ -182,7 +184,7 @@ const AppointmentDtailsItem = (props: any) => {
       {props?.item?.resion &&
         (<View style={styles.Txtview}>
           <View style={styles.projectContainer}>
-            <Text style={styles.projectTxt}>Resion</Text>
+            <Text style={styles.projectTxt}>{strings.resion}</Text>
           </View>
           <View><Text>:</Text></View>
           <View style={styles.nameContainer}>
@@ -192,7 +194,7 @@ const AppointmentDtailsItem = (props: any) => {
       {props?.item?.remark &&
         (<View style={styles.Txtview}>
           <View style={styles.projectContainer}>
-            <Text style={styles.projectTxt}>Remark</Text>
+            <Text style={styles.projectTxt}>{strings.remark}</Text>
           </View>
           <View><Text>:</Text></View>
           <View style={styles.nameContainer}>
@@ -218,7 +220,7 @@ const AppointmentDtailsItem = (props: any) => {
       </View>
       <View style={styles.Txtview}>
         <View style={styles.projectContainer}>
-          <Text style={styles.projectTxt}>Pickup</Text>
+          <Text style={styles.projectTxt}>{strings.pickup}</Text>
         </View>
         <View>
           <Text>:</Text>
@@ -235,7 +237,7 @@ const AppointmentDtailsItem = (props: any) => {
       </View>
       <View style={styles.Txtview}>
         <View style={styles.projectContainer}>
-          <Text style={styles.projectTxt}>Pickup Location</Text>
+          <Text style={styles.projectTxt}>{strings.pickupLocation}</Text>
         </View>
         <View>
           <Text>:</Text>
@@ -252,7 +254,7 @@ const AppointmentDtailsItem = (props: any) => {
       </View>
       <View style={styles.Txtview}>
         <View style={styles.projectContainer}>
-          <Text style={styles.projectTxt}>Drop up Location</Text>
+          <Text style={styles.projectTxt}>{strings.dropupLocation}</Text>
         </View>
         <View>
           <Text>:</Text>
@@ -269,7 +271,7 @@ const AppointmentDtailsItem = (props: any) => {
       </View>
       <View style={styles.Txtview}>
         <View style={styles.projectContainer}>
-          <Text style={styles.projectTxt}>No. of Guest</Text>
+          <Text style={styles.projectTxt}>{strings.noofguest}</Text>
         </View>
         <View>
           <Text>:</Text>

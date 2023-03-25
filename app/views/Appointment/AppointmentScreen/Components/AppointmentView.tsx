@@ -1,15 +1,13 @@
 import {
   View,
-  Text,
-  StatusBar,
   useWindowDimensions,
   FlatList,
+  BackHandler,
 } from "react-native";
 import React, { useEffect, useState } from "react";
 import {
   DATE_FORMAT,
   PRIMARY_THEME_COLOR_DARK,
-  RED_COLOR,
   TABBAR_COLOR,
 } from "../../../../components/utilities/constant";
 import Header from "../../../../components/Header";
@@ -17,19 +15,13 @@ import images from "../../../../assets/images";
 import strings from "../../../../components/utilities/Localization";
 import styles from "./Styles";
 import { useSafeAreaInsets } from "react-native-safe-area-context";
-import { SceneMap, TabBar, TabView } from "react-native-tab-view";
+import {  TabBar, TabView } from "react-native-tab-view";
 import VisitorAppointment from "./VisitorAppointment";
 import SmAppointment from "./SmAppointment";
-import {
-  AppointMentSmData,
-  AppointMentVisitorData,
-} from "../../../../components/utilities/DemoData";
 import { useFocusEffect, useNavigation } from "@react-navigation/native";
-import FilterModal from "./AppointmentModal";
 import Button from "../../../../components/Button";
 import { useDispatch, useSelector } from "react-redux";
 import { getAllAppointmentList } from "app/Redux/Actions/AppointmentActions";
-import ErrorMessage from "app/components/ErrorMessage";
 import EmptyListScreen from "app/components/CommonScreen/EmptyListScreen";
 import {
   getUserAppointmentList,
@@ -92,31 +84,65 @@ const AppointmentView = (props: any) => {
     }, [navigation, list, props?.params])
   );
   useEffect(() => {
-    console.log('props.params: ', props.params);
-    if (type === "today") {
-      getAppointmentList(0, todayAppointment);
-    } else if(type === "todayComplete") {
-      getAppointmentList(0, {...todayAppointment, status: 3});
-    } else if (indexData?.index === 0) {
-      console.log("indexData?.index: ", indexData?.index);
-      // handleUserAppointmentList(1);
-      getAppointmentList(offSET, todayAppointment);
+    // if (type === "today") {
+    //   getAppointmentList(0, todayAppointment);
+    // } else if (type === "todayComplete") {
+    //   getAppointmentList(0, { ...todayAppointment, status: 3 });
+    // } else if (indexData?.index === 0) {
+    //   getAppointmentList(offSET, todayAppointment);
+    // } else {
+    //   getAppointmentList(offSET, {});
+    // }
+    if (indexData?.index === 0) {
+      if (type === "today") {
+        getAppointmentList(0, todayAppointment);
+      } else if (type === "todayComplete") {
+        getAppointmentList(0, { ...todayAppointment, status: 3 });
+      } else {
+        getAppointmentList(0, todayAppointment);
+      }
     } else {
       getAppointmentList(offSET, {});
     }
   }, [indexData, updateUserStatusResponse, props.params]);
 
-  // useEffect(() => {
-  //   console.log("props.params: ", props.params);
-  //   if (props.params === "today") {
-  //     handleIndexChange(0);
-  //   }
-  // }, [props.params, updateUserStatusResponse]);
+  useEffect(() => {
+    const backAction = () => {
+      setIndexData({
+        index: 0, routes: [
+          { key: "first", title: strings.todayAppointment },
+          { key: "second", title: strings.allappointment },
+        ],
+      })
+      setTimeout(() => {
+        navigation.goBack()
+      }, 250);
+      return true;
+    };
+
+    const backHandler = BackHandler.addEventListener(
+      'hardwareBackPress',
+      backAction,
+    );
+
+    return () => backHandler.remove();
+  }, []);
+
+  const handleDrawerPress = () => {
+    setIndexData({
+      index: 0, routes: [
+        { key: "first", title: strings.todayAppointment },
+        { key: "second", title: strings.allappointment },
+      ],
+    })
+    setTimeout(() => {
+      navigation.toggleDrawer()
+    }, 250);
+  };
 
   const handleReset = () => {
     settype('')
     if (indexData?.index === 0) {
-      console.log("indexData?.index: ", indexData?.index);
       // handleUserAppointmentList(1);
       getAppointmentList(offSET, todayAppointment);
     } else {
@@ -196,70 +222,11 @@ const AppointmentView = (props: any) => {
     setAppointmentList([]);
     setUserAppointmentList([]);
   };
-  const FirstRoute = () => (
-    <FlatList
-      data={Array.isArray(appointmentList) ? appointmentList : []}
-      renderItem={({ item }) => (
-        <VisitorAppointment
-          items={item}
-          onPressView={onPressView}
-          onPressEdit={onPressEdit}
-        />
-      )}
-      ListEmptyComponent={
-        <EmptyListScreen message={strings.VisitorAppointment} />
-      }
-      onRefresh={() => {
-        setFilterData({
-          start_date: "",
-          end_date: "",
-          customer_name: "",
-          status: "",
-        });
-        getAppointmentList(0, {});
-        setAppointmentList([]);
-      }}
-      refreshing={loadingref}
-      onEndReached={() => {
-        if (appointmentList?.length < response?.total_data) {
-          getAppointmentList(
-            appointmentList?.length > 2 ? offSET + 1 : 0,
-            filterData
-          );
-        }
-      }}
-    />
-  );
-  const SecondRoute = () => (
-    <FlatList
-      data={userAppointmentList}
-      renderItem={({ item }) => (
-        <SmAppointment
-          items={item}
-          hanndleUserDetailPress={hanndleUserDetailPress}
-          handleOptionPress={handleOptionPress}
-        />
-      )}
-      ListEmptyComponent={
-        <EmptyListScreen message={strings.VisitorAppointment} />
-      }
-      onRefresh={() => {
-        setFilterData({
-          start_date: "",
-          end_date: "",
-          customer_name: "",
-          status: "",
-        });
-        handleUserAppointmentList(1);
-        setUserAppointmentList([]);
-      }}
-      refreshing={loadingref}
-    />
-  );
+
   useFocusEffect(
     React.useCallback(() => {
       getAppointmentList(offSET, todayAppointment);
-      return () => {};
+      return () => { };
     }, [navigation, list])
   );
   useEffect(() => {
@@ -275,22 +242,6 @@ const AppointmentView = (props: any) => {
       setAppointmentList([]);
     }
   }, [response]);
-  // useEffect(() => {
-  //   if (getUserListResponse?.status === 200) {
-  //     if (getUserListResponse?.data?.length > 0) {
-  //       if (offSET == 0) {
-  //         setUserAppointmentList(getUserListResponse?.data);
-  //       } else {
-  //         setUserAppointmentList([
-  //           ...userAppointmentList,
-  //           ...getUserListResponse?.data,
-  //         ]);
-  //       }
-  //     }
-  //   } else {
-  //     setUserAppointmentList([])
-  //   }
-  // }, [getUserListResponse]);
   const getAppointmentList = (offset: any, data: any) => {
     console.log("data: ", data);
     setOffset(offset);
@@ -357,14 +308,14 @@ const AppointmentView = (props: any) => {
         rightFirstImageScr={indexData?.index === 1 ? images.filter : null}
         rightSecondImageScr={images.notification}
         headerText={strings.appointmnet}
-        handleOnLeftIconPress={props.handleDrawerPress}
+        handleOnLeftIconPress={handleDrawerPress}
         headerStyle={styles.headerStyle}
         RightFirstIconStyle={styles.RightFirstIconStyle}
         handleOnRightFirstIconPress={() => setFilterisVisible(true)}
       />
-      <View style={{flexDirection: 'row', marginVertical: 10, alignItems: "flex-end" }}>
+      <View style={{ flexDirection: 'row', marginVertical: 10, justifyContent: 'space-between' }}>
         <Button
-          width={150}
+          width={110}
           height={30}
           buttonText={strings.resetToday}
           btnTxtsize={14}
