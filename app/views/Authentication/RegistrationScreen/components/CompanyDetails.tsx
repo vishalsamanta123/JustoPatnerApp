@@ -46,7 +46,7 @@ const CompanyDetails = ({ navigation }: any) => {
     let errorMessage: any = ''
     if (formData.agency_name == '' || formData.agency_name == undefined) {
       isError = false;
-      errorMessage = "Agency Name is require. Please enter Agency Name"
+      errorMessage = "RealEstate Company is require. Please enter Company Name"
     }
     else if (formData.gst == '' || formData.gst == undefined) {
       isError = false;
@@ -173,7 +173,7 @@ const CompanyDetails = ({ navigation }: any) => {
             require={true}
             placeholderText={"Agency Name"}
             handleInputBtnPress={() => { }}
-            headingText={"RealEstate Company"}
+            headingText={"Real Estate Company"}
             valueshow={formData?.agency_name}
             onChangeText={(val: any) => {
               setFormData({

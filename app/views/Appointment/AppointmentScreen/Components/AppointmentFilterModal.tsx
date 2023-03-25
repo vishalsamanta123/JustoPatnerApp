@@ -9,11 +9,7 @@ import InputField from "../../../../components/InputField";
 import DropdownInput from "../../../../components/DropDown";
 import InputCalender from "app/components/InputCalender";
 import moment from "moment";
-import {
-  DATE_FORMAT,
-  GRAY_LIGHT_COLOR,
-  Isios,
-} from "app/components/utilities/constant";
+import { DATE_FORMAT, Isios, } from "app/components/utilities/constant";
 import { Dropdown } from "react-native-element-dropdown";
 
 const AppointmentFilterModal = (props: any) => {
@@ -31,12 +27,10 @@ const AppointmentFilterModal = (props: any) => {
           <ScrollView
             keyboardShouldPersistTaps={"handled"}
             automaticallyAdjustKeyboardInsets={Isios ? true : false}
-            contentContainerStyle={{
-              flexGrow: 1,
-            }}
+            contentContainerStyle={{ flexGrow: 1, }}
           >
             <View style={styles.topContainer}>
-              <Text style={styles.topTxt}>Search Appointment</Text>
+              <Text style={styles.topTxt}>{strings.searchappointment}</Text>
               <View>
                 <TouchableOpacity onPress={() => props.setIsVisible(false)}>
                   <Image source={images.close} style={styles.closeIcon} />
@@ -50,7 +44,7 @@ const AppointmentFilterModal = (props: any) => {
                   mode={"date"}
                   leftIcon={images.event}
                   //headingText={'Start Date'}
-                  placeholderText={"Start Date"}
+                  placeholderText={strings.startDate}
                   dateData={(data: any) => {
                     props.setParams({
                       ...props.params,
@@ -77,7 +71,7 @@ const AppointmentFilterModal = (props: any) => {
                   mode={"date"}
                   leftIcon={images.event}
                   //headingText={'Start Date'}
-                  placeholderText={"End Date"}
+                  placeholderText={strings.endDate}
                   dateData={(data: any) => {
                     props.setParams({
                       ...props.params,
@@ -100,8 +94,8 @@ const AppointmentFilterModal = (props: any) => {
               </View>
               <View style={styles.inputWrap}>
                 <InputField
-                  placeholderText={"Search By Name"}
-                  headingText={"Search By Name"}
+                  placeholderText={strings.searchBy + " " + strings.name}
+                  headingText={strings.searchBy + " " + strings.name}
                   handleInputBtnPress={() => { }}
                   valueshow={props?.params?.customer_name}
                   onChangeText={(val: any) => {
@@ -122,10 +116,10 @@ const AppointmentFilterModal = (props: any) => {
                     props.type === 'appWithSm' ?
                       [
                         // 1= Pending, 2 = Confirm, 3= Compleat
-                        { label: 'Pending', value: 1 },
-                        { label: 'Confirm', value: 2 },
-                        { label: 'Complete', value: 3 },
-                        { label: 'Appointment cancel', value: 4 },
+                        { label: strings.STSPending, value: 1 },
+                        { label: strings.STSConfirm, value: 2 },
+                        { label: strings.STSComplete, value: 3 },
+                        { label: strings.STSAppointMentCancl, value: 4 },
                       ]
                       :
                       [
@@ -140,7 +134,7 @@ const AppointmentFilterModal = (props: any) => {
                   maxHeight={300}
                   labelField="label"
                   valueField="value"
-                  placeholder="By Status"
+                  placeholder={strings.byStatus}
                   value={props?.params?.status}
                   onChange={(item) => {
                     props.setParams({

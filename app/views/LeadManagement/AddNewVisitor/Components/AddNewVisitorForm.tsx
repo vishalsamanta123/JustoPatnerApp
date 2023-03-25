@@ -20,6 +20,7 @@ import {
   DATE_FORMAT,
   AMOUNT_TYPE,
   Isios,
+  Regexs,
 } from "../../../../components/utilities/constant";
 import strings from "../../../../components/utilities/Localization";
 import styles from "./Styles";
@@ -42,8 +43,8 @@ const AddNewVisitorForm = (props: any) => {
   const userData = useSelector((state: any) => state.userData)
   const userId = userData?.response?.data ? userData?.response?.data : {}
   console.log('userId: ', userId);
-  console.log('props?.formData?.create_by: ', props?.formData?.create_by );
-  console.log(' userId.role_id: ',  userId.role_id);
+  console.log('props?.formData?.create_by: ', props?.formData?.create_by);
+  console.log(' userId.role_id: ', userId.role_id);
 
   useEffect(() => {
     if (props.type == "edit") {
@@ -149,12 +150,13 @@ const AddNewVisitorForm = (props: any) => {
                   ...props.formData,
                   mobile: data,
                 })
-                if (data?.length === 10 &&
-                  props.type === "add" || props.type === "propertySelect") {
-                  props.setEmailMobValidation({
-                    ...props.emailMobvalidation,
-                    mobile: 'start',
-                  })
+                if (props.type === "add" || props.type === "propertySelect") {
+                  if (Regexs.mobilenumRegex.test(data)) {
+                    props.setEmailMobValidation({
+                      ...props.emailMobvalidation,
+                      mobile: '',
+                    })
+                  }
                 } else {
                   props.setEmailMobValidation({
                     ...props.emailMobvalidation,
@@ -173,17 +175,21 @@ const AddNewVisitorForm = (props: any) => {
               rightImageSty={styles.tickImg}
               rightImgSrc={props?.emailMobvalidation?.mobile === 'mobile' ? images.check : null}
               onFocus={() => {
-                props.type == "edit" ? {} :
-                  props.setEmailMobValidation({
-                    ...props.emailMobvalidation,
-                    mobile: null,
-                  })
+                if (props.type == "edit") {
+                } else {
+                  if (props?.formData?.mobile !== props?.formData?.mobile) {
+                    props.setEmailMobValidation({
+                      ...props.emailMobvalidation,
+                      mobile: null,
+                    })
+                  }
+                }
               }}
               onBlur={(val: any) => {
                 if (props.type == "edit") {
                   { }
                 } else {
-                  if (props?.formData?.mobile?.length === 10) {
+                  if (Regexs.mobilenumRegex.test(props?.formData?.mobile)) {
                     props.handleCheckEmailMobile(1);
                   }
                 }
@@ -1188,7 +1194,7 @@ const AddNewVisitorForm = (props: any) => {
               value={true}
               disabled={true}
               tintColors={{ true: PRIMARY_THEME_COLOR }}
-              style={{ transform: Isios ? [{ scaleX: 0.8 }, { scaleY: 0.8 }]  : [{ scaleX: 1 }, { scaleY: 1 }]}}
+              style={{ transform: Isios ? [{ scaleX: 0.8 }, { scaleY: 0.8 }] : [{ scaleX: 1 }, { scaleY: 1 }] }}
             // onValueChange={(newValue) => setToggleCheckBox(newValue)}
             />
             <Text style={styles.bottomText}>{strings.iAknowledge}</Text>
@@ -1208,7 +1214,7 @@ const AddNewVisitorForm = (props: any) => {
                 buttonText={strings.editVisitor}
                 btnTxtsize={16}
                 handleBtnPress={() => {
-                  Keyboard.dismiss()
+                  Isios && Keyboard.dismiss()
                   props.setNavigationType(1);
                   props.OnpressCreateEdit();
                 }}
@@ -1219,7 +1225,7 @@ const AddNewVisitorForm = (props: any) => {
                   <Button
                     width={150}
                     handleBtnPress={() => {
-                      Keyboard.dismiss()
+                      Isios && Keyboard.dismiss()
                       props.setNavigationType(1);
                       props.OnpressCreateEdit();
                     }}
@@ -1232,7 +1238,7 @@ const AddNewVisitorForm = (props: any) => {
                   <Button
                     width={150}
                     handleBtnPress={() => {
-                      Keyboard.dismiss()
+                      Isios && Keyboard.dismiss()
                       props.setNavigationType(2);
                       props.OnpressseheduleVisit();
                     }}

@@ -10,7 +10,6 @@ import strings from "app/components/utilities/Localization";
 
 const AppointmentAddScreen = ({ navigation, route }: any) => {
     const appointmentId = route?.params || {}
-    console.log('appointmentId: ', appointmentId);
     const [value, setValue] = useState(null)
     const [isloading, setIsloading] = useState(false)
     const editAddAppointmentData = useSelector((state: any) => state.editAddAppointment)
@@ -18,7 +17,7 @@ const AppointmentAddScreen = ({ navigation, route }: any) => {
         appointment_id: appointmentId?._id ? appointmentId?._id : '',
         status: '',
         appointment_date: appointmentId?.appointment_date ? appointmentId?.appointment_date : '',
-        appointment_time: appointmentId?.appointment_time ? appointmentId?.appointment_time :  '',
+        appointment_time: appointmentId?.appointment_time ? appointmentId?.appointment_time : '',
         remark: '',
         visit_status: strings.warm,
         lead_id: appointmentId?.lead_id ? appointmentId?.lead_id : '',
@@ -35,16 +34,15 @@ const AppointmentAddScreen = ({ navigation, route }: any) => {
         let errorMessage: any = ''
         if (formData.status == undefined || formData.status == '') {
             isError = false;
-            errorMessage = "Followup Status is require. Please Choose Followup Status"
-        }
-        else if (formData?.status === "1") {
+            errorMessage = strings.followUpStatusReqVal
+        } else if (formData?.status === "1") {
             if (formData.appointment_date == undefined || formData.appointment_date == '') {
                 isError = false;
-                errorMessage = "Date is require. Please Choose Date"
+                errorMessage = strings.appointMentDateReqVal
             }
             else if (formData.appointment_time == undefined || formData.appointment_time == '') {
                 isError = false;
-                errorMessage = "Time is require. Please Choose Time"
+                errorMessage = strings.appointMentTimeReqVal
             }
         }
         if (errorMessage !== '') {
@@ -67,7 +65,7 @@ const AppointmentAddScreen = ({ navigation, route }: any) => {
     }, [editAddAppointmentData])
     const handleUpdateStatus = () => {
         if (validation()) {
-            if(formData?.status === '1'){
+            if (formData?.status === '1') {
                 const params = {
                     ...formData,
                     update_type: 2,

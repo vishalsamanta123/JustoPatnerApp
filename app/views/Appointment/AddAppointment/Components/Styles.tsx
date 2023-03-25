@@ -89,7 +89,7 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     marginRight: normalizeSpacing(10)
   },
-  radioTxt : {
+  radioTxt: {
     fontSize: normalize(18),
   },
   btnView: {
@@ -106,14 +106,14 @@ const styles = StyleSheet.create({
   },
   spanTouch: {
     flexDirection: 'row'
-  }, 
+  },
   spanText: {
     textAlign: 'center',
     fontSize: normalize(14),
     // lineHeight: normalizeHeight(10),
     color: PRIMARY_THEME_COLOR,
     fontFamily: FONT_FAMILY_SEMIBOLD,
-    
+
   },
   bottomText: {
     textAlign: 'center',
@@ -122,7 +122,7 @@ const styles = StyleSheet.create({
     fontFamily: FONT_FAMILY_SEMIBOLD,
     color: GRAY_LIGHT_COLOR
   },
-  bottomContentView:{
+  bottomContentView: {
     flexDirection: 'row',
     // width: '80%',
   }
