@@ -21,7 +21,6 @@ import moment from "moment";
 import CheckBox from "@react-native-community/checkbox";
 
 const AddAppointmentItem = (props: any) => {
-  console.log('props: ', props.pickup);
   return (
     <ScrollView keyboardShouldPersistTaps={"handled"}
       automaticallyAdjustKeyboardInsets={Isios ? true : false}
@@ -71,7 +70,7 @@ const AddAppointmentItem = (props: any) => {
         <View style={[styles.inputWrap]}>
           <DropdownInput
             require={true}
-            headingText={"Property"}
+            headingText={strings.propertyHeader}
             placeholder={props?.addAppointmentForm?.property_title != "" ?
               props?.addAppointmentForm?.property_title :
               strings.selectproperty}
@@ -165,7 +164,7 @@ const AddAppointmentItem = (props: any) => {
           />
         </View>
         <>
-          {props?.addAppointmentForm?.pickup === 'Yes' ? (
+          {props?.addAppointmentForm?.pickup === strings.yes ? (
             <>
               <View style={styles.inputWrap}>
                 <Text style={styles.genderTxt}>{strings.pickupAppointment}</Text>
@@ -234,14 +233,14 @@ const AddAppointmentItem = (props: any) => {
               </View>
             </>
           ) : null}
-          {props.addAppointmentForm?.pickup == strings.yes ? (
+          {props.addAppointmentForm?.pickup === strings.yes ? (
             <>
               <View style={styles.inputWrap}>
                 <InputField
                   require={true}
-                  placeholderText={'PickUP Location'}
+                  placeholderText={strings.pickupLocation}
                   handleInputBtnPress={() => { }}
-                  headingText={'PickUP Location'}
+                  headingText={strings.pickupLocation}
                   valueshow={props.addAppointmentForm?.pickup_location}
                   inputType={"location"}
                   onPressSelect={(data: any, detail: any) => {
@@ -270,9 +269,9 @@ const AddAppointmentItem = (props: any) => {
               <View style={styles.inputWrap}>
                 <InputField
                   require={true}
-                  placeholderText={"Area"}
+                  placeholderText={strings.area}
                   handleInputBtnPress={() => { }}
-                  headingText={"Area"}
+                  headingText={strings.area}
                   valueshow={props.addAppointmentForm?.pickup_address}
                   onChangeText={(val: any) => {
                     props.setAddAppointmentForm({

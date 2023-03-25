@@ -42,11 +42,11 @@ const AppointmentAddView = (props: any) => {
       <View style={styles.topItemsVw}>
         <View style={styles.inputWrap}>
           <DropdownInput
-            headingText={"Status"}
+            headingText={strings.status}
             placeholder={strings.status}
             data={[
-              { label: "Rescheduled", value: "1" },
-              { label: "Appointment cancel", value: "4" },
+              { label: strings.reScheduled, value: "1" },
+              { label: strings.appointMentCancl, value: "4" },
             ]}
             inputWidth={"100%"}
             paddingLeft={16}
@@ -101,10 +101,10 @@ const AppointmentAddView = (props: any) => {
           <>
             <View style={styles.inputWrap}>
               <InputCalender
-                headingText={"Date"}
+                headingText={strings.appointmentDate}
                 mode={"date"}
                 leftIcon={images.event}
-                placeholderText={"Date"} //can edit
+                placeholderText={strings.appointmentDate} //can edit
                 editable={false}
                 minimumDate={new Date()}
                 // onChangeText={() => { }}
@@ -134,11 +134,11 @@ const AppointmentAddView = (props: any) => {
             </View>
             <View style={styles.inputWrap}>
               <InputCalender
-                headingText={"Time"}
+                headingText={strings.appointmentTime}
                 mode={"time"}
                 leftIcon={images.timer}
                 dateValue={props?.formData?.appointment_date}
-                placeholderText={"Time"} //can edit
+                placeholderText={strings.appointmentTime} //can edit
                 editable={false}
                 // onChangeText={() => { }}
                 dateData={(data: any) => {
@@ -160,8 +160,8 @@ const AppointmentAddView = (props: any) => {
         ) : null}
         <View style={styles.inputWrap}>
           <InputField
-            headingText={"Description"}
-            placeholderText={"Description"}
+            headingText={strings.description}
+            placeholderText={strings.description}
             handleInputBtnPress={() => { }}
             onChangeText={(val: any) => {
               props.setFormData({

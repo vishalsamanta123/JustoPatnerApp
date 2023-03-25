@@ -1,12 +1,10 @@
-import { View, Text, FlatList } from 'react-native'
+import { FlatList } from 'react-native'
 import React from 'react'
 import VisitorAppointment from './VisitorAppointment';
 import EmptyListScreen from 'app/components/CommonScreen/EmptyListScreen';
 import strings from 'app/components/utilities/Localization';
-import SmAppointment from './SmAppointment';
 
 const RoutingScreen = (props: any) => {
-console.log('props?.response?.total_data: ', props?.response?.total_data);
     return (
         <FlatList
             data={Array.isArray(props?.appointmentList) ? props?.appointmentList : []}
@@ -28,7 +26,7 @@ console.log('props?.response?.total_data: ', props?.response?.total_data);
                     status: "",
                 });
                 props.keyType === 'first' ?
-                props?.getAppointmentList(0, props.todayAppointment) :  props?.getAppointmentList(0, {})
+                    props?.getAppointmentList(0, props.todayAppointment) : props?.getAppointmentList(0, {})
                 props?.setAppointmentList([]);
                 props.settype('')
             }}

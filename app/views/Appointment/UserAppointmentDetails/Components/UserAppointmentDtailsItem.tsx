@@ -6,7 +6,7 @@ import { RED_COLOR, YELLOW_COLOR, GREEN_COLOR, BLACK_COLOR, MAP_KEY } from 'app/
 import strings from 'app/components/utilities/Localization'
 import Geocoder from 'react-native-geocoding'
 
-const UserAppointmentDtailsItem = (props : any) => {
+const UserAppointmentDtailsItem = (props: any) => {
   const appdetail = props?.status || {}
   const [location, setLocation] = useState("");
   Geocoder.init(MAP_KEY);
@@ -31,16 +31,16 @@ const UserAppointmentDtailsItem = (props : any) => {
     <ScrollView>
       <View style={styles.Txtview}>
         <View style={styles.projectContainer}>
-          <Text style={styles.projectTxt}>Date</Text>
+          <Text style={styles.projectTxt}>{strings.date}</Text>
         </View>
         <View><Text>:</Text></View>
         <View style={styles.nameContainer}>
-        <Text style={styles.nameTxt}>{moment(appdetail.appointment_date).format('DD-MM-YYYY')}</Text>
+          <Text style={styles.nameTxt}>{moment(appdetail.appointment_date).format('DD-MM-YYYY')}</Text>
         </View>
       </View>
       <View style={styles.Txtview}>
         <View style={styles.projectContainer}>
-          <Text style={styles.projectTxt}>Appointment Type</Text>
+          <Text style={styles.projectTxt}>{strings.appointmentType}</Text>
         </View>
         <View><Text>:</Text></View>
         <View style={styles.nameContainer}>
@@ -49,7 +49,7 @@ const UserAppointmentDtailsItem = (props : any) => {
       </View>
       <View style={styles.Txtview}>
         <View style={styles.projectContainer}>
-          <Text style={styles.projectTxt}>Time</Text>
+          <Text style={styles.projectTxt}>{strings.time}</Text>
         </View>
         <View><Text>:</Text></View>
         <View style={styles.nameContainer}>
@@ -58,7 +58,7 @@ const UserAppointmentDtailsItem = (props : any) => {
       </View>
       <View style={styles.Txtview}>
         <View style={styles.projectContainer}>
-          <Text style={styles.projectTxt}>Appointment With</Text>
+          <Text style={styles.projectTxt}>{strings.appointmentWith}</Text>
         </View>
         <View><Text>:</Text></View>
         <View style={styles.nameContainer}>
@@ -67,61 +67,61 @@ const UserAppointmentDtailsItem = (props : any) => {
       </View>
       <View style={styles.Txtview}>
         <View style={styles.projectContainer}>
-          <Text style={styles.projectTxt}>Status</Text>
+          <Text style={styles.projectTxt}>{strings.status}</Text>
         </View>
         <View><Text>:</Text></View>
         <View style={styles.nameContainer}>
-        <Text
+          <Text
             style={[
               styles.nameTxt,
               {
                 color:
                   appdetail.appointment_status == 1 ||
-                  appdetail.appointment_status == 4
+                    appdetail.appointment_status == 4
                     ? RED_COLOR
                     : appdetail.appointment_status == 2
-                    ? YELLOW_COLOR
-                    : appdetail.appointment_status == 3
-                    ? GREEN_COLOR
-                    : BLACK_COLOR,
+                      ? YELLOW_COLOR
+                      : appdetail.appointment_status == 3
+                        ? GREEN_COLOR
+                        : BLACK_COLOR,
               },
             ]}
           >
             {appdetail.appointment_status == 1
-              ? "Pending"
+              ? strings.STSPending
               : appdetail.appointment_status == 2
-              ? "Confirm"
-              : appdetail.appointment_status == 3
-              ? "Complete"
-              : appdetail.appointment_status == 4
-              ? "Appointment cancel"
-              : strings.notfount}
+                ? strings.STSConfirm
+                : appdetail.appointment_status == 3
+                  ? strings.STSComplete
+                  : appdetail.appointment_status == 4
+                    ? strings.STSAppointMentCancl
+                    : strings.notfount}
           </Text>
         </View>
       </View>
-      { (appdetail.appointment_status === 3 || appdetail.appointment_status === 4) ? <>
-      <View style={styles.bottomView}>
-        <Text style={styles.topTxt}>Update information</Text>
-      </View>
-      <View style={styles.Txtview}>
-        <View style={styles.projectContainer}>
-          <Text style={styles.projectTxt}>Location</Text>
+      {(appdetail.appointment_status === 3 || appdetail.appointment_status === 4) ? <>
+        <View style={styles.bottomView}>
+          <Text style={styles.topTxt}>{strings.update + " " + strings.information}</Text>
         </View>
-        <View><Text>:</Text></View>
-        <View style={styles.nameContainer}>
-          <Text style={styles.nameTxt}>{location ? location : strings.notfount}</Text>
+        <View style={styles.Txtview}>
+          <View style={styles.projectContainer}>
+            <Text style={styles.projectTxt}>{strings.location}</Text>
+          </View>
+          <View><Text>:</Text></View>
+          <View style={styles.nameContainer}>
+            <Text style={styles.nameTxt}>{location ? location : strings.notfount}</Text>
+          </View>
         </View>
-      </View>
-      <View style={styles.Txtview}>
-        <View style={styles.projectContainer}>
-          <Text style={styles.projectTxt}>Remark</Text>
+        <View style={styles.Txtview}>
+          <View style={styles.projectContainer}>
+            <Text style={styles.projectTxt}>{strings.remark}</Text>
+          </View>
+          <View><Text>:</Text></View>
+          <View style={styles.nameContainer}>
+            <Text style={styles.nameTxt}>{appdetail.remark ? appdetail.remark : strings.notfount}</Text>
+          </View>
         </View>
-        <View><Text>:</Text></View>
-        <View style={styles.nameContainer}>
-          <Text style={styles.nameTxt}>{appdetail.remark ? appdetail.remark : strings.notfount}</Text>
-        </View>
-      </View>
-     </> : null }
+      </> : null}
     </ScrollView>
   )
 }

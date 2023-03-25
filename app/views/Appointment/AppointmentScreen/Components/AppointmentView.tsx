@@ -1,7 +1,5 @@
 import {
   View,
-  Text,
-  StatusBar,
   useWindowDimensions,
   FlatList,
 } from "react-native";
@@ -9,7 +7,6 @@ import React, { useEffect, useState } from "react";
 import {
   DATE_FORMAT,
   PRIMARY_THEME_COLOR_DARK,
-  RED_COLOR,
   TABBAR_COLOR,
 } from "../../../../components/utilities/constant";
 import Header from "../../../../components/Header";
@@ -17,19 +14,13 @@ import images from "../../../../assets/images";
 import strings from "../../../../components/utilities/Localization";
 import styles from "./Styles";
 import { useSafeAreaInsets } from "react-native-safe-area-context";
-import { SceneMap, TabBar, TabView } from "react-native-tab-view";
+import {  TabBar, TabView } from "react-native-tab-view";
 import VisitorAppointment from "./VisitorAppointment";
 import SmAppointment from "./SmAppointment";
-import {
-  AppointMentSmData,
-  AppointMentVisitorData,
-} from "../../../../components/utilities/DemoData";
 import { useFocusEffect, useNavigation } from "@react-navigation/native";
-import FilterModal from "./AppointmentModal";
 import Button from "../../../../components/Button";
 import { useDispatch, useSelector } from "react-redux";
 import { getAllAppointmentList } from "app/Redux/Actions/AppointmentActions";
-import ErrorMessage from "app/components/ErrorMessage";
 import EmptyListScreen from "app/components/CommonScreen/EmptyListScreen";
 import {
   getUserAppointmentList,
@@ -92,13 +83,11 @@ const AppointmentView = (props: any) => {
     }, [navigation, list, props?.params])
   );
   useEffect(() => {
-    console.log('props.params: ', props.params);
     if (type === "today") {
       getAppointmentList(0, todayAppointment);
     } else if(type === "todayComplete") {
       getAppointmentList(0, {...todayAppointment, status: 3});
     } else if (indexData?.index === 0) {
-      console.log("indexData?.index: ", indexData?.index);
       // handleUserAppointmentList(1);
       getAppointmentList(offSET, todayAppointment);
     } else {
@@ -116,7 +105,6 @@ const AppointmentView = (props: any) => {
   const handleReset = () => {
     settype('')
     if (indexData?.index === 0) {
-      console.log("indexData?.index: ", indexData?.index);
       // handleUserAppointmentList(1);
       getAppointmentList(offSET, todayAppointment);
     } else {

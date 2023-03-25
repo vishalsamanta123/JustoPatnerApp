@@ -29,7 +29,7 @@ const VisitorAppointment = (props: any) => {
     <View style={styles.IteamView}>
       <View style={styles.Txtview}>
         <View style={styles.projectContainer}>
-          <Text style={styles.projectTxt}>Visit Date time</Text>
+          <Text style={styles.projectTxt}>{strings.visit + " " + strings.dateTime}</Text>
         </View>
         <View>
           <Text>:</Text>
@@ -42,7 +42,7 @@ const VisitorAppointment = (props: any) => {
       </View>
       <View style={styles.Txtview}>
         <View style={styles.projectContainer}>
-          <Text style={styles.projectTxt}>Created Date</Text>
+          <Text style={styles.projectTxt}>{strings.createdDate}</Text>
         </View>
         <View>
           <Text>:</Text>
@@ -57,7 +57,7 @@ const VisitorAppointment = (props: any) => {
       </View>
       <View style={styles.Txtview}>
         <View style={styles.projectContainer}>
-          <Text style={styles.projectTxt}>Customer Name</Text>
+          <Text style={styles.projectTxt}>{strings.customer + " " + strings.name}</Text>
         </View>
         <View>
           <Text>:</Text>
@@ -70,7 +70,7 @@ const VisitorAppointment = (props: any) => {
         alignItems: 'flex-start'
       }]}>
         <View style={styles.projectContainer}>
-          <Text style={styles.projectTxt}>Property Name</Text>
+          <Text style={styles.projectTxt}>{strings.propertyHeader + " " + strings.name}</Text>
         </View>
         <View>
           <Text>:</Text>
@@ -81,7 +81,7 @@ const VisitorAppointment = (props: any) => {
       </View>
       <View style={styles.Txtview}>
         <View style={styles.projectContainer}>
-          <Text style={styles.projectTxt}>Lead No.</Text>
+          <Text style={styles.projectTxt}>{strings.leadNo}</Text>
         </View>
         <View>
           <Text>:</Text>
@@ -92,7 +92,7 @@ const VisitorAppointment = (props: any) => {
       </View>
       <View style={styles.Txtview}>
         <View style={styles.projectContainer}>
-          <Text style={styles.projectTxt}>Pickup</Text>
+          <Text style={styles.projectTxt}>{strings.pickup}</Text>
         </View>
         <View>
           <Text>:</Text>
@@ -103,7 +103,7 @@ const VisitorAppointment = (props: any) => {
       </View>
       <View style={styles.Txtview}>
         <View style={styles.projectContainer}>
-          <Text style={styles.projectTxt}>Status</Text>
+          <Text style={styles.projectTxt}>{strings.status}</Text>
         </View>
         <View>
           <Text>:</Text>
@@ -127,15 +127,15 @@ const VisitorAppointment = (props: any) => {
             ]}
           >
             {item?.status === 1
-              ? currentDate >= appointmentdateTime ? 'Not Visited' : "Upcoming"
+              ? currentDate >= appointmentdateTime ? strings.STSNotVisited : strings.STSUpComing
               : item?.status === 2
-                ? "Completed"
+                ? strings.STSCompleted
                 : item?.status === 3
-                  ? "Completed"
+                  ? strings.STSCompleted
                   : item?.status === 4
-                    ? "Visit Cancelled"
-                    : item?.status === 5 ? "Visit Cancelled"
-                      : item?.status === 6 && "Not Fit for Sale"
+                    ? strings.STSVisitCancelled
+                    : item?.status === 5 ? strings.STSVisitCancelled
+                      : item?.status === 6 && strings.STSNotFitForSale
 
             }
           </Text>

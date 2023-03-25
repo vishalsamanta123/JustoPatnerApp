@@ -6,13 +6,7 @@ import images from "../../../../assets/images";
 import strings from "../../../../components/utilities/Localization";
 import Button from "../../../../components/Button";
 import InputField from "../../../../components/InputField";
-import DropdownInput from "../../../../components/DropDown";
-import InputCalender from "app/components/InputCalender";
-import moment from "moment";
-import {
-  DATE_FORMAT,
-  GRAY_LIGHT_COLOR,
-} from "app/components/utilities/constant";
+
 
 const AppointmentModal = (props: any) => {
   useEffect(() => {
@@ -37,8 +31,8 @@ const AppointmentModal = (props: any) => {
           <View style={{ marginHorizontal: 10 }}>
             <View style={styles.inputWrap}>
               <InputField
-                placeholderText={"Comment"}
-                headingText={"Comment"}
+                placeholderText={strings.comment}
+                headingText={strings.comment}
                 handleInputBtnPress={() => {}}
                 inputheight={80}
                 valueshow={props?.params?.remark}

@@ -33,7 +33,7 @@ const styles = StyleSheet.create({
     flex: 2.6,
     alignItems: 'flex-start',
     height: '100%',
-    marginLeft:normalizeSpacing(15)
+    marginLeft: normalizeSpacing(15)
   },
   projectTxt: {
     fontSize: normalize(15),
