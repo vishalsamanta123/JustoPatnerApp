@@ -39,8 +39,8 @@ export const AMOUNT_TYPE = [{ value: "Cr" }, { value: "L" }, { value: "K" }]
 export const ONE_MONTH_DATES = new Date(new Date().setDate(new Date().getDate() + 31));
 
 // export const GLOBAL_URL = 'http://192.168.1.27:3000'
-// export const GLOBAL_URL = 'https://api.justoverse.com:3000' 
-export const GLOBAL_URL = 'https://prodapi.justoverse.com:3002' // prod
+export const GLOBAL_URL = 'https://api.justoverse.com:3000' 
+// export const GLOBAL_URL = 'https://prodapi.justoverse.com:3002' // prod
 // export const GLOBAL_URL = 'https://itinformatix.org:3044'
 // export const  MAP_KEY = 'AIzaSyDdLk5tb75SiJvRk9F2B4almu-sBAi1-EM'
 export const MAP_KEY = 'AIzaSyCbDx7Lk4eTMzptrQKXZvOPYgEMggrq8o4'
@@ -51,4 +51,5 @@ export const Regexs = {
   emailRegex: new RegExp(/^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/),
   phoneNumRegex: new RegExp(/^(\+\d{1,3}[- ]?)?\d{10}$/),
   emailOrPhone: new RegExp(/^(.+@.+|\d{10})$/),
+  mobilenumRegex:  new RegExp(/^[6-9]{1}[0-9]{9}$/),
 }

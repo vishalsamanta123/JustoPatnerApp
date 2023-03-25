@@ -174,6 +174,12 @@ const AddNewVisitorScreen = ({ navigation, route }: any) => {
           errorMessage = "Please enter valid Pancard number";
         }
       }
+      if (formData?.mobile) {
+        if (Regexs.mobilenumRegex.test(formData?.mobile) === false) {
+          isError = false;
+          errorMessage = "Please enter valid Mobile number";
+        }
+      }
       if (formData?.email) {
         if (Regexs.emailRegex.test(formData?.email) === false) {
           isError = false;
