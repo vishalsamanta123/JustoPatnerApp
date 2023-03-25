@@ -30,6 +30,8 @@ const AddAppointmentItem = (props: any) => {
           <DropdownInput
             require={true}
             headingText={strings.selectLead}
+            search={true}
+            searchPlaceholder={strings.search + " " + strings.lead}
             placeholder={props?.addAppointmentForm?.lead_name === '' ||
               props?.addAppointmentForm?.lead_name === undefined ||
               props?.addAppointmentForm?.lead_name === null ?

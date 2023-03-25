@@ -44,6 +44,9 @@ const DropdownInput = (props: any) => {
                         height: normalizeHeight(inputheight),
                         paddingLeft: normalize(paddingLeft)
                     }]}
+                    search={props.search}
+                    searchPlaceholder={props.searchPlaceholder}
+                    inputSearchStyle={styles.searchInput}
                     itemTextStyle={{ fontSize: 10 }}
                     itemContainerStyle={props.itemContainerStyle}
                     placeholderStyle={styles.placeholderStyle}

@@ -156,9 +156,9 @@ const AddNewVisitorScreen = ({ navigation, route }: any) => {
       } else if (formData?.mobile === "" || formData?.mobile === undefined) {
         isError = false;
         errorMessage = "Please fill mobile number";
-      } else if (formData?.mobile?.length < 10) {
+      } else if (Regexs.mobilenumRegex.test(formData?.mobile) === false) {
         isError = false;
-        errorMessage = "Please fill 10 digit mobile number";
+        errorMessage = "Please enter valid Mobile number";
       } else if (formData?.visit_confirmation_status === "No") {
         isError = false;
         errorMessage = "Please check entered mobile number";
@@ -172,12 +172,6 @@ const AddNewVisitorScreen = ({ navigation, route }: any) => {
         if (Regexs.panRegex.test(formData?.pancard_no) === false) {
           isError = false;
           errorMessage = "Please enter valid Pancard number";
-        }
-      }
-      if (formData?.mobile) {
-        if (Regexs.mobilenumRegex.test(formData?.mobile) === false) {
-          isError = false;
-          errorMessage = "Please enter valid Mobile number";
         }
       }
       if (formData?.email) {

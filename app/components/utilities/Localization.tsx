@@ -102,6 +102,7 @@ const strings = new LocalizedStrings({
     appointmentType: "Appointment Type",
     appointmentWith: "Appointment With",
     leadNo: "Lead No.",
+    lead: "Lead",
 
     //Status Keys
     STSNotVisited: "Not Visited",
@@ -109,6 +110,8 @@ const strings = new LocalizedStrings({
     STSCompleted: "Completed",
     STSVisitCancelled: "Visit Cancelled",
     STSNotFitForSale: "Not Fit for Sale",
+    STSReVisit: "ReVisit",
+    STSRescheduled: "ReScheduled",
     STSPending: "Pending",
     STSConfirm: 'Confirm',
     STSComplete: 'Complete',
@@ -185,7 +188,7 @@ const strings = new LocalizedStrings({
     chatHeader: 'Chat',
     supportHeader: 'Raise Ticket',
     supportforumHeader: 'Support Forum',
-    supportforumDtlHeader: 'Support Forum Detail',
+    supportforumDtlHeader: 'Support Forum Details',
     searchSupportForum: 'Search Support Forum',
     settingHeader: 'Setting',
     logout: 'Logout',
@@ -237,7 +240,7 @@ const strings = new LocalizedStrings({
     pendingconfirm: 'Pending Confirm',
     edit: 'Edit',
     deactive: 'Deactive',
-    agentdetail: 'Member Detail',
+    agentdetail: 'Member Details',
     userbankinfo: 'User Bank Info',
     createnewagency: 'Create New Agency',
     sendotp: 'Send OTP',
@@ -262,7 +265,7 @@ const strings = new LocalizedStrings({
     Statusupdate: 'Status Update',
     ScheduleSitevisite: 'Schedule Site Visit',
     followupHeader: 'Follow-up',
-    followupDetails: 'Follow-Up Detail',
+    followupDetails: 'Follow-Up Details',
     searchfollowup: 'Search Follow-Up',
     allfollowup: 'History',
     editfollowup: 'Edit Follow-Up',
@@ -310,7 +313,7 @@ const strings = new LocalizedStrings({
 
     // Appointment
     appointmnet: 'Appointment',
-    appointmnetdetail: 'Appointmnet Detail',
+    appointmnetdetail: 'Appointmnet Details',
     updatestatus: 'Update Status',
     searchappointment: 'Search Appointment',
     addNewappointment: 'Add Appointment',

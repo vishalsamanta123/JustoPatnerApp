@@ -77,6 +77,12 @@ const styles = StyleSheet.create({
     fontFamily: FONT_FAMILY_SEMIBOLD,
     color: PRIMARY_THEME_COLOR,
   },
+  searchInput: {
+    backgroundColor: WHITE_COLOR,
+    elevation: 5,
+    borderRadius: normalize(5),
+    paddingHorizontal: 0,
+  }
 })
 
 export default styles
