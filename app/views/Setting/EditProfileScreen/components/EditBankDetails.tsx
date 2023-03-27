@@ -23,6 +23,7 @@ import { removeUpdateData, updateUserSettingData } from "app/Redux/Actions/Setti
 import ErrorMessage from "app/components/ErrorMessage";
 import { addAgentForm } from "app/Redux/Actions/AgentActions";
 import { RadioButton } from "react-native-paper";
+import { handleValues } from "app/components/utilities/handleValues";
 
 const EditBankDetails = ({ navigation }: any) => {
   const dispatch: any = useDispatch()
@@ -65,7 +66,7 @@ const EditBankDetails = ({ navigation }: any) => {
             onChangeText={(val: any) => {
               setEditData({
                 ...editData, rera_certificate_no: val,
-                norera_register: val === "" ? null : ""
+                norera_register: (val === "" && handleValues(editData?.rera_certificate) === false) ? null : ""
               })
             }}
           />

@@ -2,7 +2,6 @@ import {
   View,
   Text,
   ScrollView,
-  StatusBar,
   TouchableOpacity,
   Linking,
   Keyboard,
@@ -16,7 +15,6 @@ import {
   Isios,
   PRIMARY_THEME_COLOR,
   RED_COLOR,
-  WHITE_COLOR,
 } from "../../../../components/utilities/constant";
 import strings from "../../../../components/utilities/Localization";
 import styles from "./styles";
@@ -145,29 +143,19 @@ const AgentBankInfo = ({ navigation, route }: any) => {
       formData.append("branch_name", agentInfoData?.branch_name);
       formData.append("account_no", agentInfoData?.account_no);
       formData.append("ifsc_code", agentInfoData?.ifsc_code);
-      formData.append(
-        "date_of_birth",
-        agentInfoData?.date_of_birth
-          ? agentInfoData?.date_of_birth
-          : "10/11/2000"
+      formData.append("date_of_birth",
+        agentInfoData?.date_of_birth ? agentInfoData?.date_of_birth : "10/11/2000"
       );
       formData.append("location", agentInfoData?.location);
       formData.append("latitude", agentInfoData?.latitude);
       formData.append("longitude", agentInfoData?.longitude);
-      formData.append(
-        "working_location",
-        JSON.stringify(agentInfoData?.working_location)
-      );
+      formData.append("working_location", JSON.stringify(agentInfoData?.working_location));
       formData.append("rera_certificate_no", agentInfoData?.rera_certificate_no);
+      formData.append("rera_certificate", agentInfoData?.rera_certificate)
       agentInfoData?.profile_picture?.uri &&
         formData.append("profile_picture", agentInfoData?.profile_picture);
-      formData.append("rera_certificate", agentInfoData?.rera_certificate)
       agentInfoData?.cancel_cheaque?.uri &&
-        console.log(
-          "agentInfoData?.cancel_cheaque: ",
-          agentInfoData?.cancel_cheaque
-        );
-      formData.append("cancel_cheaque", agentInfoData?.cancel_cheaque);
+        formData.append("cancel_cheaque", agentInfoData?.cancel_cheaque);
       agentInfoData?.propidership_declaration_letter?.uri &&
         formData.append(
           "propidership_declaration_letter",
@@ -204,7 +192,8 @@ const AgentBankInfo = ({ navigation, route }: any) => {
                 setAgentInfoData({
                   ...agentInfoData,
                   rera_certificate_no: data,
-                  norera_register: data === "" ? null : ""
+                  norera_register: (data === "" && agentInfoData?.rera_certificate === "" ||
+                    agentInfoData?.rera_certificate === null) ? null : ""
                 });
               }}
               valueshow={agentInfoData?.rera_certificate_no?.toString()}
@@ -213,18 +202,11 @@ const AgentBankInfo = ({ navigation, route }: any) => {
             />
           </View>
           <View style={[styles.inputWrap, { flexDirection: "row" }]}>
-            <View
-              style={{
-                flex: 1,
-                flexDirection: "row",
-                alignItems: "center",
-                justifyContent: "center",
-              }}
-            >
+            <View style={styles.flexRowVw}>
               <Text style={[styles.headingText, { fontSize: normalize(17) }]}>
                 {strings.reraCertificate}
               </Text>
-              {/* <RequiredStart /> */}
+              {/* {/ <RequiredStart /> /} */}
             </View>
             <View style={{ flex: 0.5 }}>
               <TouchableOpacity
@@ -250,14 +232,7 @@ const AgentBankInfo = ({ navigation, route }: any) => {
             </View>
           </View>
           <View style={[styles.inputWrap, { flexDirection: "row" }]}>
-            <View
-              style={{
-                flex: 1,
-                justifyContent: "center",
-                flexDirection: "row",
-                alignItems: "center",
-              }}
-            >
+            <View style={styles.flexRowVw}>
               <Text style={[styles.headingText, { fontSize: normalize(17) }]}>
                 {strings.proprietorDeclarLttr}
               </Text>
@@ -386,14 +361,7 @@ const AgentBankInfo = ({ navigation, route }: any) => {
             />
           </View>
           <View style={[styles.inputWrap, { flexDirection: "row" }]}>
-            <View
-              style={{
-                flex: 1,
-                flexDirection: "row",
-                alignItems: "center",
-                justifyContent: "center",
-              }}
-            >
+            <View style={styles.flexRowVw}>
               <Text style={[styles.headingText, { fontSize: normalize(17) }]}>
                 {strings.cancelCheque}
               </Text>
@@ -434,7 +402,8 @@ const AgentBankInfo = ({ navigation, route }: any) => {
             <Button
               handleBtnPress={() => {
                 Keyboard.dismiss()
-                onPressCreateAgent(route?.params?.type)}}
+                onPressCreateAgent(route?.params?.type)
+              }}
               buttonText={
                 route?.params?.type === "edit"
                   ? strings.editAgent
@@ -449,7 +418,7 @@ const AgentBankInfo = ({ navigation, route }: any) => {
             value={true}
             disabled={true}
             tintColors={{ true: PRIMARY_THEME_COLOR }}
-            style={{ transform: Isios ? [{ scaleX: 0.8 }, { scaleY: 0.8 }]  : [{ scaleX: 1 }, { scaleY: 1 }]}}
+            style={{ transform: Isios ? [{ scaleX: 0.8 }, { scaleY: 0.8 }] : [{ scaleX: 1 }, { scaleY: 1 }] }}
           // onValueChange={(newValue) => setToggleCheckBox(newValue)}
           />
           <Text style={styles.bottomText}>{strings.iAknowledge}</Text>
@@ -505,8 +474,8 @@ const AgentBankInfo = ({ navigation, route }: any) => {
             });
           }}
         />
-      </ScrollView>
-    </View>
+      </ScrollView >
+    </View >
   );
 };
 

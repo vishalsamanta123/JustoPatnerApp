@@ -103,6 +103,9 @@ const strings = new LocalizedStrings({
     appointmentWith: "Appointment With",
     leadNo: "Lead No.",
     lead: "Lead",
+    visitStatus: "Visit Status",
+    password: "Password",
+    new: "New",
 
     //Status Keys
     STSNotVisited: "Not Visited",
