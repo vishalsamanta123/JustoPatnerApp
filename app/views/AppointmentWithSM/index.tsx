@@ -16,7 +16,7 @@ const AppointmentWithSM = ({ navigation }: any) => {
     status: "",
   });
   const [isVisible, setIsVisible] = useState<any>(false);
-  const [params, setParams] = useState({
+  const [params, setParams] = useState<any>({
     appointment_id: "",
     appointment_status: "",
     remark: "",
@@ -86,6 +86,7 @@ const AppointmentWithSM = ({ navigation }: any) => {
       ...params,
       appointment_id: id,
       appointment_status: status,
+      remark: ''
     });
     setIsVisible(true);
   };
@@ -111,6 +112,7 @@ const AppointmentWithSM = ({ navigation }: any) => {
       moreData={moreData}
       isVisible={isVisible}
       setParams={setParams}
+      params={params}
       setIsVisible={setIsVisible}
       handleOnPressYesInModal={handleOnPressYesInModal}
     />

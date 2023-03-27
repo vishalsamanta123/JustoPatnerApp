@@ -17,11 +17,15 @@ const SupportScreen = ({ navigation }: any) => {
     });
     useEffect(() => {
         if (response?.status === 200) {
+        if(response?.data?.length > 0){
             if (offSET === 0 || offSET === undefined) {
                 setTicketList(response?.data);
             } else {
                 setTicketList([...ticketList, ...response?.data]);
             }
+        }else {
+            setTicketList([])
+        }
         } else {
             setTicketList([])
         }
