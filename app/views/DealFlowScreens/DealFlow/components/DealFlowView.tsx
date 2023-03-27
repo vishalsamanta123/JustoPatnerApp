@@ -25,7 +25,7 @@ const DealFlowView = (props: any) => {
                             marginTop: normalizeSpacing(2),
                             fontSize: normalize(14)
                         }]}>{item.visit_score}</Text>
-                        <Text style={styles.smallTxt}>Visitor Quality Score</Text>
+                        <Text style={styles.smallTxt}>{strings.visitorQualitySc}</Text>
                     </View>
                 </View>
                 <View style={styles.straightVw}>
@@ -35,22 +35,20 @@ const DealFlowView = (props: any) => {
                     </View>
                     <View style={styles.textArea}>
                         <View style={styles.textVws}>
-                            <Text style={styles.subHeadTxt}>Commission Earned</Text>
+                            <Text style={styles.subHeadTxt}>{strings.commissionErnd}</Text>
                             <Text style={styles.smallTxt}>{item.commissions_earned}</Text>
                         </View>
                         <View style={styles.textVws}>
-                            <Text style={styles.subHeadTxt}>Potential Commission</Text>
+                            <Text style={styles.subHeadTxt}>{strings.potentlCommission}</Text>
                             <Text style={styles.smallTxt}>{item.potential_commissions}</Text>
                         </View>
                     </View>
-                    <View style={[styles.textArea, {
-                        justifyContent: 'flex-end',
-                    }]}>
+                    <View style={[styles.textArea, { justifyContent: 'flex-end', }]}>
                         <View style={[styles.textVws, {
                             alignItems: 'center',
                             marginRight: normalizeSpacing(30)
                         }]}>
-                            <Text style={styles.subHeadTxt}>Inventory Left to Close</Text>
+                            <Text style={styles.subHeadTxt}>{strings.invntryLftToClose}</Text>
                             <Text>{item.total_inventry - item.total_sold_out}</Text>
                         </View>
                         <TouchableOpacity

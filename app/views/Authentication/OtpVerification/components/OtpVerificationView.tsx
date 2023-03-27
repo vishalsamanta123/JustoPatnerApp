@@ -54,7 +54,8 @@ const OtpVerificationView = (props: any) => {
           }}
         />
         <View style={styles.btnView}>
-          <Button handleBtnPress={props.OnpressConfirm} buttonText={'confirm'}
+          <Button handleBtnPress={props.OnpressConfirm}
+            buttonText={strings.confirm}
           //textTransform={'uppercase'}
           />
         </View>
@@ -102,8 +103,8 @@ const OtpVerificationView = (props: any) => {
           value={true}
           disabled={true}
           tintColors={{ true: PRIMARY_THEME_COLOR }}
-          style={{ transform: Isios ? [{ scaleX: 0.8 }, { scaleY: 0.8 }]  : [{ scaleX: 1 }, { scaleY: 1 }]}}
-          // onValueChange={(newValue) => setToggleCheckBox(newValue)}
+          style={{ transform: Isios ? [{ scaleX: 0.8 }, { scaleY: 0.8 }] : [{ scaleX: 1 }, { scaleY: 1 }] }}
+        // onValueChange={(newValue) => setToggleCheckBox(newValue)}
         />
         <Text style={styles.bottomText}>{strings.iAknowledge}</Text>
         <TouchableOpacity onPress={() => Linking.openURL('https://justoverse.com/termandcondition')} style={styles.spanTouch}>

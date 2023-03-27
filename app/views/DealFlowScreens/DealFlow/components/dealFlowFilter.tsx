@@ -35,7 +35,7 @@ const dealFlowFilter = (props: any) => {
                             <InputCalender
                                 mode={'date'}
                                 leftIcon={images.event}
-                                placeholderText={"Start Date"}
+                                placeholderText={strings.startDate}
                                 editable={false}
                                 dateData={(data: any) => {
                                     props.setFilterData({
@@ -56,7 +56,7 @@ const dealFlowFilter = (props: any) => {
                             <InputCalender
                                 mode={'date'}
                                 leftIcon={images.event}
-                                placeholderText={"End Date"}
+                                placeholderText={strings.endDate}
                                 editable={false}
                                 value={props?.filterData?.end_date}
                                 dateData={(data: any) => {
@@ -75,8 +75,8 @@ const dealFlowFilter = (props: any) => {
                         </View>
                         <View style={styles.inputWrap}>
                             <InputField
-                                placeholderText={"Search Project Name"}
-                                headingText={"Search Project Name"}
+                                placeholderText={strings.searchProjctName}
+                                headingText={strings.searchProjctName}
                                 onChangeText={(data: any) => {
                                     props.setFilterData({
                                         ...props.filterData,

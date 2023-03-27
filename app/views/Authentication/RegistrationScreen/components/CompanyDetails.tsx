@@ -171,9 +171,9 @@ const CompanyDetails = ({ navigation }: any) => {
         <View style={styles.inputWrap}>
           <InputField
             require={true}
-            placeholderText={"Agency Name"}
+            placeholderText={strings.agency + " " + strings.name}
             handleInputBtnPress={() => { }}
-            headingText={"Real Estate Company"}
+            headingText={strings.realEstateCom}
             valueshow={formData?.agency_name}
             onChangeText={(val: any) => {
               setFormData({
@@ -185,8 +185,8 @@ const CompanyDetails = ({ navigation }: any) => {
         <View style={styles.inputWrap}>
           <InputField
             require={true}
-            placeholderText={"GST"}
-            headingText={"GST"}
+            placeholderText={strings.gst}
+            headingText={strings.gst}
             handleInputBtnPress={() => { }}
             valueshow={formData?.gst}
             maxLength={20}
@@ -200,9 +200,9 @@ const CompanyDetails = ({ navigation }: any) => {
         <View style={styles.inputWrap}>
           <InputField
             require={true}
-            placeholderText={"RERA Registration"}
+            placeholderText={strings.RERA + " " + strings.registration}
             maxLength={20}
-            headingText={"RERA Registration"}
+            headingText={strings.RERA + " " + strings.registration}
             handleInputBtnPress={() => { }}
             valueshow={formData?.rera_registration}
             onChangeText={(val: any) => {
@@ -214,7 +214,7 @@ const CompanyDetails = ({ navigation }: any) => {
         </View>
         <View style={[styles.inputWrap, { flexDirection: "row", alignItems: 'center', justifyContent: 'space-between' }]}>
           <View style={{ flex: 1, flexDirection: 'row', alignItems: 'center' }}>
-            <Text style={styles.headingText}>Pancard</Text>
+            <Text style={styles.headingText}>{strings.pancard}</Text>
             <Image
               source={images.star}
               style={{
@@ -239,11 +239,11 @@ const CompanyDetails = ({ navigation }: any) => {
           </View>
         </View>
         {typeof formData?.pancard === 'object' ?
-          <Text style={styles.addedTxt}>{"Pancard Added"}</Text> : null
+          <Text style={styles.addedTxt}>{strings.pancard + " " + strings.added}</Text> : null
         }
         <View style={[styles.inputWrap, { flexDirection: "row", alignItems: 'center', justifyContent: 'space-between' }]}>
           <View style={{ flex: 1, flexDirection: 'row', alignItems: 'center' }}>
-            <Text style={styles.headingText}>Declaration Letter of Company</Text>
+            <Text style={styles.headingText}>{strings.declrLttrCom}</Text>
             <Image
               source={images.star}
               style={{
@@ -268,17 +268,17 @@ const CompanyDetails = ({ navigation }: any) => {
           </View>
         </View>
         {typeof formData?.declaration_letter_of_company === 'object' ?
-          <Text style={styles.addedTxt}>{"Declaration Letter Of Company Added"}</Text> : null
+          <Text style={styles.addedTxt}>{strings.declrLttrCom + " " + strings.added}</Text> : null
         }
         <View style={styles.inputWrap}>
-          <Text style={styles.headingText}>Bank Details</Text>
+          <Text style={styles.headingText}>{strings.bankDetail}</Text>
         </View>
         <View style={styles.inputWrap}>
           <InputField
             require={true}
-            placeholderText={"Bank Name"}
+            placeholderText={strings.bankName}
             handleInputBtnPress={() => { }}
-            headingText={"Bank Name"}
+            headingText={strings.bankName}
             valueshow={formData?.company_bank_name}
             onChangeText={(val: any) => {
               setFormData({
@@ -290,9 +290,9 @@ const CompanyDetails = ({ navigation }: any) => {
         <View style={styles.inputWrap}>
           <InputField
             require={true}
-            placeholderText={"Branch Name"}
+            placeholderText={strings.branchName}
             handleInputBtnPress={() => { }}
-            headingText={"Branch Name"}
+            headingText={strings.branchName}
             valueshow={formData?.company_branch_name}
             onChangeText={(val: any) => {
               setFormData({
@@ -304,9 +304,9 @@ const CompanyDetails = ({ navigation }: any) => {
         <View style={styles.inputWrap}>
           <InputField
             require={true}
-            placeholderText={"Account No."}
+            placeholderText={strings.accountNo}
             handleInputBtnPress={() => { }}
-            headingText={"Account No."}
+            headingText={strings.accountNo}
             maxLength={18}
             keyboardtype={'number-pad'}
             valueshow={formData?.company_account_no}
@@ -320,9 +320,9 @@ const CompanyDetails = ({ navigation }: any) => {
         <View style={styles.inputWrap}>
           <InputField
             require={true}
-            placeholderText={"IFSC Code"}
+            placeholderText={strings.ifscCode}
             handleInputBtnPress={() => { }}
-            headingText={"IFSC Code"}
+            headingText={strings.ifscCode}
             valueshow={formData?.company_ifsc_code}
             maxLength={11}
             onChangeText={(val: any) => {

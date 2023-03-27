@@ -94,7 +94,7 @@ const EditFollowUp = ({ navigation, route }: any) => {
                 <View style={styles.editInputView}>
                     <View style={styles.inputWarp}>
                         <DropdownInput
-                            headingText={'Status'}
+                            headingText={strings.status}
                             placeholder={
                                 formData?.followup_status_title === '' ||
                                     formData?.followup_status_title === undefined ||
@@ -129,10 +129,10 @@ const EditFollowUp = ({ navigation, route }: any) => {
                         <>
                             <View style={styles.inputWarp}>
                                 <InputCalender
-                                    headingText={'Date'}
+                                    headingText={strings.date}
                                     mode={'date'}
                                     leftIcon={images.event}
-                                    placeholderText={"Date"}//can edit
+                                    placeholderText={strings.date}//can edit
                                     editable={false}
                                     // onChangeText={() => { }}
                                     dateData={(data: any) => {
@@ -158,11 +158,11 @@ const EditFollowUp = ({ navigation, route }: any) => {
                             </View>
                             <View style={styles.inputWarp}>
                                 <InputCalender
-                                    headingText={'Time'}
+                                    headingText={strings.time}
                                     mode={"time"}
                                     dateValue={formData?.next_followup_date}
                                     leftIcon={images.timer}
-                                    placeholderText={"Time"}//can edit
+                                    placeholderText={strings.time}//can edit
                                     editable={false}
                                     // onChangeText={() => { }}
                                     dateData={(data: any) => {
@@ -186,9 +186,9 @@ const EditFollowUp = ({ navigation, route }: any) => {
                     }
                     <View style={styles.inputWarp}>
                         <InputField
-                            placeholderText={"Description"}
+                            placeholderText={strings.description}
                             handleInputBtnPress={() => { }}
-                            headingText={"Description"}
+                            headingText={strings.description}
                             multiline={true}
                             inputheight={200}
                             valueshow={formData?.remark}

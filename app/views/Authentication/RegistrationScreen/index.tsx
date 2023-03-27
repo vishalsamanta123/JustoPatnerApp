@@ -13,26 +13,6 @@ import { useDispatch, useSelector } from "react-redux";
 import RegistrationView from "./components/RegistrationView";
 
 const RegistrationScreen = ({ navigation }: any) => {
-  const [isKeyboardVisible, setKeyboardVisible] = useState(false);
-  useEffect(() => {
-    const keyboardDidShowListener = Keyboard.addListener(
-      'keyboardDidShow',
-      () => {
-        setKeyboardVisible(true); // or some other action
-      }
-    );
-    const keyboardDidHideListener = Keyboard.addListener(
-      'keyboardDidHide',
-      () => {
-        setKeyboardVisible(false); // or some other action
-      }
-    );
-
-    return () => {
-      keyboardDidHideListener.remove();
-      keyboardDidShowListener.remove();
-    };
-  }, []);
   const dispatch: any = useDispatch();
   const [isError, setisError] = useState(false);
   const [locationModel, setLocationModel] = useState(false);

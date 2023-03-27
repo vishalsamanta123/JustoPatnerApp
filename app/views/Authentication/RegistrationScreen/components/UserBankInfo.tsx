@@ -155,8 +155,8 @@ const UserBankInfo = ({ navigation }: any) => {
               }}
             /> */}
             <DropdownInput
-              headingText={'Sourcing Manager'}
-              placeholder={'Sourcing Manager'}
+              headingText={strings.sourcingMngr}
+              placeholder={strings.sourcingMngr}
               data={masterDatas}
               inputWidth={'100%'}
               paddingLeft={16}
@@ -185,10 +185,10 @@ const UserBankInfo = ({ navigation }: any) => {
           <View style={styles.inputWrap}>
             <InputField
               // require={true}
-              placeholderText={"RERA Certificate No."}
+              placeholderText={strings.reraCertificate + " " + strings.shortNum}
               handleInputBtnPress={() => { }}
               maxLength={20}
-              headingText={"RERA Certificate No."}
+              headingText={strings.reraCertificate + " " + strings.shortNum}
               valueshow={formData?.rera_certificate_no}
               onChangeText={(val: any) => {
                 setFormData({
@@ -201,7 +201,7 @@ const UserBankInfo = ({ navigation }: any) => {
           </View>
           <View style={[styles.inputWrap, { flexDirection: "row", alignItems: 'center', justifyContent: 'space-between' }]}>
             <View style={{ flex: 1, flexDirection: 'row', alignItems: 'center' }}>
-              <Text style={styles.headingText}>RERA Certificate</Text>
+              <Text style={styles.headingText}>{strings.reraCertificate}</Text>
               {/* <Image
                 source={images.star}
                 style={{
@@ -225,11 +225,11 @@ const UserBankInfo = ({ navigation }: any) => {
             </View>
           </View>
           {typeof formData?.rera_certificate === 'object' ?
-            <Text style={styles.addedTxt}>{"RERA Certificate Added"}</Text> : null
+            <Text style={styles.addedTxt}>{strings.reraCertificate + " " + strings.added}</Text> : null
           }
           <View style={[styles.inputWrap, { flexDirection: "row", alignItems: 'center' }]}>
             <View style={{ flex: 1, flexDirection: 'row', alignItems: 'center' }}>
-              <Text style={styles.headingText}>Proprietorship Declaration Letter</Text>
+              <Text style={styles.headingText}>{strings.proprietorDeclarLttr}</Text>
               <Image
                 source={images.star}
                 style={{
@@ -253,7 +253,7 @@ const UserBankInfo = ({ navigation }: any) => {
             </View>
           </View>
           {typeof formData?.propidership_declaration_letter === 'object' ?
-            <Text style={styles.addedTxt}>{"Proprietorship Declaration Letter Added"}</Text>
+            <Text style={styles.addedTxt}>{strings.proprietorDeclarLttr + " " + strings.added}</Text>
             : null
           }
           <View style={styles.straightVw}>
@@ -285,14 +285,14 @@ const UserBankInfo = ({ navigation }: any) => {
             </Text>
           </View>
           <View style={styles.inputWrap}>
-            <Text style={styles.headingText}>Bank Details</Text>
+            <Text style={styles.headingText}>{strings.bankDetail}</Text>
           </View>
           <View style={styles.inputWrap}>
             <InputField
               require={true}
-              placeholderText={"Bank Name"}
+              placeholderText={strings.bankName}
               handleInputBtnPress={() => { }}
-              headingText={"Bank Name"}
+              headingText={strings.bankName}
               valueshow={formData?.bank_name}
               onChangeText={(val: any) => {
                 setFormData({
@@ -304,9 +304,9 @@ const UserBankInfo = ({ navigation }: any) => {
           <View style={styles.inputWrap}>
             <InputField
               require={true}
-              placeholderText={"Branch Name"}
+              placeholderText={strings.branchName}
               handleInputBtnPress={() => { }}
-              headingText={"Branch Name"}
+              headingText={strings.branchName}
               valueshow={formData?.branch_name}
               onChangeText={(val: any) => {
                 setFormData({
@@ -318,9 +318,9 @@ const UserBankInfo = ({ navigation }: any) => {
           <View style={styles.inputWrap}>
             <InputField
               require={true}
-              placeholderText={"Account No."}
+              placeholderText={strings.accountNo}
               handleInputBtnPress={() => { }}
-              headingText={"Account No."}
+              headingText={strings.accountNo}
               maxLength={18}
               keyboardtype={'number-pad'}
               valueshow={formData?.account_no}
@@ -334,9 +334,9 @@ const UserBankInfo = ({ navigation }: any) => {
           <View style={styles.inputWrap}>
             <InputField
               require={true}
-              placeholderText={"IFSC Code"}
+              placeholderText={strings.ifscCode}
               handleInputBtnPress={() => { }}
-              headingText={"IFSC Code"}
+              headingText={strings.ifscCode}
               valueshow={formData?.ifsc_code}
               maxLength={11}
               onChangeText={(val: any) => {
@@ -348,7 +348,7 @@ const UserBankInfo = ({ navigation }: any) => {
           </View>
           <View style={[styles.inputWrap, { flexDirection: "row", alignItems: 'center' }]}>
             <View style={{ flex: 1, flexDirection: 'row', alignItems: 'center' }}>
-              <Text style={styles.headingText}>Cancel Cheaque</Text>
+              <Text style={styles.headingText}>{strings.cancelCheque}</Text>
               <Image
                 source={images.star}
                 style={{
@@ -375,7 +375,7 @@ const UserBankInfo = ({ navigation }: any) => {
             </View>
           </View>
           {typeof formData?.cancel_cheaque === 'object' ?
-            <Text style={styles.addedTxt}>{"Cancel Cheaque Added"}</Text> : null
+            <Text style={styles.addedTxt}>{strings.cancelCheque + " " + strings.added}</Text> : null
           }
           <View style={{ marginVertical: 20 }}>
             <Button
