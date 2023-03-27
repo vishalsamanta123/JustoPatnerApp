@@ -18,7 +18,7 @@ const LoginView = (props: any) => {
   };
   return (
     <ScrollView style={styles.mainContainer} keyboardShouldPersistTaps='handled'
-    keyboardDismissMode={Isios? 'on-drag' : 'none'}>
+      keyboardDismissMode={Isios ? 'on-drag' : 'none'}>
       {/* <View style={styles.logoView}>
         <View style={styles.loginBannerView}>
           <Image style={styles.loginBanner} source={images.loginBanner} />
@@ -48,8 +48,8 @@ const LoginView = (props: any) => {
       <View style={styles.inputView}>
         <View style={styles.inputWrap}>
           <InputField
-            placeholderText={"Email Address"}
-            headingText={'Enter Email'}
+            placeholderText={strings.email + " " + strings.address}
+            headingText={strings.enterEmail}
             rightImgSrc={props.validEmail ? images.check : images.emailIcon}
             isSecureText={false}
             onChangeText={(val: any) => {
@@ -61,8 +61,8 @@ const LoginView = (props: any) => {
         </View>
         <View style={styles.inputWrap}>
           <InputField
-            placeholderText={"Password"}
-            headingText={'Password'}
+            placeholderText={strings.password}
+            headingText={strings.password}
             maxLength={20}
             rightImgSrc={
               isVisiblePassword ? images.hiddenPassword : images.showPassword
@@ -116,8 +116,8 @@ const LoginView = (props: any) => {
           value={true}
           disabled={true}
           tintColors={{ true: PRIMARY_THEME_COLOR }}
-          style={{ transform: Isios ? [{ scaleX: 0.8 }, { scaleY: 0.8 }]  : [{ scaleX: 1 }, { scaleY: 1 }]}}
-          // onValueChange={(newValue) => setToggleCheckBox(newValue)}
+          style={{ transform: Isios ? [{ scaleX: 0.8 }, { scaleY: 0.8 }] : [{ scaleX: 1 }, { scaleY: 1 }] }}
+        // onValueChange={(newValue) => setToggleCheckBox(newValue)}
         />
         <Text style={styles.bottomText}>{strings.iAknowledge}</Text>
         <TouchableOpacity onPress={() => Linking.openURL('https://justoverse.com/termandcondition')} style={styles.spanTouch}>

@@ -97,10 +97,10 @@ const RegistrationView = (props: any) => {
 
         <View style={styles.inputWrap}>
           <InputField
-            placeholderText={"Owner Name"}
+            placeholderText={strings.ownerName}
             require={true}
             handleInputBtnPress={() => { }}
-            headingText={"Owner Name"}
+            headingText={strings.ownerName}
             valueshow={props.registerForm?.owner_name}
             onChangeText={(val: any) => {
               props.setRegisterForm({
@@ -115,7 +115,7 @@ const RegistrationView = (props: any) => {
             require={true}
             placeholderText={"Ex:- 3675 9834 6012"}
             handleInputBtnPress={() => { }}
-            headingText={"Aadhaar No."}
+            headingText={strings.aadhaar}
             inputType={'aadhaar'}
             keyboardtype={"number-pad"}
             valueshow={props.registerForm?.adhar_no}
@@ -133,7 +133,7 @@ const RegistrationView = (props: any) => {
             require={true}
             placeholderText={"BNZAA2318JM"}
             handleInputBtnPress={() => { }}
-            headingText={"Pancard No."}
+            headingText={strings.pancard + " " + strings.shortNum}
             valueshow={props.registerForm?.pancard_no}
             onChangeText={(val: any) => {
               props.setRegisterForm({
@@ -213,8 +213,8 @@ const RegistrationView = (props: any) => {
             require={true}
             leftIcon={images.event}
             mode={"date"}
-            placeholderText={"Date of Birth"}
-            headingText={"Date of Birth"}
+            placeholderText={strings.dateOfBirth}
+            headingText={strings.dateOfBirth}
             editable={false}
             dateData={(data: any) => {
               props.setRegisterForm({
@@ -234,9 +234,9 @@ const RegistrationView = (props: any) => {
         <View style={styles.inputWrap}>
           <InputField
             require={true}
-            placeholderText={"Mobile No."}
+            placeholderText={strings.mobileNo}
             handleInputBtnPress={() => { }}
-            headingText={"Mobile No."}
+            headingText={strings.mobileNo}
             keyboardtype={"number-pad"}
             rightImageVw={styles.tickImgVw}
             rightImageSty={styles.tickImg}
@@ -282,9 +282,9 @@ const RegistrationView = (props: any) => {
         <View style={styles.inputWrap}>
           <InputField
             require={true}
-            placeholderText={"WhatsApp No."}
+            placeholderText={strings.whatsappNo}
             handleInputBtnPress={() => { }}
-            headingText={"WhatsApp No."}
+            headingText={strings.whatsappNo}
             keyboardtype={"number-pad"}
             valueshow={props.registerForm?.whatsapp_number}
             onChangeText={(val: any) => {
@@ -299,9 +299,9 @@ const RegistrationView = (props: any) => {
         <View style={styles.inputWrap}>
           <InputField
             require={true}
-            placeholderText={"Email Address"}
+            placeholderText={strings.email + " " + strings.address}
             handleInputBtnPress={() => { }}
-            headingText={"Email Address"}
+            headingText={strings.email + " " + strings.address}
             valueshow={props.registerForm?.email}
             onChangeText={(val: any) => {
               props.setRegisterForm({
@@ -345,8 +345,8 @@ const RegistrationView = (props: any) => {
         <View style={{ marginTop: normalizeSpacing(30) }}>
           <InputField
             require={true}
-            placeholderText={"Address"}
-            headingText={"Address"}
+            placeholderText={strings.address}
+            headingText={strings.address}
             valueshow={props.registerForm?.location}
             onChangeText={(val: any) => {
               props.setRegisterForm({
@@ -372,7 +372,7 @@ const RegistrationView = (props: any) => {
               flexDirection: 'row', alignItems: "center"
             }}
           >
-            <Text style={styles.workTxt}>Working Location</Text>
+            <Text style={styles.workTxt}>{strings.workingLocation}</Text>
             <Image
               source={images.star}
               style={{
@@ -387,7 +387,7 @@ const RegistrationView = (props: any) => {
             onPress={() => props.setLocationModel(true)}
             style={styles.addBtn}
           >
-            <Text style={styles.addTxt}>+ Add location</Text>
+            <Text style={styles.addTxt}>+ {strings.addLocation}</Text>
           </TouchableOpacity>
         </View>
         {props.registerForm?.working_location?.length > 0 ? (

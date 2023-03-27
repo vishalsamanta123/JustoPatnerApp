@@ -3,7 +3,12 @@ import LocalizedStrings from 'react-native-localization';
 const strings = new LocalizedStrings({
   en: {
 
+    //app strings
+    holdOn: "Hold on!",
+    exitAppAlert: 'Are you sure you want to close this app ?',
+
     //common
+    todaySiteVisit: "Today Site Visit",
     todayCompVisit: "Today Complete Visits",
     totalVisitor: "Total Visitor",
     totalSiteVisit: "Total Site Visit",
@@ -16,7 +21,11 @@ const strings = new LocalizedStrings({
     RERA: 'RERA',
     shortNum: 'No.',
     closingPrcntg: 'Closing Percentage',
+    closing: 'Closing',
+    activeAgent: 'Active Agents',
     last: 'Last',
+    activeProperty: 'Active Properties',
+    knowMore: 'Know More',
     leadCreate: 'Lead Create',
     siteVisit: 'Site Visit',
     closeVisit: 'Close Visit',
@@ -62,7 +71,7 @@ const strings = new LocalizedStrings({
     aadhaar: 'Aadhaar No.',
     mobile: 'Mobile',
     whatsApp: 'WhatsApp',
-    address: 'Address',
+    address: 'Address',//for email address
     realEstateCom: "Real Estate Company",
     gst: "GST",
     declrLttrCom: "Decalaration Letter of Company",
@@ -106,8 +115,39 @@ const strings = new LocalizedStrings({
     visitStatus: "Visit Status",
     password: "Password",
     new: "New",
+    enterEmail: "Enter Email",
+    ownerName: 'Owner Name',
+    sourcingMngr: 'Sourcing Manager',
+    welcome: 'Welcome',
+    searchProjctName: "Search Project Name",
+    visitorQualitySc: "Visitor Quality Score",
+    commissionErnd: "Commission Earned",
+    potentlCommission: "Potential Commission",
+    invntryLftToClose: "Inventory Left to Close",
+    totalInventry: "Total Inventory",
+    followupBy: "Follow-Up By",
+    lastInteracted: "Last Interacted",
+    areaSqft: "Area (in sq.ft)",
+    natureOfFunding: "Nature Of Funding",
+    purpose: "Purpose",
+    age: "Age",
+    locality: "Locality",
+    natureOfOccuptn: "Nature of Occupation",
+    company: "Company",
+    designation: "Designation",
+    offcAddress: "Office Address",
+    customerName: "Customer Name",
+    followUpType: "Followup Type",
+    searchByType: "Search by Type",
+    searchByLead: "Search by Lead",
+
 
     //Status Keys
+    STSFollowUp: 'Follow-up',
+    STSLead: 'Lead',
+    STSSiteVisitnAppointment: 'Site Visit/Appointment',
+    STSSiteVisit: 'Site Visit',
+    STSRegistration: 'Registration',
     STSNotVisited: "Not Visited",
     STSVisited: "Visited",
     STSUpComing: "Upcoming",
@@ -167,7 +207,9 @@ const strings = new LocalizedStrings({
     pickupAreaReqVal: "Pickup Area is require. Please Select the Pickup Area",
     noOfGuestReqVal: "Number Of Guest is require. Please Enter the Number Of Guest",
     followUpStatusReqVal: "Followup Status is require. Please Choose Followup Status",
-
+    followUpDateReqVal: "Followup Date is require. Please Choose Followup Date",
+    followUpTimeReqVal: "Followup Time is require. Please Choose Followup Time",
+    mediaSelectReqVal: "Please select media less than 10 mb",
 
     //Select Heads
     selectAgncyTrnsfr: 'Select Agency to Transfer all visitors',
@@ -307,6 +349,7 @@ const strings = new LocalizedStrings({
     browseToUploadCsv: 'Browse to Upload CSV File',
     subscribed: 'Subscribed Property',
     allProperty: 'All Property',
+
 
     //Auth 
 

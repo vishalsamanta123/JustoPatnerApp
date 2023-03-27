@@ -64,7 +64,7 @@ const DashboardView = (props: any) => {
           <View style={styles.dashboardWrap}>
             <View style={styles.nameView}>
               <View style={styles.statusView}>
-                <Text style={styles.statusText}>Status</Text>
+                <Text style={styles.statusText}>{strings.status}</Text>
                 <View style={styles.switchView}>
                   {/*  <Switch
                     thumbColor={PRIMARY_THEME_COLOR}
@@ -97,7 +97,7 @@ const DashboardView = (props: any) => {
                 </View>
               </View>
               <View style={styles.welcomeView}>
-                <Text style={styles.welcomeToText}>Welcome</Text>
+                <Text style={styles.welcomeToText}>{strings.welcome}</Text>
                 <Text style={styles.welcomeNameText}>{props?.dashBoardData?.user_name}</Text>
               </View>
             </View>
@@ -116,7 +116,7 @@ const DashboardView = (props: any) => {
           <View style={styles.secondPortion}>
             {/* <View style={styles.firstCardView}>
               <View style={styles.cardTextView}>
-                <Text style={styles.cardText}>Visit Target</Text>
+                <Text style={styles.cardText}>{strings.visit + " " + strings.target}</Text>
               </View>
               <View style={styles.numberView}>
                 <Text style={styles.numberText}>
@@ -126,7 +126,7 @@ const DashboardView = (props: any) => {
             </View>
             <View style={styles.secondCardView}>
               <View style={styles.cardTextView}>
-                <Text style={styles.cardText}>Site Visit Target</Text>
+                <Text style={styles.cardText}>{strings.siteVisit + " " + strings.target}</Text>
               </View>
               <View style={styles.numberView}>
                 <Text style={styles.numberText}>
@@ -136,7 +136,7 @@ const DashboardView = (props: any) => {
             </View> */}
             {/* <View style={styles.thirdCardView}>
               <View style={styles.cardTextView}>
-                <Text style={styles.cardText}>Closing Target</Text>
+                <Text style={styles.cardText}>{strings.closing + " " + strings.target}</Text>
               </View>
               <View style={styles.numberView}>
                 <Text style={styles.numberText}>
@@ -161,7 +161,7 @@ const DashboardView = (props: any) => {
               style={styles.thirdPortioncardView}>
               <View style={styles.thirdPortionCardTextView}>
                 <Text style={styles.thirdPortionCardText} numberOfLines={2}>
-                  Today Site Visit
+                  {strings.todaySiteVisit}
                 </Text>
               </View>
               <View style={styles.numberView}>
@@ -184,7 +184,7 @@ const DashboardView = (props: any) => {
               onPress={() => props.onpressButton()}
               style={styles.thirdPortioncardView}>
               <View style={styles.thirdPortionCardTextView}>
-                <Text style={styles.thirdPortionCardText}>Active Agents</Text>
+                <Text style={styles.thirdPortionCardText}>{strings.activeAgent}</Text>
               </View>
               <View style={styles.numberView}>
                 <Text style={styles.thirdPortionNumberText}>{props?.dashBoardData?.total_agent}</Text>
@@ -192,7 +192,7 @@ const DashboardView = (props: any) => {
             </TouchableOpacity>
             {/* <TouchableOpacity style={styles.thirdPortioncardView}>
               <View style={styles.thirdPortionCardTextView}>
-                <Text style={styles.thirdPortionCardText}>Closing Target</Text>
+                <Text style={styles.thirdPortionCardText}>{strings.closing + " " + strings.target}</Text>
               </View>
               <View style={styles.numberView}>
                 <Text style={styles.thirdPortionNumberText}>{targetData?.closing_target}</Text>
@@ -206,7 +206,7 @@ const DashboardView = (props: any) => {
               }]}>
                 <Text style={[styles.headingText, {
                   color: WHITE_COLOR,
-                }]}>Active Properties</Text>
+                }]}>{strings.activeProperty}</Text>
                 {/* <Text style={styles.headingText}>VISITOR</Text>
               <Text style={styles.headingText}>SITE VISIT</Text>
               <Text style={styles.headingText}>CLOSE LEAD</Text> */}
@@ -217,7 +217,7 @@ const DashboardView = (props: any) => {
                   onPress={() => props.onPressMore()}
                   style={styles.headingView}>
                   <Text style={[styles.headingText, styles.knowMoreText]}>
-                    Know More
+                   {strings.knowMore}
                   </Text>
                 </TouchableOpacity>)
                 : null

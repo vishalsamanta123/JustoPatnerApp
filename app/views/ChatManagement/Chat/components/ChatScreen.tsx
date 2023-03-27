@@ -15,19 +15,13 @@ import {
   PRIMARY_THEME_COLOR,
   RED_COLOR,
   WHITE_COLOR,
-  WHITE_COLOR_LIGHT,
 } from "app/components/utilities/constant";
-import PicturePickerModal from "app/components/Modals/PicturePicker";
-import { launchImageLibrary } from "react-native-image-picker";
-
 import storage from "@react-native-firebase/storage";
-
 import AsyncStorage from "@react-native-async-storage/async-storage";
 import { firebase } from "@react-native-firebase/database";
 import apiEndPoints from "app/components/utilities/apiEndPoints";
-import { useFocusEffect, useIsFocused } from "@react-navigation/native";
+import { useFocusEffect, } from "@react-navigation/native";
 import moment from "moment";
-import ImagePicker from "react-native-image-crop-picker";
 import DocumentPicker from "react-native-document-picker";
 import {
   normalizeHeight,
@@ -42,6 +36,7 @@ import Modal from "react-native-modal";
 import FastImages from "app/components/FastImage";
 import VideoPlayer from "./VideoPlayer";
 import ErrorMessage from "app/components/ErrorMessage";
+import strings from "app/components/utilities/Localization";
 
 const ChatScreen = ({ navigation, route }: any) => {
   const item = route.params || {};
@@ -68,7 +63,7 @@ const ChatScreen = ({ navigation, route }: any) => {
       if (profileData?.response?.status === 200) {
         setUserData(profileData?.response?.data[0]);
       }
-      return () => {};
+      return () => { };
     }, [navigation, profileData, response])
   );
 
@@ -348,7 +343,7 @@ const ChatScreen = ({ navigation, route }: any) => {
     } else {
       dispatch({ type: STOP_LOADING });
       ErrorMessage({
-        msg: "Please select media less than 10 mb",
+        msg: strings.mediaSelectReqVal,
         backgroundColor: RED_COLOR,
       });
     }
@@ -380,8 +375,8 @@ const ChatScreen = ({ navigation, route }: any) => {
       },
     })
       .fetch("GET", data?.image, {})
-      .then((res) => {})
-      .catch((e) => {});
+      .then((res) => { })
+      .catch((e) => { });
   };
 
   const renderImageMessage = (data: any) => {

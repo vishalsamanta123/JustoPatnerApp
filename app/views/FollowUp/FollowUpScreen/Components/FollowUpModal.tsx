@@ -64,7 +64,7 @@ const FilterModal = (props: any) => {
             <InputCalender
               mode={'date'}
               leftIcon={images.event}
-              placeholderText={"Start Date"}//can edit
+              placeholderText={strings.startDate}//can edit
               editable={false}
               // onChangeText={() => { }}
               dateData={(data: any) => {
@@ -86,7 +86,7 @@ const FilterModal = (props: any) => {
             <InputCalender
               mode={'date'}
               leftIcon={images.event}
-              placeholderText={" End Date"}//can edit
+              placeholderText={strings.endDate}//can edit
               editable={false}
               // onChangeText={() => { }}
               dateData={(data: any) => {
@@ -111,15 +111,15 @@ const FilterModal = (props: any) => {
               selectedTextStyle={styles.selectedTextStyle}
               iconStyle={styles.iconStyle}
               data={[
-                { value: 1, label: 'Lead' },
-                { value: 2, label: 'Site visit/Appointment' },
-                { value: 3, label: 'Booking' },
-                { value: 4, label: 'Registration' },
+                { value: 1, label: strings.STSLead },
+                { value: 2, label: strings.STSSiteVisitnAppointment },
+                { value: 3, label: strings.STSBooking },
+                { value: 4, label: strings.STSRegistration },
               ]}
               maxHeight={300}
               labelField="label"
               valueField="value"
-              placeholder="Search by Type"
+              placeholder={strings.searchByType}
               value={props.filterData?.followup_for}
               onChange={(item: any) => {
                 props.setFilterData({
@@ -139,7 +139,7 @@ const FilterModal = (props: any) => {
               maxHeight={300}
               labelField="first_name"
               valueField={'_id'}
-              placeholder="Search by Lead"
+              placeholder={strings.searchByLead}
               value={props.filterData.lead_id}
               onChange={(item: any) => {
                 props.setFilterData({
