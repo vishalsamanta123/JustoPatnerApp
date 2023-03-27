@@ -26,6 +26,7 @@ import ErrorMessage from "app/components/ErrorMessage";
 import { RegistrationForm } from "app/Redux/Actions/ReggistrationAction";
 import { getAllMaster, getAllSourcingManager } from "app/Redux/Actions/MasterActions";
 import { RadioButton } from "react-native-paper";
+import { handleValues } from "app/components/utilities/handleValues";
 
 const UserBankInfo = ({ navigation }: any) => {
   useEffect(() => {
@@ -193,7 +194,7 @@ const UserBankInfo = ({ navigation }: any) => {
                 setFormData({
                   ...formData,
                   rera_certificate_no: val,
-                  norera_register: val === "" ? null : ""
+                  norera_register: (val === "" && handleValues(formData?.rera_certificate) === false) ? null : ""
                 })
               }}
             />

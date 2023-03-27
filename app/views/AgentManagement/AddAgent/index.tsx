@@ -4,6 +4,7 @@ import {
   Regexs,
   validateEmail,
 } from "app/components/utilities/constant";
+import { handleValues } from "app/components/utilities/handleValues";
 import strings from "app/components/utilities/Localization";
 import { addAgentForm, getAgentDetail } from "app/Redux/Actions/AgentActions";
 import React, { useEffect, useState, useLayoutEffect } from "react";
@@ -46,6 +47,7 @@ const AgentBasicInfo = ({ navigation, route }: any) => {
     const { data = {}, type = "" } = route?.params;
     if (type === "edit") {
       if (response?.status === 200) {
+        const allDatas = response?.data[0] || {}
         const bankdata = response?.data[0]?.cp_bank_detail || {}
         setAgentInfoData({
           ...response?.data[0],
@@ -54,7 +56,8 @@ const AgentBasicInfo = ({ navigation, route }: any) => {
           branch_name: bankdata?.branch_name,
           account_no: bankdata?.account_no,
           ifsc_code: bankdata?.ifsc_code,
-          norera_register: null,
+          norera_register: (handleValues(allDatas?.rera_certificate_no) &&
+            handleValues(allDatas?.rera_certificate) === false) ? null : "",
         });
       }
     }

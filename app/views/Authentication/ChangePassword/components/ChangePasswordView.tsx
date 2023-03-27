@@ -20,7 +20,7 @@ const ChangePasswordView = (props: any) => {
   };
   return (
     <ScrollView keyboardShouldPersistTaps={'handled'}
-     style={styles.mainContainer}>
+      style={styles.mainContainer}>
       {/* <View style={styles.logoView}>
         <View style={styles.loginBannerView}>
           <Image style={styles.loginBanner} source={images.loginBanner} />
@@ -30,13 +30,13 @@ const ChangePasswordView = (props: any) => {
         </View>
       </View> */}
       <View style={styles.logoView}>
-        <Logoview/>
+        <Logoview />
       </View>
       <View style={styles.inputView}>
         <View style={styles.inputWrap}>
           <InputField
-            placeholderText={"New Password"}
-            headingText={"New Password"}
+            placeholderText={strings.new + " " + strings.password}
+            headingText={strings.new + " " + strings.password}
             rightImgSrc={
               isVisiblePassword ? images.hiddenPassword : images.showPassword
             }
@@ -44,15 +44,15 @@ const ChangePasswordView = (props: any) => {
             isSecureText={isVisiblePassword}
             onChangeText={(val: any) => {
               props.setPasswordDate({
-                ...props.passwordDate, password:val
+                ...props.passwordDate, password: val
               })
             }}
           />
         </View>
         <View style={styles.inputWrap}>
           <InputField
-            placeholderText={"Confirm Password"}
-            headingText={"Confirm Password"}
+            placeholderText={strings.confirm + " " + strings.password}
+            headingText={strings.confirm + " " + strings.password}
             rightImgSrc={
               isVisiblecPassword ? images.hiddenPassword : images.showPassword
             }
@@ -60,12 +60,12 @@ const ChangePasswordView = (props: any) => {
             isSecureText={isVisiblecPassword}
             onChangeText={(val: any) => {
               props.setPasswordDate({
-                ...props.passwordDate, cpassword:val
+                ...props.passwordDate, cpassword: val
               })
             }}
           />
         </View>
-        
+
         <View style={styles.btnView}>
           <Button
             buttonText={strings.updatepassword}
@@ -78,7 +78,7 @@ const ChangePasswordView = (props: any) => {
             <Text style={styles.registerText}>{strings.registerNow}</Text>
           </TouchableOpacity>
         </View> */}
-       
+
       </View>
       {/* <View style={styles.bottomView}>
         <Text style={styles.bottomText}>{strings.byCreating}</Text>
@@ -95,8 +95,8 @@ const ChangePasswordView = (props: any) => {
           value={true}
           disabled={true}
           tintColors={{ true: PRIMARY_THEME_COLOR }}
-          style={{ transform: Isios ? [{ scaleX: 0.8 }, { scaleY: 0.8 }]  : [{ scaleX: 1 }, { scaleY: 1 }]}}
-          // onValueChange={(newValue) => setToggleCheckBox(newValue)}
+          style={{ transform: Isios ? [{ scaleX: 0.8 }, { scaleY: 0.8 }] : [{ scaleX: 1 }, { scaleY: 1 }] }}
+        // onValueChange={(newValue) => setToggleCheckBox(newValue)}
         />
         <Text style={styles.bottomText}>{strings.iAknowledge}</Text>
         <TouchableOpacity onPress={() => Linking.openURL('https://justoverse.com/termandcondition')} style={styles.spanTouch}>
