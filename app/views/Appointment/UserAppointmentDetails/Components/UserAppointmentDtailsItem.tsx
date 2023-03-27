@@ -35,7 +35,7 @@ const UserAppointmentDtailsItem = (props: any) => {
         </View>
         <View><Text>:</Text></View>
         <View style={styles.nameContainer}>
-          <Text style={styles.nameTxt}>{moment(appdetail.appointment_date).format('DD-MM-YYYY')}</Text>
+          <Text style={styles.nameTxt}>{moment.utc(appdetail.appointment_date).format('DD-MM-YYYY')}</Text>
         </View>
       </View>
       <View style={styles.Txtview}>

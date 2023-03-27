@@ -66,8 +66,7 @@ const SupportDetailsItem = (props: any) => {
                     <Text style={styles.nameTxt}>{props.item.remark ? props.item.remark : strings.notfount}</Text>
                 </View>
             </View>
-            {props.item.image !== 'no_image.png' ?
-                (<View style={styles.Txtview}>
+            <View style={styles.Txtview}>
                     <View style={styles.projectContainer}>
                         <Text style={styles.projectTxt}>Image </Text>
                     </View>
@@ -79,9 +78,7 @@ const SupportDetailsItem = (props: any) => {
                             style={styles.Img}
                         />
                     </View>
-                </View>)
-                : null
-            }
+                </View>
         </ScrollView>
     )
 }
