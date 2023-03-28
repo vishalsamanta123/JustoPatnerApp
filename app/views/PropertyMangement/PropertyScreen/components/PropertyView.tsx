@@ -49,15 +49,14 @@ const PropertyView = (props: any) => {
 
   useEffect(() => {
     if (indexData?.index === 0) {
-      console.log("indexData?.index: ", indexData?.index);
       // handleUserAppointmentList(1);
       setFilterform({
         ...filterform,
         active_property: 1
       })
-      props.getallproperty(0, {active_property: 1});
+      props.getallproperty(0, { active_property: 1 });
     } else {
-      props.getallproperty(0, {active_property: 2});
+      props.getallproperty(0, { active_property: 2 });
       setFilterform({
         ...filterform,
         active_property: 2
@@ -167,7 +166,7 @@ const PropertyView = (props: any) => {
                 if (propertyList?.length < moreData) {
                   props.getallproperty(
                     propertyList?.length >= 3 ? props?.offSET + 1 : 0,
-                    {...filterform, active_property: 1}
+                    { ...filterform, active_property: 1 }
                   );
                 }
               }}
@@ -197,7 +196,7 @@ const PropertyView = (props: any) => {
                 if (propertyList?.length < moreData) {
                   props.getallproperty(
                     propertyList?.length >= 3 ? props?.offSET + 1 : 0,
-                    {...filterform, active_property: 2}
+                    { ...filterform, active_property: 2 }
                   );
                 }
               }}
@@ -240,13 +239,13 @@ const PropertyView = (props: any) => {
         />
       </View> */}
       {/* <View style={styles.propertyListView}> */}
-        <TabView
-          renderTabBar={renderTabBar}
-          navigationState={indexData}
-          renderScene={({ index, route }: any) => renderScene({ index, route })}
-          onIndexChange={handleIndexChange}
-          initialLayout={{ width: layout.width }}
-        />
+      <TabView
+        renderTabBar={renderTabBar}
+        navigationState={indexData}
+        renderScene={({ index, route }: any) => renderScene({ index, route })}
+        onIndexChange={handleIndexChange}
+        initialLayout={{ width: layout.width }}
+      />
       {/* </View> */}
       <ConfirmModal
         Visible={isVisible}
@@ -267,7 +266,7 @@ const PropertyView = (props: any) => {
         resion={props.resion}
         masterDataShow={masterDataShow}
         stringshow={strings.confirmation}
-        textshow={strings.activconfirmation + " Property"}
+        textshow={strings.activconfirmation + " " + strings.propertyHeader}
         confirmtype={props.currentStatus === 2 ? "" : "CONFIRMATION"}
       />
       <FilterModal

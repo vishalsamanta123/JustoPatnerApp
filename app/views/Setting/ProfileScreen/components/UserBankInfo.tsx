@@ -16,7 +16,7 @@ const UserBankInfo = (props: any) => {
     <ScrollView style={styles.InformationView}>
       <View style={styles.fieldView}>
         <View style={styles.keyView}>
-          <Text style={styles.keyText}>Agency Name</Text>
+          <Text style={styles.keyText}>{strings.agency + " " + strings.name}</Text>
         </View>
         <Text style={styles.colon}>:</Text>
         <View style={styles.valueView}>
@@ -29,7 +29,7 @@ const UserBankInfo = (props: any) => {
       </View>
       <View style={styles.fieldView}>
         <View style={styles.keyView}>
-          <Text style={styles.keyText}>Gst No.</Text>
+          <Text style={styles.keyText}>{strings.gst + " " + strings.shortNum}</Text>
         </View>
         <Text style={styles.colon}>:</Text>
         <View style={styles.valueView}>
@@ -42,7 +42,7 @@ const UserBankInfo = (props: any) => {
       </View>
       <View style={styles.fieldView}>
         <View style={styles.keyView}>
-          <Text style={styles.keyText}>RERA REGISTRATION No.</Text>
+          <Text style={styles.keyText}>{strings.RERA + " " + strings.registration + " " + strings.shortNum}</Text>
         </View>
         <Text style={styles.colon}>:</Text>
         <View style={styles.valueView}>
@@ -55,7 +55,7 @@ const UserBankInfo = (props: any) => {
       </View>
       <View style={styles.fieldView}>
         <View style={styles.keyView}>
-          <Text style={styles.keyText}>Pancard</Text>
+          <Text style={styles.keyText}>{strings.pancard}</Text>
         </View>
         <View style={styles.ImageSliderContainer}>
           <Image
@@ -74,7 +74,7 @@ const UserBankInfo = (props: any) => {
       </View>
       <View style={styles.fieldView}>
         <View style={styles.keyView}>
-          <Text style={styles.keyText}>Decalaration Letter Of Company</Text>
+          <Text style={styles.keyText}>{strings.declrLttrCom}</Text>
         </View>
         <View style={styles.ImageSliderContainer}>
           {declarationType === 'pdf' ?
@@ -102,11 +102,11 @@ const UserBankInfo = (props: any) => {
         </View>
       </View>
       <View style={styles.subHeadVw}>
-        <Text style={styles.subHeadTxt}>Bank Info</Text>
+        <Text style={styles.subHeadTxt}>{strings.bankinfo}</Text>
       </View>
       <View style={styles.fieldView}>
         <View style={styles.keyView}>
-          <Text style={styles.keyText}>Bank Name</Text>
+          <Text style={styles.keyText}>{strings.bankName}</Text>
         </View>
         <Text style={styles.colon}>:</Text>
         <View style={styles.valueView}>
@@ -121,7 +121,7 @@ const UserBankInfo = (props: any) => {
       </View>
       <View style={styles.fieldView}>
         <View style={styles.keyView}>
-          <Text style={styles.keyText}>Branch Name</Text>
+          <Text style={styles.keyText}>{strings.branchName}</Text>
         </View>
         <Text style={styles.colon}>:</Text>
         <View style={styles.valueView}>
@@ -136,7 +136,7 @@ const UserBankInfo = (props: any) => {
       </View>
       <View style={styles.fieldView}>
         <View style={styles.keyView}>
-          <Text style={styles.keyText}>Account No</Text>
+          <Text style={styles.keyText}>{strings.accountNo}</Text>
         </View>
         <Text style={styles.colon}>:</Text>
         <View style={styles.valueView}>
@@ -151,7 +151,7 @@ const UserBankInfo = (props: any) => {
       </View>
       <View style={styles.fieldView}>
         <View style={styles.keyView}>
-          <Text style={styles.keyText}>IFSC Code</Text>
+          <Text style={styles.keyText}>{strings.ifscCode}</Text>
         </View>
         <Text style={styles.colon}>:</Text>
         <View style={styles.valueView}>

@@ -51,5 +51,7 @@ export const Regexs = {
   emailRegex: new RegExp(/^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/),
   phoneNumRegex: new RegExp(/^(\+\d{1,3}[- ]?)?\d{10}$/),
   emailOrPhone: new RegExp(/^(.+@.+|\d{10})$/),
-  mobilenumRegex:  new RegExp(/^[6-9]{1}[0-9]{9}$/),
+  mobilenumRegex: new RegExp(/^[6-9]{1}[0-9]{9}$/),
+  accountnumRegex: new RegExp(/^\d{9,18}$/),
+  ifscRegex: new RegExp(/^[A-Z]{4}0[A-Z0-9]{6}$/),
 }

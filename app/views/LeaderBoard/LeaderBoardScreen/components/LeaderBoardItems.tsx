@@ -7,6 +7,7 @@ import {
   normalizeWidth,
 } from "../../../../components/scaleFontSize";
 import usePermission from "app/components/utilities/UserPermissions";
+import strings from "app/components/utilities/Localization";
 
 const LeaderBoardItems = (props: any) => {
   const { view } = usePermission({
@@ -25,13 +26,13 @@ const LeaderBoardItems = (props: any) => {
           <Text style={styles.projectTxt}>{item?.property_title}</Text>
           <View style={{ flexDirection: "row", alignItems: "center" }}>
             <View style={styles.columnVw}>
-              <Text style={styles.nameTxt}>TOTAL FLAT</Text>
+              <Text style={styles.nameTxt}>{strings.totalFlat}</Text>
               <Text style={styles.txtStyle}>
                 {props?.items?.total_inventry}
               </Text>
             </View>
             <View style={styles.columnVw}>
-              <Text style={styles.nameTxt}>SOLD OUT</Text>
+              <Text style={styles.nameTxt}>{strings.soldOut}</Text>
               <Text style={styles.txtStyle}>
                 {props?.items?.total_sold_out}
               </Text>

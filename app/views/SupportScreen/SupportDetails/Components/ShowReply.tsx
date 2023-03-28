@@ -41,7 +41,7 @@ const ShowReply = () => {
       <ScrollView>
         <View style={styles.topDetailsView}>
           <View style={styles.topTxtView}>
-            <Text style={styles.topTxt}>Ticket No. </Text>
+            <Text style={styles.topTxt}>{strings.ticket + " " + strings.shortNum} </Text>
             <Text style={styles.topTxt}>{replyData?.ticket_number ? replyData?.ticket_number : strings.notfount}</Text>
           </View>
         </View>
@@ -53,7 +53,7 @@ const ShowReply = () => {
                 <View style={styles.replyView}>
                   <View style={styles.Txtview}>
                     <View style={styles.projectContainer}>
-                      <Text style={styles.projectTxt}>Update By </Text>
+                      <Text style={styles.projectTxt}>{strings.updatedBy} </Text>
                     </View>
                     <View><Text>:</Text></View>
                     <View style={styles.nameContainer}>
@@ -62,7 +62,7 @@ const ShowReply = () => {
                   </View>
                   <View style={styles.Txtview}>
                     <View style={styles.projectContainer}>
-                      <Text style={styles.projectTxt}>Status </Text>
+                      <Text style={styles.projectTxt}>{strings.status} </Text>
                     </View>
                     <View><Text>:</Text></View>
                     <View style={styles.nameContainer}>
@@ -70,15 +70,15 @@ const ShowReply = () => {
                         color: item.status === 1 ? GREEN_COLOR : RED_COLOR
                       }]}>
                         {
-                          item.status === 1 ? 'Open' :
-                            item.status === 2 && 'Close'
+                          item.status === 1 ? strings.open :
+                            item.status === 2 && strings.close
                         }
                       </Text>
                     </View>
                   </View>
                   <View style={[styles.Txtview, { borderBottomWidth: 0 }]}>
                     <View style={styles.projectContainer}>
-                      <Text style={styles.projectTxt}>Description </Text>
+                      <Text style={styles.projectTxt}>{strings.description} </Text>
                     </View>
                     <View><Text>:</Text></View>
                     <View style={styles.nameContainer}>

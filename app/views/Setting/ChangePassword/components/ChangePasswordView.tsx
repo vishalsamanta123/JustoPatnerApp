@@ -9,7 +9,7 @@ import InputField from '../../../../components/InputField'
 import Button from '../../../../components/Button'
 
 const ChangePasswordView = (props: any) => {
-   const {data, passwordData,
+  const { data, passwordData,
     setPasswordData,
     handleChangePress,
     handleOldPasswordBtnPress,
@@ -35,57 +35,60 @@ const ChangePasswordView = (props: any) => {
       <ScrollView
         keyboardShouldPersistTaps={"handled"}
       >
-      <View style={styles.wrap}>
-        <View style={styles.inputWrap}>
+        <View style={styles.wrap}>
+          <View style={styles.inputWrap}>
             <InputField
-                placeholderText={"Old Password"}
-                onChangeText={(e: any) => setPasswordData({
-                  ...passwordData,
-                  oldPassword: e,
-                })}
-                headingText={"Old Password"}
-                rightImgSrc={
-                  isVisibleOldPassword ? images.hiddenPassword : images.showPassword
-                }
-                handleInputBtnPress={handleOldPasswordBtnPress}
-                isSecureText={isVisibleOldPassword}
+              placeholderText={strings.old + " " + strings.password}
+              onChangeText={(e: any) => setPasswordData({
+                ...passwordData,
+                oldPassword: e,
+              })}
+              headingText={strings.old + " " + strings.password}
+              rightImgSrc={
+                isVisibleOldPassword ? images.hiddenPassword : images.showPassword
+              }
+              handleInputBtnPress={handleOldPasswordBtnPress}
+              isSecureText={isVisibleOldPassword}
             />
-        </View>
-        <View style={styles.inputWrap}>
+          </View>
+          <View style={styles.inputWrap}>
             <InputField
-                placeholderText={"New Password"}
-                onChangeText={(e: any) => setPasswordData({
-                  ...passwordData,
-                  password: e,
-                })}
-                headingText={"New Password"}
-                rightImgSrc={
-                  isVisibleNewPassword ? images.hiddenPassword : images.showPassword
-                }
-                handleInputBtnPress={handleNewPasswordBtnPress}
-                isSecureText={isVisibleNewPassword}
+              placeholderText={strings.new + " " + strings.password}
+              onChangeText={(e: any) => setPasswordData({
+                ...passwordData,
+                password: e,
+              })}
+              headingText={strings.new + " " + strings.password}
+              rightImgSrc={
+                isVisibleNewPassword ? images.hiddenPassword : images.showPassword
+              }
+              handleInputBtnPress={handleNewPasswordBtnPress}
+              isSecureText={isVisibleNewPassword}
             />
-        </View>
-        <View style={styles.inputWrap}>
+          </View>
+          <View style={styles.inputWrap}>
             <InputField
-                placeholderText={"Confirm New Password"}
-                onChangeText={(e: any) => setPasswordData({
-                  ...passwordData,
-                  conPassword: e,
-                })}
-                headingText={"Confirm New Password"}
-                rightImgSrc={
-                  isVisibleCnfmPassword ? images.hiddenPassword : images.showPassword
-                }
-                handleInputBtnPress={handlecnfmPasswordBtnPress}
-                isSecureText={isVisibleCnfmPassword}
+              placeholderText={strings.confirm + " " + strings.new + " " + strings.password}
+              onChangeText={(e: any) => setPasswordData({
+                ...passwordData,
+                conPassword: e,
+              })}
+              headingText={strings.confirm + " " + strings.new + " " + strings.password}
+              rightImgSrc={
+                isVisibleCnfmPassword ? images.hiddenPassword : images.showPassword
+              }
+              handleInputBtnPress={handlecnfmPasswordBtnPress}
+              isSecureText={isVisibleCnfmPassword}
             />
+          </View>
+          <View style={styles.btnView}>
+            <Button handleBtnPress={handleChangePress}
+              width={300} btnTxtsize={15}
+              buttonText={strings.changePassword}
+              textTransform={"uppercase"} />
+          </View>
         </View>
-        <View style={styles.btnView}>
-            <Button handleBtnPress={handleChangePress} width={300} btnTxtsize={15} buttonText={strings.changePassword} textTransform={"uppercase"} />
-        </View>
-      </View>
-        </ScrollView>
+      </ScrollView>
     </View>
   )
 }

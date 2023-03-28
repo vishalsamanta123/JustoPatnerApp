@@ -63,7 +63,7 @@ const LeadManagementView = (props: any) => {
       }]}>
         {status &&
           (<Button
-            buttonText={"Bulk Upload"}
+            buttonText={strings.bulkupload}
             width={150}
             height={30}
             btnTxtsize={15}
@@ -72,7 +72,7 @@ const LeadManagementView = (props: any) => {
         }
         {create &&
           (<Button
-            buttonText={"Add New Visitor"}
+            buttonText={strings.addnewvisitor}
             width={150}
             height={30}
             btnTxtsize={15}

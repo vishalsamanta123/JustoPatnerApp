@@ -21,7 +21,6 @@ const Videoplay = (props: any) => {
                     </View>
                     <View style={styles.borderView} />
                     <View style={{ marginHorizontal: 5 }}>
-
                       { 
                        props.itemDetail?.document_type ==='video' ? 
 

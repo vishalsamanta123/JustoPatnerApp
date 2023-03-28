@@ -113,9 +113,9 @@ const EditCompanyDetails = ({ navigation }: any) => {
                 <View style={styles.inputWrap}>
                     <InputField
                         // require={true}
-                        placeholderText={"Agency Name"}
+                        placeholderText={strings.agency + " " + strings.name}
                         handleInputBtnPress={() => { }}
-                        headingText={"RealEstate Company"}
+                        headingText={strings.realEstateCom}
                         valueshow={editData?.agency_name}
                         onChangeText={(val: any) => {
                             setEditData({
@@ -127,8 +127,8 @@ const EditCompanyDetails = ({ navigation }: any) => {
                 <View style={styles.inputWrap}>
                     <InputField
                         // require={true}
-                        placeholderText={"GST"}
-                        headingText={"GST"}
+                        placeholderText={strings.gst}
+                        headingText={strings.gst}
                         handleInputBtnPress={() => { }}
                         valueshow={editData?.gst}
                         maxLength={20}
@@ -142,9 +142,9 @@ const EditCompanyDetails = ({ navigation }: any) => {
                 <View style={styles.inputWrap}>
                     <InputField
                         // require={true}
-                        placeholderText={"RERA Registration"}
+                        placeholderText={strings.RERA + " " + strings.registration}
                         maxLength={20}
-                        headingText={"RERA Registration"}
+                        headingText={strings.RERA + " " + strings.registration}
                         handleInputBtnPress={() => { }}
                         valueshow={editData?.rera_registration}
                         onChangeText={(val: any) => {
@@ -156,7 +156,7 @@ const EditCompanyDetails = ({ navigation }: any) => {
                 </View>
                 <View style={[styles.inputWrap, styles.starightVw]}>
                     <View style={styles.textVw}>
-                        <Text style={styles.headingText}>Pancard</Text>
+                        <Text style={styles.headingText}>{strings.pancard}</Text>
                         {/* <Image
                             source={images.star}
                             style={{
@@ -183,11 +183,11 @@ const EditCompanyDetails = ({ navigation }: any) => {
                 {editData?.company_pancard === '' || editData?.company_pancard === undefined ||
                     editData?.company_pancard === null ?
                     null :
-                    <Text style={styles.addedTxt}>{"Pancard Of Company Added"}</Text>
+                    <Text style={styles.addedTxt}>{strings.pancard + " " + strings.added}</Text>
                 }
                 <View style={[styles.inputWrap, styles.starightVw]}>
                     <View style={styles.textVw}>
-                        <Text style={styles.headingText}>Declaration Letter of Company</Text>
+                        <Text style={styles.headingText}>{strings.declrLttrCom}</Text>
                         {/* <Image
                             source={images.star}
                             style={{
@@ -214,17 +214,17 @@ const EditCompanyDetails = ({ navigation }: any) => {
                 {editData?.declaration_letter_of_company === '' || editData?.declaration_letter_of_company === undefined ||
                     editData?.declaration_letter_of_company === null ?
                     null :
-                    <Text style={styles.addedTxt}>{"Declaration Letter Of Company Added"}</Text>
+                    <Text style={styles.addedTxt}>{strings.declrLttrCom + " " + strings.added}</Text>
                 }
                 <View style={styles.inputWrap}>
-                    <Text style={styles.headingText}>Bank Details</Text>
+                    <Text style={styles.headingText}>{strings.bankDetail}</Text>
                 </View>
                 <View style={styles.inputWrap}>
                     <InputField
                         // require={true}
-                        placeholderText={"Bank Name"}
+                        placeholderText={strings.bankName}
                         handleInputBtnPress={() => { }}
-                        headingText={"Bank Name"}
+                        headingText={strings.bankName}
                         valueshow={editData?.company_bank_name}
                         onChangeText={(val: any) => {
                             setEditData({
@@ -236,9 +236,9 @@ const EditCompanyDetails = ({ navigation }: any) => {
                 <View style={styles.inputWrap}>
                     <InputField
                         // require={true}
-                        placeholderText={"Branch Name"}
+                        placeholderText={strings.branchName}
                         handleInputBtnPress={() => { }}
-                        headingText={"Branch Name"}
+                        headingText={strings.branchName}
                         valueshow={editData?.company_branch_name}
                         onChangeText={(val: any) => {
                             setEditData({
@@ -250,9 +250,9 @@ const EditCompanyDetails = ({ navigation }: any) => {
                 <View style={styles.inputWrap}>
                     <InputField
                         // require={true}
-                        placeholderText={"Account No."}
+                        placeholderText={strings.accountNo}
                         handleInputBtnPress={() => { }}
-                        headingText={"Account No."}
+                        headingText={strings.accountNo}
                         maxLength={18}
                         keyboardtype={'number-pad'}
                         valueshow={editData?.company_account_no}
@@ -266,9 +266,9 @@ const EditCompanyDetails = ({ navigation }: any) => {
                 <View style={styles.inputWrap}>
                     <InputField
                         // require={true}
-                        placeholderText={"IFSC Code"}
+                        placeholderText={strings.ifscCode}
                         handleInputBtnPress={() => { }}
-                        headingText={"IFSC Code"}
+                        headingText={strings.ifscCode}
                         valueshow={editData?.company_ifsc_code}
                         maxLength={11}
                         onChangeText={(val: any) => {

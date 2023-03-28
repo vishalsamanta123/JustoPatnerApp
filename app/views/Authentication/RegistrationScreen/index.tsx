@@ -60,26 +60,22 @@ const RegistrationScreen = ({ navigation }: any) => {
       if (registerForm.owner_name == undefined || registerForm.owner_name == "") {
         isError = false;
         errorMessage = strings.ownerNameReqVal;
-      }
-      else if (
+      } else if (
         registerForm.adhar_no == undefined || registerForm.adhar_no == ""
       ) {
         isError = false;
         errorMessage = strings.aadharReqVal;
-      }
-      else if (
+      } else if (
         Regexs.AadharRegex.test(registerForm.adhar_no) === false
       ) {
         isError = false;
         errorMessage = strings.aadharValidVal;
-      }
-      else if (
+      } else if (
         registerForm.pancard_no == undefined || registerForm.pancard_no == ""
       ) {
         isError = false;
         errorMessage = strings.pancardReqVal;
-      }
-      else if (
+      } else if (
         Regexs.panRegex.test(registerForm.pancard_no) === false
       ) {
         isError = false;

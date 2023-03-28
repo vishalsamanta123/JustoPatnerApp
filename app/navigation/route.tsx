@@ -22,6 +22,7 @@ import CompanyDetails from '../views/Authentication/RegistrationScreen/component
 import UserBankInfo from '../views/Authentication/RegistrationScreen/components/UserBankInfo';
 import ForgotPassword from '../views/Authentication/ForgotPassword';
 import LeadManagementScreen from '../views/LeadManagement/LeadManagementScreen';
+import BulkUploadList from '../views/LeadManagement/BulkUpload';
 import BulkUpload from '../views/LeadManagement/LeadManagementScreen/Components/BulkUpload';
 import AddNewVisitorScreen from '../views/LeadManagement/AddNewVisitor';
 import UpdatePasswordScreen from '../views/Authentication/ChangePassword';
@@ -164,6 +165,7 @@ const AppComponent = () => {
       <AppStack.Screen name="AgentBankInfo" component={AgentBankInfo} />
 
       {/* Lead Management Screens */}
+      <AppStack.Screen name="BulkUploadList" component={BulkUploadList} />
       <AppStack.Screen name="BulkUpload" component={BulkUpload} />
       <AppStack.Screen name="AddNewVisitorScreen" component={AddNewVisitorScreen} />
       <AppStack.Screen name="LeadDetails" component={LeadDetails} />

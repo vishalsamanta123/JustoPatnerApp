@@ -1,12 +1,10 @@
-import { View, Text, StatusBar, TouchableOpacity } from "react-native";
+import { View, } from "react-native";
 import React from "react";
 import styles from "./Styles";
-import { PRIMARY_THEME_COLOR_DARK } from "../../../../components/utilities/constant";
 import Header from "../../../../components/Header";
 import images from "../../../../assets/images";
 import strings from "../../../../components/utilities/Localization";
 import { useSafeAreaInsets } from "react-native-safe-area-context";
-import { normalizeSpacing } from "../../../../components/scaleFontSize";
 import Button from "app/components/Button";
 
 const BulkUpload = ({ navigation }: any) => {
@@ -27,11 +25,11 @@ const BulkUpload = ({ navigation }: any) => {
         headerText={strings.bulkupload}
         headerStyle={styles.headerStyle}
         RightFirstIconStyle={styles.RightFirstIconStyle}
-        //   handleOnRightFirstIconPress={() => setFilterisVisible(true)}
+      //   handleOnRightFirstIconPress={() => setFilterisVisible(true)}
       />
       <View style={styles.BulkMainView}>
         <Button
-          textTransform = "uppercase"
+          textTransform="uppercase"
           buttonText={strings.uploadCSV}
           width={300}
           height={100}
@@ -41,7 +39,7 @@ const BulkUpload = ({ navigation }: any) => {
         />
         <View style={styles.butttonMargin}></View>
         <Button
-          textTransform = "uppercase"
+          textTransform="uppercase"
           buttonText={strings.uploadimage}
           width={300}
           height={100}

@@ -5,16 +5,13 @@ import {
   PURPLE_COLOR,
   CALL_COLOR,
   BLACK_COLOR,
-  YELLOW_COLOR,
   DATE_TIME_FORMAT,
-  GREEN_COLOR,
-  RED_COLOR,
 } from "../../../../components/utilities/constant";
 import images from "../../../../assets/images";
 import strings from "../../../../components/utilities/Localization";
 import moment from "moment";
 import usePermission from "app/components/utilities/UserPermissions";
-import { useSelector } from "react-redux";
+
 
 const LeadManagementItem = (props: any) => {
   const { edit, view } = usePermission({
@@ -30,7 +27,7 @@ const LeadManagementItem = (props: any) => {
       {props?.items.property_title !== '' ?
         (<View style={styles.Txtview}>
           <View style={styles.projectContainer}>
-            <Text style={styles.projectTxt}>Property Name :</Text>
+            <Text style={styles.projectTxt}>{strings.propertyHeader + " " + strings.name} :</Text>
           </View>
           <View style={styles.nameContainer}>
             <Text style={styles.nameTxt}>{
@@ -41,7 +38,7 @@ const LeadManagementItem = (props: any) => {
       }
       <View style={styles.Txtview}>
         <View style={styles.projectContainer}>
-          <Text style={styles.projectTxt}>Visitor Name :</Text>
+          <Text style={styles.projectTxt}>{strings.visitor + " " + strings.name} :</Text>
         </View>
         <View style={styles.nameContainer}>
           <Text style={styles.nameTxt}>
@@ -51,7 +48,7 @@ const LeadManagementItem = (props: any) => {
       </View>
       <View style={styles.Txtview}>
         <View style={styles.projectContainer}>
-          <Text style={styles.projectTxt}>Created Date :</Text>
+          <Text style={styles.projectTxt}>{strings.createdDate} :</Text>
         </View>
         <View style={styles.nameContainer}>
           <Text style={styles.nameTxt}>
@@ -61,7 +58,7 @@ const LeadManagementItem = (props: any) => {
       </View>
       <View style={styles.Txtview}>
         <View style={styles.projectContainer}>
-          <Text style={styles.projectTxt}>Configurations :</Text>
+          <Text style={styles.projectTxt}>{strings.configurations} :</Text>
         </View>
         <View style={styles.nameContainer}>
           <Text style={styles.nameTxt}>
@@ -73,7 +70,7 @@ const LeadManagementItem = (props: any) => {
       </View>
       <View style={styles.Txtview}>
         <View style={styles.projectContainer}>
-          <Text style={styles.projectTxt}>Budget :</Text>
+          <Text style={styles.projectTxt}>{strings.budget} :</Text>
         </View>
         <View style={styles.nameContainer}>
           <Text style={styles.nameTxt}>
@@ -90,7 +87,7 @@ const LeadManagementItem = (props: any) => {
       </View>
       <View style={styles.Txtview}>
         <View style={styles.projectContainer}>
-          <Text style={styles.projectTxt}>Last Interested :</Text>
+          <Text style={styles.projectTxt}>{strings.lastInteracted} :</Text>
         </View>
         <View style={styles.nameContainer}>
           <Text style={styles.nameTxt}>
@@ -101,7 +98,7 @@ const LeadManagementItem = (props: any) => {
       </View>
       <View style={styles.Txtview}>
         <View style={styles.projectContainer}>
-          <Text style={styles.projectTxt}>Source :</Text>
+          <Text style={styles.projectTxt}>{strings.source} :</Text>
         </View>
         <View style={styles.nameContainer}>
           <Text style={styles.nameTxt}>
@@ -121,7 +118,7 @@ const LeadManagementItem = (props: any) => {
       </View>
       <View style={styles.Txtview}>
         <View style={styles.projectContainer}>
-          <Text style={styles.projectTxt}>Status :</Text>
+          <Text style={styles.projectTxt}>{strings.status} :</Text>
         </View>
         <View style={styles.nameContainer}>
           <Text
@@ -133,26 +130,26 @@ const LeadManagementItem = (props: any) => {
             ]}
           >
             {props.items.lead_status === 1
-              ? "New Lead"
+              ? strings.STSNewLead
               : props.items.lead_status === 2
-                ? "In Follow up"
+                ? strings.STSInFollowUp
                 : props.items.lead_status === 3
-                  ? "Ready to Visit"
+                  ? strings.STSReadyToVisit
                   : props.items.lead_status === 4
-                    ? "Booking"
+                    ? strings.STSBooking
                     : props.items.lead_status === 5
-                      ? "Registration"
+                      ? strings.STSRegistration
                       : props.items.lead_status === 6
-                        ? "Close"
+                        ? strings.STSClose
                         : props.items.lead_status === 7
-                          ? "Ready To Book"
+                          ? strings.STSReadyToBook
                           : strings.notfount}
           </Text>
         </View>
       </View>
       {/* <View style={styles.Txtview}>
         <View style={styles.projectContainer}>
-          <Text style={styles.projectTxt}>visit status :</Text>
+          <Text style={styles.projectTxt}>{strings.visitStatus} :</Text>
         </View>
         <View style={styles.nameContainer}>
           <Text style={[styles.nameTxt, {
@@ -169,13 +166,13 @@ const LeadManagementItem = (props: any) => {
       </View> */}
       <View style={styles.Txtview}>
         <View style={styles.projectContainer}>
-          <Text style={styles.projectTxt}>Acquisition Source :</Text>
+          <Text style={styles.projectTxt}>{strings.acquisitionSource} :</Text>
         </View>
         <View style={styles.nameContainer}>
           <Text style={[styles.nameTxt,]}>
             {/*  1- By User 2 - By Self acquisition_source */}
-            {props.items.acquisition_source === 1 ? "By User" :
-              props.items.acquisition_source === 2 ? "By Self" :
+            {props.items.acquisition_source === 1 ? strings.byUser :
+              props.items.acquisition_source === 2 ? strings.bySelf :
                 props.items.acquisition_source === 3 ? strings.bulkupload :
                   strings.notfount
             }
@@ -195,17 +192,17 @@ const LeadManagementItem = (props: any) => {
         }
         {/* {props?.items?.create_by === userId?._id &&
           ( */}
-          <TouchableOpacity
-            style={[styles.button, { borderColor: CALL_COLOR }]}
-            onPress={() => {
-              Linking?.openURL(`tel:${props?.items?.mobile}`);
-            }}
-          >
-            <Text style={[styles.buttonTxt, { color: CALL_COLOR }]}>
-              {strings.call}
-            </Text>
-          </TouchableOpacity>
-          {/* )} */}
+        <TouchableOpacity
+          style={[styles.button, { borderColor: CALL_COLOR }]}
+          onPress={() => {
+            Linking?.openURL(`tel:${props?.items?.mobile}`);
+          }}
+        >
+          <Text style={[styles.buttonTxt, { color: CALL_COLOR }]}>
+            {strings.call}
+          </Text>
+        </TouchableOpacity>
+        {/* )} */}
         {view &&
           (<TouchableOpacity
             style={styles.Viewbutton}

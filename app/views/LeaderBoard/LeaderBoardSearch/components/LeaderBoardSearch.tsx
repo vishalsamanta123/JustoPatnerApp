@@ -67,13 +67,13 @@ const LeaderBoardSearchView = (props: any) => {
                 <View style={styles.IteamView}>
                     <Text style={[styles.txtStyle, {
                         color: PRIMARY_THEME_COLOR,
-                    }]}>CP Name</Text>
+                    }]}>{strings.cpCapital + " " + strings.name}</Text>
                     <Text style={[styles.txtStyle, {
                         color: PRIMARY_THEME_COLOR,
-                    }]}>CP Rank</Text>
+                    }]}>{strings.cpCapital + " " + strings.rank}</Text>
                     <Text style={[styles.txtStyle, {
                         color: PRIMARY_THEME_COLOR,
-                    }]}>Sold</Text>
+                    }]}>{strings.sold}</Text>
                 </View>
                 <FlatList
                     data={props?.leaderBoardDetail?.property_allocateds &&
@@ -82,7 +82,7 @@ const LeaderBoardSearchView = (props: any) => {
                     ListEmptyComponent={
                         <EmptyListScreen
                             styled={{ alignItems: 'center', marginTop: normalize(60) }}
-                            message={'CP'} />}
+                            message={strings.cpCapital} />}
                     renderItem={({ item, index }) => {
                         return (
                             <LeaderBoardCPItems
