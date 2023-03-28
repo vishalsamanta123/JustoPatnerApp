@@ -15,7 +15,7 @@ import images from "../../../../assets/images";
 import strings from "../../../../components/utilities/Localization";
 import styles from "./Styles";
 import { useSafeAreaInsets } from "react-native-safe-area-context";
-import {  TabBar, TabView } from "react-native-tab-view";
+import { TabBar, TabView } from "react-native-tab-view";
 import VisitorAppointment from "./VisitorAppointment";
 import SmAppointment from "./SmAppointment";
 import { useFocusEffect, useNavigation } from "@react-navigation/native";
@@ -46,7 +46,7 @@ const AppointmentView = (props: any) => {
   const [type, settype] = useState('')
   const { response = {}, list = "" } = useSelector(
     (state: any) => state.appointment
-  );
+    );
   const { getUserListResponse = {}, userList = "" } = useSelector(
     (state: any) => state.userAppointmentData
   );
@@ -83,28 +83,44 @@ const AppointmentView = (props: any) => {
       return () => { };
     }, [navigation, list, props?.params])
   );
-  useEffect(() => {
-    // if (type === "today") {
-    //   getAppointmentList(0, todayAppointment);
-    // } else if (type === "todayComplete") {
-    //   getAppointmentList(0, { ...todayAppointment, status: 3 });
-    // } else if (indexData?.index === 0) {
-    //   getAppointmentList(offSET, todayAppointment);
-    // } else {
-    //   getAppointmentList(offSET, {});
-    // }
-    if (indexData?.index === 0) {
-      if (type === "today") {
-        getAppointmentList(0, todayAppointment);
-      } else if (type === "todayComplete") {
-        getAppointmentList(0, { ...todayAppointment, status: 3 });
+  useFocusEffect(
+    React.useCallback(() => {
+      if (indexData?.index === 0) {
+        if (type === "todayComplete") {
+          getAppointmentList(0, { ...todayAppointment, status: 3 });
+        } else if (type === "today") {
+          getAppointmentList(0, todayAppointment);
+        } else {
+          getAppointmentList(0, todayAppointment);
+        }
       } else {
-        getAppointmentList(0, todayAppointment);
+        getAppointmentList(offSET, {});
       }
-    } else {
-      getAppointmentList(offSET, {});
-    }
-  }, [indexData, updateUserStatusResponse, props.params]);
+      return () => { };
+    }, [indexData, updateUserStatusResponse, type])
+  );
+  // useEffect(() => {
+  //   // if (type === "today") {
+  //   //   getAppointmentList(0, todayAppointment);
+  //   // } else if (type === "todayComplete") {
+  //   //   getAppointmentList(0, { ...todayAppointment, status: 3 });
+  //   // } else if (indexData?.index === 0) {
+  //   //   getAppointmentList(offSET, todayAppointment);
+  //   // } else {
+  //   //   getAppointmentList(offSET, {});
+  //   // }
+  //   if (indexData?.index === 0) {
+  //     if (type === "todayComplete") {
+  //       getAppointmentList(0, { ...todayAppointment, status: 3 });
+  //     } else if (type === "today") {
+  //       getAppointmentList(0, todayAppointment);
+  //     } else {
+  //       getAppointmentList(0, todayAppointment);
+  //     }
+  //   } else {
+  //     getAppointmentList(offSET, {});
+  //   }
+  // }, [indexData, updateUserStatusResponse, props.params, type]);
 
   useEffect(() => {
     const backAction = () => {
@@ -223,12 +239,12 @@ const AppointmentView = (props: any) => {
     setUserAppointmentList([]);
   };
 
-  useFocusEffect(
-    React.useCallback(() => {
-      getAppointmentList(offSET, todayAppointment);
-      return () => { };
-    }, [navigation, list])
-  );
+  // useFocusEffect(
+  //   React.useCallback(() => {
+  //     getAppointmentList(offSET, todayAppointment);
+  //     return () => { };
+  //   }, [navigation, list])
+  // );
   useEffect(() => {
     if (response?.status === 200) {
       if (response?.data?.length > 0) {
@@ -243,7 +259,6 @@ const AppointmentView = (props: any) => {
     }
   }, [response]);
   const getAppointmentList = (offset: any, data: any) => {
-    console.log("data: ", data);
     setOffset(offset);
     dispatch(
       getAllAppointmentList({
