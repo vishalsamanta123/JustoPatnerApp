@@ -18,8 +18,8 @@ const ProfileView = (props: any) => {
   const [indexData, setIndexData] = useState({
     index: 0,
     routes: [
-      { key: 'first', title: 'User Info' },
-      { key: 'second', title: 'Co. Info' },
+      { key: 'first', title: strings.userInfo },
+      { key: 'second', title: strings.coInfo },
     ],
   });
 
@@ -47,8 +47,8 @@ const ProfileView = (props: any) => {
     setIndexData({
       index: index,
       routes: [
-        { key: 'first', title: 'User Info' },
-        { key: 'second', title: 'Co. Info' },
+        { key: 'first', title: strings.userInfo },
+        { key: 'second', title: strings.coInfo },
       ],
     })
   }
@@ -106,7 +106,7 @@ const ProfileView = (props: any) => {
         {/* <View style={styles.InformationView}>
           <View style={styles.fieldView}>
             <View style={styles.keyView}>
-              <Text style={styles.keyText}>Name</Text>
+              <Text style={styles.keyText}>{strings.name}</Text>
             </View>
             <Text style={styles.colon}>:</Text>
             <View style={styles.valueView}>
@@ -115,7 +115,7 @@ const ProfileView = (props: any) => {
           </View>
           <View style={styles.fieldView}>
             <View style={styles.keyView}>
-              <Text style={styles.keyText}>Aadhaar No.</Text>
+              <Text style={styles.keyText}>{strings.aadhaar}</Text>
             </View>
             <Text style={styles.colon}>:</Text>
             <View style={styles.valueView}>
@@ -124,7 +124,7 @@ const ProfileView = (props: any) => {
           </View>
           <View style={styles.fieldView}>
             <View style={styles.keyView}>
-              <Text style={styles.keyText}>Pancard No.</Text>
+              <Text style={styles.keyText}>{strings.pancard + " " + strings.shortNum}</Text>
             </View>
             <Text style={styles.colon}>:</Text>
             <View style={styles.valueView}>
@@ -133,7 +133,7 @@ const ProfileView = (props: any) => {
           </View>
           <View style={styles.fieldView}>
             <View style={styles.keyView}>
-              <Text style={styles.keyText}>Gender</Text>
+              <Text style={styles.keyText}>{strings.gender}</Text>
             </View>
             <Text style={styles.colon}>:</Text>
             <View style={styles.valueView}>
@@ -151,7 +151,7 @@ const ProfileView = (props: any) => {
           </View>
           <View style={styles.fieldView}>
             <View style={styles.keyView}>
-              <Text style={styles.keyText}>Mobile No.</Text>
+              <Text style={styles.keyText}>{strings.mobileNo}</Text>
             </View>
             <Text style={styles.colon}>:</Text>
             <View style={styles.valueView}>
@@ -160,7 +160,7 @@ const ProfileView = (props: any) => {
           </View>
           <View style={styles.fieldView}>
             <View style={styles.keyView}>
-              <Text style={styles.keyText}>What'sapp No</Text>
+              <Text style={styles.keyText}>{strings.whatsappNo}</Text>
             </View>
             <Text style={styles.colon}>:</Text>
             <View style={styles.valueView}>
@@ -169,7 +169,7 @@ const ProfileView = (props: any) => {
           </View>
           <View style={styles.fieldView}>
             <View style={styles.keyView}>
-              <Text style={styles.keyText}>Email</Text>
+              <Text style={styles.keyText}>{strings.email}</Text>
             </View>
             <Text style={styles.colon}>:</Text>
             <View style={styles.valueView}>

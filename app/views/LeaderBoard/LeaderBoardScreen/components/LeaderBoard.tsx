@@ -34,7 +34,7 @@ const LeaderBoardView = (props: any) => {
             {/* <ComingSoonScreen /> */}
             <View style={styles.topItemsVw}>
                 <InputField
-                    placeholderText={'Search Project Name'}
+                    placeholderText={strings.searchProjctName}
                     handleInputBtnPress={() => { }}
                     inputheight={Isios ? 30 : 45}
                     onChangeText={(data: any) => {

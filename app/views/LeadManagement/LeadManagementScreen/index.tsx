@@ -30,7 +30,6 @@ const LeadManagementScreen = ({ navigation, route }: any) => {
 
   useFocusEffect(
     React.useCallback(() => {
-      console.log('Route', route.params)
       if(route.params === 'today') {
         getVisitorsList(0, todayDate)
       } else {
@@ -70,7 +69,7 @@ const LeadManagementScreen = ({ navigation, route }: any) => {
     navigation.toggleDrawer();
   };
   const handleBulkUploadPress = () => {
-    navigation.navigate('BulkUpload')
+    navigation.navigate('BulkUploadList')
   }
   const handleAddNewPress = (data: any) => {
     navigation.navigate('AddNewVisitorScreen', { type: 'add', data: {} })

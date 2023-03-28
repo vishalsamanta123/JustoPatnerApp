@@ -7,18 +7,11 @@ import {
   TouchableOpacity,
 } from "react-native";
 import React, { useState } from "react";
-import { useSafeAreaInsets } from "react-native-safe-area-context";
 import styles from "./styles";
-import { PRIMARY_THEME_COLOR_DARK } from "../../../../components/utilities/constant";
 import Header from "../../../../components/Header";
 import images from "../../../../assets/images";
 import strings from "../../../../components/utilities/Localization";
-import {
-  normalizeHeight,
-  normalizeSpacing,
-  normalizeWidth,
-} from "../../../../components/scaleFontSize";
-import { DATA } from "../../../../components/utilities/DemoData";
+import { normalizeHeight, } from "../../../../components/scaleFontSize";
 import Videoplay from "./Videoplay";
 import Button from "app/components/Button";
 import { START_LOADING, STOP_LOADING } from "app/Redux/types";

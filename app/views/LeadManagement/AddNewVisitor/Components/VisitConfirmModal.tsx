@@ -12,7 +12,6 @@ import { DATE_FORMAT } from "app/components/utilities/constant";
 const VisitConfirmModal = (props: any) => {
     const { response = {}, check_type = "" } = useSelector((state: any) => state.checkVisitorData);
     const [responseData, setResponseData] = useState<any>({})
-    console.log('responseData: ', responseData);
     useEffect(() => {
         if (response?.status === 201 || response?.status === 202) {
             if (response?.status) {
@@ -32,33 +31,34 @@ const VisitConfirmModal = (props: any) => {
                 mobile: '',
             })
         } if (responseData?.status === 202) {
+            const formDatas = responseData?.data[0] || {}
             props.setFormData({
                 ...props.formData,
-                address: responseData?.data[0]?.address ? responseData?.data[0]?.address : '',
-                adhar_no: responseData?.data[0]?.adhar_no ? responseData?.data[0]?.adhar_no : '',
-                age: responseData?.data[0]?.age ? responseData?.data[0]?.age : '',
-                agent_code: responseData?.data[0]?.agent_code ? responseData?.data[0]?.agent_code : '',
-                area: responseData?.data[0]?.area ? responseData?.data[0]?.area : '',
-                city: responseData?.data[0]?.city ? responseData?.data[0]?.city : '',
-                coumpany_name: responseData?.data[0]?.coumpany_name ? responseData?.data[0]?.coumpany_name : '',
-                current_stay: responseData?.data[0]?.current_stay ? responseData?.data[0]?.current_stay : '',
-                desigantion: responseData?.data[0]?.desigantion ? responseData?.data[0]?.desigantion : '',
-                email: responseData?.data[0]?.email ? responseData?.data[0]?.email : '',
-                first_name: responseData?.data[0]?.first_name ? responseData?.data[0]?.first_name : '',
-                funding_emi_type: responseData?.data[0]?.funding_emi_type ? responseData?.data[0]?.funding_emi_type : '',
-                gender: responseData?.data[0]?.gender ? responseData?.data[0]?.gender : '',
-                locality: responseData?.data[0]?.locality ? responseData?.data[0]?.locality : '',
-                location: responseData?.data[0]?.location ? responseData?.data[0]?.location : '',
-                marital_status: responseData?.data[0]?.marital_status ? responseData?.data[0]?.marital_status : '',
-                mobile: responseData?.data[0]?.mobile ? responseData?.data[0]?.mobile : '',
-                no_of_family_member: responseData?.data[0]?.no_of_family_member ? responseData?.data[0]?.no_of_family_member : '',
-                occupation: responseData?.data[0]?.occupation ? responseData?.data[0]?.occupation : '',
-                office_address: responseData?.data[0]?.office_address ? responseData?.data[0]?.office_address : '',
-                pancard_no: responseData?.data[0]?.pancard_no ? responseData?.data[0]?.pancard_no : '',
-                visit_type: responseData?.data[0]?.visit_type ? responseData?.data[0]?.visit_type : '',
-                whatsapp_no: responseData?.data[0]?.whatsapp_no ? responseData?.data[0]?.whatsapp_no : '',
-                birth_date: responseData?.data[0]?.birth_date ?
-                    moment(responseData?.data[0]?.birth_date).format(DATE_FORMAT) : '',
+                address: formDatas?.address ? formDatas?.address : '',
+                adhar_no: formDatas?.adhar_no ? formDatas?.adhar_no : '',
+                age: formDatas?.age ? formDatas?.age : '',
+                agent_code: formDatas?.agent_code ? formDatas?.agent_code : '',
+                area: formDatas?.area ? formDatas?.area : '',
+                city: formDatas?.city ? formDatas?.city : '',
+                coumpany_name: formDatas?.coumpany_name ? formDatas?.coumpany_name : '',
+                current_stay: formDatas?.current_stay ? formDatas?.current_stay : '',
+                desigantion: formDatas?.desigantion ? formDatas?.desigantion : '',
+                email: formDatas?.email ? formDatas?.email : '',
+                first_name: formDatas?.first_name ? formDatas?.first_name : '',
+                funding_emi_type: formDatas?.funding_emi_type ? formDatas?.funding_emi_type : '',
+                gender: formDatas?.gender ? formDatas?.gender : '',
+                locality: formDatas?.locality ? formDatas?.locality : '',
+                location: formDatas?.location ? formDatas?.location : '',
+                marital_status: formDatas?.marital_status ? formDatas?.marital_status : '',
+                mobile: formDatas?.mobile ? formDatas?.mobile : '',
+                no_of_family_member: formDatas?.no_of_family_member ? formDatas?.no_of_family_member : '',
+                occupation: formDatas?.occupation ? formDatas?.occupation : '',
+                office_address: formDatas?.office_address ? formDatas?.office_address : '',
+                pancard_no: formDatas?.pancard_no ? formDatas?.pancard_no : '',
+                visit_type: formDatas?.visit_type ? formDatas?.visit_type : '',
+                whatsapp_no: formDatas?.whatsapp_no ? formDatas?.whatsapp_no : '',
+                birth_date: formDatas?.birth_date ?
+                    moment(formDatas?.birth_date).format(DATE_FORMAT) : '',
                 visit_confirmation_status: 2,
             })
         }

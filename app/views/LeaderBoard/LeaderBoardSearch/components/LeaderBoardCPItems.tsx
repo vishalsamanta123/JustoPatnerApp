@@ -4,6 +4,7 @@ import styles from './styles';
 import images from 'app/assets/images';
 import { normalize, } from 'app/components/scaleFontSize';
 import { FONT_FAMILY_EXTRABOLD, FONT_FAMILY_REGULAR, } from 'app/components/utilities/constant';
+import strings from 'app/components/utilities/Localization';
 
 const LeaderBoardCPItems = (props: any) => {
     const index = props?.indexs + 1 || 0
@@ -15,7 +16,7 @@ const LeaderBoardCPItems = (props: any) => {
                 fontFamily: props?.userDataResp?._id?.toString() === item?.user_id?.toString() ?
                     FONT_FAMILY_EXTRABOLD : FONT_FAMILY_REGULAR
             }]}>{props?.userDataResp?._id?.toString() === item?.user_id?.toString() ?
-                "Your Name" : "CP Name " + index}</Text>
+                strings.yourName : strings.cpCapital + " " + strings.name + " " + index}</Text>
             <Text style={[styles.txtStyle, {
                 flex: 1,
                 textAlign: 'center',

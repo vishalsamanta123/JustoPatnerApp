@@ -56,11 +56,11 @@ const AddTicketScreen = ({ navigation, route }: any) => {
         let errorMessage: any = ''
         if (addTicketData.reason == undefined || addTicketData.reason == '') {
             isError = false;
-            errorMessage = "Issue is require. Please Choose the Issue"
+            errorMessage = strings.issueReqVal
         }
         else if (addTicketData.title == undefined || addTicketData.title == '') {
             isError = false;
-            errorMessage = "Title is require. Please Enter the Title"
+            errorMessage = strings.titleReqVal
         }
 
         if (errorMessage !== '') {

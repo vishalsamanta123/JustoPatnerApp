@@ -23,8 +23,8 @@ const FilterModal = (props: any) => {
   // }, [])
   const { response = { data: [] } } = useSelector((state: any) => state.masterData) || {}
   const datavisitingscore = [
-    { label: "High to low", value: 2 },
-    { label: "Low to high", value: 1 }
+    { label: strings.highToLow, value: 2 },
+    { label: strings.lowToHigh, value: 1 }
   ];
   const dataconfiguration = response?.data?.length > 0 ? response?.data : [];
   const resetFilter = () => {
@@ -76,7 +76,7 @@ const FilterModal = (props: any) => {
               <InputCalender
                 mode={'date'}
                 leftIcon={images.event}
-                placeholderText={"Start Date"}
+                placeholderText={strings.startDate}
                 editable={false}
                 dateData={(data: any) => {
                   props.setFilterData({
@@ -97,7 +97,7 @@ const FilterModal = (props: any) => {
               <InputCalender
                 mode={'date'}
                 leftIcon={images.event}
-                placeholderText={"End Date"}
+                placeholderText={strings.endDate}
                 editable={false}
                 value={props.filterData.enddate}
                 dateData={(data: any) => {
@@ -116,8 +116,8 @@ const FilterModal = (props: any) => {
             </View>
             <View style={styles.inputWrap}>
               <InputField
-                headingText={'Search by Visitor Name'}
-                placeholderText={"Search by Visitor Name"}
+                headingText={strings.searchBy + " " + strings.visitor + " " + strings.name}
+                placeholderText={strings.searchBy + " " + strings.visitor + " " + strings.name}
                 handleInputBtnPress={() => { }}
                 onChangeText={(data: any) => {
                   props.setFilterData({
@@ -199,8 +199,8 @@ const FilterModal = (props: any) => {
             </View> */}
             <View style={styles.inputWrap}>
               <DropdownInput
-                headingText={'Search by status'}
-                placeholder={'Search by status'}
+                headingText={strings.searchBy + " " + strings.status}
+                placeholder={strings.searchBy + " " + strings.status}
                 data={VisitStatus}
                 inputWidth={'100%'}
                 paddingLeft={16}

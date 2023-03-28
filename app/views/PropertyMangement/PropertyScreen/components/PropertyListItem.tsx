@@ -19,7 +19,7 @@ const PropertyListItem = (props: any) => {
     <View style={styles.IteamView}>
       <View style={styles.Txtview} >
         <View style={styles.projectContainer}>
-          <Text style={styles.projectTxt}>Project Name :</Text>
+          <Text style={styles.projectTxt}>{strings.propertyHeader + " " + strings.name} :</Text>
         </View>
         <View style={styles.nameContainer}>
           <Text style={styles.nameTxt}>{props.items.property_title}</Text>
@@ -27,7 +27,7 @@ const PropertyListItem = (props: any) => {
       </View>
       <View style={styles.Txtview} >
         <View style={styles.projectContainer}>
-          <Text style={styles.projectTxt}>Locality :</Text>
+          <Text style={styles.projectTxt}>{strings.locality} :</Text>
         </View>
         <View style={styles.nameContainer}>
           <Text style={styles.nameTxt}>{props.items.location}</Text>
@@ -35,7 +35,7 @@ const PropertyListItem = (props: any) => {
       </View>
       <View style={styles.Txtview} >
         <View style={styles.projectContainer}>
-          <Text style={styles.projectTxt}>Location :</Text>
+          <Text style={styles.projectTxt}>{strings.location} :</Text>
         </View>
         <View style={styles.nameContainer}>
           <Text style={styles.nameTxt}>{props.items.area ? props.items.area : strings.notfount}</Text>
@@ -43,7 +43,7 @@ const PropertyListItem = (props: any) => {
       </View>
       <View style={styles.Txtview} >
         <View style={styles.projectContainer}>
-          <Text style={styles.projectTxt}>Visitor :</Text>
+          <Text style={styles.projectTxt}>{strings.visitor} :</Text>
         </View>
         <View style={styles.nameContainer}>
           <Text style={styles.nameTxt}>{props.items.total_visitor}</Text>
@@ -51,7 +51,7 @@ const PropertyListItem = (props: any) => {
       </View>
       <View style={styles.Txtview}>
         <View style={styles.projectContainer}>
-          <Text style={styles.projectTxt}>Site Visit :</Text>
+          <Text style={styles.projectTxt}>{strings.siteVisit} :</Text>
         </View>
         <View style={styles.nameContainer}>
           <Text style={styles.nameTxt}>{props.items.site_visit}</Text>
@@ -59,7 +59,7 @@ const PropertyListItem = (props: any) => {
       </View>
       <View style={styles.Txtview} >
         <View style={styles.projectContainer}>
-          <Text style={styles.projectTxt}>Closer Visit :</Text>
+          <Text style={styles.projectTxt}>{strings.closerVisit} :</Text>
         </View>
         <View style={styles.nameContainer}>
           <Text style={styles.nameTxt}>{props.items.close_visit}</Text>
@@ -67,7 +67,7 @@ const PropertyListItem = (props: any) => {
       </View>
       <View style={styles.Txtview} >
         <View style={styles.projectContainer}>
-          <Text style={styles.projectTxt}>Approve Status :</Text>
+          <Text style={styles.projectTxt}>{strings.approveStatus} :</Text>
         </View>
         <View style={styles.nameContainer}>
           <Text style={[styles.nameTxt, {
@@ -87,17 +87,17 @@ const PropertyListItem = (props: any) => {
       </View>
       <View style={[styles.Txtview, { borderBottomWidth: 0 }]} >
         <View style={styles.projectContainer}>
-          <Text style={styles.projectTxt}>Property Status :</Text>
+          <Text style={styles.projectTxt}>{strings.propertyHeader + " " + strings.status} :</Text>
         </View>
         <View style={styles.nameContainer}>
           <Text style={[styles.nameTxt, {
             color: props.items.status ? GREEN_COLOR : RED_COLOR
-          }]}>{props.items.status ? 'Active' : 'Inactive'}</Text>
+          }]}>{props.items.status ? strings.active : strings.inActive}</Text>
         </View>
       </View>
       <View style={[styles.Txtview, { borderBottomWidth: 0 }]} >
         <View style={styles.projectContainer}>
-          <Text style={styles.projectTxt}>Create Date :</Text>
+          <Text style={styles.projectTxt}>{strings.createdDate} :</Text>
         </View>
         <View style={styles.nameContainer}>
           <Text style={styles.nameTxt}>{moment(props.items.createdDate).format(DATE_TIME_FORMAT)}</Text>
@@ -140,7 +140,7 @@ const PropertyListItem = (props: any) => {
           //     }</Text>
           // </TouchableOpacity>)
           <View></View>
-          : <View/>
+          : <View />
         }
         {view &&
           (<TouchableOpacity style={styles.Viewbutton} onPress={() => props.onPressView(props.items)} >

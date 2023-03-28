@@ -10,13 +10,13 @@ const SupportDetailsItem = (props: any) => {
         <ScrollView>
             <View style={styles.topDetailsView}>
                 <View style={styles.topTxtView}>
-                    <Text style={styles.topTxt}>Ticket No. </Text>
+                    <Text style={styles.topTxt}>{strings.ticket + " " + strings.shortNum} </Text>
                     <Text style={styles.topTxt}>{props.item.ticket_number ? props.item.ticket_number : strings.notfount}</Text>
                 </View>
             </View>
             <View style={styles.Txtview}>
                 <View style={styles.projectContainer}>
-                    <Text style={styles.projectTxt}>Title </Text>
+                    <Text style={styles.projectTxt}>{strings.title} </Text>
                 </View>
                 <View><Text>:</Text></View>
                 <View style={styles.nameContainer}>
@@ -34,7 +34,7 @@ const SupportDetailsItem = (props: any) => {
             </View>
             <View style={styles.Txtview}>
                 <View style={styles.projectContainer}>
-                    <Text style={styles.projectTxt}>Issue </Text>
+                    <Text style={styles.projectTxt}>{strings.issue} </Text>
                 </View>
                 <View><Text>:</Text></View>
                 <View style={styles.nameContainer}>
@@ -43,7 +43,7 @@ const SupportDetailsItem = (props: any) => {
             </View>
             <View style={styles.Txtview}>
                 <View style={styles.projectContainer}>
-                    <Text style={styles.projectTxt}>Status </Text>
+                    <Text style={styles.projectTxt}>{strings.status} </Text>
                 </View>
                 <View><Text>:</Text></View>
                 <View style={styles.nameContainer}>
@@ -51,15 +51,15 @@ const SupportDetailsItem = (props: any) => {
                         color: props.item.status === 1 ? GREEN_COLOR : RED_COLOR
                     }]}>
                         {
-                            props.item.status === 1 ? 'Open' :
-                                props.item.status === 2 && 'Close'
+                            props.item.status === 1 ? strings.open :
+                                props.item.status === 2 && strings.close
                         }
                     </Text>
                 </View>
             </View>
             <View style={styles.Txtview}>
                 <View style={styles.projectContainer}>
-                    <Text style={styles.projectTxt}>Description </Text>
+                    <Text style={styles.projectTxt}>{strings.description} </Text>
                 </View>
                 <View><Text>:</Text></View>
                 <View style={styles.nameContainer}>
@@ -69,7 +69,7 @@ const SupportDetailsItem = (props: any) => {
             {props.item.image !== 'no_image.png' ?
                 (<View style={styles.Txtview}>
                     <View style={styles.projectContainer}>
-                        <Text style={styles.projectTxt}>Image </Text>
+                        <Text style={styles.projectTxt}>{strings.imagecontentHeader} </Text>
                     </View>
                     <View><Text>:</Text></View>
                     <View style={[styles.nameContainer, { marginLeft: 10 }]}>

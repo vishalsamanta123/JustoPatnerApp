@@ -7,6 +7,7 @@ import { addAgentForm, getAgentDetail } from "app/Redux/Actions/AgentActions";
 import { useFocusEffect } from "@react-navigation/native";
 import { RED_COLOR, Regexs } from "app/components/utilities/constant";
 import ErrorMessage from "app/components/ErrorMessage";
+import strings from "app/components/utilities/Localization";
 
 const EditProfileScreen = ({ navigation, route }: any) => {
   const { response = {}, detail = "" } = useSelector((state: any) => state.agentData);
@@ -24,12 +25,12 @@ const EditProfileScreen = ({ navigation, route }: any) => {
     if (editData?.adhar_no && editData?.adhar_no !== null) {
       if (Regexs.AadharRegex.test(editData?.adhar_no) === false) {
         isError = false;
-        errorMessage = "Please enter valid Aadhaar number";
+        errorMessage = strings.aadharValidVal;
       } else {
         if (editData?.pancard_no && editData?.pancard_no !== null) {
           if (Regexs.panRegex.test(editData?.pancard_no) === false) {
             isError = false;
-            errorMessage = "Please enter valid Pancard number";
+            errorMessage = strings.pancardValidVal;
           }
         }
       }

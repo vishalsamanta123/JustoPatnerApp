@@ -77,7 +77,7 @@ const EditProfileView = (props: any) => {
                   agent_name: e,
                 });
               }}
-              headingText={"Agent Name"}
+              headingText={strings.agent + " " + strings.name}
             />
           </View>
           <View style={styles.inputWrap}>
@@ -92,7 +92,7 @@ const EditProfileView = (props: any) => {
                 });
               }}
               inputType={'aadhaar'}
-              headingText={"Aadhaar No."}
+              headingText={strings.aadhaar}
               maxLength={14}
             />
           </View>
@@ -107,7 +107,7 @@ const EditProfileView = (props: any) => {
                 });
               }}
               maxLength={10}
-              headingText={"Pancard No."}
+              headingText={strings.pancard + " " + strings.shortNum}
             />
           </View>
           <View style={styles.genderView}>
@@ -165,8 +165,8 @@ const EditProfileView = (props: any) => {
             <InputCalender
               mode={"date"}
               leftIcon={images.event}
-              placeholderText={"Date of Birth"} //can edit
-              headingText={"Date of Birth"}
+              placeholderText={strings.dateOfBirth} //can edit
+              headingText={strings.dateOfBirth}
               editable={false}
               dateData={(data: any) => {
                 props.setEditData({
@@ -193,7 +193,7 @@ const EditProfileView = (props: any) => {
                   primary_mobile: e,
                 });
               }}
-              headingText={"Mobile No."}
+              headingText={strings.mobileNo}
               editable={false}
             />
           </View>
@@ -207,7 +207,7 @@ const EditProfileView = (props: any) => {
                   whatsapp_number: e,
                 });
               }}
-              headingText={"WhatsApp No."}
+              headingText={strings.whatsappNo}
               keyboardtype={'number-pad'}
               maxLength={10}
             />
@@ -223,13 +223,13 @@ const EditProfileView = (props: any) => {
                 });
               }}
               editable={false}
-              headingText={"Email Address"}
+              headingText={strings.email + " " + strings.address}
             />
           </View>
           <View style={{ marginTop: normalizeSpacing(30) }}>
             <InputField
-              placeholderText={"Address"}
-              headingText={"Address"}
+              placeholderText={strings.address}
+              headingText={strings.address}
               onChangeText={(data: any) => {
                 props.setEditData({
                   ...props.editData,

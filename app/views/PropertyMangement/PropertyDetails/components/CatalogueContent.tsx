@@ -1,21 +1,16 @@
-import { View, Text, StatusBar, FlatList, Image, TouchableOpacity } from 'react-native'
+import { View, FlatList, Image, TouchableOpacity } from 'react-native'
 import React, { useState } from 'react'
-import { useSafeAreaInsets } from 'react-native-safe-area-context';
 import styles from './styles';
-import { PRIMARY_THEME_COLOR_DARK, GRAY_LIGHT_COLOR, RED_COLOR } from '../../../../components/utilities/constant';
+import { GRAY_LIGHT_COLOR, RED_COLOR } from '../../../../components/utilities/constant';
 import Header from '../../../../components/Header';
 import images from '../../../../assets/images';
 import strings from '../../../../components/utilities/Localization';
-import { DATA } from '../../../../components/utilities/DemoData';
-import { normalizeHeight, normalizeSpacing, normalizeWidth } from '../../../../components/scaleFontSize';
+import { normalizeHeight } from '../../../../components/scaleFontSize';
 import FileViewer from "react-native-file-viewer";
 import RNFS from "react-native-fs";
 import ErrorMessage from 'app/components/ErrorMessage';
-import Button from 'app/components/Button';
-import { STOP_LOADING } from 'app/Redux/types';
-import RNFetchBlob from 'rn-fetch-blob';
 import { useDispatch } from 'react-redux';
-import Share from 'react-native-share';
+
 
 const CatalogueContent = ({ navigation, route }: any) => {
   const dispatch: any = useDispatch()
@@ -61,7 +56,7 @@ const CatalogueContent = ({ navigation, route }: any) => {
         leftImageIconStyle={styles.leftImageIconStyle}
         handleOnLeftIconPress={handleBackPress}
       />
-      <View style={{flex:1}}>
+      <View style={{ flex: 1 }}>
         <FlatList data={array}
           numColumns={1}
           showsVerticalScrollIndicator={false}

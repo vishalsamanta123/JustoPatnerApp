@@ -13,7 +13,6 @@ import Styles from "../../../../components/Modals/styles";
 import { getAllAlloctaeProperty } from "app/Redux/Actions/propertyActions";
 import ErrorMessage from "app/components/ErrorMessage";
 import {
-  BLACK_COLOR,
   GREEN_COLOR,
   PRIMARY_THEME_COLOR,
   RED_COLOR,
@@ -35,6 +34,7 @@ const ImageUpload = ({ navigation }: any) => {
     property_title: "",
     document: "",
   });
+
   const [imageData, setImageData] = useState("");
   useEffect(() => {
     if (propertyData?.response?.status === 200) {
@@ -72,12 +72,12 @@ const ImageUpload = ({ navigation }: any) => {
     let errorMessage: any = "";
     if (formData?.property_id === "" && formData?.property_type_title === "") {
       isError = false;
-      errorMessage = "Please select property name";
+      errorMessage = strings.propertyReqVal;
     } else
-    if (formData?.document === "" || formData?.document === null) {
-      isError = false;
-      errorMessage = "Please select Image";
-    }
+      if (formData?.document === "" || formData?.document === null) {
+        isError = false;
+        errorMessage = strings.imageSelectReqVal;
+      }
     if (errorMessage !== "") {
       ErrorMessage({
         msg: errorMessage,
@@ -119,9 +119,9 @@ const ImageUpload = ({ navigation }: any) => {
       <View style={[styles.inputWrap]}>
         <DropdownInput
           // require={true}
-          headingText={"Property"}
+          headingText={strings.propertyHeader}
           placeholder={
-            formData?.property_title ? formData?.property_title : "Property"
+            formData?.property_title ? formData?.property_title : strings.propertyHeader
           }
           data={allProperty}
           inputWidth={"100%"}
@@ -162,7 +162,7 @@ const ImageUpload = ({ navigation }: any) => {
           ]}
         >
           <View style={{ flex: 1, flexDirection: "row", alignItems: "center" }}>
-            <Text style={styles.notFoundText}>Upload Image</Text>
+            <Text style={styles.notFoundText}>{strings.uploadimage}</Text>
             <Image source={images.star} style={styles.attachView} />
           </View>
           <View>
@@ -196,7 +196,7 @@ const ImageUpload = ({ navigation }: any) => {
       )}
       <View style={styles.uploadButton}>
         <Button
-          buttonText={"Upload"}
+          buttonText={strings.upload}
           width={200}
           height={50}
           btnTxtsize={20}

@@ -5,7 +5,7 @@ import Button from '../../../../components/Button'
 import { normalize } from '../../../../components/scaleFontSize'
 import strings from '../../../../components/utilities/Localization'
 import moment from 'moment'
-import { BLACK_COLOR, DATE_TIME_FORMAT } from 'app/components/utilities/constant'
+import { BLACK_COLOR, DATE_TIME_FORMAT, RED_COLOR } from 'app/components/utilities/constant'
 import { useSelector } from 'react-redux'
 
 const LeadDetailsIteam = (props: any) => {
@@ -31,7 +31,7 @@ const LeadDetailsIteam = (props: any) => {
                             )
                         }}
                     >
-                        <Text style={styles.buttonTxt}>Call</Text>
+                        <Text style={styles.buttonTxt}>{strings.call}</Text>
                     </TouchableOpacity>
                     <TouchableOpacity
                         style={styles.button}
@@ -41,7 +41,7 @@ const LeadDetailsIteam = (props: any) => {
                             )
                         }}
                     >
-                        <Text style={styles.buttonTxt}>SMS</Text>
+                        <Text style={styles.buttonTxt}>{strings.sms}</Text>
                     </TouchableOpacity>
                     <TouchableOpacity
                         style={styles.button}
@@ -51,7 +51,7 @@ const LeadDetailsIteam = (props: any) => {
                             )
                         }}
                     >
-                        <Text style={[styles.buttonTxt, { fontSize: normalize(10) }]}>WhatsApp</Text>
+                        <Text style={[styles.buttonTxt, { fontSize: normalize(10) }]}>{strings.whatsApp}</Text>
                     </TouchableOpacity>
                 </View>
                 {/* )
@@ -61,7 +61,7 @@ const LeadDetailsIteam = (props: any) => {
             {props?.items?.property_title !== '' ?
                 (<View style={styles.Txtview}>
                     <View style={styles.projectContainer}>
-                        <Text style={styles.projectTxt}>Property Name</Text>
+                        <Text style={styles.projectTxt}>{strings.propertyHeader + " " + strings.name}</Text>
                     </View>
                     <View><Text>:</Text></View>
                     <View style={styles.nameContainer}>
@@ -72,7 +72,7 @@ const LeadDetailsIteam = (props: any) => {
             }
             <View style={styles.Txtview}>
                 <View style={styles.projectContainer}>
-                    <Text style={styles.projectTxt}>Last Interacted</Text>
+                    <Text style={styles.projectTxt}>{strings.lastInteracted}</Text>
                 </View>
                 <View><Text>:</Text></View>
                 <View style={styles.nameContainer}>
@@ -86,7 +86,7 @@ const LeadDetailsIteam = (props: any) => {
             </View>
             <View style={styles.Txtview}>
                 <View style={styles.projectContainer}>
-                    <Text style={styles.projectTxt}>Source</Text>
+                    <Text style={styles.projectTxt}>{strings.source}</Text>
                 </View>
                 <View><Text>:</Text></View>
                 <View style={styles.nameContainer}>
@@ -98,7 +98,7 @@ const LeadDetailsIteam = (props: any) => {
             </View>
             <View style={styles.Txtview}>
                 <View style={styles.projectContainer}>
-                    <Text style={styles.projectTxt}>Status</Text>
+                    <Text style={styles.projectTxt}>{strings.status}</Text>
                 </View>
                 <View><Text>:</Text></View>
                 <View style={styles.nameContainer}>
@@ -106,18 +106,18 @@ const LeadDetailsIteam = (props: any) => {
                         style={[
                             styles.nameTxt,
                             {
-                                color: props.items.lead_status === 6 ? 'red' : BLACK_COLOR
+                                color: props.items.lead_status === 6 ? RED_COLOR : BLACK_COLOR
 
                             },
                         ]}
                     >
-                        {props.items.lead_status === 1 ? "New Lead" :
-                            props.items.lead_status === 2 ? "In Follow up" :
-                                props.items.lead_status === 3 ? "Ready to Visit" :
-                                    props.items.lead_status === 4 ? "Booking" :
-                                        props.items.lead_status === 5 ? "Registration" :
-                                            props.items.lead_status === 6 ? "Close" :
-                                                props.items.lead_status === 7 ? "Ready To Book" :
+                        {props.items.lead_status === 1 ? strings.STSNewLead :
+                            props.items.lead_status === 2 ? strings.STSInFollowUp :
+                                props.items.lead_status === 3 ? strings.STSReadyToVisit :
+                                    props.items.lead_status === 4 ? strings.STSBooking :
+                                        props.items.lead_status === 5 ? strings.STSRegistration :
+                                            props.items.lead_status === 6 ? strings.STSClose :
+                                                props.items.lead_status === 7 ? strings.STSReadyToBook :
                                                     strings.notfount
                         }
                     </Text>
@@ -125,13 +125,13 @@ const LeadDetailsIteam = (props: any) => {
             </View>
             <View style={styles.Txtview}>
                 <View style={styles.projectContainer}>
-                    <Text style={styles.projectTxt}>Acquisition Source :</Text>
+                    <Text style={styles.projectTxt}>{strings.acquisitionSource} :</Text>
                 </View>
                 <View style={styles.nameContainer}>
                     <Text style={[styles.nameTxt,]}>
                         {/*  1- By User 2 - By Self acquisition_source */}
-                        {props.items.acquisition_source === 1 ? "By User" :
-                            props.items.acquisition_source === 2 ? "By Self" : strings.notfount
+                        {props.items.acquisition_source === 1 ? strings.byUser :
+                            props.items.acquisition_source === 2 ? strings.bySelf : strings.notfount
                         }
                     </Text>
                 </View>
@@ -143,7 +143,7 @@ const LeadDetailsIteam = (props: any) => {
                 </View>
                 <View style={styles.Txtview}>
                     <View style={styles.projectContainer}>
-                        <Text style={styles.projectTxt}>Configurations</Text>
+                        <Text style={styles.projectTxt}>{strings.configurations}</Text>
                     </View>
                     <View><Text>:</Text></View>
                     <View style={styles.nameContainer}>
@@ -157,7 +157,7 @@ const LeadDetailsIteam = (props: any) => {
                 </View>
                 <View style={styles.Txtview}>
                     <View style={styles.projectContainer}>
-                        <Text style={styles.projectTxt}>Area (in sq.ft)</Text>
+                        <Text style={styles.projectTxt}>{strings.areaSqft}</Text>
                     </View>
                     <View><Text>:</Text></View>
                     <View style={styles.nameContainer}>
@@ -170,7 +170,7 @@ const LeadDetailsIteam = (props: any) => {
                 </View>
                 <View style={styles.Txtview}>
                     <View style={styles.projectContainer}>
-                        <Text style={styles.projectTxt}>Budget</Text>
+                        <Text style={styles.projectTxt}>{strings.budget}</Text>
                     </View>
                     <View><Text>:</Text></View>
                     <View style={styles.nameContainer}>
@@ -182,7 +182,7 @@ const LeadDetailsIteam = (props: any) => {
                 </View>
                 <View style={styles.Txtview}>
                     <View style={styles.projectContainer}>
-                        <Text style={styles.projectTxt}>Nature Of Funding</Text>
+                        <Text style={styles.projectTxt}>{strings.natureOfFunding}</Text>
                     </View>
                     <View><Text>:</Text></View>
                     <View style={styles.nameContainer}>
@@ -195,7 +195,7 @@ const LeadDetailsIteam = (props: any) => {
                 </View>
                 <View style={styles.Txtview}>
                     <View style={styles.projectContainer}>
-                        <Text style={styles.projectTxt}>Purpose</Text>
+                        <Text style={styles.projectTxt}>{strings.purpose}</Text>
                     </View>
                     <View><Text>:</Text></View>
                     <View style={styles.nameContainer}>
@@ -214,7 +214,7 @@ const LeadDetailsIteam = (props: any) => {
                 </View>
                 <View style={styles.Txtview}>
                     <View style={styles.projectContainer}>
-                        <Text style={styles.projectTxt}>Visitor Name</Text>
+                        <Text style={styles.projectTxt}>{strings.visitor + " " + strings.name}</Text>
                     </View>
                     <View><Text>:</Text></View>
                     <View style={styles.nameContainer}>
@@ -228,7 +228,7 @@ const LeadDetailsIteam = (props: any) => {
                 </View>
                 <View style={styles.Txtview}>
                     <View style={styles.projectContainer}>
-                        <Text style={styles.projectTxt}>Location</Text>
+                        <Text style={styles.projectTxt}>{strings.location}</Text>
                     </View>
                     <View><Text>:</Text></View>
                     <View style={styles.nameContainer}>
@@ -241,7 +241,7 @@ const LeadDetailsIteam = (props: any) => {
                 </View>
                 <View style={styles.Txtview}>
                     <View style={styles.projectContainer}>
-                        <Text style={styles.projectTxt}>Age</Text>
+                        <Text style={styles.projectTxt}>{strings.age}</Text>
                     </View>
                     <View><Text>:</Text></View>
                     <View style={styles.nameContainer}>
@@ -254,7 +254,7 @@ const LeadDetailsIteam = (props: any) => {
                 </View>
                 <View style={styles.Txtview}>
                     <View style={styles.projectContainer}>
-                        <Text style={styles.projectTxt}>Gender</Text>
+                        <Text style={styles.projectTxt}>{strings.gender}</Text>
                     </View>
                     <View><Text>:</Text></View>
                     <View style={styles.nameContainer}>
@@ -267,7 +267,7 @@ const LeadDetailsIteam = (props: any) => {
                 </View>
                 <View style={styles.Txtview}>
                     <View style={styles.projectContainer}>
-                        <Text style={styles.projectTxt}>Locality</Text>
+                        <Text style={styles.projectTxt}>{strings.locality}</Text>
                     </View>
                     <View><Text>:</Text></View>
                     <View style={styles.nameContainer}>
@@ -285,7 +285,7 @@ const LeadDetailsIteam = (props: any) => {
                 </View>
                 <View style={styles.Txtview}>
                     <View style={styles.projectContainer}>
-                        <Text style={styles.projectTxt}>Nature of Occupation</Text>
+                        <Text style={styles.projectTxt}>{strings.natureOfOccuptn}</Text>
                     </View>
                     <View><Text>:</Text></View>
                     <View style={styles.nameContainer}>
@@ -298,7 +298,7 @@ const LeadDetailsIteam = (props: any) => {
                 </View>
                 <View style={styles.Txtview}>
                     <View style={styles.projectContainer}>
-                        <Text style={styles.projectTxt}>Company Name</Text>
+                        <Text style={styles.projectTxt}>{strings.company + " " + strings.name}</Text>
                     </View>
                     <View><Text>:</Text></View>
                     <View style={styles.nameContainer}>
@@ -311,7 +311,7 @@ const LeadDetailsIteam = (props: any) => {
                 </View>
                 <View style={styles.Txtview}>
                     <View style={styles.projectContainer}>
-                        <Text style={styles.projectTxt}>Designation</Text>
+                        <Text style={styles.projectTxt}>{strings.designation}</Text>
                     </View>
                     <View><Text>:</Text></View>
                     <View style={styles.nameContainer}>
@@ -324,7 +324,7 @@ const LeadDetailsIteam = (props: any) => {
                 </View>
                 <View style={styles.Txtview}>
                     <View style={styles.projectContainer}>
-                        <Text style={styles.projectTxt}>Office Address</Text>
+                        <Text style={styles.projectTxt}>{strings.offcAddress}</Text>
                     </View>
                     <View><Text>:</Text></View>
                     <View style={styles.nameContainer}>

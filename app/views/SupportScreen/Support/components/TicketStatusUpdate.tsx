@@ -63,11 +63,11 @@ const TicketStatusUpdate = ({ route }: any) => {
                 <View style={styles.inputWrap}>
                     <DropdownInput
                         require={true}
-                        headingText={'Status'}
-                        placeholder={'Status'}
+                        headingText={strings.status}
+                        placeholder={strings.status}
                         data={[
-                            { value: 1, lable: 'Open' },
-                            { value: 2, lable: 'Close' },
+                            { value: 1, lable: strings.open },
+                            { value: 2, lable: strings.close },
                         ]}
                         inputWidth={'100%'}
                         paddingLeft={16}
@@ -92,8 +92,8 @@ const TicketStatusUpdate = ({ route }: any) => {
                 </View>
                 <View style={styles.inputWrap}>
                     <InputField
-                        headingText={'Description'}
-                        placeholderText={"Description"}
+                        headingText={strings.description}
+                        placeholderText={strings.description}
                         handleInputBtnPress={() => { }}
                         onChangeText={(val: any) => {
                             setStatusUpdate({

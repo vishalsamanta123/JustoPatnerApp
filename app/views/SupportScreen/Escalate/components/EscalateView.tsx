@@ -6,7 +6,7 @@ import strings from 'app/components/utilities/Localization'
 import { BLACK_COLOR, PRIMARY_THEME_COLOR } from 'app/components/utilities/constant'
 import styles from './styles'
 import Button from 'app/components/Button'
-import { normalize } from 'app/components/scaleFontSize'
+
 
 const EscalateView = (props: any) => {
     return (
