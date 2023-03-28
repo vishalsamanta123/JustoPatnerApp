@@ -4,16 +4,10 @@ import Header from "app/components/Header";
 import styles from "./styles";
 import strings from "app/components/utilities/Localization";
 import images from "app/assets/images";
-import {
-  DATE_TIME_FORMAT,
-  GREEN_COLOR,
-  PRIMARY_THEME_COLOR,
-} from "app/components/utilities/constant";
+import { PRIMARY_THEME_COLOR, } from "app/components/utilities/constant";
 import { useDispatch, useSelector } from "react-redux";
-import { SwipeListView } from "react-native-swipe-list-view";
 import EmptyListScreen from "app/components/CommonScreen/EmptyListScreen";
 import { notificationRemove } from "app/Redux/Actions/NotificationAction";
-import ErrorMessage from "app/components/ErrorMessage";
 import moment from "moment";
 
 const NotificationView = (props: any) => {

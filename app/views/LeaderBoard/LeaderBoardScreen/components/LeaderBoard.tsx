@@ -51,7 +51,7 @@ const LeaderBoardView = (props: any) => {
                     valueshow={props?.filterData?.property_name}
                 /> */}
                 <SearchBar
-                    placeholderText={'Search Project Name'}
+                    placeholderText={strings.searchProjctName}
                     onChangeText={(data: any) => {
                         props.setFilterData({
                             ...props.filterData,
@@ -94,7 +94,8 @@ const LeaderBoardView = (props: any) => {
                 refreshing={false}
                 onRefresh={() => {
                     Keyboard.dismiss()
-                    onRefresh()}}
+                    onRefresh()
+                }}
                 renderItem={({ item }) => {
                     return (
                         <LeaderBoardItems

@@ -8,96 +8,68 @@ import Modal from "react-native-modal";
 import { normalizeHeight } from "app/components/scaleFontSize";
 
 const SupportDetailsItem = (props: any) => {
-  const [isVisable, setIsVisable] = useState(false);
+  const [isVisable, setIsVisable] = useState(false)
   return (
     <ScrollView>
       <View style={styles.topDetailsView}>
         <View style={styles.topTxtView}>
-          <Text style={styles.topTxt}>Ticket No. </Text>
-          <Text style={styles.topTxt}>
-            {props.item.ticket_number
-              ? props.item.ticket_number
-              : strings.notfount}
-          </Text>
+          <Text style={styles.topTxt}>{strings.ticket + " " + strings.shortNum} </Text>
+          <Text style={styles.topTxt}>{props.item.ticket_number ? props.item.ticket_number : strings.notfount}</Text>
         </View>
       </View>
       <View style={styles.Txtview}>
         <View style={styles.projectContainer}>
-          <Text style={styles.projectTxt}>Title </Text>
+          <Text style={styles.projectTxt}>{strings.title} </Text>
         </View>
-        <View>
-          <Text>:</Text>
-        </View>
+        <View><Text>:</Text></View>
         <View style={styles.nameContainer}>
-          <Text style={styles.nameTxt}>
-            {props.item.title ? props.item.title : strings.notfount}
-          </Text>
+          <Text style={styles.nameTxt}>{props.item.title ? props.item.title : strings.notfount}</Text>
         </View>
       </View>
       <View style={styles.Txtview}>
         <View style={styles.projectContainer}>
           <Text style={styles.projectTxt}>{strings.createBy} </Text>
         </View>
-        <View>
-          <Text>:</Text>
-        </View>
+        <View><Text>:</Text></View>
         <View style={styles.nameContainer}>
-          <Text style={styles.nameTxt}>
-            {props.item.user_name ? props.item.user_name : strings.notfount}
+          <Text style={styles.nameTxt}>{props.item.user_name ? props.item.user_name : strings.notfount}</Text>
+        </View>
+      </View>
+      <View style={styles.Txtview}>
+        <View style={styles.projectContainer}>
+          <Text style={styles.projectTxt}>{strings.issue} </Text>
+        </View>
+        <View><Text>:</Text></View>
+        <View style={styles.nameContainer}>
+          <Text style={styles.nameTxt}>{props.item.reason_title ? props.item.reason_title : strings.notfount}</Text>
+        </View>
+      </View>
+      <View style={styles.Txtview}>
+        <View style={styles.projectContainer}>
+          <Text style={styles.projectTxt}>{strings.status} </Text>
+        </View>
+        <View><Text>:</Text></View>
+        <View style={styles.nameContainer}>
+          <Text style={[styles.nameTxt, {
+            color: props.item.status === 1 ? GREEN_COLOR : RED_COLOR
+          }]}>
+            {
+              props.item.status === 1 ? strings.open :
+                props.item.status === 2 && strings.close
+            }
           </Text>
         </View>
       </View>
       <View style={styles.Txtview}>
         <View style={styles.projectContainer}>
-          <Text style={styles.projectTxt}>Issue </Text>
+          <Text style={styles.projectTxt}>{strings.description} </Text>
         </View>
-        <View>
-          <Text>:</Text>
-        </View>
-        <View style={styles.nameContainer}>
-          <Text style={styles.nameTxt}>
-            {props.item.reason_title
-              ? props.item.reason_title
-              : strings.notfount}
-          </Text>
-        </View>
+        <View><Text>:</Text></View>
+        <Text style={styles.nameTxt}>
+          {props?.item.remark === "undefined" || props?.item.remark === "" ? strings.notfount : props.item.remark}
+        </Text>
       </View>
-      <View style={styles.Txtview}>
-        <View style={styles.projectContainer}>
-          <Text style={styles.projectTxt}>Status </Text>
-        </View>
-        <View>
-          <Text>:</Text>
-        </View>
-        <View style={styles.nameContainer}>
-          <Text
-            style={[
-              styles.nameTxt,
-              {
-                color: props.item.status === 1 ? GREEN_COLOR : RED_COLOR,
-              },
-            ]}
-          >
-            {props.item.status === 1
-              ? "Open"
-              : props.item.status === 2 && "Close"}
-          </Text>
-        </View>
-      </View>
-      <View style={styles.Txtview}>
-        <View style={styles.projectContainer}>
-          <Text style={styles.projectTxt}>Description </Text>
-        </View>
-        <View>
-          <Text>:</Text>
-        </View>
-        <View style={styles.nameContainer}>
-          <Text style={styles.nameTxt}>
-            {props?.item.remark === "undefined" || props?.item.remark === "" ? strings.notfount : props.item.remark}
-          </Text>
-        </View>
-      </View>
-      <View style={styles.Txtview}>
+      <View style={[styles.Txtview, { alignItems: 'flex-start' }]}>
         <View style={styles.projectContainer}>
           <Text style={styles.projectTxt}>Image </Text>
         </View>
@@ -141,7 +113,7 @@ const SupportDetailsItem = (props: any) => {
         </View>
       </Modal>
     </ScrollView>
-  );
-};
+  )
+}
 
 export default SupportDetailsItem;

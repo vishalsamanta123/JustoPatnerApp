@@ -23,7 +23,7 @@ const UserInfo = (props: any) => {
     <ScrollView style={styles.InformationView}>
       <View style={styles.fieldView}>
         <View style={styles.keyView}>
-          <Text style={styles.keyText}>Name</Text>
+          <Text style={styles.keyText}>{strings.name}</Text>
         </View>
         <Text style={styles.colon}>:</Text>
         <View style={styles.valueView}>
@@ -34,7 +34,7 @@ const UserInfo = (props: any) => {
       </View>
       <View style={styles.fieldView}>
         <View style={styles.keyView}>
-          <Text style={styles.keyText}>Aadhaar No.</Text>
+          <Text style={styles.keyText}>{strings.aadhaar}</Text>
         </View>
         <Text style={styles.colon}>:</Text>
         <View style={styles.valueView}>
@@ -43,7 +43,7 @@ const UserInfo = (props: any) => {
       </View>
       <View style={styles.fieldView}>
         <View style={styles.keyView}>
-          <Text style={styles.keyText}>Pancard No.</Text>
+          <Text style={styles.keyText}>{strings.pancard + " " + strings.shortNum}</Text>
         </View>
         <Text style={styles.colon}>:</Text>
         <View style={styles.valueView}>
@@ -52,7 +52,7 @@ const UserInfo = (props: any) => {
       </View>
       <View style={styles.fieldView}>
         <View style={styles.keyView}>
-          <Text style={styles.keyText}>Gender</Text>
+          <Text style={styles.keyText}>{strings.gender}</Text>
         </View>
         <Text style={styles.colon}>:</Text>
         <View style={styles.valueView}>
@@ -63,7 +63,7 @@ const UserInfo = (props: any) => {
       </View>
       <View style={styles.fieldView}>
         <View style={styles.keyView}>
-          <Text style={styles.keyText}>Date of Birth</Text>
+          <Text style={styles.keyText}>{strings.dateOfBirth}</Text>
         </View>
         <Text style={styles.colon}>:</Text>
         <View style={styles.valueView}>
@@ -74,7 +74,7 @@ const UserInfo = (props: any) => {
       </View>
       <View style={styles.fieldView}>
         <View style={styles.keyView}>
-          <Text style={styles.keyText}>Mobile No.</Text>
+          <Text style={styles.keyText}>{strings.mobileNo}</Text>
         </View>
         <Text style={styles.colon}>:</Text>
         <View style={styles.valueView}>
@@ -83,7 +83,7 @@ const UserInfo = (props: any) => {
       </View>
       <View style={styles.fieldView}>
         <View style={styles.keyView}>
-          <Text style={styles.keyText}>What'sapp No</Text>
+          <Text style={styles.keyText}>{strings.whatsappNo}</Text>
         </View>
         <Text style={styles.colon}>:</Text>
         <View style={styles.valueView}>
@@ -92,7 +92,7 @@ const UserInfo = (props: any) => {
       </View>
       <View style={styles.fieldView}>
         <View style={styles.keyView}>
-          <Text style={styles.keyText}>Email</Text>
+          <Text style={styles.keyText}>{strings.email}</Text>
         </View>
         <Text style={styles.colon}>:</Text>
         <View style={[styles.valueView]}>
@@ -112,7 +112,7 @@ const UserInfo = (props: any) => {
       </View>
       <View style={styles.fieldView}>
         <View style={styles.keyView}>
-          <Text style={styles.keyText}>Sourcing Manager</Text>
+          <Text style={styles.keyText}>{strings.sourcingMngr}</Text>
         </View>
         <Text style={styles.colon}>:</Text>
         <View style={styles.valueView}>
@@ -131,11 +131,11 @@ const UserInfo = (props: any) => {
         </View>
       </View>
       <View style={styles.subHeadVw}>
-        <Text style={styles.subHeadTxt}>Bank Info</Text>
+        <Text style={styles.subHeadTxt}>{strings.bankinfo}</Text>
       </View>
       <View style={styles.fieldView}>
         <View style={styles.keyView}>
-          <Text style={styles.keyText}>Bank Name</Text>
+          <Text style={styles.keyText}>{strings.bankName}</Text>
         </View>
         <Text style={styles.colon}>:</Text>
         <View style={styles.valueView}>
@@ -148,7 +148,7 @@ const UserInfo = (props: any) => {
       </View>
       <View style={styles.fieldView}>
         <View style={styles.keyView}>
-          <Text style={styles.keyText}>Branch Name</Text>
+          <Text style={styles.keyText}>{strings.branchName}</Text>
         </View>
         <Text style={styles.colon}>:</Text>
         <View style={styles.valueView}>
@@ -161,7 +161,7 @@ const UserInfo = (props: any) => {
       </View>
       <View style={styles.fieldView}>
         <View style={styles.keyView}>
-          <Text style={styles.keyText}>Account No</Text>
+          <Text style={styles.keyText}>{strings.accountNo}</Text>
         </View>
         <Text style={styles.colon}>:</Text>
         <View style={styles.valueView}>
@@ -174,7 +174,7 @@ const UserInfo = (props: any) => {
       </View>
       <View style={styles.fieldView}>
         <View style={styles.keyView}>
-          <Text style={styles.keyText}>IFSC Code</Text>
+          <Text style={styles.keyText}>{strings.ifscCode}</Text>
         </View>
         <Text style={styles.colon}>:</Text>
         <View style={styles.valueView}>
@@ -187,7 +187,7 @@ const UserInfo = (props: any) => {
       </View>
       <View style={styles.fieldView}>
         <View style={styles.keyView}>
-          <Text style={styles.keyText}>RERA Certificate No.</Text>
+          <Text style={styles.keyText}>{strings.reraCertificate + " " + strings.shortNum}</Text>
         </View>
         <Text style={styles.colon}>:</Text>
         <View style={styles.valueView}>
@@ -198,7 +198,7 @@ const UserInfo = (props: any) => {
       </View>
       <View style={styles.fieldView}>
         <View style={styles.keyView}>
-          <Text style={styles.keyText}>RERA Certificate</Text>
+          <Text style={styles.keyText}>{strings.reraCertificate}</Text>
         </View>
         <View style={styles.ImageSliderContainer}>
           {reraType === 'pdf' ?
@@ -231,7 +231,7 @@ const UserInfo = (props: any) => {
       </View>
       <View style={styles.fieldView}>
         <View style={styles.keyView}>
-          <Text style={styles.keyText}>Property declaration Letter</Text>
+          <Text style={styles.keyText}>{strings.proprietorDeclarLttr}</Text>
         </View>
         <View style={styles.ImageSliderContainer}>
           {latterType === 'pdf' ?
@@ -264,7 +264,7 @@ const UserInfo = (props: any) => {
       </View>
       <View style={styles.fieldView}>
         <View style={styles.keyView}>
-          <Text style={styles.keyText}>Cancel Cheque</Text>
+          <Text style={styles.keyText}>{strings.cancelCheque}</Text>
         </View>
         <View style={styles.ImageSliderContainer}>
           {chequeType === 'pdf' ?

@@ -9,27 +9,27 @@ import strings from '../../../../components/utilities/Localization';
 const SettingView = (props: any) => {
     const DATA = [
         {
-            heading: 'Profile',
+            heading: strings.profile,
             icon: images.user,
             type: 'profile'
         },
         {
-            heading: 'Change password',
+            heading: strings.changePassword,
             icon: images.lock,
             type: 'changePassword'
         },
         {
-            heading: 'Separate Link',
+            heading: strings.separateLink,
             icon: images.link,
             type: 'separateLink'
         },
         {
-            heading: 'Notification',
+            heading: strings.notificationHeader,
             icon: images.bell,
             type: 'notification',
         },
         {
-            heading: 'Logout',
+            heading: strings.logout,
             icon: images.logout,
             type: 'logout',
         }

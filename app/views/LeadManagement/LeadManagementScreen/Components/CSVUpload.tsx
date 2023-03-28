@@ -109,18 +109,15 @@ const CSVUpload = ({ navigation }: any) => {
       }
       const fileName = csvFileData.split(/[#?]/)[0].split("/").pop().trim();
       const extension = getUrlExtension(csvFileData);
-      console.log('extension: ', extension);
       const localFile = `${RNFS.DocumentDirectoryPath}/${fileName}`;
-      console.log('localFile: ', localFile);
       const options = {
         fromUrl: csvFileData,
         toFile: localFile,
       };
-      console.log('options: ', options);
       RNFS.downloadFile(options)
-        .promise.then((res :any) => {
+        .promise.then((res: any) => {
           console.log('res: ', res);
-          if(res?.statusCode === 200) {
+          if (res?.statusCode === 200) {
             ErrorMessage({
               msg: strings.downloadSuccessCsv,
               backgroundColor: GREEN_COLOR
@@ -146,12 +143,12 @@ const CSVUpload = ({ navigation }: any) => {
     let errorMessage: any = "";
     if (formData?.property_id === "" && formData?.property_type_title === "") {
       isError = false;
-      errorMessage = "Please select property name";
+      errorMessage = strings.propertyReqVal;
     } else
-    if (formData?.uri === "" || formData?.uri === null) {
-      isError = false;
-      errorMessage = "Please select CSV file";
-    }
+      if (formData?.uri === "" || formData?.uri === null) {
+        isError = false;
+        errorMessage = strings.csvFileSelectReqVal;
+      }
     if (errorMessage !== "") {
       ErrorMessage({
         msg: errorMessage,
@@ -175,9 +172,9 @@ const CSVUpload = ({ navigation }: any) => {
       <View style={[styles.inputWrap]}>
         <DropdownInput
           require={true}
-          headingText={"Property"}
+          headingText={strings.propertyHeader}
           placeholder={
-            formData?.property_title ? formData?.property_title : "Property"
+            formData?.property_title ? formData?.property_title : strings.propertyHeader
           }
           data={allProperty}
           inputWidth={"100%"}
@@ -187,7 +184,6 @@ const CSVUpload = ({ navigation }: any) => {
           valueField={"_id"}
           value={formData?.property_id}
           onChange={(item: any) => {
-          console.log('item: ', item);
             setFormData({
               ...formData,
               property_id: item.property_id,
@@ -218,7 +214,7 @@ const CSVUpload = ({ navigation }: any) => {
           ]}
         >
           <View style={{ flex: 1, flexDirection: "row", alignItems: "center" }}>
-            <Text style={styles.notFoundText}>Upload CSV file</Text>
+            <Text style={styles.notFoundText}>{strings.uploadCsvFile}</Text>
             <Image source={images.star} style={styles.attachView} />
           </View>
           <View>
@@ -257,7 +253,7 @@ const CSVUpload = ({ navigation }: any) => {
         </TouchableOpacity>
         <View style={{ marginVertical: normalizeSpacing(20) }}>
           <Button
-            buttonText={"Upload"}
+            buttonText={strings.upload}
             width={200}
             height={50}
             btnTxtsize={20}

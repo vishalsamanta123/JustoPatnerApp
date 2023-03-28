@@ -34,7 +34,7 @@ const SuportForumFilter = (props: any) => {
               <InputCalender
                 mode={'date'}
                 leftIcon={images.event}
-                placeholderText={"Start Date"}
+                placeholderText={strings.startDate}
                 editable={false}
                 // onChangeText={() => { }}
                 dateData={(data: any) => {
@@ -56,7 +56,7 @@ const SuportForumFilter = (props: any) => {
               <InputCalender
                 mode={'date'}
                 leftIcon={images.event}
-                placeholderText={" End Date"}
+                placeholderText={strings.endDate}
                 editable={false}
                 // onChangeText={() => { }}
                 dateData={(data: any) => {
@@ -76,8 +76,8 @@ const SuportForumFilter = (props: any) => {
             </View>
             <View style={styles.inputWrap}>
               <InputField
-                placeholderText={"Search Project Name"}
-                headingText={"Search Project Name"}
+                placeholderText={strings.searchProjctName}
+                headingText={strings.searchProjctName}
                 valueshow={props?.filterData?.search_title}
                 onChangeText={(data: any) => {
                   props.setFilterData({

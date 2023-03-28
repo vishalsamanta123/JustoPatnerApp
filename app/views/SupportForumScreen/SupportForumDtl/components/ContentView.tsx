@@ -1,15 +1,11 @@
 import React, { useState } from 'react'
-import { Alert, Image, TouchableOpacity, View } from 'react-native'
+import { View } from 'react-native'
 import styles from './styles'
 import images from 'app/assets/images'
 import Header from 'app/components/Header'
 import strings from 'app/components/utilities/Localization'
-import { PRIMARY_THEME_COLOR, WHITE_COLOR } from 'app/components/utilities/constant'
+import { PRIMARY_THEME_COLOR, } from 'app/components/utilities/constant'
 import FastImages from 'app/components/FastImage'
-import Video from "react-native-video";
-import Button from 'app/components/Button'
-import Loader from 'app/components/CommonScreen/Loader'
-import VideoPlayer from 'app/components/VideoPlayer'
 import CustomVideoPlayer from 'app/components/VideoPlayer'
 const ContentView = (props: any) => {
     return (
@@ -33,9 +29,9 @@ const ContentView = (props: any) => {
                         {props?.contentData?.video_thumbnail &&
                             props?.contentData?.content_type === 'video' ?
                             <CustomVideoPlayer
-                            url={props?.url}
-                            content={props?.contentData?.content}
-                                // source={{ uri: props?.url + props?.contentData?.content }}
+                                url={props?.url}
+                                content={props?.contentData?.content}
+                            // source={{ uri: props?.url + props?.contentData?.content }}
                             />
                             :
                             <FastImages

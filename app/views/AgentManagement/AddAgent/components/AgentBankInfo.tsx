@@ -30,7 +30,6 @@ import {
 } from "app/Redux/Actions/AgentActions";
 import ErrorMessage from "app/components/ErrorMessage";
 import { normalize } from "app/components/scaleFontSize";
-import auth from "@react-native-firebase/auth";
 import { RequiredStart } from "app/components/utilities/GlobalFuncations";
 import CheckBox from "@react-native-community/checkbox";
 import { RadioButton } from "react-native-paper";

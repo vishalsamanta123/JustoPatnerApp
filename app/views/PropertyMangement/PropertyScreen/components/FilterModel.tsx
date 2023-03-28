@@ -19,8 +19,8 @@ import { DATE_FORMAT } from "app/components/utilities/constant";
 const FilterModal = (props: any) => {
   const dispatch: any = useDispatch();
   const data = [
-    { label: "Active", value: 1 },
-    { label: "Inactive", value: 2 },
+    { label: strings.active, value: 1 },
+    { label: strings.inActive, value: 2 },
   ];
   const renderItem = (item: any) => {
     return (
@@ -78,8 +78,8 @@ const FilterModal = (props: any) => {
               <InputCalender
                 mode={"date"}
                 leftIcon={images.event}
-                //headingText={'Start Date'}
-                placeholderText={"Start Date"}
+              //  headingText={strings.startDate}
+                placeholderText={strings.startDate}
                 dateData={(data: any) => {
                   props.setFilterform({
                     ...props.filterform,
@@ -105,8 +105,8 @@ const FilterModal = (props: any) => {
               <InputCalender
                 mode={"date"}
                 leftIcon={images.event}
-                //headingText={'Start Date'}
-                placeholderText={"End Date"}
+               //  headingText={strings.startDate}
+                placeholderText={strings.startDate}
                 dateData={(data: any) => {
                   props.setFilterform({
                     ...props.filterform,
@@ -137,7 +137,7 @@ const FilterModal = (props: any) => {
                 maxHeight={300}
                 labelField="label"
                 valueField="value"
-                placeholder="Property Status"
+                placeholder={strings.propertyHeader + " " + strings.status}
                 value={props.filterform.property_type}
                 onChange={(item) => {
                   props.setFilterform({
@@ -150,8 +150,8 @@ const FilterModal = (props: any) => {
             </View>
             <View style={styles.inputWrap}>
               <InputField
-                placeholderText={"Search by Name"}
-                headingText={'Search by Name'}
+                placeholderText={strings.searchBy + " " + strings.name}
+                headingText={strings.searchBy + " " + strings.name}
                 handleInputBtnPress={() => { }}
                 onChangeText={(val: any) => {
                   props.setFilterform({
@@ -167,7 +167,7 @@ const FilterModal = (props: any) => {
               <InputField
                 // placeholderText={"Search by Location"}
                 handleInputBtnPress={() => { }}
-                headingText={'Search by Locality'}
+                headingText={strings.searchBy + " " + strings.locality}
                 valueshow={props?.filterform?.location}
                 onChangeText={(data: any) => {
                   props.setFilterform({

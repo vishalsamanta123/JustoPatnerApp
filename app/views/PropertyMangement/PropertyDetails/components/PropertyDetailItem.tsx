@@ -25,7 +25,7 @@ const PropertyDetailItem = (props: any) => {
     <ScrollView showsVerticalScrollIndicator={false}>
       <View style={styles.Txtview}>
         <View style={styles.projectContainer}>
-          <Text style={styles.projectTxt}>Status </Text>
+          <Text style={styles.projectTxt}>{strings.status} </Text>
         </View>
         <View>
           <Text>:</Text>
@@ -48,7 +48,7 @@ const PropertyDetailItem = (props: any) => {
       </View>
       <View style={styles.Txtview}>
         <View style={styles.projectContainer}>
-          <Text style={styles.projectTxt}>Project Name </Text>
+          <Text style={styles.projectTxt}>{strings.project + " " + strings.name} </Text>
         </View>
         <View>
           <Text>:</Text>
@@ -70,7 +70,7 @@ const PropertyDetailItem = (props: any) => {
       </View>
       <View style={styles.Txtview}>
         <View style={styles.projectContainer}>
-          <Text style={styles.projectTxt}>Total Site Visitor </Text>
+          <Text style={styles.projectTxt}>{strings.todaySiteVisit} </Text>
         </View>
         <View>
           <Text>:</Text>
@@ -81,7 +81,7 @@ const PropertyDetailItem = (props: any) => {
       </View>
       <View style={styles.Txtview}>
         <View style={styles.projectContainer}>
-          <Text style={styles.projectTxt}>Closer Visit </Text>
+          <Text style={styles.projectTxt}>{strings.closerVisit} </Text>
         </View>
         <View>
           <Text>:</Text>
@@ -92,7 +92,7 @@ const PropertyDetailItem = (props: any) => {
       </View>
       <View style={styles.Txtview}>
         <View style={styles.projectContainer}>
-          <Text style={styles.projectTxt}>Locality </Text>
+          <Text style={styles.projectTxt}>{strings.locality} </Text>
         </View>
         <View>
           <Text>:</Text>
@@ -103,7 +103,7 @@ const PropertyDetailItem = (props: any) => {
       </View>
       <View style={styles.Txtview}>
         <View style={styles.projectContainer}>
-          <Text style={styles.projectTxt}>Location </Text>
+          <Text style={styles.projectTxt}>{strings.location} </Text>
         </View>
         <View>
           <Text>:</Text>
@@ -114,7 +114,7 @@ const PropertyDetailItem = (props: any) => {
       </View>
       <View style={styles.Txtview}>
         <View style={styles.projectContainer}>
-          <Text style={styles.projectTxt}>Property Type </Text>
+          <Text style={styles.projectTxt}>{strings.propertyType} </Text>
         </View>
         <View>
           <Text>:</Text>
@@ -125,7 +125,7 @@ const PropertyDetailItem = (props: any) => {
       </View>
       <View style={styles.Txtview}>
         <View style={styles.projectContainer}>
-          <Text style={styles.projectTxt}>Start Date </Text>
+          <Text style={styles.projectTxt}>{strings.startDate} </Text>
         </View>
         <View>
           <Text>:</Text>
@@ -136,7 +136,7 @@ const PropertyDetailItem = (props: any) => {
       </View>
       <View style={styles.Txtview}>
         <View style={styles.projectContainer}>
-          <Text style={styles.projectTxt}>End Date </Text>
+          <Text style={styles.projectTxt}>{strings.endDate} </Text>
         </View>
         <View>
           <Text>:</Text>
@@ -156,7 +156,7 @@ const PropertyDetailItem = (props: any) => {
       </View> */}
       <View style={styles.Txtview}>
         <View style={styles.projectContainer}>
-          <Text style={styles.projectTxt}>Configurations </Text>
+          <Text style={styles.projectTxt}>{strings.configurations} </Text>
         </View>
         <View>
           <Text>:</Text>
@@ -208,7 +208,7 @@ const PropertyDetailItem = (props: any) => {
       </View>
       <View style={styles.Txtview}>
         <View style={styles.projectContainer}>
-          <Text style={styles.projectTxt}>Amenities </Text>
+          <Text style={styles.projectTxt}>{strings.amenities} </Text>
         </View>
         <View>
           <Text>:</Text>
@@ -259,7 +259,7 @@ const PropertyDetailItem = (props: any) => {
       </View>
       <View style={styles.Txtview}>
         <View style={styles.projectContainer}>
-          <Text style={styles.projectTxt}>Contents </Text>
+          <Text style={styles.projectTxt}>{strings.contents} </Text>
         </View>
         <View>
           <Text>:</Text>
@@ -268,7 +268,7 @@ const PropertyDetailItem = (props: any) => {
 
           {imagearray.length > 0 ? (
             <>
-              <Text style={styles.nameTxt}>Images</Text>
+              <Text style={styles.nameTxt}>{strings.imagecontentHeader}</Text>
               <View style={styles.ImageSliderContainer}>
                 {imagearray.map((imagearray: any, index: any) =>
                   index <= 2 ? (
@@ -284,7 +284,7 @@ const PropertyDetailItem = (props: any) => {
                 <TouchableOpacity
                   style={styles.shadowView}
                   onPress={() =>
-                    props.onpresContent("ImageContent", {array : imagearray, base_url : props.items.base_url})
+                    props.onpresContent("ImageContent", { array: imagearray, base_url: props.items.base_url })
                   }
                 >
                   <Image source={images.forwardArrow} style={styles.arrow} />
@@ -295,23 +295,23 @@ const PropertyDetailItem = (props: any) => {
 
           {videoarray.length > 0 ? (
             <>
-              <Text style={styles.nameTxt}>Videos</Text>
+              <Text style={styles.nameTxt}>{strings.videocontentHeader}</Text>
               <View style={styles.ImageSliderContainer}>
                 {videoarray.map((videos: any, index: any) =>
                   index <= 2 ? (
                     <Image
-                    key={index}
-                    source={{
-                      uri: `${props.items.base_url}${videos.video_thumbnail}`,
-                    }}
-                    style={styles.imageSlider}
-                  />
+                      key={index}
+                      source={{
+                        uri: `${props.items.base_url}${videos.video_thumbnail}`,
+                      }}
+                      style={styles.imageSlider}
+                    />
                   ) : null
                 )}
                 <TouchableOpacity
                   style={styles.shadowView}
                   onPress={() =>
-                    props.onpresContent("VideoContent",{array : videoarray, base_url : props.items.base_url})
+                    props.onpresContent("VideoContent", { array: videoarray, base_url: props.items.base_url })
                   }
                 >
                   <Image source={images.forwardArrow} style={styles.arrow} />
@@ -322,7 +322,7 @@ const PropertyDetailItem = (props: any) => {
 
           {documentarray.length > 0 ? (
             <>
-              <Text style={styles.nameTxt}>Catalogue</Text>
+              <Text style={styles.nameTxt}>{strings.cataloguecontentHeader}</Text>
               <View style={styles.ImageSliderContainer}>
                 {documentarray.map((documents: any, index: any) =>
                   index <= 2 ? (
@@ -337,7 +337,7 @@ const PropertyDetailItem = (props: any) => {
                 <TouchableOpacity
                   style={styles.shadowView}
                   onPress={() =>
-                    props.onpresContent("CatalogueContent", {array : documentarray, base_url : props.items.base_url})
+                    props.onpresContent("CatalogueContent", { array: documentarray, base_url: props.items.base_url })
                   }
                 >
                   <Image source={images.forwardArrow} style={styles.arrow} />
@@ -349,7 +349,7 @@ const PropertyDetailItem = (props: any) => {
       </View>
       <View style={[styles.Txtview, { borderBottomWidth: 0 }]}>
         <View style={styles.projectContainer}>
-          <Text style={styles.projectTxt}>Pickup Facilities </Text>
+          <Text style={styles.projectTxt}>{strings.pickupFacility} </Text>
         </View>
         <View>
           <Text>:</Text>

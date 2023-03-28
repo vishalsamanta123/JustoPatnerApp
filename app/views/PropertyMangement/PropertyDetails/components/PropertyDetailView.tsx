@@ -1,11 +1,10 @@
-import { View, Text, StatusBar, FlatList } from "react-native";
+import { View, } from "react-native";
 import React, { useState, useEffect } from "react";
 import Header from "../../../../components/Header";
 import {
   BLACK_COLOR,
   GRAY_COLOR,
-  PRIMARY_THEME_COLOR,
-  PRIMARY_THEME_COLOR_DARK,
+  RED_COLOR,
   YELLOW_COLOR,
 } from "../../../../components/utilities/constant";
 import { useSafeAreaInsets } from "react-native-safe-area-context";
@@ -18,7 +17,6 @@ import Button from "../../../../components/Button";
 import ConfirmModal from "../../../../components/Modals/ConfirmModal";
 import { useDispatch, useSelector } from "react-redux";
 import { getAllMaster } from "app/Redux/Actions/MasterActions";
-import { statusUpdate } from "app/Redux/Actions/propertyActions";
 import usePermission from "app/components/utilities/UserPermissions";
 
 const PropertyDetailView = (props: any) => {
@@ -165,7 +163,7 @@ const PropertyDetailView = (props: any) => {
                 approveStatus === 1
                   ? BLACK_COLOR
                   : approveStatus === 2
-                    ? "red"
+                    ? RED_COLOR
                     : YELLOW_COLOR
               }
               borderWidth={1.5}
@@ -173,7 +171,7 @@ const PropertyDetailView = (props: any) => {
                 approveStatus === 1
                   ? BLACK_COLOR
                   : approveStatus === 2
-                    ? "red"
+                    ? RED_COLOR
                     : YELLOW_COLOR
               }
               btnTxtsize={15}
@@ -238,7 +236,7 @@ const PropertyDetailView = (props: any) => {
         resion={resion}
         masterDataShow={masterDataShow}
         stringshow={strings.confirmation}
-        textshow={strings.activconfirmation + " Property"}
+        textshow={strings.activconfirmation + " " + strings.propertyHeader}
         confirmtype={approveStatus === 2 ? "" : "CONFIRMATION"}
       />
     </View>

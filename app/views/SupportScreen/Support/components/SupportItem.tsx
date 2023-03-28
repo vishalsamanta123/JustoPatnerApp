@@ -12,7 +12,7 @@ const SupportItem = (props: any) => {
     <View style={styles.IteamView}>
       <View style={styles.Txtview}>
         <View style={styles.projectContainer}>
-          <Text style={styles.projectTxt}>Ticket :</Text>
+          <Text style={styles.projectTxt}>{strings.ticket} :</Text>
         </View>
         <View style={styles.nameContainer}>
           <Text style={styles.nameTxt}>
@@ -32,7 +32,7 @@ const SupportItem = (props: any) => {
       </View>
       <View style={styles.Txtview}>
         <View style={styles.projectContainer}>
-          <Text style={styles.projectTxt}>Issue :</Text>
+          <Text style={styles.projectTxt}>{strings.issue} :</Text>
         </View>
         <View style={styles.nameContainer}>
           <Text style={styles.nameTxt}>
@@ -42,7 +42,7 @@ const SupportItem = (props: any) => {
       </View>
       <View style={styles.Txtview}>
         <View style={styles.projectContainer}>
-          <Text style={styles.projectTxt}>Date :</Text>
+          <Text style={styles.projectTxt}>{strings.date} :</Text>
         </View>
         <View style={styles.nameContainer}>
           <Text style={styles.nameTxt}>
@@ -55,15 +55,15 @@ const SupportItem = (props: any) => {
       </View>
       <View style={styles.Txtview}>
         <View style={styles.projectContainer}>
-          <Text style={styles.projectTxt}>Status :</Text>
+          <Text style={styles.projectTxt}>{strings.status} :</Text>
         </View>
         <View style={styles.nameContainer}>
           <Text style={[styles.nameTxt, {
             color: props.items.status === 1 ? GREEN_COLOR : RED_COLOR
           }]}>
             {
-              props.items.status === 1 ? 'Open' :
-                props.items.status === 2 && 'Close'
+              props.items.status === 1 ? strings.open :
+                props.items.status === 2 && strings.close
             }
           </Text>
         </View>

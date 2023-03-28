@@ -62,7 +62,7 @@ const EditBankDetails = ({ navigation }: any) => {
             valueshow={editData?.rera_certificate_no}
             handleInputBtnPress={() => { }}
             maxLength={20}
-            headingText={"RERA Certificate No."}
+            headingText={strings.reraCertificate + " " + strings.shortNum}
             onChangeText={(val: any) => {
               setEditData({
                 ...editData, rera_certificate_no: val,
@@ -73,7 +73,7 @@ const EditBankDetails = ({ navigation }: any) => {
         </View>
         <View style={[styles.inputWrap, { flexDirection: "row", }]}>
           <View style={{ flex: 1, justifyContent: 'center' }}>
-            <Text style={styles.headingText}>RERA Certificate</Text>
+            <Text style={styles.headingText}>{strings.reraCertificate}</Text>
           </View>
           <View style={{ flex: 0.6, }}>
             <TouchableOpacity
@@ -86,13 +86,13 @@ const EditBankDetails = ({ navigation }: any) => {
               editData?.rera_certificate === "" ||
               editData?.rera_certificate === undefined ?
               null :
-              <Text style={styles.addedTxt}>{"RERA Certificate Added"}</Text>
+              <Text style={styles.addedTxt}>{strings.reraCertificate + " " + strings.added}</Text>
             }
           </View>
         </View>
         <View style={[styles.inputWrap, { flexDirection: "row", }]}>
           <View style={{ flex: 1, justifyContent: 'center' }}>
-            <Text style={styles.headingText}>Proprietorship Declaration Letter</Text>
+            <Text style={styles.headingText}>{strings.proprietorDeclarLttr}</Text>
           </View>
           <View style={{ flex: 0.6, }}>
             <TouchableOpacity
@@ -105,7 +105,7 @@ const EditBankDetails = ({ navigation }: any) => {
               editData?.propidership_declaration_letter === "" ||
               editData?.propidership_declaration_letter === undefined ?
               null :
-              <Text style={styles.addedTxt}>{"Proprietorship Declaration Letter Added"}</Text>
+              <Text style={styles.addedTxt}>{strings.proprietorDeclarLttr + " " + strings.added}</Text>
             }
           </View>
         </View>
@@ -138,13 +138,13 @@ const EditBankDetails = ({ navigation }: any) => {
           </Text>
         </View>
         <View style={styles.inputWrap}>
-          <Text style={styles.headingText}>Bank details</Text>
+          <Text style={styles.headingText}>{strings.bankDetail}</Text>
         </View>
         <View style={styles.inputWrap}>
           <InputField
             valueshow={bankData?.bank_name}
             handleInputBtnPress={() => { }}
-            headingText={"Bank Name"}
+            headingText={strings.bankName}
             onChangeText={(val: any) => {
               setBankData({
                 ...bankData, bank_name: val
@@ -156,7 +156,7 @@ const EditBankDetails = ({ navigation }: any) => {
           <InputField
             valueshow={bankData?.branch_name}
             handleInputBtnPress={() => { }}
-            headingText={"Branch Name"}
+            headingText={strings.branchName}
             onChangeText={(val: any) => {
               setBankData({
                 ...bankData, branch_name: val
@@ -168,7 +168,7 @@ const EditBankDetails = ({ navigation }: any) => {
           <InputField
             valueshow={bankData?.account_no}
             handleInputBtnPress={() => { }}
-            headingText={"Account No."}
+            headingText={strings.bankName + " " + strings.shortNum}
             maxLength={18}
             onChangeText={(val: any) => {
               setBankData({
@@ -181,7 +181,7 @@ const EditBankDetails = ({ navigation }: any) => {
           <InputField
             valueshow={bankData?.ifsc_code}
             handleInputBtnPress={() => { }}
-            headingText={"IFSC Code"}
+            headingText={strings.ifscCode}
             maxLength={11}
             onChangeText={(val: any) => {
               setBankData({

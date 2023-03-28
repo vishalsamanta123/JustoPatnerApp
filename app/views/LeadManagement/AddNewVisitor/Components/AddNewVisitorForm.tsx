@@ -42,9 +42,6 @@ const AddNewVisitorForm = (props: any) => {
   );
   const userData = useSelector((state: any) => state.userData)
   const userId = userData?.response?.data ? userData?.response?.data : {}
-  console.log('userId: ', userId);
-  console.log('props?.formData?.create_by: ', props?.formData?.create_by);
-  console.log(' userId.role_id: ', userId.role_id);
 
   useEffect(() => {
     if (props.type == "edit") {
@@ -126,7 +123,7 @@ const AddNewVisitorForm = (props: any) => {
           <View style={styles.inputWrap}>
             <InputField
               require={true}
-              placeholderText={"Visitor Name"}
+              placeholderText={strings.visitor + " " + strings.name}
               handleInputBtnPress={() => { }}
               onChangeText={(data: any) => {
                 props.setFormData({
@@ -135,13 +132,14 @@ const AddNewVisitorForm = (props: any) => {
                 });
               }}
               valueshow={props?.formData?.first_name}
-              headingText={"Visitor Name"}
+              headingText={strings.visitor + " " + strings.name}
             />
           </View>
           <View style={styles.inputWrap}>
             <InputField
               require={true}
-              placeholderText={"Mobile No."}
+              placeholderText={strings.mobileNo}
+              headingText={strings.mobileNo}
               handleInputBtnPress={() => { }}
               editable={props.type === 'edit' ?
                 props?.formData?.create_by === userId._id ? true : false : true}
@@ -168,7 +166,6 @@ const AddNewVisitorForm = (props: any) => {
                 props.type === 'edit' ?
                   props?.formData?.create_by === userId._id ? props?.formData?.mobile : `${props?.formData?.mobile?.slice(0, 2)}******${props?.formData?.mobile?.slice(-2)}` :
                   props?.formData?.mobile}
-              headingText={"Mobile No."}
               keyboardtype={"number-pad"}
               maxLength={10}
               rightImageVw={styles.tickImgVw}
@@ -207,7 +204,7 @@ const AddNewVisitorForm = (props: any) => {
                 });
               }}
               valueshow={props?.formData?.adhar_no?.toString()}
-              headingText={"Aadhaar No."}
+              headingText={strings.aadhaar}
               inputType={"aadhaar"}
               maxLength={14}
               keyboardtype={"number-pad"}
@@ -225,7 +222,7 @@ const AddNewVisitorForm = (props: any) => {
               }}
               maxLength={10}
               valueshow={props?.formData?.pancard_no}
-              headingText={"Pancard No."}
+              headingText={strings.pancard + " " + strings.shortNum}
             />
           </View>
           <View style={styles.genderView}>
@@ -287,8 +284,8 @@ const AddNewVisitorForm = (props: any) => {
             <InputCalender
               mode={"date"}
               leftIcon={images.event}
-              placeholderText={"Date of Birth"}
-              headingText={"Date of Birth"}
+              placeholderText={strings.dateOfBirth}
+              headingText={strings.dateOfBirth}
               editable={false}
               dateData={(data: any) => {
                 props.setFormData({
@@ -314,7 +311,7 @@ const AddNewVisitorForm = (props: any) => {
 
           <View style={styles.inputWrap}>
             <InputField
-              placeholderText={"WhatsApp No."}
+              placeholderText={strings.whatsappNo}
               handleInputBtnPress={() => { }}
               onChangeText={(data: any) => {
                 props.setFormData({
@@ -323,14 +320,14 @@ const AddNewVisitorForm = (props: any) => {
                 });
               }}
               valueshow={props?.formData?.whatsapp_no}
-              headingText={"WhatsApp No."}
+              headingText={strings.whatsappNo}
               keyboardtype={"number-pad"}
               maxLength={10}
             />
           </View>
           <View style={styles.inputWrap}>
             <InputField
-              placeholderText={"Email Address"}
+              placeholderText={strings.email + " " + strings.address}
               handleInputBtnPress={() => { }}
               onChangeText={(data: any) => {
                 props.setFormData({
@@ -339,12 +336,12 @@ const AddNewVisitorForm = (props: any) => {
                 });
               }}
               valueshow={props?.formData?.email}
-              headingText={"Email Address"}
+              headingText={strings.email + " " + strings.address}
             />
           </View>
           <View style={[styles.inputWrap, { width: "100%" }]}>
             <InputField
-              placeholderText={"Location"}
+              placeholderText={strings.location}
               valueshow={props?.formData?.location}
               onChangeText={(data: any) => {
                 props.setFormData({
@@ -352,7 +349,7 @@ const AddNewVisitorForm = (props: any) => {
                   location: data,
                 });
               }}
-              headingText={"Location"}
+              headingText={strings.location}
               inputType={"location"}
               onPressSelect={(data: any, detail: any) => {
                 props.setFormData({
@@ -364,7 +361,7 @@ const AddNewVisitorForm = (props: any) => {
           </View>
           <View style={styles.inputWrap}>
             <InputField
-              placeholderText={"Locality"}
+              placeholderText={strings.locality}
               handleInputBtnPress={() => { }}
               onChangeText={(data: any) => {
                 props.setFormData({
@@ -373,16 +370,16 @@ const AddNewVisitorForm = (props: any) => {
                 });
               }}
               valueshow={props?.formData?.locality}
-              headingText={"Locality"}
+              headingText={strings.locality}
             />
           </View>
           <View style={[styles.inputWrap]}>
             <DropdownInput
-              headingText={"Marital Status"}
+              headingText={strings.maritalStatus}
               placeholder={
                 props.formData?.marital_status
                   ? props.formData?.marital_status
-                  : "Marital Status"
+                  : strings.maritalStatus
               }
               data={[
                 { label: strings.Married, value: 2 },
@@ -425,7 +422,7 @@ const AddNewVisitorForm = (props: any) => {
                 { width: "40%", textAlign: "center" },
               ]}
             >
-              No. of family member
+              {strings.noOfFamilyMembr}
             </Text>
             <TextInput
               value={props?.formData?.no_of_family_member?.toString()}
@@ -437,18 +434,18 @@ const AddNewVisitorForm = (props: any) => {
                 });
               }}
               keyboardType={"number-pad"}
-              placeholder="No. of family member"
+              placeholder={strings.noOfFamilyMembr}
               style={styles.budgetInput}
             />
           </View>
 
           <View style={[styles.inputWrap]}>
             <DropdownInput
-              headingText={"Current Stay"}
+              headingText={strings.currentStay}
               placeholder={
                 props.formData?.current_stay
                   ? props.formData?.current_stay
-                  : "Current Stay"
+                  : strings.currentStay
               }
               data={[
                 { label: strings.Rented, value: strings.Rented },
@@ -477,11 +474,11 @@ const AddNewVisitorForm = (props: any) => {
           </View>
           <View style={[styles.inputWrap]}>
             <DropdownInput
-              headingText={"Property Type"}
+              headingText={strings.propertyType}
               placeholder={
                 props.formData?.property_type
                   ? props.formData?.property_type
-                  : "Property Type"
+                  : strings.propertyType
               }
               data={[
                 { label: strings.MoveIn, value: strings.MoveIn },
@@ -512,7 +509,7 @@ const AddNewVisitorForm = (props: any) => {
             />
           </View>
           <View style={styles.radioBtnView}>
-            <Text style={styles.headingsTxt}>Preferred Bank</Text>
+            <Text style={styles.headingsTxt}>{strings.preferredBank}</Text>
             <View style={{ flexDirection: "row" }}>
               <View style={styles.radioView}>
                 <RadioButton.Android
@@ -582,11 +579,11 @@ const AddNewVisitorForm = (props: any) => {
           <View style={[styles.inputWrap]}>
             <DropdownInput
               // require={true}
-              headingText={"Property"}
+              headingText={strings.propertyHeader}
               placeholder={
                 props?.formData?.property_title
                   ? props?.formData?.property_title
-                  : "Property"
+                  : strings.propertyHeader
               }
               data={props?.allProperty}
               // disable={props?.formData?.property_id !== "" && props?.formData?.property_id !== null ? true : false}
@@ -619,11 +616,11 @@ const AddNewVisitorForm = (props: any) => {
           </View>
           <View style={[styles.inputWrap]}>
             <DropdownInput
-              headingText={"Configurations"}
+              headingText={strings.configurations}
               placeholder={
                 props.formData?.configuration
                   ? props.formData?.configuration
-                  : "Configurations"
+                  : strings.configurations
               }
               data={props?.masterDatas}
               inputWidth={"100%"}
@@ -654,8 +651,8 @@ const AddNewVisitorForm = (props: any) => {
             <InputCalender
               mode={"date"}
               leftIcon={images.event}
-              placeholderText={"Expected Possession Date"}
-              headingText={"Expected Possession Date"}
+              placeholderText={strings.expectdPossessionDate}
+              headingText={strings.expectdPossessionDate}
               editable={false}
               minimumDate={new Date()}
               dateData={(data: any) => {
@@ -683,7 +680,7 @@ const AddNewVisitorForm = (props: any) => {
           </View>
           <View style={styles.inputWrap}>
             <InputField
-              placeholderText={"Area(Sq ft.)"}
+              placeholderText={strings.areaSqft}
               handleInputBtnPress={() => { }}
               onChangeText={(data: any) => {
                 props.setFormData({
@@ -692,7 +689,7 @@ const AddNewVisitorForm = (props: any) => {
                 });
               }}
               valueshow={props?.formData?.areain_sqlft}
-              headingText={"Area(Sq ft.)"}
+              headingText={strings.areaSqft}
               keyboardtype={"number-pad"}
             // keyboardtype={'phone-pad'}
             />
@@ -700,10 +697,10 @@ const AddNewVisitorForm = (props: any) => {
 
           <View style={styles.smallCont}>
             <Text style={[styles.headingsTxt, { width: "58%" }]}>
-              Min Budget
+              {strings.minBudget}
             </Text>
             <Text style={[styles.headingsTxt, { width: "40%" }]}>
-              Max Budget
+              {strings.maxBudget}
             </Text>
           </View>
           <View style={styles.inputContVw}>
@@ -718,7 +715,7 @@ const AddNewVisitorForm = (props: any) => {
                   });
                 }}
                 keyboardType={"number-pad"}
-                placeholder="Min Budget"
+                placeholder={strings.minBudget}
                 style={styles.budgetInput}
               />
               <DropdownInput
@@ -761,7 +758,7 @@ const AddNewVisitorForm = (props: any) => {
                   });
                 }}
                 keyboardType={"number-pad"}
-                placeholder="Max Budget"
+                placeholder={strings.maxBudget}
                 style={styles.budgetInput}
               />
               <DropdownInput
@@ -795,7 +792,7 @@ const AddNewVisitorForm = (props: any) => {
             </View>
           </View>
           <View style={styles.radioBtnView}>
-            <Text style={styles.headingsTxt}>Nature Of Funding</Text>
+            <Text style={styles.headingsTxt}>{strings.natureOfFunding}</Text>
             <View style={{ flexDirection: "row" }}>
               <View style={styles.radioView}>
                 <RadioButton.Android
@@ -824,7 +821,7 @@ const AddNewVisitorForm = (props: any) => {
                     },
                   ]}
                 >
-                  Loan
+                  {strings.loan}
                 </Text>
               </View>
               <View style={styles.radioView}>
@@ -854,7 +851,7 @@ const AddNewVisitorForm = (props: any) => {
                     },
                   ]}
                 >
-                  Self Funding
+                  {strings.selfFunding}
                 </Text>
               </View>
               <View style={styles.radioView}>
@@ -884,7 +881,7 @@ const AddNewVisitorForm = (props: any) => {
                     },
                   ]}
                 >
-                  Both
+                  {strings.both}
                 </Text>
               </View>
             </View>
@@ -892,10 +889,10 @@ const AddNewVisitorForm = (props: any) => {
 
           <View style={styles.smallCont}>
             <Text style={[styles.headingsTxt, { width: "58%" }]}>
-              Min EMI Pay
+              {strings.minEmiPay}
             </Text>
             <Text style={[styles.headingsTxt, { width: "40%" }]}>
-              Max EMI Pay
+              {strings.maxEmiPay}
             </Text>
           </View>
           <View style={styles.inputContVw}>
@@ -910,7 +907,7 @@ const AddNewVisitorForm = (props: any) => {
                   });
                 }}
                 keyboardType={"number-pad"}
-                placeholder="Min EMI Pay"
+                placeholder={strings.minEmiPay}
                 style={styles.budgetInput}
               />
               <DropdownInput
@@ -953,7 +950,7 @@ const AddNewVisitorForm = (props: any) => {
                   });
                 }}
                 keyboardType={"number-pad"}
-                placeholder="Max EMI Pay"
+                placeholder={strings.maxEmiPay}
                 style={styles.budgetInput}
               />
               <DropdownInput
@@ -987,7 +984,7 @@ const AddNewVisitorForm = (props: any) => {
             </View>
           </View>
           <View style={styles.radioBtnView}>
-            <Text style={styles.headingsTxt}>Purpose</Text>
+            <Text style={styles.headingsTxt}>{strings.purpose}</Text>
             <View style={{ flexDirection: "row" }}>
               <View style={styles.radioView}>
                 <RadioButton.Android
@@ -1016,7 +1013,7 @@ const AddNewVisitorForm = (props: any) => {
                     },
                   ]}
                 >
-                  End User
+                  {strings.endUser}
                 </Text>
               </View>
               <View style={styles.radioView}>
@@ -1046,14 +1043,14 @@ const AddNewVisitorForm = (props: any) => {
                     },
                   ]}
                 >
-                  Investment
+                  {strings.investMent}
                 </Text>
               </View>
             </View>
           </View>
-          <Text style={styles.headingText}>Company Details</Text>
+          <Text style={styles.headingText}>{strings.companyDetails}</Text>
           <View style={styles.radioBtnView}>
-            <Text style={styles.headingsTxt}>Occupation</Text>
+            <Text style={styles.headingsTxt}>{strings.occupation}</Text>
             <View style={{ flexDirection: "row", width: "100%" }}>
               <View style={styles.radioView}>
                 <RadioButton.Android
@@ -1082,7 +1079,7 @@ const AddNewVisitorForm = (props: any) => {
                     },
                   ]}
                 >
-                  Salaried
+                  {strings.salaried}
                 </Text>
               </View>
               <View style={styles.radioView}>
@@ -1112,7 +1109,7 @@ const AddNewVisitorForm = (props: any) => {
                     },
                   ]}
                 >
-                  Self Employed
+                  {strings.selfEmployed}
                 </Text>
               </View>
               <View style={styles.radioView}>
@@ -1142,14 +1139,14 @@ const AddNewVisitorForm = (props: any) => {
                     },
                   ]}
                 >
-                  Professional
+                  {strings.professional}
                 </Text>
               </View>
             </View>
           </View>
           <View style={styles.inputWrap}>
             <InputField
-              placeholderText={"Company Name"}
+              placeholderText={strings.company + " " + strings.name}
               handleInputBtnPress={() => { }}
               onChangeText={(data: any) => {
                 props.setFormData({
@@ -1158,12 +1155,12 @@ const AddNewVisitorForm = (props: any) => {
                 });
               }}
               valueshow={props?.formData?.coumpany_name}
-              headingText={"Company Name"}
+              headingText={strings.company + " " + strings.name}
             />
           </View>
           <View style={styles.inputWrap}>
             <InputField
-              placeholderText={"Designation"}
+              placeholderText={strings.designation}
               handleInputBtnPress={() => { }}
               onChangeText={(data: any) => {
                 props.setFormData({
@@ -1172,12 +1169,12 @@ const AddNewVisitorForm = (props: any) => {
                 });
               }}
               valueshow={props?.formData?.desigantion}
-              headingText={"Designation"}
+              headingText={strings.designation}
             />
           </View>
           <View style={styles.inputWrap}>
             <InputField
-              placeholderText={"Office Address"}
+              placeholderText={strings.offcAddress}
               handleInputBtnPress={() => { }}
               onChangeText={(data: any) => {
                 props.setFormData({
@@ -1186,7 +1183,7 @@ const AddNewVisitorForm = (props: any) => {
                 });
               }}
               valueshow={props?.formData?.office_address}
-              headingText={"Office Address"}
+              headingText={strings.offcAddress}
             />
           </View>
           <View style={styles.bottomView}>
