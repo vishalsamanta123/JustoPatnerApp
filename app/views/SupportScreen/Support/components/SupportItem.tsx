@@ -12,6 +12,16 @@ const SupportItem = (props: any) => {
     <View style={styles.IteamView}>
       <View style={styles.Txtview}>
         <View style={styles.projectContainer}>
+          <Text style={styles.projectTxt}>Ticket No :</Text>
+        </View>
+        <View style={styles.nameContainer}>
+          <Text style={styles.nameTxt}>
+            {props.items.ticket_number ? props.items.ticket_number : strings.notfount}
+          </Text>
+        </View>
+      </View>
+      <View style={styles.Txtview}>
+        <View style={styles.projectContainer}>
           <Text style={styles.projectTxt}>Ticket :</Text>
         </View>
         <View style={styles.nameContainer}>

@@ -3,6 +3,7 @@ import PropertyChatView from "./components/PropertyChatView";
 import { useDispatch, useSelector } from "react-redux";
 import { getChatListForProperty } from "app/Redux/Actions/ChatActions";
 import { useIsFocused } from "@react-navigation/native";
+import { Keyboard } from "react-native";
 
 const PropertyChat = ({ navigation, route }: any) => {
   const { response = {},  } = useSelector((state: any) => state.propertyChatData);
@@ -21,6 +22,7 @@ const PropertyChat = ({ navigation, route }: any) => {
     );
   }
   const handleDrawerPress = () => {
+    Keyboard.dismiss()
     navigation.toggleDrawer();
   };
   

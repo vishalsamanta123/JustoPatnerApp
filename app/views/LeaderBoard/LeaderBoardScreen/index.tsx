@@ -1,6 +1,7 @@
 import { useFocusEffect } from "@react-navigation/native";
 import { learderBoardData } from "app/Redux/Actions/LeaderBoardAction";
 import React, { useEffect, useState } from "react";
+import { Keyboard } from "react-native";
 import { useDispatch, useSelector } from "react-redux";
 import images from "../../../assets/images";
 import LeaderBoardView from './components/LeaderBoard'
@@ -40,6 +41,7 @@ const LeaderBoardScreen = ({ navigation }: any) => {
         }))
     }
     const handleDrawerPress = () => {
+        Keyboard.dismiss()
         navigation.toggleDrawer();
     };
     const handleView = (data: any) => {
