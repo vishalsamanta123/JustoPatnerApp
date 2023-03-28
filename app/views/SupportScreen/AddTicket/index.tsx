@@ -62,6 +62,10 @@ const AddTicketScreen = ({ navigation, route }: any) => {
             isError = false;
             errorMessage = "Title is require. Please Enter the Title"
         }
+        else if (addTicketData.remark == undefined || addTicketData.remark == '') {
+            isError = false;
+            errorMessage = "Description is require. Please Enter the Description"
+        }
 
         if (errorMessage !== '') {
             ErrorMessage({

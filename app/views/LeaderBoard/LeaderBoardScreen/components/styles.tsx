@@ -28,10 +28,10 @@ const styles = StyleSheet.create({
     tintColor: WHITE_COLOR,
   },
   topItemsVw: {
-    paddingHorizontal: normalize(18),
-    paddingVertical: normalize(10),
-    justifyContent: "center",
-    height: normalizeHeight(190),
+    // paddingHorizontal: normalize(18),
+    // paddingVertical: normalize(10),
+    // justifyContent: "center",
+    // height: normalizeHeight(190),
   },
   IteamView: {
     backgroundColor: WHITE_COLOR,

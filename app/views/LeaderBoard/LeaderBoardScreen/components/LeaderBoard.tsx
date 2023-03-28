@@ -5,12 +5,13 @@ import Button from "../../../../components/Button";
 import Header from "../../../../components/Header";
 import InputField from "../../../../components/InputField";
 import { normalize } from "../../../../components/scaleFontSize";
-import { Isios, PRIMARY_THEME_COLOR } from "../../../../components/utilities/constant";
+import { GRAY_LIGHT_COLOR, Isios, PRIMARY_THEME_COLOR } from "../../../../components/utilities/constant";
 import strings from "../../../../components/utilities/Localization";
 import styles from "./styles";
 import LeaderBoardItems from './LeaderBoardItems';
 import ComingSoonScreen from "app/components/CommonScreen/ComingSoon";
 import EmptyListScreen from "app/components/CommonScreen/EmptyListScreen";
+import SearchBar from "app/components/SearchBar";
 
 const LeaderBoardView = (props: any) => {
     const onRefresh = () => {
@@ -33,8 +34,9 @@ const LeaderBoardView = (props: any) => {
             />
             {/* <ComingSoonScreen /> */}
             <View style={styles.topItemsVw}>
-                <InputField
+                {/* <InputField
                     placeholderText={'Search Project Name'}
+                    placeholderTextColor={GRAY_LIGHT_COLOR}
                     handleInputBtnPress={() => { }}
                     inputheight={Isios ? 30 : 45}
                     onChangeText={(data: any) => {
@@ -47,8 +49,21 @@ const LeaderBoardView = (props: any) => {
                         }
                     }}
                     valueshow={props?.filterData?.property_name}
+                /> */}
+                <SearchBar
+                    placeholderText={'Search Project Name'}
+                    onChangeText={(data: any) => {
+                        props.setFilterData({
+                            ...props.filterData,
+                            property_name: data
+                        })
+                        if (data === '') {
+                            props.getLeaderBoard(0, {})
+                        }
+                    }}
+                    value={props?.filterData?.property_name}
                 />
-                <View style={{ marginTop: normalize(30) }}>
+                <View style={{}}>
                     <Button
                         width={300}
                         buttonText={strings.search}

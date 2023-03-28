@@ -20,7 +20,7 @@ export const learderBoardData = (params: any) => async (dispatch: any) => {
                 payload: res.data,
             });
         } else {
-            handleApiError(res?.data)
+            // handleApiError(res?.data)
             dispatch({
                 type: LEADERBOARD_ERROR,
                 payload: res.data,

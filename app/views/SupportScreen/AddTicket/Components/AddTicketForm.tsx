@@ -76,6 +76,7 @@ const AddTicketForm = (props: any) => {
                 </View>
                 <View style={styles.inputWrap}>
                     <InputField
+                        require={true}
                         headingText={'Description'}
                         placeholderText={"Description"}
                         handleInputBtnPress={() => { }}
