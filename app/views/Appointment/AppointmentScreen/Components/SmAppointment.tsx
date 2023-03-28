@@ -48,7 +48,7 @@ const SmAppointment = (props: any) => {
         </View>
         <View style={styles.nameContainer}>
           <Text style={styles.nameTxt}>
-            {moment(props.items.appointment_date).format(DATE_FORMAT)}
+            {moment.utc(props.items.appointment_date).format('DD-MM-YYYY')}
           </Text>
         </View>
       </View>

@@ -9,12 +9,9 @@ import InputField from "../../../../components/InputField";
 
 
 const AppointmentModal = (props: any) => {
-  useEffect(() => {
-    props.setParams({
-      ...props.params,
-      remark: '',
-    });
-  }, [])
+  // useEffect(() => {
+  //   props.setParams(props.params);
+  // }, [props.Visible])
   return (
     <View>
       <Modal isVisible={props.Visible}>
@@ -34,9 +31,12 @@ const AppointmentModal = (props: any) => {
                 placeholderText={strings.comment}
                 headingText={strings.comment}
                 handleInputBtnPress={() => {}}
+                multiline={true}
                 inputheight={80}
                 valueshow={props?.params?.remark}
                 onChangeText={(val: any) => {
+                  console.log('props.params', props.params)
+
                   props.setParams({
                     ...props.params,
                     remark: val,

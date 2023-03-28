@@ -26,15 +26,16 @@ const SupportForumView = (props: any) => {
     <View style={styles.mainContainer}>
       <Header
         leftImageSrc={images.menu}
-        rightSecondImageScr={images.filter}
         headerText={strings.supportforumHeader}
         handleOnLeftIconPress={props.handleDrawerPress}
         headerStyle={styles.headerStyle}
         RightFirstIconStyle={styles.RightFirstIconStyle}
         RightSecondIconStyle={styles.RightFirstIconStyle}
         statusBarColor={PRIMARY_THEME_COLOR}
-        handleOnRightSecondIconPress={() => setFilterisVisible(true)}
         barStyle={"light-content"}
+        rightFirstImageScr={images.filter}
+        rightSecondImageScr={images.notification}
+        handleOnRightFirstIconPress={() => setFilterisVisible(true)}
       />
       {/* <ComingSoonScreen /> */}
       <View style={{ flex: 1, marginHorizontal: normalizeSpacing(10) }}>

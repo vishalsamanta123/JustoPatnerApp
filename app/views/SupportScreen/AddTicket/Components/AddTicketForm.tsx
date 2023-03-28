@@ -84,6 +84,7 @@ const AddTicketForm = (props: any) => {
                                     remark: val,
                                 })
                             }}
+                            require={true}
                             multiline={true}
                             inputheight={100}
                             valueshow={props.addTicketData.remark}

@@ -84,10 +84,12 @@ const ProfileView = (props: any) => {
         </View>
         <View style={styles.userCardView}>
           <View style={styles.usernameWrap}>
-            <Image style={styles.userImage} source={
-              allDetails?.profile_base_url && allDetails?.profile_picture ?
-                { uri: `${allDetails?.profile_base_url}${allDetails?.profile_picture}` } :
-                images.dummyUser} />
+            {allDetails?.profile_base_url && allDetails?.profile_picture ?
+            (<Image style={styles.userImage} source={
+                { uri: `${allDetails?.profile_base_url}${allDetails?.profile_picture}` }} />)
+              : 
+              (<Image style={styles.userImage} source={images.dummyUser} />)
+              }
             <Text style={styles.userNameText}>{allDetails?.agent_name}</Text>
           </View>
           <TouchableOpacity style={styles.editImageWrap} onPress={handleEditProfilePress}>
