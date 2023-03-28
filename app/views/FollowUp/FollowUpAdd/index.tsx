@@ -44,6 +44,7 @@ const FollowUpAddScreen = ({ navigation, route }: any) => {
       })
     );
   }, []);
+  
   const handleBackPress = () => {
     navigation.goBack(null);
   };
@@ -56,8 +57,7 @@ const FollowUpAddScreen = ({ navigation, route }: any) => {
       formData.followup_status == ""
     ) {
       isError = false;
-      errorMessage =
-        "Followup Status is require. Please Choose Followup Status";
+      errorMessage = strings.followUpStatusReqVal;
     }
     if (formData.followup_status == "6360c6d52ca46e9d3636fbf4") {
       if (
@@ -65,12 +65,10 @@ const FollowUpAddScreen = ({ navigation, route }: any) => {
         formData.next_followup_date == ""
       ) {
         isError = false;
-        errorMessage =
-          "Followup Date is require";
+        errorMessage = strings.followUpDateReqVal;
       } else if (formData.followup_time == undefined || formData.followup_time == "") {
         isError = false;
-        errorMessage =
-          "Followup Time is require";
+        errorMessage = strings.followUpTimeReqVal;
       }
     }
     if (errorMessage !== "") {
@@ -81,6 +79,7 @@ const FollowUpAddScreen = ({ navigation, route }: any) => {
     }
     return isError;
   };
+
   useEffect(() => {
     if (editAddFollowupData?.response?.status === 200) {
       dispatch(addEditFollowupRemove());
@@ -91,14 +90,17 @@ const FollowUpAddScreen = ({ navigation, route }: any) => {
       });
     }
   }, [editAddFollowupData]);
+
   const handleUpdateStatus = () => {
     if (validation()) {
       dispatch(addFollowUp(formData));
     }
   };
+
   const handleAllFollowUp = () => {
     navigation.navigate("AllFollowUpScreen", followUpId);
   };
+
   return (
     <>
       <FollowUpAddView

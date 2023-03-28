@@ -69,7 +69,7 @@ const DealFlowDetailView = (props: any) => {
           }]}>
             <Text style={[styles.subHeadTxt, {
               fontFamily: FONT_FAMILY_EXTRABOLD
-            }]}>Commission Earned</Text>
+            }]}>{strings.commissionErnd}</Text>
             <Text style={styles.smallTxt}>{props?.dealFlowDetail?.commissions_earned}</Text>
           </View>
           <View style={[styles.boxesVw, {
@@ -77,7 +77,7 @@ const DealFlowDetailView = (props: any) => {
           }]}>
             <Text style={[styles.subHeadTxt, {
               fontFamily: FONT_FAMILY_EXTRABOLD
-            }]}>Potential Commission</Text>
+            }]}>{strings.potentlCommission}</Text>
             <Text style={styles.smallTxt}>{props?.dealFlowDetail?.potential_commissions}</Text>
           </View>
         </View>
@@ -88,7 +88,7 @@ const DealFlowDetailView = (props: any) => {
           }]}>
             <Text style={[styles.subHeadTxt, {
               fontFamily: FONT_FAMILY_EXTRABOLD
-            }]}>Total Inventory</Text>
+            }]}>{strings.totalInventry}</Text>
             <Text style={styles.smallTxt}>{props?.dealFlowDetail?.total_inventry}</Text>
           </View>
           <View style={[styles.boxesVw, {
@@ -97,7 +97,7 @@ const DealFlowDetailView = (props: any) => {
           }]}>
             <Text style={[styles.subHeadTxt, {
               fontFamily: FONT_FAMILY_EXTRABOLD
-            }]}>Inventory Left to Close</Text>
+            }]}>{strings.invntryLftToClose}</Text>
             <Text style={styles.smallTxt}>{props?.dealFlowDetail?.total_inventry - props?.dealFlowDetail?.total_sold_out}</Text>
           </View>
         </View>
@@ -107,7 +107,7 @@ const DealFlowDetailView = (props: any) => {
           }]}>
             <Text style={[styles.subHeadTxt, {
               fontFamily: FONT_FAMILY_EXTRABOLD
-            }]}>Visitor Quality Score</Text>
+            }]}>{strings.visitorQualitySc}</Text>
             <Text style={styles.smallTxt}>{props?.dealFlowDetail?.visit_score}</Text>
           </View>
         </View>
@@ -118,7 +118,7 @@ const DealFlowDetailView = (props: any) => {
           }]}>
             <Text style={[styles.subHeadTxt, {
               fontFamily: FONT_FAMILY_EXTRABOLD
-            }]}>Visitor</Text>
+            }]}>{strings.visitor}</Text>
             <Text style={styles.smallTxt}>{props?.dealFlowDetail?.total_visit}</Text>
           </View>
           <View style={[styles.boxesVw, {
@@ -127,7 +127,7 @@ const DealFlowDetailView = (props: any) => {
           }]}>
             <Text style={[styles.subHeadTxt, {
               fontFamily: FONT_FAMILY_EXTRABOLD
-            }]}>Booking</Text>
+            }]}>{strings.booking}</Text>
             <Text style={styles.smallTxt}>{props?.dealFlowDetail?.total_booking}</Text>
           </View>
           <View style={[styles.boxesVw, {
@@ -135,7 +135,7 @@ const DealFlowDetailView = (props: any) => {
           }]}>
             <Text style={[styles.subHeadTxt, {
               fontFamily: FONT_FAMILY_EXTRABOLD
-            }]}>Registration</Text>
+            }]}>{strings.registration}</Text>
             <Text style={styles.smallTxt}>{props?.dealFlowDetail?.total_registration}</Text>
           </View>
         </View>

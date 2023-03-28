@@ -8,6 +8,7 @@ import { useFocusEffect } from '@react-navigation/native';
 import { getChatListForProperty } from 'app/Redux/Actions/ChatActions';
 import { Alert, BackHandler } from 'react-native';
 import { getPermission } from 'app/Redux/Actions/permissionAction';
+import strings from 'app/components/utilities/Localization';
 
 const DashboardScreen = ({ navigation, route }: any) => {
   const dispatch: any = useDispatch()
@@ -21,13 +22,13 @@ const DashboardScreen = ({ navigation, route }: any) => {
   useFocusEffect(
     React.useCallback(() => {
       const onBackPress = () => {
-        Alert.alert('Hold on!', 'Are you sure you want to close this app ?', [
+        Alert.alert(strings.holdOn, strings.exitAppAlert, [
           {
-            text: 'Cancel',
+            text: strings.cancel,
             onPress: () => null,
             style: 'cancel',
           },
-          { text: 'YES', onPress: () => BackHandler.exitApp() },
+          { text: strings.yes, onPress: () => BackHandler.exitApp() },
         ]);
         return true;
       };
@@ -105,7 +106,7 @@ const DashboardScreen = ({ navigation, route }: any) => {
     if (type === 'visit') {
       navigation.navigate('LeadManagement', 'today')
     } else if (type === 'appointment') {
-      navigation.navigate('AppointmentScreen',  onPressType)
+      navigation.navigate('AppointmentScreen', onPressType)
     } else {
       navigation.navigate('AgentListing')
     }

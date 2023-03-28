@@ -130,14 +130,14 @@ const VisitorAppointment = (props: any) => {
             {item?.status === 1
               ? currentDate >= appointmentdateTime ? strings.STSNotVisited : strings.STSUpComing
               : item?.status === 2
-                ? "Revisit"
+                ? strings.STSReVisit
                 : item?.status === 4
-                  ? "Visit Cancelled"
-                  : item?.status === 5 ? "Reschedule"
-                    : item?.status === 6 ? "Not Fit for Sale" :
+                  ? strings.STSVisitCancelled
+                  : item?.status === 5 ? strings.STSRescheduled
+                    : item?.status === 6 ? strings.STSNotFitForSale :
                       item?.status === 3 ?
-                        bookingStatus === 1 ? 'Ready to Book' : 'Booking' :
-                        "Completed"
+                        bookingStatus === 1 ? strings.STSReadyToBook : strings.STSBooking :
+                        strings.STSCompleted
 
             }
           </Text>
@@ -155,7 +155,7 @@ const VisitorAppointment = (props: any) => {
         </View>)}
       {/* <View style={styles.Txtview}>
         <View style={styles.projectContainer}>
-          <Text style={styles.projectTxt}>Visit Status</Text>
+          <Text style={styles.projectTxt}>{strings.visitStatus}</Text>
         </View>
         <View><Text>:</Text></View>
         <View style={styles.nameContainer}>

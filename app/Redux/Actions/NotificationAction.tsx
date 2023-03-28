@@ -5,6 +5,7 @@ import {
   DELETE_NOTIFICATION_ERROR,
   GET_NOTIFICATION_LIST,
   NOTIFICATION_ERROR,
+  NOTIFICATION_STATUS,
   REMOVE_NOTIFICATION,
   START_LOADING,
   STOP_LOADING,
@@ -18,6 +19,10 @@ export const getNotificationList = (params: any) => async (dispatch: any) => {
       dispatch({
         type: GET_NOTIFICATION_LIST,
         payload: res.data,
+      });
+      dispatch({
+        type: NOTIFICATION_STATUS,
+        payload: {notification_count: 0},
       });
     } else {
       dispatch({

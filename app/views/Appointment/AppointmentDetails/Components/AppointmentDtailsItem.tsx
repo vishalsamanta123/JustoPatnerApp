@@ -159,14 +159,14 @@ const AppointmentDtailsItem = (props: any) => {
             {props?.item?.status === 1
               ? currentDate >= appointmentdateTime ? strings.STSNotVisited : strings.STSUpComing
               : props?.item?.status === 2
-                ? "Revisit"
+                ? strings.STSReVisit
                 : props?.item?.status === 4
-                  ? "Visit Cancelled"
-                  : props?.item?.status === 5 ? "Reschedule"
-                    : props?.item?.status === 6 ? "Not Fit for Sale" :
+                  ? strings.STSVisitCancelled
+                  : props?.item?.status === 5 ? strings.STSRescheduled
+                    : props?.item?.status === 6 ? strings.STSNotFitForSale :
                       props?.item?.status === 3 ?
-                        bookingStatus === 1 ? 'Ready to Book' : 'Booking' :
-                        "Completed"
+                        bookingStatus === 1 ? strings.STSReadyToBook : strings.STSBooking :
+                        strings.STSCompleted
             }
           </Text>
         </View>
@@ -178,7 +178,8 @@ const AppointmentDtailsItem = (props: any) => {
           </View>
           <View><Text>:</Text></View>
           <View style={styles.nameContainer}>
-            <Text style={[styles.nameTxt, { color: props?.item?.checkin_status ? GREEN_COLOR : BLACK_COLOR }]}>{props?.item?.checkin_status ? 'Visited' : strings.notfount}</Text>
+            <Text style={[styles.nameTxt, { color: props?.item?.checkin_status ? GREEN_COLOR : BLACK_COLOR }]}>{
+              props?.item?.checkin_status ? strings.STSVisited : strings.notfount}</Text>
           </View>
         </View>)}
       {props?.item?.resion &&

@@ -269,10 +269,12 @@ export const OpenDoc = async (url: any) => {
   };
   RNFS.downloadFile(options)
     .promise.then(() => FileViewer.open(localFile))
-    .then(() => {
+    .then((r) => {
+      console.log('r', r)
       // success
     })
     .catch((error) => {
+      console.log('error', error)
       ErrorMessage({
         msg: error?.message,
         backgroundColor: RED_COLOR

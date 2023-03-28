@@ -12,6 +12,7 @@ import { normalizeWidth, normalizeHeight, normalize } from 'app/components/scale
 import PicturePickerModal from 'app/components/Modals/PicturePicker'
 
 const AddTicketForm = (props: any) => {
+    console.log('props', props.addTicketData)
     const [visible, setVisible] = useState(false)
     return (
         <View style={styles.mainContainer}>
@@ -86,7 +87,7 @@ const AddTicketForm = (props: any) => {
                         }}
                         multiline={true}
                         inputheight={100}
-                        valueshow={props.addTicketData.remark}
+                        valueshow={props.addTicketData.remark === 'undefined' ? "" :  props.addTicketData.remark}
                     />
                 </View>
                 <View style={styles.inputWrap}>

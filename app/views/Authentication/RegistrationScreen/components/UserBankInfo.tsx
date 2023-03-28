@@ -26,6 +26,7 @@ import ErrorMessage from "app/components/ErrorMessage";
 import { RegistrationForm } from "app/Redux/Actions/ReggistrationAction";
 import { getAllMaster, getAllSourcingManager } from "app/Redux/Actions/MasterActions";
 import { RadioButton } from "react-native-paper";
+import { handleValues } from "app/components/utilities/handleValues";
 
 const UserBankInfo = ({ navigation }: any) => {
   useEffect(() => {
@@ -69,37 +70,37 @@ const UserBankInfo = ({ navigation }: any) => {
     let errorMessage: any = ''
     // if (formData.rera_certificate_no == '' || formData.rera_certificate_no == undefined) {
     //   isError = false;
-    //   errorMessage = "RERA Certificate No. is require. Please enter RERA Certificate No."
+    //   errorMessage = strings.reraCertNoReqVal
     // }
     // else if (formData.rera_certificate == '' || formData.rera_certificate == undefined) {
     //   isError = false;
-    //   errorMessage = "RERA Certificate Image is require. Please Choose RERA Certificate Image"
+    //   errorMessage = strings.reraCertImgReqVal
     // }
     if (formData.propidership_declaration_letter == '' || formData.propidership_declaration_letter == undefined) {
       isError = false;
-      errorMessage = "Proprietorship Declaration Letter Image is require. Please Choose Proprietorship Declaration Letter Image"
+      errorMessage = strings.propDeclrLttrImgReqVal
     } else if (formData.norera_register === null) {
       isError = false;
       errorMessage = strings.noReraRegReqVal;
     } else if (formData.cancel_cheaque == '' || formData.cancel_cheaque == undefined) {
       isError = false;
-      errorMessage = "Cancel Cheaque Image is require. Please Choose Cancel Cheaque Image"
+      errorMessage = strings.cancelChqImgReqVal
     }
     else if (formData.bank_name == '' || formData.bank_name == undefined) {
       isError = false;
-      errorMessage = "Bank Name is require. Please enter Bank Name"
+      errorMessage = strings.bankNameReqVal
     }
     else if (formData.branch_name == '' || formData.branch_name == undefined) {
       isError = false;
-      errorMessage = "Branch Name is require. Please enter Branch Name"
+      errorMessage = strings.branchNameReqVal
     }
     else if (formData.account_no == '' || formData.account_no == undefined) {
       isError = false;
-      errorMessage = "Account No. is require. Please enter Account No."
+      errorMessage = strings.accountNoReqVal
     }
     else if (formData.ifsc_code == '' || formData.ifsc_code == undefined) {
       isError = false;
-      errorMessage = "IFSC Code is require. Please enter IFSC Code"
+      errorMessage = strings.ifscReqVal
     }
     if (errorMessage !== '') {
       ErrorMessage({
@@ -154,8 +155,8 @@ const UserBankInfo = ({ navigation }: any) => {
               }}
             /> */}
             <DropdownInput
-              headingText={'Sourcing Manager'}
-              placeholder={'Sourcing Manager'}
+              headingText={strings.sourcingMngr}
+              placeholder={strings.sourcingMngr}
               data={masterDatas}
               inputWidth={'100%'}
               paddingLeft={16}
@@ -184,23 +185,23 @@ const UserBankInfo = ({ navigation }: any) => {
           <View style={styles.inputWrap}>
             <InputField
               // require={true}
-              placeholderText={"RERA Certificate No."}
+              placeholderText={strings.reraCertificate + " " + strings.shortNum}
               handleInputBtnPress={() => { }}
               maxLength={20}
-              headingText={"RERA Certificate No."}
+              headingText={strings.reraCertificate + " " + strings.shortNum}
               valueshow={formData?.rera_certificate_no}
               onChangeText={(val: any) => {
                 setFormData({
                   ...formData,
                   rera_certificate_no: val,
-                  norera_register: val === "" ? null : ""
+                  norera_register: (val === "" && handleValues(formData?.rera_certificate) === false) ? null : ""
                 })
               }}
             />
           </View>
           <View style={[styles.inputWrap, { flexDirection: "row", alignItems: 'center', justifyContent: 'space-between' }]}>
             <View style={{ flex: 1, flexDirection: 'row', alignItems: 'center' }}>
-              <Text style={styles.headingText}>RERA Certificate</Text>
+              <Text style={styles.headingText}>{strings.reraCertificate}</Text>
               {/* <Image
                 source={images.star}
                 style={{
@@ -224,11 +225,11 @@ const UserBankInfo = ({ navigation }: any) => {
             </View>
           </View>
           {typeof formData?.rera_certificate === 'object' ?
-            <Text style={styles.addedTxt}>{"RERA Certificate Added"}</Text> : null
+            <Text style={styles.addedTxt}>{strings.reraCertificate + " " + strings.added}</Text> : null
           }
           <View style={[styles.inputWrap, { flexDirection: "row", alignItems: 'center' }]}>
             <View style={{ flex: 1, flexDirection: 'row', alignItems: 'center' }}>
-              <Text style={styles.headingText}>Proprietorship Declaration Letter</Text>
+              <Text style={styles.headingText}>{strings.proprietorDeclarLttr}</Text>
               <Image
                 source={images.star}
                 style={{
@@ -252,7 +253,7 @@ const UserBankInfo = ({ navigation }: any) => {
             </View>
           </View>
           {typeof formData?.propidership_declaration_letter === 'object' ?
-            <Text style={styles.addedTxt}>{"Proprietorship Declaration Letter Added"}</Text>
+            <Text style={styles.addedTxt}>{strings.proprietorDeclarLttr + " " + strings.added}</Text>
             : null
           }
           <View style={styles.straightVw}>
@@ -284,14 +285,14 @@ const UserBankInfo = ({ navigation }: any) => {
             </Text>
           </View>
           <View style={styles.inputWrap}>
-            <Text style={styles.headingText}>Bank Details</Text>
+            <Text style={styles.headingText}>{strings.bankDetail}</Text>
           </View>
           <View style={styles.inputWrap}>
             <InputField
               require={true}
-              placeholderText={"Bank Name"}
+              placeholderText={strings.bankName}
               handleInputBtnPress={() => { }}
-              headingText={"Bank Name"}
+              headingText={strings.bankName}
               valueshow={formData?.bank_name}
               onChangeText={(val: any) => {
                 setFormData({
@@ -303,9 +304,9 @@ const UserBankInfo = ({ navigation }: any) => {
           <View style={styles.inputWrap}>
             <InputField
               require={true}
-              placeholderText={"Branch Name"}
+              placeholderText={strings.branchName}
               handleInputBtnPress={() => { }}
-              headingText={"Branch Name"}
+              headingText={strings.branchName}
               valueshow={formData?.branch_name}
               onChangeText={(val: any) => {
                 setFormData({
@@ -317,9 +318,9 @@ const UserBankInfo = ({ navigation }: any) => {
           <View style={styles.inputWrap}>
             <InputField
               require={true}
-              placeholderText={"Account No."}
+              placeholderText={strings.accountNo}
               handleInputBtnPress={() => { }}
-              headingText={"Account No."}
+              headingText={strings.accountNo}
               maxLength={18}
               keyboardtype={'number-pad'}
               valueshow={formData?.account_no}
@@ -333,9 +334,9 @@ const UserBankInfo = ({ navigation }: any) => {
           <View style={styles.inputWrap}>
             <InputField
               require={true}
-              placeholderText={"IFSC Code"}
+              placeholderText={strings.ifscCode}
               handleInputBtnPress={() => { }}
-              headingText={"IFSC Code"}
+              headingText={strings.ifscCode}
               valueshow={formData?.ifsc_code}
               maxLength={11}
               onChangeText={(val: any) => {
@@ -347,7 +348,7 @@ const UserBankInfo = ({ navigation }: any) => {
           </View>
           <View style={[styles.inputWrap, { flexDirection: "row", alignItems: 'center' }]}>
             <View style={{ flex: 1, flexDirection: 'row', alignItems: 'center' }}>
-              <Text style={styles.headingText}>Cancel Cheaque</Text>
+              <Text style={styles.headingText}>{strings.cancelCheque}</Text>
               <Image
                 source={images.star}
                 style={{
@@ -374,7 +375,7 @@ const UserBankInfo = ({ navigation }: any) => {
             </View>
           </View>
           {typeof formData?.cancel_cheaque === 'object' ?
-            <Text style={styles.addedTxt}>{"Cancel Cheaque Added"}</Text> : null
+            <Text style={styles.addedTxt}>{strings.cancelCheque + " " + strings.added}</Text> : null
           }
           <View style={{ marginVertical: 20 }}>
             <Button

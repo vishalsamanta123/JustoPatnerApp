@@ -37,7 +37,7 @@ const FollowUpAddView = (props: any) => {
                 <View style={styles.inputWrap}>
                     <DropdownInput
                         require={true}
-                        headingText={'Status'}
+                        headingText={strings.status}
                         placeholder={strings.status}
                         data={props?.masterDatas}
                         inputWidth={'100%'}
@@ -94,10 +94,10 @@ const FollowUpAddView = (props: any) => {
                         <View style={styles.inputWrap}>
                             <InputCalender
                                 require={true}
-                                headingText={'Date'}
+                                headingText={strings.date}
                                 mode={'date'}
                                 leftIcon={images.event}
-                                placeholderText={"Date"}//can edit
+                                placeholderText={strings.date}//can edit
                                 minimumDate={new Date()}
                                 editable={false}
                                 // onChangeText={() => { }}
@@ -121,11 +121,11 @@ const FollowUpAddView = (props: any) => {
                         <View style={styles.inputWrap}>
                             <InputCalender
                                 require={true}
-                                headingText={'Time'}
+                                headingText={strings.time}
                                 mode={"time"}
                                 dateValue={props?.formData?.next_followup_date}
                                 leftIcon={images.timer}
-                                placeholderText={"Time"}//can edit
+                                placeholderText={strings.time}//can edit
                                 editable={false}
                                 // onChangeText={() => { }}
                                 dateData={(data: any) => {
@@ -149,8 +149,8 @@ const FollowUpAddView = (props: any) => {
                 }
                 <View style={styles.inputWrap}>
                     <InputField
-                        headingText={'Description'}
-                        placeholderText={"Description"}
+                        headingText={strings.description}
+                        placeholderText={strings.description}
                         handleInputBtnPress={() => { }}
                         onChangeText={(val: any) => {
                             props.setFormData({

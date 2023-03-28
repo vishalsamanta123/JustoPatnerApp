@@ -22,7 +22,7 @@ const FollowUpItem = (props: any) => {
     <View style={styles.IteamView}>
       <View style={styles.Txtview}>
         <View style={styles.projectContainer}>
-          <Text style={styles.projectTxt}>Lead No. :</Text>
+          <Text style={styles.projectTxt}>{strings.leadNo} :</Text>
         </View>
         <View style={styles.nameContainer}>
           <Text style={styles.nameTxt}>{item.lead_no}</Text>
@@ -38,7 +38,7 @@ const FollowUpItem = (props: any) => {
       </View>
       <View style={styles.Txtview}>
         <View style={styles.projectContainer}>
-          <Text style={styles.projectTxt}>Followup Status :</Text>
+          <Text style={styles.projectTxt}>{strings.followup + " " + strings.status} :</Text>
         </View>
         <View style={styles.nameContainer}>
           <Text style={styles.nameTxt}>{item.followup_status}</Text>
@@ -46,7 +46,7 @@ const FollowUpItem = (props: any) => {
       </View>
       <View style={styles.Txtview}>
         <View style={styles.projectContainer}>
-          <Text style={styles.projectTxt}>Created Date :</Text>
+          <Text style={styles.projectTxt}>{strings.createdDate} :</Text>
         </View>
         <View style={styles.nameContainer}>
           <Text style={styles.nameTxt}>
@@ -58,7 +58,7 @@ const FollowUpItem = (props: any) => {
       </View>
       <View style={styles.Txtview}>
         <View style={styles.projectContainer}>
-          <Text style={styles.projectTxt}>Follow-Up Date :</Text>
+          <Text style={styles.projectTxt}>{strings.followup + "" + strings.date} :</Text>
         </View>
         <View style={styles.nameContainer}>
           <Text style={styles.nameTxt}>
@@ -70,7 +70,7 @@ const FollowUpItem = (props: any) => {
       </View>
       <View style={styles.Txtview}>
         <View style={styles.projectContainer}>
-          <Text style={styles.projectTxt}>Customer Name :</Text>
+          <Text style={styles.projectTxt}>{strings.customerName} :</Text>
         </View>
         <View style={styles.nameContainer}>
           <Text style={styles.nameTxt}>{item.customer_first_name}</Text>
@@ -78,7 +78,7 @@ const FollowUpItem = (props: any) => {
       </View>
       <View style={styles.Txtview}>
         <View style={styles.projectContainer}>
-          <Text style={styles.projectTxt}>Configurations :</Text>
+          <Text style={styles.projectTxt}>{strings.configurations} :</Text>
         </View>
         <View style={styles.nameContainer}>
           <Text style={styles.nameTxt}>
@@ -88,7 +88,7 @@ const FollowUpItem = (props: any) => {
       </View>
       {/* <View style={styles.Txtview}>
         <View style={styles.projectContainer}>
-          <Text style={styles.projectTxt}>Visit Status</Text>
+          <Text style={styles.projectTxt}>{strings.visitStatus}</Text>
         </View>
         <View><Text>:</Text></View>
         <View style={styles.nameContainer}>
@@ -102,17 +102,17 @@ const FollowUpItem = (props: any) => {
       </View> */}
       <View style={styles.Txtview}>
         <View style={styles.projectContainer}>
-          <Text style={styles.projectTxt}>Followup Type :</Text>
+          <Text style={styles.projectTxt}>{strings.followUpType} :</Text>
         </View>
         <View style={styles.nameContainer}>
           <Text style={styles.nameTxt}>
-            {item.followup_for == 1
-              ? "Lead"
-              : item.followup_for == 2
-                ? "Site visit"
-                : item.followup_for == 3
-                  ? "Booking"
-                  : item.followup_for == 4 ? "Registration" : strings.notfount}
+            {item.followup_for === 1
+              ? strings.STSLead
+              : item.followup_for === 2
+                ? strings.STSSiteVisit
+                : item.followup_for === 3
+                  ? strings.STSBooking
+                  : item.followup_for === 4 ? strings.STSRegistration : strings.notfount}
           </Text>
         </View>
       </View>

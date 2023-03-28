@@ -77,7 +77,9 @@ const EscalateView = (props: any) => {
                                                                     : item?.role_slug === "cluster_head"
                                                                         ? "CH"
                                                                         : item?.role_slug === "call_center"
-                                                                            ? "CC"
+                                                                            ? "CC" :
+                                                                            item?.role_slug === "vice_president" ? 
+                                                                            'VP'
                                                                             : "";
                             return (
                                 <View

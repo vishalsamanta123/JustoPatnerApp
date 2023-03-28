@@ -93,6 +93,12 @@ const styles = StyleSheet.create({
   inputWrap: {
     marginTop: normalizeSpacing(30),
   },
+  flexRowVw: {
+    flex: 1,
+    flexDirection: "row",
+    alignItems: "center",
+    justifyContent: "center",
+  },
   genderView: {
     flexDirection: 'row',
     alignItems: 'center',

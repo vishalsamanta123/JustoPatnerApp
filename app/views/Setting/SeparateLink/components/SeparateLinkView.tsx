@@ -18,7 +18,7 @@ const SeparateLinkView = (props: any) => {
   const shareQRCode = async () => {
     const options = {
       message: "Scan This QR",
-      url: response.qr_code,
+      url: response?.qr_code ? response?.qr_code : response?.qrcode,
     };
     const shareResponse = await Share.open(options);
   };

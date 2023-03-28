@@ -29,13 +29,14 @@ const styles = StyleSheet.create({
     },
     demoImgView: {
         flexDirection: 'row',
-        justifyContent: 'space-between',
+        // justifyContent: 'space-between',
         alignItems: 'center'
     },
     Img: {
         width: normalizeWidth(100),
         height: normalizeHeight(100),
-        borderRadius: normalize(8)
+        borderRadius: normalize(8),
+        marginLeft: normalizeSpacing(10)
     },
     btnView: {
         top: 10,
