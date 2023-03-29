@@ -142,6 +142,7 @@ const EditBankDetails = ({ navigation }: any) => {
         </View>
         <View style={styles.inputWrap}>
           <InputField
+            disableSpecialCharacters={true}
             valueshow={bankData?.bank_name}
             handleInputBtnPress={() => { }}
             headingText={strings.bankName}
@@ -154,6 +155,7 @@ const EditBankDetails = ({ navigation }: any) => {
         </View>
         <View style={styles.inputWrap}>
           <InputField
+            disableSpecialCharacters={true}
             valueshow={bankData?.branch_name}
             handleInputBtnPress={() => { }}
             headingText={strings.branchName}
@@ -166,6 +168,7 @@ const EditBankDetails = ({ navigation }: any) => {
         </View>
         <View style={styles.inputWrap}>
           <InputField
+            disableSpecialCharacters={true}
             valueshow={bankData?.account_no}
             handleInputBtnPress={() => { }}
             headingText={strings.bankName + " " + strings.shortNum}
@@ -179,6 +182,7 @@ const EditBankDetails = ({ navigation }: any) => {
         </View>
         <View style={styles.inputWrap}>
           <InputField
+            disableSpecialCharacters={true}
             valueshow={bankData?.ifsc_code}
             handleInputBtnPress={() => { }}
             headingText={strings.ifscCode}

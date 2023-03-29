@@ -289,6 +289,7 @@ const UserBankInfo = ({ navigation }: any) => {
           </View>
           <View style={styles.inputWrap}>
             <InputField
+              disableSpecialCharacters={true}
               require={true}
               placeholderText={strings.bankName}
               handleInputBtnPress={() => { }}
@@ -303,6 +304,7 @@ const UserBankInfo = ({ navigation }: any) => {
           </View>
           <View style={styles.inputWrap}>
             <InputField
+              disableSpecialCharacters={true}
               require={true}
               placeholderText={strings.branchName}
               handleInputBtnPress={() => { }}
@@ -317,6 +319,7 @@ const UserBankInfo = ({ navigation }: any) => {
           </View>
           <View style={styles.inputWrap}>
             <InputField
+              disableSpecialCharacters={true}
               require={true}
               placeholderText={strings.accountNo}
               handleInputBtnPress={() => { }}
@@ -333,6 +336,7 @@ const UserBankInfo = ({ navigation }: any) => {
           </View>
           <View style={styles.inputWrap}>
             <InputField
+              disableSpecialCharacters={true}
               require={true}
               placeholderText={strings.ifscCode}
               handleInputBtnPress={() => { }}

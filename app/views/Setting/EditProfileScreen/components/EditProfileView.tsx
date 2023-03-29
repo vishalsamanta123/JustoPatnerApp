@@ -69,6 +69,7 @@ const EditProfileView = (props: any) => {
           </TouchableOpacity>
           <View style={styles.inputWrap}>
             <InputField
+              disableSpecialCharacters={true}
               valueshow={props.editData?.agent_name}
               handleInputBtnPress={() => { }}
               onChangeText={(e: any) => {
@@ -98,6 +99,7 @@ const EditProfileView = (props: any) => {
           </View>
           <View style={styles.inputWrap}>
             <InputField
+              disableSpecialCharacters={true}
               valueshow={props.editData?.pancard_no}
               handleInputBtnPress={() => { }}
               onChangeText={(e: any) => {
@@ -185,6 +187,7 @@ const EditProfileView = (props: any) => {
           </View>
           <View style={styles.inputWrap}>
             <InputField
+              disableSpecialCharacters={true}
               valueshow={props.editData?.primary_mobile?.toString()}
               handleInputBtnPress={() => { }}
               onChangeText={(e: any) => {
@@ -199,6 +202,7 @@ const EditProfileView = (props: any) => {
           </View>
           <View style={styles.inputWrap}>
             <InputField
+              disableSpecialCharacters={true}
               valueshow={props.editData?.whatsapp_number?.toString()}
               handleInputBtnPress={() => { }}
               onChangeText={(e: any) => {

@@ -88,6 +88,7 @@ const AgentBasicInfoView = (props: any) => {
           </TouchableOpacity>
           <View style={styles.inputWrap}>
             <InputField
+              disableSpecialCharacters={true}
               require={true}
               placeholderText={strings.agent + " " + strings.name} //can edit
               handleInputBtnPress={() => { }}
@@ -121,6 +122,7 @@ const AgentBasicInfoView = (props: any) => {
           </View>
           <View style={styles.inputWrap}>
             <InputField
+              disableSpecialCharacters={true}
               require={true}
               placeholderText={"BNZAA2318JM"} //can edit
               handleInputBtnPress={() => { }}
@@ -227,6 +229,7 @@ const AgentBasicInfoView = (props: any) => {
           </View>
           <View style={styles.inputWrap}>
             <InputField
+              disableSpecialCharacters={true}
               require={true}
               placeholderText={strings.mobileNo}
               editable={props.type === "add" ? true : false}
@@ -245,6 +248,7 @@ const AgentBasicInfoView = (props: any) => {
           </View>
           <View style={styles.inputWrap}>
             <InputField
+              disableSpecialCharacters={true}
               require={true}
               placeholderText={strings.whatsappNo} //can edit
               handleInputBtnPress={() => { }}

@@ -54,4 +54,5 @@ export const Regexs = {
   mobilenumRegex: new RegExp(/^[6-9]{1}[0-9]{9}$/),
   accountnumRegex: new RegExp(/^\d{9,18}$/),
   ifscRegex: new RegExp(/^[A-Z]{4}0[A-Z0-9]{6}$/),
+  alphaNumeric: new RegExp(/^[A-Za-z0-9\s]*$/),
 }

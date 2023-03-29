@@ -97,6 +97,7 @@ const RegistrationView = (props: any) => {
 
         <View style={styles.inputWrap}>
           <InputField
+            disableSpecialCharacters={true}
             placeholderText={strings.ownerName}
             require={true}
             handleInputBtnPress={() => { }}
@@ -130,6 +131,7 @@ const RegistrationView = (props: any) => {
         </View>
         <View style={styles.inputWrap}>
           <InputField
+            disableSpecialCharacters={true}
             require={true}
             placeholderText={"BNZAA2318JM"}
             handleInputBtnPress={() => { }}
@@ -233,6 +235,7 @@ const RegistrationView = (props: any) => {
         </View>
         <View style={styles.inputWrap}>
           <InputField
+            disableSpecialCharacters={true}
             require={true}
             placeholderText={strings.mobileNo}
             handleInputBtnPress={() => { }}
@@ -281,6 +284,7 @@ const RegistrationView = (props: any) => {
         </View>
         <View style={styles.inputWrap}>
           <InputField
+            disableSpecialCharacters={true}
             require={true}
             placeholderText={strings.whatsappNo}
             handleInputBtnPress={() => { }}
