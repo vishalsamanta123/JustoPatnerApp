@@ -1,5 +1,6 @@
 import ErrorMessage from "app/components/ErrorMessage";
 import {
+  Isios,
   RED_COLOR,
   Regexs,
   validateEmail,
@@ -7,6 +8,7 @@ import {
 import { handleValues } from "app/components/utilities/handleValues";
 import strings from "app/components/utilities/Localization";
 import { addAgentForm, getAgentDetail } from "app/Redux/Actions/AgentActions";
+import { checkEmailMobile, emailCheckRemove } from "app/Redux/Actions/ReggistrationAction";
 import React, { useEffect, useState, useLayoutEffect } from "react";
 import { Keyboard } from "react-native";
 import { useDispatch, useSelector } from "react-redux";
@@ -16,6 +18,7 @@ const AgentBasicInfo = ({ navigation, route }: any) => {
   const { response = {}, detail = "" } = useSelector(
     (state: any) => state.agentData
   );
+  const emailAndMobileData = useSelector((state: any) => state.emailAndMobileData);
   const [agentInfoData, setAgentInfoData] = useState({
     agent_id: "",
     agent_name: "",
@@ -38,6 +41,10 @@ const AgentBasicInfo = ({ navigation, route }: any) => {
     account_no: "",
     ifsc_code: "",
     norera_register: null,
+  });
+  const [emailMobvalidation, setEmailMobValidation] = useState({
+    primary_mobile: null,
+    email: null,
   });
   const dispatch: any = useDispatch();
   const [visible, setVisible] = useState(false);
@@ -78,76 +85,123 @@ const AgentBasicInfo = ({ navigation, route }: any) => {
     navigation.goBack();
   };
   const validation = () => {
-    const { data = {}, type = "" } = route?.params;
-    let isError = true;
-    let errorMessage: any = "";
-    const {
-      agent_name,
-      whatsapp_number,
-      adhar_no,
-      pancard_no,
-      gender,
-      date_of_birth,
-      profile_picture,
-      primary_mobile,
-      email,
-      location,
-      working_location,
-    } = agentInfoData;
-    // if (profile_picture === '' || profile_picture === undefined) {
-    //   isError = false;
-    //   errorMessage = "Please select profile image"
-    // } else
-    if (agent_name === "" || agent_name === undefined) {
-      isError = false;
-      errorMessage = strings.agentNameReqVal;
-    } else if (adhar_no === "" || adhar_no === undefined) {
-      isError = false;
-      errorMessage = strings.aadharReqVal;
-    } else if (Regexs.AadharRegex.test(adhar_no) === false) {
-      isError = false;
-      errorMessage = strings.aadharValidVal;
-    } else if (pancard_no === "" || pancard_no === undefined) {
-      isError = false;
-      errorMessage = strings.pancardReqVal;
-    } else if (Regexs.panRegex.test(pancard_no) === false) {
-      isError = false;
-      errorMessage = strings.pancardValidVal;
-    } else if (gender === "" || gender === undefined) {
-      isError = false;
-      errorMessage = strings.genderReqVal;
-    } else if (date_of_birth === "" || date_of_birth === undefined) {
-      isError = false;
-      errorMessage = strings.dateOfBirthReqVal;
-    } else if (primary_mobile === "" || primary_mobile === undefined) {
-      isError = false;
-      errorMessage = strings.mobileNoReqVal;
-    } else if (whatsapp_number === "" || whatsapp_number === undefined) {
-      isError = false;
-      errorMessage = strings.whatsappNoReqVal;
-    } else if (email === "" || email === undefined) {
-      isError = false;
-      errorMessage = strings.emailReqVal;
-    } else if (type != "edit" && validateEmail.test(email) === false) {
-      isError = false;
-      errorMessage = strings.correctEmailReqVal;
-    } else if (location === "" || location === undefined) {
-      isError = false;
-      errorMessage = strings.addressReqVal;
-    } else if (working_location.length === 0) {
-      isError = false;
-      errorMessage = strings.workingLocationReqVal;
+    if (emailMobvalidation.primary_mobile === "mobileStart" ||
+      emailMobvalidation.email === "emailStart") {
+      Keyboard.dismiss()
+    } else {
+      const { data = {}, type = "" } = route?.params;
+      let isError = true;
+      let errorMessage: any = "";
+      const {
+        agent_name,
+        whatsapp_number,
+        adhar_no,
+        pancard_no,
+        gender,
+        date_of_birth,
+        profile_picture,
+        primary_mobile,
+        email,
+        location,
+        working_location,
+      } = agentInfoData;
+      // if (profile_picture === '' || profile_picture === undefined) {
+      //   isError = false;
+      //   errorMessage = "Please select profile image"
+      // } else
+      if (agent_name === "" || agent_name === undefined) {
+        isError = false;
+        errorMessage = strings.agentNameReqVal;
+      } else if (adhar_no === "" || adhar_no === undefined) {
+        isError = false;
+        errorMessage = strings.aadharReqVal;
+      } else if (Regexs.AadharRegex.test(adhar_no) === false) {
+        isError = false;
+        errorMessage = strings.aadharValidVal;
+      } else if (pancard_no === "" || pancard_no === undefined) {
+        isError = false;
+        errorMessage = strings.pancardReqVal;
+      } else if (Regexs.panRegex.test(pancard_no) === false) {
+        isError = false;
+        errorMessage = strings.pancardValidVal;
+      } else if (gender === "" || gender === undefined) {
+        isError = false;
+        errorMessage = strings.genderReqVal;
+      } else if (date_of_birth === "" || date_of_birth === undefined) {
+        isError = false;
+        errorMessage = strings.dateOfBirthReqVal;
+      } else if (primary_mobile === "" || primary_mobile === undefined) {
+        isError = false;
+        errorMessage = strings.mobileNoReqVal;
+      } else if (primary_mobile?.length < 10) {
+        isError = false;
+        errorMessage = strings.mobileNoValidReqVal;
+      } else if (type != "edit" && emailMobvalidation.primary_mobile == null) {
+        isError = false;
+        errorMessage = strings.mobileAlreadyValidReqVal;
+      } else if (whatsapp_number === "" || whatsapp_number === undefined) {
+        isError = false;
+        errorMessage = strings.whatsappNoReqVal;
+      } else if (email === "" || email === undefined) {
+        isError = false;
+        errorMessage = strings.emailReqVal;
+      } else if (type != "edit" && validateEmail.test(email) === false) {
+        isError = false;
+        errorMessage = strings.correctEmailReqVal;
+      } else if (type != "edit" && emailMobvalidation.email == null) {
+        isError = false;
+        errorMessage = strings.emailAlreadyReqVal;
+      } else if (location === "" || location === undefined) {
+        isError = false;
+        errorMessage = strings.addressReqVal;
+      } else if (working_location.length === 0) {
+        isError = false;
+        errorMessage = strings.workingLocationReqVal;
+      }
+      if (errorMessage !== "") {
+        ErrorMessage({
+          msg: errorMessage,
+          backgroundColor: RED_COLOR,
+        });
+      }
+      return isError;
     }
-    if (errorMessage !== "") {
-      ErrorMessage({
-        msg: errorMessage,
-        backgroundColor: RED_COLOR,
-      });
+
+  };
+  useEffect(() => {
+    if (emailAndMobileData?.response?.status === 200) {
+      dispatch(emailCheckRemove());
+      switch (emailAndMobileData?.check_type) {
+        case 'mobile':
+          setEmailMobValidation({
+            ...emailMobvalidation,
+            primary_mobile: emailAndMobileData?.check_type,
+          })
+          break;
+        case 'email':
+          setEmailMobValidation({
+            ...emailMobvalidation,
+            email: emailAndMobileData?.check_type,
+          })
+          break;
+        default:
+          break;
+      }
+      // ErrorMessage({
+      //   msg: emailAndMobileData?.response?.message,
+      //   backgroundColor: GREEN_COLOR
+      // })
     }
-    return isError;
+  }, [emailAndMobileData]);
+  const handleCheckEmailMobile = (type: any) => {
+    const params =
+      type == 1
+        ? { mobile: agentInfoData?.primary_mobile }
+        : { email: agentInfoData?.email };
+    dispatch(checkEmailMobile(params));
   };
   const onPressNext = () => {
-    Keyboard.dismiss()
+    Isios && Keyboard.dismiss()
     if (validation()) {
       dispatch(addAgentForm(agentInfoData));
       navigation.navigate("AgentBankInfo", { type: route?.params?.type });
@@ -164,6 +218,9 @@ const AgentBasicInfo = ({ navigation, route }: any) => {
       setVisible={setVisible}
       locationModel={locationModel}
       setLocationModel={setLocationModel}
+      handleCheckEmailMobile={handleCheckEmailMobile}
+      emailMobvalidation={emailMobvalidation}
+      setEmailMobValidation={setEmailMobValidation}
     />
   );
 };

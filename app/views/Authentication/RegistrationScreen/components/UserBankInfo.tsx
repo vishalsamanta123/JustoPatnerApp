@@ -11,7 +11,7 @@ import {
 import React, { useEffect, useState } from "react";
 import images from "../../../../assets/images";
 import InputField from "../../../../components/InputField";
-import { BLACK_COLOR, GRAY_LIGHT_COLOR, Isios, PRIMARY_THEME_COLOR, RED_COLOR, WHITE_COLOR } from "../../../../components/utilities/constant";
+import { BLACK_COLOR, GRAY_LIGHT_COLOR, Isios, PRIMARY_THEME_COLOR, RED_COLOR, Regexs, WHITE_COLOR } from "../../../../components/utilities/constant";
 import strings from "../../../../components/utilities/Localization";
 import styles from "./styles";
 import Styles from "../../../../components/DropDown/styles";
@@ -82,25 +82,31 @@ const UserBankInfo = ({ navigation }: any) => {
     } else if (formData.norera_register === null) {
       isError = false;
       errorMessage = strings.noReraRegReqVal;
+    } else if (formData.bank_name == '' || formData.bank_name == undefined) {
+      isError = false;
+      errorMessage = strings.bankNameReqVal
+    } else if (formData.branch_name == '' || formData.branch_name == undefined) {
+      isError = false;
+      errorMessage = strings.branchNameReqVal
+    } else if (formData.account_no == '' || formData.account_no == undefined) {
+      isError = false;
+      errorMessage = strings.accountNoReqVal
+    } else if (
+      Regexs.accountnumRegex.test(formData.account_no) === false
+    ) {
+      isError = false;
+      errorMessage = strings.accountNoValidVal;
+    } else if (formData.ifsc_code == '' || formData.ifsc_code == undefined) {
+      isError = false;
+      errorMessage = strings.ifscReqVal
+    } else if (
+      Regexs.ifscRegex.test(formData.ifsc_code) === false
+    ) {
+      isError = false;
+      errorMessage = strings.ifscValidVal;
     } else if (formData.cancel_cheaque == '' || formData.cancel_cheaque == undefined) {
       isError = false;
       errorMessage = strings.cancelChqImgReqVal
-    }
-    else if (formData.bank_name == '' || formData.bank_name == undefined) {
-      isError = false;
-      errorMessage = strings.bankNameReqVal
-    }
-    else if (formData.branch_name == '' || formData.branch_name == undefined) {
-      isError = false;
-      errorMessage = strings.branchNameReqVal
-    }
-    else if (formData.account_no == '' || formData.account_no == undefined) {
-      isError = false;
-      errorMessage = strings.accountNoReqVal
-    }
-    else if (formData.ifsc_code == '' || formData.ifsc_code == undefined) {
-      isError = false;
-      errorMessage = strings.ifscReqVal
     }
     if (errorMessage !== '') {
       ErrorMessage({

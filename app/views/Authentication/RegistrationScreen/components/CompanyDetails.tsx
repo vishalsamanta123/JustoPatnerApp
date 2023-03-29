@@ -1,7 +1,7 @@
 import { View, Text, StatusBar, TouchableOpacity, ScrollView, BackHandler, Image } from "react-native";
 import React, { useEffect, useState } from "react";
 import styles from "./styles";
-import { BLACK_COLOR, GREEN_COLOR, Isios, PRIMARY_THEME_COLOR, RED_COLOR, WHITE_COLOR } from "../../../../components/utilities/constant";
+import { BLACK_COLOR, GREEN_COLOR, Isios, PRIMARY_THEME_COLOR, RED_COLOR, Regexs, WHITE_COLOR } from "../../../../components/utilities/constant";
 import { useSafeAreaInsets } from "react-native-safe-area-context";
 import Header from "../../../../components/Header";
 import strings from "../../../../components/utilities/Localization";
@@ -47,38 +47,40 @@ const CompanyDetails = ({ navigation }: any) => {
     if (formData.agency_name == '' || formData.agency_name == undefined) {
       isError = false;
       errorMessage = strings.agencyNameReqVal
-    }
-    else if (formData.gst == '' || formData.gst == undefined) {
+    } else if (formData.gst == '' || formData.gst == undefined) {
       isError = false;
       errorMessage = strings.gstReqVal
-    }
-    else if (formData.pancard == '' || formData.pancard == undefined) {
-      isError = false;
-      errorMessage = strings.comPanCardImgReqVal
-    }
-    else if (formData.declaration_letter_of_company == '' || formData.declaration_letter_of_company == undefined) {
-      isError = false;
-      errorMessage = strings.declLttrComImgReqVal
-    }
-    else if (formData.rera_registration == '' || formData.rera_registration == undefined) {
+    } else if (formData.rera_registration == '' || formData.rera_registration == undefined) {
       isError = false;
       errorMessage = strings.reraRegstrReqVal
-    }
-    else if (formData.company_bank_name == '' || formData.company_bank_name == undefined) {
+    } else if (formData.pancard == '' || formData.pancard == undefined) {
+      isError = false;
+      errorMessage = strings.comPanCardImgReqVal
+    } else if (formData.declaration_letter_of_company == '' || formData.declaration_letter_of_company == undefined) {
+      isError = false;
+      errorMessage = strings.declLttrComImgReqVal
+    } else if (formData.company_bank_name == '' || formData.company_bank_name == undefined) {
       isError = false;
       errorMessage = strings.bankNameReqVal
-    }
-    else if (formData.company_branch_name == '' || formData.company_branch_name == undefined) {
+    } else if (formData.company_branch_name == '' || formData.company_branch_name == undefined) {
       isError = false;
       errorMessage = strings.branchNameReqVal
-    }
-    else if (formData.company_account_no == '' || formData.company_account_no == undefined) {
+    } else if (formData.company_account_no == '' || formData.company_account_no == undefined) {
       isError = false;
       errorMessage = strings.accountNoReqVal
-    }
-    else if (formData.company_ifsc_code == '' || formData.company_ifsc_code == undefined) {
+    } else if (
+      Regexs.accountnumRegex.test(formData.company_account_no) === false
+    ) {
+      isError = false;
+      errorMessage = strings.accountNoValidVal;
+    } else if (formData.company_ifsc_code == '' || formData.company_ifsc_code == undefined) {
       isError = false;
       errorMessage = strings.ifscReqVal
+    } else if (
+      Regexs.ifscRegex.test(formData.company_ifsc_code) === false
+    ) {
+      isError = false;
+      errorMessage = strings.ifscValidVal;
     }
     if (errorMessage !== '') {
       ErrorMessage({

@@ -16,6 +16,8 @@ import {
   DATE_FORMAT,
   Isios,
   PRIMARY_THEME_COLOR,
+  Regexs,
+  validateEmail,
   WHITE_COLOR,
 } from "../../../../components/utilities/constant";
 import { useSafeAreaInsets } from "react-native-safe-area-context";
@@ -236,11 +238,42 @@ const AgentBasicInfoView = (props: any) => {
                   ...props.agentInfoData,
                   primary_mobile: data,
                 });
+                if (Regexs.mobilenumRegex.test(data)) {
+                  props.setEmailMobValidation({
+                    ...props.emailMobvalidation,
+                    primary_mobile: 'mobileStart',
+                  })
+                } else {
+                  props.setEmailMobValidation({
+                    ...props.emailMobvalidation,
+                    primary_mobile: null,
+                  })
+                }
               }}
               valueshow={props?.agentInfoData?.primary_mobile?.toString()}
               headingText={strings.mobileNo}
               maxLength={10}
               keyboardtype={"number-pad"}
+              rightImageVw={styles.tickImgVw}
+              rightImageSty={styles.tickImg}
+              rightImgSrc={props?.emailMobvalidation?.primary_mobile?.toString() === 'mobile' ? images.check : null}
+              onFocus={() => {
+                if (props.agentInfoData?.primary_mobile !== props.agentInfoData?.primary_mobile) {
+                  props.setEmailMobValidation({
+                    ...props.emailMobvalidation,
+                    primary_mobile: null,
+                  })
+                }
+              }}
+              onBlur={(val: any) => {
+                if (Regexs.mobilenumRegex.test(props.agentInfoData?.primary_mobile)) {
+                  props.handleCheckEmailMobile(1);
+                  props.setEmailMobValidation({
+                    ...props.emailMobvalidation,
+                    primary_mobile: null,
+                  })
+                }
+              }}
             />
           </View>
           <View style={styles.inputWrap}>
@@ -271,9 +304,40 @@ const AgentBasicInfoView = (props: any) => {
                   ...props.agentInfoData,
                   email: data,
                 });
+                if (validateEmail.test(data)) {
+                  props.setEmailMobValidation({
+                    ...props.emailMobvalidation,
+                    email: 'emailStart',
+                  })
+                } else {
+                  props.setEmailMobValidation({
+                    ...props.emailMobvalidation,
+                    email: null,
+                  })
+                }
               }}
               valueshow={props?.agentInfoData?.email}
               headingText={strings.email + " " + strings.address}
+              onFocus={() => {
+                if (props.agentInfoData?.email !== props.agentInfoData?.email) {
+                  props.setEmailMobValidation({
+                    ...props.emailMobvalidation,
+                    email: null,
+                  })
+                }
+              }}
+              rightImgSrc={props?.emailMobvalidation?.email === 'email' ? images.check : null}
+              rightImageVw={styles.tickImgVw}
+              rightImageSty={styles.tickImg}
+              onBlur={(val: any) => {
+                if (validateEmail.test(props.agentInfoData.email)) {
+                  props.handleCheckEmailMobile();
+                  props.setEmailMobValidation({
+                    ...props.emailMobvalidation,
+                    email: null,
+                  })
+                }
+              }}
             />
           </View>
           <View style={[styles.inputWrap, {}]}>
