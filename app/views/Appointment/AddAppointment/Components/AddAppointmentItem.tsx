@@ -23,7 +23,6 @@ import CheckBox from "@react-native-community/checkbox";
 const AddAppointmentItem = (props: any) => {
   return (
     <ScrollView keyboardShouldPersistTaps={"handled"}
-      automaticallyAdjustKeyboardInsets={Isios ? true : false}
     >
       <View style={styles.wrap}>
         <View style={styles.inputWrap}>
