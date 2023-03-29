@@ -1,7 +1,7 @@
 import { View, TextInput, Image, TouchableOpacity, Text } from "react-native";
 import React from "react";
 import styles from "./styles";
-import { BLACK_COLOR, GRAY_LIGHT_COLOR } from "../utilities/constant";
+import { BLACK_COLOR, GRAY_LIGHT_COLOR, Regexs } from "../utilities/constant";
 import images from "../../assets/images";
 import {
   normalizeHeight,
@@ -65,8 +65,15 @@ const CommonInput = (props: any) => {
                 formattedText = formattedText
                   .match(new RegExp(".{1,4}", "g"))
                   .join(" ");
-                }
+              }
+              // props.disableSpecialCharacters === true &&
+              if (Regexs.alphaNumeric.test(val) === true) {
                 props.onChangeText(formattedText);
+              }
+            } else if (props.disableSpecialCharacters === true) {
+              if (Regexs.alphaNumeric.test(val) === true) {
+                props.onChangeText(val);
+              }
             } else {
               props.onChangeText(val);
             }

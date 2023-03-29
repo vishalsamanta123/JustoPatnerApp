@@ -93,6 +93,17 @@ const styles = StyleSheet.create({
   inputWrap: {
     marginTop: normalizeSpacing(30),
   },
+  tickImgVw: {
+    backgroundColor: PRIMARY_THEME_COLOR,
+    borderRadius: normalize(50),
+    marginRight: normalize(15),
+    padding: normalize(2)
+  },
+  tickImg: {
+    height: normalizeHeight(18),
+    width: normalizeWidth(18),
+    tintColor: WHITE_COLOR
+  },
   flexRowVw: {
     flex: 1,
     flexDirection: "row",

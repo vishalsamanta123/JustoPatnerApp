@@ -8,7 +8,7 @@ import {
 import React, { useEffect, useState } from "react";
 import images from "../../../../assets/images";
 import InputField from "../../../../components/InputField";
-import { BLACK_COLOR, GRAY_LIGHT_COLOR, GREEN_COLOR, PRIMARY_THEME_COLOR, WHITE_COLOR } from "../../../../components/utilities/constant";
+import { BLACK_COLOR, GRAY_LIGHT_COLOR, GREEN_COLOR, PRIMARY_THEME_COLOR, RED_COLOR, Regexs, WHITE_COLOR } from "../../../../components/utilities/constant";
 import strings from "../../../../components/utilities/Localization";
 import styles from "./styles";
 import { useSafeAreaInsets } from "react-native-safe-area-context";
@@ -37,9 +37,27 @@ const EditBankDetails = ({ navigation }: any) => {
   const onPressBack = () => {
     navigation.goBack()
   }
+  const validation = () => {
+    let isError = true;
+    let errorMessage: any = "";
+    if (bankData?.account_no && Regexs.accountnumRegex.test(bankData?.account_no) === false) {
+      isError = false;
+      errorMessage = strings.accountNoValidVal;
+    } else if (bankData?.ifsc_code && Regexs.ifscRegex.test(bankData?.ifsc_code) === false) {
+      isError = false;
+      errorMessage = strings.ifscValidVal;
+    }
+    if (errorMessage !== "") {
+      ErrorMessage({
+        msg: errorMessage,
+        backgroundColor: RED_COLOR,
+      });
+    }
+    return isError
+  }
   const onPressNext = () => {
     const allData = { ...editData, ...bankData }
-    if (true) {
+    if (validation()) {
       dispatch(addAgentForm(allData))
       navigation.navigate('EditCompanyDetail')
     }
@@ -142,6 +160,7 @@ const EditBankDetails = ({ navigation }: any) => {
         </View>
         <View style={styles.inputWrap}>
           <InputField
+            disableSpecialCharacters={true}
             valueshow={bankData?.bank_name}
             handleInputBtnPress={() => { }}
             headingText={strings.bankName}
@@ -154,6 +173,7 @@ const EditBankDetails = ({ navigation }: any) => {
         </View>
         <View style={styles.inputWrap}>
           <InputField
+            disableSpecialCharacters={true}
             valueshow={bankData?.branch_name}
             handleInputBtnPress={() => { }}
             headingText={strings.branchName}
@@ -166,9 +186,10 @@ const EditBankDetails = ({ navigation }: any) => {
         </View>
         <View style={styles.inputWrap}>
           <InputField
+            disableSpecialCharacters={true}
             valueshow={bankData?.account_no}
             handleInputBtnPress={() => { }}
-            headingText={strings.bankName + " " + strings.shortNum}
+            headingText={strings.accountNo}
             maxLength={18}
             onChangeText={(val: any) => {
               setBankData({
@@ -179,6 +200,7 @@ const EditBankDetails = ({ navigation }: any) => {
         </View>
         <View style={styles.inputWrap}>
           <InputField
+            disableSpecialCharacters={true}
             valueshow={bankData?.ifsc_code}
             handleInputBtnPress={() => { }}
             headingText={strings.ifscCode}

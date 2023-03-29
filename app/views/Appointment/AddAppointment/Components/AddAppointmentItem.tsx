@@ -284,6 +284,7 @@ const AddAppointmentItem = (props: any) => {
               </View>
               <View style={styles.inputWrap}>
                 <InputField
+                  disableSpecialCharacters={true}
                   require={true}
                   placeholderText={strings.noofguest}
                   handleInputBtnPress={() => { }}

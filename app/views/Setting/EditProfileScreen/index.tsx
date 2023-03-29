@@ -22,18 +22,12 @@ const EditProfileScreen = ({ navigation, route }: any) => {
   const validation = () => {
     let isError = true;
     let errorMessage: any = "";
-    if (editData?.adhar_no && editData?.adhar_no !== null) {
-      if (Regexs.AadharRegex.test(editData?.adhar_no) === false) {
-        isError = false;
-        errorMessage = strings.aadharValidVal;
-      } else {
-        if (editData?.pancard_no && editData?.pancard_no !== null) {
-          if (Regexs.panRegex.test(editData?.pancard_no) === false) {
-            isError = false;
-            errorMessage = strings.pancardValidVal;
-          }
-        }
-      }
+    if (editData?.adhar_no && Regexs.AadharRegex.test(editData?.adhar_no) === false) {
+      isError = false;
+      errorMessage = strings.aadharValidVal;
+    } else if (editData?.pancard_no && Regexs.panRegex.test(editData?.pancard_no) === false) {
+      isError = false;
+      errorMessage = strings.pancardValidVal;
     }
     if (errorMessage !== "") {
       ErrorMessage({

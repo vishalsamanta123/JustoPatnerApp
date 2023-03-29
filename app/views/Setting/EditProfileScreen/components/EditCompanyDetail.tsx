@@ -1,7 +1,7 @@
 import { View, Text, TouchableOpacity, ScrollView } from "react-native";
 import React, { useEffect, useState } from "react";
 import styles from "./styles";
-import { BLACK_COLOR, GREEN_COLOR, Isios, PRIMARY_THEME_COLOR, WHITE_COLOR } from "../../../../components/utilities/constant";
+import { BLACK_COLOR, GREEN_COLOR, Isios, PRIMARY_THEME_COLOR, RED_COLOR, Regexs, WHITE_COLOR } from "../../../../components/utilities/constant";
 import { useSafeAreaInsets } from "react-native-safe-area-context";
 import Header from "../../../../components/Header";
 import strings from "../../../../components/utilities/Localization";
@@ -46,50 +46,70 @@ const EditCompanyDetails = ({ navigation }: any) => {
             },)
         }
     }, [editUser])
+    const validation = () => {
+        let isError = true;
+        let errorMessage: any = "";
+        if (editData?.company_account_no && Regexs.accountnumRegex.test(editData?.company_account_no) === false) {
+            isError = false;
+            errorMessage = strings.accountNoValidVal;
+        } else if (editData?.company_ifsc_code && Regexs.ifscRegex.test(editData?.company_ifsc_code) === false) {
+            isError = false;
+            errorMessage = strings.ifscValidVal;
+        }
+        if (errorMessage !== "") {
+            ErrorMessage({
+                msg: errorMessage,
+                backgroundColor: RED_COLOR,
+            });
+        }
+        return isError
+    }
     const handleUpdatePress = () => {
-        const editFormData: any = new FormData();
-        editFormData.append("cp_id", editData?.cp_id);
-        editFormData.append("location", editData?.location);
-        editFormData.append("pin_code", editData?.pin_code);
-        editFormData.append("working_location", JSON.stringify(editData?.working_location));
-        editFormData.append("owner_name", editData?.owner_name);
-        //1st
-        editData?.profile_picture?.uri &&
-            editFormData.append("profile_picture", editData?.profile_picture);
-        editFormData.append("agent_name", editData?.agent_name);
-        editFormData.append("adhar_no", editData?.adhar_no);
-        editFormData.append("pancard_no", editData?.pancard_no);
-        editFormData.append("gender", editData?.gender);
-        editFormData.append("date_of_birth", moment(editData?.date_of_birth).format());
-        editFormData.append("primary_mobile", editData?.primary_mobile);
-        editFormData.append("whatsapp_number", editData?.whatsapp_number);
-        editFormData.append("email", editData?.email);
-        editFormData.append("address", editData?.address);
-        editFormData.append("latitude", editData?.latitude);
-        editFormData.append("longitude", editData?.longitude);
-        //2nd 
-        editFormData.append("rera_certificate_no", editData?.rera_certificate_no);
-        editData?.rera_certificate &&
-            editFormData.append("rera_certificate", editData?.rera_certificate);
-        editData?.propidership_declaration_letter?.uri &&
-            editFormData.append("propidership_declaration_letter", editData?.propidership_declaration_letter);
-        editFormData.append("bank_name", editData?.bank_name);
-        editFormData.append("branch_name", editData?.branch_name);
-        editFormData.append("account_no", editData?.account_no);
-        editFormData.append("ifsc_code", editData?.ifsc_code);
-        //3rd 
-        editFormData.append("agency_name", editData?.agency_name);
-        editFormData.append("gst", editData?.gst);
-        editFormData.append("rera_registration", editData?.rera_registration);
-        editData?.company_pancard?.uri &&
-            editFormData.append("company_pancard", editData?.company_pancard);
-        editData?.declaration_letter_of_company?.uri &&
-            editFormData.append("declaration_letter_of_company", editData?.declaration_letter_of_company);
-        editFormData.append("company_bank_name", editData?.company_bank_name);
-        editFormData.append("company_branch_name", editData?.company_branch_name);
-        editFormData.append("company_account_no", editData?.company_account_no);
-        editFormData.append("company_ifsc_code", editData?.company_ifsc_code);
-        dispatch(updateUserSettingData(editFormData));
+        if (validation()) {
+            const editFormData: any = new FormData();
+            editFormData.append("cp_id", editData?.cp_id);
+            editFormData.append("location", editData?.location);
+            editFormData.append("pin_code", editData?.pin_code);
+            editFormData.append("working_location", JSON.stringify(editData?.working_location));
+            editFormData.append("owner_name", editData?.owner_name);
+            //1st
+            editData?.profile_picture?.uri &&
+                editFormData.append("profile_picture", editData?.profile_picture);
+            editFormData.append("agent_name", editData?.agent_name);
+            editFormData.append("adhar_no", editData?.adhar_no);
+            editFormData.append("pancard_no", editData?.pancard_no);
+            editFormData.append("gender", editData?.gender);
+            editFormData.append("date_of_birth", moment(editData?.date_of_birth).format());
+            editFormData.append("primary_mobile", editData?.primary_mobile);
+            editFormData.append("whatsapp_number", editData?.whatsapp_number);
+            editFormData.append("email", editData?.email);
+            editFormData.append("address", editData?.address);
+            editFormData.append("latitude", editData?.latitude);
+            editFormData.append("longitude", editData?.longitude);
+            //2nd 
+            editFormData.append("rera_certificate_no", editData?.rera_certificate_no);
+            editData?.rera_certificate &&
+                editFormData.append("rera_certificate", editData?.rera_certificate);
+            editData?.propidership_declaration_letter?.uri &&
+                editFormData.append("propidership_declaration_letter", editData?.propidership_declaration_letter);
+            editFormData.append("bank_name", editData?.bank_name);
+            editFormData.append("branch_name", editData?.branch_name);
+            editFormData.append("account_no", editData?.account_no);
+            editFormData.append("ifsc_code", editData?.ifsc_code);
+            //3rd 
+            editFormData.append("agency_name", editData?.agency_name);
+            editFormData.append("gst", editData?.gst);
+            editFormData.append("rera_registration", editData?.rera_registration);
+            editData?.company_pancard?.uri &&
+                editFormData.append("company_pancard", editData?.company_pancard);
+            editData?.declaration_letter_of_company?.uri &&
+                editFormData.append("declaration_letter_of_company", editData?.declaration_letter_of_company);
+            editFormData.append("company_bank_name", editData?.company_bank_name);
+            editFormData.append("company_branch_name", editData?.company_branch_name);
+            editFormData.append("company_account_no", editData?.company_account_no);
+            editFormData.append("company_ifsc_code", editData?.company_ifsc_code);
+            dispatch(updateUserSettingData(editFormData));
+        }
     };
     const insets = useSafeAreaInsets();
     const onPressBack = () => {
@@ -112,6 +132,7 @@ const EditCompanyDetails = ({ navigation }: any) => {
                 automaticallyAdjustKeyboardInsets={Isios ? true : false}>
                 <View style={styles.inputWrap}>
                     <InputField
+                        disableSpecialCharacters={true}
                         // require={true}
                         placeholderText={strings.agency + " " + strings.name}
                         handleInputBtnPress={() => { }}
@@ -126,6 +147,7 @@ const EditCompanyDetails = ({ navigation }: any) => {
                 </View>
                 <View style={styles.inputWrap}>
                     <InputField
+                        disableSpecialCharacters={true}
                         // require={true}
                         placeholderText={strings.gst}
                         headingText={strings.gst}
@@ -221,6 +243,7 @@ const EditCompanyDetails = ({ navigation }: any) => {
                 </View>
                 <View style={styles.inputWrap}>
                     <InputField
+                        disableSpecialCharacters={true}
                         // require={true}
                         placeholderText={strings.bankName}
                         handleInputBtnPress={() => { }}
@@ -235,6 +258,7 @@ const EditCompanyDetails = ({ navigation }: any) => {
                 </View>
                 <View style={styles.inputWrap}>
                     <InputField
+                        disableSpecialCharacters={true}
                         // require={true}
                         placeholderText={strings.branchName}
                         handleInputBtnPress={() => { }}
@@ -249,6 +273,7 @@ const EditCompanyDetails = ({ navigation }: any) => {
                 </View>
                 <View style={styles.inputWrap}>
                     <InputField
+                        disableSpecialCharacters={true}
                         // require={true}
                         placeholderText={strings.accountNo}
                         handleInputBtnPress={() => { }}
@@ -265,6 +290,7 @@ const EditCompanyDetails = ({ navigation }: any) => {
                 </View>
                 <View style={styles.inputWrap}>
                     <InputField
+                        disableSpecialCharacters={true}
                         // require={true}
                         placeholderText={strings.ifscCode}
                         handleInputBtnPress={() => { }}

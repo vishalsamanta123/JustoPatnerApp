@@ -122,6 +122,7 @@ const AddNewVisitorForm = (props: any) => {
           <Text style={styles.headingText}>{strings.visitordetails}</Text>
           <View style={styles.inputWrap}>
             <InputField
+              disableSpecialCharacters={true}
               require={true}
               placeholderText={strings.visitor + " " + strings.name}
               handleInputBtnPress={() => { }}
@@ -137,6 +138,7 @@ const AddNewVisitorForm = (props: any) => {
           </View>
           <View style={styles.inputWrap}>
             <InputField
+              disableSpecialCharacters={true}
               require={true}
               placeholderText={strings.mobileNo}
               headingText={strings.mobileNo}
@@ -212,6 +214,7 @@ const AddNewVisitorForm = (props: any) => {
           </View>
           <View style={styles.inputWrap}>
             <InputField
+              disableSpecialCharacters={true}
               placeholderText={"BNZAA2318JM"}
               handleInputBtnPress={() => { }}
               onChangeText={(data: any) => {
@@ -311,6 +314,7 @@ const AddNewVisitorForm = (props: any) => {
 
           <View style={styles.inputWrap}>
             <InputField
+              disableSpecialCharacters={true}
               placeholderText={strings.whatsappNo}
               handleInputBtnPress={() => { }}
               onChangeText={(data: any) => {
@@ -361,6 +365,7 @@ const AddNewVisitorForm = (props: any) => {
           </View>
           <View style={styles.inputWrap}>
             <InputField
+              disableSpecialCharacters={true}
               placeholderText={strings.locality}
               handleInputBtnPress={() => { }}
               onChangeText={(data: any) => {
@@ -680,6 +685,7 @@ const AddNewVisitorForm = (props: any) => {
           </View>
           <View style={styles.inputWrap}>
             <InputField
+              disableSpecialCharacters={true}
               placeholderText={strings.areaSqft}
               handleInputBtnPress={() => { }}
               onChangeText={(data: any) => {
@@ -1146,6 +1152,7 @@ const AddNewVisitorForm = (props: any) => {
           </View>
           <View style={styles.inputWrap}>
             <InputField
+              disableSpecialCharacters={true}
               placeholderText={strings.company + " " + strings.name}
               handleInputBtnPress={() => { }}
               onChangeText={(data: any) => {
@@ -1160,6 +1167,7 @@ const AddNewVisitorForm = (props: any) => {
           </View>
           <View style={styles.inputWrap}>
             <InputField
+              disableSpecialCharacters={true}
               placeholderText={strings.designation}
               handleInputBtnPress={() => { }}
               onChangeText={(data: any) => {
@@ -1174,6 +1182,7 @@ const AddNewVisitorForm = (props: any) => {
           </View>
           <View style={styles.inputWrap}>
             <InputField
+              disableSpecialCharacters={true}
               placeholderText={strings.offcAddress}
               handleInputBtnPress={() => { }}
               onChangeText={(data: any) => {
