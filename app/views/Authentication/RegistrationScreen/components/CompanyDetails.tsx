@@ -172,6 +172,7 @@ const CompanyDetails = ({ navigation }: any) => {
         contentContainerStyle={styles.wrap}>
         <View style={styles.inputWrap}>
           <InputField
+            disableSpecialCharacters={true}
             require={true}
             placeholderText={strings.agency + " " + strings.name}
             handleInputBtnPress={() => { }}
@@ -186,6 +187,7 @@ const CompanyDetails = ({ navigation }: any) => {
         </View>
         <View style={styles.inputWrap}>
           <InputField
+            disableSpecialCharacters={true}
             require={true}
             placeholderText={strings.gst}
             headingText={strings.gst}
@@ -277,6 +279,7 @@ const CompanyDetails = ({ navigation }: any) => {
         </View>
         <View style={styles.inputWrap}>
           <InputField
+            disableSpecialCharacters={true}
             require={true}
             placeholderText={strings.bankName}
             handleInputBtnPress={() => { }}
@@ -291,6 +294,7 @@ const CompanyDetails = ({ navigation }: any) => {
         </View>
         <View style={styles.inputWrap}>
           <InputField
+            disableSpecialCharacters={true}
             require={true}
             placeholderText={strings.branchName}
             handleInputBtnPress={() => { }}
@@ -305,6 +309,7 @@ const CompanyDetails = ({ navigation }: any) => {
         </View>
         <View style={styles.inputWrap}>
           <InputField
+            disableSpecialCharacters={true}
             require={true}
             placeholderText={strings.accountNo}
             handleInputBtnPress={() => { }}
@@ -321,6 +326,7 @@ const CompanyDetails = ({ navigation }: any) => {
         </View>
         <View style={styles.inputWrap}>
           <InputField
+            disableSpecialCharacters={true}
             require={true}
             placeholderText={strings.ifscCode}
             handleInputBtnPress={() => { }}

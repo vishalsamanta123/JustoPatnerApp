@@ -132,6 +132,7 @@ const EditCompanyDetails = ({ navigation }: any) => {
                 automaticallyAdjustKeyboardInsets={Isios ? true : false}>
                 <View style={styles.inputWrap}>
                     <InputField
+                        disableSpecialCharacters={true}
                         // require={true}
                         placeholderText={strings.agency + " " + strings.name}
                         handleInputBtnPress={() => { }}
@@ -146,6 +147,7 @@ const EditCompanyDetails = ({ navigation }: any) => {
                 </View>
                 <View style={styles.inputWrap}>
                     <InputField
+                        disableSpecialCharacters={true}
                         // require={true}
                         placeholderText={strings.gst}
                         headingText={strings.gst}
@@ -241,6 +243,7 @@ const EditCompanyDetails = ({ navigation }: any) => {
                 </View>
                 <View style={styles.inputWrap}>
                     <InputField
+                        disableSpecialCharacters={true}
                         // require={true}
                         placeholderText={strings.bankName}
                         handleInputBtnPress={() => { }}
@@ -255,6 +258,7 @@ const EditCompanyDetails = ({ navigation }: any) => {
                 </View>
                 <View style={styles.inputWrap}>
                     <InputField
+                        disableSpecialCharacters={true}
                         // require={true}
                         placeholderText={strings.branchName}
                         handleInputBtnPress={() => { }}
@@ -269,6 +273,7 @@ const EditCompanyDetails = ({ navigation }: any) => {
                 </View>
                 <View style={styles.inputWrap}>
                     <InputField
+                        disableSpecialCharacters={true}
                         // require={true}
                         placeholderText={strings.accountNo}
                         handleInputBtnPress={() => { }}
@@ -285,6 +290,7 @@ const EditCompanyDetails = ({ navigation }: any) => {
                 </View>
                 <View style={styles.inputWrap}>
                     <InputField
+                        disableSpecialCharacters={true}
                         // require={true}
                         placeholderText={strings.ifscCode}
                         handleInputBtnPress={() => { }}

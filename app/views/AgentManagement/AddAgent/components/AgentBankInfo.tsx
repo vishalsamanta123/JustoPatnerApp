@@ -195,6 +195,7 @@ const AgentBankInfo = ({ navigation, route }: any) => {
         <View style={styles.wraptop}>
           <View style={styles.inputWrap}>
             <InputField
+              disableSpecialCharacters={true}
               // require={true}
               placeholderText={strings.reraCertificate + " " + strings.shortNum} //can edit
               handleInputBtnPress={() => { }}
@@ -309,6 +310,7 @@ const AgentBankInfo = ({ navigation, route }: any) => {
           </View>
           <View style={styles.inputWrap}>
             <InputField
+              disableSpecialCharacters={true}
               require={true}
               placeholderText={strings.bankName}
               handleInputBtnPress={() => { }}
@@ -324,6 +326,7 @@ const AgentBankInfo = ({ navigation, route }: any) => {
           </View>
           <View style={styles.inputWrap}>
             <InputField
+              disableSpecialCharacters={true}
               require={true}
               placeholderText={strings.branchName}
               handleInputBtnPress={() => { }}
@@ -339,6 +342,7 @@ const AgentBankInfo = ({ navigation, route }: any) => {
           </View>
           <View style={styles.inputWrap}>
             <InputField
+              disableSpecialCharacters={true}
               require={true}
               placeholderText={strings.accountNo}
               handleInputBtnPress={() => { }}
@@ -356,6 +360,7 @@ const AgentBankInfo = ({ navigation, route }: any) => {
           </View>
           <View style={styles.inputWrap}>
             <InputField
+              disableSpecialCharacters={true}
               require={true}
               placeholderText={strings.ifscCode}
               handleInputBtnPress={() => { }}

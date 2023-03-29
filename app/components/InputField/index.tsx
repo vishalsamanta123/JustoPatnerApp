@@ -17,7 +17,8 @@ const InputField = (props: any) => {
     keyboardtype = 'default',
     topping = 2,
     inputType = "normal",
-    require = false
+    require = false,
+    disableSpecialCharacters = false
   } = props
   const onSubmit = (e: any) => {
     const { text } = e;
@@ -68,6 +69,7 @@ const InputField = (props: any) => {
             rightImgSrc={props.rightImgSrc}
             rightImageSty={props.rightImageSty}
             rightImageVw={props.rightImageVw}
+            disableSpecialCharacters={disableSpecialCharacters}
           />
         }
         {/* <View style={styles.inputHeadinView}>
