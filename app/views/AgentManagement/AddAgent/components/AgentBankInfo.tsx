@@ -15,6 +15,7 @@ import {
   Isios,
   PRIMARY_THEME_COLOR,
   RED_COLOR,
+  Regexs,
 } from "../../../../components/utilities/constant";
 import strings from "../../../../components/utilities/Localization";
 import styles from "./styles";
@@ -108,9 +109,19 @@ const AgentBankInfo = ({ navigation, route }: any) => {
     } else if (account_no === "" || account_no === undefined) {
       isError = false;
       errorMessage = strings.accountNoReqVal;
+    } else if (
+      Regexs.accountnumRegex.test(account_no) === false
+    ) {
+      isError = false;
+      errorMessage = strings.accountNoValidVal;
     } else if (ifsc_code === "" || ifsc_code === undefined) {
       isError = false;
       errorMessage = strings.ifscReqVal;
+    } else if (
+      Regexs.ifscRegex.test(ifsc_code) === false
+    ) {
+      isError = false;
+      errorMessage = strings.ifscValidVal;
     } else if (cancel_cheaque === "" || cancel_cheaque === undefined) {
       isError = false;
       errorMessage = strings.cancelChqImgReqVal;
@@ -405,7 +416,7 @@ const AgentBankInfo = ({ navigation, route }: any) => {
           <View style={{ marginTop: 10 }}>
             <Button
               handleBtnPress={() => {
-                Keyboard.dismiss()
+                Isios && Keyboard.dismiss()
                 onPressCreateAgent(route?.params?.type)
               }}
               buttonText={

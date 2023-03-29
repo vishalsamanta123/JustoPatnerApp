@@ -115,17 +115,17 @@ const RegistrationScreen = ({ navigation }: any) => {
         isError = false;
         errorMessage = strings.emailAlreadyReqVal;
       } else if (
-        registerForm.working_location.length === 0 ||
-        registerForm.working_location === undefined
-      ) {
-        isError = false;
-        errorMessage = strings.workingLocationReqVal;
-      } else if (
         registerForm.location === '' ||
         registerForm.location === undefined
       ) {
         isError = false;
         errorMessage = strings.addressReqVal;
+      } if (
+        registerForm.working_location.length === 0 ||
+        registerForm.working_location === undefined
+      ) {
+        isError = false;
+        errorMessage = strings.workingLocationReqVal;
       }
       if (errorMessage !== "") {
         ErrorMessage({
