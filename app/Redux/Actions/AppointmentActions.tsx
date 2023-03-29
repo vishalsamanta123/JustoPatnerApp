@@ -14,7 +14,7 @@ console.log('params: ', params);
                 payload: res.data,
             });
         } else {
-            handleApiError(res.data)
+            // handleApiError(res.data)
             dispatch({
                 type: GET_APPOINTMENT_LIST_ERROR,
                 payload: [],
