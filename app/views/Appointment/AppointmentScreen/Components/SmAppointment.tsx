@@ -29,9 +29,11 @@ const SmAppointment = (props: any) => {
     }
     return response
   }
+
   useEffect(() => {
     getConfirmButton()
   }, [props?.items])
+  
   const { status, approve, view } = usePermission({
     view: 'view_appointment_with_sm',
     status: "cancel_status_for_sm_appointment",
@@ -54,6 +56,17 @@ const SmAppointment = (props: any) => {
       </View>
       <View style={styles.Txtview}>
         <View style={styles.projectContainer}>
+          <Text style={styles.projectTxt}>{strings.time}</Text>
+        </View>
+        <View>
+          <Text>:</Text>
+        </View>
+        <View style={styles.nameContainer}>
+          <Text style={styles.nameTxt}>{props.items.appointment_time}</Text>
+        </View>
+      </View>
+      <View style={styles.Txtview}>
+        <View style={styles.projectContainer}>
           <Text style={styles.projectTxt}>{strings.appointmentType}</Text>
         </View>
         <View>
@@ -63,17 +76,6 @@ const SmAppointment = (props: any) => {
           <Text style={styles.nameTxt}>
             {props.items.appointment_type_title}
           </Text>
-        </View>
-      </View>
-      <View style={styles.Txtview}>
-        <View style={styles.projectContainer}>
-          <Text style={styles.projectTxt}>{strings.time}</Text>
-        </View>
-        <View>
-          <Text>:</Text>
-        </View>
-        <View style={styles.nameContainer}>
-          <Text style={styles.nameTxt}>{props.items.appointment_time}</Text>
         </View>
       </View>
       <View style={styles.Txtview}>

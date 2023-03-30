@@ -112,6 +112,7 @@ const strings = new LocalizedStrings({
     date: "Date",
     time: "Time",
     appointmentType: "Appointment Type",
+    type: "Type",
     appointmentWith: "Appointment With",
     leadNo: "Lead No.",
     lead: "Lead",
@@ -187,6 +188,9 @@ const strings = new LocalizedStrings({
     updatedBy: 'Update By',
     byImage: "By Image",
     byCsv: "By Csv",
+    today: "Today",
+    cancelBy:"Cancel By",
+
 
 
     //Status Keys
