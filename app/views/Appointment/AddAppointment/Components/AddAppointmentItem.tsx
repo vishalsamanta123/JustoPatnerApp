@@ -166,8 +166,6 @@ const AddAppointmentItem = (props: any) => {
           />
         </View>
         <>
-          {props?.addAppointmentForm?.pickup === strings.yes ? (
-            <>
               <View style={styles.inputWrap}>
                 <Text style={styles.genderTxt}>{strings.pickupAppointment}</Text>
               </View>
@@ -233,8 +231,6 @@ const AddAppointmentItem = (props: any) => {
                   </Text>
                 </View>
               </View>
-            </>
-          ) : null}
           {props.addAppointmentForm?.pickup === strings.yes ? (
             <>
               <View style={styles.inputWrap}>
