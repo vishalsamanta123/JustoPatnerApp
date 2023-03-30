@@ -179,7 +179,7 @@ const VisitorAppointment = (props: any) => {
         </View>
       </View>
       <View style={styles.buttonContainer}>
-        {edit ? item?.status === 1 || item?.status === 2 ? (
+        {edit ? (item?.status === 1 || item?.status === 2 && checkinStaus !== true) ? (
           <TouchableOpacity
             style={[styles.button, { borderColor: PURPLE_COLOR }]}
             onPress={() => props.onPressEdit(item)}

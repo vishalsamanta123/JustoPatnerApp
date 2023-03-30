@@ -37,6 +37,7 @@ import FastImages from "app/components/FastImage";
 import VideoPlayer from "./VideoPlayer";
 import ErrorMessage from "app/components/ErrorMessage";
 import strings from "app/components/utilities/Localization";
+import { OpenDoc } from "app/components/utilities/GlobalFuncations";
 
 const ChatScreen = ({ navigation, route }: any) => {
   const item = route.params || {};
@@ -383,12 +384,11 @@ const ChatScreen = ({ navigation, route }: any) => {
     return (
       <TouchableOpacity
         onPress={() => {
-          setIsVisible(true);
-          setOnPressData(
+          OpenDoc(
             data.currentMessage.image
               ? data.currentMessage.image
               : messages.image
-          );
+          )
         }}
       >
         {data?.currentMessage?.type !== "doc" ? (
@@ -433,36 +433,40 @@ const ChatScreen = ({ navigation, route }: any) => {
     return (
       <TouchableOpacity
         onPress={() => {
-          setIsVideoVisible(true);
-          setVideoUrl(
+          OpenDoc(
             data.currentMessage.video
               ? data.currentMessage.video
               : messages.video
-          );
+          )
         }}
       >
-        <Video
-          source={{
-            uri: data.currentMessage.video
-              ? data.currentMessage.video
-              : messages.video,
-          }} // Can be a URL or a local file.
-          ref={(ref: any) => {
-            // player = ref;
-          }} // Store reference
-          // onBuffer={this.onBuffer} // Callback when remote video is buffering
-          // onError={this.videoError} // Callback when video cannot be loaded
-          muted
-          style={{
-            height: 200,
-            width: 200,
-            borderTopRightRadius: 15,
-            borderTopLeftRadius: 15,
-            borderColor: PRIMARY_THEME_COLOR,
-            borderWidth: 4,
-          }}
-          resizeMode={"cover"}
-        />
+        {data.currentMessage.user._id === senderID ? (
+          <View style={styles.recieverpdfMessageView}>
+            <Image
+                source={images.media}
+                resizeMode={"contain"}
+                style={[styles.downloadImage, {tintColor: WHITE_COLOR}]}
+              />
+            <View style={{ width: "80%" }}>
+              <Text style={styles.pdfnameTxt} numberOfLines={1}>
+                {data.currentMessage.filename}
+              </Text>
+            </View>
+          </View>
+        ) : (
+          <View style={styles.recieverpdfMessageView}>
+            <View style={{ width: "80%" }}>
+              <Text style={styles.pdfRecievednameTxt} numberOfLines={1}>
+                {data.currentMessage.filename}
+              </Text>
+            </View>
+            <Image
+                source={images.media}
+                resizeMode={"contain"}
+                style={styles.downloadImage}
+              />
+          </View>
+        )}
       </TouchableOpacity>
     );
   };

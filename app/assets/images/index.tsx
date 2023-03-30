@@ -48,6 +48,7 @@ const images = {
   bell: require('./notification.png'),
   star: require('./star.png'),
   deleteIcon: require('./deleteIcon.png'),
+  media: require('./media.png'),
 };
 
 export default images;
