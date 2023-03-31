@@ -36,6 +36,7 @@ const UserAppointmentDtailsItem = (props: any) => {
       .catch((error: any) => console.warn(error));
   } else {
   }
+  console.log('appdetail: ', appdetail);
 
   return (
     <ScrollView>
@@ -121,7 +122,8 @@ const UserAppointmentDtailsItem = (props: any) => {
           </Text>
         </View>
       </View>
-      {appdetail.appointment_status === 3 ||
+      {appdetail.appointment_status === 2 ||
+      appdetail.appointment_status === 3 ||
       appdetail.appointment_status === 4 ? (
         <>
           <View style={styles.bottomView}>
@@ -161,7 +163,7 @@ const UserAppointmentDtailsItem = (props: any) => {
               </View>
             </View>
           ) : null}
-          <View style={styles.Txtview}>
+          {/* <View style={styles.Txtview}>
             <View style={styles.projectContainer}>
               <Text style={styles.projectTxt}>{strings.remark}</Text>
             </View>
@@ -185,7 +187,58 @@ const UserAppointmentDtailsItem = (props: any) => {
                   : strings.notfount}
               </Text>
             </View>
-          </View>
+          </View> */}
+          {appdetail?.confirm_remark !== null ? (
+            <View style={styles.Txtview}>
+              <View style={styles.projectContainer}>
+                <Text style={styles.projectTxt}>Confirm Remark</Text>
+              </View>
+              <View>
+                <Text>:</Text>
+              </View>
+              <View style={styles.nameContainer}>
+                <Text style={styles.nameTxt}>
+                  {appdetail?.confirm_remark
+                    ? appdetail?.confirm_remark
+                    : strings.notfount}
+                </Text>
+              </View>
+            </View>
+          ) : null}
+          {appdetail?.compleate_remark !== null ? (
+            <View style={styles.Txtview}>
+              <View style={styles.projectContainer}>
+                <Text style={styles.projectTxt}>Complete Remark</Text>
+              </View>
+              <View>
+                <Text>:</Text>
+              </View>
+              <View style={styles.nameContainer}>
+                <Text style={styles.nameTxt}>
+                  {appdetail?.compleate_remark
+                    ? appdetail?.compleate_remark
+                    : strings.notfount}
+                </Text>
+              </View>
+            </View>
+          ) : null}
+          {appdetail?.cancle_remark !== null ? (
+            <View style={styles.Txtview}>
+              <View style={styles.projectContainer}>
+                <Text style={styles.projectTxt}>Cancel Remark</Text>
+              </View>
+              <View>
+                <Text>:</Text>
+              </View>
+              <View style={styles.nameContainer}>
+                <Text style={styles.nameTxt}>
+                  {appdetail?.cancle_remark
+                    ? appdetail?.cancle_remark
+                    : strings.notfount}
+                </Text>
+              </View>
+            </View>
+          ) : null}
         </>
       ) : null}
     </ScrollView>

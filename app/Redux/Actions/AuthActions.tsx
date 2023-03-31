@@ -205,14 +205,18 @@ export const changePassword = (params: any) => async (dispatch: any) => {
 export const userLogout = () => async (dispatch: any) => {
     dispatch({ type: START_LOADING })
     try {
-        await AsyncStorage.removeItem("persistantState");
-        await AsyncStorage.removeItem("AuthToken");
-        await AsyncStorage.removeItem('userData')
-        await AsyncStorage.removeItem('firebase_id')
-        dispatch({
-            type: USER_LOGOUT,
-            payload: null
-        })
+        const res = await apiCall("post", apiEndPoints.LOGOUT, {});
+        console.log('res: userLogout', res);
+        if (res.data.status === 200) {
+            await AsyncStorage.removeItem("persistantState");
+            await AsyncStorage.removeItem("AuthToken");
+            await AsyncStorage.removeItem('userData')
+            await AsyncStorage.removeItem('firebase_id')
+            dispatch({
+                type: USER_LOGOUT,
+                payload: null
+            })
+        }
     }
     catch (e) {
         dispatch({
