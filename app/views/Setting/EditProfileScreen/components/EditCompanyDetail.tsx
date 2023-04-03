@@ -1,4 +1,4 @@
-import { View, Text, TouchableOpacity, ScrollView } from "react-native";
+import { View, Text, TouchableOpacity, ScrollView, Keyboard } from "react-native";
 import React, { useEffect, useState } from "react";
 import styles from "./styles";
 import { BLACK_COLOR, GREEN_COLOR, Isios, PRIMARY_THEME_COLOR, RED_COLOR, Regexs, WHITE_COLOR } from "../../../../components/utilities/constant";
@@ -46,24 +46,76 @@ const EditCompanyDetails = ({ navigation }: any) => {
             },)
         }
     }, [editUser])
+    // const validation = () => {
+    //     let isError = true;
+    //     let errorMessage: any = "";
+    //     if (editData?.company_account_no && Regexs.accountnumRegex.test(editData?.company_account_no) === false) {
+    //         isError = false;
+    //         errorMessage = strings.accountNoValidVal;
+    //     } else if (editData?.company_ifsc_code && Regexs.ifscRegex.test(editData?.company_ifsc_code) === false) {
+    //         isError = false;
+    //         errorMessage = strings.ifscValidVal;
+    //     }
+    //     if (errorMessage !== "") {
+    //         ErrorMessage({
+    //             msg: errorMessage,
+    //             backgroundColor: RED_COLOR,
+    //         });
+    //     }
+    //     return isError
+    // }
     const validation = () => {
         let isError = true;
-        let errorMessage: any = "";
-        if (editData?.company_account_no && Regexs.accountnumRegex.test(editData?.company_account_no) === false) {
-            isError = false;
-            errorMessage = strings.accountNoValidVal;
-        } else if (editData?.company_ifsc_code && Regexs.ifscRegex.test(editData?.company_ifsc_code) === false) {
-            isError = false;
-            errorMessage = strings.ifscValidVal;
+        let errorMessage: any = ''
+        if (editData?.agency_name == '' || editData?.agency_name == undefined) {
+          isError = false;
+          errorMessage = strings.agencyNameReqVal
+        } else if (editData?.gst == '' || editData?.gst == undefined) {
+          isError = false;
+          errorMessage = strings.gstReqVal
+        } else if (editData?.rera_registration == '' || editData?.rera_registration == undefined) {
+          isError = false;
+          errorMessage = strings.reraRegstrReqVal
+        } else if (editData?.pancard == '' || editData?.pancard == undefined) {
+          isError = false;
+          errorMessage = strings.comPanCardImgReqVal
+        } else if (editData?.declaration_letter_of_company == '' || editData?.declaration_letter_of_company == undefined) {
+          isError = false;
+          errorMessage = strings.declLttrComImgReqVal
+        } else if (editData?.company_bank_name == '' || editData?.company_bank_name == undefined) {
+          isError = false;
+          errorMessage = strings.bankNameReqVal
+        } else if (editData?.company_branch_name == '' || editData?.company_branch_name == undefined) {
+          isError = false;
+          errorMessage = strings.branchNameReqVal
+        } else if (editData?.company_account_no == '' || editData?.company_account_no == undefined) {
+          isError = false;
+          errorMessage = strings.accountNoReqVal
+        } else if (
+          Regexs.accountnumRegex.test(editData?.company_account_no) === false
+        ) {
+          isError = false;
+          errorMessage = strings.accountNoValidVal;
+        } else if (editData?.company_ifsc_code == '' || editData?.company_ifsc_code == undefined) {
+          isError = false;
+          errorMessage = strings.ifscReqVal
+        } else if (
+          Regexs.ifscRegex.test(editData?.company_ifsc_code) === false
+        ) {
+          isError = false;
+          errorMessage = strings.ifscValidVal;
         }
-        if (errorMessage !== "") {
-            ErrorMessage({
-                msg: errorMessage,
-                backgroundColor: RED_COLOR,
-            });
+        if (errorMessage !== '') {
+          ErrorMessage({
+            msg: errorMessage,
+            backgroundColor: RED_COLOR
+          })
         }
-        return isError
-    }
+        if(!isError){
+            Keyboard.dismiss()
+          }
+        return isError;
+      }
     const handleUpdatePress = () => {
         if (validation()) {
             const editFormData: any = new FormData();
@@ -132,6 +184,7 @@ const EditCompanyDetails = ({ navigation }: any) => {
                 automaticallyAdjustKeyboardInsets={Isios ? true : false}>
                 <View style={styles.inputWrap}>
                     <InputField
+                        require={true}
                         disableSpecialCharacters={true}
                         // require={true}
                         placeholderText={strings.agency + " " + strings.name}
@@ -147,6 +200,7 @@ const EditCompanyDetails = ({ navigation }: any) => {
                 </View>
                 <View style={styles.inputWrap}>
                     <InputField
+                        require={true}
                         disableSpecialCharacters={true}
                         // require={true}
                         placeholderText={strings.gst}
@@ -163,6 +217,7 @@ const EditCompanyDetails = ({ navigation }: any) => {
                 </View>
                 <View style={styles.inputWrap}>
                     <InputField
+                        require={true}
                         // require={true}
                         placeholderText={strings.RERA + " " + strings.registration}
                         maxLength={20}
@@ -243,6 +298,7 @@ const EditCompanyDetails = ({ navigation }: any) => {
                 </View>
                 <View style={styles.inputWrap}>
                     <InputField
+                        require={true}
                         disableSpecialCharacters={true}
                         // require={true}
                         placeholderText={strings.bankName}
@@ -258,6 +314,7 @@ const EditCompanyDetails = ({ navigation }: any) => {
                 </View>
                 <View style={styles.inputWrap}>
                     <InputField
+                        require={true}
                         disableSpecialCharacters={true}
                         // require={true}
                         placeholderText={strings.branchName}
@@ -273,6 +330,7 @@ const EditCompanyDetails = ({ navigation }: any) => {
                 </View>
                 <View style={styles.inputWrap}>
                     <InputField
+                        require={true}
                         disableSpecialCharacters={true}
                         // require={true}
                         placeholderText={strings.accountNo}
@@ -290,6 +348,7 @@ const EditCompanyDetails = ({ navigation }: any) => {
                 </View>
                 <View style={styles.inputWrap}>
                     <InputField
+                        require={true}
                         disableSpecialCharacters={true}
                         // require={true}
                         placeholderText={strings.ifscCode}

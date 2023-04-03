@@ -44,7 +44,7 @@ const LocationInput = (props: any) => {
                         alignItems: 'center',
                         justifyContent: 'space-between',
                         borderRadius: 10,
-                        padding: normalizeSpacing(Isios ? 15 : 6),
+                        padding: normalizeSpacing(Isios ? 8 : 6),
                         borderColor: GRAY_COLOR,
                     },
                     textInput: {

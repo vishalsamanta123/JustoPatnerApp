@@ -4,11 +4,12 @@ import {
   ScrollView,
   StatusBar,
   TouchableOpacity,
+  Keyboard,
 } from "react-native";
 import React, { useEffect, useState } from "react";
 import images from "../../../../assets/images";
 import InputField from "../../../../components/InputField";
-import { BLACK_COLOR, GRAY_LIGHT_COLOR, GREEN_COLOR, PRIMARY_THEME_COLOR, RED_COLOR, Regexs, WHITE_COLOR } from "../../../../components/utilities/constant";
+import { BLACK_COLOR, GRAY_LIGHT_COLOR, GREEN_COLOR, Isios, PRIMARY_THEME_COLOR, RED_COLOR, Regexs, WHITE_COLOR } from "../../../../components/utilities/constant";
 import strings from "../../../../components/utilities/Localization";
 import styles from "./styles";
 import { useSafeAreaInsets } from "react-native-safe-area-context";
@@ -37,23 +38,77 @@ const EditBankDetails = ({ navigation }: any) => {
   const onPressBack = () => {
     navigation.goBack()
   }
+  // const validation = () => {
+  //   let isError = true;
+  //   let errorMessage: any = "";
+  //   if (bankData?.account_no && Regexs.accountnumRegex.test(bankData?.account_no) === false) {
+  //     isError = false;
+  //     errorMessage = strings.accountNoValidVal;
+  //   } else if (bankData?.ifsc_code && Regexs.ifscRegex.test(bankData?.ifsc_code) === false) {
+  //     isError = false;
+  //     errorMessage = strings.ifscValidVal;
+  //   }
+  //   if (errorMessage !== "") {
+  //     ErrorMessage({
+  //       msg: errorMessage,
+  //       backgroundColor: RED_COLOR,
+  //     });
+  //   }
+  //   return isError
+  // }
   const validation = () => {
     let isError = true;
-    let errorMessage: any = "";
-    if (bankData?.account_no && Regexs.accountnumRegex.test(bankData?.account_no) === false) {
+    let errorMessage: any = ''
+    // if (editData?.rera_certificate_no == '' || editData?.rera_certificate_no == undefined) {
+    //   isError = false;
+    //   errorMessage = strings.reraCertNoReqVal
+    // }
+    // else if (bankData?.rera_certificate == '' || bankData?.rera_certificate == undefined) {
+    //   isError = false;
+    //   errorMessage = strings.reraCertImgReqVal
+    // }
+    if (editData?.propidership_declaration_letter == '' || editData?.propidership_declaration_letter == undefined) {
+      isError = false;
+      errorMessage = strings.propDeclrLttrImgReqVal
+    } else if (editData?.norera_register === null) {
+      isError = false;
+      errorMessage = strings.noReraRegReqVal;
+    } else if (bankData?.bank_name == '' || bankData?.bank_name == undefined) {
+      isError = false;
+      errorMessage = strings.bankNameReqVal
+    } else if (bankData?.branch_name == '' || bankData?.branch_name == undefined) {
+      isError = false;
+      errorMessage = strings.branchNameReqVal
+    } else if (bankData?.account_no == '' || bankData?.account_no == undefined) {
+      isError = false;
+      errorMessage = strings.accountNoReqVal
+    } else if (
+      Regexs.accountnumRegex.test(bankData?.account_no) === false
+    ) {
       isError = false;
       errorMessage = strings.accountNoValidVal;
-    } else if (bankData?.ifsc_code && Regexs.ifscRegex.test(bankData?.ifsc_code) === false) {
+    } else if (bankData?.ifsc_code == '' || bankData?.ifsc_code == undefined) {
+      isError = false;
+      errorMessage = strings.ifscReqVal
+    } else if (
+      Regexs.ifscRegex.test(bankData?.ifsc_code) === false
+    ) {
       isError = false;
       errorMessage = strings.ifscValidVal;
+    } else if (bankData?.cancel_cheaque == '' || bankData?.cancel_cheaque == undefined) {
+      isError = false;
+      errorMessage = strings.cancelChqImgReqVal
     }
-    if (errorMessage !== "") {
+    if (errorMessage !== '') {
       ErrorMessage({
         msg: errorMessage,
-        backgroundColor: RED_COLOR,
-      });
+        backgroundColor: RED_COLOR
+      })
     }
-    return isError
+    if(!isError){
+      Keyboard.dismiss()
+    }
+    return isError;
   }
   const onPressNext = () => {
     const allData = { ...editData, ...bankData }
@@ -62,6 +117,7 @@ const EditBankDetails = ({ navigation }: any) => {
       navigation.navigate('EditCompanyDetail')
     }
   }
+  console.log('editData?.norera_register', editData)
   return (
     <View style={styles.mainContainer}>
       <Header
@@ -74,7 +130,8 @@ const EditBankDetails = ({ navigation }: any) => {
       />
       <ScrollView
         keyboardShouldPersistTaps={'handled'}
-        contentContainerStyle={styles.wrap}>
+        contentContainerStyle={styles.wrap}
+        automaticallyAdjustKeyboardInsets={Isios ? true : false}>
         <View style={styles.inputWrap}>
           <InputField
             valueshow={editData?.rera_certificate_no}
@@ -160,6 +217,7 @@ const EditBankDetails = ({ navigation }: any) => {
         </View>
         <View style={styles.inputWrap}>
           <InputField
+            require={true}
             disableSpecialCharacters={true}
             valueshow={bankData?.bank_name}
             handleInputBtnPress={() => { }}
@@ -173,6 +231,7 @@ const EditBankDetails = ({ navigation }: any) => {
         </View>
         <View style={styles.inputWrap}>
           <InputField
+            require={true}
             disableSpecialCharacters={true}
             valueshow={bankData?.branch_name}
             handleInputBtnPress={() => { }}
@@ -186,6 +245,7 @@ const EditBankDetails = ({ navigation }: any) => {
         </View>
         <View style={styles.inputWrap}>
           <InputField
+            require={true}
             disableSpecialCharacters={true}
             valueshow={bankData?.account_no}
             handleInputBtnPress={() => { }}
@@ -200,6 +260,7 @@ const EditBankDetails = ({ navigation }: any) => {
         </View>
         <View style={styles.inputWrap}>
           <InputField
+            require={true}
             disableSpecialCharacters={true}
             valueshow={bankData?.ifsc_code}
             handleInputBtnPress={() => { }}

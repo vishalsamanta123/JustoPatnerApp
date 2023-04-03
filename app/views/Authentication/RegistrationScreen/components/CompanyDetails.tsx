@@ -1,4 +1,4 @@
-import { View, Text, StatusBar, TouchableOpacity, ScrollView, BackHandler, Image } from "react-native";
+import { View, Text, StatusBar, TouchableOpacity, ScrollView, BackHandler, Image, Keyboard } from "react-native";
 import React, { useEffect, useState } from "react";
 import styles from "./styles";
 import { BLACK_COLOR, GREEN_COLOR, Isios, PRIMARY_THEME_COLOR, RED_COLOR, Regexs, WHITE_COLOR } from "../../../../components/utilities/constant";
@@ -87,6 +87,9 @@ const CompanyDetails = ({ navigation }: any) => {
         msg: errorMessage,
         backgroundColor: RED_COLOR
       })
+    }
+    if(!isError){
+      Keyboard.dismiss()
     }
     return isError;
   }

@@ -54,6 +54,7 @@ const AgentBasicInfo = ({ navigation, route }: any) => {
     const { data = {}, type = "" } = route?.params;
     if (type === "edit") {
       if (response?.status === 200) {
+        console.log('response', response)
         const allDatas = response?.data[0] || {}
         const bankdata = response?.data[0]?.cp_bank_detail || {}
         setAgentInfoData({
@@ -65,6 +66,7 @@ const AgentBasicInfo = ({ navigation, route }: any) => {
           ifsc_code: bankdata?.ifsc_code,
           norera_register: (handleValues(allDatas?.rera_certificate_no) &&
             handleValues(allDatas?.rera_certificate) === false) ? null : "",
+            profile_base_url: allDatas?.profile_base_url ? allDatas?.profile_base_url : ''
         });
       }
     }
@@ -164,6 +166,9 @@ const AgentBasicInfo = ({ navigation, route }: any) => {
           backgroundColor: RED_COLOR,
         });
       }
+      if(!isError){
+        Keyboard.dismiss()
+      }
       return isError;
     }
 
@@ -201,7 +206,7 @@ const AgentBasicInfo = ({ navigation, route }: any) => {
     dispatch(checkEmailMobile(params));
   };
   const onPressNext = () => {
-    Isios && Keyboard.dismiss()
+    // Isios && Keyboard.dismiss()
     if (validation()) {
       dispatch(addAgentForm(agentInfoData));
       navigation.navigate("AgentBankInfo", { type: route?.params?.type });

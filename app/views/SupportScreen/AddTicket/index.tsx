@@ -1,4 +1,4 @@
-import { View, Text } from 'react-native'
+import { View, Text, Keyboard } from 'react-native'
 import React, { useEffect, useState } from 'react'
 import AddTicketForm from './Components/AddTicketForm'
 import { useFocusEffect } from '@react-navigation/native'
@@ -73,6 +73,9 @@ const AddTicketScreen = ({ navigation, route }: any) => {
                 backgroundColor: RED_COLOR
             })
         }
+        if(!isError){
+            Keyboard.dismiss()
+          }
         return isError;
     }
     const onPressAddTicket = () => {

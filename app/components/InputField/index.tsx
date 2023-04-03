@@ -2,7 +2,7 @@
 import { View, TextInput, Image, TouchableOpacity, Text, ScrollView } from 'react-native';
 import React from 'react';
 import styles from './styles';
-import { BLACK_COLOR } from '../utilities/constant';
+import { BLACK_COLOR, Isios } from '../utilities/constant';
 import images from '../../assets/images';
 import { normalizeHeight } from '../scaleFontSize';
 import LocationInput from './Location';
@@ -13,7 +13,7 @@ const InputField = (props: any) => {
     inputWidth = '90%',
     editable = true,
     multiline = false,
-    inputheight = 50,
+    inputheight = Isios ? 35 : 50,
     keyboardtype = 'default',
     topping = 2,
     inputType = "normal",

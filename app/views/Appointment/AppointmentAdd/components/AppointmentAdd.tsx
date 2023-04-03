@@ -42,6 +42,7 @@ const AppointmentAddView = (props: any) => {
       <View style={styles.topItemsVw}>
         <View style={styles.inputWrap}>
           <DropdownInput
+            require={true}
             headingText={strings.status}
             placeholder={strings.status}
             data={[

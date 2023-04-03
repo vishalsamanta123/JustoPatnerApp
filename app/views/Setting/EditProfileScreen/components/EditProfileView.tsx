@@ -44,7 +44,7 @@ const EditProfileView = (props: any) => {
             style={styles.imageCircle}
             onPress={() => setProfileVisible(true)}
           >
-            {props?.editData?.profile_picture || props?.editData?.local_profile_picture?.uri ?
+            {props?.editData?.profile_picture || props?.editData?.local_profile_picture?.uri || props.editData?.profile_base_url ?
               <Image
                 style={styles.userImage}
                 source={{
@@ -69,6 +69,7 @@ const EditProfileView = (props: any) => {
           </TouchableOpacity>
           <View style={styles.inputWrap}>
             <InputField
+              require={true}
               disableSpecialCharacters={true}
               valueshow={props.editData?.agent_name}
               handleInputBtnPress={() => { }}
@@ -78,11 +79,12 @@ const EditProfileView = (props: any) => {
                   agent_name: e,
                 });
               }}
-              headingText={strings.agent + " " + strings.name}
+              headingText={strings.cpCapital + " " + strings.name}
             />
           </View>
           <View style={styles.inputWrap}>
             <InputField
+              require={true}
               valueshow={props.editData?.adhar_no}
               keyboardtype={'number-pad'}
               handleInputBtnPress={() => { }}
@@ -99,6 +101,7 @@ const EditProfileView = (props: any) => {
           </View>
           <View style={styles.inputWrap}>
             <InputField
+              require={true}
               disableSpecialCharacters={true}
               valueshow={props.editData?.pancard_no}
               handleInputBtnPress={() => { }}
@@ -202,6 +205,7 @@ const EditProfileView = (props: any) => {
           </View>
           <View style={styles.inputWrap}>
             <InputField
+              require={true}
               disableSpecialCharacters={true}
               valueshow={props.editData?.whatsapp_number?.toString()}
               handleInputBtnPress={() => { }}
@@ -232,6 +236,7 @@ const EditProfileView = (props: any) => {
           </View>
           <View style={{ marginTop: normalizeSpacing(30) }}>
             <InputField
+              require={true}
               placeholderText={strings.address}
               headingText={strings.address}
               onChangeText={(data: any) => {

@@ -5,11 +5,12 @@ import styles from './styles';
 import { dropdownData } from '../utilities/DemoData';
 import { normalize, normalizeHeight, normalizeSpacing, normalizeWidth } from '../scaleFontSize';
 import images from 'app/assets/images';
+import { Isios } from '../utilities/constant';
 
 const DropdownInput = (props: any) => {
     const {
         inputWidth = '100%',
-        inputheight = 50,
+        inputheight = Isios ? 35 : 50,
         paddingLeft = 0,
         require = false
     } = props

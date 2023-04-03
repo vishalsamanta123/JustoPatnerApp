@@ -14,7 +14,7 @@ import {
   getFilterProperty,
   getAllProperty,
 } from "app/Redux/Actions/propertyActions";
-import { DATE_FORMAT } from "app/components/utilities/constant";
+import { DATE_FORMAT, Isios } from "app/components/utilities/constant";
 
 const FilterModal = (props: any) => {
   const dispatch: any = useDispatch();
@@ -62,7 +62,8 @@ const FilterModal = (props: any) => {
   return (
     <Modal isVisible={props.Visible}>
       <ScrollView keyboardShouldPersistTaps={'handled'}
-        contentContainerStyle={{ flexGrow: 1, justifyContent: 'center' }}>
+        contentContainerStyle={{ flexGrow: 1, justifyContent: 'center' }}
+        automaticallyAdjustKeyboardInsets={Isios ? true : false}>
         <View style={styles.mainContainer}>
           <View style={styles.topContainer}>
             <Text style={styles.topTxt}>{strings.searchProperty}</Text>

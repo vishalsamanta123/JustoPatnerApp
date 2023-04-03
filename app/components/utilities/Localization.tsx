@@ -222,6 +222,7 @@ const strings = new LocalizedStrings({
     //validations
     reasonSelectVal: 'Please select the Reason',
     agentNameReqVal: 'Agent Name is require. Please enter Agent Name',
+    CPNameReqVal: 'CP Name is require. Please enter CP Name',
     ownerNameReqVal: 'Owner Name is require. Please enter Owner Name',
     aadharReqVal: 'Aadhaar No. is require. Please enter Aadhaar No.',
     aadharValidVal: 'Please enter the valid Aadhaar number',
@@ -232,7 +233,7 @@ const strings = new LocalizedStrings({
     mobileNoReqVal: 'Mobile No. is require. Please enter Mobile No.',
     mobileNoValidReqVal: "Mobile No. should be 10 digits. Please enter correct Mobile No.",
     mobileAlreadyValidReqVal: "Mobile No. is already registered. Please enter other Mobile No.",
-    whatsappNoReqVal: 'WhatsaApp No. is require. Please enter WhatsaApp No.',
+    whatsappNoReqVal: 'WhatsApp No. is require. Please enter WhatsApp No.',
     emailReqVal: 'Email is require. Please enter Email',
     correctEmailReqVal: 'Email format is wrong. Please enter correct Email',
     emailAlreadyReqVal: 'Email is already registered. Please enter other Email',

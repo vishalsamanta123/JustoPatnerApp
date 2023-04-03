@@ -31,6 +31,8 @@ const ProfileScreen = ({ navigation, route }: any) => {
   }, [response])
   const getDetail = async () => {
     const userData: any = await AsyncStorage.getItem("loginData");
+    
+    console.log("userData====>>>", JSON?.parse(userData)?.data?.cp_id)
     if (JSON.parse(userData)?.data?.cp_id) {
       dispatch(
         getAgentDetail({

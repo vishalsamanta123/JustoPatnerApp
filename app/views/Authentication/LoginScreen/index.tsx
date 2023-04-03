@@ -9,6 +9,7 @@ import AsyncStorage from '@react-native-async-storage/async-storage';
 import Loader from 'app/components/CommonScreen/Loader';
 import strings from 'app/components/utilities/Localization';
 import { RegistrationFormRemv } from 'app/Redux/Actions/ReggistrationAction';
+import { Keyboard } from 'react-native';
 
 const LoginScreen = ({ navigation }: any) => {
   const dispatch: any = useDispatch()
@@ -38,7 +39,9 @@ const LoginScreen = ({ navigation }: any) => {
       isError = false;
       errorMessage = strings.passwordrequired
     }
-
+    if(!isError){
+      Keyboard.dismiss()
+    }
     if (errorMessage !== '') {
       ErrorMessage({
         msg: errorMessage,

@@ -237,6 +237,9 @@ const AddNewVisitorScreen = ({ navigation, route }: any) => {
           backgroundColor: RED_COLOR,
         });
       }
+      if(!isError){
+        Keyboard.dismiss()
+      }
       return isError;
     }
   };

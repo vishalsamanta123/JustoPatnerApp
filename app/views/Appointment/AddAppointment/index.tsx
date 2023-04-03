@@ -1,4 +1,4 @@
-import { View, Text } from 'react-native'
+import { View, Text, Keyboard } from 'react-native'
 import React, { useEffect, useState } from 'react'
 import AddAppointmentView from './Components/AddAppointmentView'
 import { useFocusEffect } from '@react-navigation/native'
@@ -175,6 +175,9 @@ const AddAppointmentScreen = ({ navigation, route }: any) => {
         msg: errorMessage,
         backgroundColor: RED_COLOR
       })
+    }
+    if(!isError){
+      Keyboard.dismiss()
     }
     return isError;
   }

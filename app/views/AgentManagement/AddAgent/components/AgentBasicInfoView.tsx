@@ -41,6 +41,8 @@ const AgentBasicInfoView = (props: any) => {
     });
   };
   const insets = useSafeAreaInsets();
+  console.log('props?.agentInfoData?.profile_base_url', props?.agentInfoData?.profile_base_url)
+  console.log('props?.agentInfoData?.profile_picture?.uri', props?.agentInfoData?.profile_picture?.uri)
   return (
     <View style={styles.mainContainer}>
       <Header

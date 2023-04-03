@@ -7,6 +7,7 @@ import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import AppointmentAddView from "./components/AppointmentAdd";
 import strings from "app/components/utilities/Localization";
+import { Keyboard } from "react-native";
 
 const AppointmentAddScreen = ({ navigation, route }: any) => {
     const appointmentId = route?.params || {}
@@ -51,6 +52,9 @@ const AppointmentAddScreen = ({ navigation, route }: any) => {
                 backgroundColor: RED_COLOR
             })
         }
+        if(!isError){
+            Keyboard.dismiss()
+          }
         return isError;
     }
     useEffect(() => {

@@ -133,6 +133,9 @@ const RegistrationScreen = ({ navigation }: any) => {
           backgroundColor: RED_COLOR,
         });
       }
+      if(!isError){
+        Keyboard.dismiss()
+      }
       return isError;
     }
   };

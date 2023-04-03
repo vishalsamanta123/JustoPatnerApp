@@ -1,7 +1,7 @@
 import { View, TextInput, Image, TouchableOpacity, Text } from "react-native";
 import React, { useState } from "react";
 import styles from "../InputField/styles";
-import { BLACK_COLOR, DATE_FORMAT, RED_COLOR, TIME_FORMAT } from "../utilities/constant";
+import { BLACK_COLOR, DATE_FORMAT, Isios, RED_COLOR, TIME_FORMAT } from "../utilities/constant";
 import images from "../../assets/images";
 import { normalizeHeight, normalizeSpacing, normalizeWidth } from "../scaleFontSize";
 import DatePicker from "react-native-date-picker";
@@ -22,7 +22,7 @@ const InputCalender = (props: any) => {
     inputWidth = "90%",
     editable = true,
     multiline = false,
-    inputheight = 50,
+    inputheight = Isios ? 35 : 50,
   } = props;
   const onSubmit = (e: any) => {
     const { text } = e;

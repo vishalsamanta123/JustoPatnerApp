@@ -18,7 +18,7 @@ const LoginView = (props: any) => {
   };
   return (
     <ScrollView style={styles.mainContainer} keyboardShouldPersistTaps='handled'
-      keyboardDismissMode={Isios ? 'on-drag' : 'none'}>
+      automaticallyAdjustKeyboardInsets={Isios ? true : false}>
       {/* <View style={styles.logoView}>
         <View style={styles.loginBannerView}>
           <Image style={styles.loginBanner} source={images.loginBanner} />

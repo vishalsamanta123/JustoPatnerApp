@@ -9,6 +9,7 @@ import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import FollowUpAddView from "./components/FollowUpAdd";
 import strings from "app/components/utilities/Localization";
+import { Keyboard } from "react-native";
 
 const FollowUpAddScreen = ({ navigation, route }: any) => {
   const followUpId = route?.params || "";
@@ -76,6 +77,9 @@ const FollowUpAddScreen = ({ navigation, route }: any) => {
         msg: errorMessage,
         backgroundColor: RED_COLOR,
       });
+    }
+    if(!isError){
+      Keyboard.dismiss()
     }
     return isError;
   };

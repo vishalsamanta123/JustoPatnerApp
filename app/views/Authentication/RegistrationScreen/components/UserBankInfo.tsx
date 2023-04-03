@@ -7,6 +7,7 @@ import {
   Alert,
   BackHandler,
   Image,
+  Keyboard,
 } from "react-native";
 import React, { useEffect, useState } from "react";
 import images from "../../../../assets/images";
@@ -113,6 +114,9 @@ const UserBankInfo = ({ navigation }: any) => {
         msg: errorMessage,
         backgroundColor: RED_COLOR
       })
+    }
+    if(!isError){
+      Keyboard.dismiss()
     }
     return isError;
   }
