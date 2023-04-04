@@ -65,9 +65,9 @@ const SupportDetailsItem = (props: any) => {
           <Text style={styles.projectTxt}>{strings.description} </Text>
         </View>
         <View><Text>:</Text></View>
-        <Text style={styles.nameTxt}>
-          {props?.item.remark === "undefined" || props?.item.remark === "" ? strings.notfount : props.item.remark}
-        </Text>
+        <View style={styles.nameContainer}>
+          <Text style={styles.nameTxt}>{props.item.remark ? props.item.remark : strings.notfount}</Text>
+        </View>
       </View>
       <View style={[styles.Txtview, { alignItems: 'flex-start' }]}>
         <View style={styles.projectContainer}>
