@@ -57,12 +57,13 @@ const styles = StyleSheet.create({
         flexDirection: 'row',
         alignItems: 'center',
         flexWrap: 'wrap',
-        justifyContent: 'space-between',
+        // justifyContent: 'space-between',
     },
     Img: {
         width: normalizeWidth(100),
         height: normalizeHeight(100),
-        borderRadius: normalize(8)
+        borderRadius: normalize(8),
+        marginLeft: 5
     },
     contentVw: {
         width: '100%',

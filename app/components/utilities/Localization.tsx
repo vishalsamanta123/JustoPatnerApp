@@ -508,6 +508,7 @@ const strings = new LocalizedStrings({
     ticketStatusUpdate: 'Status Update',
     escalatetonew: 'Escalate to New user',
     nouserselected: 'No user selected',
+    pleaseSelectToEscalate: "Please select any user to escalate",
 
     //deal flow
     searchDealflow: 'Search Deal Flow',

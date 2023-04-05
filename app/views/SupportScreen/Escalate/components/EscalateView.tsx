@@ -83,22 +83,28 @@ const EscalateView = (props: any) => {
                                                                             : "";
                             return (
                                 <View
-                                    style={styles.innerBoxVwlist}>
-                                    <Text style={styles.innerBoxVwlistfont}>{item.user_name} ({role})</Text>
-                                    <TouchableOpacity onPress={() => !getSelected?.toString()
-                                        ?.includes(item.user_name)
-                                        ? props.handleSelects(item, index) : console.log('')}
-                                        style={styles.checkBoxVw}>
-                                        <Image
-                                            style={styles.checksVw}
-                                            source={getSelected?.toString()
-                                                ?.includes(item.user_name)
-                                                ? images.check
-                                                : null
-                                            }
-                                        />
-                                    </TouchableOpacity>
-                                </View>
+                                style={styles.innerBoxVwlist}>
+                                <Text style={styles.innerBoxVwlistfont}>{item.user_name} ({role})</Text>
+                                {item?.assign_status === false ? <TouchableOpacity onPress={() => !getSelected?.toString()
+                                    ?.includes(item.user_name)
+                                    ? props.handleSelects(item, index) : console.log('')}
+                                    style={styles.checkBoxVw}>
+                                    <Image
+                                        style={styles.checksVw}
+                                        source={getSelected?.toString()
+                                            ?.includes(item.user_name)
+                                            ? images.check
+                                            : null
+                                        }
+                                    />
+                                </TouchableOpacity> : 
+                                <TouchableOpacity disabled style={styles.checkBoxVw}>
+                                    <Image
+                                        style={styles.checksVw}
+                                        source={images.check}
+                                    />
+                                </TouchableOpacity>}
+                            </View>
                             )
                         }}
                     />

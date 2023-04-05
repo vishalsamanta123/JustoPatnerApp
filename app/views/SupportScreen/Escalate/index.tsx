@@ -1,11 +1,12 @@
-import { View, Text } from 'react-native'
+import { View, Text, Keyboard } from 'react-native'
 import React, { useEffect, useState } from 'react'
 import EscalateView from './components/EscalateView'
 import { useFocusEffect } from '@react-navigation/native'
 import { useDispatch, useSelector } from 'react-redux'
 import { RemoveTicket, escalateReqTicket, getEscalateUsersList } from 'app/Redux/Actions/SupportActions'
 import ErrorMessage from 'app/components/ErrorMessage'
-import { GREEN_COLOR } from 'app/components/utilities/constant'
+import { GREEN_COLOR, RED_COLOR } from 'app/components/utilities/constant'
+import strings from 'app/components/utilities/Localization'
 
 const EscalateScreen = ({ navigation, route }: any) => {
     const data = route?.params || {}
@@ -21,7 +22,9 @@ const EscalateScreen = ({ navigation, route }: any) => {
     useFocusEffect(
         React.useCallback(() => {
             dispatch(
-                getEscalateUsersList({})
+                getEscalateUsersList({
+                    ticket_id :data?._id
+                })
             );
             return () => { };
         }, [navigation])
@@ -45,6 +48,24 @@ const EscalateScreen = ({ navigation, route }: any) => {
             })
         }
     }, [supportAddData?.response])
+    const validation = () => {
+        let isError = true;
+        let errorMessage: any = ''
+        if (selectedCp.length === 0) {
+            isError = false;
+            errorMessage = strings.pleaseSelectToEscalate
+        }
+        if (errorMessage !== '') {
+            ErrorMessage({
+                msg: errorMessage,
+                backgroundColor: RED_COLOR
+            })
+        }
+        if(!isError){
+            Keyboard.dismiss()
+          }
+        return isError;
+    }
 
     const handleSelects = (items: any, index: any) => {
         // var array: any[] = [...selectedCp];
@@ -75,12 +96,14 @@ const EscalateScreen = ({ navigation, route }: any) => {
         }
     };
     const handleAddTarget = () => {
-        dispatch(
-            escalateReqTicket({
-                ticket_id: data?._id,
-                assign_to: selectedLoginIdCp,
-            })
-        );
+        if(validation()){
+            dispatch(
+                escalateReqTicket({
+                    ticket_id: data?._id,
+                    assign_to: selectedLoginIdCp,
+                })
+            );
+        }
     };
 
 
