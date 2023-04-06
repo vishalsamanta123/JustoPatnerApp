@@ -19,6 +19,19 @@ const LoginScreen = ({ navigation }: any) => {
     password: '',
     login_type: 2
   })
+
+  const { response = {} } = useSelector((state: any) => state.login)
+
+  useEffect(() => {
+    if (response?.status === 203) {
+      ErrorMessage({
+        msg: response?.message,
+        backgroundColor: RED_COLOR
+      })
+      navigation.navigate('OtpVerificationScreenView', { email: response?.data?.email, type: strings.registration, });
+    }
+  }, [response])
+  
   const validation = () => {
     let isError = true;
     let errorMessage: any = ''
