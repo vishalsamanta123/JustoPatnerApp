@@ -6,6 +6,7 @@ import moment from "moment";
 import { normalize, normalizeSpacing } from "app/components/scaleFontSize";
 import images from "app/assets/images";
 import { OpenDoc } from "app/components/utilities/GlobalFuncations";
+import { GRAY_COLOR } from "app/components/utilities/constant";
 
 const UserInfo = (props: any) => {
   const { allDetails } = props;
@@ -108,6 +109,36 @@ const UserInfo = (props: any) => {
           >
             {allDetails?.email}
           </Text>
+        </View>
+      </View>
+      <View style={styles.fieldView}>
+        <View style={styles.keyView}>
+          <Text style={styles.keyText}>{strings.workingLocation}</Text>
+        </View>
+        <Text style={styles.colon}>:</Text>
+        <View style={[styles.valueView]}>
+        {allDetails?.working_location?.length > 0 ?
+            allDetails?.working_location?.map((item: any) => {
+              return (
+                <Text
+                  style={[
+                    styles.valueText,
+                    {
+                      borderBottomColor: GRAY_COLOR,
+                      borderBottomWidth: 1,
+                      // width: '100%',
+                      marginVertical: normalizeSpacing(5),
+                      paddingLeft: 10,
+                      textAlign: 'right'
+                    },
+                  ]}
+                >
+                  {item.location}
+                </Text>
+              )
+            })
+            : <Text style={styles.valueText}>{strings.notfount}</Text>
+          }
         </View>
       </View>
       <View style={styles.fieldView}>

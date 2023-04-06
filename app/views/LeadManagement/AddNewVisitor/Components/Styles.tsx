@@ -148,6 +148,7 @@ const styles = StyleSheet.create({
   headingsTxt: {
     fontSize: normalize(16),
     color: BLACK_COLOR,
+    fontFamily: FONT_FAMILY_SEMIBOLD
   },
   inputContVw: {
     flexDirection: "row",
