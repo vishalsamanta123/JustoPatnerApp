@@ -5,6 +5,7 @@ import Share from "react-native-share";
 import { useDispatch, useSelector } from 'react-redux'
 import RNFetchBlob from 'rn-fetch-blob'
 import SupportForumDetail from './components/SupportForumDetail'
+import { Isios } from 'app/components/utilities/constant';
 
 const SupportForumScreen = ({ navigation, route }: any) => {
     const dispatch: any = useDispatch()
@@ -45,12 +46,22 @@ const SupportForumScreen = ({ navigation, route }: any) => {
               return resp.readFile("base64");
             })
             .then(async (base64Data) => {
-              if(item?.content_type === 'image'){
-                await newArr.push(`data:image/png;base64,${base64Data}`);
-              } else if(item?.content_type === 'video') {
-                await newArr.push(`data:video/mp4;base64,${base64Data}`);
+              console.log('Isios', Isios)
+              if(Isios){
+                if(item?.content_type === 'image'){
+                  await newArr.push(`data:image/png;base64,${base64Data}`);
+                } else if(item?.content_type === 'video') {
+                  await newArr.push(`${supportForumDtl?.base_url}${item?.content}`);
+                }
+              } else {
+                if(item?.content_type === 'image'){
+                  await newArr.push(`data:image/png;base64,${base64Data}`);
+                } else if(item?.content_type === 'video') {
+                  await newArr.push(`data:video/mp4;base64,${base64Data}`);
+                }
               }
               setMediaArr(newArr);
+              console.log('newArr', newArr.map((itm: any)=> console.log('itm==>>', itm)))
               if (supportForumDtl?.support_forum_content?.length === newArr.length) {
                 const options = {
                   title: `${data?.title}`,
