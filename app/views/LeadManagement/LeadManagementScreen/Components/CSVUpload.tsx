@@ -5,6 +5,7 @@ import {
   TouchableOpacity,
   Image,
   Alert,
+  Platform,
 } from "react-native";
 import React, { useEffect, useState } from "react";
 import images from "app/assets/images";
@@ -22,6 +23,7 @@ import {
   BLACK_COLOR,
   FONT_FAMILY_REGULAR,
   GREEN_COLOR,
+  Isios,
   PRIMARY_THEME_COLOR,
   RED_COLOR,
 } from "app/components/utilities/constant";
@@ -39,6 +41,7 @@ import {
   uploadCSVFile,
   getBulkCSVfile,
 } from "app/Redux/Actions/LeadsActions";
+import { handlePermission } from "app/components/utilities/GlobalFuncations";
 
 const CSVUpload = ({ navigation }: any) => {
   const { response = {}, list = "" } =
@@ -173,7 +176,7 @@ const CSVUpload = ({ navigation }: any) => {
     let file_ext: any = getFileExtention(FILE_URL);
     file_ext = "." + file_ext[0];
     const { config, fs } = RNFetchBlob;
-    let RootDir = fs.dirs.DownloadDir;
+    let RootDir = Isios ? fs.dirs.DocumentDir : fs.dirs.DownloadDir;
     console.log("RootDir: ", RootDir);
     let options = {
       fileCache: true,
@@ -187,13 +190,30 @@ const CSVUpload = ({ navigation }: any) => {
     };
     config(options)
       .fetch("GET", FILE_URL)
-      .then((res) => {
+      .then(async (res) => {
         // Alert after successful downloading
         console.log("res -> ", JSON.stringify(res));
+        if (Platform.OS === "ios") {
+            // RNFetchBlob.fs.writeFile(options?.addAndroidDownloads.path, res.data, 'base64');
+            RNFetchBlob.ios.previewDocument(options?.addAndroidDownloads.path);
+          ErrorMessage({
+            msg: strings.downloadSuccessCsv,
+            backgroundColor: GREEN_COLOR,
+          });
+        }
+        if (Platform.OS == 'android') {
+          ErrorMessage({
+            msg: strings.downloadSuccessCsv,
+            backgroundColor: GREEN_COLOR,
+          });
+        }
+      }).catch((err)=> {
+        console.log('err', err)
         ErrorMessage({
-          msg: strings.downloadSuccessCsv,
+          msg: err.message,
           backgroundColor: GREEN_COLOR,
         });
+        
       });
   };
   const validation = () => {
@@ -297,7 +317,7 @@ const CSVUpload = ({ navigation }: any) => {
       </View>
       {csvData.name ? (
         <View style={styles.uploadImage}>
-          <Image source={images.pdfIcone} style={styles.image} />
+          <Image source={images.csvIcon} style={styles.image} />
         </View>
       ) : (
         <View style={styles.notFoundView}>

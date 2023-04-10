@@ -148,8 +148,8 @@ const styles = StyleSheet.create({
     borderRadius: 20,
   },
   image: {
-    height: Isios ?  normalizeHeight(200) :  normalizeHeight(250),
-    width: Isios ?  normalizeHeight(200) :  normalizeHeight(250),
+    height: Isios ?  normalizeHeight(200) :  normalizeHeight(200),
+    width: Isios ?  normalizeHeight(200) :  normalizeHeight(200),
     borderRadius: 20,
   },
   uploadButton: {
