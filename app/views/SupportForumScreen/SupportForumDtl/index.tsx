@@ -61,7 +61,6 @@ const SupportForumScreen = ({ navigation, route }: any) => {
                 }
               }
               setMediaArr(newArr);
-              console.log('newArr', newArr.map((itm: any)=> console.log('itm==>>', itm)))
               if (supportForumDtl?.support_forum_content?.length === newArr.length) {
                 const options = {
                   title: `${data?.title}`,

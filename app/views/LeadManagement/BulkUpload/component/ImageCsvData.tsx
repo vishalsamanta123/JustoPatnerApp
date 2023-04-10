@@ -10,6 +10,7 @@ import ContentView from "./ContentView";
 const ImageCsvDataView = (props: any) => {
     const [documentView, setDocumentView] = useState(false)
     const item = props?.items || {};
+    console.log('item: ImageCsvDataView', item);
     return (
         <View style={styles.IteamView}>
             <View style={styles.dataView}>
@@ -29,17 +30,22 @@ const ImageCsvDataView = (props: any) => {
                             alignItems: props.keyType === 'first' ?
                                 "flex-start" : "flex-end"
                         }]}>
-                            <Text style={styles.projectTxt}>{strings.visitor + " " + strings.name}</Text>
+                            <Text style={styles.projectTxt}>{(props.keyType === 'first' ? strings.cpCapital : strings.visitor) + " " + strings.name}</Text>
                         </View>
                         <View>
                             <Text>:</Text>
                         </View>
                         <View style={styles.nameContainer}>
-                            <Text style={styles.nameTxt}>
+                            {props.keyType === 'first' ? <Text style={styles.nameTxt}>
                                 {item?.user_name === "" || item?.user_name === undefined
                                     || item?.user_name === null ? strings.notfount
                                     : item?.user_name}
-                            </Text>
+                            </Text> :
+                            <Text style={styles.nameTxt}>
+                                {item?.first_name === "" || item?.first_name === undefined
+                                    || item?.first_name === null ? strings.notfount
+                                    : item?.first_name}
+                            </Text>}
                         </View>
                     </View>
                     <View style={styles.Txtview}>

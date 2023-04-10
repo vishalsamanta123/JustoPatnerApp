@@ -33,6 +33,7 @@ const images = {
   editIcon: require('./editIcon.png'),
   calender: require('./calender.png'),
   pdfIcone: require('./pdfIcone.png'),
+  csvIcon: require('./csvIcon.png'),
   edit: require('./edit.png'),
   download: require('./download.png'),
   camera: require('./camera.png'),

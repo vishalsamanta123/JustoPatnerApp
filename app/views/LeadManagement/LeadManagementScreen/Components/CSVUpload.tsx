@@ -317,7 +317,7 @@ const CSVUpload = ({ navigation }: any) => {
       </View>
       {csvData.name ? (
         <View style={styles.uploadImage}>
-          <Image source={images.pdfIcone} style={styles.image} />
+          <Image source={images.csvIcon} style={styles.image} />
         </View>
       ) : (
         <View style={styles.notFoundView}>
