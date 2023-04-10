@@ -58,7 +58,6 @@ const App = () => {
   }, []);
   const checkUpdateNeeded = async () => {
     let updateNeeded = await VersionCheck.needUpdate();
-    console.log("updateNeeded: ", updateNeeded);
     if (updateNeeded.isNeeded) {
       //Alert the user and direct to the app url
       Alert.alert(
@@ -90,75 +89,133 @@ const App = () => {
       );
     });
 
-    messaging().setBackgroundMessageHandler(async (remoteMessage: any) => {
-      console.log("Message handled in the background!", remoteMessage);
-      onDisplayNotification(
-        remoteMessage.data.title,
-        remoteMessage.data.body,
-        remoteMessage.data
-      );
-    });
-    messaging().setBackgroundMessageHandler(async (remoteMessage: any) => {
-      console.log("remoteMessage getInitialNotification: ", remoteMessage);
-      onDisplayNotification(
-        remoteMessage.notification.title,
-        remoteMessage.notification.body,
-        remoteMessage.data
-      );
-    });
+    // messaging().setBackgroundMessageHandler(async (remoteMessage: any) => {
+    //   console.log("Message handled in the background!", remoteMessage);
+    //   onDisplayNotification(
+    //     remoteMessage.data.title,
+    //     remoteMessage.data.body,
+    //     remoteMessage.data
+    //   );
+    // });
     return unsubscribe;
   }, []);
 
-  // const handleNotification = (notificationType: any, data: any) => {
-  //   console.log("data: IN handleNotification", data);
-  //   console.log("notificationType: ", notificationType);
-  //   switch (notificationType) {
-  //     case 'lead':
-  //       navigate('LeadManagementScreen', {})
-  //       break;
-  //     case 'appoinment':
-  //       navigate('Appointments', {})
-  //       break;
-  //     case 'booking':
-  //       navigate('BookingList', {type: 'request',})
-  //       break;
-  //     case 'followUp':
-  //       navigate('FollowUpScreen', {})
-  //       break;
-  //     case 'property':
-  //       navigate('PropertyScreenView', {})
-  //       break;
-  //     case 'registration':
-  //       navigate('BookingList', {type: 'register'})
-  //       break;
-  //     case 'support':
-  //       navigate('Support', {})
-  //       break;
-  //     case 'user appointment':
-  //       navigate('FollowUpScreen', {})
-  //       break;
-  //     case 'assign':
-  //       navigate('FollowUpScreen', {})
-  //       break;
-  //     case notificationType:
-  //       break;
-  //   }
-  // };
-  // useEffect(() => {
-  //   return notifee.onForegroundEvent(({ type, detail }: any) => {
-  //   console.log('detail: ', detail);
-  //   console.log('type: ', type);
-  //     switch (type) {
-  //       case EventType.DISMISSED:
-  //         console.log("User dismissed notification", detail.notification);
-  //         break;
-  //       case EventType.PRESS:
-  //         console.log("User pressed notification", detail.notification);
-  //         handleNotification(detail?.notification?.data?.type, detail?.notification?.data)
-  //         break;
-  //     }
-  //   });
-  // }, []);
+  const handleNotification = (notificationType: any, data: any) => {
+    setTimeout(() => {
+      console.log('TIME OFF IN APP.JS ++++++>>>>>');
+      
+      switch (notificationType) {
+        case 'lead':
+          console.log('Lead CALLED in APP.js');
+
+          navigate('SplashScreen', { notificationType, data })
+          break;
+        case 'appoinment':
+          navigate('SplashScreen', { notificationType, data })
+          break;
+        // case 'ready to book':
+        //   navigate('SplashScreen', { notificationType, data })
+        //   break;
+        // case 'booking':
+        //   navigate('SplashScreen', { notificationType, data })
+        //   break;
+        case 'followUp':
+          navigate('SplashScreen', { notificationType, data })
+          break;
+        case 'property':
+          navigate('SplashScreen', { notificationType, data })
+          break;
+        // case 'registration':
+        //   navigate('SplashScreen', { notificationType, data })
+        //   break;
+        case 'support':
+          navigate('SplashScreen', { notificationType, data })
+          break;
+        case 'user appointment':
+          navigate('SplashScreen', { notificationType, data })
+          break;
+        case 'cpassign':
+          navigate('SplashScreen', { notificationType, data })
+          break;
+        case 'announcement':
+          navigate('SplashScreen', { notificationType, data })
+          break;
+        default:
+          navigate('AuthLoading', {})
+          break;
+      }
+    }, 2000);
+  };
+
+  useEffect(() => {
+    // Assume a message-notification contains a "type" property in the data payload of the screen to open
+
+    messaging().onNotificationOpenedApp(remoteMessage => {
+      console.log(
+        'Notification caused app to open from background state:',
+        remoteMessage.notification,
+        remoteMessage.data,
+      );
+      handleNotification(
+        remoteMessage?.data?.type,
+        remoteMessage?.data,
+      );
+    });
+
+    // Check whether an initial notification is available
+    messaging()
+      .getInitialNotification()
+      .then(remoteMessage => {
+        if (remoteMessage) {
+          console.log(
+            'Notification caused app to open from quit state:',
+            remoteMessage.notification,
+            remoteMessage.data,
+          );
+          handleNotification(
+            remoteMessage?.data?.type,
+            remoteMessage?.data,
+          );
+        }
+      });
+  }, []);
+
+  useEffect(() => {
+    return notifee.onForegroundEvent(({ type, detail }: any) => {
+      // console.log('type onForegroundEvent: ', type);
+      // console.log('EventType: ', EventType);
+      switch (type) {
+        case EventType.DISMISSED:
+          console.log("User dismissed notification", detail.notification);
+          break;
+        case EventType.PRESS:
+          console.log("User pressed notification in onForegroundEvent", detail.notification);
+          handleNotification(detail?.notification?.data?.type, detail?.notification?.data)
+          break;
+      }
+    });
+  }, []);
+
+
+  useEffect(() => {
+    return notifee.onBackgroundEvent(async ({ type, detail }) => {
+      // console.log('type:  onBackgroundEvent = = = = = = = =', type);
+      // console.log('EventType: ', EventType);
+      switch (type) {
+        case EventType.DISMISSED:
+          console.log("User dismissed notification", detail.notification);
+          break;
+        case EventType.ACTION_PRESS:
+          console.log("User pressed notification", detail.notification);
+          handleNotification(detail?.notification?.data?.type, detail?.notification?.data)
+          break;
+        case EventType.PRESS:
+          console.log("User pressed in KILL", detail.notification);
+          handleNotification(detail?.notification?.data?.type, detail?.notification?.data)
+          break;
+      }
+    });
+  }, []);
 
   // Get the FCM Token From Firebase
   const getFcmToken = async () => {
