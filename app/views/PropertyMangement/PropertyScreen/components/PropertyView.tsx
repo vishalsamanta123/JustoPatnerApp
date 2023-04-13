@@ -29,6 +29,8 @@ const PropertyView = (props: any) => {
   const propertyData = useSelector((state: any) => state.propertyData) || {};
   const moreData = propertyData?.response?.total_data || 0;
   const masterData = useSelector((state: any) => state.masterData) || {};
+  const statusUpdateData =
+  useSelector((state: any) => state.removePropertyStatus) || [];
   const navigation: any = useNavigation();
   const loadingref = false;
   const [filterform, setFilterform] = useState<any>({
@@ -62,7 +64,7 @@ const PropertyView = (props: any) => {
         active_property: 2
       })
     }
-  }, [indexData, props.params]);
+  }, [indexData, props.params, statusUpdateData]);
 
   useEffect(() => {
     if (propertyData?.response) {
