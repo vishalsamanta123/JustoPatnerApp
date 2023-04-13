@@ -74,6 +74,10 @@ const styles = StyleSheet.create({
         height: normalizeHeight(25),
         width: normalizeWidth(25),
         padding: 20
+      },
+      badget: {
+        borderWidth: 0,
+        alignItems: 'center',
       }
 });
 

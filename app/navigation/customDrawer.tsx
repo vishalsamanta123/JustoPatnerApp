@@ -23,12 +23,15 @@ import { getAgentDetail } from 'app/Redux/Actions/AgentActions';
 import auth from '@react-native-firebase/auth';
 import { getPermission } from 'app/Redux/Actions/permissionAction';
 import DeviceInfo from 'react-native-device-info';
+import { Badge } from '@rneui/base';
+import { normalize } from 'app/components/scaleFontSize';
 
 const customDrawer = ({ navigation }: any) => {
   const dispatch: any = useDispatch()
   const isDrawerOpen = useDrawerStatus() === 'open';
   const insets = useSafeAreaInsets();
   const { response = {} } = useSelector((state: any) => state.profileData)
+  const notification = useSelector((state: any) => state.notificationCount)
   const permissionResponse = useSelector((state: any) => state.permissions);
   const [userData, setUserData] = useState<any>({})
   const toggleDrawer = () => {
@@ -101,7 +104,18 @@ const customDrawer = ({ navigation }: any) => {
         style={styles.drawerTouch}
         onPress={props.handleDrawerNavigation}>
         <Image source={props.iconSource} style={styles.drawerIconStyle} />
-        <Text style={styles.drawerText}>{props.tabTitle}</Text>
+        <View>
+          <Text style={styles.drawerText}>{props.tabTitle}</Text>
+          {props.tabTitle === 'Chat Management' && notification?.response?.chat_message > 0 ?
+            (<Badge
+              status="error"
+              containerStyle={{ position: 'absolute', top: 0, right: -6 }}
+              badgeStyle={styles.badget}
+              textStyle={{ fontSize: normalize(10) }}
+            />)
+            : null
+          }
+        </View>
       </TouchableOpacity>
     );
   };
