@@ -36,6 +36,8 @@ const LeadDetailsView = (props: any) => {
     create: 'add_appointment',
     status: 'add_followup',
   })
+  console.log('userDetails: ', userDetails);
+
   return (
     <>
       <View style={styles.mainContainer}>
@@ -50,9 +52,13 @@ const LeadDetailsView = (props: any) => {
         <View style={styles.leadDetailsItemView}>
           <LeadDetailsIteam items={userDetails} />
         </View>
+      {/* {userDetails?.lead_status === 1 || userDetails?.lead_status === 2 || userDetails?.lead_status === 3 ? */}
         <View style={[styles.btnContainer, {
           justifyContent: create &&
+            userDetails?.lead_status === 1 ||
+            userDetails?.lead_status === 2 ||
             userDetails?.lead_status !== 3 ||
+            userDetails?.booking_status === 4 ||
             userDetails?.appointment_status === 4 ||
             userDetails?.appointment_status === 5 ||
             userDetails?.appointment_status === 6 ? 'space-between' :
@@ -60,10 +66,13 @@ const LeadDetailsView = (props: any) => {
         }]}>
           {create &&
             <>
-              {(userDetails?.lead_status !== 3 ||
-                (userDetails?.appointment_status === 4 ||
-                  userDetails?.appointment_status === 5 ||
-                  userDetails?.appointment_status === 6) ?
+              {(userDetails?.lead_status === 1 ||
+                userDetails?.lead_status === 2 ||
+                userDetails?.lead_status !== 3 ||
+                userDetails?.booking_status === 4 ||
+                userDetails?.appointment_status === 4 ||
+                userDetails?.appointment_status === 5 ||
+                userDetails?.appointment_status === 6 ?
                 (<Button
                   handleBtnPress={() => OnpressseheduleVisit()}
                   buttonText={strings.ScheduleSitevisite}
@@ -89,7 +98,8 @@ const LeadDetailsView = (props: any) => {
               handleBtnPress={() => props.handleStatusUpdate()}
             />)
           }
-        </View>
+        </View> 
+        {/* : null} */}
       </View>
     </>
   );
