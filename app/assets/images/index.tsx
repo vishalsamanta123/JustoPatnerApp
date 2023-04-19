@@ -1,5 +1,6 @@
 const images = {
   logoWhiteBG: require('./justoLogoWhiteBG.png'),
+  justoPartnerSplash: require('./justoPartnerSplash.png'),
   emailIcon: require('./email.png'),
   hiddenPassword: require('./hiddenPassword.png'),
   showPassword: require('./showPassword.png'),
