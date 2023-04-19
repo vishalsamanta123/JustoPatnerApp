@@ -30,13 +30,16 @@ const LeadDetailsView = (props: any) => {
   }, [getleaddata]);
 
   const OnpressseheduleVisit = () => {
-    navigation.navigate("AddAppointmentScreen", { data: userDetails, type: 'Add' });
+    navigation.navigate("AddAppointmentScreen", {
+      data: userDetails,
+      type: "Add",
+    });
   };
   const { create, status } = usePermission({
-    create: 'add_appointment',
-    status: 'add_followup',
-  })
-  console.log('userDetails: ', userDetails);
+    create: "add_appointment",
+    status: "add_followup",
+  });
+  console.log("userDetails: ", userDetails);
 
   return (
     <>
@@ -52,28 +55,34 @@ const LeadDetailsView = (props: any) => {
         <View style={styles.leadDetailsItemView}>
           <LeadDetailsIteam items={userDetails} />
         </View>
-      {/* {userDetails?.lead_status === 1 || userDetails?.lead_status === 2 || userDetails?.lead_status === 3 ? */}
-        <View style={[styles.btnContainer, {
-          justifyContent: create &&
-            userDetails?.lead_status === 1 ||
-            userDetails?.lead_status === 2 ||
-            userDetails?.lead_status !== 3 ||
-            userDetails?.booking_status === 4 ||
-            userDetails?.appointment_status === 4 ||
-            userDetails?.appointment_status === 5 ||
-            userDetails?.appointment_status === 6 ? 'space-between' :
-            'center'
-        }]}>
-          {create &&
-            <>
-              {(userDetails?.lead_status === 1 ||
+        {/* {userDetails?.lead_status === 1 || userDetails?.lead_status === 2 || userDetails?.lead_status === 3 ? */}
+        <View
+          style={[
+            styles.btnContainer,
+            {
+              justifyContent:
+                (create && userDetails?.lead_status === 1) ||
                 userDetails?.lead_status === 2 ||
-                userDetails?.lead_status !== 3 ||
+                // userDetails?.lead_status !== 3 ||
                 userDetails?.booking_status === 4 ||
                 userDetails?.appointment_status === 4 ||
                 userDetails?.appointment_status === 5 ||
-                userDetails?.appointment_status === 6 ?
-                (<Button
+                userDetails?.appointment_status === 6
+                  ? "space-between"
+                  : "center",
+            },
+          ]}
+        >
+          {create && (
+            <>
+              {userDetails?.lead_status === 1 ||
+              userDetails?.lead_status === 2 ||
+              // userDetails?.lead_status !== 3 ||
+              userDetails?.booking_status === 4 ||
+              userDetails?.appointment_status === 4 ||
+              userDetails?.appointment_status === 5 ||
+              userDetails?.appointment_status === 6 ? (
+                <Button
                   handleBtnPress={() => OnpressseheduleVisit()}
                   buttonText={strings.ScheduleSitevisite}
                   width={150}
@@ -82,23 +91,27 @@ const LeadDetailsView = (props: any) => {
                   btnTxtcolor={WHITE_COLOR}
                   btnTxtsize={11}
                   textTransform={"uppercase"}
-                />) : null)
-              }
+                />
+              ) : null}
             </>
-          }
-          {status &&
-            (<Button
-              buttonText={strings.Statusupdate}
-              width={150}
-              height={45}
-              bgcolor={PRIMARY_THEME_COLOR_DARK}
-              btnTxtcolor={WHITE_COLOR}
-              btnTxtsize={14}
-              textTransform={"uppercase"}
-              handleBtnPress={() => props.handleStatusUpdate()}
-            />)
-          }
-        </View> 
+          )}
+          {status && (
+            <>
+              {userDetails?.lead_status === 5 ? null : (
+                <Button
+                  buttonText={strings.Statusupdate}
+                  width={150}
+                  height={45}
+                  bgcolor={PRIMARY_THEME_COLOR_DARK}
+                  btnTxtcolor={WHITE_COLOR}
+                  btnTxtsize={14}
+                  textTransform={"uppercase"}
+                  handleBtnPress={() => props.handleStatusUpdate()}
+                />
+              )}
+            </>
+          )}
+        </View>
         {/* : null} */}
       </View>
     </>

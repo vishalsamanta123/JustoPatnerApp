@@ -99,6 +99,7 @@ const customDrawer = ({ navigation }: any) => {
     );
   };
   const DrawerTabSection = (props: any) => {
+    console.log('notification?.response?.chat_message: ', notification?.response?.chat_message);
     return (
       <TouchableOpacity
         style={styles.drawerTouch}

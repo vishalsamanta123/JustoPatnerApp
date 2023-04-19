@@ -60,6 +60,8 @@ const ChatViewView = (props: any) => {
         ? "CH"
         : item?.roles_slug === "call_center"
         ? "CC"
+        : item?.roles_slug === "super_admin"
+        ? "SA"
         : "";
     return (
       <TouchableOpacity
