@@ -16,7 +16,7 @@ const styles = StyleSheet.create({
   },
   justoImage: {
     width: width.width,
-    // height: normalizeHeight(150)
+    height: width.height
   }
 });
 

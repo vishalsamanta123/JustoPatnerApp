@@ -42,6 +42,8 @@
 	</dict>
 	<key>NSAppleMusicUsageDescription</key>
 	<string>Justo partner uses your media for library and media</string>
+	<key>NSBluetoothAlwaysUsageDescription</key>
+	<string>Our app does not request this permission or utilize this functionality but it is included in our info.plist since our app utilizes the react-native-permissions library, which references this permission in its code.</string>
 	<key>NSCalendarsUsageDescription</key>
 	<string>Justo partner uses your calender for date and time</string>
 	<key>NSCameraUsageDescription</key>
@@ -104,7 +106,5 @@
 	</array>
 	<key>UIViewControllerBasedStatusBarAppearance</key>
 	<false/>
-	<key>NSBluetoothAlwaysUsageDescription</key>
-<string>Our app does not request this permission or utilize this functionality but it is included in our info.plist since our app utilizes the react-native-permissions library, which references this permission in its code.</string>
 </dict>
 </plist>

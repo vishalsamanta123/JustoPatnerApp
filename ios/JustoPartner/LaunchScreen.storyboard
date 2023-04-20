@@ -1,11 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="20037" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" launchScreen="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="01J-lp-oVM">
-    <device id="retina4_7" orientation="portrait" appearance="light"/>
+    <device id="retina6_0" orientation="portrait" appearance="light"/>
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="20020"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
-        <capability name="System colors in document resources" minToolsVersion="11.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
@@ -14,20 +13,20 @@
             <objects>
                 <viewController id="01J-lp-oVM" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="Ze5-6b-2t3">
-                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <rect key="frame" x="0.0" y="0.0" width="390" height="844"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="appstore" translatesAutoresizingMaskIntoConstraints="NO" id="hWd-b8-3zI">
-                                <rect key="frame" x="75" y="294" width="225" height="79"/>
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" image="appstore" translatesAutoresizingMaskIntoConstraints="NO" id="Lzk-5X-aKR">
+                                <rect key="frame" x="0.0" y="44" width="390" height="766"/>
                             </imageView>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="Bcu-3y-fUS"/>
-                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <color key="backgroundColor" red="0.086274509803921567" green="0.16862745098039217" blue="0.4392156862745098" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
-                            <constraint firstItem="hWd-b8-3zI" firstAttribute="leading" secondItem="Bcu-3y-fUS" secondAttribute="leading" constant="75" id="Nqj-yU-el8"/>
-                            <constraint firstItem="hWd-b8-3zI" firstAttribute="top" secondItem="Bcu-3y-fUS" secondAttribute="top" constant="294" id="V5p-MC-VG6"/>
-                            <constraint firstItem="Bcu-3y-fUS" firstAttribute="bottom" secondItem="hWd-b8-3zI" secondAttribute="bottom" constant="294" id="ay8-re-tto"/>
-                            <constraint firstItem="Bcu-3y-fUS" firstAttribute="trailing" secondItem="hWd-b8-3zI" secondAttribute="trailing" constant="75" id="wIL-h4-XJz"/>
+                            <constraint firstItem="Bcu-3y-fUS" firstAttribute="trailing" secondItem="Lzk-5X-aKR" secondAttribute="trailing" id="6tK-zx-wRZ"/>
+                            <constraint firstItem="Bcu-3y-fUS" firstAttribute="bottom" secondItem="Lzk-5X-aKR" secondAttribute="bottom" id="Juj-9L-Fkb"/>
+                            <constraint firstItem="Lzk-5X-aKR" firstAttribute="top" secondItem="Bcu-3y-fUS" secondAttribute="top" id="a2k-mo-NVi"/>
+                            <constraint firstItem="Lzk-5X-aKR" firstAttribute="leading" secondItem="Bcu-3y-fUS" secondAttribute="leading" id="g7K-0P-H6i"/>
                         </constraints>
                     </view>
                 </viewController>
@@ -37,9 +36,6 @@
         </scene>
     </scenes>
     <resources>
-        <image name="appstore" width="512" height="512"/>
-        <systemColor name="systemBackgroundColor">
-            <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-        </systemColor>
+        <image name="appstore" width="130" height="281.33334350585938"/>
     </resources>
 </document>
