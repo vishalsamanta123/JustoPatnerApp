@@ -70,26 +70,28 @@ const RegistrationScreen = ({ navigation }: any) => {
       ) {
         isError = false;
         errorMessage = strings.aadharValidVal;
-      } else if (
-        registerForm.pancard_no == undefined || registerForm.pancard_no == ""
-      ) {
-        isError = false;
-        errorMessage = strings.pancardReqVal;
-      } else if (
-        Regexs.panRegex.test(registerForm.pancard_no) === false
-      ) {
-        isError = false;
-        errorMessage = strings.pancardValidVal;
-      } else if (
-        registerForm.gender == undefined || registerForm.gender == "") {
-        isError = false;
-        errorMessage = strings.genderReqVal;
-      } else if (
-        registerForm.date_of_birth == undefined || registerForm.date_of_birth == ""
-      ) {
-        isError = false;
-        errorMessage = strings.dateOfBirthReqVal;
-      } else if (
+      } 
+      // else if (
+      //   registerForm.pancard_no == undefined || registerForm.pancard_no == ""
+      // ) {
+      //   isError = false;
+      //   errorMessage = strings.pancardReqVal;
+      // } else if (
+      //   Regexs.panRegex.test(registerForm.pancard_no) === false
+      // ) {
+      //   isError = false;
+      //   errorMessage = strings.pancardValidVal;
+      // } else if (
+      //   registerForm.gender == undefined || registerForm.gender == "") {
+      //   isError = false;
+      //   errorMessage = strings.genderReqVal;
+      // } else if (
+      //   registerForm.date_of_birth == undefined || registerForm.date_of_birth == ""
+      // ) {
+      //   isError = false;
+      //   errorMessage = strings.dateOfBirthReqVal;
+      // }
+       else if (
         registerForm.primary_mobile == undefined || registerForm.primary_mobile == ""
       ) {
         isError = false;
@@ -100,12 +102,14 @@ const RegistrationScreen = ({ navigation }: any) => {
       } else if (emailMobvalidation.primary_mobile == null) {
         isError = false;
         errorMessage = strings.mobileAlreadyValidReqVal;
-      } else if (
-        registerForm.whatsapp_number == undefined || registerForm.whatsapp_number == ""
-      ) {
-        isError = false;
-        errorMessage = strings.whatsappNoReqVal;
-      } else if (registerForm.email == undefined || registerForm.email == "") {
+      }
+      //  else if (
+      //   registerForm.whatsapp_number == undefined || registerForm.whatsapp_number == ""
+      // ) {
+      //   isError = false;
+      //   errorMessage = strings.whatsappNoReqVal;
+      // }
+       else if (registerForm.email == undefined || registerForm.email == "") {
         isError = false;
         errorMessage = strings.emailReqVal;
       } else if (validateEmail.test(registerForm.email) === false) {
@@ -120,13 +124,14 @@ const RegistrationScreen = ({ navigation }: any) => {
       ) {
         isError = false;
         errorMessage = strings.addressReqVal;
-      } if (
-        registerForm.working_location.length === 0 ||
-        registerForm.working_location === undefined
-      ) {
-        isError = false;
-        errorMessage = strings.workingLocationReqVal;
-      }
+      } 
+      // else if (
+      //   registerForm.working_location.length === 0 ||
+      //   registerForm.working_location === undefined
+      // ) {
+      //   isError = false;
+      //   errorMessage = strings.workingLocationReqVal;
+      // }
       if (errorMessage !== "") {
         ErrorMessage({
           msg: errorMessage,

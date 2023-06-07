@@ -11,7 +11,7 @@ import notifee, { AndroidImportance, EventType } from "@notifee/react-native";
 import messaging from "@react-native-firebase/messaging";
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import VersionCheck from "react-native-version-check";
-import { Alert, BackHandler, Linking } from 'react-native';
+import { Alert, BackHandler, Linking, Text } from 'react-native';
 import { navigate } from 'app/components/utilities/GlobalFuncations';
 // Display The Push notification
 export async function onDisplayNotification(title: any, body: any, data: any) {
@@ -39,6 +39,8 @@ export async function onDisplayNotification(title: any, body: any, data: any) {
 
 
 const App = () => {
+  Text.defaultProps = Text.defaultProps || {};
+  Text.defaultProps.allowFontScaling = false;
   const { persistor, store } = configureStore();
 
   // For check the Network Connection

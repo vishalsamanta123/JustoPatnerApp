@@ -132,7 +132,7 @@ const RegistrationView = (props: any) => {
         <View style={styles.inputWrap}>
           <InputField
             disableSpecialCharacters={true}
-            require={true}
+            // require={true}
             placeholderText={"BNZAA2318JM"}
             handleInputBtnPress={() => { }}
             headingText={strings.pancard + " " + strings.shortNum}
@@ -148,7 +148,7 @@ const RegistrationView = (props: any) => {
         </View>
         <View style={styles.genderView}>
           <Text style={styles.genderTxt}>{strings.gender}</Text>
-          <Image
+          {/* <Image
             source={images.star}
             style={{
               width: normalizeWidth(8),
@@ -156,7 +156,7 @@ const RegistrationView = (props: any) => {
               marginLeft: normalizeSpacing(5),
               marginBottom: normalizeSpacing(5),
             }}
-          />
+          /> */}
           <View style={styles.radioView}>
             <RadioButton.Android
               value={props.registerForm?.gender}
@@ -212,7 +212,7 @@ const RegistrationView = (props: any) => {
         </View>
         <View style={styles.inputWrap}>
           <InputCalender
-            require={true}
+            // require={true}
             leftIcon={images.event}
             mode={"date"}
             placeholderText={strings.dateOfBirth}
@@ -285,7 +285,7 @@ const RegistrationView = (props: any) => {
         <View style={styles.inputWrap}>
           <InputField
             disableSpecialCharacters={true}
-            require={true}
+            // require={true}
             placeholderText={strings.whatsappNo}
             handleInputBtnPress={() => { }}
             headingText={strings.whatsappNo}
@@ -377,7 +377,7 @@ const RegistrationView = (props: any) => {
             }}
           >
             <Text style={styles.workTxt}>{strings.workingLocation}</Text>
-            <Image
+            {/* <Image
               source={images.star}
               style={{
                 width: normalizeWidth(8),
@@ -385,7 +385,7 @@ const RegistrationView = (props: any) => {
                 marginLeft: normalizeSpacing(5),
                 marginBottom: normalizeSpacing(5),
               }}
-            />
+            /> */}
           </View>
           <TouchableOpacity
             onPress={() => props.setLocationModel(true)}

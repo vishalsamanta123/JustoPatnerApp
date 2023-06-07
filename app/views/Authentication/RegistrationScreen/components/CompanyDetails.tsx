@@ -47,41 +47,44 @@ const CompanyDetails = ({ navigation }: any) => {
     if (formData.agency_name == '' || formData.agency_name == undefined) {
       isError = false;
       errorMessage = strings.agencyNameReqVal
-    } else if (formData.gst == '' || formData.gst == undefined) {
-      isError = false;
-      errorMessage = strings.gstReqVal
-    } else if (formData.rera_registration == '' || formData.rera_registration == undefined) {
+    } 
+    // else if (formData.gst == '' || formData.gst == undefined) {
+    //   isError = false;
+    //   errorMessage = strings.gstReqVal
+    // }
+     else if (formData.rera_registration == '' || formData.rera_registration == undefined) {
       isError = false;
       errorMessage = strings.reraRegstrReqVal
-    } else if (formData.pancard == '' || formData.pancard == undefined) {
-      isError = false;
-      errorMessage = strings.comPanCardImgReqVal
-    } else if (formData.declaration_letter_of_company == '' || formData.declaration_letter_of_company == undefined) {
-      isError = false;
-      errorMessage = strings.declLttrComImgReqVal
-    } else if (formData.company_bank_name == '' || formData.company_bank_name == undefined) {
-      isError = false;
-      errorMessage = strings.bankNameReqVal
-    } else if (formData.company_branch_name == '' || formData.company_branch_name == undefined) {
-      isError = false;
-      errorMessage = strings.branchNameReqVal
-    } else if (formData.company_account_no == '' || formData.company_account_no == undefined) {
-      isError = false;
-      errorMessage = strings.accountNoReqVal
-    } else if (
-      Regexs.accountnumRegex.test(formData.company_account_no) === false
-    ) {
-      isError = false;
-      errorMessage = strings.accountNoValidVal;
-    } else if (formData.company_ifsc_code == '' || formData.company_ifsc_code == undefined) {
-      isError = false;
-      errorMessage = strings.ifscReqVal
-    } else if (
-      Regexs.ifscRegex.test(formData.company_ifsc_code) === false
-    ) {
-      isError = false;
-      errorMessage = strings.ifscValidVal;
     }
+    //  else if (formData.pancard == '' || formData.pancard == undefined) {
+    //   isError = false;
+    //   errorMessage = strings.comPanCardImgReqVal
+    // } else if (formData.declaration_letter_of_company == '' || formData.declaration_letter_of_company == undefined) {
+    //   isError = false;
+    //   errorMessage = strings.declLttrComImgReqVal
+    // } else if (formData.company_bank_name == '' || formData.company_bank_name == undefined) {
+    //   isError = false;
+    //   errorMessage = strings.bankNameReqVal
+    // } else if (formData.company_branch_name == '' || formData.company_branch_name == undefined) {
+    //   isError = false;
+    //   errorMessage = strings.branchNameReqVal
+    // } else if (formData.company_account_no == '' || formData.company_account_no == undefined) {
+    //   isError = false;
+    //   errorMessage = strings.accountNoReqVal
+    // } else if (
+    //   Regexs.accountnumRegex.test(formData.company_account_no) === false
+    // ) {
+    //   isError = false;
+    //   errorMessage = strings.accountNoValidVal;
+    // } else if (formData.company_ifsc_code == '' || formData.company_ifsc_code == undefined) {
+    //   isError = false;
+    //   errorMessage = strings.ifscReqVal
+    // } else if (
+    //   Regexs.ifscRegex.test(formData.company_ifsc_code) === false
+    // ) {
+    //   isError = false;
+    //   errorMessage = strings.ifscValidVal;
+    // }
     if (errorMessage !== '') {
       ErrorMessage({
         msg: errorMessage,
@@ -191,7 +194,7 @@ const CompanyDetails = ({ navigation }: any) => {
         <View style={styles.inputWrap}>
           <InputField
             disableSpecialCharacters={true}
-            require={true}
+            // require={true}
             placeholderText={strings.gst}
             headingText={strings.gst}
             handleInputBtnPress={() => { }}
@@ -222,7 +225,7 @@ const CompanyDetails = ({ navigation }: any) => {
         <View style={[styles.inputWrap, { flexDirection: "row", alignItems: 'center', justifyContent: 'space-between' }]}>
           <View style={{ flex: 1, flexDirection: 'row', alignItems: 'center' }}>
             <Text style={styles.headingText}>{strings.pancard}</Text>
-            <Image
+            {/* <Image
               source={images.star}
               style={{
                 width: normalizeWidth(8),
@@ -230,7 +233,7 @@ const CompanyDetails = ({ navigation }: any) => {
                 marginLeft: normalizeSpacing(5),
                 marginBottom: normalizeSpacing(5),
               }}
-            />
+            /> */}
           </View>
           <View>
             <TouchableOpacity
@@ -251,7 +254,7 @@ const CompanyDetails = ({ navigation }: any) => {
         <View style={[styles.inputWrap, { flexDirection: "row", alignItems: 'center', justifyContent: 'space-between' }]}>
           <View style={{ flex: 1, flexDirection: 'row', alignItems: 'center' }}>
             <Text style={styles.headingText}>{strings.declrLttrCom}</Text>
-            <Image
+            {/* <Image
               source={images.star}
               style={{
                 width: normalizeWidth(8),
@@ -259,7 +262,7 @@ const CompanyDetails = ({ navigation }: any) => {
                 marginLeft: normalizeSpacing(5),
                 marginBottom: normalizeSpacing(5),
               }}
-            />
+            /> */}
           </View>
           <View>
             <TouchableOpacity
@@ -283,7 +286,7 @@ const CompanyDetails = ({ navigation }: any) => {
         <View style={styles.inputWrap}>
           <InputField
             disableSpecialCharacters={true}
-            require={true}
+            // require={true}
             placeholderText={strings.bankName}
             handleInputBtnPress={() => { }}
             headingText={strings.bankName}
@@ -298,7 +301,7 @@ const CompanyDetails = ({ navigation }: any) => {
         <View style={styles.inputWrap}>
           <InputField
             disableSpecialCharacters={true}
-            require={true}
+            // require={true}
             placeholderText={strings.branchName}
             handleInputBtnPress={() => { }}
             headingText={strings.branchName}
@@ -313,7 +316,7 @@ const CompanyDetails = ({ navigation }: any) => {
         <View style={styles.inputWrap}>
           <InputField
             disableSpecialCharacters={true}
-            require={true}
+            // require={true}
             placeholderText={strings.accountNo}
             handleInputBtnPress={() => { }}
             headingText={strings.accountNo}
@@ -330,7 +333,7 @@ const CompanyDetails = ({ navigation }: any) => {
         <View style={styles.inputWrap}>
           <InputField
             disableSpecialCharacters={true}
-            require={true}
+            // require={true}
             placeholderText={strings.ifscCode}
             handleInputBtnPress={() => { }}
             headingText={strings.ifscCode}

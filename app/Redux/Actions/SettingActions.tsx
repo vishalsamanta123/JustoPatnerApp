@@ -4,6 +4,7 @@ import { apiCall } from "app/components/utilities/httpClient";
 import { handleApiError } from "app/components/ErrorMessage/HandleApiErrors";
 
 export const updateUserSettingData = (userDetail: any) => async (dispatch: any) => {
+console.log('userDetail: ', userDetail);
   dispatch({ type: START_LOADING })
   try {
     const header = {
@@ -16,6 +17,7 @@ export const updateUserSettingData = (userDetail: any) => async (dispatch: any) 
       userDetail,
       header
     );
+    console.log('res IN UPDATE PROFILE: ', res);
     if (res.data.status == 200) {
       dispatch({
         type: UPDATE_PROFILE,

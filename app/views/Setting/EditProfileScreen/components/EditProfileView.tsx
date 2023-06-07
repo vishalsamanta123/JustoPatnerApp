@@ -18,10 +18,21 @@ import { useSelector } from "react-redux";
 import InputCalender from "app/components/InputCalender";
 import PicturePickerModal from "app/components/Modals/PicturePicker";
 import { normalizeSpacing } from "app/components/scaleFontSize";
+import MultiLocation from "app/components/MultiLocation";
 
 const EditProfileView = (props: any) => {
   const insets = useSafeAreaInsets();
   const [profileVisible, setProfileVisible] = useState(false);
+  const [locationModel, setLocationModel] = useState(false);
+
+  const handleDelete = (item: any, index: any) => {
+    var array: any[] = [...props?.editData.working_location];
+    array?.splice(index, 1);
+    props?.setEditData({
+      ...props?.editData,
+      working_location: array,
+    });
+  };
   return (
     <View style={styles.mainContainer}>
       <Header
@@ -36,7 +47,8 @@ const EditProfileView = (props: any) => {
       />
       <ScrollView
         automaticallyAdjustKeyboardInsets={Isios ? true : false}
-        keyboardShouldPersistTaps={'handled'}>
+        keyboardShouldPersistTaps={"handled"}
+      >
         <View style={styles.wrap}>
           {/*  <Text style={styles.headingText}>{strings.basicInfoText}</Text> */}
           {/* <View style={styles.nderlineStyle} /> */}
@@ -44,21 +56,21 @@ const EditProfileView = (props: any) => {
             style={styles.imageCircle}
             onPress={() => setProfileVisible(true)}
           >
-            {props?.editData?.profile_picture || props?.editData?.local_profile_picture?.uri || props.editData?.profile_base_url ?
+            {props?.editData?.profile_picture ||
+            props?.editData?.local_profile_picture?.uri ||
+            props.editData?.profile_base_url ? (
               <Image
                 style={styles.userImage}
                 source={{
                   uri: props.editData?.local_profile_picture?.uri
                     ? props.editData?.local_profile_picture?.uri
-                    : props.editData?.profile_base_url + props.editData?.profile_picture,
+                    : props.editData?.profile_base_url +
+                      props.editData?.profile_picture,
                 }}
               />
-              :
-              <Image
-                style={styles.userImage}
-                source={images.dummyUser}
-              />
-            }
+            ) : (
+              <Image style={styles.userImage} source={images.dummyUser} />
+            )}
             <View style={styles.editView}>
               <Image
                 style={styles.editImage}
@@ -72,7 +84,7 @@ const EditProfileView = (props: any) => {
               require={true}
               disableSpecialCharacters={true}
               valueshow={props.editData?.agent_name}
-              handleInputBtnPress={() => { }}
+              handleInputBtnPress={() => {}}
               onChangeText={(e: any) => {
                 props.setEditData({
                   ...props.editData,
@@ -86,25 +98,25 @@ const EditProfileView = (props: any) => {
             <InputField
               require={true}
               valueshow={props.editData?.adhar_no}
-              keyboardtype={'number-pad'}
-              handleInputBtnPress={() => { }}
+              keyboardtype={"number-pad"}
+              handleInputBtnPress={() => {}}
               onChangeText={(e: any) => {
                 props.setEditData({
                   ...props.editData,
                   adhar_no: e,
                 });
               }}
-              inputType={'aadhaar'}
+              inputType={"aadhaar"}
               headingText={strings.aadhaar}
               maxLength={14}
             />
           </View>
           <View style={styles.inputWrap}>
             <InputField
-              require={true}
+              // require={true}
               disableSpecialCharacters={true}
               valueshow={props.editData?.pancard_no}
-              handleInputBtnPress={() => { }}
+              handleInputBtnPress={() => {}}
               onChangeText={(e: any) => {
                 props.setEditData({
                   ...props.editData,
@@ -134,7 +146,9 @@ const EditProfileView = (props: any) => {
                   styles.radioTxt,
                   {
                     color:
-                      props.editData?.gender === 1 ? PRIMARY_THEME_COLOR : BLACK_COLOR,
+                      props.editData?.gender === 1
+                        ? PRIMARY_THEME_COLOR
+                        : BLACK_COLOR,
                   },
                 ]}
               >
@@ -158,7 +172,9 @@ const EditProfileView = (props: any) => {
                   styles.radioTxt,
                   {
                     color:
-                      props.editData?.gender === 2 ? PRIMARY_THEME_COLOR : BLACK_COLOR,
+                      props.editData?.gender === 2
+                        ? PRIMARY_THEME_COLOR
+                        : BLACK_COLOR,
                   },
                 ]}
               >
@@ -190,9 +206,10 @@ const EditProfileView = (props: any) => {
           </View>
           <View style={styles.inputWrap}>
             <InputField
+              require={true}
               disableSpecialCharacters={true}
               valueshow={props.editData?.primary_mobile?.toString()}
-              handleInputBtnPress={() => { }}
+              handleInputBtnPress={() => {}}
               onChangeText={(e: any) => {
                 props.setEditData({
                   ...props.editData,
@@ -205,10 +222,10 @@ const EditProfileView = (props: any) => {
           </View>
           <View style={styles.inputWrap}>
             <InputField
-              require={true}
+              // require={true}
               disableSpecialCharacters={true}
               valueshow={props.editData?.whatsapp_number?.toString()}
-              handleInputBtnPress={() => { }}
+              handleInputBtnPress={() => {}}
               onChangeText={(e: any) => {
                 props.setEditData({
                   ...props.editData,
@@ -216,14 +233,15 @@ const EditProfileView = (props: any) => {
                 });
               }}
               headingText={strings.whatsappNo}
-              keyboardtype={'number-pad'}
+              keyboardtype={"number-pad"}
               maxLength={10}
             />
           </View>
           <View style={styles.inputWrap}>
             <InputField
+              require={true}
               valueshow={props.editData?.email}
-              handleInputBtnPress={() => { }}
+              handleInputBtnPress={() => {}}
               onChangeText={(e: any) => {
                 props.setEditData({
                   ...props.editData,
@@ -242,34 +260,74 @@ const EditProfileView = (props: any) => {
               onChangeText={(data: any) => {
                 props.setEditData({
                   ...props.editData,
-                  location: data
-                })
+                  location: data,
+                });
               }}
               valueshow={props?.editData?.location}
-              inputType={'location'}
+              inputType={"location"}
               onPressSelect={(data: any, detail: any) => {
                 props.setEditData({
                   ...props.editData,
                   location: data?.description,
                   latitude: detail?.geometry?.location?.lat,
                   longitude: detail?.geometry?.location?.lng,
-                })
+                });
               }}
             />
           </View>
-          {/*  <View style={styles.inputWrap}>
-            <InputField
-              placeholderText={"Sourcing Manager"}
-              handleInputBtnPress={() => {}}
-              onChangeText={(e: any) => {
-                props.setEditData({
-                  ...props.editData,
-                  adhar_no: e
-                })
+          <View style={styles.workingView}>
+            <View
+              style={{
+                top: props.editData?.working_location?.length > 0 ? 5 : 0,
+                flexDirection: "row",
+                alignItems: "center",
               }}
-              headingText={"Sourcing Manager"}
-            />
-          </View> */}
+            >
+              <Text style={styles.workTxt}>{strings.workingLocation}</Text>
+              {/* <Image
+              source={images.star}
+              style={{
+                width: normalizeWidth(8),
+                height: normalizeHeight(8),
+                marginLeft: normalizeSpacing(5),
+                marginBottom: normalizeSpacing(5),
+              }}
+            /> */}
+            </View>
+            <TouchableOpacity
+              onPress={() => setLocationModel(true)}
+              style={styles.addBtn}
+            >
+              <Text style={styles.addTxt}>+ {strings.addLocation}</Text>
+            </TouchableOpacity>
+          </View>
+          {props.editData?.working_location?.length > 0 ? (
+          <View style={styles.inputBoxVw}>
+            {props.editData?.working_location?.map(
+              (item: any, index: any) => {
+                return (
+                  <View
+                    style={[
+                      styles.inputBoxItmVw,
+                      {
+                        borderBottomWidth:
+                          props?.editData?.working_location?.length - 1 ===
+                            index
+                            ? 0
+                            : 0.6,
+                      },
+                    ]}
+                  >
+                    <Text style={styles.inputBoxItmTxt}>{item.location}</Text>
+                    <TouchableOpacity onPress={() => handleDelete(item, index)}>
+                      <Image source={images.close} style={styles.crossVw} />
+                    </TouchableOpacity>
+                  </View>
+                );
+              }
+            )}
+          </View>
+        ) : null}
           <View style={{ marginTop: 10 }}>
             <Button
               handleBtnPress={() => props.handleNextPress()}
@@ -290,6 +348,19 @@ const EditProfileView = (props: any) => {
               });
             }}
           />
+          <MultiLocation
+          Visible={locationModel}
+          setVisible={() => setLocationModel(false)}
+          value={props.editData?.working_location}
+          handleAddTarget={(data: any) => {
+            if (data?.length > 0) {
+              props.setEditData({
+                ...props.editData,
+                working_location: data,
+              });
+            }
+          }}
+        />
         </View>
       </ScrollView>
     </View>

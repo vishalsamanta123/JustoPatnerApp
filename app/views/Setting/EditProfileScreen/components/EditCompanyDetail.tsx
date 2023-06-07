@@ -29,6 +29,7 @@ const EditCompanyDetails = ({ navigation }: any) => {
         company_account_no: bankDetail?.account_no ? bankDetail?.account_no : '',
         company_ifsc_code: bankDetail?.ifsc_code ? bankDetail?.ifsc_code : '',
     });
+    console.log('editData: ', editData);
 
     const [panCardVisible, setPanCardVisible] = useState(false)
     const [declarLttrVisible, setDeclarLttrVisible] = useState(false)
@@ -70,41 +71,44 @@ const EditCompanyDetails = ({ navigation }: any) => {
         if (editData?.agency_name == '' || editData?.agency_name == undefined) {
           isError = false;
           errorMessage = strings.agencyNameReqVal
-        } else if (editData?.gst == '' || editData?.gst == undefined) {
-          isError = false;
-          errorMessage = strings.gstReqVal
-        } else if (editData?.rera_registration == '' || editData?.rera_registration == undefined) {
+        } 
+        // else if (editData?.gst == '' || editData?.gst == undefined) {
+        //   isError = false;
+        //   errorMessage = strings.gstReqVal
+        // }
+         else if (editData?.rera_registration == '' || editData?.rera_registration == undefined) {
           isError = false;
           errorMessage = strings.reraRegstrReqVal
-        } else if (editData?.pancard == '' || editData?.pancard == undefined) {
-          isError = false;
-          errorMessage = strings.comPanCardImgReqVal
-        } else if (editData?.declaration_letter_of_company == '' || editData?.declaration_letter_of_company == undefined) {
-          isError = false;
-          errorMessage = strings.declLttrComImgReqVal
-        } else if (editData?.company_bank_name == '' || editData?.company_bank_name == undefined) {
-          isError = false;
-          errorMessage = strings.bankNameReqVal
-        } else if (editData?.company_branch_name == '' || editData?.company_branch_name == undefined) {
-          isError = false;
-          errorMessage = strings.branchNameReqVal
-        } else if (editData?.company_account_no == '' || editData?.company_account_no == undefined) {
-          isError = false;
-          errorMessage = strings.accountNoReqVal
-        } else if (
-          Regexs.accountnumRegex.test(editData?.company_account_no) === false
-        ) {
-          isError = false;
-          errorMessage = strings.accountNoValidVal;
-        } else if (editData?.company_ifsc_code == '' || editData?.company_ifsc_code == undefined) {
-          isError = false;
-          errorMessage = strings.ifscReqVal
-        } else if (
-          Regexs.ifscRegex.test(editData?.company_ifsc_code) === false
-        ) {
-          isError = false;
-          errorMessage = strings.ifscValidVal;
-        }
+        } 
+        // else if (editData?.pancard == '' || editData?.pancard == undefined) {
+        //   isError = false;
+        //   errorMessage = strings.comPanCardImgReqVal
+        // } else if (editData?.declaration_letter_of_company == '' || editData?.declaration_letter_of_company == undefined) {
+        //   isError = false;
+        //   errorMessage = strings.declLttrComImgReqVal
+        // } else if (editData?.company_bank_name == '' || editData?.company_bank_name == undefined) {
+        //   isError = false;
+        //   errorMessage = strings.bankNameReqVal
+        // } else if (editData?.company_branch_name == '' || editData?.company_branch_name == undefined) {
+        //   isError = false;
+        //   errorMessage = strings.branchNameReqVal
+        // } else if (editData?.company_account_no == '' || editData?.company_account_no == undefined) {
+        //   isError = false;
+        //   errorMessage = strings.accountNoReqVal
+        // } else if (
+        //   Regexs.accountnumRegex.test(editData?.company_account_no) === false
+        // ) {
+        //   isError = false;
+        //   errorMessage = strings.accountNoValidVal;
+        // } else if (editData?.company_ifsc_code == '' || editData?.company_ifsc_code == undefined) {
+        //   isError = false;
+        //   errorMessage = strings.ifscReqVal
+        // } else if (
+        //   Regexs.ifscRegex.test(editData?.company_ifsc_code) === false
+        // ) {
+        //   isError = false;
+        //   errorMessage = strings.ifscValidVal;
+        // }
         if (errorMessage !== '') {
           ErrorMessage({
             msg: errorMessage,
@@ -130,10 +134,11 @@ const EditCompanyDetails = ({ navigation }: any) => {
             editFormData.append("agent_name", editData?.agent_name);
             editFormData.append("adhar_no", editData?.adhar_no);
             editFormData.append("pancard_no", editData?.pancard_no);
-            editFormData.append("gender", editData?.gender);
+            editFormData.append("gender", editData?.gender ? editData?.gender : "");
+            editFormData.append("working_location", JSON.stringify(editData?.working_location))
             editFormData.append("date_of_birth", moment(editData?.date_of_birth).format());
             editFormData.append("primary_mobile", editData?.primary_mobile);
-            editFormData.append("whatsapp_number", editData?.whatsapp_number);
+            editFormData.append("whatsapp_number", editData?.whatsapp_number ? editData?.whatsapp_number : "");
             editFormData.append("email", editData?.email);
             editFormData.append("address", editData?.address);
             editFormData.append("latitude", editData?.latitude);
@@ -200,7 +205,7 @@ const EditCompanyDetails = ({ navigation }: any) => {
                 </View>
                 <View style={styles.inputWrap}>
                     <InputField
-                        require={true}
+                        // require={true}
                         disableSpecialCharacters={true}
                         // require={true}
                         placeholderText={strings.gst}
@@ -298,7 +303,6 @@ const EditCompanyDetails = ({ navigation }: any) => {
                 </View>
                 <View style={styles.inputWrap}>
                     <InputField
-                        require={true}
                         disableSpecialCharacters={true}
                         // require={true}
                         placeholderText={strings.bankName}
@@ -314,7 +318,6 @@ const EditCompanyDetails = ({ navigation }: any) => {
                 </View>
                 <View style={styles.inputWrap}>
                     <InputField
-                        require={true}
                         disableSpecialCharacters={true}
                         // require={true}
                         placeholderText={strings.branchName}
@@ -330,7 +333,6 @@ const EditCompanyDetails = ({ navigation }: any) => {
                 </View>
                 <View style={styles.inputWrap}>
                     <InputField
-                        require={true}
                         disableSpecialCharacters={true}
                         // require={true}
                         placeholderText={strings.accountNo}
@@ -348,7 +350,6 @@ const EditCompanyDetails = ({ navigation }: any) => {
                 </View>
                 <View style={styles.inputWrap}>
                     <InputField
-                        require={true}
                         disableSpecialCharacters={true}
                         // require={true}
                         placeholderText={strings.ifscCode}

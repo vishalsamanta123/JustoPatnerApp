@@ -53,26 +53,28 @@ const EditProfileScreen = ({ navigation, route }: any) => {
       ) {
         isError = false;
         errorMessage = strings.aadharValidVal;
-      } else if (
-        editData?.pancard_no == undefined || editData?.pancard_no == ""
-      ) {
-        isError = false;
-        errorMessage = strings.pancardReqVal;
-      } else if (
-        Regexs.panRegex.test(editData?.pancard_no) === false
-      ) {
-        isError = false;
-        errorMessage = strings.pancardValidVal;
-      } else if (
-        editData?.gender == undefined || editData?.gender == "") {
-        isError = false;
-        errorMessage = strings.genderReqVal;
-      } else if (
-        editData?.date_of_birth == undefined || editData?.date_of_birth == ""
-      ) {
-        isError = false;
-        errorMessage = strings.dateOfBirthReqVal;
-      } else if (
+      } 
+      // else if (
+      //   editData?.pancard_no == undefined || editData?.pancard_no == ""
+      // ) {
+      //   isError = false;
+      //   errorMessage = strings.pancardReqVal;
+      // } else if (
+      //   Regexs.panRegex.test(editData?.pancard_no) === false
+      // ) {
+      //   isError = false;
+      //   errorMessage = strings.pancardValidVal;
+      // } else if (
+      //   editData?.gender == undefined || editData?.gender == "") {
+      //   isError = false;
+      //   errorMessage = strings.genderReqVal;
+      // } else if (
+      //   editData?.date_of_birth == undefined || editData?.date_of_birth == ""
+      // ) {
+      //   isError = false;
+      //   errorMessage = strings.dateOfBirthReqVal;
+      // } 
+      else if (
         editData?.primary_mobile == undefined || editData?.primary_mobile == ""
       ) {
         isError = false;
@@ -80,12 +82,14 @@ const EditProfileScreen = ({ navigation, route }: any) => {
       } else if (editData?.primary_mobile?.length < 10) {
         isError = false;
         errorMessage = strings.mobileNoValidReqVal;
-      } else if (
-        editData?.whatsapp_number == undefined || editData?.whatsapp_number == ""
-      ) {
-        isError = false;
-        errorMessage = strings.whatsappNoReqVal;
-      } else if (editData?.email == undefined || editData?.email == "") {
+      } 
+      // else if (
+      //   editData?.whatsapp_number == undefined || editData?.whatsapp_number == ""
+      // ) {
+      //   isError = false;
+      //   errorMessage = strings.whatsappNoReqVal;
+      // } 
+      else if (editData?.email == undefined || editData?.email == "") {
         isError = false;
         errorMessage = strings.emailReqVal;
       } else if (
@@ -94,13 +98,14 @@ const EditProfileScreen = ({ navigation, route }: any) => {
       ) {
         isError = false;
         errorMessage = strings.addressReqVal;
-      } if (
-        editData?.working_location.length === 0 ||
-        editData?.working_location === undefined
-      ) {
-        isError = false;
-        errorMessage = strings.workingLocationReqVal;
-      }
+      } 
+      // else if (
+      //   editData?.working_location.length === 0 ||
+      //   editData?.working_location === undefined
+      // ) {
+      //   isError = false;
+      //   errorMessage = strings.workingLocationReqVal;
+      // }
       if (errorMessage !== "") {
         ErrorMessage({
           msg: errorMessage,

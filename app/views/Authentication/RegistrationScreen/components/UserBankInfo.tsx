@@ -69,46 +69,49 @@ const UserBankInfo = ({ navigation }: any) => {
   const validation = () => {
     let isError = true;
     let errorMessage: any = ''
-    // if (formData.rera_certificate_no == '' || formData.rera_certificate_no == undefined) {
+    // if (formData.norera_register === null) {
     //   isError = false;
-    //   errorMessage = strings.reraCertNoReqVal
+    //   errorMessage = strings.noReraRegReqVal;
     // }
-    // else if (formData.rera_certificate == '' || formData.rera_certificate == undefined) {
-    //   isError = false;
-    //   errorMessage = strings.reraCertImgReqVal
-    // }
-    if (formData.propidership_declaration_letter == '' || formData.propidership_declaration_letter == undefined) {
+    // else
+     if (formData.rera_certificate_no == '' || formData.rera_certificate_no == undefined) {
       isError = false;
-      errorMessage = strings.propDeclrLttrImgReqVal
-    } else if (formData.norera_register === null) {
-      isError = false;
-      errorMessage = strings.noReraRegReqVal;
-    } else if (formData.bank_name == '' || formData.bank_name == undefined) {
-      isError = false;
-      errorMessage = strings.bankNameReqVal
-    } else if (formData.branch_name == '' || formData.branch_name == undefined) {
-      isError = false;
-      errorMessage = strings.branchNameReqVal
-    } else if (formData.account_no == '' || formData.account_no == undefined) {
-      isError = false;
-      errorMessage = strings.accountNoReqVal
-    } else if (
-      Regexs.accountnumRegex.test(formData.account_no) === false
-    ) {
-      isError = false;
-      errorMessage = strings.accountNoValidVal;
-    } else if (formData.ifsc_code == '' || formData.ifsc_code == undefined) {
-      isError = false;
-      errorMessage = strings.ifscReqVal
-    } else if (
-      Regexs.ifscRegex.test(formData.ifsc_code) === false
-    ) {
-      isError = false;
-      errorMessage = strings.ifscValidVal;
-    } else if (formData.cancel_cheaque == '' || formData.cancel_cheaque == undefined) {
-      isError = false;
-      errorMessage = strings.cancelChqImgReqVal
+      errorMessage = strings.reraCertNoReqVal
     }
+    else if (formData.rera_certificate == '' || formData.rera_certificate == undefined) {
+      isError = false;
+      errorMessage = strings.reraCertImgReqVal
+    }
+    // if (formData.propidership_declaration_letter == '' || formData.propidership_declaration_letter == undefined) {
+    //   isError = false;
+    //   errorMessage = strings.propDeclrLttrImgReqVal
+    // } 
+    //   else if (formData.bank_name == '' || formData.bank_name == undefined) {
+    //   isError = false;
+    //   errorMessage = strings.bankNameReqVal
+    // } else if (formData.branch_name == '' || formData.branch_name == undefined) {
+    //   isError = false;
+    //   errorMessage = strings.branchNameReqVal
+    // } else if (formData.account_no == '' || formData.account_no == undefined) {
+    //   isError = false;
+    //   errorMessage = strings.accountNoReqVal
+    // } else if (
+    //   Regexs.accountnumRegex.test(formData.account_no) === false
+    // ) {
+    //   isError = false;
+    //   errorMessage = strings.accountNoValidVal;
+    // } else if (formData.ifsc_code == '' || formData.ifsc_code == undefined) {
+    //   isError = false;
+    //   errorMessage = strings.ifscReqVal
+    // } else if (
+    //   Regexs.ifscRegex.test(formData.ifsc_code) === false
+    // ) {
+    //   isError = false;
+    //   errorMessage = strings.ifscValidVal;
+    // } else if (formData.cancel_cheaque == '' || formData.cancel_cheaque == undefined) {
+    //   isError = false;
+    //   errorMessage = strings.cancelChqImgReqVal
+    // }
     if (errorMessage !== '') {
       ErrorMessage({
         msg: errorMessage,
@@ -194,7 +197,7 @@ const UserBankInfo = ({ navigation }: any) => {
           </View>
           <View style={styles.inputWrap}>
             <InputField
-              // require={true}
+              require={true}
               placeholderText={strings.reraCertificate + " " + strings.shortNum}
               handleInputBtnPress={() => { }}
               maxLength={20}
@@ -212,7 +215,7 @@ const UserBankInfo = ({ navigation }: any) => {
           <View style={[styles.inputWrap, { flexDirection: "row", alignItems: 'center', justifyContent: 'space-between' }]}>
             <View style={{ flex: 1, flexDirection: 'row', alignItems: 'center' }}>
               <Text style={styles.headingText}>{strings.reraCertificate}</Text>
-              {/* <Image
+              <Image
                 source={images.star}
                 style={{
                   width: normalizeWidth(8),
@@ -220,7 +223,7 @@ const UserBankInfo = ({ navigation }: any) => {
                   marginLeft: normalizeSpacing(5),
                   marginBottom: normalizeSpacing(5),
                 }}
-              /> */}
+              />
             </View>
             <View>
               <TouchableOpacity
@@ -240,7 +243,7 @@ const UserBankInfo = ({ navigation }: any) => {
           <View style={[styles.inputWrap, { flexDirection: "row", alignItems: 'center' }]}>
             <View style={{ flex: 1, flexDirection: 'row', alignItems: 'center' }}>
               <Text style={styles.headingText}>{strings.proprietorDeclarLttr}</Text>
-              <Image
+              {/* <Image
                 source={images.star}
                 style={{
                   width: normalizeWidth(8),
@@ -248,7 +251,7 @@ const UserBankInfo = ({ navigation }: any) => {
                   marginLeft: normalizeSpacing(5),
                   marginBottom: normalizeSpacing(5),
                 }}
-              />
+              /> */}
             </View>
             <View>
               <TouchableOpacity
@@ -266,7 +269,7 @@ const UserBankInfo = ({ navigation }: any) => {
             <Text style={styles.addedTxt}>{strings.proprietorDeclarLttr + " " + strings.added}</Text>
             : null
           }
-          <View style={styles.straightVw}>
+          {/* <View style={styles.straightVw}>
             <RadioButton.Android
               value={formData?.norera_register}
               status={formData.norera_register === 1 ? "checked" : "unchecked"}
@@ -293,14 +296,14 @@ const UserBankInfo = ({ navigation }: any) => {
             >
               {strings.noReraRegistr}
             </Text>
-          </View>
+          </View> */}
           <View style={styles.inputWrap}>
             <Text style={styles.headingText}>{strings.bankDetail}</Text>
           </View>
           <View style={styles.inputWrap}>
             <InputField
               disableSpecialCharacters={true}
-              require={true}
+              // require={true}
               placeholderText={strings.bankName}
               handleInputBtnPress={() => { }}
               headingText={strings.bankName}
@@ -315,7 +318,7 @@ const UserBankInfo = ({ navigation }: any) => {
           <View style={styles.inputWrap}>
             <InputField
               disableSpecialCharacters={true}
-              require={true}
+              // require={true}
               placeholderText={strings.branchName}
               handleInputBtnPress={() => { }}
               headingText={strings.branchName}
@@ -330,7 +333,7 @@ const UserBankInfo = ({ navigation }: any) => {
           <View style={styles.inputWrap}>
             <InputField
               disableSpecialCharacters={true}
-              require={true}
+              // require={true}
               placeholderText={strings.accountNo}
               handleInputBtnPress={() => { }}
               headingText={strings.accountNo}
@@ -347,7 +350,7 @@ const UserBankInfo = ({ navigation }: any) => {
           <View style={styles.inputWrap}>
             <InputField
               disableSpecialCharacters={true}
-              require={true}
+              // require={true}
               placeholderText={strings.ifscCode}
               handleInputBtnPress={() => { }}
               headingText={strings.ifscCode}
@@ -363,7 +366,7 @@ const UserBankInfo = ({ navigation }: any) => {
           <View style={[styles.inputWrap, { flexDirection: "row", alignItems: 'center' }]}>
             <View style={{ flex: 1, flexDirection: 'row', alignItems: 'center' }}>
               <Text style={styles.headingText}>{strings.cancelCheque}</Text>
-              <Image
+              {/* <Image
                 source={images.star}
                 style={{
                   width: normalizeWidth(8),
@@ -371,7 +374,7 @@ const UserBankInfo = ({ navigation }: any) => {
                   marginLeft: normalizeSpacing(5),
                   marginBottom: normalizeSpacing(5),
                 }}
-              />
+              /> */}
             </View>
             <View>
               <TouchableOpacity

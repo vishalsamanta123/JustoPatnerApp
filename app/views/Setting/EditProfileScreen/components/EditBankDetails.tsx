@@ -25,6 +25,7 @@ import ErrorMessage from "app/components/ErrorMessage";
 import { addAgentForm } from "app/Redux/Actions/AgentActions";
 import { RadioButton } from "react-native-paper";
 import { handleValues } from "app/components/utilities/handleValues";
+import { RequiredStart } from "app/components/utilities/GlobalFuncations";
 
 const EditBankDetails = ({ navigation }: any) => {
   const dispatch: any = useDispatch()
@@ -34,6 +35,7 @@ const EditBankDetails = ({ navigation }: any) => {
   const agentdetail = useSelector((state: any) => state.addAgentForm);
   const [editData, setEditData] = useState(agentdetail?.response);
   const [bankData, setBankData] = useState(agentdetail?.response?.cp_bank_detail);
+  console.log('bankData: ', bankData);
 
   const onPressBack = () => {
     navigation.goBack()
@@ -59,46 +61,46 @@ const EditBankDetails = ({ navigation }: any) => {
   const validation = () => {
     let isError = true;
     let errorMessage: any = ''
-    // if (editData?.rera_certificate_no == '' || editData?.rera_certificate_no == undefined) {
-    //   isError = false;
-    //   errorMessage = strings.reraCertNoReqVal
-    // }
-    // else if (bankData?.rera_certificate == '' || bankData?.rera_certificate == undefined) {
-    //   isError = false;
-    //   errorMessage = strings.reraCertImgReqVal
-    // }
-    if (editData?.propidership_declaration_letter == '' || editData?.propidership_declaration_letter == undefined) {
+    if (editData?.rera_certificate_no == '' || editData?.rera_certificate_no == undefined) {
       isError = false;
-      errorMessage = strings.propDeclrLttrImgReqVal
-    } else if (editData?.norera_register === null) {
-      isError = false;
-      errorMessage = strings.noReraRegReqVal;
-    } else if (bankData?.bank_name == '' || bankData?.bank_name == undefined) {
-      isError = false;
-      errorMessage = strings.bankNameReqVal
-    } else if (bankData?.branch_name == '' || bankData?.branch_name == undefined) {
-      isError = false;
-      errorMessage = strings.branchNameReqVal
-    } else if (bankData?.account_no == '' || bankData?.account_no == undefined) {
-      isError = false;
-      errorMessage = strings.accountNoReqVal
-    } else if (
-      Regexs.accountnumRegex.test(bankData?.account_no) === false
-    ) {
-      isError = false;
-      errorMessage = strings.accountNoValidVal;
-    } else if (bankData?.ifsc_code == '' || bankData?.ifsc_code == undefined) {
-      isError = false;
-      errorMessage = strings.ifscReqVal
-    } else if (
-      Regexs.ifscRegex.test(bankData?.ifsc_code) === false
-    ) {
-      isError = false;
-      errorMessage = strings.ifscValidVal;
-    } else if (bankData?.cancel_cheaque == '' || bankData?.cancel_cheaque == undefined) {
-      isError = false;
-      errorMessage = strings.cancelChqImgReqVal
+      errorMessage = strings.reraCertNoReqVal
     }
+    else if (editData?.rera_certificate == '' || editData?.rera_certificate == undefined) {
+      isError = false;
+      errorMessage = strings.reraCertImgReqVal
+    }
+    // if (editData?.propidership_declaration_letter == '' || editData?.propidership_declaration_letter == undefined) {
+    //   isError = false;
+    //   errorMessage = strings.propDeclrLttrImgReqVal
+    // } else if (editData?.norera_register === null) {
+    //   isError = false;
+    //   errorMessage = strings.noReraRegReqVal;
+    // } else if (bankData?.bank_name == '' || bankData?.bank_name == undefined) {
+    //   isError = false;
+    //   errorMessage = strings.bankNameReqVal
+    // } else if (bankData?.branch_name == '' || bankData?.branch_name == undefined) {
+    //   isError = false;
+    //   errorMessage = strings.branchNameReqVal
+    // } else if (bankData?.account_no == '' || bankData?.account_no == undefined) {
+    //   isError = false;
+    //   errorMessage = strings.accountNoReqVal
+    // } else if (
+    //   Regexs.accountnumRegex.test(bankData?.account_no) === false
+    // ) {
+    //   isError = false;
+    //   errorMessage = strings.accountNoValidVal;
+    // } else if (bankData?.ifsc_code == '' || bankData?.ifsc_code == undefined) {
+    //   isError = false;
+    //   errorMessage = strings.ifscReqVal
+    // } else if (
+    //   Regexs.ifscRegex.test(bankData?.ifsc_code) === false
+    // ) {
+    //   isError = false;
+    //   errorMessage = strings.ifscValidVal;
+    // } else if (bankData?.cancel_cheaque == '' || bankData?.cancel_cheaque == undefined) {
+    //   isError = false;
+    //   errorMessage = strings.cancelChqImgReqVal
+    // }
     if (errorMessage !== '') {
       ErrorMessage({
         msg: errorMessage,
@@ -134,6 +136,7 @@ const EditBankDetails = ({ navigation }: any) => {
         automaticallyAdjustKeyboardInsets={Isios ? true : false}>
         <View style={styles.inputWrap}>
           <InputField
+            require={true}
             valueshow={editData?.rera_certificate_no}
             handleInputBtnPress={() => { }}
             maxLength={20}
@@ -147,8 +150,9 @@ const EditBankDetails = ({ navigation }: any) => {
           />
         </View>
         <View style={[styles.inputWrap, { flexDirection: "row", }]}>
-          <View style={{ flex: 1, justifyContent: 'center' }}>
+          <View style={{ flex: 1, flexDirection: 'row', justifyContent: 'center' }}>
             <Text style={styles.headingText}>{strings.reraCertificate}</Text>
+            <RequiredStart />
           </View>
           <View style={{ flex: 0.6, }}>
             <TouchableOpacity
@@ -184,7 +188,7 @@ const EditBankDetails = ({ navigation }: any) => {
             }
           </View>
         </View>
-        <View style={styles.straightVw}>
+        {/* <View style={styles.straightVw}>
           <RadioButton.Android
             value={editData?.norera_register}
             status={editData?.norera_register === 1 ? "checked" : "unchecked"}
@@ -211,13 +215,13 @@ const EditBankDetails = ({ navigation }: any) => {
           >
             {strings.noReraRegistr}
           </Text>
-        </View>
+        </View> */}
         <View style={styles.inputWrap}>
           <Text style={styles.headingText}>{strings.bankDetail}</Text>
         </View>
         <View style={styles.inputWrap}>
           <InputField
-            require={true}
+            // require={true}
             disableSpecialCharacters={true}
             valueshow={bankData?.bank_name}
             handleInputBtnPress={() => { }}
@@ -231,7 +235,7 @@ const EditBankDetails = ({ navigation }: any) => {
         </View>
         <View style={styles.inputWrap}>
           <InputField
-            require={true}
+            // require={true}
             disableSpecialCharacters={true}
             valueshow={bankData?.branch_name}
             handleInputBtnPress={() => { }}
@@ -245,7 +249,7 @@ const EditBankDetails = ({ navigation }: any) => {
         </View>
         <View style={styles.inputWrap}>
           <InputField
-            require={true}
+            // require={true}
             disableSpecialCharacters={true}
             valueshow={bankData?.account_no}
             handleInputBtnPress={() => { }}
@@ -260,7 +264,7 @@ const EditBankDetails = ({ navigation }: any) => {
         </View>
         <View style={styles.inputWrap}>
           <InputField
-            require={true}
+            // require={true}
             disableSpecialCharacters={true}
             valueshow={bankData?.ifsc_code}
             handleInputBtnPress={() => { }}
