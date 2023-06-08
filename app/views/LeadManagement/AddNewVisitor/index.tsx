@@ -174,6 +174,12 @@ const AddNewVisitorScreen = ({ navigation, route }: any) => {
           errorMessage = "Please enter valid Pancard number";
         }
       }
+      if (formData?.whatsapp_no) {
+        if (Regexs.mobilenumRegex.test(formData?.whatsapp_no) === false) {
+          isError = false;
+          errorMessage = "Please enter valid whatsapp number";
+        }
+      }
       if (formData?.email) {
         if (Regexs.emailRegex.test(formData?.email) === false) {
           isError = false;

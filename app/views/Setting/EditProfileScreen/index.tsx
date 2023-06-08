@@ -89,6 +89,13 @@ const EditProfileScreen = ({ navigation, route }: any) => {
       //   isError = false;
       //   errorMessage = strings.whatsappNoReqVal;
       // } 
+      else if (
+        (editData?.whatsapp_number !== "" || editData?.whatsapp_number === null) &&
+        editData?.whatsapp_number?.length < 10
+      ) {
+        isError = false;
+        errorMessage = strings.whatsappNoReqVal;
+      } 
       else if (editData?.email == undefined || editData?.email == "") {
         isError = false;
         errorMessage = strings.emailReqVal;

@@ -126,7 +126,7 @@ const EditCompanyDetails = ({ navigation }: any) => {
             editFormData.append("cp_id", editData?.cp_id);
             editFormData.append("location", editData?.location);
             editFormData.append("pin_code", editData?.pin_code);
-            editFormData.append("working_location", JSON.stringify(editData?.working_location));
+            // editFormData.append("working_location", JSON.stringify(editData?.working_location));
             editFormData.append("owner_name", editData?.owner_name);
             //1st
             editData?.profile_picture?.uri &&
