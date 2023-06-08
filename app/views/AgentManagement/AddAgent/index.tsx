@@ -64,8 +64,8 @@ const AgentBasicInfo = ({ navigation, route }: any) => {
           branch_name: bankdata?.branch_name,
           account_no: bankdata?.account_no,
           ifsc_code: bankdata?.ifsc_code,
-          norera_register: (handleValues(allDatas?.rera_certificate_no) &&
-            handleValues(allDatas?.rera_certificate) === false) ? null : "",
+          norera_register: (handleValues(allDatas?.rera_certificate_no) === false &&
+            handleValues(allDatas?.rera_certificate) === false) ? 0 : 1,
             profile_base_url: allDatas?.profile_base_url ? allDatas?.profile_base_url : ''
         });
       }

@@ -178,6 +178,8 @@ const AgentBankInfo = ({ navigation, route }: any) => {
       }
     }
   };
+  console.log('agentInfoData.norera_register: ', typeof agentInfoData.norera_register);
+
   return (
     <View style={styles.mainContainer}>
       <Header

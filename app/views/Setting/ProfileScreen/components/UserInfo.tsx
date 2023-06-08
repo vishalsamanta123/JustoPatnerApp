@@ -69,7 +69,7 @@ const UserInfo = (props: any) => {
         <Text style={styles.colon}>:</Text>
         <View style={styles.valueView}>
           <Text style={styles.valueText}>
-            {moment(allDetails?.date_of_birth).format("DD/MM/YYYY")}
+            {allDetails?.date_of_birth ? moment(allDetails?.date_of_birth).format("DD/MM/YYYY"): strings.notfount}
           </Text>
         </View>
       </View>
@@ -88,7 +88,7 @@ const UserInfo = (props: any) => {
         </View>
         <Text style={styles.colon}>:</Text>
         <View style={styles.valueView}>
-          <Text style={styles.valueText}>{allDetails?.whatsapp_number}</Text>
+          <Text style={styles.valueText}>{allDetails?.whatsapp_number ? allDetails?.whatsapp_number : strings.notfount}</Text>
         </View>
       </View>
       <View style={styles.fieldView}>

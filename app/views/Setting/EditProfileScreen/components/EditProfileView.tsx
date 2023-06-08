@@ -33,6 +33,8 @@ const EditProfileView = (props: any) => {
       working_location: array,
     });
   };
+  console.log('props.editData?.date_of_birth: ', props.editData?.date_of_birth);
+
   return (
     <View style={styles.mainContainer}>
       <Header
@@ -201,7 +203,7 @@ const EditProfileView = (props: any) => {
                   date_of_birth: data,
                 });
               }}
-              value={moment(props.editData?.date_of_birth).format("DD/MM/YYYY")}
+              value={props.editData?.date_of_birth ? moment(props.editData?.date_of_birth).format("DD/MM/YYYY") : ""}
             />
           </View>
           <View style={styles.inputWrap}>
