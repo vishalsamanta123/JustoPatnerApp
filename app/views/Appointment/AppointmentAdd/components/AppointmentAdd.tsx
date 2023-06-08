@@ -19,8 +19,6 @@ import moment from "moment";
 import { leadTypes } from "app/components/utilities/DemoData";
 
 const AppointmentAddView = (props: any) => {
-  console.log("🚀 ~ file: AppointmentAdd.tsx:128 ~ AppointmentAddView ~ props?.formData?.appointment_date:", props?.formData?.appointment_date)
-
   return (
     <View style={styles.mainContainer}>
       <Header
@@ -58,10 +56,7 @@ const AppointmentAddView = (props: any) => {
             valueField={"value"}
             value={props?.formData?.status}
             onChange={(item: any) => {
-              props.setFormData({
-                ...props.formData,
-                status: item.value,
-              });
+              props.setStatus(item)
             }}
             newRenderItem={(item: any) => {
               return (
