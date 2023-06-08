@@ -19,10 +19,10 @@ import usePermission from "app/components/utilities/UserPermissions";
 
 const SmAppointment = (props: any) => {
   const getConfirmButton = () => {
-    const appointmentdateTime = `${moment(props?.items?.appointment_date).format(DATE_FORMAT)}, ${moment(props?.items?.appointment_time?.toString(), 'hh:mm A').format('HH:mm')}` || ""
-    const currentDate = `${moment(new Date).format(DATE_FORMAT)}`
+    const appointmentdateTime = `${moment.utc(props?.items?.appointment_date).format(DATE_FORMAT)}, ${moment(props?.items?.appointment_time?.toString(), 'hh:mm A').format('HH:mm')}` || ""
+    const currentDate = `${moment.utc(new Date).format(DATE_FORMAT)}`
     const getAheadTime = new Date(Date.now() + (3600 * 2000 * 25))
-    const getCorrectTime = `${currentDate}, ${moment(getAheadTime).format("HH:mm")}`
+    const getCorrectTime = `${currentDate}, ${moment.utc(getAheadTime).format("HH:mm")}`
     let response = false
     if (appointmentdateTime > getCorrectTime) {
       response = true

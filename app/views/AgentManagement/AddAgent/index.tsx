@@ -111,6 +111,8 @@ const AgentBasicInfo = ({ navigation, route }: any) => {
       //   isError = false;
       //   errorMessage = "Please select profile image"
       // } else
+      console.log("🚀 ~ file: index.tsx:139 ~ validation ~ Regexs.mobilenumRegex.test(primary_mobile) === false:", Regexs.mobilenumRegex.test(primary_mobile))
+
       if (agent_name === "" || agent_name === undefined) {
         isError = false;
         errorMessage = strings.agentNameReqVal;
@@ -135,13 +137,16 @@ const AgentBasicInfo = ({ navigation, route }: any) => {
       } else if (primary_mobile === "" || primary_mobile === undefined) {
         isError = false;
         errorMessage = strings.mobileNoReqVal;
-      } else if (primary_mobile?.length < 10) {
+      } else if (Regexs.mobilenumRegex.test(primary_mobile) === false) {
         isError = false;
         errorMessage = strings.mobileNoValidReqVal;
       } else if (type != "edit" && emailMobvalidation.primary_mobile == null) {
         isError = false;
         errorMessage = strings.mobileAlreadyValidReqVal;
       } else if (whatsapp_number === "" || whatsapp_number === undefined) {
+        isError = false;
+        errorMessage = strings.whatsappNoReqVal;
+      } else if (Regexs.mobilenumRegex.test(whatsapp_number) === false) {
         isError = false;
         errorMessage = strings.whatsappNoReqVal;
       } else if (email === "" || email === undefined) {

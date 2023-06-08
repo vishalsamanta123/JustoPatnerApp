@@ -19,6 +19,8 @@ import moment from "moment";
 import { leadTypes } from "app/components/utilities/DemoData";
 
 const AppointmentAddView = (props: any) => {
+  console.log("🚀 ~ file: AppointmentAdd.tsx:128 ~ AppointmentAddView ~ props?.formData?.appointment_date:", props?.formData?.appointment_date)
+
   return (
     <View style={styles.mainContainer}>
       <Header
@@ -102,6 +104,7 @@ const AppointmentAddView = (props: any) => {
           <>
             <View style={styles.inputWrap}>
               <InputCalender
+                require={true}
                 headingText={strings.appointmentDate}
                 mode={"date"}
                 leftIcon={images.event}
@@ -135,6 +138,7 @@ const AppointmentAddView = (props: any) => {
             </View>
             <View style={styles.inputWrap}>
               <InputCalender
+                require={true}
                 headingText={strings.appointmentTime}
                 mode={"time"}
                 leftIcon={images.timer}

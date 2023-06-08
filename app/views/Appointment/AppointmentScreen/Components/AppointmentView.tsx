@@ -67,8 +67,8 @@ const AppointmentView = (props: any) => {
     remark: "",
   });
   const todayAppointment = {
-    start_date: moment(new Date()).format(DATE_FORMAT),
-    end_date: moment(new Date()).format(DATE_FORMAT),
+    start_date: moment.utc(new Date()).format(DATE_FORMAT),
+    end_date: moment.utc(new Date()).format(DATE_FORMAT),
   };
   const [indexData, setIndexData] = useState({
     index: 0,

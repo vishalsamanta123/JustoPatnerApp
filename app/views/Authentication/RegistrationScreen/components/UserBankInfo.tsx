@@ -69,6 +69,8 @@ const UserBankInfo = ({ navigation }: any) => {
   const validation = () => {
     let isError = true;
     let errorMessage: any = ''
+    console.log("🚀 ~ file: UserBankInfo.tsx:112 ~ validation ~ formData?.ifsc_code:", formData?.ifsc_code)
+
     // if (formData.norera_register === null) {
     //   isError = false;
     //   errorMessage = strings.noReraRegReqVal;
@@ -95,20 +97,26 @@ const UserBankInfo = ({ navigation }: any) => {
     // } else if (formData.account_no == '' || formData.account_no == undefined) {
     //   isError = false;
     //   errorMessage = strings.accountNoReqVal
-    // } else if (
-    //   Regexs.accountnumRegex.test(formData.account_no) === false
-    // ) {
-    //   isError = false;
-    //   errorMessage = strings.accountNoValidVal;
-    // } else if (formData.ifsc_code == '' || formData.ifsc_code == undefined) {
+    // } 
+    else if (
+      formData.account_no !== '' && formData.account_no !== undefined &&
+      Regexs.accountnumRegex.test(formData.account_no) === false
+    ) {
+      isError = false;
+      errorMessage = strings.accountNoValidVal;
+    } 
+    //else if (formData.ifsc_code == '' || formData.ifsc_code == undefined) {
     //   isError = false;
     //   errorMessage = strings.ifscReqVal
-    // } else if (
-    //   Regexs.ifscRegex.test(formData.ifsc_code) === false
-    // ) {
-    //   isError = false;
-    //   errorMessage = strings.ifscValidVal;
-    // } else if (formData.cancel_cheaque == '' || formData.cancel_cheaque == undefined) {
+    // } 
+    else if (
+      formData?.ifsc_code !== '' && formData.ifsc_code !== undefined &&
+      Regexs.ifscRegex.test(formData.ifsc_code) === false
+    ) {
+      isError = false;
+      errorMessage = strings.ifscValidVal;
+    } 
+    //else if (formData.cancel_cheaque == '' || formData.cancel_cheaque == undefined) {
     //   isError = false;
     //   errorMessage = strings.cancelChqImgReqVal
     // }

@@ -48,12 +48,12 @@ const LocationInput = (props: any) => {
                         borderColor: GRAY_COLOR,
                     },
                     textInput: {
-                        fontSize: normalize(16),
                         paddingRight: normalizeSpacing(30),
                         paddingLeft: normalizeSpacing(Isios ? 5 : 15),
                         fontFamily: FONT_FAMILY_SEMIBOLD,
                         opacity: 0.6,
-                        color: BLACK_COLOR
+                        color: BLACK_COLOR,
+                        fontSize: 13
                     },
                     predefinedPlacesDescription: {
                         color: BLACK_COLOR,

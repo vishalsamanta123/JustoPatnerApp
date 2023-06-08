@@ -48,19 +48,19 @@ const AppointmentFilterModal = (props: any) => {
                   dateData={(data: any) => {
                     props.setParams({
                       ...props.params,
-                      start_date: moment(data).format(DATE_FORMAT),
+                      start_date: moment.utc(data).format(DATE_FORMAT),
                     });
                   }}
                   // dateshow={props.params.start_date}
                   value={
                     props?.params?.start_date !== ""
-                      ? moment(props?.params?.start_date).format(DATE_FORMAT)
+                      ? moment.utc(props?.params?.start_date).format(DATE_FORMAT)
                       : null
                   }
                   setDateshow={(data: any) => {
                     props.setParams({
                       ...props.params,
-                      start_date: moment(data).format(DATE_FORMAT),
+                      start_date: moment.utc(data).format(DATE_FORMAT),
                     });
                   }}
                 />
@@ -75,19 +75,19 @@ const AppointmentFilterModal = (props: any) => {
                   dateData={(data: any) => {
                     props.setParams({
                       ...props.params,
-                      end_date: moment(data).format(DATE_FORMAT),
+                      end_date: moment.utc(data).format(DATE_FORMAT),
                     });
                   }}
                   // dateshow={props.params.end_date}
                   value={
                     props?.params?.end_date !== ""
-                      ? moment(props?.params?.end_date).format(DATE_FORMAT)
+                      ? moment.utc(props?.params?.end_date).format(DATE_FORMAT)
                       : null
                   }
                   setDateshow={(data: any) => {
                     props.setParams({
                       ...props.params,
-                      end_date: moment(data).format(DATE_FORMAT),
+                      end_date: moment.utc(data).format(DATE_FORMAT),
                     });
                   }}
                 />

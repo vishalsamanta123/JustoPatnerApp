@@ -13,8 +13,8 @@ import {
 } from "app/components/utilities/constant";
 
 const AppointmentDtailsItem = (props: any) => {
-  const currentDate = `${moment(new Date).format(DATE_FORMAT)}, ${new Date().getHours()}:${new Date().getMinutes()}`
-  const appointmentdateTime = `${moment(props?.item?.appointment_date).format(DATE_FORMAT)}, ${moment(props?.item?.appointment_time?.toString(), 'hh:mm A').format('HH:mm')}` || ""
+  const currentDate = `${moment.utc(new Date).format(DATE_FORMAT)}, ${new Date().getHours()}:${new Date().getMinutes()}`
+  const appointmentdateTime = `${moment.utc(props?.item?.appointment_date).format(DATE_FORMAT)}, ${moment(props?.item?.appointment_time?.toString(), 'hh:mm A').format('HH:mm')}` || ""
   const bookingStatus = props?.item?.booking_status?.length > 0 ? props?.item?.booking_status[0] : ''
   return (
     <ScrollView>
@@ -108,7 +108,7 @@ const AppointmentDtailsItem = (props: any) => {
               props?.item?.appointment_date === undefined ||
               props?.item?.appointment_date === null
               ? strings.notfount
-              : `${moment(props?.item?.appointment_date).format(DATE_FORMAT)} ${props?.item?.appointment_time
+              : `${moment.utc(props?.item?.appointment_date).format(DATE_FORMAT)} ${props?.item?.appointment_time
               }`}
           </Text>
         </View>

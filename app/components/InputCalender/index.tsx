@@ -109,6 +109,7 @@ const InputCalender = (props: any) => {
               height: normalizeHeight(inputheight),
               textAlignVertical: "top",
               color: BLACK_COLOR,
+              fontSize: 13
             },
           ]}
           onChangeText={(val) => props.onChangeText(val)}

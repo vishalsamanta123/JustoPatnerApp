@@ -48,10 +48,11 @@ const CompanyDetails = ({ navigation }: any) => {
       isError = false;
       errorMessage = strings.agencyNameReqVal
     } 
-    // else if (formData.gst == '' || formData.gst == undefined) {
-    //   isError = false;
-    //   errorMessage = strings.gstReqVal
-    // }
+    else if (formData.gst !== '' && formData.gst !== undefined 
+    && Regexs.gstRegex.test(formData.gst) === false) {
+      isError = false;
+      errorMessage = strings.gstReqVal
+    }
      else if (formData.rera_registration == '' || formData.rera_registration == undefined) {
       isError = false;
       errorMessage = strings.reraRegstrReqVal

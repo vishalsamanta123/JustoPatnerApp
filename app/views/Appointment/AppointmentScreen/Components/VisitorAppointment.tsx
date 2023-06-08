@@ -17,8 +17,10 @@ import moment from "moment";
 import usePermission from "app/components/utilities/UserPermissions";
 
 const VisitorAppointment = (props: any) => {
-  const currentDate = `${moment(new Date).format(DATE_FORMAT)}, ${new Date().getHours()}:${new Date().getMinutes()}`
-  const appointmentdateTime = `${moment(props?.items?.appointment_date).format(DATE_FORMAT)}, ${moment(props?.items?.appointment_time?.toString(), 'hh:mm A').format('HH:mm')}` || ""
+  console.log("🚀 ~ file: VisitorAppointment.tsx:23 ~ VisitorAppointment ~ props?.items?.appointment_date:", props?.items?.appointment_date)
+
+  const currentDate = `${moment.utc(new Date).format(DATE_FORMAT)}, ${new Date().getHours()}:${new Date().getMinutes()}`
+  const appointmentdateTime = `${moment.utc(props?.items?.appointment_date).format(DATE_FORMAT)}, ${moment(props?.items?.appointment_time?.toString(), 'hh:mm A').format('HH:mm')}` || ""
   const { edit, view } = usePermission({
     edit: 'edit_appointment',
     view: 'view_appointment',
@@ -36,7 +38,7 @@ const VisitorAppointment = (props: any) => {
           <Text>:</Text>
         </View>
         <View style={styles.nameContainer}>
-          <Text style={styles.nameTxt}>{`${moment(
+          <Text style={styles.nameTxt}>{`${moment.utc(
             item?.appointment_date
           ).format('DD-MM-YYYY')}, ${item?.appointment_time}`}</Text>
         </View>

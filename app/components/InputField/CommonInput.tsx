@@ -56,6 +56,7 @@ const CommonInput = (props: any) => {
               height: normalizeHeight(inputheight),
               textAlignVertical: "top",
               top: topping,
+              fontSize: 13
             },
           ]}
           onChangeText={(val: any) => {

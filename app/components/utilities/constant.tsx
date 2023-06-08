@@ -55,4 +55,5 @@ export const Regexs = {
   accountnumRegex: new RegExp(/^\d{9,18}$/),
   ifscRegex: new RegExp(/^[A-Z]{4}0[A-Z0-9]{6}$/),
   alphaNumeric: new RegExp(/^[A-Za-z0-9\s]*$/),
+  gstRegex: new RegExp(/\d{2}[A-Z]{5}\d{4}[A-Z]{1}[A-Z\d]{1}[Z]{1}[A-Z\d]{1}/),
 }

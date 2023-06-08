@@ -76,12 +76,15 @@ const RegistrationScreen = ({ navigation }: any) => {
       // ) {
       //   isError = false;
       //   errorMessage = strings.pancardReqVal;
-      // } else if (
-      //   Regexs.panRegex.test(registerForm.pancard_no) === false
-      // ) {
-      //   isError = false;
-      //   errorMessage = strings.pancardValidVal;
-      // } else if (
+      // } 
+      else if (
+        registerForm.pancard_no !== "" &&
+        Regexs.panRegex.test(registerForm.pancard_no) === false
+      ) {
+        isError = false;
+        errorMessage = strings.pancardValidVal;
+      } 
+      // else if (
       //   registerForm.gender == undefined || registerForm.gender == "") {
       //   isError = false;
       //   errorMessage = strings.genderReqVal;
@@ -96,19 +99,19 @@ const RegistrationScreen = ({ navigation }: any) => {
       ) {
         isError = false;
         errorMessage = strings.mobileNoReqVal;
-      } else if (registerForm.primary_mobile?.length < 10) {
+      } else if (Regexs.mobilenumRegex.test(registerForm.primary_mobile) === false) {
         isError = false;
         errorMessage = strings.mobileNoValidReqVal;
       } else if (emailMobvalidation.primary_mobile == null) {
         isError = false;
         errorMessage = strings.mobileAlreadyValidReqVal;
       }
-      //  else if (
-      //   registerForm.whatsapp_number == undefined || registerForm.whatsapp_number == ""
-      // ) {
-      //   isError = false;
-      //   errorMessage = strings.whatsappNoReqVal;
-      // }
+       else if (
+        registerForm.whatsapp_number !== "" && Regexs.mobilenumRegex.test(registerForm.whatsapp_number) === false
+      ) {
+        isError = false;
+        errorMessage = strings.whatsappNoReqVal;
+      }
        else if (registerForm.email == undefined || registerForm.email == "") {
         isError = false;
         errorMessage = strings.emailReqVal;

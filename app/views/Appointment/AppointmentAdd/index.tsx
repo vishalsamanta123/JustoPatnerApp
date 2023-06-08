@@ -17,8 +17,8 @@ const AppointmentAddScreen = ({ navigation, route }: any) => {
     const [formData, setFormData] = useState({
         appointment_id: appointmentId?._id ? appointmentId?._id : '',
         status: '',
-        appointment_date: appointmentId?.appointment_date ? appointmentId?.appointment_date : '',
-        appointment_time: appointmentId?.appointment_time ? appointmentId?.appointment_time : '',
+        appointment_date:  '',
+        appointment_time:  '',
         remark: '',
         visit_status: strings.warm,
         lead_id: appointmentId?.lead_id ? appointmentId?.lead_id : '',
