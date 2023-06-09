@@ -127,7 +127,7 @@ const AgentBasicInfoView = (props: any) => {
           <View style={styles.inputWrap}>
             <InputField
               disableSpecialCharacters={true}
-              require={true}
+              // require={true}
               placeholderText={"BNZAA2318JM"} //can edit
               handleInputBtnPress={() => { }}
               onChangeText={(data: any) => {
@@ -143,7 +143,7 @@ const AgentBasicInfoView = (props: any) => {
           </View>
           <View style={styles.genderView}>
             <Text style={styles.genderTxt}>{strings.gender}</Text>
-            <RequiredStart />
+            {/* <RequiredStart /> */}
             <View style={styles.radioView}>
               <RadioButton.Android
                 value={"1"} //can edit
@@ -203,7 +203,7 @@ const AgentBasicInfoView = (props: any) => {
           </View>
           <View style={styles.inputWrap}>
             <InputCalender
-              require={true}
+              // require={true}
               mode={"date"}
               leftIcon={images.event}
               placeholderText={strings.dateOfBirth} //can edit
@@ -221,13 +221,20 @@ const AgentBasicInfoView = (props: any) => {
                   date_of_birth: moment(data).format(DATE_FORMAT),
                 });
               }}
+              // value={
+              //   props?.agentInfoData?.date_of_birth === "" ||
+              //     props?.agentInfoData?.date_of_birth === undefined
+              //     ? ""
+              //     : moment(props?.agentInfoData?.date_of_birth).format(
+              //       DATE_FORMAT
+              //     )
+              // }
               value={
-                props?.agentInfoData?.date_of_birth === "" ||
-                  props?.agentInfoData?.date_of_birth === undefined
-                  ? ""
-                  : moment(props?.agentInfoData?.date_of_birth).format(
+                props?.agentInfoData?.date_of_birth  
+                  ? moment(props?.agentInfoData?.date_of_birth).format(
                     DATE_FORMAT
                   )
+                  : ""
               }
             />
           </View>
@@ -284,7 +291,7 @@ const AgentBasicInfoView = (props: any) => {
           <View style={styles.inputWrap}>
             <InputField
               disableSpecialCharacters={true}
-              require={true}
+              // require={true}
               placeholderText={strings.whatsappNo} //can edit
               handleInputBtnPress={() => { }}
               onChangeText={(data: any) => {
@@ -387,7 +394,7 @@ const AgentBasicInfoView = (props: any) => {
               }}
             >
               <Text style={styles.workTxt}>{strings.workingLocation}</Text>
-              <RequiredStart />
+              {/* <RequiredStart /> */}
             </View>
             <TouchableOpacity
               onPress={() => {

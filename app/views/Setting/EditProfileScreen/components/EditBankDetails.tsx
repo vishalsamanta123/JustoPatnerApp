@@ -84,20 +84,26 @@ const EditBankDetails = ({ navigation }: any) => {
     // } else if (bankData?.account_no == '' || bankData?.account_no == undefined) {
     //   isError = false;
     //   errorMessage = strings.accountNoReqVal
-    // } else if (
-    //   Regexs.accountnumRegex.test(bankData?.account_no) === false
-    // ) {
-    //   isError = false;
-    //   errorMessage = strings.accountNoValidVal;
-    // } else if (bankData?.ifsc_code == '' || bankData?.ifsc_code == undefined) {
+    // } 
+    else if (
+      bankData?.account_no !== '' &&
+      Regexs.accountnumRegex.test(bankData?.account_no) === false
+    ) {
+      isError = false;
+      errorMessage = strings.accountNoValidVal;
+    } 
+    //else if (bankData?.ifsc_code == '' || bankData?.ifsc_code == undefined) {
     //   isError = false;
     //   errorMessage = strings.ifscReqVal
-    // } else if (
-    //   Regexs.ifscRegex.test(bankData?.ifsc_code) === false
-    // ) {
-    //   isError = false;
-    //   errorMessage = strings.ifscValidVal;
-    // } else if (bankData?.cancel_cheaque == '' || bankData?.cancel_cheaque == undefined) {
+    // } 
+    else if (
+      bankData?.ifsc_code !== ''  &&
+      Regexs.ifscRegex.test(bankData?.ifsc_code) === false
+    ) {
+      isError = false;
+      errorMessage = strings.ifscValidVal;
+    } 
+    //else if (bankData?.cancel_cheaque == '' || bankData?.cancel_cheaque == undefined) {
     //   isError = false;
     //   errorMessage = strings.cancelChqImgReqVal
     // }

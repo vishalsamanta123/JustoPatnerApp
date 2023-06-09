@@ -76,6 +76,11 @@ const EditCompanyDetails = ({ navigation }: any) => {
         //   isError = false;
         //   errorMessage = strings.gstReqVal
         // }
+        else if (editData?.gst !== '' &&
+         Regexs.gstRegex.test(editData?.gst) === false) {
+          isError = false;
+          errorMessage = strings.gstReqVal
+        }
          else if (editData?.rera_registration == '' || editData?.rera_registration == undefined) {
           isError = false;
           errorMessage = strings.reraRegstrReqVal
@@ -95,20 +100,25 @@ const EditCompanyDetails = ({ navigation }: any) => {
         // } else if (editData?.company_account_no == '' || editData?.company_account_no == undefined) {
         //   isError = false;
         //   errorMessage = strings.accountNoReqVal
-        // } else if (
-        //   Regexs.accountnumRegex.test(editData?.company_account_no) === false
-        // ) {
-        //   isError = false;
-        //   errorMessage = strings.accountNoValidVal;
-        // } else if (editData?.company_ifsc_code == '' || editData?.company_ifsc_code == undefined) {
+        // } 
+        else if (
+            editData?.company_account_no !== '' &&
+          Regexs.accountnumRegex.test(editData?.company_account_no) === false
+        ) {
+          isError = false;
+          errorMessage = strings.accountNoValidVal;
+        } 
+        //else if (editData?.company_ifsc_code == '' || editData?.company_ifsc_code == undefined) {
         //   isError = false;
         //   errorMessage = strings.ifscReqVal
-        // } else if (
-        //   Regexs.ifscRegex.test(editData?.company_ifsc_code) === false
-        // ) {
-        //   isError = false;
-        //   errorMessage = strings.ifscValidVal;
-        // }
+        // } 
+        else if (
+            editData?.company_ifsc_code !== '' &&
+          Regexs.ifscRegex.test(editData?.company_ifsc_code) === false
+        ) {
+          isError = false;
+          errorMessage = strings.ifscValidVal;
+        }
         if (errorMessage !== '') {
           ErrorMessage({
             msg: errorMessage,

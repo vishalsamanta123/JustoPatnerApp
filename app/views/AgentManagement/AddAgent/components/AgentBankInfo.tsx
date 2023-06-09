@@ -83,49 +83,59 @@ const AgentBankInfo = ({ navigation, route }: any) => {
       cancel_cheaque,
       norera_register,
     } = agentInfoData;
-    // if (rera_certificate_no === "" || rera_certificate_no === undefined) {
+    if ((rera_certificate_no === "" || rera_certificate_no === undefined)) {
+      isError = false;
+      errorMessage = strings.reraCertNoReqVal;
+      // errorMessage = strings.noReraRegReqVal;
+    } else if ((rera_certificate === "" || rera_certificate === undefined)) {
+      isError = false;
+      errorMessage = strings.reraCertImgReqVal;
+      // errorMessage = strings.noReraRegReqVal;
+    } 
+    // else if (
+    //   propidership_declaration_letter === "" ||
+    //   propidership_declaration_letter === undefined ||
+    //   propidership_declaration_letter === ""
+    // ) {
     //   isError = false;
-    //   errorMessage = strings.reraCertNoReqVal;
-    // } else if (rera_certificate === "" || rera_certificate === undefined) {
+    //   errorMessage = strings.propDeclrLttrImgReqVal;
+    // } 
+    // else if (norera_register === null) {
     //   isError = false;
-    //   errorMessage = strings.reraCertImgReqVal;
-    // } else
-    if (
-      propidership_declaration_letter === "" ||
-      propidership_declaration_letter === undefined ||
-      propidership_declaration_letter === ""
-    ) {
-      isError = false;
-      errorMessage = strings.propDeclrLttrImgReqVal;
-    } else if (norera_register === null) {
-      isError = false;
-      errorMessage = strings.noReraRegReqVal;
-    } else if (bank_name === "" || bank_name === undefined) {
-      isError = false;
-      errorMessage = strings.bankNameReqVal;
-    } else if (branch_name === "" || branch_name === undefined) {
-      isError = false;
-      errorMessage = strings.branchNameReqVal;
-    } else if (account_no === "" || account_no === undefined) {
-      isError = false;
-      errorMessage = strings.accountNoReqVal;
-    } else if (
+    //   errorMessage = strings.noReraRegReqVal;
+    // } 
+    // else if (bank_name === "" || bank_name === undefined) {
+    //   isError = false;
+    //   errorMessage = strings.bankNameReqVal;
+    // } else if (branch_name === "" || branch_name === undefined) {
+    //   isError = false;
+    //   errorMessage = strings.branchNameReqVal;
+    // } else if (account_no === "" || account_no === undefined) {
+    //   isError = false;
+    //   errorMessage = strings.accountNoReqVal;
+    // } 
+    else if (
+      account_no !== ""  &&
       Regexs.accountnumRegex.test(account_no) === false
     ) {
       isError = false;
       errorMessage = strings.accountNoValidVal;
-    } else if (ifsc_code === "" || ifsc_code === undefined) {
-      isError = false;
-      errorMessage = strings.ifscReqVal;
-    } else if (
+    } 
+    // else if (ifsc_code === "" || ifsc_code === undefined) {
+    //   isError = false;
+    //   errorMessage = strings.ifscReqVal;
+    // } 
+    else if (
+      ifsc_code !== "" &&
       Regexs.ifscRegex.test(ifsc_code) === false
     ) {
       isError = false;
       errorMessage = strings.ifscValidVal;
-    } else if (cancel_cheaque === "" || cancel_cheaque === undefined) {
-      isError = false;
-      errorMessage = strings.cancelChqImgReqVal;
     }
+    // else if (cancel_cheaque === "" || cancel_cheaque === undefined) {
+    //   isError = false;
+    //   errorMessage = strings.cancelChqImgReqVal;
+    // }
     if (errorMessage !== "") {
       ErrorMessage({
         msg: errorMessage,
@@ -142,25 +152,25 @@ const AgentBankInfo = ({ navigation, route }: any) => {
       } else {
         // formData.append("role_id", agentInfoData?.role_id);
       }
-      formData.append("email", agentInfoData?.email);
-      formData.append("agent_name", agentInfoData?.agent_name);
-      formData.append("primary_mobile", agentInfoData?.primary_mobile);
-      formData.append("whatsapp_number", agentInfoData?.whatsapp_number);
-      formData.append("adhar_no", agentInfoData?.adhar_no);
-      formData.append("pancard_no", agentInfoData?.pancard_no);
-      formData.append("gender", agentInfoData?.gender);
-      formData.append("bank_name", agentInfoData?.bank_name);
-      formData.append("branch_name", agentInfoData?.branch_name);
-      formData.append("account_no", agentInfoData?.account_no);
-      formData.append("ifsc_code", agentInfoData?.ifsc_code);
+      formData.append("email", agentInfoData?.email ? agentInfoData?.email : "");
+      formData.append("agent_name", agentInfoData?.agent_name ? agentInfoData?.agent_name : "");
+      formData.append("primary_mobile", agentInfoData?.primary_mobile ? agentInfoData?.primary_mobile : "");
+      formData.append("whatsapp_number", agentInfoData?.whatsapp_number ? agentInfoData?.whatsapp_number : "");
+      formData.append("adhar_no", agentInfoData?.adhar_no ? agentInfoData?.adhar_no : "");
+      formData.append("pancard_no", agentInfoData?.pancard_no ? agentInfoData?.pancard_no : "");
+      formData.append("gender", agentInfoData?.gender ? agentInfoData?.gender : "");
+      formData.append("bank_name", agentInfoData?.bank_name ? agentInfoData?.bank_name : "");
+      formData.append("branch_name", agentInfoData?.branch_name ? agentInfoData?.branch_name : "");
+      formData.append("account_no", agentInfoData?.account_no ? agentInfoData?.account_no : ""); 
+      formData.append("ifsc_code", agentInfoData?.ifsc_code ? agentInfoData?.ifsc_code : "");
       formData.append("date_of_birth",
-        agentInfoData?.date_of_birth ? agentInfoData?.date_of_birth : "10/11/2000"
+        agentInfoData?.date_of_birth ? agentInfoData?.date_of_birth : ""
       );
-      formData.append("location", agentInfoData?.location);
-      formData.append("latitude", agentInfoData?.latitude);
-      formData.append("longitude", agentInfoData?.longitude);
-      formData.append("working_location", JSON.stringify(agentInfoData?.working_location));
-      formData.append("rera_certificate_no", agentInfoData?.rera_certificate_no);
+      formData.append("location", agentInfoData?.location ? agentInfoData?.location : "");
+      formData.append("latitude", agentInfoData?.latitude ? agentInfoData?.latitude : "");
+      formData.append("longitude", agentInfoData?.longitude ? agentInfoData?.longitude : "");
+      formData.append("working_location", agentInfoData?.working_location ? JSON.stringify(agentInfoData?.working_location) : []);
+      formData.append("rera_certificate_no", agentInfoData?.rera_certificate_no ? agentInfoData?.rera_certificate_no : "");
       formData.append("rera_certificate", agentInfoData?.rera_certificate)
       agentInfoData?.profile_picture?.uri &&
         formData.append("profile_picture", agentInfoData?.profile_picture);
@@ -198,7 +208,7 @@ const AgentBankInfo = ({ navigation, route }: any) => {
           <View style={styles.inputWrap}>
             <InputField
               disableSpecialCharacters={true}
-              // require={true}
+              require={true}
               placeholderText={strings.reraCertificate + " " + strings.shortNum} //can edit
               handleInputBtnPress={() => { }}
               onChangeText={(data: any) => {
@@ -219,7 +229,7 @@ const AgentBankInfo = ({ navigation, route }: any) => {
               <Text style={[styles.headingText, { fontSize: normalize(17) }]}>
                 {strings.reraCertificate}
               </Text>
-              {/* {/ <RequiredStart /> /} */}
+              {<RequiredStart /> }
             </View>
             <View style={{ flex: 0.5 }}>
               <TouchableOpacity
@@ -249,7 +259,7 @@ const AgentBankInfo = ({ navigation, route }: any) => {
               <Text style={[styles.headingText, { fontSize: normalize(17) }]}>
                 {strings.proprietorDeclarLttr}
               </Text>
-              <RequiredStart />
+              {/* <RequiredStart /> */}
             </View>
             <View style={{ flex: 0.5 }}>
               <TouchableOpacity
@@ -278,7 +288,7 @@ const AgentBankInfo = ({ navigation, route }: any) => {
             </View>
           </View>
         </View>
-        <View style={styles.straightVw}>
+        {/* <View style={styles.straightVw}>
           <RadioButton.Android
             value={agentInfoData?.norera_register}
             status={agentInfoData.norera_register === 1 ? "checked" : "unchecked"}
@@ -305,7 +315,7 @@ const AgentBankInfo = ({ navigation, route }: any) => {
           >
             {strings.noReraRegistr}
           </Text>
-        </View>
+        </View> */}
         <View style={styles.wrapbottum}>
           <View style={styles.inputWrap}>
             <Text style={styles.headingText}>{strings.bankDetail}</Text>
@@ -313,7 +323,7 @@ const AgentBankInfo = ({ navigation, route }: any) => {
           <View style={styles.inputWrap}>
             <InputField
               disableSpecialCharacters={true}
-              require={true}
+              // require={true}
               placeholderText={strings.bankName}
               handleInputBtnPress={() => { }}
               onChangeText={(data: any) => {
@@ -329,7 +339,7 @@ const AgentBankInfo = ({ navigation, route }: any) => {
           <View style={styles.inputWrap}>
             <InputField
               disableSpecialCharacters={true}
-              require={true}
+              // require={true}
               placeholderText={strings.branchName}
               handleInputBtnPress={() => { }}
               onChangeText={(data: any) => {
@@ -345,7 +355,7 @@ const AgentBankInfo = ({ navigation, route }: any) => {
           <View style={styles.inputWrap}>
             <InputField
               disableSpecialCharacters={true}
-              require={true}
+              // require={true}
               placeholderText={strings.accountNo}
               handleInputBtnPress={() => { }}
               maxLength={18}
@@ -363,7 +373,7 @@ const AgentBankInfo = ({ navigation, route }: any) => {
           <View style={styles.inputWrap}>
             <InputField
               disableSpecialCharacters={true}
-              require={true}
+              // require={true}
               placeholderText={strings.ifscCode}
               handleInputBtnPress={() => { }}
               maxLength={11}
@@ -382,7 +392,7 @@ const AgentBankInfo = ({ navigation, route }: any) => {
               <Text style={[styles.headingText, { fontSize: normalize(17) }]}>
                 {strings.cancelCheque}
               </Text>
-              <RequiredStart />
+              {/* <RequiredStart /> */}
             </View>
             <View style={{ flex: 0.5 }}>
               <TouchableOpacity

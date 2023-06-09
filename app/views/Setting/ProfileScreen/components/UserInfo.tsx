@@ -39,7 +39,7 @@ const UserInfo = (props: any) => {
         </View>
         <Text style={styles.colon}>:</Text>
         <View style={styles.valueView}>
-          <Text style={styles.valueText}>{allDetails?.adhar_no}</Text>
+          <Text style={styles.valueText}>{allDetails?.adhar_no ? allDetails?.adhar_no : strings.notfount}</Text>
         </View>
       </View>
       <View style={styles.fieldView}>
@@ -48,7 +48,7 @@ const UserInfo = (props: any) => {
         </View>
         <Text style={styles.colon}>:</Text>
         <View style={styles.valueView}>
-          <Text style={styles.valueText}>{allDetails?.pancard_no}</Text>
+          <Text style={styles.valueText}>{allDetails?.pancard_no ? allDetails?.pancard_no : strings.notfount}</Text>
         </View>
       </View>
       <View style={styles.fieldView}>
@@ -79,7 +79,7 @@ const UserInfo = (props: any) => {
         </View>
         <Text style={styles.colon}>:</Text>
         <View style={styles.valueView}>
-          <Text style={styles.valueText}>{allDetails?.primary_mobile}</Text>
+          <Text style={styles.valueText}>{allDetails?.primary_mobile ? allDetails?.primary_mobile : strings.notfount}</Text>
         </View>
       </View>
       <View style={styles.fieldView}>
@@ -107,7 +107,7 @@ const UserInfo = (props: any) => {
               },
             ]}
           >
-            {allDetails?.email}
+            {allDetails?.email ? allDetails?.email : strings.notfount}
           </Text>
         </View>
       </View>
@@ -223,7 +223,7 @@ const UserInfo = (props: any) => {
         <Text style={styles.colon}>:</Text>
         <View style={styles.valueView}>
           <Text style={styles.valueText}>
-            {allDetails?.rera_certificate_no}
+            {allDetails?.rera_certificate_no ? allDetails?.rera_certificate_no : strings.notfount}
           </Text>
         </View>
       </View>

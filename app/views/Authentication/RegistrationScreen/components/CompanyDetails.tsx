@@ -72,20 +72,25 @@ const CompanyDetails = ({ navigation }: any) => {
     // } else if (formData.company_account_no == '' || formData.company_account_no == undefined) {
     //   isError = false;
     //   errorMessage = strings.accountNoReqVal
-    // } else if (
-    //   Regexs.accountnumRegex.test(formData.company_account_no) === false
-    // ) {
-    //   isError = false;
-    //   errorMessage = strings.accountNoValidVal;
-    // } else if (formData.company_ifsc_code == '' || formData.company_ifsc_code == undefined) {
+    // } 
+    else if (
+      formData.company_account_no !== '' &&
+      Regexs.accountnumRegex.test(formData.company_account_no) === false
+    ) {
+      isError = false;
+      errorMessage = strings.accountNoValidVal;
+    } 
+    //  else if (formData.company_ifsc_code == '' || formData.company_ifsc_code == undefined) {
     //   isError = false;
     //   errorMessage = strings.ifscReqVal
-    // } else if (
-    //   Regexs.ifscRegex.test(formData.company_ifsc_code) === false
-    // ) {
-    //   isError = false;
-    //   errorMessage = strings.ifscValidVal;
-    // }
+    // } 
+    else if (
+      formData.company_ifsc_code !== '' &&
+      Regexs.ifscRegex.test(formData.company_ifsc_code) === false
+    ) {
+      isError = false;
+      errorMessage = strings.ifscValidVal;
+    }
     if (errorMessage !== '') {
       ErrorMessage({
         msg: errorMessage,
@@ -120,38 +125,38 @@ const CompanyDetails = ({ navigation }: any) => {
       if (formData?.profile_picture?.uri) {
         newFormData.append("profile_picture", formData?.profile_picture)
       }
-      newFormData.append("owner_name", formData?.owner_name)
-      newFormData.append("adhar_no", formData?.adhar_no)
-      newFormData.append("pancard_no", formData?.pancard_no)
-      newFormData.append("gender", formData?.gender)
-      newFormData.append("date_of_birth", formData?.date_of_birth)
-      newFormData.append("primary_mobile", formData?.primary_mobile)
-      newFormData.append("whatsapp_number", formData?.whatsapp_number)
-      newFormData.append("email", formData?.email)
-      newFormData.append("working_location", JSON.stringify(formData?.working_location))
-      newFormData.append("rera_certificate_no", formData?.rera_certificate_no)
-      newFormData.append("rera_certificate", formData?.rera_certificate)
+      newFormData.append("owner_name", formData?.owner_name ? formData?.owner_name : "")
+      newFormData.append("adhar_no", formData?.adhar_no ? formData?.adhar_no : "")
+      newFormData.append("pancard_no", formData?.pancard_no ? formData?.pancard_no : "")
+      newFormData.append("gender", formData?.gender ? formData?.gender : "" )
+      newFormData.append("date_of_birth", formData?.date_of_birth ? formData?.date_of_birth : "")
+      newFormData.append("primary_mobile", formData?.primary_mobile ? formData?.primary_mobile : "")
+      newFormData.append("whatsapp_number", formData?.whatsapp_number ? formData?.whatsapp_number : "")
+      newFormData.append("email", formData?.email ? formData?.email : "")
+      newFormData.append("working_location", formData?.working_location ? JSON.stringify(formData?.working_location) : "")
+      newFormData.append("rera_certificate_no", formData?.rera_certificate_no ? formData?.rera_certificate_no : "")
+      newFormData.append("rera_certificate", formData?.rera_certificate ? formData?.rera_certificate : "")
       newFormData.append("propidership_declaration_letter", formData?.propidership_declaration_letter)
-      newFormData.append("bank_name", formData?.bank_name)
-      newFormData.append("branch_name", formData?.branch_name)
-      newFormData.append("account_no", formData?.account_no)
-      newFormData.append("ifsc_code", formData?.ifsc_code)
+      newFormData.append("bank_name", formData?.bank_name ? formData?.bank_name : "")
+      newFormData.append("branch_name", formData?.branch_name ? formData?.branch_name : "")
+      newFormData.append("account_no", formData?.account_no ? formData?.account_no : "")
+      newFormData.append("ifsc_code", formData?.ifsc_code ? formData?.ifsc_code : "")
       newFormData.append("cancel_cheaque", formData?.cancel_cheaque)
-      newFormData.append("agency_name", formData?.agency_name)
-      newFormData.append("gst", formData?.gst)
-      newFormData.append("rera_registration", formData?.rera_registration)
-      newFormData.append("pancard", formData?.pancard)
+      newFormData.append("agency_name", formData?.agency_name ? formData?.agency_name : "")
+      newFormData.append("gst", formData?.gst ? formData?.gst : "")
+      newFormData.append("rera_registration", formData?.rera_registration ? formData?.rera_registration : "")
+      newFormData.append("pancard", formData?.pancard ? formData?.pancard : "")
       newFormData.append("declaration_letter_of_company", formData?.declaration_letter_of_company)
-      newFormData.append("company_bank_name", formData?.company_bank_name)
-      newFormData.append("company_branch_name", formData?.company_branch_name)
-      newFormData.append("company_account_no", formData?.company_account_no)
-      newFormData.append("company_ifsc_code", formData?.company_ifsc_code)
+      newFormData.append("company_bank_name", formData?.company_bank_name ? formData?.company_bank_name : "")
+      newFormData.append("company_branch_name", formData?.company_branch_name ? formData?.company_branch_name : "")
+      newFormData.append("company_account_no", formData?.company_account_no ? formData?.company_account_no : "")
+      newFormData.append("company_ifsc_code", formData?.company_ifsc_code ? formData?.company_ifsc_code : "")
       if (formData?.sourcing_manager) {
-        newFormData.append("sourcing_manager", formData?.sourcing_manager)
+        newFormData.append("sourcing_manager", formData?.sourcing_manager ? formData?.sourcing_manager : "")
       }
-      newFormData.append("location", formData?.location)
-      newFormData.append("latitude", formData?.latitude)
-      newFormData.append("longitude", formData?.longitude)
+      newFormData.append("location", formData?.location ? formData?.location : "")
+      newFormData.append("latitude", formData?.latitude ? formData?.latitude : "")
+      newFormData.append("longitude", formData?.longitude ? formData?.longitude : "")
       dispatch(RegistrationForm(formData))
       dispatch(createChannelPartner(newFormData))
     }

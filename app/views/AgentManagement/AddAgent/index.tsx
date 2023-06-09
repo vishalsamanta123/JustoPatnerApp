@@ -112,6 +112,7 @@ const AgentBasicInfo = ({ navigation, route }: any) => {
       //   errorMessage = "Please select profile image"
       // } else
       console.log("🚀 ~ file: index.tsx:139 ~ validation ~ Regexs.mobilenumRegex.test(primary_mobile) === false:", Regexs.mobilenumRegex.test(primary_mobile))
+      console.log("🚀 ~ file: index.tsx:156 ~ whatsapp_number:", whatsapp_number)
 
       if (agent_name === "" || agent_name === undefined) {
         isError = false;
@@ -122,19 +123,23 @@ const AgentBasicInfo = ({ navigation, route }: any) => {
       } else if (Regexs.AadharRegex.test(adhar_no) === false) {
         isError = false;
         errorMessage = strings.aadharValidVal;
-      } else if (pancard_no === "" || pancard_no === undefined) {
-        isError = false;
-        errorMessage = strings.pancardReqVal;
-      } else if (Regexs.panRegex.test(pancard_no) === false) {
+      } 
+      // else if (pancard_no === "" || pancard_no === undefined) {
+      //   isError = false;
+      //   errorMessage = strings.pancardReqVal;
+      // } 
+      else if (pancard_no !== "" && Regexs.panRegex.test(pancard_no) === false) {
         isError = false;
         errorMessage = strings.pancardValidVal;
-      } else if (gender === "" || gender === undefined) {
-        isError = false;
-        errorMessage = strings.genderReqVal;
-      } else if (date_of_birth === "" || date_of_birth === undefined) {
-        isError = false;
-        errorMessage = strings.dateOfBirthReqVal;
-      } else if (primary_mobile === "" || primary_mobile === undefined) {
+      } 
+      // else if (gender === "" || gender === undefined) {
+      //   isError = false;
+      //   errorMessage = strings.genderReqVal;
+      // } else if (date_of_birth === "" || date_of_birth === undefined) {
+      //   isError = false;
+      //   errorMessage = strings.dateOfBirthReqVal;
+      // } 
+      else if (primary_mobile === "" || primary_mobile === undefined) {
         isError = false;
         errorMessage = strings.mobileNoReqVal;
       } else if (Regexs.mobilenumRegex.test(primary_mobile) === false) {
@@ -143,12 +148,15 @@ const AgentBasicInfo = ({ navigation, route }: any) => {
       } else if (type != "edit" && emailMobvalidation.primary_mobile == null) {
         isError = false;
         errorMessage = strings.mobileAlreadyValidReqVal;
-      } else if (whatsapp_number === "" || whatsapp_number === undefined) {
+      } 
+      // else if (whatsapp_number === "" || whatsapp_number === undefined) {
+      //   isError = false;
+      //   errorMessage = strings.whatsappNoReqVal;
+      // } 
+      else if ((whatsapp_number !== "" || whatsapp_number === null)
+      && whatsapp_number?.length < 10) {
         isError = false;
-        errorMessage = strings.whatsappNoReqVal;
-      } else if (Regexs.mobilenumRegex.test(whatsapp_number) === false) {
-        isError = false;
-        errorMessage = strings.whatsappNoReqVal;
+        errorMessage = strings.whatsappNoVal;
       } else if (email === "" || email === undefined) {
         isError = false;
         errorMessage = strings.emailReqVal;
@@ -158,13 +166,15 @@ const AgentBasicInfo = ({ navigation, route }: any) => {
       } else if (type != "edit" && emailMobvalidation.email == null) {
         isError = false;
         errorMessage = strings.emailAlreadyReqVal;
-      } else if (location === "" || location === undefined) {
+      } 
+      else if (location === "" || location === undefined) {
         isError = false;
         errorMessage = strings.addressReqVal;
-      } else if (working_location.length === 0) {
-        isError = false;
-        errorMessage = strings.workingLocationReqVal;
-      }
+      } 
+      // else if (working_location.length === 0) {
+      //   isError = false;
+      //   errorMessage = strings.workingLocationReqVal;
+      // }
       if (errorMessage !== "") {
         ErrorMessage({
           msg: errorMessage,

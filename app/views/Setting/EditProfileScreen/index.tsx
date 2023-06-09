@@ -59,12 +59,15 @@ const EditProfileScreen = ({ navigation, route }: any) => {
       // ) {
       //   isError = false;
       //   errorMessage = strings.pancardReqVal;
-      // } else if (
-      //   Regexs.panRegex.test(editData?.pancard_no) === false
-      // ) {
-      //   isError = false;
-      //   errorMessage = strings.pancardValidVal;
-      // } else if (
+      // } 
+      else if (
+        editData?.pancard_no !== "" &&
+        Regexs.panRegex.test(editData?.pancard_no) === false
+      ) {
+        isError = false;
+        errorMessage = strings.pancardValidVal;
+      } 
+      //  else if (
       //   editData?.gender == undefined || editData?.gender == "") {
       //   isError = false;
       //   errorMessage = strings.genderReqVal;

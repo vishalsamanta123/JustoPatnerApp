@@ -234,6 +234,7 @@ const strings = new LocalizedStrings({
     mobileNoValidReqVal: "Mobile No. should be 10 digits. Please enter correct Mobile No.",
     mobileAlreadyValidReqVal: "Mobile No. is already registered. Please enter other Mobile No.",
     whatsappNoReqVal: 'WhatsApp No. is require. Please enter WhatsApp No.',
+    whatsappNoVal: 'Please enter Correct WhatsApp No.',
     emailReqVal: 'Email is require. Please enter Email',
     correctEmailReqVal: 'Email format is wrong. Please enter correct Email',
     emailAlreadyReqVal: 'Email is already registered. Please enter other Email',
