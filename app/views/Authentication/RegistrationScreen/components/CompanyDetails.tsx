@@ -74,7 +74,7 @@ const CompanyDetails = ({ navigation }: any) => {
     //   errorMessage = strings.accountNoReqVal
     // } 
     else if (
-      formData.company_account_no !== '' &&
+      formData.company_account_no !== '' && formData.company_account_no !== undefined &&
       Regexs.accountnumRegex.test(formData.company_account_no) === false
     ) {
       isError = false;
@@ -85,7 +85,7 @@ const CompanyDetails = ({ navigation }: any) => {
     //   errorMessage = strings.ifscReqVal
     // } 
     else if (
-      formData.company_ifsc_code !== '' &&
+      formData.company_ifsc_code !== '' && formData.company_ifsc_code !== undefined &&
       Regexs.ifscRegex.test(formData.company_ifsc_code) === false
     ) {
       isError = false;
